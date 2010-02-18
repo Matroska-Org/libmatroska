@@ -1,0 +1,14 @@
+--- libmatroska-0.7.3/make/linux/Makefile~	2004-07-19 18:43:44.000000000 +0200
++++ libmatroska-0.7.3/make/linux/Makefile	2004-09-01 22:36:35.696238264 +0200
+@@ -14,9 +14,9 @@
+ ifeq (BeOS,$(shell uname -s))
+ prefix=/boot/home/config
+ else
+-prefix=/usr/local
++prefix=$(PREFIX)
+ endif
+-libdir=$(prefix)/lib
++libdir=$(LIBDIR)
+ includedir=$(prefix)/include/matroska
+ 
+ # Programs

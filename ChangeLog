@@ -1,0 +1,1944 @@
+2007-01-19 09:58  robux4
+
+	* trunk/libebml/libebml.proj, trunk/libmatroska/libmatroska.proj,
+	  trunk/libmatroska/test/ebml/ebml.proj,
+	  trunk/libmatroska/test/mux/mux.proj,
+	  trunk/libmatroska/test/tags/tags.proj,
+	  trunk/libmatroska/test/test.proj,
+	  trunk/libmatroska/test/utf8/utf8.proj: add support for coremake
+	  building for the moment the config.h and coremake are referenced
+	  by a parent project
+
+2007-01-15 16:01  mosu
+
+	* trunk/libmatroska/debian/changelog,
+	  trunk/libmatroska/matroska/KaxVersion.h: Version number upgrade to
+	  0.8.1.
+
+2007-01-14 17:20  mosu
+
+	* trunk/libmatroska/matroska/KaxBlock.h,
+	  trunk/libmatroska/matroska/KaxCluster.h,
+	  trunk/libmatroska/matroska/KaxCuesData.h,
+	  trunk/libmatroska/src/KaxBlock.cpp,
+	  trunk/libmatroska/src/KaxCues.cpp,
+	  trunk/libmatroska/src/KaxCuesData.cpp: Added support for
+	  KaxCodecState and for indexing them in the cues.
+
+2006-06-02 14:32  mosu
+
+	* trunk/libmatroska/make/linux/Makefile: Overwrite existing symlinks
+	  during install.
+
+2006-03-30 19:57  mosu
+
+	* trunk/libmatroska/make/linux/Makefile: Do not abort if the symlink
+	  exists already.
+
+2005-10-18 18:02  mosu
+
+	* trunk/libmatroska/ChangeLog, trunk/libmatroska/debian/changelog:
+	  Changed the version in the Debian control file & automatic
+	  ChangeLog update.
+
+2005-10-16 13:06  robux4
+
+	* trunk/libmatroska/src/KaxBlock.cpp: libmatroska: set the
+	  discardable bit of SimpleBlock correctly
+
+2005-10-16 10:28  robux4
+
+	* trunk/libmatroska/matroska/KaxBlock.h,
+	  trunk/libmatroska/src/KaxBlock.cpp: libmatroska: support for
+	  reading extra features of SimpleBlock
+
+2005-10-15 17:00  robux4
+
+	* trunk/libmatroska/src/KaxBlock.cpp: libmatroska: better decision
+	  to lace or not
+
+2005-10-15 15:56  robux4
+
+	* trunk/libebml/ebml/EbmlElement.h, trunk/libebml/ebml/EbmlMaster.h,
+	  trunk/libebml/src/EbmlElement.cpp, trunk/libebml/src/EbmlVoid.cpp,
+	  trunk/libmatroska/src/KaxBlock.cpp: libebml/libmatroska: fix a
+	  major bug when "unknown size" was used (Haali does)
+
+2005-10-15 12:34  robux4
+
+	* trunk/libmatroska/src/KaxCuesData.cpp: libmatroska: fix
+	  compilation under gcc
+
+2005-10-14 19:36  robux4
+
+	* trunk/libmatroska/matroska/KaxBlock.h,
+	  trunk/libmatroska/src/KaxBlock.cpp,
+	  trunk/libmatroska/src/KaxCluster.cpp,
+	  trunk/libmatroska/src/KaxCuesData.cpp: libmatroska: allow correct
+	  compilation & linking with MATROSKA_VERSION set to 1
+
+2005-10-13 21:21  robux4
+
+	* trunk/libmatroska/src/KaxCues.cpp: libmatroska: simplify the code
+	  for the backward compatibility
+
+2005-10-13 21:16  robux4
+
+	* trunk/libmatroska/src/KaxBlockData.cpp,
+	  trunk/libmatroska/src/KaxCues.cpp: libmatroska: make the newer
+	  library work with older code (again after internal changes)
+
+2005-10-13 20:35  robux4
+
+	* trunk/libmatroska/src/KaxBlock.cpp,
+	  trunk/libmatroska/src/KaxBlockData.cpp: libmatroska: KaxBlockBlob
+	  now works in NO SimpleBlock mode too that means writing or
+	  KaxSimpleBlock is now fully functional
+
+2005-10-13 19:33  robux4
+
+	* trunk/libmatroska/src/KaxBlock.cpp,
+	  trunk/libmatroska/src/KaxBlockData.cpp: libmatroska: fix writing
+	  in auto SimpleBlock mode
+
+2005-10-12 22:18  robux4
+
+	* trunk/libmatroska/src/KaxBlock.cpp: libmatroska: fix for the
+	  non-forced SimpleBlock use
+
+2005-10-12 22:12  robux4
+
+	* trunk/libmatroska/matroska/KaxBlock.h,
+	  trunk/libmatroska/src/KaxBlock.cpp,
+	  trunk/libmatroska/src/KaxCluster.cpp,
+	  trunk/libmatroska/src/KaxCues.cpp: libmatroska: writing from
+	  KaxBlockBlob now works !
+
+2005-10-12 21:21  robux4
+
+	* trunk/libmatroska/matroska/KaxCluster.h,
+	  trunk/libmatroska/src/KaxCluster.cpp: libmatroska: prepare the
+	  cluster to render from KaxBlockBlob
+
+2005-10-10 20:48  robux4
+
+	* trunk/libmatroska/matroska/KaxBlockData.h,
+	  trunk/libmatroska/matroska/KaxCuesData.h,
+	  trunk/libmatroska/matroska/KaxTypes.h,
+	  trunk/libmatroska/src/KaxBlockData.cpp: libmatroska: correct
+	  copyright year
+
+2005-10-10 20:47  robux4
+
+	* trunk/libmatroska/matroska/KaxBlock.h,
+	  trunk/libmatroska/matroska/KaxBlockData.h,
+	  trunk/libmatroska/matroska/KaxCuesData.h,
+	  trunk/libmatroska/matroska/KaxTypes.h,
+	  trunk/libmatroska/src/KaxBlock.cpp,
+	  trunk/libmatroska/src/KaxBlockData.cpp,
+	  trunk/libmatroska/src/KaxCues.cpp,
+	  trunk/libmatroska/src/KaxCuesData.cpp: libmatroska: more code to
+	  use SimpleBlock automatically (when enabled) reworked the KaxCues
+	  code to use KaxBlockBlob where possible, the previous API may not
+	  be 100% compatible (mkvmerge not affected) the code is still not
+	  100% operational
+
+2005-10-09 14:30  robux4
+
+	* trunk/libmatroska/matroska/KaxBlock.h,
+	  trunk/libmatroska/src/KaxCues.cpp,
+	  trunk/libmatroska/src/KaxCuesData.cpp: libmatroska: simplify a
+	  cast
+
+2005-10-09 14:18  robux4
+
+	* trunk/libmatroska/matroska/FileKax.h,
+	  trunk/libmatroska/matroska/KaxAttached.h,
+	  trunk/libmatroska/matroska/KaxAttachments.h,
+	  trunk/libmatroska/matroska/KaxBlock.h,
+	  trunk/libmatroska/matroska/KaxBlockData.h,
+	  trunk/libmatroska/matroska/KaxChapters.h,
+	  trunk/libmatroska/matroska/KaxCluster.h,
+	  trunk/libmatroska/matroska/KaxClusterData.h,
+	  trunk/libmatroska/matroska/KaxConfig.h,
+	  trunk/libmatroska/matroska/KaxContentEncoding.h,
+	  trunk/libmatroska/matroska/KaxContexts.h,
+	  trunk/libmatroska/matroska/KaxCues.h,
+	  trunk/libmatroska/matroska/KaxCuesData.h,
+	  trunk/libmatroska/matroska/KaxInfo.h,
+	  trunk/libmatroska/matroska/KaxInfoData.h,
+	  trunk/libmatroska/matroska/KaxSeekHead.h,
+	  trunk/libmatroska/matroska/KaxSegment.h,
+	  trunk/libmatroska/matroska/KaxTagMulti.h,
+	  trunk/libmatroska/matroska/KaxTags.h,
+	  trunk/libmatroska/matroska/KaxTrackAudio.h,
+	  trunk/libmatroska/matroska/KaxTrackEntryData.h,
+	  trunk/libmatroska/matroska/KaxTrackVideo.h,
+	  trunk/libmatroska/matroska/KaxTracks.h,
+	  trunk/libmatroska/matroska/KaxTypes.h,
+	  trunk/libmatroska/matroska/KaxVersion.h,
+	  trunk/libmatroska/matroska/c/libmatroska.h,
+	  trunk/libmatroska/matroska/c/libmatroska_t.h,
+	  trunk/libmatroska/src/KaxBlock.cpp,
+	  trunk/libmatroska/src/KaxCues.cpp,
+	  trunk/libmatroska/src/KaxCuesData.cpp: libmatroska: introduce
+	  KaxBlockBlob to automatically select between BlockGroup and
+	  SimpleBlock + native eol-style
+
+2005-10-08 15:32  robux4
+
+	* trunk/libmatroska/matroska/KaxConfig.h: libmatroska: the default
+	  matroska version to use is now 2
+
+2005-10-08 15:27  robux4
+
+	* trunk/libmatroska/src/KaxBlock.cpp,
+	  trunk/libmatroska/src/KaxCluster.cpp: libmatroska: make
+	  KaxSimpleBlock really MATROSKA_VERSION 2
+
+2005-10-08 15:04  robux4
+
+	* trunk/libmatroska/matroska/KaxBlock.h: libmatroska: KaxSimpleBlock
+	  is MATROSKA_VERSION 2
+
+2005-10-08 14:39  robux4
+
+	* trunk/libmatroska/matroska/KaxBlock.h,
+	  trunk/libmatroska/src/KaxBlock.cpp: libmatroska: first attempt to
+	  write the new SimpleBlock bits correctly
+
+2005-10-06 21:30  robux4
+
+	* trunk/libmatroska/src/KaxCluster.cpp: libmatroska: fix the
+	  mandatory setting according to the new specs
+
+2005-10-06 21:20  robux4
+
+	* trunk/libmatroska/matroska/KaxBlock.h,
+	  trunk/libmatroska/src/KaxBlock.cpp,
+	  trunk/libmatroska/src/KaxCluster.cpp: libmatroska: add
+	  KaxSimpleBlock and a parent class used by KaxBlock (not tested
+	  yet, and some things left to implement)
+
+2005-08-31 13:26  mosu
+
+	* trunk/libmatroska/make/linux/fedora-core.spec,
+	  trunk/libmatroska/make/linux/suse-libmatroska-makefile.diff,
+	  trunk/libmatroska/make/linux/suse.spec: Added the spec files I use
+	  for building libmatroska on SuSE and Fedora Core.
+
+2005-08-30 14:39  robux4
+
+	* trunk/libmatroska/matroska/KaxVersion.h: libmatroska: the next
+	  version will be 0.7.8
+
+2005-08-30 14:39  robux4
+
+	* trunk/libmatroska/src/KaxAttached.cpp,
+	  trunk/libmatroska/src/KaxTracks.cpp: libmatroska: compilation
+	  fixes for the new elements
+
+2005-08-30 14:28  robux4
+
+	* trunk/libmatroska/matroska/KaxChapters.h,
+	  trunk/libmatroska/matroska/KaxTrackEntryData.h,
+	  trunk/libmatroska/src/KaxAttached.cpp,
+	  trunk/libmatroska/src/KaxChapters.cpp,
+	  trunk/libmatroska/src/KaxTrackEntryData.cpp,
+	  trunk/libmatroska/src/KaxTracks.cpp: added:
+	  KaxChapterSegmentEditionUID and KaxTrackAttachmentLink
+
+2005-08-30 14:20  robux4
+
+	* trunk/libmatroska/matroska/KaxAttached.h,
+	  trunk/libmatroska/src/KaxAttached.cpp: libmatroska: added
+	  KaxFileReferral
+
+2005-08-26 08:19  mosu
+
+	* trunk/libmatroska/matroska/KaxBlock.h: Make the compiler happy:
+	  gcc wants classes with virtual functions to have virtual
+	  destructors.
+
+2005-05-22 07:28  mosu
+
+	* trunk/libmatroska/ChangeLog: Automatic ChangeLog update.
+
+2005-05-22 07:28  mosu
+
+	* trunk/libmatroska, trunk/libmatroska/debian: Ignore some files and
+	  directories created during the Debian build process.
+
+2005-05-22 07:27  mosu
+
+	* trunk/libmatroska/debian/changelog,
+	  trunk/libmatroska/matroska/KaxVersion.h: Bumped the version number
+	  to 0.7.7 in the places that robux4 forgot.
+
+2005-05-19 19:16  robux4
+
+	* trunk/libebml/ebml/EbmlVersion.h,
+	  trunk/libmatroska/matroska/KaxVersion.h: update version numbers
+	  for the upcoming release
+
+2005-05-03 06:56  mosu
+
+	* trunk/libmatroska/matroska/KaxTrackEntryData.h: The default value
+	  of MaxBlockAdditionID is 0, not 1.
+
+2005-04-19 07:00  mosu
+
+	* trunk/libmatroska/make/linux/Makefile: Do not compile shared libs
+	  on Mac OS X due to how they should be handled there. If need
+	  arises we can always implement it properly. Patch by Shawn
+	  Holwegner <shawn () holwegner ! com>
+
+2005-04-16 11:29  mosu
+
+	* trunk/libmatroska/ChangeLog: Automatic ChangeLog update.
+
+2005-04-16 11:29  mosu
+
+	* trunk/libmatroska/debian/rules,
+	  trunk/libmatroska/make/linux/Makefile: Updated the Linux build
+	  system and added targets for installing only the static lib +
+	  headers. Updated the Debian package build script for that, too.
+
+2005-04-16 11:24  mosu
+
+	* trunk/libmatroska/debian/changelog: Updated the Debian package's
+	  version number.
+
+2005-04-09 22:11  robux4
+
+	* trunk/libmatroska/matroska/KaxChapters.h: libmatroska:
+	  KaxChapterSegmentUID is an EbmlBinary
+
+2005-04-05 12:02  robux4
+
+	* trunk/libmatroska/matroska/KaxBlock.h,
+	  trunk/libmatroska/src/KaxBlock.cpp: libmatroska: add support for
+	  the invisible flag
+
+2005-03-28 14:49  robux4
+
+	* trunk/libmatroska/matroska/KaxInfoData.h: libmatroska: make all
+	  segment UID derive from the same class for easier handling
+
+2005-03-19 11:14  mosu
+
+	* trunk/libmatroska/src/KaxChapters.cpp: Wrong element ID according
+	  to the specs.
+
+2005-03-19 10:37  mosu
+
+	* trunk/libmatroska/make/linux: Ignore the shared libs.
+
+2005-03-19 10:36  mosu
+
+	* trunk/libmatroska/make/linux/Makefile: 'clean' should remove the
+	  .los, too. Provide separate targets for the static and the shared
+	  lib. 'lib' is obsolete.
+
+2005-03-17 09:36  robux4
+
+	* trunk/libebml/src/EbmlCrc32.cpp,
+	  trunk/libmatroska/src/KaxTrackEntryData.cpp: some strings to
+	  watermark the code
+
+2005-03-17 09:14  robux4
+
+	* trunk/libebml/src/EbmlHead.cpp,
+	  trunk/libmatroska/src/KaxSegment.cpp: some strings to watermark
+	  the code
+
+2005-03-16 18:30  robux4
+
+	* trunk/libebml/src/StdIOCallback.cpp,
+	  trunk/libmatroska/matroska/KaxContexts.h,
+	  trunk/mkxuncat/mkxuncat.cpp, trunk/mkxuncat/mkxuncat.vcproj: misc
+	  compilation fixes
+
+2005-03-14 10:34  robux4
+
+	* trunk/libmatroska/matroska/KaxChapters.h,
+	  trunk/libmatroska/matroska/KaxVersion.h,
+	  trunk/libmatroska/src/KaxChapters.cpp: libmatroska: added
+	  KaxChapterSegmentUID
+
+2005-03-13 10:49  robux4
+
+	* trunk/libebml/make/linux/Makefile,
+	  trunk/libmatroska/make/linux/Makefile: libebml/libmatroska: allow
+	  to build as shared libraries for Gentoo
+
+2005-03-03 13:13  robux4
+
+	* trunk/libmatroska/matroska/KaxChapters.h,
+	  trunk/libmatroska/matroska/KaxInfoData.h,
+	  trunk/libmatroska/matroska/KaxTrackEntryData.h,
+	  trunk/libmatroska/matroska/KaxVersion.h,
+	  trunk/libmatroska/src/KaxChapters.cpp,
+	  trunk/libmatroska/src/KaxInfo.cpp,
+	  trunk/libmatroska/src/KaxInfoData.cpp,
+	  trunk/libmatroska/src/KaxTrackEntryData.cpp,
+	  trunk/libmatroska/src/KaxTracks.cpp,
+	  trunk/libmatroska/test/ebml/test0.cpp,
+	  trunk/libmatroska/test/ebml/test00.cpp,
+	  trunk/libmatroska/test/mux/test6.cpp,
+	  trunk/libmatroska/test/utf8/test5.cpp: update the copyright dates
+
+2005-02-06 20:03  mosu
+
+	* trunk/libmatroska/debian/changelog,
+	  trunk/libmatroska/matroska/KaxVersion.h: Bumped the version number
+	  to 0.7.5.
+
+2005-02-06 19:51  mosu
+
+	* trunk/libmatroska/ChangeLog: Automatic ChangeLog update (with a
+	  new program -- that's why the diff is so huge)
+
+2005-02-06 19:49  mosu
+
+	* trunk/libmatroska/debian/control: Let's require the latest libebml
+	  for building.
+
+2005-02-06 18:12  mosu
+
+	* trunk/libmatroska/make/linux/Makefile: Output an error if a mingw
+	  gcc is used with the Linux Makefile (I simply do that too often).
+
+2005-01-31 14:04  mosu
+
+	* trunk/libmatroska/make/linux/check_ids: Also output the
+	  files/classes in which the duplicate IDs occur.
+
+2005-01-31 13:54  robux4
+
+	* trunk/libmatroska/src/KaxInfoData.cpp: libmatroska: fix the
+	  segment family UID
+
+2005-01-31 13:48  mosu
+
+	* trunk/libmatroska/matroska/KaxTrackEntryData.h,
+	  trunk/libmatroska/src/KaxTrackEntryData.cpp: The usual compilation
+	  fixes.
+
+2005-01-31 13:39  robux4
+
+	* trunk/libmatroska/matroska/KaxTrackEntryData.h,
+	  trunk/libmatroska/src/KaxTrackEntryData.cpp,
+	  trunk/libmatroska/src/KaxTracks.cpp: libmatroska: no more
+	  TrackAngle and new TrackTranslate elements
+
+2005-01-30 18:00  mosu
+
+	* trunk/libmatroska/src/KaxInfoData.cpp: Some leftovers from
+	  renaming ChapterLink to ChapterTranslate.
+
+2005-01-28 12:10  robux4
+
+	* trunk/libmatroska/matroska/KaxInfoData.h,
+	  trunk/libmatroska/src/KaxInfo.cpp,
+	  trunk/libmatroska/src/KaxInfoData.cpp: libmatroska: rename
+	  ChapterLink* to ChapterTranslate*
+
+2005-01-20 12:01  mosu
+
+	* trunk/libmatroska/make/mingw32/Makefile: Only remove files that
+	  might have been built (and not e.g. libmatroska.dev).
+
+2005-01-17 13:48  robux4
+
+	* trunk/libmatroska/matroska/KaxInfoData.h,
+	  trunk/libmatroska/src/KaxInfoData.cpp: libmatroska: add
+	  KaxChapterLinkEditionUID
+
+2005-01-15 12:47  robux4
+
+	* trunk/libmatroska/src/KaxInfo.cpp: libmatroska: fix the
+	  KaxSegmentFamily flags
+
+2005-01-13 17:51  robux4
+
+	* trunk/libmatroska/matroska/KaxInfoData.h,
+	  trunk/libmatroska/src/KaxInfoData.cpp: libmatroska: the usual
+	  post-commit fixes
+
+2005-01-13 16:41  robux4
+
+	* trunk/libmatroska/matroska/KaxInfoData.h,
+	  trunk/libmatroska/src/KaxInfo.cpp,
+	  trunk/libmatroska/src/KaxInfoData.cpp: libmatroska: added
+	  KaxSegmentFamily, KaxChapterLink, KaxChapterLinkCodec and
+	  KaxChapterLinkID
+
+2005-01-05 16:14  robux4
+
+	* trunk/libmatroska/make/linux/Makefile: patches from the VLC
+	  repository
+
+2005-01-03 19:20  mosu
+
+	* trunk/libmatroska/src/KaxChapters.cpp: An element cannot require
+	  itself to be a mandatory child element.
+
+2005-01-03 15:47  mosu
+
+	* trunk/libmatroska/matroska/KaxChapters.h,
+	  trunk/libmatroska/src/KaxChapters.cpp: Look! Squirrels! (The usual
+	  compilation fixes after one of robux' "I commit from work without
+	  having compiled it first" commits :-) )
+
+2005-01-03 12:31  robux4
+
+	* trunk/libmatroska/matroska/KaxChapters.h,
+	  trunk/libmatroska/src/KaxChapters.cpp: libmatroska: update with
+	  latest changes in the chapter codecs (may not compile)
+
+2004-12-18 22:26  mosu
+
+	* trunk/libmatroska/src/KaxBlock.cpp: Move all of the (re-)activated
+	  Matroska v1 elements out of "#if == 2" blocks.
+
+2004-12-18 17:52  robux4
+
+	* trunk/libmatroska/matroska/KaxBlock.h,
+	  trunk/libmatroska/matroska/KaxTrackEntryData.h,
+	  trunk/libmatroska/src/KaxBlock.cpp,
+	  trunk/libmatroska/src/KaxTrackEntryData.cpp,
+	  trunk/libmatroska/src/KaxTracks.cpp: support for
+	  KaxMaxBlockAdditionID and fix default values
+
+2004-12-18 08:49  robux4
+
+	* trunk/libmatroska/matroska/KaxBlock.h: BlockAdditions is in
+	  Matroska 1 now
+
+2004-12-15 14:24  robux4
+
+	* trunk/libmatroska/matroska/c/libmatroska_t.h: added the button
+	  track type
+
+2004-11-30 15:45  mosu
+
+	* trunk/libmatroska/matroska/KaxBlock.h,
+	  trunk/libmatroska/src/KaxBlock.cpp: Use malloc() and free()
+	  instead of new[] and delete[] where the lib might deal with
+	  pointers that have been allocated by the app, or where the app has
+	  allocated the memory. Reason: new[]ed memory cannot be
+	  realloc()ed.
+
+2004-11-28 17:43  robux4
+
+	* trunk/libmatroska/matroska/KaxBlock.h,
+	  trunk/libmatroska/src/KaxBlock.cpp: remove support for the gap
+	  flag in the Block
+
+2004-11-28 15:24  robux4
+
+	* trunk/libmatroska/matroska/KaxCluster.h,
+	  trunk/libmatroska/src/KaxCluster.cpp,
+	  trunk/libmatroska/src/KaxClusterData.cpp: add almost automatic
+	  handling of SilentTracks
+
+2004-11-19 12:17  mosu
+
+	* trunk/libmatroska/make/mingw32/Makefile: Compile libmatroska as a
+	  DLL by default (is anyone except me using this mingw Makefile
+	  anyway?). Do not remove the dependency file on "make clean".
+
+2004-11-17 14:51  robux4
+
+	* trunk/libmatroska/matroska/KaxTrackEntryData.h,
+	  trunk/libmatroska/src/KaxTrackEntryData.cpp,
+	  trunk/libmatroska/src/KaxTracks.cpp: added KaxTrackFlagForced
+
+2004-11-17 08:45  mosu
+
+	* trunk/libmatroska/make/linux/Makefile: Do not remove the .depend
+	  file on "make clean".
+
+2004-11-14 10:40  mosu
+
+	* trunk/libmatroska/matroska/KaxVersion.h: Numbers starting with '0'
+	  are octal numbers. Therefore a version like '0.8.4' cannot be
+	  expressed as '000804'.
+
+2004-11-13 21:15  mosu
+
+	* trunk/libmatroska/make/mingw32,
+	  trunk/libmatroska/make/mingw32/Makefile: Fixed "make depend".
+	  Ignore a couple of files.
+
+2004-11-13 11:30  mosu
+
+	* trunk/libmatroska/make/linux: Ignore the .depend file created by
+	  "make depend".
+
+2004-11-13 11:29  mosu
+
+	* trunk/libmatroska/make/linux/Makefile: Improved the dependency
+	  calculation to be more portable (makedepend doesn't exist
+	  everywhere, and it doesn't necessarily use the compiler we want).
+
+2004-10-02 16:02  robux4
+
+	* trunk/libmatroska/matroska/KaxTrackEntryData.h,
+	  trunk/libmatroska/src/KaxTrackEntryData.cpp,
+	  trunk/libmatroska/src/KaxTracks.cpp: added KaxTrackAngle and
+	  various fixes
+
+2004-10-02 15:42  robux4
+
+	* trunk/libmatroska/src/KaxTracks.cpp: KaxTrackOverlay is not in
+	  "Matroska 2"
+
+2004-10-02 15:40  robux4
+
+	* trunk/libmatroska/src/KaxCluster.cpp,
+	  trunk/libmatroska/src/KaxClusterData.cpp: correct the
+	  unique/multiple attribute
+
+2004-10-02 15:39  robux4
+
+	* trunk/libmatroska/src/KaxTracks.cpp: TrackOverlay is now multiple
+
+2004-10-02 15:08  robux4
+
+	* trunk/libmatroska/matroska/KaxClusterData.h,
+	  trunk/libmatroska/src/KaxCluster.cpp,
+	  trunk/libmatroska/src/KaxClusterData.cpp: added
+	  KaxClusterSilentTracks and KaxClusterSilentTrackNumber
+
+2004-09-26 10:34  mosu
+
+	* trunk/libmatroska/ChangeLog: Automatic ChangeLog update
+
+2004-09-26 10:21  mosu
+
+	* trunk/libmatroska/debian/changelog,
+	  trunk/libmatroska/debian/control: Bumped the version number to
+	  0.7.4 and the libebml build requirements to 0.7.2 in the Debian
+	  build system.
+
+2004-09-26 10:20  mosu
+
+	* trunk/libmatroska/make/linux/check_ids: Added a small script that
+	  looks for duplicate EBML IDs in all of libmatroska's source files.
+
+2004-09-11 17:42  mosu
+
+	* trunk/libmatroska/matroska/KaxChapters.h: EditionProcessed has a
+	  default value (0) according to the specs.
+
+2004-09-04 16:29  robux4
+
+	* trunk/libmatroska/matroska/KaxChapters.h,
+	  trunk/libmatroska/src/KaxChapters.cpp: KaxEditionManaged becomes
+	  KaxEditionProcessed and mandatory KaxEditionManagedPrivate becomes
+	  KaxChapterManagedPrivate and moves
+
+2004-09-03 13:38  robux4
+
+	* trunk/libmatroska/matroska/KaxTrackAudio.h: no more automatic
+	  OutputSamplingFrequency default value
+
+2004-09-02 14:17  mosu
+
+	* trunk/libmatroska/src/KaxChapters.cpp: The usual after-robux4
+	  compilation fix ;-)
+
+2004-09-02 11:08  robux4
+
+	* trunk/libmatroska/matroska/KaxChapters.h,
+	  trunk/libmatroska/src/KaxChapters.cpp: add support for
+	  KaxChapterProcessCommand and KaxEditionManagedPrivate
+
+2004-08-31 17:02  mosu
+
+	* trunk/libmatroska/matroska/KaxAttached.h: The ValidateSize
+	  function is neither needed nor correct (probably copy & paste from
+	  somewhere). Integers of all sizes are accepted as in all the other
+	  UID cases.
+
+2004-08-30 18:52  mosu
+
+	* trunk/libmatroska/src/KaxTracks.cpp: MinCache IS mandatory. My
+	  bad.
+
+2004-08-30 18:17  mosu
+
+	* trunk/libmatroska/src/KaxTracks.cpp: MinCache is not mandatory.
+
+2004-08-30 09:21  robux4
+
+	* trunk/libmatroska/src/KaxChapters.cpp,
+	  trunk/libmatroska/src/KaxTrackVideo.cpp,
+	  trunk/libmatroska/src/KaxTracks.cpp: flags are mandatory
+
+2004-08-28 14:04  robux4
+
+	* trunk/libmatroska/make/vc7/lib/dll,
+	  trunk/libmatroska/make/vc7/lib/dll/libmatroskadll.v71.vcproj,
+	  trunk/libmatroska/make/vc7/vc7.sln: allow DLL building with MSVC7
+	  (not compatible with the MinGW DLLs)
+
+2004-08-27 18:58  robux4
+
+	* trunk/libmatroska/matroska/KaxTag.h: KaxTagTargetTypeValue default
+	  to 50
+
+2004-08-27 12:25  robux4
+
+	* trunk/libmatroska/src/KaxTag.cpp: TargetTypeValue is no longer
+	  mandatory
+
+2004-08-27 10:01  mosu
+
+	* trunk/libmatroska/src/KaxChapters.cpp: Fixed the wrong element
+	  names.
+
+2004-08-27 09:31  robux4
+
+	* trunk/libmatroska/matroska/KaxTag.h,
+	  trunk/libmatroska/src/KaxTag.cpp: add KaxTagTargetTypeValue as in
+	  the specs
+
+2004-08-27 09:22  robux4
+
+	* trunk/libmatroska/matroska/KaxChapters.h,
+	  trunk/libmatroska/src/KaxChapters.cpp: add KaxChapterPhysicalEquiv
+	  as in the new specs
+
+2004-08-25 14:56  mosu
+
+	* trunk/libmatroska/matroska/KaxTrackVideo.h,
+	  trunk/libmatroska/src/KaxChapters.cpp: Fixed the compilation.
+
+2004-08-25 14:48  mosu
+
+	* trunk/libmatroska/matroska/KaxVersion.h: Pushed the version
+	  number.
+
+2004-08-25 14:44  robux4
+
+	* trunk/libmatroska/matroska/KaxChapters.h,
+	  trunk/libmatroska/src/KaxChapters.cpp: add KaxChapterProcess and
+	  KaxChapterProcessTime
+
+2004-08-25 14:22  robux4
+
+	* trunk/libmatroska/matroska/KaxTrackVideo.h,
+	  trunk/libmatroska/src/KaxTrackVideo.cpp: add the new PixelCropXXX
+	  elements
+
+2004-08-21 20:18  mosu
+
+	* trunk/libmatroska/ChangeLog: Updates
+
+2004-08-19 20:08  mosu
+
+	* trunk/libmatroska/src/KaxChapters.cpp: Wrong element ID.
+
+2004-08-19 17:16  robux4
+
+	* trunk/libmatroska/src/KaxChapters.cpp: I always forget to update
+	  the table size
+
+2004-08-19 17:15  robux4
+
+	* trunk/libmatroska/matroska/KaxChapters.h,
+	  trunk/libmatroska/src/KaxChapters.cpp: added KaxEditionFlagDefault
+	  and KaxEditionManaged
+
+2004-08-19 08:54  robux4
+
+	* trunk/libmatroska/matroska/KaxTag.h,
+	  trunk/libmatroska/src/KaxTag.cpp: add the new TargetType element
+	  in tags
+
+2004-08-16 21:22  mosu
+
+	* trunk/libmatroska/ChangeLog: Updates
+
+2004-08-16 21:04  mosu
+
+	* trunk/libmatroska/matroska/KaxTag.h: Set the default value for
+	  KaxTagLangue to "und" complying with the specs.
+
+2004-08-16 20:49  mosu
+
+	* trunk/libmatroska/debian/changelog,
+	  trunk/libmatroska/matroska/KaxVersion.h: New version number 0.7.3
+	  because of the changes / additions to the tags.
+
+2004-08-10 15:49  robux4
+
+	* trunk/libmatroska/src/KaxTag.cpp: never make the same mistake
+	  twice...
+
+2004-08-10 14:03  robux4
+
+	* trunk/libmatroska/matroska/KaxTag.h,
+	  trunk/libmatroska/src/KaxTag.cpp: rename the new KaxTagLanguage to
+	  KaxTagLangue
+
+2004-08-10 12:58  robux4
+
+	* trunk/libmatroska/matroska/KaxTag.h,
+	  trunk/libmatroska/src/KaxTag.cpp,
+	  trunk/libmatroska/src/KaxTags.cpp: fix mandatory values add
+	  support for TagLanguage and TagDefault
+
+2004-08-06 07:34  mosu
+
+	* trunk/libmatroska/ChangeLog: Updates
+
+2004-08-05 11:59  robux4
+
+	* trunk/libmatroska/matroska/KaxChapters.h,
+	  trunk/libmatroska/src/KaxChapters.cpp: support for
+	  EditionFlagHidden (not compiled!)
+
+2004-08-04 17:49  mosu
+
+	* trunk/libmatroska/ChangeLog, trunk/libmatroska/debian/changelog:
+	  Updated the ChangeLog and bumped the version number on the Debian
+	  package to 0.7.2.
+
+2004-08-01 15:33  mosu
+
+	* trunk/libmatroska/matroska/KaxInfoData.h: Use a double for the
+	  KaxDuration element and not only a float. Otherwise the duration
+	  might be off a couple of samples for large values due to the
+	  limited resolution of a float.
+
+2004-07-31 09:01  robux4
+
+	* trunk/libmatroska/matroska/KaxTag.h: The default value of 0 makes
+	  sense again at the container level (not binary content)
+
+2004-07-30 20:31  mosu
+
+	* trunk/libmatroska/src/KaxChapters.cpp,
+	  trunk/libmatroska/src/KaxTag.cpp: Never commit code without having
+	  compiled it before :) When adding elements to an array the array
+	  size has to be adjusted.
+
+2004-07-30 12:47  robux4
+
+	* trunk/libmatroska/matroska/KaxVersion.h: push the version number
+	  to avoid confusion if beta softwares are released in public
+
+2004-07-30 12:45  robux4
+
+	* trunk/libmatroska/matroska/KaxChapters.h,
+	  trunk/libmatroska/matroska/KaxTag.h,
+	  trunk/libmatroska/src/KaxChapters.cpp,
+	  trunk/libmatroska/src/KaxTag.cpp: add an edition UID and clean the
+	  code according to the specs (I haven't tried to compile !!!)
+
+2004-07-27 07:56  mosu
+
+	* trunk/libmatroska/test/mux/test8.cpp: Fix for compilation on
+	  NetBSD. Patch by Lubomir Sedlacik (salo at Xtrmntr dot org).
+
+2004-07-26 17:53  mosu
+
+	* trunk/libmatroska/make/mingw32/Makefile: Proper description for
+	  the SHARED option. Make building the lib statically the default
+	  just like it is for libembl.
+
+2004-07-25 10:37  mosu
+
+	* trunk/libmatroska/debian/changelog,
+	  trunk/libmatroska/debian/control,
+	  trunk/libmatroska/matroska/KaxVersion.h: Bumped the version number
+	  to 0.7.1. Same for libebml dependencies for the Debian package.
+
+2004-07-22 20:28  mosu
+
+	* trunk/libmatroska/make/mingw32/Makefile: Do not build the test
+	  apps by default.
+
+2004-07-19 16:43  mosu
+
+	* trunk/libmatroska/make/linux/Makefile: Let the user specify his
+	  own CXXFLAGS and CPPFLAGS.
+
+2004-07-14 13:29  mosu
+
+	* trunk/libmatroska/src/KaxCues.cpp: I hate tabs. They suck.
+	  Especially in multi user development.
+
+2004-07-14 13:27  mosu
+
+	* trunk/libmatroska/src/KaxCues.cpp: Do not let the user add a
+	  BlockGroup more than once to the cues. KaxCluster::Render() does
+	  call KaxCues::PositionSet(), but PositionSet() only cleans the
+	  first occurence. This will lead to an assert() in the KaxCues
+	  d\tor.
+
+2004-07-09 21:19  mosu
+
+	* trunk/libmatroska/debian/rules: debian/rules should be executable.
+
+2004-07-09 21:10  mosu
+
+	* trunk/libmatroska/make/linux,
+	  trunk/libmatroska/make/linux/.cvsignore: Use the svn:ignore
+	  property instead of the .cvsignore file.
+
+2004-07-09 21:07  mosu
+
+	* trunk/libmatroska/make/linux/Makefile: Do not compile the test
+	  apps with the "all" target. gcc 3.4.0 does not like the non-ASCII
+	  cahrs in one of them, and only libmatroska devs need them anyway.
+
+2004-07-09 21:05  mosu
+
+	* trunk/libmatroska/ChangeLog, trunk/libmatroska/LICENSE.LGPL,
+	  trunk/libmatroska/debian/changelog,
+	  trunk/libmatroska/debian/control,
+	  trunk/libmatroska/debian/copyright, trunk/libmatroska/debian/dirs,
+	  trunk/libmatroska/debian/docs,
+	  trunk/libmatroska/debian/libmatroska-dev.dirs,
+	  trunk/libmatroska/debian/libmatroska-dev.files,
+	  trunk/libmatroska/debian/rules, trunk/libmatroska/make/Doxyfile,
+	  trunk/libmatroska/make/cygwin/Makefile,
+	  trunk/libmatroska/make/cygwin/Makefile.rule,
+	  trunk/libmatroska/make/linux/Makefile,
+	  trunk/libmatroska/make/linux/Makefile.rule,
+	  trunk/libmatroska/make/makedoc.bat,
+	  trunk/libmatroska/make/makedoc.sh,
+	  trunk/libmatroska/make/mingw32/Makefile,
+	  trunk/libmatroska/make/mingw32/test/Makefile,
+	  trunk/libmatroska/make/mingw32/test/test6.dev,
+	  trunk/libmatroska/make/mingw32/test/test8.dev,
+	  trunk/libmatroska/src/FileKax.cpp,
+	  trunk/libmatroska/src/KaxAttached.cpp,
+	  trunk/libmatroska/src/KaxAttachments.cpp,
+	  trunk/libmatroska/src/KaxBlock.cpp,
+	  trunk/libmatroska/src/KaxBlockData.cpp,
+	  trunk/libmatroska/src/KaxChapters.cpp,
+	  trunk/libmatroska/src/KaxCluster.cpp,
+	  trunk/libmatroska/src/KaxClusterData.cpp,
+	  trunk/libmatroska/src/KaxContentEncoding.cpp,
+	  trunk/libmatroska/src/KaxContexts.cpp,
+	  trunk/libmatroska/src/KaxCues.cpp,
+	  trunk/libmatroska/src/KaxCuesData.cpp,
+	  trunk/libmatroska/src/KaxInfo.cpp,
+	  trunk/libmatroska/src/KaxInfoData.cpp,
+	  trunk/libmatroska/src/KaxSeekHead.cpp,
+	  trunk/libmatroska/src/KaxSegment.cpp,
+	  trunk/libmatroska/src/KaxTag.cpp,
+	  trunk/libmatroska/src/KaxTagMulti.cpp,
+	  trunk/libmatroska/src/KaxTags.cpp,
+	  trunk/libmatroska/src/KaxTrackAudio.cpp,
+	  trunk/libmatroska/src/KaxTrackEntryData.cpp,
+	  trunk/libmatroska/src/KaxTrackVideo.cpp,
+	  trunk/libmatroska/src/KaxTracks.cpp,
+	  trunk/libmatroska/src/KaxVersion.cpp,
+	  trunk/libmatroska/test/Makefile,
+	  trunk/libmatroska/test/ebml/Makefile,
+	  trunk/libmatroska/test/ebml/test0.cpp,
+	  trunk/libmatroska/test/ebml/test00.cpp,
+	  trunk/libmatroska/test/mux/test6.cpp,
+	  trunk/libmatroska/test/mux/test8.cpp,
+	  trunk/libmatroska/test/tags/test9.cpp,
+	  trunk/libmatroska/test/utf8/test5.cpp: Set eol-style and keywords
+	  properties.
+
+2004-07-09 09:16  robux4
+
+	* trunk/libmatroska/matroska/KaxVersion.h: test SSL authentication
+
+2004-07-08 12:02  
+
+	* trunk/libmatroska/matroska/KaxVersion.h: Test changes
+
+2004-05-11 20:33  mosu
+
+	* trunk/libmatroska/make/beos,
+	  trunk/libmatroska/make/linux/Makefile,
+	  trunk/libmatroska/test/mux/test8.cpp: Compilation on BeOS. Patch
+	  by Vegard W&#65533;rp <devel@vegardw.com>
+
+2004-04-26 19:35  robux4
+
+	* trunk/libebml/make/vc7/Makefile,
+	  trunk/libmatroska/make/vc7/Makefile: Makefile to use the free
+	  VS.Net 2003 command-line compiler
+
+2004-04-24 09:09  mosu
+
+	* trunk/libebml/make/linux/Makefile,
+	  trunk/libmatroska/make/linux/Makefile: Set LD to CXX by default.
+
+2004-04-23 16:46  mosu
+
+	* trunk/libmatroska/debian/changelog,
+	  trunk/libmatroska/debian/control,
+	  trunk/libmatroska/matroska/KaxVersion.h: Bumped version number to
+	  0.7.0.
+
+2004-04-21 19:55  mosu
+
+	* trunk/libebml/ChangeLog, trunk/libmatroska/ChangeLog: Updates
+
+2004-04-21 19:50  mosu
+
+	* trunk/libmatroska/matroska/KaxClusterData.h,
+	  trunk/libmatroska/src/KaxCluster.cpp,
+	  trunk/libmatroska/src/KaxClusterData.cpp: KaxClusterPosition is
+	  already in use and therefore a v1 element.
+
+2004-04-14 23:26  robux4
+
+	* trunk/libmatroska/matroska/FileKax.h,
+	  trunk/libmatroska/matroska/KaxAttached.h,
+	  trunk/libmatroska/matroska/KaxAttachments.h,
+	  trunk/libmatroska/matroska/KaxBlock.h,
+	  trunk/libmatroska/matroska/KaxBlockData.h,
+	  trunk/libmatroska/matroska/KaxChapters.h,
+	  trunk/libmatroska/matroska/KaxCluster.h,
+	  trunk/libmatroska/matroska/KaxClusterData.h,
+	  trunk/libmatroska/matroska/KaxConfig.h,
+	  trunk/libmatroska/matroska/KaxContentEncoding.h,
+	  trunk/libmatroska/matroska/KaxContexts.h,
+	  trunk/libmatroska/matroska/KaxCues.h,
+	  trunk/libmatroska/matroska/KaxCuesData.h,
+	  trunk/libmatroska/matroska/KaxInfo.h,
+	  trunk/libmatroska/matroska/KaxInfoData.h,
+	  trunk/libmatroska/matroska/KaxSeekHead.h,
+	  trunk/libmatroska/matroska/KaxSegment.h,
+	  trunk/libmatroska/matroska/KaxTag.h,
+	  trunk/libmatroska/matroska/KaxTagMulti.h,
+	  trunk/libmatroska/matroska/KaxTags.h,
+	  trunk/libmatroska/matroska/KaxTrackAudio.h,
+	  trunk/libmatroska/matroska/KaxTrackEntryData.h,
+	  trunk/libmatroska/matroska/KaxTrackVideo.h,
+	  trunk/libmatroska/matroska/KaxTracks.h,
+	  trunk/libmatroska/matroska/KaxTypes.h,
+	  trunk/libmatroska/matroska/KaxVersion.h,
+	  trunk/libmatroska/matroska/c/libmatroska.h,
+	  trunk/libmatroska/matroska/c/libmatroska_t.h,
+	  trunk/libmatroska/src/FileKax.cpp,
+	  trunk/libmatroska/src/KaxAttached.cpp,
+	  trunk/libmatroska/src/KaxAttachments.cpp,
+	  trunk/libmatroska/src/KaxBlock.cpp,
+	  trunk/libmatroska/src/KaxBlockData.cpp,
+	  trunk/libmatroska/src/KaxChapters.cpp,
+	  trunk/libmatroska/src/KaxCluster.cpp,
+	  trunk/libmatroska/src/KaxClusterData.cpp,
+	  trunk/libmatroska/src/KaxContentEncoding.cpp,
+	  trunk/libmatroska/src/KaxContexts.cpp,
+	  trunk/libmatroska/src/KaxCues.cpp,
+	  trunk/libmatroska/src/KaxCuesData.cpp,
+	  trunk/libmatroska/src/KaxInfo.cpp,
+	  trunk/libmatroska/src/KaxInfoData.cpp,
+	  trunk/libmatroska/src/KaxSeekHead.cpp,
+	  trunk/libmatroska/src/KaxSegment.cpp,
+	  trunk/libmatroska/src/KaxTag.cpp,
+	  trunk/libmatroska/src/KaxTagMulti.cpp,
+	  trunk/libmatroska/src/KaxTags.cpp,
+	  trunk/libmatroska/src/KaxTrackAudio.cpp,
+	  trunk/libmatroska/src/KaxTrackEntryData.cpp,
+	  trunk/libmatroska/src/KaxTrackVideo.cpp,
+	  trunk/libmatroska/src/KaxTracks.cpp,
+	  trunk/libmatroska/src/KaxVersion.cpp,
+	  trunk/libmatroska/test/mux/test6.cpp,
+	  trunk/libmatroska/test/mux/test8.cpp: Switch to LGPL license
+
+2004-04-14 23:04  robux4
+
+	* trunk/libebml/LICENSE.GPL, trunk/libebml/LICENSE.LGPL,
+	  trunk/libebml/LICENSE.QPL, trunk/libmatroska/LICENSE.GPL,
+	  trunk/libmatroska/LICENSE.LGPL, trunk/libmatroska/LICENSE.QPL:
+	  Switch to LGPL license
+
+2004-01-31 13:43  robux4
+
+	* trunk/libebml/ebml/EbmlConfig.h, trunk/libebml/ebml/EbmlTypes.h,
+	  trunk/libebml/ebml/c/libebml_t.h,
+	  trunk/libmatroska/matroska/KaxConfig.h,
+	  trunk/libmatroska/matroska/c/libmatroska_t.h: Simplify and change
+	  the copyright holder (nothing left from Ingo)
+
+2004-01-19 10:33  mosu
+
+	* trunk/libebml/ChangeLog, trunk/libmatroska/ChangeLog: Updated the
+	  ChangeLog.
+
+2004-01-17 21:40  mosu
+
+	* trunk/libmatroska/make/mingw32/Makefile,
+	  trunk/libmatroska/matroska/FileKax.h,
+	  trunk/libmatroska/matroska/KaxAttached.h,
+	  trunk/libmatroska/matroska/KaxAttachments.h,
+	  trunk/libmatroska/matroska/KaxBlock.h,
+	  trunk/libmatroska/matroska/KaxBlockData.h,
+	  trunk/libmatroska/matroska/KaxChapters.h,
+	  trunk/libmatroska/matroska/KaxCluster.h,
+	  trunk/libmatroska/matroska/KaxClusterData.h,
+	  trunk/libmatroska/matroska/KaxConfig.h,
+	  trunk/libmatroska/matroska/KaxContentEncoding.h,
+	  trunk/libmatroska/matroska/KaxContexts.h,
+	  trunk/libmatroska/matroska/KaxCues.h,
+	  trunk/libmatroska/matroska/KaxCuesData.h,
+	  trunk/libmatroska/matroska/KaxInfo.h,
+	  trunk/libmatroska/matroska/KaxInfoData.h,
+	  trunk/libmatroska/matroska/KaxSeekHead.h,
+	  trunk/libmatroska/matroska/KaxSegment.h,
+	  trunk/libmatroska/matroska/KaxTag.h,
+	  trunk/libmatroska/matroska/KaxTagMulti.h,
+	  trunk/libmatroska/matroska/KaxTags.h,
+	  trunk/libmatroska/matroska/KaxTrackAudio.h,
+	  trunk/libmatroska/matroska/KaxTrackEntryData.h,
+	  trunk/libmatroska/matroska/KaxTrackVideo.h,
+	  trunk/libmatroska/matroska/KaxTracks.h: Readded the code for DLL
+	  builds on Windows.
+
+2004-01-17 16:33  robux4
+
+	* trunk/libmatroska/test/mux/test6.cpp,
+	  trunk/libmatroska/test/mux/test8.cpp: Fix minor things in test
+	  examples
+
+2004-01-17 13:38  robux4
+
+	* trunk/libmatroska/src/KaxTrackAudio.cpp: Fix a problem when
+	  MATROSKA_VERSION is set to 2
+
+2004-01-15 20:47  cyrius
+
+	* trunk/libmatroska/src/KaxBlock.cpp: Fix for partial XipH lacing
+	  reading
+
+2004-01-15 15:17  mosu
+
+	* trunk/libmatroska/ChangeLog: Updated the ChangeLog.
+
+2004-01-10 16:50  robux4
+
+	* trunk/libmatroska/matroska/KaxBlock.h,
+	  trunk/libmatroska/matroska/KaxBlockData.h,
+	  trunk/libmatroska/matroska/KaxClusterData.h,
+	  trunk/libmatroska/matroska/KaxConfig.h,
+	  trunk/libmatroska/matroska/KaxCuesData.h,
+	  trunk/libmatroska/matroska/KaxTrackAudio.h,
+	  trunk/libmatroska/matroska/KaxTrackEntryData.h,
+	  trunk/libmatroska/matroska/KaxTrackVideo.h,
+	  trunk/libmatroska/src/KaxBlock.cpp,
+	  trunk/libmatroska/src/KaxBlockData.cpp,
+	  trunk/libmatroska/src/KaxCluster.cpp,
+	  trunk/libmatroska/src/KaxClusterData.cpp,
+	  trunk/libmatroska/src/KaxCuesData.cpp,
+	  trunk/libmatroska/src/KaxTrackAudio.cpp,
+	  trunk/libmatroska/src/KaxTrackEntryData.cpp,
+	  trunk/libmatroska/src/KaxTrackVideo.cpp,
+	  trunk/libmatroska/src/KaxTracks.cpp,
+	  trunk/libmatroska/test/mux/test6.cpp,
+	  trunk/libmatroska/test/mux/test8.cpp: Handle MATROSKA_VERSION to
+	  enable/disable some future additions
+
+2004-01-10 15:57  robux4
+
+	* trunk/libmatroska/matroska/KaxBlock.h,
+	  trunk/libmatroska/matroska/KaxTrackAudio.h,
+	  trunk/libmatroska/src/KaxBlock.cpp,
+	  trunk/libmatroska/src/KaxTrackAudio.cpp: No more new elements for
+	  sample accurate seeking
+
+2004-01-10 15:31  robux4
+
+	* trunk/libebml/ebml/Debug.h, trunk/libebml/ebml/EbmlBinary.h,
+	  trunk/libebml/ebml/EbmlConfig.h,
+	  trunk/libebml/ebml/EbmlContexts.h, trunk/libebml/ebml/EbmlCrc32.h,
+	  trunk/libebml/ebml/EbmlDate.h, trunk/libebml/ebml/EbmlDummy.h,
+	  trunk/libebml/ebml/EbmlElement.h, trunk/libebml/ebml/EbmlEndian.h,
+	  trunk/libebml/ebml/EbmlFloat.h, trunk/libebml/ebml/EbmlHead.h,
+	  trunk/libebml/ebml/EbmlId.h, trunk/libebml/ebml/EbmlMaster.h,
+	  trunk/libebml/ebml/EbmlSInteger.h,
+	  trunk/libebml/ebml/EbmlStream.h, trunk/libebml/ebml/EbmlString.h,
+	  trunk/libebml/ebml/EbmlSubHead.h, trunk/libebml/ebml/EbmlTypes.h,
+	  trunk/libebml/ebml/EbmlUInteger.h,
+	  trunk/libebml/ebml/EbmlUnicodeString.h,
+	  trunk/libebml/ebml/EbmlVersion.h, trunk/libebml/ebml/EbmlVoid.h,
+	  trunk/libebml/ebml/IOCallback.h,
+	  trunk/libebml/ebml/MemIOCallback.h,
+	  trunk/libebml/ebml/StdIOCallback.h, trunk/libebml/src/Debug.cpp,
+	  trunk/libebml/src/EbmlBinary.cpp,
+	  trunk/libebml/src/EbmlContexts.cpp,
+	  trunk/libebml/src/EbmlCrc32.cpp, trunk/libebml/src/EbmlDate.cpp,
+	  trunk/libebml/src/EbmlDummy.cpp,
+	  trunk/libebml/src/EbmlElement.cpp,
+	  trunk/libebml/src/EbmlFloat.cpp, trunk/libebml/src/EbmlHead.cpp,
+	  trunk/libebml/src/EbmlMaster.cpp,
+	  trunk/libebml/src/EbmlSInteger.cpp,
+	  trunk/libebml/src/EbmlStream.cpp,
+	  trunk/libebml/src/EbmlString.cpp,
+	  trunk/libebml/src/EbmlSubHead.cpp,
+	  trunk/libebml/src/EbmlUInteger.cpp,
+	  trunk/libebml/src/EbmlUnicodeString.cpp,
+	  trunk/libebml/src/EbmlVersion.cpp, trunk/libebml/src/EbmlVoid.cpp,
+	  trunk/libebml/src/IOCallback.cpp,
+	  trunk/libebml/src/StdIOCallback.cpp,
+	  trunk/libmatroska/matroska/FileKax.h,
+	  trunk/libmatroska/matroska/KaxAttached.h,
+	  trunk/libmatroska/matroska/KaxAttachments.h,
+	  trunk/libmatroska/matroska/KaxBlock.h,
+	  trunk/libmatroska/matroska/KaxBlockData.h,
+	  trunk/libmatroska/matroska/KaxChapters.h,
+	  trunk/libmatroska/matroska/KaxCluster.h,
+	  trunk/libmatroska/matroska/KaxClusterData.h,
+	  trunk/libmatroska/matroska/KaxConfig.h,
+	  trunk/libmatroska/matroska/KaxContentEncoding.h,
+	  trunk/libmatroska/matroska/KaxContexts.h,
+	  trunk/libmatroska/matroska/KaxCues.h,
+	  trunk/libmatroska/matroska/KaxCuesData.h,
+	  trunk/libmatroska/matroska/KaxInfo.h,
+	  trunk/libmatroska/matroska/KaxInfoData.h,
+	  trunk/libmatroska/matroska/KaxSeekHead.h,
+	  trunk/libmatroska/matroska/KaxSegment.h,
+	  trunk/libmatroska/matroska/KaxTag.h,
+	  trunk/libmatroska/matroska/KaxTagMulti.h,
+	  trunk/libmatroska/matroska/KaxTags.h,
+	  trunk/libmatroska/matroska/KaxTrackAudio.h,
+	  trunk/libmatroska/matroska/KaxTrackEntryData.h,
+	  trunk/libmatroska/matroska/KaxTrackVideo.h,
+	  trunk/libmatroska/matroska/KaxTracks.h,
+	  trunk/libmatroska/matroska/KaxVersion.h,
+	  trunk/libmatroska/src/KaxAttached.cpp,
+	  trunk/libmatroska/src/KaxAttachments.cpp,
+	  trunk/libmatroska/src/KaxBlock.cpp,
+	  trunk/libmatroska/src/KaxBlockData.cpp,
+	  trunk/libmatroska/src/KaxChapters.cpp,
+	  trunk/libmatroska/src/KaxCluster.cpp,
+	  trunk/libmatroska/src/KaxClusterData.cpp,
+	  trunk/libmatroska/src/KaxContentEncoding.cpp,
+	  trunk/libmatroska/src/KaxContexts.cpp,
+	  trunk/libmatroska/src/KaxCues.cpp,
+	  trunk/libmatroska/src/KaxCuesData.cpp,
+	  trunk/libmatroska/src/KaxInfo.cpp,
+	  trunk/libmatroska/src/KaxInfoData.cpp,
+	  trunk/libmatroska/src/KaxSeekHead.cpp,
+	  trunk/libmatroska/src/KaxSegment.cpp,
+	  trunk/libmatroska/src/KaxTag.cpp,
+	  trunk/libmatroska/src/KaxTagMulti.cpp,
+	  trunk/libmatroska/src/KaxTags.cpp,
+	  trunk/libmatroska/src/KaxTrackAudio.cpp,
+	  trunk/libmatroska/src/KaxTrackEntryData.cpp,
+	  trunk/libmatroska/src/KaxTrackVideo.cpp,
+	  trunk/libmatroska/src/KaxTracks.cpp,
+	  trunk/libmatroska/src/KaxVersion.cpp,
+	  trunk/libmatroska/test/mux/test8.cpp,
+	  trunk/libmatroska/test/tags/test9.cpp: Update the copyright years
+
+2004-01-10 15:19  robux4
+
+	* trunk/libmatroska/test/mux/test8.cpp: Fix a behaviour incompatible
+	  with the checking of the max size
+
+2004-01-10 14:26  mosu
+
+	* trunk/libmatroska/matroska/FileKax.h,
+	  trunk/libmatroska/matroska/KaxAttached.h,
+	  trunk/libmatroska/matroska/KaxAttachments.h,
+	  trunk/libmatroska/matroska/KaxBlock.h,
+	  trunk/libmatroska/matroska/KaxBlockData.h,
+	  trunk/libmatroska/matroska/KaxChapters.h,
+	  trunk/libmatroska/matroska/KaxCluster.h,
+	  trunk/libmatroska/matroska/KaxClusterData.h,
+	  trunk/libmatroska/matroska/KaxConfig.h,
+	  trunk/libmatroska/matroska/KaxContentEncoding.h,
+	  trunk/libmatroska/matroska/KaxContexts.h,
+	  trunk/libmatroska/matroska/KaxCues.h,
+	  trunk/libmatroska/matroska/KaxCuesData.h,
+	  trunk/libmatroska/matroska/KaxInfo.h,
+	  trunk/libmatroska/matroska/KaxInfoData.h,
+	  trunk/libmatroska/matroska/KaxSeekHead.h,
+	  trunk/libmatroska/matroska/KaxSegment.h,
+	  trunk/libmatroska/matroska/KaxTag.h,
+	  trunk/libmatroska/matroska/KaxTagMulti.h,
+	  trunk/libmatroska/matroska/KaxTags.h,
+	  trunk/libmatroska/matroska/KaxTrackAudio.h,
+	  trunk/libmatroska/matroska/KaxTrackEntryData.h,
+	  trunk/libmatroska/matroska/KaxTrackVideo.h,
+	  trunk/libmatroska/matroska/KaxTracks.h: Added code that allows
+	  libmatroska to be built as a DLL on Windows.
+
+2004-01-10 14:19  mosu
+
+	* trunk/libebml/make/mingw32/Makefile,
+	  trunk/libmatroska/make/mingw32/Makefile: Updated the MinGW build
+	  system.
+
+2004-01-06 22:29  robux4
+
+	* trunk/libmatroska/matroska/KaxVersion.h: Ooops, did I do something
+	  wrong ?
+
+2004-01-06 22:15  robux4
+
+	* trunk/libebml/make/vc6/lib/static/libebml.dsp,
+	  trunk/libmatroska/make/vc6/lib/static/libmatroska.dsp:
+	  StdInclude.h doesn't exist anymore
+
+2004-01-06 22:05  robux4
+
+	* trunk/libmatroska/src/KaxAttached.cpp,
+	  trunk/libmatroska/src/KaxAttachments.cpp,
+	  trunk/libmatroska/src/KaxBlock.cpp,
+	  trunk/libmatroska/src/KaxBlockData.cpp,
+	  trunk/libmatroska/src/KaxChapters.cpp,
+	  trunk/libmatroska/src/KaxCluster.cpp,
+	  trunk/libmatroska/src/KaxClusterData.cpp,
+	  trunk/libmatroska/src/KaxContentEncoding.cpp,
+	  trunk/libmatroska/src/KaxContexts.cpp,
+	  trunk/libmatroska/src/KaxCues.cpp,
+	  trunk/libmatroska/src/KaxCuesData.cpp,
+	  trunk/libmatroska/src/KaxInfo.cpp,
+	  trunk/libmatroska/src/KaxInfoData.cpp,
+	  trunk/libmatroska/src/KaxSeekHead.cpp,
+	  trunk/libmatroska/src/KaxSegment.cpp,
+	  trunk/libmatroska/src/KaxTag.cpp,
+	  trunk/libmatroska/src/KaxTagMulti.cpp,
+	  trunk/libmatroska/src/KaxTags.cpp,
+	  trunk/libmatroska/src/KaxTrackAudio.cpp,
+	  trunk/libmatroska/src/KaxTrackEntryData.cpp,
+	  trunk/libmatroska/src/KaxTrackVideo.cpp,
+	  trunk/libmatroska/src/KaxTracks.cpp,
+	  trunk/libmatroska/src/KaxVersion.cpp,
+	  trunk/libmatroska/src/StdInclude.h: No more StdInclude
+
+2004-01-06 21:02  robux4
+
+	* trunk/libmatroska/matroska/KaxBlock.h,
+	  trunk/libmatroska/matroska/KaxTrackAudio.h,
+	  trunk/libmatroska/src/KaxBlock.cpp,
+	  trunk/libmatroska/src/KaxTrackAudio.cpp: Add support for
+	  SampleScale and BlockSamples
+
+2004-01-05 18:56  mosu
+
+	* trunk/libmatroska/debian/changelog: Updated the version from 0.6.2
+	  to 0.6.3.
+
+2004-01-05 18:46  robux4
+
+	* trunk/libmatroska/src/KaxCuesData.cpp: Changed the ID of the new
+	  CueBlockNumber
+
+2004-01-05 11:39  mosu
+
+	* trunk/libmatroska/matroska/KaxChapters.h,
+	  trunk/libmatroska/src/KaxChapters.cpp: Fixes for wrong C++ syntax
+	  ("not enough sleep" syndrome).
+
+2004-01-05 11:28  mosu
+
+	* trunk/libmatroska/make/linux/Makefile,
+	  trunk/libmatroska/test/mux/test8.cpp: Fixed a couple of warnings.
+
+2004-01-05 11:28  mosu
+
+	* trunk/libmatroska/debian/control: Updated the dependencies.
+
+2004-01-04 21:39  robux4
+
+	* trunk/libmatroska/matroska/KaxChapters.h,
+	  trunk/libmatroska/matroska/KaxVersion.h,
+	  trunk/libmatroska/src/KaxChapters.cpp: Added 2 flags for Chapters
+
+2004-01-01 13:28  mosu
+
+	* trunk/libebml/debian/rules, trunk/libmatroska/debian/rules: Also
+	  install the ChangeLog.
+
+2004-01-01 13:20  mosu
+
+	* trunk/libebml/ChangeLog, trunk/libmatroska/ChangeLog,
+	  trunk/libmatroska/ChangeLog.txt: Added a ChangeLog.
+
+2003-12-30 10:00  mosu
+
+	* trunk/libmatroska/debian/changelog: Bumped version number.
+
+2003-12-28 16:20  mosu
+
+	* trunk/libmatroska/test/tags/test9.cpp: Added test cases for the
+	  new simple tags.
+
+2003-12-28 16:20  mosu
+
+	* trunk/libmatroska/src/KaxTag.cpp: Made KaxTagSimple a possible
+	  child for itself - otherwise reading nested tags does not work.
+
+2003-12-28 16:07  mosu
+
+	* trunk/libmatroska/matroska/KaxVersion.h: Updated the version
+	  number from 0.6.1 to 0.6.2.
+
+2003-12-28 01:08  jcsston
+
+	* trunk/libmatroska/matroska/KaxTag.h,
+	  trunk/libmatroska/src/KaxTag.cpp: The new Simple Tagging system
+
+2003-12-03 16:17  cyrius
+
+	* trunk/libmatroska/matroska/KaxBlock.h,
+	  trunk/libmatroska/src/KaxBlock.cpp: Fixes
+
+2003-11-16 10:58  robux4
+
+	* trunk/libmatroska/matroska/KaxBlock.h,
+	  trunk/libmatroska/src/KaxBlock.cpp: Added the possibility to
+	  retrieve the position/size of each frame in the data stream
+	  (usefull for people using SCOPE_PARTIAL_DATA and then only reading
+	  the data they need)
+
+2003-11-16 09:36  robux4
+
+	* trunk/libmatroska/src/KaxBlock.cpp: Fixed a serious bug in Block
+	  reading
+
+2003-11-03 22:17  robux4
+
+	* trunk/libebml/ebml/EbmlBinary.h, trunk/libebml/ebml/EbmlCrc32.h,
+	  trunk/libebml/ebml/EbmlDate.h, trunk/libebml/ebml/EbmlElement.h,
+	  trunk/libebml/ebml/EbmlFloat.h, trunk/libebml/ebml/EbmlMaster.h,
+	  trunk/libebml/ebml/EbmlSInteger.h,
+	  trunk/libebml/ebml/EbmlString.h,
+	  trunk/libebml/ebml/EbmlUInteger.h,
+	  trunk/libebml/ebml/EbmlUnicodeString.h,
+	  trunk/libebml/src/EbmlBinary.cpp, trunk/libebml/src/EbmlCrc32.cpp,
+	  trunk/libebml/src/EbmlDate.cpp, trunk/libebml/src/EbmlElement.cpp,
+	  trunk/libebml/src/EbmlFloat.cpp, trunk/libebml/src/EbmlMaster.cpp,
+	  trunk/libebml/src/EbmlSInteger.cpp,
+	  trunk/libebml/src/EbmlString.cpp,
+	  trunk/libebml/src/EbmlUInteger.cpp,
+	  trunk/libebml/src/EbmlUnicodeString.cpp,
+	  trunk/libmatroska/matroska/KaxBlock.h,
+	  trunk/libmatroska/src/KaxBlock.cpp,
+	  trunk/libmatroska/test/mux/test8.cpp: Better handling of scope
+	  reading
+
+2003-10-31 12:34  mosu
+
+	* trunk/libmatroska/matroska/KaxBlock.h: Added default value for
+	  ReadData.
+
+2003-10-31 08:59  mosu
+
+	* trunk/libmatroska/matroska/KaxAttached.h,
+	  trunk/libmatroska/matroska/KaxAttachments.h,
+	  trunk/libmatroska/matroska/KaxBlock.h,
+	  trunk/libmatroska/matroska/KaxBlockData.h,
+	  trunk/libmatroska/matroska/KaxChapters.h,
+	  trunk/libmatroska/matroska/KaxCluster.h,
+	  trunk/libmatroska/matroska/KaxClusterData.h,
+	  trunk/libmatroska/matroska/KaxCues.h,
+	  trunk/libmatroska/matroska/KaxCuesData.h,
+	  trunk/libmatroska/matroska/KaxInfo.h,
+	  trunk/libmatroska/matroska/KaxInfoData.h,
+	  trunk/libmatroska/matroska/KaxSeekHead.h,
+	  trunk/libmatroska/matroska/KaxSegment.h,
+	  trunk/libmatroska/matroska/KaxTag.h,
+	  trunk/libmatroska/matroska/KaxTagMulti.h,
+	  trunk/libmatroska/matroska/KaxTags.h,
+	  trunk/libmatroska/matroska/KaxTrackAudio.h,
+	  trunk/libmatroska/matroska/KaxTrackEntryData.h,
+	  trunk/libmatroska/matroska/KaxTrackVideo.h,
+	  trunk/libmatroska/matroska/KaxTracks.h,
+	  trunk/libmatroska/src/KaxCluster.cpp,
+	  trunk/libmatroska/src/KaxSegment.cpp: Fixed the new line/carriage
+	  return mess.
+
+2003-10-31 08:55  mosu
+
+	* trunk/libmatroska/debian/control: Updated dependency to libebml
+	  0.6.2.
+
+2003-10-30 23:07  robux4
+
+	* trunk/libmatroska/matroska/KaxBlock.h,
+	  trunk/libmatroska/src/KaxBlock.cpp,
+	  trunk/libmatroska/test/mux/test8.cpp: Allow KaxBlock not to be
+	  fully read
+
+2003-10-30 12:56  mosu
+
+	* trunk/libmatroska/matroska/KaxBlock.h: Set LACING_AUTO as the
+	  default value for the AddFrame() functions. The re-establishes API
+	  compatibility with < 0.6.0.
+
+2003-10-30 12:50  mosu
+
+	* trunk/libmatroska/debian/changelog,
+	  trunk/libmatroska/matroska/KaxVersion.h: Updated version number to
+	  0.6.1.
+
+2003-10-28 22:09  mosu
+
+	* trunk/libmatroska/debian/changelog: New version number.
+
+2003-10-28 20:59  robux4
+
+	* trunk/libmatroska/matroska/KaxCluster.h,
+	  trunk/libmatroska/matroska/KaxVersion.h: Update the version
+	  number, LACING_AUTO is the default value
+
+2003-10-28 20:55  robux4
+
+	* trunk/libebml/ebml/EbmlElement.h,
+	  trunk/libebml/src/EbmlElement.cpp,
+	  trunk/libmatroska/matroska/KaxBlock.h,
+	  trunk/libmatroska/src/KaxBlock.cpp: EBML-size handling is more
+	  general and handle the Unknown Size
+
+2003-10-25 15:09  mosu
+
+	* trunk/libebml/make/mingw32/Makefile,
+	  trunk/libmatroska/make/mingw32/Makefile: Support the same targest
+	  as the Linux Makefile.
+
+2003-10-24 22:05  mosu
+
+	* trunk/libmatroska/src/KaxBlock.cpp: Fixed an off-by-one error.
+	  Fixed the building of the size list for the lacing. Fixed some of
+	  my own mistakes introduced in the last revision resulting in wrong
+	  data being read for Ebml lacing.
+
+2003-10-24 19:22  mosu
+
+	* trunk/libmatroska/matroska/KaxBlock.h,
+	  trunk/libmatroska/src/KaxBlock.cpp: Implemented LACING_AUTO:
+	  automatic use of the best lacing method (Xiph, Ebml or fixed).
+
+2003-10-24 16:08  mosu
+
+	* trunk/libmatroska/src/KaxBlock.cpp: Reversed my so-called "fix"
+	  which only broke things.
+
+2003-10-24 15:52  mosu
+
+	* trunk/libmatroska/matroska/KaxBlock.h,
+	  trunk/libmatroska/src/KaxBlock.cpp: Fixed some warnings. Added
+	  some safety fallbacks instead of undefined behaviour for
+	  unimplemented lacing schemes (fixes some more warnings).
+
+2003-10-24 08:40  jcsston
+
+	* trunk/libmatroska/make/vc7/lib/static/libmatroska.v71.vcproj,
+	  trunk/libmatroska/make/vc7/lib/static/libmatroska.vcproj: Missing
+	  KaxContentEncoding.cpp
+
+2003-10-22 14:18  pamel
+
+	* trunk/libebml/ebml/EbmlElement.h,
+	  trunk/libebml/src/EbmlElement.cpp,
+	  trunk/libmatroska/matroska/KaxTypes.h,
+	  trunk/libmatroska/src/KaxBlock.cpp: New lacing modes reading.
+
+2003-10-21 21:27  robux4
+
+	* trunk/libmatroska/matroska/KaxBlock.h,
+	  trunk/libmatroska/matroska/KaxCluster.h,
+	  trunk/libmatroska/matroska/KaxTypes.h,
+	  trunk/libmatroska/src/KaxBlock.cpp,
+	  trunk/libmatroska/src/KaxCluster.cpp,
+	  trunk/libmatroska/test/mux/test6.cpp: New lacing modes writing
+
+2003-10-21 19:42  robux4
+
+	* trunk/libmatroska/make/vc6/lib/static/libmatroska.dsp,
+	  trunk/libmatroska/make/vc7/lib/static/libmatroska.v71.vcproj,
+	  trunk/libmatroska/make/vc7/lib/static/libmatroska.vcproj: Fix
+	  windows makefiles for the encoding settings
+
+2003-10-21 18:22  mosu
+
+	* trunk/doc/website/technical/specs/index.html,
+	  trunk/libmatroska/matroska/KaxContentEncoding.h,
+	  trunk/libmatroska/src/KaxContentEncoding.cpp,
+	  trunk/libmatroska/src/KaxTracks.cpp,
+	  trunk/libmatroska/test/mux/test6.cpp: Moved the content encoding
+	  elements under a new parent, KaxContentEncodings.
+
+2003-10-19 16:09  mosu
+
+	* trunk/libmatroska/matroska/KaxContentEncoding.h: Changing default
+	  value to match the specs.
+
+2003-10-19 15:23  mosu
+
+	* trunk/libmatroska/ChangeLog.txt: Updated ChangeLog.
+
+2003-10-19 15:22  mosu
+
+	* trunk/libmatroska/make/mingw32/Makefile,
+	  trunk/libmatroska/matroska/KaxContentEncoding.h,
+	  trunk/libmatroska/matroska/KaxVersion.h,
+	  trunk/libmatroska/src/KaxContentEncoding.cpp,
+	  trunk/libmatroska/src/KaxTracks.cpp,
+	  trunk/libmatroska/test/mux/test6.cpp: Added the new track elements
+	  for content encoding (compression/encryption).
+
+2003-10-19 15:17  mosu
+
+	* trunk/libmatroska/make/linux/.cvsignore: Added the resulting test
+	  binaries to the CVS ignore list.
+
+2003-10-19 15:11  mosu
+
+	* trunk/libmatroska/ChangeLog.txt: Added a ChangeLog (generated
+	  automatically from the CVS log messages, but should be updated by
+	  ourselves).
+
+2003-10-15 20:34  mosu
+
+	* trunk/libebml/make/linux/Makefile,
+	  trunk/libmatroska/make/linux/Makefile: Removed -pedantic due to
+	  problems on FreeBSD.
+
+2003-09-17 20:22  mosu
+
+	* trunk/libmatroska/debian/changelog,
+	  trunk/libmatroska/debian/control: Updated Debian dependencies.
+
+2003-09-14 08:20  robux4
+
+	* trunk/libmatroska/matroska/KaxVersion.h: New version to reflect
+	  additions
+
+2003-09-14 08:19  robux4
+
+	* trunk/libmatroska/matroska/KaxBlock.h,
+	  trunk/libmatroska/matroska/KaxCluster.h,
+	  trunk/libmatroska/matroska/KaxSegment.h,
+	  trunk/libmatroska/src/KaxBlock.cpp,
+	  trunk/libmatroska/src/KaxCluster.cpp,
+	  trunk/libmatroska/src/KaxSegment.cpp: Add the possibility to Clone
+	  Blocks and correct the parent when needed
+
+2003-09-13 20:40  robux4
+
+	* trunk/libmatroska/matroska/KaxBlock.h,
+	  trunk/libmatroska/src/KaxBlock.cpp: Added a Clone() method to the
+	  Blocked data (impossible for now)
+
+2003-09-13 17:48  robux4
+
+	* trunk/libebml/ebml/EbmlHead.h, trunk/libebml/ebml/EbmlSubHead.h,
+	  trunk/libmatroska/matroska/KaxAttached.h,
+	  trunk/libmatroska/matroska/KaxAttachments.h,
+	  trunk/libmatroska/matroska/KaxBlock.h,
+	  trunk/libmatroska/matroska/KaxBlockData.h,
+	  trunk/libmatroska/matroska/KaxChapters.h,
+	  trunk/libmatroska/matroska/KaxCluster.h,
+	  trunk/libmatroska/matroska/KaxClusterData.h,
+	  trunk/libmatroska/matroska/KaxCues.h,
+	  trunk/libmatroska/matroska/KaxCuesData.h,
+	  trunk/libmatroska/matroska/KaxInfo.h,
+	  trunk/libmatroska/matroska/KaxInfoData.h,
+	  trunk/libmatroska/matroska/KaxSeekHead.h,
+	  trunk/libmatroska/matroska/KaxSegment.h,
+	  trunk/libmatroska/matroska/KaxTag.h,
+	  trunk/libmatroska/matroska/KaxTagMulti.h,
+	  trunk/libmatroska/matroska/KaxTags.h,
+	  trunk/libmatroska/matroska/KaxTrackAudio.h,
+	  trunk/libmatroska/matroska/KaxTrackEntryData.h,
+	  trunk/libmatroska/matroska/KaxTrackVideo.h,
+	  trunk/libmatroska/matroska/KaxTracks.h,
+	  trunk/libmatroska/test/mux/test6.cpp: Added a Clone() method and a
+	  IsMaster() method
+
+2003-09-12 16:57  mosu
+
+	* trunk/libmatroska/src/KaxTrackEntryData.cpp: Fixed wrong length
+	  for KaxTrackTimecodeScale_TheId.
+
+2003-09-01 15:37  jcsston
+
+	* trunk/libmatroska/matroska/KaxBlockData.h,
+	  trunk/libmatroska/src/KaxBlockData.cpp: Added a protected method
+	  to update the reference timecode
+
+2003-09-01 11:43  mosu
+
+	* trunk/libmatroska/debian/changelog: New version number.
+
+2003-08-21 17:25  mosu
+
+	* trunk/libmatroska/matroska/KaxVersion.h: Bumped version number to
+	  make conditional compilation possible for newly added elements
+	  (like KaxAudioOutputSamplingFreq).
+
+2003-08-20 03:36  spyder
+
+	* trunk/libmatroska/src/KaxTrackAudio.cpp: Fixed a small coding
+	  error where an array of 4 objects was initialized with 5 values.
+
+2003-08-08 17:42  robux4
+
+	* trunk/doc/website/technical/specs/index.html,
+	  trunk/libmatroska/matroska/KaxTrackAudio.h,
+	  trunk/libmatroska/src/KaxTrackAudio.cpp: New Output sampling
+	  frequency parameter
+
+2003-08-04 07:36  robux4
+
+	* trunk/libebml/ebml/EbmlVersion.h,
+	  trunk/libmatroska/matroska/KaxVersion.h: Remove some old TODO
+
+2003-08-01 19:21  robux4
+
+	* trunk/libmatroska/make/Doxyfile: Version 0.5.0 of the lib
+
+2003-08-01 12:03  robux4
+
+	* trunk/libebml/make/vc7/lib/libebml.v71.vcproj,
+	  trunk/libmatroska/make/vc7/lib/static/libmatroska.v71.vcproj,
+	  trunk/mkxds/mkxds.v71.sln, trunk/mkxds/mkxds.v71.vcproj: Added
+	  VC7.1 (VS.Net 2003) projects
+
+2003-08-01 02:26  jcsston
+
+	* trunk/libmatroska/make/Doxyfile: Updated to new source tree
+	  structure
+
+2003-07-31 19:42  robux4
+
+	* trunk/libebml/ebml/EbmlCrc32.h, trunk/libebml/ebml/EbmlDate.h,
+	  trunk/libebml/ebml/EbmlSInteger.h,
+	  trunk/libebml/ebml/EbmlUInteger.h, trunk/libebml/ebml/EbmlVoid.h,
+	  trunk/libebml/src/EbmlCrc32.cpp,
+	  trunk/libebml/src/EbmlSInteger.cpp,
+	  trunk/libebml/src/EbmlVoid.cpp,
+	  trunk/libebml/src/platform/win32/WinIOCallback.cpp,
+	  trunk/libmatroska/src/KaxBlock.cpp: Some fixes for better casting
+	  / type checking
+
+2003-07-30 08:01  robux4
+
+	* trunk/libmatroska/matroska/KaxBlock.h,
+	  trunk/libmatroska/matroska/KaxBlockData.h,
+	  trunk/libmatroska/src/KaxBlock.cpp,
+	  trunk/libmatroska/src/KaxBlockData.cpp: UpdateSize actually
+	  overrides the default one
+
+2003-07-29 21:43  robux4
+
+	* trunk/libebml/ebml/EbmlBinary.h, trunk/libebml/ebml/EbmlCrc32.h,
+	  trunk/libebml/ebml/EbmlDate.h, trunk/libebml/ebml/EbmlElement.h,
+	  trunk/libebml/ebml/EbmlFloat.h, trunk/libebml/ebml/EbmlMaster.h,
+	  trunk/libebml/ebml/EbmlSInteger.h,
+	  trunk/libebml/ebml/EbmlString.h,
+	  trunk/libebml/ebml/EbmlUInteger.h,
+	  trunk/libebml/ebml/EbmlUnicodeString.h,
+	  trunk/libebml/ebml/EbmlVoid.h, trunk/libebml/src/EbmlBinary.cpp,
+	  trunk/libebml/src/EbmlCrc32.cpp, trunk/libebml/src/EbmlDate.cpp,
+	  trunk/libebml/src/EbmlElement.cpp,
+	  trunk/libebml/src/EbmlFloat.cpp, trunk/libebml/src/EbmlMaster.cpp,
+	  trunk/libebml/src/EbmlSInteger.cpp,
+	  trunk/libebml/src/EbmlString.cpp,
+	  trunk/libebml/src/EbmlUInteger.cpp,
+	  trunk/libebml/src/EbmlUnicodeString.cpp,
+	  trunk/libebml/src/EbmlVoid.cpp,
+	  trunk/libmatroska/matroska/KaxBlock.h,
+	  trunk/libmatroska/matroska/KaxTrackVideo.h,
+	  trunk/libmatroska/src/KaxBlock.cpp,
+	  trunk/libmatroska/src/KaxTrackVideo.cpp: Checksum now doesn't care
+	  about mandatory data
+
+2003-07-28 23:04  robux4
+
+	* trunk/libmatroska/src/KaxChapters.cpp: Chapter end time is not
+	  mandatory
+
+2003-07-28 22:55  robux4
+
+	* trunk/libmatroska/matroska/KaxTag.h: Fix the size of the video
+	  genre
+
+2003-07-28 08:49  mosu
+
+	* trunk/libebml/debian/changelog,
+	  trunk/libmatroska/debian/changelog,
+	  trunk/libmatroska/debian/control: Updated version information.
+
+2003-07-27 20:28  mosu
+
+	* trunk/libebml/make/mingw32/Makefile,
+	  trunk/libmatroska/make/mingw32/Makefile: Necessary fixes for
+	  compilation with mingw.
+
+2003-07-25 19:25  robux4
+
+	* trunk/doc/website/technical/specs/index.html,
+	  trunk/doc/website/technical/specs/tagging/index.html,
+	  trunk/doc/website/technical/specs/tagging/multi/multititles.html,
+	  trunk/libmatroska/src/KaxTag.cpp,
+	  trunk/libmatroska/src/KaxTagMulti.cpp: Fixes some IDs
+
+2003-07-24 17:05  robux4
+
+	* trunk/libmatroska/matroska/KaxTagMulti.h,
+	  trunk/libmatroska/src/KaxTagMulti.cpp: New LegalContent element +
+	  fixed some mandatory values
+
+2003-07-19 20:31  robux4
+
+	* trunk/libmatroska/matroska/KaxAttached.h,
+	  trunk/libmatroska/matroska/KaxTagMulti.h,
+	  trunk/libmatroska/matroska/KaxTrackEntryData.h,
+	  trunk/libmatroska/src/KaxAttached.cpp,
+	  trunk/libmatroska/src/KaxTag.cpp,
+	  trunk/libmatroska/src/KaxTagMulti.cpp: Added attachment links with
+	  tags, fix a bad default value
+
+2003-07-17 09:48  mosu
+
+	* trunk/libebml/make/linux/Makefile,
+	  trunk/libmatroska/make/linux/Makefile: Proper Makefile that also
+	  installs the header files.
+
+2003-07-16 16:31  mosu
+
+	* trunk/libmatroska/matroska/KaxAttachments.h,
+	  trunk/libmatroska/matroska/KaxContexts.h,
+	  trunk/libmatroska/src/KaxAttached.cpp,
+	  trunk/libmatroska/src/KaxAttachments.cpp,
+	  trunk/libmatroska/src/KaxSegment.cpp,
+	  trunk/libmatroska/test/ebml/test00.cpp: Fixed the following
+	  spelling error: Attachements --> Attachments
+
+2003-07-16 16:21  mosu
+
+	* trunk/libebml/make/linux/Makefile,
+	  trunk/libmatroska/make/linux/Makefile: Removed old stuff.
+
+2003-07-16 15:46  robux4
+
+	* trunk/libmatroska, trunk/libmatroska/LICENSE.GPL,
+	  trunk/libmatroska/LICENSE.QPL, trunk/libmatroska/debian,
+	  trunk/libmatroska/debian/changelog,
+	  trunk/libmatroska/debian/control,
+	  trunk/libmatroska/debian/copyright, trunk/libmatroska/debian/dirs,
+	  trunk/libmatroska/debian/docs,
+	  trunk/libmatroska/debian/libmatroska-dev.dirs,
+	  trunk/libmatroska/debian/libmatroska-dev.files,
+	  trunk/libmatroska/debian/rules, trunk/libmatroska/make,
+	  trunk/libmatroska/make/Doxyfile, trunk/libmatroska/make/beos,
+	  trunk/libmatroska/make/beos/Makefile,
+	  trunk/libmatroska/make/cygwin,
+	  trunk/libmatroska/make/cygwin/Makefile,
+	  trunk/libmatroska/make/cygwin/Makefile.rule,
+	  trunk/libmatroska/make/linux,
+	  trunk/libmatroska/make/linux/Makefile,
+	  trunk/libmatroska/make/linux/Makefile.rule,
+	  trunk/libmatroska/make/macosx,
+	  trunk/libmatroska/make/macosx/macosx.pbproj,
+	  trunk/libmatroska/make/macosx/macosx.pbproj/project.pbxproj,
+	  trunk/libmatroska/make/makedoc.bat,
+	  trunk/libmatroska/make/makedoc.sh, trunk/libmatroska/make/mingw32,
+	  trunk/libmatroska/make/mingw32/Makefile,
+	  trunk/libmatroska/make/mingw32/libmatroska.dev,
+	  trunk/libmatroska/make/mingw32/test,
+	  trunk/libmatroska/make/mingw32/test/Makefile,
+	  trunk/libmatroska/make/mingw32/test/test6.dev,
+	  trunk/libmatroska/make/mingw32/test/test8.dev,
+	  trunk/libmatroska/make/vc6, trunk/libmatroska/make/vc6/lib,
+	  trunk/libmatroska/make/vc6/lib/static,
+	  trunk/libmatroska/make/vc6/lib/static/libmatroska.dsp,
+	  trunk/libmatroska/make/vc6/test,
+	  trunk/libmatroska/make/vc6/test/test0.dsp,
+	  trunk/libmatroska/make/vc6/test/test00.dsp,
+	  trunk/libmatroska/make/vc6/test/test1.dsp,
+	  trunk/libmatroska/make/vc6/test/test2.dsp,
+	  trunk/libmatroska/make/vc6/test/test3.dsp,
+	  trunk/libmatroska/make/vc6/test/test4.dsp,
+	  trunk/libmatroska/make/vc6/test/test5.dsp,
+	  trunk/libmatroska/make/vc6/test/test6.dsp,
+	  trunk/libmatroska/make/vc6/test/test6c.dsp,
+	  trunk/libmatroska/make/vc6/test/test7.dsp,
+	  trunk/libmatroska/make/vc6/test/test8.dsp,
+	  trunk/libmatroska/make/vc6/test/test8c.dsp,
+	  trunk/libmatroska/make/vc6/test/test9.dsp,
+	  trunk/libmatroska/make/vc6/vc6.dsw, trunk/libmatroska/make/vc7,
+	  trunk/libmatroska/make/vc7/lib,
+	  trunk/libmatroska/make/vc7/lib/static,
+	  trunk/libmatroska/make/vc7/lib/static/libmatroska.vcproj,
+	  trunk/libmatroska/make/vc7/test,
+	  trunk/libmatroska/make/vc7/test/test0.vcproj,
+	  trunk/libmatroska/make/vc7/test/test00.vcproj,
+	  trunk/libmatroska/make/vc7/test/test6.vcproj,
+	  trunk/libmatroska/make/vc7/test/test8.vcproj,
+	  trunk/libmatroska/make/vc7/test/test9.vcproj,
+	  trunk/libmatroska/make/vc7/vc7.sln, trunk/libmatroska/matroska,
+	  trunk/libmatroska/matroska/FileKax.h,
+	  trunk/libmatroska/matroska/KaxAttached.h,
+	  trunk/libmatroska/matroska/KaxAttachments.h,
+	  trunk/libmatroska/matroska/KaxBlock.h,
+	  trunk/libmatroska/matroska/KaxBlockData.h,
+	  trunk/libmatroska/matroska/KaxChapters.h,
+	  trunk/libmatroska/matroska/KaxCluster.h,
+	  trunk/libmatroska/matroska/KaxClusterData.h,
+	  trunk/libmatroska/matroska/KaxConfig.h,
+	  trunk/libmatroska/matroska/KaxContexts.h,
+	  trunk/libmatroska/matroska/KaxCues.h,
+	  trunk/libmatroska/matroska/KaxCuesData.h,
+	  trunk/libmatroska/matroska/KaxInfo.h,
+	  trunk/libmatroska/matroska/KaxInfoData.h,
+	  trunk/libmatroska/matroska/KaxSeekHead.h,
+	  trunk/libmatroska/matroska/KaxSegment.h,
+	  trunk/libmatroska/matroska/KaxTag.h,
+	  trunk/libmatroska/matroska/KaxTagMulti.h,
+	  trunk/libmatroska/matroska/KaxTags.h,
+	  trunk/libmatroska/matroska/KaxTrackAudio.h,
+	  trunk/libmatroska/matroska/KaxTrackEntryData.h,
+	  trunk/libmatroska/matroska/KaxTrackVideo.h,
+	  trunk/libmatroska/matroska/KaxTracks.h,
+	  trunk/libmatroska/matroska/KaxTypes.h,
+	  trunk/libmatroska/matroska/KaxVersion.h,
+	  trunk/libmatroska/matroska/c,
+	  trunk/libmatroska/matroska/c/libmatroska.h,
+	  trunk/libmatroska/matroska/c/libmatroska_t.h,
+	  trunk/libmatroska/src, trunk/libmatroska/src/FileKax.cpp,
+	  trunk/libmatroska/src/KaxAttached.cpp,
+	  trunk/libmatroska/src/KaxAttachments.cpp,
+	  trunk/libmatroska/src/KaxBlock.cpp,
+	  trunk/libmatroska/src/KaxBlockData.cpp,
+	  trunk/libmatroska/src/KaxChapters.cpp,
+	  trunk/libmatroska/src/KaxCluster.cpp,
+	  trunk/libmatroska/src/KaxClusterData.cpp,
+	  trunk/libmatroska/src/KaxContexts.cpp,
+	  trunk/libmatroska/src/KaxCues.cpp,
+	  trunk/libmatroska/src/KaxCuesData.cpp,
+	  trunk/libmatroska/src/KaxInfo.cpp,
+	  trunk/libmatroska/src/KaxInfoData.cpp,
+	  trunk/libmatroska/src/KaxSeekHead.cpp,
+	  trunk/libmatroska/src/KaxSegment.cpp,
+	  trunk/libmatroska/src/KaxTag.cpp,
+	  trunk/libmatroska/src/KaxTagMulti.cpp,
+	  trunk/libmatroska/src/KaxTags.cpp,
+	  trunk/libmatroska/src/KaxTrackAudio.cpp,
+	  trunk/libmatroska/src/KaxTrackEntryData.cpp,
+	  trunk/libmatroska/src/KaxTrackVideo.cpp,
+	  trunk/libmatroska/src/KaxTracks.cpp,
+	  trunk/libmatroska/src/KaxVersion.cpp,
+	  trunk/libmatroska/src/StdInclude.h, trunk/libmatroska/test,
+	  trunk/libmatroska/test/Makefile, trunk/libmatroska/test/ebml,
+	  trunk/libmatroska/test/ebml/Makefile,
+	  trunk/libmatroska/test/ebml/test0.cpp,
+	  trunk/libmatroska/test/ebml/test00.cpp,
+	  trunk/libmatroska/test/mux, trunk/libmatroska/test/mux/test6.cpp,
+	  trunk/libmatroska/test/mux/test8.cpp, trunk/libmatroska/test/tags,
+	  trunk/libmatroska/test/tags/test9.cpp,
+	  trunk/libmatroska/test/utf8,
+	  trunk/libmatroska/test/utf8/test5.cpp: Initial CVS version after
+	  the crash
+

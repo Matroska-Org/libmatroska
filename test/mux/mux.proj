@@ -1,0 +1,11 @@
+#include "*/*.proj"
+
+CON mux-test6
+{
+  SOURCE test6.cpp
+}
+
+CON mux-test8
+{
+  SOURCE test8.cpp
+}

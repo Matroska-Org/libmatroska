@@ -1,0 +1,98 @@
+##
+## This Makefile is made for cygwin, but might probably work on any standard UNIX too
+##
+
+#****************************************************************************
+
+# DEBUG can be set to YES to include debugging info, or NO otherwise
+DEBUG          = YES
+
+# PROFILE can be set to YES to include profiling info, or NO otherwise
+PROFILE        = NO
+
+#****************************************************************************
+
+CC     = gcc
+CXX    = g++
+LD     = gcc
+AR     = ar rcvu
+RANLIB = ranlib
+DEPEND = makedepend
+INDENT =indent --gnu-style -ut -ts6 -br -npsl -npcs
+DELETE =rm -f
+
+GLOBAL_CFLAGS   = -Wall -Wno-unknown-pragmas -Wno-format 
+DEBUG_CFLAGS    = -g -O0 -DDEBUG ${GLOBAL_CFLAGS}
+RELEASE_CFLAGS  =  -O2 ${GLOBAL_CFLAGS}
+
+P_OPTIONS = -pedantic
+
+LIBS =
+
+DEBUG_CXXFLAGS   = ${DEBUG_CFLAGS}
+RELEASE_CXXFLAGS = ${RELEASE_CFLAGS}
+
+DEBUG_LDFLAGS    = -g
+RELEASE_LDFLAGS  =
+
+ifeq (YES, ${DEBUG})
+   CFLAGS       = ${DEBUG_CFLAGS} ${INCS} ${P_OPTIONS}
+   CXXFLAGS     = ${DEBUG_CXXFLAGS} ${INCS} ${P_OPTIONS}
+   LDFLAGS      = ${DEBUG_LDFLAGS}
+   DEPENDFLAGS  = ${DEBUG_CFLAGS} ${INCS}
+else
+   CFLAGS       = ${RELEASE_CFLAGS} ${INCS} ${P_OPTIONS}
+   CXXFLAGS     = ${RELEASE_CXXFLAGS} ${INCS} ${P_OPTIONS}
+   LDFLAGS      = ${RELEASE_LDFLAGS}
+   DEPENDFLAGS  = ${RELEASE_CFLAGS} ${INCS}
+endif
+
+ifeq (YES, ${PROFILE})
+   CFLAGS   := ${CFLAGS} -pg
+   CXXFLAGS := ${CXXFLAGS} -pg
+   LDFLAGS  := ${LDFLAGS} -pg
+endif
+
+#****************************************************************************
+# Preprocessor directives
+#****************************************************************************
+
+ifeq (YES, ${PROFILE})
+  DEFS =
+else
+  DEFS =
+endif
+
+#****************************************************************************
+# Include paths
+#****************************************************************************
+
+#INCS := -I/usr/include/g++-2 -I/usr/local/include
+#INCS =
+
+
+#****************************************************************************
+# Makefile code common to all platforms
+#****************************************************************************
+
+CFLAGS   := ${CFLAGS}   ${DEFS}
+CXXFLAGS := ${CXXFLAGS} ${DEFS}
+
+#****************************************************************************
+# General rules
+#****************************************************************************
+
+indent:
+	$(INDENT) --line-length 100 ${SRCS} ${SRCS_HEADERS}
+	$(DELETE) *.*~
+
+indent80:
+	$(INDENT) --line-length 80 ${SRCS} ${SRCS_HEADERS}
+	$(DELETE) *.*~
+
+clean:
+	rm -f core *.o *.so *.a *.exe
+
+# what are the source dependencies
+depend: $(SRCS)
+	$(DEPEND) $(DEPENDFLAGS) $(SRCS)

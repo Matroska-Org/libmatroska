@@ -1,0 +1,68 @@
+Include "*/*.proj"
+
+LIB matroska
+{
+  INCLUDE .
+  INCLUDE ../libebml
+
+  USE ebml
+
+//  OPTIMIZE_GLOBALLY .
+  FAVOR_MAX_SPEED .
+  REDUCE_SIZE .
+  FASTER_FLOAT .
+  
+  SOURCE src/FileKax.cpp
+  SOURCE src/KaxAttached.cpp
+  SOURCE src/KaxAttachments.cpp
+  SOURCE src/KaxBlock.cpp
+  SOURCE src/KaxBlockData.cpp
+  SOURCE src/KaxChapters.cpp
+  SOURCE src/KaxCluster.cpp
+  SOURCE src/KaxClusterData.cpp
+  SOURCE src/KaxContentEncoding.cpp
+  SOURCE src/KaxContexts.cpp
+  SOURCE src/KaxCues.cpp
+  SOURCE src/KaxCuesData.cpp
+  SOURCE src/KaxInfo.cpp
+  SOURCE src/KaxInfoData.cpp
+  SOURCE src/KaxSeekHead.cpp
+  SOURCE src/KaxSegment.cpp
+  SOURCE src/KaxTag.cpp
+  SOURCE src/KaxTagMulti.cpp
+  SOURCE src/KaxTags.cpp
+  SOURCE src/KaxTrackAudio.cpp
+  SOURCE src/KaxTrackEntryData.cpp
+  SOURCE src/KaxTrackVideo.cpp
+  SOURCE src/KaxTracks.cpp
+  SOURCE src/KaxVersion.cpp
+
+  HEADER matroska/FileKax.h
+  HEADER matroska/KaxAttached.h
+  HEADER matroska/KaxAttachments.h
+  HEADER matroska/KaxBlock.h
+  HEADER matroska/KaxBlockData.h
+  HEADER matroska/KaxChapters.h
+  HEADER matroska/KaxCluster.h
+  HEADER matroska/KaxClusterData.h
+  HEADER matroska/KaxConfig.h
+  HEADER matroska/KaxContentEncoding.h
+  HEADER matroska/KaxContexts.h
+  HEADER matroska/KaxCues.h
+  HEADER matroska/KaxCuesData.h
+  HEADER matroska/KaxInfo.h
+  HEADER matroska/KaxInfoData.h
+  HEADER matroska/KaxSeekHead.h
+  HEADER matroska/KaxSegment.h
+  HEADER matroska/KaxTag.h
+  HEADER matroska/KaxTagMulti.h
+  HEADER matroska/KaxTags.h
+  HEADER matroska/KaxTrackAudio.h
+  HEADER matroska/KaxTrackEntryData.h
+  HEADER matroska/KaxTrackVideo.h
+  HEADER matroska/KaxTracks.h
+  HEADER matroska/KaxTypes.h
+  HEADER matroska/KaxVersion.h
+  HEADER matroska/c/libmatroska_t.h
+  HEADER matroska/c/libmatroska.h
+}

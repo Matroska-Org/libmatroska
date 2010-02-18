@@ -1,0 +1,16 @@
+Source: libmatroska
+Priority: optional
+Maintainer: Moritz Bunkus <moritz@bunkus.org>
+Build-Depends: debhelper (>> 3.0.0), libebml-dev (>= 0.7.3-1)
+Standards-Version: 3.5.8
+
+Package: libmatroska-dev
+Section: devel
+Architecture: any
+Depends: libebml-dev (>= 0.7.2-1)
+Description: an extensible open standard Audio/Video container format
+ Matroska is aiming to become the standard of Multimedia
+ Container Formats one day. It is based on EBML (Extensible Binary
+ Meta Language), a kind of binary version of XML. This way the
+ significant advantages in terms of future format extensability
+ are gained without breaking file support in old parsers.

@@ -1,0 +1,6 @@
+#include "*/*.proj"
+
+CON tags-test9
+{
+  SOURCE tags.cpp
+}

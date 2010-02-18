@@ -1,0 +1,11 @@
+#include "*/*.proj"
+
+CON ebml-test00
+{
+  SOURCE test00.cpp
+}
+
+CON ebml-test0
+{
+  SOURCE test0.cpp
+}

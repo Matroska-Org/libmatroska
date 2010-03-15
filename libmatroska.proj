@@ -3,9 +3,14 @@ Include "*/*.proj"
 LIB matroska
 {
   INCLUDE .
-  INCLUDE ../libebml
+  EXPINCLUDE .
 
-  USE ebml
+  IF HAVE_EBML2
+    USE ebml2_legacy
+  ELSE
+    USE ebml
+    USEINCLUDE corec // so that stdafx can build
+  ENDIF
 
 //  OPTIMIZE_GLOBALLY .
   FAVOR_MAX_SPEED .

@@ -90,10 +90,10 @@ void KaxSeekHead::IndexThis(const EbmlElement & aElt, const KaxSegment & ParentS
 
 	KaxSeekID & aNewID = GetChild<KaxSeekID>(aNewPoint);
 	binary ID[4];
-	for (int i=aElt.Generic().GlobalId.Length; i>0; i--) {
-		ID[4-i] = (aElt.Generic().GlobalId.Value >> 8*(i-1)) & 0xFF;
+	for (int i=EbmlId(aElt).Length; i>0; i--) {
+		ID[4-i] = (EbmlId(aElt).Value >> 8*(i-1)) & 0xFF;
 	}
-	aNewID.CopyBuffer(ID, aElt.Generic().GlobalId.Length);
+	aNewID.CopyBuffer(ID, EbmlId(aElt).Length);
 }
 
 KaxSeek * KaxSeekHead::FindFirstOf(const EbmlCallbacks & Callbacks) const

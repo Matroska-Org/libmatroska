@@ -674,7 +674,7 @@ class MATROSKA_DLL_API KaxTagAttachmentID : public EbmlUInteger {
 		EbmlElement * Clone() const {return new KaxTagAttachmentID(*this);}
 };
 
-/*
+#if 0
 class MATROSKA_DLL_API KaxTagBPM : public EbmlFloat {
 	public:
 		KaxTagBPM() :EbmlFloat() {}
@@ -738,7 +738,8 @@ class MATROSKA_DLL_API KaxWritingApp : public EbmlUnicodeString {
 		const EbmlCallbacks & Generic() const {return ClassInfos;}
 		static const EbmlCallbacks ClassInfos;
 		operator const EbmlId &() const {return ClassInfos.GlobalId;}
-};*/
+};
+#endif
 
 END_LIBMATROSKA_NAMESPACE
 

@@ -50,24 +50,24 @@ START_LIBMATROSKA_NAMESPACE
 
 EbmlSemantic KaxMatroska_ContextList[2] =
 {
-	EbmlSemantic(true, true,  EbmlHead::ClassInfos),
-	EbmlSemantic(true, false, KaxSegment::ClassInfos),
+	EbmlSemantic(true, true,  EBML_INFO(EbmlHead)),
+	EbmlSemantic(true, false, EBML_INFO(KaxSegment)),
 };
 
 EbmlSemantic KaxSegment_ContextList[8] =
 {
-	EbmlSemantic(false, false, KaxCluster::ClassInfos),
-	EbmlSemantic(false, false, KaxSeekHead::ClassInfos),
-	EbmlSemantic(false, true,  KaxCues::ClassInfos),
-	EbmlSemantic(false, false, KaxTracks::ClassInfos),
-	EbmlSemantic(true,  true,  KaxInfo::ClassInfos),
-	EbmlSemantic(false, true,  KaxChapters::ClassInfos),
-	EbmlSemantic(false, true,  KaxAttachments::ClassInfos),
-	EbmlSemantic(false, true,  KaxTags::ClassInfos),
+	EbmlSemantic(false, false, EBML_INFO(KaxCluster)),
+	EbmlSemantic(false, false, EBML_INFO(KaxSeekHead)),
+	EbmlSemantic(false, true,  EBML_INFO(KaxCues)),
+	EbmlSemantic(false, false, EBML_INFO(KaxTracks)),
+	EbmlSemantic(true,  true,  EBML_INFO(KaxInfo)),
+	EbmlSemantic(false, true,  EBML_INFO(KaxChapters)),
+	EbmlSemantic(false, true,  EBML_INFO(KaxAttachments)),
+	EbmlSemantic(false, true,  EBML_INFO(KaxTags)),
 };
 
 const EbmlSemanticContext KaxMatroska_Context = EbmlSemanticContext(countof(KaxMatroska_ContextList), KaxMatroska_ContextList, NULL, *GetKaxGlobal_Context, NULL);
-const EbmlSemanticContext KaxSegment_Context = EbmlSemanticContext(countof(KaxSegment_ContextList), KaxSegment_ContextList, NULL, *GetKaxGlobal_Context, &KaxSegment::ClassInfos);
+const EbmlSemanticContext KaxSegment_Context = EbmlSemanticContext(countof(KaxSegment_ContextList), KaxSegment_ContextList, NULL, *GetKaxGlobal_Context, &EBML_INFO(KaxSegment));
 
 EbmlId KaxSegment_TheId(0x18538067, 4);
 const EbmlCallbacks KaxSegment::ClassInfos(KaxSegment::Create, KaxSegment_TheId, "Segment\0rotomopogo", KaxSegment_Context);
@@ -86,7 +86,7 @@ KaxSegment::KaxSegment(const KaxSegment & ElementToClone)
 	std::vector<EbmlElement *>::const_iterator Itr = begin();
 	while (Itr != end())
 	{
-		if (EbmlId(**Itr) == KaxCluster::ClassInfos.GlobalId) {
+		if (EbmlId(**Itr) == EBML_ID(KaxCluster)) {
 			static_cast<KaxCluster *>(*Itr)->SetParent(*this);
 		}
 	}

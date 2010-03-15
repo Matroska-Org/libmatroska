@@ -45,22 +45,22 @@ const EbmlSemantic KaxTrackAudio_ContextList[4] =
 const EbmlSemantic KaxTrackAudio_ContextList[5] =
 #endif // MATROSKA_VERSION
 {
-	EbmlSemantic(true , true, KaxAudioSamplingFreq::ClassInfos),
-	EbmlSemantic(true , true, KaxAudioChannels::ClassInfos),
-	EbmlSemantic(false, true, KaxAudioBitDepth::ClassInfos),
-	EbmlSemantic(false, true, KaxAudioOutputSamplingFreq::ClassInfos),
+	EbmlSemantic(true , true, EBML_INFO(KaxAudioSamplingFreq)),
+	EbmlSemantic(true , true, EBML_INFO(KaxAudioChannels)),
+	EbmlSemantic(false, true, EBML_INFO(KaxAudioBitDepth)),
+	EbmlSemantic(false, true, EBML_INFO(KaxAudioOutputSamplingFreq)),
 #if MATROSKA_VERSION >= 2
-	EbmlSemantic(false, true, KaxAudioPosition::ClassInfos),
+	EbmlSemantic(false, true, EBML_INFO(KaxAudioPosition)),
 #endif // MATROSKA_VERSION
 };
 
-const EbmlSemanticContext KaxTrackAudio_Context = EbmlSemanticContext(countof(KaxTrackAudio_ContextList), KaxTrackAudio_ContextList, &KaxTrackEntry_Context, *GetKaxGlobal_Context, &KaxTrackAudio::ClassInfos);
-const EbmlSemanticContext KaxAudioSamplingFreq_Context = EbmlSemanticContext(0, NULL, &KaxTrackAudio_Context, *GetKaxGlobal_Context, &KaxAudioSamplingFreq::ClassInfos);
-const EbmlSemanticContext KaxAudioOutputSamplingFreq_Context = EbmlSemanticContext(0, NULL, &KaxTrackAudio_Context, *GetKaxGlobal_Context, &KaxAudioOutputSamplingFreq::ClassInfos);
-const EbmlSemanticContext KaxAudioChannels_Context = EbmlSemanticContext(0, NULL, &KaxTrackAudio_Context, *GetKaxGlobal_Context, &KaxAudioChannels::ClassInfos);
-const EbmlSemanticContext KaxAudioBitDepth_Context = EbmlSemanticContext(0, NULL, &KaxTrackAudio_Context, *GetKaxGlobal_Context, &KaxAudioBitDepth::ClassInfos);
+const EbmlSemanticContext KaxTrackAudio_Context = EbmlSemanticContext(countof(KaxTrackAudio_ContextList), KaxTrackAudio_ContextList, &KaxTrackEntry_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxTrackAudio));
+const EbmlSemanticContext KaxAudioSamplingFreq_Context = EbmlSemanticContext(0, NULL, &KaxTrackAudio_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxAudioSamplingFreq));
+const EbmlSemanticContext KaxAudioOutputSamplingFreq_Context = EbmlSemanticContext(0, NULL, &KaxTrackAudio_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxAudioOutputSamplingFreq));
+const EbmlSemanticContext KaxAudioChannels_Context = EbmlSemanticContext(0, NULL, &KaxTrackAudio_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxAudioChannels));
+const EbmlSemanticContext KaxAudioBitDepth_Context = EbmlSemanticContext(0, NULL, &KaxTrackAudio_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxAudioBitDepth));
 #if MATROSKA_VERSION >= 2
-const EbmlSemanticContext KaxAudioPosition_Context = EbmlSemanticContext(0, NULL, &KaxTrackAudio_Context, *GetKaxGlobal_Context, &KaxAudioPosition::ClassInfos);
+const EbmlSemanticContext KaxAudioPosition_Context = EbmlSemanticContext(0, NULL, &KaxTrackAudio_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxAudioPosition));
 #endif // MATROSKA_VERSION
 
 EbmlId KaxTrackAudio_TheId       (0xE1, 1);

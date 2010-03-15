@@ -42,10 +42,10 @@ START_LIBMATROSKA_NAMESPACE
 
 EbmlSemantic KaxCues_ContextList[1] = 
 {
-	EbmlSemantic(true,  false,  KaxCuePoint::ClassInfos),
+	EbmlSemantic(true,  false,  EBML_INFO(KaxCuePoint)),
 };
 
-const EbmlSemanticContext KaxCues_Context = EbmlSemanticContext(countof(KaxCues_ContextList), KaxCues_ContextList, &KaxSegment_Context, *GetKaxGlobal_Context, &KaxCues::ClassInfos);
+const EbmlSemanticContext KaxCues_Context = EbmlSemanticContext(countof(KaxCues_ContextList), KaxCues_ContextList, &KaxSegment_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxCues));
 
 EbmlId KaxCues_TheId(0x1C53BB6B, 4);
 const EbmlCallbacks KaxCues::ClassInfos(KaxCues::Create, KaxCues_TheId, "Cues", KaxCues_Context);
@@ -134,10 +134,10 @@ const KaxCuePoint * KaxCues::GetTimecodePoint(uint64 aTimecode) const
 
 	for (unsigned int i=0; i<ListSize(); i++)
 	{
-		if (EbmlId(*(*this)[i]) == KaxCuePoint::ClassInfos.GlobalId) {
+		if (EbmlId(*(*this)[i]) == EBML_ID(KaxCuePoint)) {
 			const KaxCuePoint *tmp = static_cast<const KaxCuePoint *>((*this)[i]);
 			// check the tile
-			const KaxCueTime *aTime = static_cast<const KaxCueTime *>(tmp->FindFirstElt(KaxCueTime::ClassInfos));
+			const KaxCueTime *aTime = static_cast<const KaxCueTime *>(tmp->FindFirstElt(EBML_INFO(KaxCueTime)));
 			if (aTime != NULL)
 			{
 				uint64 _Time = uint64(*aTime);

@@ -45,42 +45,42 @@ const EbmlSemantic KaxTrackVideo_ContextList[10] =
 const EbmlSemantic KaxTrackVideo_ContextList[15] =
 #endif // MATROSKA_VERSION
 {
-	EbmlSemantic(true , true, KaxVideoPixelWidth::ClassInfos),
-	EbmlSemantic(true , true, KaxVideoPixelHeight::ClassInfos),
-	EbmlSemantic(false, true, KaxVideoPixelCropBottom::ClassInfos),
-	EbmlSemantic(false, true, KaxVideoPixelCropTop::ClassInfos),
-	EbmlSemantic(false, true, KaxVideoPixelCropLeft::ClassInfos),
-	EbmlSemantic(false, true, KaxVideoPixelCropRight::ClassInfos),
-	EbmlSemantic(false, true, KaxVideoDisplayWidth::ClassInfos),
-	EbmlSemantic(false, true, KaxVideoDisplayHeight::ClassInfos),
-	EbmlSemantic(false, true, KaxVideoColourSpace::ClassInfos),
-	EbmlSemantic(false, true, KaxVideoFrameRate::ClassInfos),
+	EbmlSemantic(true , true, EBML_INFO(KaxVideoPixelWidth)),
+	EbmlSemantic(true , true, EBML_INFO(KaxVideoPixelHeight)),
+	EbmlSemantic(false, true, EBML_INFO(KaxVideoPixelCropBottom)),
+	EbmlSemantic(false, true, EBML_INFO(KaxVideoPixelCropTop)),
+	EbmlSemantic(false, true, EBML_INFO(KaxVideoPixelCropLeft)),
+	EbmlSemantic(false, true, EBML_INFO(KaxVideoPixelCropRight)),
+	EbmlSemantic(false, true, EBML_INFO(KaxVideoDisplayWidth)),
+	EbmlSemantic(false, true, EBML_INFO(KaxVideoDisplayHeight)),
+	EbmlSemantic(false, true, EBML_INFO(KaxVideoColourSpace)),
+	EbmlSemantic(false, true, EBML_INFO(KaxVideoFrameRate)),
 #if MATROSKA_VERSION >= 2
-	EbmlSemantic(true , true, KaxVideoFlagInterlaced::ClassInfos),
-	EbmlSemantic(false, true, KaxVideoStereoMode::ClassInfos),
-	EbmlSemantic(false, true, KaxVideoDisplayUnit::ClassInfos),
-	EbmlSemantic(false, true, KaxVideoAspectRatio::ClassInfos),
-	EbmlSemantic(false, true, KaxVideoGamma::ClassInfos),
+	EbmlSemantic(true , true, EBML_INFO(KaxVideoFlagInterlaced)),
+	EbmlSemantic(false, true, EBML_INFO(KaxVideoStereoMode)),
+	EbmlSemantic(false, true, EBML_INFO(KaxVideoDisplayUnit)),
+	EbmlSemantic(false, true, EBML_INFO(KaxVideoAspectRatio)),
+	EbmlSemantic(false, true, EBML_INFO(KaxVideoGamma)),
 #endif // MATROSKA_VERSION
 };
 
-const EbmlSemanticContext KaxTrackVideo_Context = EbmlSemanticContext(countof(KaxTrackVideo_ContextList), KaxTrackVideo_ContextList, &KaxTrackEntry_Context, *GetKaxGlobal_Context, &KaxTrackVideo::ClassInfos);
-const EbmlSemanticContext KaxVideoPixelWidth_Context = EbmlSemanticContext(0, NULL, &KaxTrackVideo_Context, *GetKaxGlobal_Context, &KaxVideoPixelWidth::ClassInfos);
-const EbmlSemanticContext KaxVideoPixelHeight_Context = EbmlSemanticContext(0, NULL, &KaxTrackVideo_Context, *GetKaxGlobal_Context, &KaxVideoPixelHeight::ClassInfos);
-const EbmlSemanticContext KaxVideoPixelCropBottom_Context = EbmlSemanticContext(0, NULL, &KaxTrackVideo_Context, *GetKaxGlobal_Context, &KaxVideoPixelCropBottom::ClassInfos);
-const EbmlSemanticContext KaxVideoPixelCropTop_Context = EbmlSemanticContext(0, NULL, &KaxTrackVideo_Context, *GetKaxGlobal_Context, &KaxVideoPixelCropTop::ClassInfos);
-const EbmlSemanticContext KaxVideoPixelCropRight_Context = EbmlSemanticContext(0, NULL, &KaxTrackVideo_Context, *GetKaxGlobal_Context, &KaxVideoPixelCropLeft::ClassInfos);
-const EbmlSemanticContext KaxVideoPixelCropLeft_Context = EbmlSemanticContext(0, NULL, &KaxTrackVideo_Context, *GetKaxGlobal_Context, &KaxVideoPixelCropRight::ClassInfos);
-const EbmlSemanticContext KaxVideoDisplayWidth_Context = EbmlSemanticContext(0, NULL, &KaxTrackVideo_Context, *GetKaxGlobal_Context, &KaxVideoDisplayWidth::ClassInfos);
-const EbmlSemanticContext KaxVideoDisplayHeight_Context = EbmlSemanticContext(0, NULL, &KaxTrackVideo_Context, *GetKaxGlobal_Context, &KaxVideoDisplayHeight::ClassInfos);
-const EbmlSemanticContext KaxVideoColourSpace_Context = EbmlSemanticContext(0, NULL, &KaxTrackVideo_Context, *GetKaxGlobal_Context, &KaxVideoColourSpace::ClassInfos);
-const EbmlSemanticContext KaxVideoFrameRate_Context = EbmlSemanticContext(0, NULL, &KaxTrackVideo_Context, *GetKaxGlobal_Context, &KaxVideoFrameRate::ClassInfos);
+const EbmlSemanticContext KaxTrackVideo_Context = EbmlSemanticContext(countof(KaxTrackVideo_ContextList), KaxTrackVideo_ContextList, &KaxTrackEntry_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxTrackVideo));
+const EbmlSemanticContext KaxVideoPixelWidth_Context = EbmlSemanticContext(0, NULL, &KaxTrackVideo_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxVideoPixelWidth));
+const EbmlSemanticContext KaxVideoPixelHeight_Context = EbmlSemanticContext(0, NULL, &KaxTrackVideo_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxVideoPixelHeight));
+const EbmlSemanticContext KaxVideoPixelCropBottom_Context = EbmlSemanticContext(0, NULL, &KaxTrackVideo_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxVideoPixelCropBottom));
+const EbmlSemanticContext KaxVideoPixelCropTop_Context = EbmlSemanticContext(0, NULL, &KaxTrackVideo_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxVideoPixelCropTop));
+const EbmlSemanticContext KaxVideoPixelCropRight_Context = EbmlSemanticContext(0, NULL, &KaxTrackVideo_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxVideoPixelCropLeft));
+const EbmlSemanticContext KaxVideoPixelCropLeft_Context = EbmlSemanticContext(0, NULL, &KaxTrackVideo_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxVideoPixelCropRight));
+const EbmlSemanticContext KaxVideoDisplayWidth_Context = EbmlSemanticContext(0, NULL, &KaxTrackVideo_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxVideoDisplayWidth));
+const EbmlSemanticContext KaxVideoDisplayHeight_Context = EbmlSemanticContext(0, NULL, &KaxTrackVideo_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxVideoDisplayHeight));
+const EbmlSemanticContext KaxVideoColourSpace_Context = EbmlSemanticContext(0, NULL, &KaxTrackVideo_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxVideoColourSpace));
+const EbmlSemanticContext KaxVideoFrameRate_Context = EbmlSemanticContext(0, NULL, &KaxTrackVideo_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxVideoFrameRate));
 #if MATROSKA_VERSION >= 2
-const EbmlSemanticContext KaxVideoFlagInterlaced_Context = EbmlSemanticContext(0, NULL, &KaxTrackVideo_Context, *GetKaxGlobal_Context, &KaxVideoFlagInterlaced::ClassInfos);
-const EbmlSemanticContext KaxVideoStereoMode_Context = EbmlSemanticContext(0, NULL, &KaxTrackVideo_Context, *GetKaxGlobal_Context, &KaxVideoStereoMode::ClassInfos);
-const EbmlSemanticContext KaxVideoDisplayUnit_Context = EbmlSemanticContext(0, NULL, &KaxTrackVideo_Context, *GetKaxGlobal_Context, &KaxVideoDisplayUnit::ClassInfos);
-const EbmlSemanticContext KaxVideoAspectRatio_Context = EbmlSemanticContext(0, NULL, &KaxTrackVideo_Context, *GetKaxGlobal_Context, &KaxVideoAspectRatio::ClassInfos);
-const EbmlSemanticContext KaxVideoGamma_Context = EbmlSemanticContext(0, NULL, &KaxTrackVideo_Context, *GetKaxGlobal_Context, &KaxVideoGamma::ClassInfos);
+const EbmlSemanticContext KaxVideoFlagInterlaced_Context = EbmlSemanticContext(0, NULL, &KaxTrackVideo_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxVideoFlagInterlaced));
+const EbmlSemanticContext KaxVideoStereoMode_Context = EbmlSemanticContext(0, NULL, &KaxTrackVideo_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxVideoStereoMode));
+const EbmlSemanticContext KaxVideoDisplayUnit_Context = EbmlSemanticContext(0, NULL, &KaxTrackVideo_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxVideoDisplayUnit));
+const EbmlSemanticContext KaxVideoAspectRatio_Context = EbmlSemanticContext(0, NULL, &KaxTrackVideo_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxVideoAspectRatio));
+const EbmlSemanticContext KaxVideoGamma_Context = EbmlSemanticContext(0, NULL, &KaxTrackVideo_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxVideoGamma));
 #endif // MATROSKA_VERSION
 
 EbmlId KaxTrackVideo_TheId          (0xE0, 1);

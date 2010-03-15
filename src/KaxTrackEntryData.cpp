@@ -40,9 +40,9 @@ START_LIBMATROSKA_NAMESPACE
 
 const EbmlSemantic KaxTrackTranslate_ContextList[3] =
 {
-	EbmlSemantic(false, false,KaxTrackTranslateEditionUID::ClassInfos),
-	EbmlSemantic(true , true, KaxTrackTranslateCodec::ClassInfos),
-	EbmlSemantic(true , true, KaxTrackTranslateTrackID::ClassInfos),
+	EbmlSemantic(false, false,EBML_INFO(KaxTrackTranslateEditionUID)),
+	EbmlSemantic(true , true, EBML_INFO(KaxTrackTranslateCodec)),
+	EbmlSemantic(true , true, EBML_INFO(KaxTrackTranslateTrackID)),
 };
 
 EbmlId KaxTrackNumber_TheId            (0xD7, 1);
@@ -75,34 +75,34 @@ EbmlId KaxCodecDownloadURL_TheId       (0x26B240, 3);
 EbmlId KaxCodecDecodeAll_TheId         (0xAA, 1);
 #endif // MATROSKA_VERSION
 
-const EbmlSemanticContext KaxTrackNumber_Context = EbmlSemanticContext(0, NULL, &KaxTracks_Context, *GetKaxGlobal_Context, &KaxTrackNumber::ClassInfos);
-const EbmlSemanticContext KaxTrackUID_Context = EbmlSemanticContext(0, NULL, &KaxTracks_Context, *GetKaxGlobal_Context, &KaxTrackUID::ClassInfos);
-const EbmlSemanticContext KaxTrackType_Context = EbmlSemanticContext(0, NULL, &KaxTracks_Context, *GetKaxGlobal_Context, &KaxTrackType::ClassInfos);
-const EbmlSemanticContext KaxTrackFlagDefault_Context = EbmlSemanticContext(0, NULL, &KaxTracks_Context, *GetKaxGlobal_Context, &KaxTrackFlagDefault::ClassInfos);
-const EbmlSemanticContext KaxTrackFlagForced_Context = EbmlSemanticContext(0, NULL, &KaxTracks_Context, *GetKaxGlobal_Context, &KaxTrackFlagForced::ClassInfos);
-const EbmlSemanticContext KaxTrackFlagLacing_Context = EbmlSemanticContext(0, NULL, &KaxTracks_Context, *GetKaxGlobal_Context, &KaxTrackFlagLacing::ClassInfos);
-const EbmlSemanticContext KaxTrackMinCache_Context = EbmlSemanticContext(0, NULL, &KaxTracks_Context, *GetKaxGlobal_Context, &KaxTrackMinCache::ClassInfos);
-const EbmlSemanticContext KaxTrackMaxCache_Context = EbmlSemanticContext(0, NULL, &KaxTracks_Context, *GetKaxGlobal_Context, &KaxTrackMaxCache::ClassInfos);
-const EbmlSemanticContext KaxTrackDefaultDuration_Context = EbmlSemanticContext(0, NULL, &KaxTracks_Context, *GetKaxGlobal_Context, &KaxTrackDefaultDuration::ClassInfos);
-const EbmlSemanticContext KaxTrackTimecodeScale_Context = EbmlSemanticContext(0, NULL, &KaxTracks_Context, *GetKaxGlobal_Context, &KaxTrackTimecodeScale::ClassInfos);
-const EbmlSemanticContext KaxMaxBlockAdditionID_Context = EbmlSemanticContext(0, NULL, &KaxTracks_Context, *GetKaxGlobal_Context, &KaxMaxBlockAdditionID::ClassInfos);
-const EbmlSemanticContext KaxTrackName_Context = EbmlSemanticContext(0, NULL, &KaxTracks_Context, *GetKaxGlobal_Context, &KaxTrackName::ClassInfos);
-const EbmlSemanticContext KaxTrackLanguage_Context = EbmlSemanticContext(0, NULL, &KaxTracks_Context, *GetKaxGlobal_Context, &KaxTrackLanguage::ClassInfos);
-const EbmlSemanticContext KaxCodecID_Context = EbmlSemanticContext(0, NULL, &KaxTracks_Context, *GetKaxGlobal_Context, &KaxCodecID::ClassInfos);
-const EbmlSemanticContext KaxCodecPrivate_Context = EbmlSemanticContext(0, NULL, &KaxTracks_Context, *GetKaxGlobal_Context, &KaxCodecPrivate::ClassInfos);
-const EbmlSemanticContext KaxCodecName_Context = EbmlSemanticContext(0, NULL, &KaxTracks_Context, *GetKaxGlobal_Context, &KaxCodecName::ClassInfos);
-const EbmlSemanticContext KaxTrackAttachmentLink_Context = EbmlSemanticContext(0, NULL, &KaxTracks_Context, *GetKaxGlobal_Context, &KaxTrackAttachmentLink::ClassInfos);
-const EbmlSemanticContext KaxTrackOverlay_Context = EbmlSemanticContext(0, NULL, &KaxTracks_Context, *GetKaxGlobal_Context, &KaxTrackOverlay::ClassInfos);
-const EbmlSemanticContext KaxTrackTranslate_Context = EbmlSemanticContext(countof(KaxTrackTranslate_ContextList), KaxTrackTranslate_ContextList, &KaxTracks_Context, *GetKaxGlobal_Context, &KaxTrackTranslate::ClassInfos);
-const EbmlSemanticContext KaxTrackTranslateEditionUID_Context = EbmlSemanticContext(0, NULL, &KaxTrackTranslate_Context, *GetKaxGlobal_Context, &KaxTrackTranslateEditionUID::ClassInfos);
-const EbmlSemanticContext KaxTrackTranslateCodec_Context = EbmlSemanticContext(0, NULL, &KaxTrackTranslate_Context, *GetKaxGlobal_Context, &KaxTrackTranslateCodec::ClassInfos);
-const EbmlSemanticContext KaxTrackTranslateTrackID_Context = EbmlSemanticContext(0, NULL, &KaxTrackTranslate_Context, *GetKaxGlobal_Context, &KaxTrackTranslateTrackID::ClassInfos);
+const EbmlSemanticContext KaxTrackNumber_Context = EbmlSemanticContext(0, NULL, &KaxTracks_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxTrackNumber));
+const EbmlSemanticContext KaxTrackUID_Context = EbmlSemanticContext(0, NULL, &KaxTracks_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxTrackUID));
+const EbmlSemanticContext KaxTrackType_Context = EbmlSemanticContext(0, NULL, &KaxTracks_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxTrackType));
+const EbmlSemanticContext KaxTrackFlagDefault_Context = EbmlSemanticContext(0, NULL, &KaxTracks_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxTrackFlagDefault));
+const EbmlSemanticContext KaxTrackFlagForced_Context = EbmlSemanticContext(0, NULL, &KaxTracks_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxTrackFlagForced));
+const EbmlSemanticContext KaxTrackFlagLacing_Context = EbmlSemanticContext(0, NULL, &KaxTracks_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxTrackFlagLacing));
+const EbmlSemanticContext KaxTrackMinCache_Context = EbmlSemanticContext(0, NULL, &KaxTracks_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxTrackMinCache));
+const EbmlSemanticContext KaxTrackMaxCache_Context = EbmlSemanticContext(0, NULL, &KaxTracks_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxTrackMaxCache));
+const EbmlSemanticContext KaxTrackDefaultDuration_Context = EbmlSemanticContext(0, NULL, &KaxTracks_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxTrackDefaultDuration));
+const EbmlSemanticContext KaxTrackTimecodeScale_Context = EbmlSemanticContext(0, NULL, &KaxTracks_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxTrackTimecodeScale));
+const EbmlSemanticContext KaxMaxBlockAdditionID_Context = EbmlSemanticContext(0, NULL, &KaxTracks_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxMaxBlockAdditionID));
+const EbmlSemanticContext KaxTrackName_Context = EbmlSemanticContext(0, NULL, &KaxTracks_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxTrackName));
+const EbmlSemanticContext KaxTrackLanguage_Context = EbmlSemanticContext(0, NULL, &KaxTracks_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxTrackLanguage));
+const EbmlSemanticContext KaxCodecID_Context = EbmlSemanticContext(0, NULL, &KaxTracks_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxCodecID));
+const EbmlSemanticContext KaxCodecPrivate_Context = EbmlSemanticContext(0, NULL, &KaxTracks_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxCodecPrivate));
+const EbmlSemanticContext KaxCodecName_Context = EbmlSemanticContext(0, NULL, &KaxTracks_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxCodecName));
+const EbmlSemanticContext KaxTrackAttachmentLink_Context = EbmlSemanticContext(0, NULL, &KaxTracks_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxTrackAttachmentLink));
+const EbmlSemanticContext KaxTrackOverlay_Context = EbmlSemanticContext(0, NULL, &KaxTracks_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxTrackOverlay));
+const EbmlSemanticContext KaxTrackTranslate_Context = EbmlSemanticContext(countof(KaxTrackTranslate_ContextList), KaxTrackTranslate_ContextList, &KaxTracks_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxTrackTranslate));
+const EbmlSemanticContext KaxTrackTranslateEditionUID_Context = EbmlSemanticContext(0, NULL, &KaxTrackTranslate_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxTrackTranslateEditionUID));
+const EbmlSemanticContext KaxTrackTranslateCodec_Context = EbmlSemanticContext(0, NULL, &KaxTrackTranslate_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxTrackTranslateCodec));
+const EbmlSemanticContext KaxTrackTranslateTrackID_Context = EbmlSemanticContext(0, NULL, &KaxTrackTranslate_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxTrackTranslateTrackID));
 #if MATROSKA_VERSION >= 2
-const EbmlSemanticContext KaxTrackFlagEnabled_Context = EbmlSemanticContext(0, NULL, &KaxTracks_Context, *GetKaxGlobal_Context, &KaxTrackFlagEnabled::ClassInfos);
-const EbmlSemanticContext KaxCodecSettings_Context = EbmlSemanticContext(0, NULL, &KaxTracks_Context, *GetKaxGlobal_Context, &KaxCodecSettings::ClassInfos);
-const EbmlSemanticContext KaxCodecInfoURL_Context = EbmlSemanticContext(0, NULL, &KaxTracks_Context, *GetKaxGlobal_Context, &KaxCodecInfoURL::ClassInfos);
-const EbmlSemanticContext KaxCodecDownloadURL_Context = EbmlSemanticContext(0, NULL, &KaxTracks_Context, *GetKaxGlobal_Context, &KaxCodecDownloadURL::ClassInfos);
-const EbmlSemanticContext KaxCodecDecodeAll_Context = EbmlSemanticContext(0, NULL, &KaxTracks_Context, *GetKaxGlobal_Context, &KaxCodecDecodeAll::ClassInfos);
+const EbmlSemanticContext KaxTrackFlagEnabled_Context = EbmlSemanticContext(0, NULL, &KaxTracks_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxTrackFlagEnabled));
+const EbmlSemanticContext KaxCodecSettings_Context = EbmlSemanticContext(0, NULL, &KaxTracks_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxCodecSettings));
+const EbmlSemanticContext KaxCodecInfoURL_Context = EbmlSemanticContext(0, NULL, &KaxTracks_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxCodecInfoURL));
+const EbmlSemanticContext KaxCodecDownloadURL_Context = EbmlSemanticContext(0, NULL, &KaxTracks_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxCodecDownloadURL));
+const EbmlSemanticContext KaxCodecDecodeAll_Context = EbmlSemanticContext(0, NULL, &KaxTracks_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxCodecDecodeAll));
 #endif // MATROSKA_VERSION
 
 const EbmlCallbacks KaxTrackNumber::ClassInfos(KaxTrackNumber::Create, KaxTrackNumber_TheId, "TrackNumber", KaxTrackNumber_Context);

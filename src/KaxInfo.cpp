@@ -42,25 +42,25 @@ START_LIBMATROSKA_NAMESPACE
 
 const EbmlSemantic KaxInfo_ContextList[14] =
 {
-	EbmlSemantic(false, true,  KaxSegmentUID::ClassInfos),
-	EbmlSemantic(false, true,  KaxSegmentFilename::ClassInfos),
-	EbmlSemantic(false, true,  KaxPrevUID::ClassInfos),
-	EbmlSemantic(false, true,  KaxPrevFilename::ClassInfos),
-	EbmlSemantic(false, true,  KaxNextUID::ClassInfos),
-	EbmlSemantic(false, true,  KaxNextFilename::ClassInfos),
-	EbmlSemantic(false, false, KaxSegmentFamily::ClassInfos),
-	EbmlSemantic(false, false, KaxChapterTranslate::ClassInfos),
-	EbmlSemantic(true,  true,  KaxTimecodeScale::ClassInfos),
-	EbmlSemantic(false, true,  KaxDuration::ClassInfos),
-	EbmlSemantic(false, true,  KaxDateUTC::ClassInfos),
-	EbmlSemantic(false, true,  KaxTitle::ClassInfos),
-	EbmlSemantic(true,  true,  KaxMuxingApp::ClassInfos),
-	EbmlSemantic(true,  true,  KaxWritingApp::ClassInfos),
+	EbmlSemantic(false, true,  EBML_INFO(KaxSegmentUID)),
+	EbmlSemantic(false, true,  EBML_INFO(KaxSegmentFilename)),
+	EbmlSemantic(false, true,  EBML_INFO(KaxPrevUID)),
+	EbmlSemantic(false, true,  EBML_INFO(KaxPrevFilename)),
+	EbmlSemantic(false, true,  EBML_INFO(KaxNextUID)),
+	EbmlSemantic(false, true,  EBML_INFO(KaxNextFilename)),
+	EbmlSemantic(false, false, EBML_INFO(KaxSegmentFamily)),
+	EbmlSemantic(false, false, EBML_INFO(KaxChapterTranslate)),
+	EbmlSemantic(true,  true,  EBML_INFO(KaxTimecodeScale)),
+	EbmlSemantic(false, true,  EBML_INFO(KaxDuration)),
+	EbmlSemantic(false, true,  EBML_INFO(KaxDateUTC)),
+	EbmlSemantic(false, true,  EBML_INFO(KaxTitle)),
+	EbmlSemantic(true,  true,  EBML_INFO(KaxMuxingApp)),
+	EbmlSemantic(true,  true,  EBML_INFO(KaxWritingApp)),
 };
 
-const EbmlSemanticContext KaxInfo_Context = EbmlSemanticContext(countof(KaxInfo_ContextList), KaxInfo_ContextList, &KaxSegment_Context, *GetKaxGlobal_Context, &KaxInfo::ClassInfos);
-const EbmlSemanticContext KaxMuxingApp_Context = EbmlSemanticContext(0, NULL, &KaxInfo_Context, *GetKaxGlobal_Context, &KaxMuxingApp::ClassInfos);
-const EbmlSemanticContext KaxWritingApp_Context = EbmlSemanticContext(0, NULL, &KaxInfo_Context, *GetKaxGlobal_Context, &KaxWritingApp::ClassInfos);
+const EbmlSemanticContext KaxInfo_Context = EbmlSemanticContext(countof(KaxInfo_ContextList), KaxInfo_ContextList, &KaxSegment_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxInfo));
+const EbmlSemanticContext KaxMuxingApp_Context = EbmlSemanticContext(0, NULL, &KaxInfo_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxMuxingApp));
+const EbmlSemanticContext KaxWritingApp_Context = EbmlSemanticContext(0, NULL, &KaxInfo_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxWritingApp));
 
 EbmlId KaxInfo_TheId      (0x1549A966, 4);
 EbmlId KaxMuxingApp_TheId (0x4D80, 2);

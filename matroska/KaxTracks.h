@@ -65,7 +65,7 @@ class MATROSKA_DLL_API KaxTrackEntry : public EbmlMaster {
 		operator const EbmlId &() const {return ClassInfos.GlobalId;}
 		EbmlElement * Clone() const {return new KaxTrackEntry(*this);}
 
-		EbmlUInteger & TrackNumber() const { return *(static_cast<EbmlUInteger *>(FindElt(KaxTrackNumber::ClassInfos))); }
+		EbmlUInteger & TrackNumber() const { return *(static_cast<EbmlUInteger *>(FindElt(EBML_INFO(KaxTrackNumber)))); }
 
 		void EnableLacing(bool bEnable = true);
 
@@ -73,7 +73,7 @@ class MATROSKA_DLL_API KaxTrackEntry : public EbmlMaster {
 			\note lacing set by default
 		*/
 		inline bool LacingEnabled() const {
-			KaxTrackFlagLacing * myLacing = static_cast<KaxTrackFlagLacing *>(FindFirstElt(KaxTrackFlagLacing::ClassInfos));
+			KaxTrackFlagLacing * myLacing = static_cast<KaxTrackFlagLacing *>(FindFirstElt(EBML_INFO(KaxTrackFlagLacing)));
 			return((myLacing == NULL) || (uint8(*myLacing) != 0));
 		}
 

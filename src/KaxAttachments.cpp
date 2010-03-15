@@ -43,10 +43,10 @@ START_LIBMATROSKA_NAMESPACE
 
 EbmlSemantic KaxAttachments_ContextList[1] =
 {
-	EbmlSemantic(true, false, KaxAttached::ClassInfos),        ///< EBMLVersion
+	EbmlSemantic(true, false, EBML_INFO(KaxAttached)),        ///< EBMLVersion
 };
 
-const EbmlSemanticContext KaxAttachments_Context = EbmlSemanticContext(countof(KaxAttachments_ContextList), KaxAttachments_ContextList, &KaxSegment_Context, *GetKaxGlobal_Context, &KaxAttachments::ClassInfos);
+const EbmlSemanticContext KaxAttachments_Context = EbmlSemanticContext(countof(KaxAttachments_ContextList), KaxAttachments_ContextList, &KaxSegment_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxAttachments));
 
 EbmlId KaxAttachments_TheId(0x1941A469, 4);
 const EbmlCallbacks KaxAttachments::ClassInfos(KaxAttachments::Create, KaxAttachments_TheId, "Attachments", KaxAttachments_Context);

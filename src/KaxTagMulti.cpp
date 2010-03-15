@@ -42,175 +42,175 @@ START_LIBMATROSKA_NAMESPACE
 
 EbmlSemantic KaxTagMultiGlobal_ContextList[1] =
 {
-	EbmlSemantic(false, false, KaxTagMultiComment::ClassInfos),
+	EbmlSemantic(false, false, EBML_INFO(KaxTagMultiComment)),
 };
 
 EbmlSemantic KaxTagMultiComment_ContextList[3] =
 {
-	EbmlSemantic(false, true, KaxTagMultiCommentName::ClassInfos),
-	EbmlSemantic(false, true, KaxTagMultiCommentComments::ClassInfos),
-	EbmlSemantic(false, true, KaxTagMultiCommentLanguage::ClassInfos),
+	EbmlSemantic(false, true, EBML_INFO(KaxTagMultiCommentName)),
+	EbmlSemantic(false, true, EBML_INFO(KaxTagMultiCommentComments)),
+	EbmlSemantic(false, true, EBML_INFO(KaxTagMultiCommentLanguage)),
 };
 
 EbmlSemantic KaxTagMultiCommercial_ContextList[1] =
 {
-	EbmlSemantic(true, false, KaxTagCommercial::ClassInfos),
+	EbmlSemantic(true, false, EBML_INFO(KaxTagCommercial)),
 };
 
 EbmlSemantic KaxTagCommercial_ContextList[5] =
 {
-	EbmlSemantic(true,  true,  KaxTagMultiCommercialType::ClassInfos),
-	EbmlSemantic(false, true,  KaxTagMultiCommercialAddress::ClassInfos),
-	EbmlSemantic(false, false, KaxTagMultiCommercialURL::ClassInfos),
-	EbmlSemantic(false, false, KaxTagMultiCommercialEmail::ClassInfos),
-	EbmlSemantic(false, false, KaxTagMultiPrice::ClassInfos),
+	EbmlSemantic(true,  true,  EBML_INFO(KaxTagMultiCommercialType)),
+	EbmlSemantic(false, true,  EBML_INFO(KaxTagMultiCommercialAddress)),
+	EbmlSemantic(false, false, EBML_INFO(KaxTagMultiCommercialURL)),
+	EbmlSemantic(false, false, EBML_INFO(KaxTagMultiCommercialEmail)),
+	EbmlSemantic(false, false, EBML_INFO(KaxTagMultiPrice)),
 };
 
 EbmlSemantic KaxTagMultiPrice_ContextList[3] =
 {
-	EbmlSemantic(false, true, KaxTagMultiPriceCurrency::ClassInfos),
-	EbmlSemantic(false, true, KaxTagMultiPriceAmount::ClassInfos),
-	EbmlSemantic(false, true, KaxTagMultiPricePriceDate::ClassInfos),
+	EbmlSemantic(false, true, EBML_INFO(KaxTagMultiPriceCurrency)),
+	EbmlSemantic(false, true, EBML_INFO(KaxTagMultiPriceAmount)),
+	EbmlSemantic(false, true, EBML_INFO(KaxTagMultiPricePriceDate)),
 };
 
 EbmlSemantic KaxTagMultiDate_ContextList[1] =
 {
-	EbmlSemantic(true, false, KaxTagDate::ClassInfos),
+	EbmlSemantic(true, false, EBML_INFO(KaxTagDate)),
 };
 
 EbmlSemantic KaxTagDate_ContextList[3] =
 {
-	EbmlSemantic(true,  true, KaxTagMultiDateType::ClassInfos),
-	EbmlSemantic(false, true, KaxTagMultiDateDateBegin::ClassInfos),
-	EbmlSemantic(false, true, KaxTagMultiDateDateEnd::ClassInfos),
+	EbmlSemantic(true,  true, EBML_INFO(KaxTagMultiDateType)),
+	EbmlSemantic(false, true, EBML_INFO(KaxTagMultiDateDateBegin)),
+	EbmlSemantic(false, true, EBML_INFO(KaxTagMultiDateDateEnd)),
 };
 
 EbmlSemantic KaxTagMultiEntity_ContextList[1] =
 {
-	EbmlSemantic(true, false, KaxTagEntity::ClassInfos),
+	EbmlSemantic(true, false, EBML_INFO(KaxTagEntity)),
 };
 
 EbmlSemantic KaxTagEntity_ContextList[5] =
 {
-	EbmlSemantic(true,  true,  KaxTagMultiEntityType::ClassInfos),
-	EbmlSemantic(false, true,  KaxTagMultiEntityName::ClassInfos),
-	EbmlSemantic(false, false, KaxTagMultiEntityURL::ClassInfos),
-	EbmlSemantic(false, false, KaxTagMultiEntityEmail::ClassInfos),
-	EbmlSemantic(false, true,  KaxTagMultiEntityAddress::ClassInfos),
+	EbmlSemantic(true,  true,  EBML_INFO(KaxTagMultiEntityType)),
+	EbmlSemantic(false, true,  EBML_INFO(KaxTagMultiEntityName)),
+	EbmlSemantic(false, false, EBML_INFO(KaxTagMultiEntityURL)),
+	EbmlSemantic(false, false, EBML_INFO(KaxTagMultiEntityEmail)),
+	EbmlSemantic(false, true,  EBML_INFO(KaxTagMultiEntityAddress)),
 };
 
 EbmlSemantic KaxTagMultiIdentifier_ContextList[1] =
 {
-	EbmlSemantic(true, false, KaxTagIdentifier::ClassInfos),
+	EbmlSemantic(true, false, EBML_INFO(KaxTagIdentifier)),
 };
 
 EbmlSemantic KaxTagIdentifier_ContextList[3] =
 {
-	EbmlSemantic(true,  true, KaxTagMultiIdentifierType::ClassInfos),
-	EbmlSemantic(false, true, KaxTagMultiIdentifierBinary::ClassInfos),
-	EbmlSemantic(false, true, KaxTagMultiIdentifierString::ClassInfos),
+	EbmlSemantic(true,  true, EBML_INFO(KaxTagMultiIdentifierType)),
+	EbmlSemantic(false, true, EBML_INFO(KaxTagMultiIdentifierBinary)),
+	EbmlSemantic(false, true, EBML_INFO(KaxTagMultiIdentifierString)),
 };
 
 EbmlSemantic KaxTagMultiLegal_ContextList[1] =
 {
-	EbmlSemantic(true, false, KaxTagLegal::ClassInfos),
+	EbmlSemantic(true, false, EBML_INFO(KaxTagLegal)),
 };
 
 EbmlSemantic KaxTagLegal_ContextList[4] =
 {
-	EbmlSemantic(true,  true,  KaxTagMultiLegalType::ClassInfos),
-	EbmlSemantic(false, true,  KaxTagMultiLegalContent::ClassInfos),
-	EbmlSemantic(false, false, KaxTagMultiLegalURL::ClassInfos),
-	EbmlSemantic(false, true,  KaxTagMultiLegalAddress::ClassInfos),
+	EbmlSemantic(true,  true,  EBML_INFO(KaxTagMultiLegalType)),
+	EbmlSemantic(false, true,  EBML_INFO(KaxTagMultiLegalContent)),
+	EbmlSemantic(false, false, EBML_INFO(KaxTagMultiLegalURL)),
+	EbmlSemantic(false, true,  EBML_INFO(KaxTagMultiLegalAddress)),
 };
 
 EbmlSemantic KaxTagMultiTitle_ContextList[1] =
 {
-	EbmlSemantic(true, false, KaxTagTitle::ClassInfos),
+	EbmlSemantic(true, false, EBML_INFO(KaxTagTitle)),
 };
 
 EbmlSemantic KaxTagTitle_ContextList[8] =
 {
-	EbmlSemantic(true,  true,  KaxTagMultiTitleType::ClassInfos),
-	EbmlSemantic(false, true,  KaxTagMultiTitleName::ClassInfos),
-	EbmlSemantic(false, true,  KaxTagMultiTitleSubTitle::ClassInfos),
-	EbmlSemantic(false, true,  KaxTagMultiTitleEdition::ClassInfos),
-	EbmlSemantic(false, true,  KaxTagMultiTitleAddress::ClassInfos),
-	EbmlSemantic(false, false, KaxTagMultiTitleURL::ClassInfos),
-	EbmlSemantic(false, false, KaxTagMultiTitleEmail::ClassInfos),
-	EbmlSemantic(false, true,  KaxTagMultiTitleLanguage::ClassInfos),
+	EbmlSemantic(true,  true,  EBML_INFO(KaxTagMultiTitleType)),
+	EbmlSemantic(false, true,  EBML_INFO(KaxTagMultiTitleName)),
+	EbmlSemantic(false, true,  EBML_INFO(KaxTagMultiTitleSubTitle)),
+	EbmlSemantic(false, true,  EBML_INFO(KaxTagMultiTitleEdition)),
+	EbmlSemantic(false, true,  EBML_INFO(KaxTagMultiTitleAddress)),
+	EbmlSemantic(false, false, EBML_INFO(KaxTagMultiTitleURL)),
+	EbmlSemantic(false, false, EBML_INFO(KaxTagMultiTitleEmail)),
+	EbmlSemantic(false, true,  EBML_INFO(KaxTagMultiTitleLanguage)),
 };
 
 EbmlSemantic KaxTagMultiAttachment_ContextList[1] =
 {
-	EbmlSemantic(true, false, KaxTagAttachment::ClassInfos),
+	EbmlSemantic(true, false, EBML_INFO(KaxTagAttachment)),
 };
 
 EbmlSemantic KaxTagAttachment_ContextList[1] =
 {
-	EbmlSemantic(false, true,  KaxTagAttachmentID::ClassInfos),
+	EbmlSemantic(false, true,  EBML_INFO(KaxTagAttachmentID)),
 };
 
 const EbmlSemanticContext KaxTagMultiGlobal_Context = EbmlSemanticContext(countof(KaxTagMultiGlobal_ContextList), KaxTagMultiGlobal_ContextList, NULL, *GetKaxGlobal_Context, NULL);
 
-const EbmlSemanticContext KaxTagMultiComment_Context = EbmlSemanticContext(countof(KaxTagMultiComment_ContextList), KaxTagMultiComment_ContextList, &KaxTag_Context, *GetKaxGlobal_Context, &KaxTagMultiComment::ClassInfos);
-const EbmlSemanticContext KaxTagMultiCommentName_Context = EbmlSemanticContext(0, NULL, &KaxTagMultiComment_Context, *GetKaxGlobal_Context, &KaxTagMultiCommentName::ClassInfos);
-const EbmlSemanticContext KaxTagMultiCommentComments_Context = EbmlSemanticContext(0, NULL, &KaxTagMultiComment_Context, *GetKaxGlobal_Context, &KaxTagMultiCommentComments::ClassInfos);
-const EbmlSemanticContext KaxTagMultiCommentLanguage_Context = EbmlSemanticContext(0, NULL, &KaxTagMultiComment_Context, *GetKaxGlobal_Context, &KaxTagMultiCommentLanguage::ClassInfos);
+const EbmlSemanticContext KaxTagMultiComment_Context = EbmlSemanticContext(countof(KaxTagMultiComment_ContextList), KaxTagMultiComment_ContextList, &KaxTag_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxTagMultiComment));
+const EbmlSemanticContext KaxTagMultiCommentName_Context = EbmlSemanticContext(0, NULL, &KaxTagMultiComment_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxTagMultiCommentName));
+const EbmlSemanticContext KaxTagMultiCommentComments_Context = EbmlSemanticContext(0, NULL, &KaxTagMultiComment_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxTagMultiCommentComments));
+const EbmlSemanticContext KaxTagMultiCommentLanguage_Context = EbmlSemanticContext(0, NULL, &KaxTagMultiComment_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxTagMultiCommentLanguage));
 
-const EbmlSemanticContext KaxTagMultiCommercial_Context = EbmlSemanticContext(countof(KaxTagMultiCommercial_ContextList), KaxTagMultiCommercial_ContextList, &KaxTag_Context, *GetKaxTagsGlobal_Context, &KaxTagMultiCommercial::ClassInfos);
-const EbmlSemanticContext KaxTagCommercial_Context = EbmlSemanticContext(countof(KaxTagCommercial_ContextList), KaxTagCommercial_ContextList, &KaxTagMultiCommercial_Context, *GetKaxTagsGlobal_Context, &KaxTagCommercial::ClassInfos);
-const EbmlSemanticContext KaxTagMultiCommercialType_Context = EbmlSemanticContext(0, NULL, &KaxTagCommercial_Context, *GetKaxGlobal_Context, &KaxTagMultiCommercialType::ClassInfos);
-const EbmlSemanticContext KaxTagMultiCommercialAddress_Context = EbmlSemanticContext(0, NULL, &KaxTagCommercial_Context, *GetKaxGlobal_Context, &KaxTagMultiCommercialAddress::ClassInfos);
-const EbmlSemanticContext KaxTagMultiCommercialURL_Context = EbmlSemanticContext(0, NULL, &KaxTagCommercial_Context, *GetKaxGlobal_Context, &KaxTagMultiCommercialURL::ClassInfos);
-const EbmlSemanticContext KaxTagMultiCommercialEmail_Context = EbmlSemanticContext(0, NULL, &KaxTagCommercial_Context, *GetKaxGlobal_Context, &KaxTagMultiCommercialEmail::ClassInfos);
+const EbmlSemanticContext KaxTagMultiCommercial_Context = EbmlSemanticContext(countof(KaxTagMultiCommercial_ContextList), KaxTagMultiCommercial_ContextList, &KaxTag_Context, *GetKaxTagsGlobal_Context, &EBML_INFO(KaxTagMultiCommercial));
+const EbmlSemanticContext KaxTagCommercial_Context = EbmlSemanticContext(countof(KaxTagCommercial_ContextList), KaxTagCommercial_ContextList, &KaxTagMultiCommercial_Context, *GetKaxTagsGlobal_Context, &EBML_INFO(KaxTagCommercial));
+const EbmlSemanticContext KaxTagMultiCommercialType_Context = EbmlSemanticContext(0, NULL, &KaxTagCommercial_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxTagMultiCommercialType));
+const EbmlSemanticContext KaxTagMultiCommercialAddress_Context = EbmlSemanticContext(0, NULL, &KaxTagCommercial_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxTagMultiCommercialAddress));
+const EbmlSemanticContext KaxTagMultiCommercialURL_Context = EbmlSemanticContext(0, NULL, &KaxTagCommercial_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxTagMultiCommercialURL));
+const EbmlSemanticContext KaxTagMultiCommercialEmail_Context = EbmlSemanticContext(0, NULL, &KaxTagCommercial_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxTagMultiCommercialEmail));
 
-const EbmlSemanticContext KaxTagMultiPrice_Context = EbmlSemanticContext(countof(KaxTagMultiPrice_ContextList), KaxTagMultiPrice_ContextList, &KaxTagCommercial_Context, *GetKaxTagsGlobal_Context, &KaxTagMultiPrice::ClassInfos);
-const EbmlSemanticContext KaxTagMultiPriceCurrency_Context = EbmlSemanticContext(0, NULL, &KaxTagMultiPrice_Context, *GetKaxGlobal_Context, &KaxTagMultiPriceCurrency::ClassInfos);
-const EbmlSemanticContext KaxTagMultiPriceAmount_Context = EbmlSemanticContext(0, NULL, &KaxTagMultiPrice_Context, *GetKaxGlobal_Context, &KaxTagMultiPriceAmount::ClassInfos);
-const EbmlSemanticContext KaxTagMultiPricePriceDate_Context = EbmlSemanticContext(0, NULL, &KaxTagMultiPrice_Context, *GetKaxGlobal_Context, &KaxTagMultiPricePriceDate::ClassInfos);
+const EbmlSemanticContext KaxTagMultiPrice_Context = EbmlSemanticContext(countof(KaxTagMultiPrice_ContextList), KaxTagMultiPrice_ContextList, &KaxTagCommercial_Context, *GetKaxTagsGlobal_Context, &EBML_INFO(KaxTagMultiPrice));
+const EbmlSemanticContext KaxTagMultiPriceCurrency_Context = EbmlSemanticContext(0, NULL, &KaxTagMultiPrice_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxTagMultiPriceCurrency));
+const EbmlSemanticContext KaxTagMultiPriceAmount_Context = EbmlSemanticContext(0, NULL, &KaxTagMultiPrice_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxTagMultiPriceAmount));
+const EbmlSemanticContext KaxTagMultiPricePriceDate_Context = EbmlSemanticContext(0, NULL, &KaxTagMultiPrice_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxTagMultiPricePriceDate));
 
-const EbmlSemanticContext KaxTagMultiDate_Context = EbmlSemanticContext(countof(KaxTagMultiDate_ContextList), KaxTagMultiDate_ContextList, &KaxTag_Context, *GetKaxTagsGlobal_Context, &KaxTagMultiDate::ClassInfos);
-const EbmlSemanticContext KaxTagDate_Context = EbmlSemanticContext(countof(KaxTagDate_ContextList), KaxTagDate_ContextList, &KaxTagMultiDate_Context, *GetKaxTagsGlobal_Context, &KaxTagDate::ClassInfos);
-const EbmlSemanticContext KaxTagMultiDateType_Context = EbmlSemanticContext(0, NULL, &KaxTagDate_Context, *GetKaxGlobal_Context, &KaxTagMultiDateType::ClassInfos);
-const EbmlSemanticContext KaxTagMultiDateDateBegin_Context = EbmlSemanticContext(0, NULL, &KaxTagDate_Context, *GetKaxGlobal_Context, &KaxTagMultiDateDateBegin::ClassInfos);
-const EbmlSemanticContext KaxTagMultiDateDateEnd_Context = EbmlSemanticContext(0, NULL, &KaxTagDate_Context, *GetKaxGlobal_Context, &KaxTagMultiDateDateEnd::ClassInfos);
+const EbmlSemanticContext KaxTagMultiDate_Context = EbmlSemanticContext(countof(KaxTagMultiDate_ContextList), KaxTagMultiDate_ContextList, &KaxTag_Context, *GetKaxTagsGlobal_Context, &EBML_INFO(KaxTagMultiDate));
+const EbmlSemanticContext KaxTagDate_Context = EbmlSemanticContext(countof(KaxTagDate_ContextList), KaxTagDate_ContextList, &KaxTagMultiDate_Context, *GetKaxTagsGlobal_Context, &EBML_INFO(KaxTagDate));
+const EbmlSemanticContext KaxTagMultiDateType_Context = EbmlSemanticContext(0, NULL, &KaxTagDate_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxTagMultiDateType));
+const EbmlSemanticContext KaxTagMultiDateDateBegin_Context = EbmlSemanticContext(0, NULL, &KaxTagDate_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxTagMultiDateDateBegin));
+const EbmlSemanticContext KaxTagMultiDateDateEnd_Context = EbmlSemanticContext(0, NULL, &KaxTagDate_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxTagMultiDateDateEnd));
 
-const EbmlSemanticContext KaxTagMultiEntity_Context = EbmlSemanticContext(countof(KaxTagMultiEntity_ContextList), KaxTagMultiEntity_ContextList, &KaxTag_Context, *GetKaxTagsGlobal_Context, &KaxTagMultiEntity::ClassInfos);
-const EbmlSemanticContext KaxTagEntity_Context = EbmlSemanticContext(countof(KaxTagEntity_ContextList), KaxTagEntity_ContextList, &KaxTagMultiEntity_Context, *GetKaxTagsGlobal_Context, &KaxTagEntity::ClassInfos);
-const EbmlSemanticContext KaxTagMultiEntityType_Context = EbmlSemanticContext(0, NULL, &KaxTagEntity_Context, *GetKaxGlobal_Context, &KaxTagMultiEntityType::ClassInfos);
-const EbmlSemanticContext KaxTagMultiEntityName_Context = EbmlSemanticContext(0, NULL, &KaxTagEntity_Context, *GetKaxGlobal_Context, &KaxTagMultiEntityName::ClassInfos);
-const EbmlSemanticContext KaxTagMultiEntityURL_Context = EbmlSemanticContext(0, NULL, &KaxTagEntity_Context, *GetKaxGlobal_Context, &KaxTagMultiEntityURL::ClassInfos);
-const EbmlSemanticContext KaxTagMultiEntityEmail_Context = EbmlSemanticContext(0, NULL, &KaxTagEntity_Context, *GetKaxGlobal_Context, &KaxTagMultiEntityEmail::ClassInfos);
-const EbmlSemanticContext KaxTagMultiEntityAddress_Context = EbmlSemanticContext(0, NULL, &KaxTagEntity_Context, *GetKaxGlobal_Context, &KaxTagMultiEntityAddress::ClassInfos);
+const EbmlSemanticContext KaxTagMultiEntity_Context = EbmlSemanticContext(countof(KaxTagMultiEntity_ContextList), KaxTagMultiEntity_ContextList, &KaxTag_Context, *GetKaxTagsGlobal_Context, &EBML_INFO(KaxTagMultiEntity));
+const EbmlSemanticContext KaxTagEntity_Context = EbmlSemanticContext(countof(KaxTagEntity_ContextList), KaxTagEntity_ContextList, &KaxTagMultiEntity_Context, *GetKaxTagsGlobal_Context, &EBML_INFO(KaxTagEntity));
+const EbmlSemanticContext KaxTagMultiEntityType_Context = EbmlSemanticContext(0, NULL, &KaxTagEntity_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxTagMultiEntityType));
+const EbmlSemanticContext KaxTagMultiEntityName_Context = EbmlSemanticContext(0, NULL, &KaxTagEntity_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxTagMultiEntityName));
+const EbmlSemanticContext KaxTagMultiEntityURL_Context = EbmlSemanticContext(0, NULL, &KaxTagEntity_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxTagMultiEntityURL));
+const EbmlSemanticContext KaxTagMultiEntityEmail_Context = EbmlSemanticContext(0, NULL, &KaxTagEntity_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxTagMultiEntityEmail));
+const EbmlSemanticContext KaxTagMultiEntityAddress_Context = EbmlSemanticContext(0, NULL, &KaxTagEntity_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxTagMultiEntityAddress));
 
-const EbmlSemanticContext KaxTagMultiIdentifier_Context = EbmlSemanticContext(countof(KaxTagMultiIdentifier_ContextList), KaxTagMultiIdentifier_ContextList, &KaxTag_Context, *GetKaxTagsGlobal_Context, &KaxTagMultiIdentifier::ClassInfos);
-const EbmlSemanticContext KaxTagIdentifier_Context = EbmlSemanticContext(countof(KaxTagIdentifier_ContextList), KaxTagIdentifier_ContextList, &KaxTagMultiIdentifier_Context, *GetKaxTagsGlobal_Context, &KaxTagIdentifier::ClassInfos);
-const EbmlSemanticContext KaxTagMultiIdentifierType_Context = EbmlSemanticContext(0, NULL, &KaxTagIdentifier_Context, *GetKaxGlobal_Context, &KaxTagMultiIdentifierType::ClassInfos);
-const EbmlSemanticContext KaxTagMultiIdentifierBinary_Context = EbmlSemanticContext(0, NULL, &KaxTagIdentifier_Context, *GetKaxGlobal_Context, &KaxTagMultiIdentifierBinary::ClassInfos);
-const EbmlSemanticContext KaxTagMultiIdentifierString_Context = EbmlSemanticContext(0, NULL, &KaxTagIdentifier_Context, *GetKaxGlobal_Context, &KaxTagMultiIdentifierString::ClassInfos);
+const EbmlSemanticContext KaxTagMultiIdentifier_Context = EbmlSemanticContext(countof(KaxTagMultiIdentifier_ContextList), KaxTagMultiIdentifier_ContextList, &KaxTag_Context, *GetKaxTagsGlobal_Context, &EBML_INFO(KaxTagMultiIdentifier));
+const EbmlSemanticContext KaxTagIdentifier_Context = EbmlSemanticContext(countof(KaxTagIdentifier_ContextList), KaxTagIdentifier_ContextList, &KaxTagMultiIdentifier_Context, *GetKaxTagsGlobal_Context, &EBML_INFO(KaxTagIdentifier));
+const EbmlSemanticContext KaxTagMultiIdentifierType_Context = EbmlSemanticContext(0, NULL, &KaxTagIdentifier_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxTagMultiIdentifierType));
+const EbmlSemanticContext KaxTagMultiIdentifierBinary_Context = EbmlSemanticContext(0, NULL, &KaxTagIdentifier_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxTagMultiIdentifierBinary));
+const EbmlSemanticContext KaxTagMultiIdentifierString_Context = EbmlSemanticContext(0, NULL, &KaxTagIdentifier_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxTagMultiIdentifierString));
 
-const EbmlSemanticContext KaxTagMultiLegal_Context = EbmlSemanticContext(countof(KaxTagMultiLegal_ContextList), KaxTagMultiLegal_ContextList, &KaxTag_Context, *GetKaxTagsGlobal_Context, &KaxTagMultiLegal::ClassInfos);
-const EbmlSemanticContext KaxTagLegal_Context = EbmlSemanticContext(countof(KaxTagLegal_ContextList), KaxTagLegal_ContextList, &KaxTagMultiLegal_Context, *GetKaxTagsGlobal_Context, &KaxTagLegal::ClassInfos);
-const EbmlSemanticContext KaxTagMultiLegalType_Context = EbmlSemanticContext(0, NULL, &KaxTagLegal_Context, *GetKaxGlobal_Context, &KaxTagMultiLegalType::ClassInfos);
-const EbmlSemanticContext KaxTagMultiLegalContent_Context = EbmlSemanticContext(0, NULL, &KaxTagLegal_Context, *GetKaxGlobal_Context, &KaxTagMultiLegalContent::ClassInfos);
-const EbmlSemanticContext KaxTagMultiLegalURL_Context = EbmlSemanticContext(0, NULL, &KaxTagLegal_Context, *GetKaxGlobal_Context, &KaxTagMultiLegalURL::ClassInfos);
-const EbmlSemanticContext KaxTagMultiLegalAddress_Context = EbmlSemanticContext(0, NULL, &KaxTagLegal_Context, *GetKaxGlobal_Context, &KaxTagMultiLegalAddress::ClassInfos);
+const EbmlSemanticContext KaxTagMultiLegal_Context = EbmlSemanticContext(countof(KaxTagMultiLegal_ContextList), KaxTagMultiLegal_ContextList, &KaxTag_Context, *GetKaxTagsGlobal_Context, &EBML_INFO(KaxTagMultiLegal));
+const EbmlSemanticContext KaxTagLegal_Context = EbmlSemanticContext(countof(KaxTagLegal_ContextList), KaxTagLegal_ContextList, &KaxTagMultiLegal_Context, *GetKaxTagsGlobal_Context, &EBML_INFO(KaxTagLegal));
+const EbmlSemanticContext KaxTagMultiLegalType_Context = EbmlSemanticContext(0, NULL, &KaxTagLegal_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxTagMultiLegalType));
+const EbmlSemanticContext KaxTagMultiLegalContent_Context = EbmlSemanticContext(0, NULL, &KaxTagLegal_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxTagMultiLegalContent));
+const EbmlSemanticContext KaxTagMultiLegalURL_Context = EbmlSemanticContext(0, NULL, &KaxTagLegal_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxTagMultiLegalURL));
+const EbmlSemanticContext KaxTagMultiLegalAddress_Context = EbmlSemanticContext(0, NULL, &KaxTagLegal_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxTagMultiLegalAddress));
 
-const EbmlSemanticContext KaxTagMultiTitle_Context = EbmlSemanticContext(countof(KaxTagMultiTitle_ContextList), KaxTagMultiTitle_ContextList, &KaxTag_Context, *GetKaxTagsGlobal_Context, &KaxTagMultiTitle::ClassInfos);
-const EbmlSemanticContext KaxTagTitle_Context = EbmlSemanticContext(countof(KaxTagTitle_ContextList), KaxTagTitle_ContextList, &KaxTagMultiTitle_Context, *GetKaxTagsGlobal_Context, &KaxTagTitle::ClassInfos);
-const EbmlSemanticContext KaxTagMultiTitleType_Context = EbmlSemanticContext(0, NULL, &KaxTagTitle_Context, *GetKaxGlobal_Context, &KaxTagMultiTitleType::ClassInfos);
-const EbmlSemanticContext KaxTagMultiTitleName_Context = EbmlSemanticContext(0, NULL, &KaxTagTitle_Context, *GetKaxGlobal_Context, &KaxTagMultiTitleName::ClassInfos);
-const EbmlSemanticContext KaxTagMultiTitleSubTitle_Context = EbmlSemanticContext(0, NULL, &KaxTagTitle_Context, *GetKaxGlobal_Context, &KaxTagMultiTitleSubTitle::ClassInfos);
-const EbmlSemanticContext KaxTagMultiTitleEdition_Context = EbmlSemanticContext(0, NULL, &KaxTagTitle_Context, *GetKaxGlobal_Context, &KaxTagMultiTitleEdition::ClassInfos);
-const EbmlSemanticContext KaxTagMultiTitleAddress_Context = EbmlSemanticContext(0, NULL, &KaxTagTitle_Context, *GetKaxGlobal_Context, &KaxTagMultiTitleAddress::ClassInfos);
-const EbmlSemanticContext KaxTagMultiTitleURL_Context = EbmlSemanticContext(0, NULL, &KaxTagTitle_Context, *GetKaxGlobal_Context, &KaxTagMultiTitleURL::ClassInfos);
-const EbmlSemanticContext KaxTagMultiTitleEmail_Context = EbmlSemanticContext(0, NULL, &KaxTagTitle_Context, *GetKaxGlobal_Context, &KaxTagMultiTitleEmail::ClassInfos);
-const EbmlSemanticContext KaxTagMultiTitleLanguage_Context = EbmlSemanticContext(0, NULL, &KaxTagTitle_Context, *GetKaxGlobal_Context, &KaxTagMultiTitleLanguage::ClassInfos);
+const EbmlSemanticContext KaxTagMultiTitle_Context = EbmlSemanticContext(countof(KaxTagMultiTitle_ContextList), KaxTagMultiTitle_ContextList, &KaxTag_Context, *GetKaxTagsGlobal_Context, &EBML_INFO(KaxTagMultiTitle));
+const EbmlSemanticContext KaxTagTitle_Context = EbmlSemanticContext(countof(KaxTagTitle_ContextList), KaxTagTitle_ContextList, &KaxTagMultiTitle_Context, *GetKaxTagsGlobal_Context, &EBML_INFO(KaxTagTitle));
+const EbmlSemanticContext KaxTagMultiTitleType_Context = EbmlSemanticContext(0, NULL, &KaxTagTitle_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxTagMultiTitleType));
+const EbmlSemanticContext KaxTagMultiTitleName_Context = EbmlSemanticContext(0, NULL, &KaxTagTitle_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxTagMultiTitleName));
+const EbmlSemanticContext KaxTagMultiTitleSubTitle_Context = EbmlSemanticContext(0, NULL, &KaxTagTitle_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxTagMultiTitleSubTitle));
+const EbmlSemanticContext KaxTagMultiTitleEdition_Context = EbmlSemanticContext(0, NULL, &KaxTagTitle_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxTagMultiTitleEdition));
+const EbmlSemanticContext KaxTagMultiTitleAddress_Context = EbmlSemanticContext(0, NULL, &KaxTagTitle_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxTagMultiTitleAddress));
+const EbmlSemanticContext KaxTagMultiTitleURL_Context = EbmlSemanticContext(0, NULL, &KaxTagTitle_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxTagMultiTitleURL));
+const EbmlSemanticContext KaxTagMultiTitleEmail_Context = EbmlSemanticContext(0, NULL, &KaxTagTitle_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxTagMultiTitleEmail));
+const EbmlSemanticContext KaxTagMultiTitleLanguage_Context = EbmlSemanticContext(0, NULL, &KaxTagTitle_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxTagMultiTitleLanguage));
 
-const EbmlSemanticContext KaxTagMultiAttachment_Context = EbmlSemanticContext(countof(KaxTagMultiAttachment_ContextList), KaxTagMultiAttachment_ContextList, &KaxTag_Context, *GetKaxTagsGlobal_Context, &KaxTagMultiAttachment::ClassInfos);
-const EbmlSemanticContext KaxTagAttachment_Context = EbmlSemanticContext(countof(KaxTagAttachment_ContextList), KaxTagAttachment_ContextList, &KaxTagMultiAttachment_Context, *GetKaxTagsGlobal_Context, &KaxTagAttachment::ClassInfos);
-const EbmlSemanticContext KaxTagAttachmentID_Context = EbmlSemanticContext(0, NULL, &KaxTagAttachment_Context, *GetKaxGlobal_Context, &KaxTagAttachmentID::ClassInfos);
+const EbmlSemanticContext KaxTagMultiAttachment_Context = EbmlSemanticContext(countof(KaxTagMultiAttachment_ContextList), KaxTagMultiAttachment_ContextList, &KaxTag_Context, *GetKaxTagsGlobal_Context, &EBML_INFO(KaxTagMultiAttachment));
+const EbmlSemanticContext KaxTagAttachment_Context = EbmlSemanticContext(countof(KaxTagAttachment_ContextList), KaxTagAttachment_ContextList, &KaxTagMultiAttachment_Context, *GetKaxTagsGlobal_Context, &EBML_INFO(KaxTagAttachment));
+const EbmlSemanticContext KaxTagAttachmentID_Context = EbmlSemanticContext(0, NULL, &KaxTagAttachment_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxTagAttachmentID));
 
 //The Muti Elements
 EbmlId KaxTagMultiComment_TheId             (0x5B7B, 2);

@@ -44,157 +44,157 @@ START_LIBMATROSKA_NAMESPACE
 
 EbmlSemantic KaxTag_ContextList[14] =
 {	
-	EbmlSemantic(true,  true,  KaxTagTargets::ClassInfos),
-	EbmlSemantic(false, true,  KaxTagGeneral::ClassInfos),
-	EbmlSemantic(false, true,  KaxTagGenres::ClassInfos),
-	EbmlSemantic(false, true,  KaxTagAudioSpecific::ClassInfos),
-	EbmlSemantic(false, true,  KaxTagImageSpecific::ClassInfos),
-	EbmlSemantic(false, true,  KaxTagMultiCommercial::ClassInfos),
-	EbmlSemantic(false, true,  KaxTagMultiDate::ClassInfos),
-	EbmlSemantic(false, true,  KaxTagMultiEntity::ClassInfos),
-	EbmlSemantic(false, true,  KaxTagMultiIdentifier::ClassInfos),
-	EbmlSemantic(false, true,  KaxTagMultiLegal::ClassInfos),
-	EbmlSemantic(false, true,  KaxTagMultiTitle::ClassInfos),
-	EbmlSemantic(false, true,  KaxTagMultiAttachment::ClassInfos),
-//	EbmlSemantic(false, false, KaxTagLength::ClassInfos),
-//	EbmlSemantic(false, false, KaxTagPlaylistDelay::ClassInfos),
-//	EbmlSemantic(false, false, KaxTagUnsynchronisedText::ClassInfos),
-//	EbmlSemantic(false, false, KaxTagUserDefinedURL::ClassInfos),
-	EbmlSemantic(false, false, KaxTagMultiComment::ClassInfos),
-	EbmlSemantic(true,  false, KaxTagSimple::ClassInfos),
+	EbmlSemantic(true,  true,  EBML_INFO(KaxTagTargets)),
+	EbmlSemantic(false, true,  EBML_INFO(KaxTagGeneral)),
+	EbmlSemantic(false, true,  EBML_INFO(KaxTagGenres)),
+	EbmlSemantic(false, true,  EBML_INFO(KaxTagAudioSpecific)),
+	EbmlSemantic(false, true,  EBML_INFO(KaxTagImageSpecific)),
+	EbmlSemantic(false, true,  EBML_INFO(KaxTagMultiCommercial)),
+	EbmlSemantic(false, true,  EBML_INFO(KaxTagMultiDate)),
+	EbmlSemantic(false, true,  EBML_INFO(KaxTagMultiEntity)),
+	EbmlSemantic(false, true,  EBML_INFO(KaxTagMultiIdentifier)),
+	EbmlSemantic(false, true,  EBML_INFO(KaxTagMultiLegal)),
+	EbmlSemantic(false, true,  EBML_INFO(KaxTagMultiTitle)),
+	EbmlSemantic(false, true,  EBML_INFO(KaxTagMultiAttachment)),
+//	EbmlSemantic(false, false, EBML_INFO(KaxTagLength)),
+//	EbmlSemantic(false, false, EBML_INFO(KaxTagPlaylistDelay)),
+//	EbmlSemantic(false, false, EBML_INFO(KaxTagUnsynchronisedText)),
+//	EbmlSemantic(false, false, EBML_INFO(KaxTagUserDefinedURL)),
+	EbmlSemantic(false, false, EBML_INFO(KaxTagMultiComment)),
+	EbmlSemantic(true,  false, EBML_INFO(KaxTagSimple)),
 };
 
 EbmlSemantic KaxTagTargets_ContextList[6] =
 {	
-	EbmlSemantic(false, true,  KaxTagTargetTypeValue::ClassInfos),
-	EbmlSemantic(false, true,  KaxTagTargetType::ClassInfos),
-	EbmlSemantic(false, false, KaxTagTrackUID::ClassInfos),
-	EbmlSemantic(false, false, KaxTagEditionUID::ClassInfos),
-	EbmlSemantic(false, false, KaxTagChapterUID::ClassInfos),
-	EbmlSemantic(false, false, KaxTagAttachmentUID::ClassInfos),
+	EbmlSemantic(false, true,  EBML_INFO(KaxTagTargetTypeValue)),
+	EbmlSemantic(false, true,  EBML_INFO(KaxTagTargetType)),
+	EbmlSemantic(false, false, EBML_INFO(KaxTagTrackUID)),
+	EbmlSemantic(false, false, EBML_INFO(KaxTagEditionUID)),
+	EbmlSemantic(false, false, EBML_INFO(KaxTagChapterUID)),
+	EbmlSemantic(false, false, EBML_INFO(KaxTagAttachmentUID)),
 };
 
 EbmlSemantic KaxTagGeneral_ContextList[17] =
 {	
-	EbmlSemantic(false, true,  KaxTagArchivalLocation::ClassInfos),
-	EbmlSemantic(false, true,  KaxTagFile::ClassInfos),
-	EbmlSemantic(false, false, KaxTagKeywords::ClassInfos),
-	EbmlSemantic(false, true,  KaxTagMood::ClassInfos),
-	EbmlSemantic(false, false, KaxTagRecordLocation::ClassInfos),
-	EbmlSemantic(false, true,  KaxTagSource::ClassInfos),
-	EbmlSemantic(false, true,  KaxTagSourceForm::ClassInfos),
-	EbmlSemantic(false, true,  KaxTagProduct::ClassInfos),
-	EbmlSemantic(false, true,  KaxTagOriginalMediaType::ClassInfos),
-	EbmlSemantic(false, true,  KaxTagPlayCounter::ClassInfos),
-	EbmlSemantic(false, true,  KaxTagPopularimeter::ClassInfos),
-	EbmlSemantic(false, true,  KaxTagSubject::ClassInfos),
-	EbmlSemantic(false, true,  KaxTagBibliography::ClassInfos),
-	EbmlSemantic(false, true,  KaxTagLanguage::ClassInfos),
-	EbmlSemantic(false, true,  KaxTagRating::ClassInfos),
-	EbmlSemantic(false, true,  KaxTagEncoder::ClassInfos),
-	EbmlSemantic(false, true,  KaxTagEncodeSettings::ClassInfos),
+	EbmlSemantic(false, true,  EBML_INFO(KaxTagArchivalLocation)),
+	EbmlSemantic(false, true,  EBML_INFO(KaxTagFile)),
+	EbmlSemantic(false, false, EBML_INFO(KaxTagKeywords)),
+	EbmlSemantic(false, true,  EBML_INFO(KaxTagMood)),
+	EbmlSemantic(false, false, EBML_INFO(KaxTagRecordLocation)),
+	EbmlSemantic(false, true,  EBML_INFO(KaxTagSource)),
+	EbmlSemantic(false, true,  EBML_INFO(KaxTagSourceForm)),
+	EbmlSemantic(false, true,  EBML_INFO(KaxTagProduct)),
+	EbmlSemantic(false, true,  EBML_INFO(KaxTagOriginalMediaType)),
+	EbmlSemantic(false, true,  EBML_INFO(KaxTagPlayCounter)),
+	EbmlSemantic(false, true,  EBML_INFO(KaxTagPopularimeter)),
+	EbmlSemantic(false, true,  EBML_INFO(KaxTagSubject)),
+	EbmlSemantic(false, true,  EBML_INFO(KaxTagBibliography)),
+	EbmlSemantic(false, true,  EBML_INFO(KaxTagLanguage)),
+	EbmlSemantic(false, true,  EBML_INFO(KaxTagRating)),
+	EbmlSemantic(false, true,  EBML_INFO(KaxTagEncoder)),
+	EbmlSemantic(false, true,  EBML_INFO(KaxTagEncodeSettings)),
 };
 
 EbmlSemantic KaxTagGenres_ContextList[3] =
 {	
-	EbmlSemantic(false, false, KaxTagAudioGenre::ClassInfos),
-	EbmlSemantic(false, false, KaxTagVideoGenre::ClassInfos),
-	EbmlSemantic(false, true,  KaxTagSubGenre::ClassInfos),
+	EbmlSemantic(false, false, EBML_INFO(KaxTagAudioGenre)),
+	EbmlSemantic(false, false, EBML_INFO(KaxTagVideoGenre)),
+	EbmlSemantic(false, true,  EBML_INFO(KaxTagSubGenre)),
 };
 
 EbmlSemantic KaxTagAudioSpecific_ContextList[10] =
 {	
-	EbmlSemantic(false, true, KaxTagAudioPeak::ClassInfos),
-	EbmlSemantic(false, true, KaxTagAudioEncryption::ClassInfos),
-	EbmlSemantic(false, true, KaxTagAudioGain::ClassInfos),
-	EbmlSemantic(false, true, KaxTagBPM::ClassInfos),
-	EbmlSemantic(false, true, KaxTagDiscTrack::ClassInfos),
-	EbmlSemantic(false, true, KaxTagSetPart::ClassInfos),
-	EbmlSemantic(false, true, KaxTagEqualisation::ClassInfos),
-	EbmlSemantic(false, true, KaxTagInitialKey::ClassInfos),
-	EbmlSemantic(false, true, KaxTagOfficialAudioFileURL::ClassInfos),
-	EbmlSemantic(false, true, KaxTagOfficialAudioSourceURL::ClassInfos),
+	EbmlSemantic(false, true, EBML_INFO(KaxTagAudioPeak)),
+	EbmlSemantic(false, true, EBML_INFO(KaxTagAudioEncryption)),
+	EbmlSemantic(false, true, EBML_INFO(KaxTagAudioGain)),
+	EbmlSemantic(false, true, EBML_INFO(KaxTagBPM)),
+	EbmlSemantic(false, true, EBML_INFO(KaxTagDiscTrack)),
+	EbmlSemantic(false, true, EBML_INFO(KaxTagSetPart)),
+	EbmlSemantic(false, true, EBML_INFO(KaxTagEqualisation)),
+	EbmlSemantic(false, true, EBML_INFO(KaxTagInitialKey)),
+	EbmlSemantic(false, true, EBML_INFO(KaxTagOfficialAudioFileURL)),
+	EbmlSemantic(false, true, EBML_INFO(KaxTagOfficialAudioSourceURL)),
 };
 
 EbmlSemantic KaxTagImageSpecific_ContextList[6] =
 {
-	EbmlSemantic(false, true, KaxTagCaptureDPI::ClassInfos),
-	EbmlSemantic(false, true, KaxTagCaptureLightness::ClassInfos),
-	EbmlSemantic(false, true, KaxTagCapturePaletteSetting::ClassInfos),
-	EbmlSemantic(false, true, KaxTagCaptureSharpness::ClassInfos),
-	EbmlSemantic(false, true, KaxTagCropped::ClassInfos),
-	EbmlSemantic(false, true, KaxTagOriginalDimensions::ClassInfos),
+	EbmlSemantic(false, true, EBML_INFO(KaxTagCaptureDPI)),
+	EbmlSemantic(false, true, EBML_INFO(KaxTagCaptureLightness)),
+	EbmlSemantic(false, true, EBML_INFO(KaxTagCapturePaletteSetting)),
+	EbmlSemantic(false, true, EBML_INFO(KaxTagCaptureSharpness)),
+	EbmlSemantic(false, true, EBML_INFO(KaxTagCropped)),
+	EbmlSemantic(false, true, EBML_INFO(KaxTagOriginalDimensions)),
 };
 
 EbmlSemantic KaxTagSimple_ContextList[6] =
 {	
-	EbmlSemantic(true,  true,  KaxTagName::ClassInfos),
-	EbmlSemantic(true,  true,  KaxTagLangue::ClassInfos),
-	EbmlSemantic(true,  true,  KaxTagDefault::ClassInfos),
-	EbmlSemantic(false, true,  KaxTagString::ClassInfos),
-	EbmlSemantic(false, true,  KaxTagBinary::ClassInfos),
-	EbmlSemantic(false, false, KaxTagSimple::ClassInfos),
+	EbmlSemantic(true,  true,  EBML_INFO(KaxTagName)),
+	EbmlSemantic(true,  true,  EBML_INFO(KaxTagLangue)),
+	EbmlSemantic(true,  true,  EBML_INFO(KaxTagDefault)),
+	EbmlSemantic(false, true,  EBML_INFO(KaxTagString)),
+	EbmlSemantic(false, true,  EBML_INFO(KaxTagBinary)),
+	EbmlSemantic(false, false, EBML_INFO(KaxTagSimple)),
 };
 
-const EbmlSemanticContext KaxTag_Context = EbmlSemanticContext(countof(KaxTag_ContextList), KaxTag_ContextList, &KaxTags_Context, *GetKaxTagsGlobal_Context, &KaxTag::ClassInfos);
-const EbmlSemanticContext KaxTagTargets_Context = EbmlSemanticContext(countof(KaxTagTargets_ContextList), KaxTagTargets_ContextList, &KaxTag_Context, *GetKaxTagsGlobal_Context, &KaxTagTargets::ClassInfos);
-const EbmlSemanticContext KaxTagGeneral_Context = EbmlSemanticContext(countof(KaxTagGeneral_ContextList), KaxTagGeneral_ContextList, &KaxTag_Context, *GetKaxTagsGlobal_Context, &KaxTagGeneral::ClassInfos);
-const EbmlSemanticContext KaxTagGenres_Context = EbmlSemanticContext(countof(KaxTagGenres_ContextList), KaxTagGenres_ContextList, &KaxTag_Context, *GetKaxTagsGlobal_Context, &KaxTagGenres::ClassInfos);
-const EbmlSemanticContext KaxTagAudioSpecific_Context = EbmlSemanticContext(countof(KaxTagAudioSpecific_ContextList), KaxTagAudioSpecific_ContextList, &KaxTag_Context, *GetKaxTagsGlobal_Context, &KaxTagAudioSpecific::ClassInfos);
-const EbmlSemanticContext KaxTagImageSpecific_Context = EbmlSemanticContext(countof(KaxTagImageSpecific_ContextList), KaxTagImageSpecific_ContextList, &KaxTag_Context, *GetKaxTagsGlobal_Context, &KaxTagImageSpecific::ClassInfos);
-const EbmlSemanticContext KaxTagBibliography_Context = EbmlSemanticContext(0, NULL, &KaxTag_Context, *GetKaxGlobal_Context, &KaxTagBibliography::ClassInfos);
-const EbmlSemanticContext KaxTagEncoder_Context = EbmlSemanticContext(0, NULL, &KaxTag_Context, *GetKaxGlobal_Context, &KaxTagEncoder::ClassInfos);
-const EbmlSemanticContext KaxTagEncodeSettings_Context = EbmlSemanticContext(0, NULL, &KaxTag_Context, *GetKaxGlobal_Context, &KaxTagEncodeSettings::ClassInfos);
-const EbmlSemanticContext KaxTagLanguage_Context = EbmlSemanticContext(0, NULL, &KaxTag_Context, *GetKaxGlobal_Context, &KaxTagLanguage::ClassInfos);
-const EbmlSemanticContext KaxTagLength_Context = EbmlSemanticContext(0, NULL, &KaxTag_Context, *GetKaxGlobal_Context, &KaxTagLength::ClassInfos);
-const EbmlSemanticContext KaxTagPlaylistDelay_Context = EbmlSemanticContext(0, NULL, &KaxTag_Context, *GetKaxGlobal_Context, &KaxTagPlaylistDelay::ClassInfos);
-const EbmlSemanticContext KaxTagRating_Context = EbmlSemanticContext(0, NULL, &KaxTag_Context, *GetKaxGlobal_Context, &KaxTagRating::ClassInfos);
-const EbmlSemanticContext KaxTagSubject_Context = EbmlSemanticContext(0, NULL, &KaxTag_Context, *GetKaxGlobal_Context, &KaxTagSubject::ClassInfos);
-const EbmlSemanticContext KaxTagUnsynchronisedText_Context = EbmlSemanticContext(0, NULL, &KaxTag_Context, *GetKaxGlobal_Context, &KaxTagUnsynchronisedText::ClassInfos);
-const EbmlSemanticContext KaxTagUserDefinedURL_Context = EbmlSemanticContext(0, NULL, &KaxTag_Context, *GetKaxGlobal_Context, &KaxTagUserDefinedURL::ClassInfos);
-const EbmlSemanticContext KaxTagTargetTypeValue_Context = EbmlSemanticContext(0, NULL, &KaxTagTargets_Context, *GetKaxGlobal_Context, &KaxTagTargetTypeValue::ClassInfos);
-const EbmlSemanticContext KaxTagTargetType_Context = EbmlSemanticContext(0, NULL, &KaxTagTargets_Context, *GetKaxGlobal_Context, &KaxTagTargetType::ClassInfos);
-const EbmlSemanticContext KaxTagTrackUID_Context = EbmlSemanticContext(0, NULL, &KaxTagTargets_Context, *GetKaxGlobal_Context, &KaxTagTrackUID::ClassInfos);
-const EbmlSemanticContext KaxTagEditionUID_Context = EbmlSemanticContext(0, NULL, &KaxTagTargets_Context, *GetKaxGlobal_Context, &KaxTagEditionUID::ClassInfos);
-const EbmlSemanticContext KaxTagChapterUID_Context = EbmlSemanticContext(0, NULL, &KaxTagTargets_Context, *GetKaxGlobal_Context, &KaxTagChapterUID::ClassInfos);
-const EbmlSemanticContext KaxTagAttachmentUID_Context = EbmlSemanticContext(0, NULL, &KaxTagTargets_Context, *GetKaxGlobal_Context, &KaxTagAttachmentUID::ClassInfos);
-const EbmlSemanticContext KaxTagArchivalLocation_Context = EbmlSemanticContext(0, NULL, &KaxTagGeneral_Context, *GetKaxGlobal_Context, &KaxTagArchivalLocation::ClassInfos);
-const EbmlSemanticContext KaxTagFile_Context = EbmlSemanticContext(0, NULL, &KaxTagGeneral_Context, *GetKaxGlobal_Context, &KaxTagFile::ClassInfos);
-const EbmlSemanticContext KaxTagKeywords_Context = EbmlSemanticContext(0, NULL, &KaxTagGeneral_Context, *GetKaxGlobal_Context, &KaxTagKeywords::ClassInfos);
-const EbmlSemanticContext KaxTagMood_Context = EbmlSemanticContext(0, NULL, &KaxTagGeneral_Context, *GetKaxGlobal_Context, &KaxTagMood::ClassInfos);
-const EbmlSemanticContext KaxTagRecordLocation_Context = EbmlSemanticContext(0, NULL, &KaxTagGeneral_Context, *GetKaxGlobal_Context, &KaxTagRecordLocation::ClassInfos);
-const EbmlSemanticContext KaxTagSource_Context = EbmlSemanticContext(0, NULL, &KaxTagGeneral_Context, *GetKaxGlobal_Context, &KaxTagSource::ClassInfos);
-const EbmlSemanticContext KaxTagSourceForm_Context = EbmlSemanticContext(0, NULL, &KaxTagGeneral_Context, *GetKaxGlobal_Context, &KaxTagSourceForm::ClassInfos);
-const EbmlSemanticContext KaxTagProduct_Context = EbmlSemanticContext(0, NULL, &KaxTagGeneral_Context, *GetKaxGlobal_Context, &KaxTagProduct::ClassInfos);
-const EbmlSemanticContext KaxTagOriginalMediaType_Context = EbmlSemanticContext(0, NULL, &KaxTagGeneral_Context, *GetKaxGlobal_Context, &KaxTagOriginalMediaType::ClassInfos);
-const EbmlSemanticContext KaxTagPlayCounter_Context = EbmlSemanticContext(0, NULL, &KaxTagGeneral_Context, *GetKaxGlobal_Context, &KaxTagPlayCounter::ClassInfos);
-const EbmlSemanticContext KaxTagPopularimeter_Context = EbmlSemanticContext(0, NULL, &KaxTagGeneral_Context, *GetKaxGlobal_Context, &KaxTagPopularimeter::ClassInfos);
-const EbmlSemanticContext KaxTagAudioGenre_Context = EbmlSemanticContext(0, NULL, &KaxTagGenres_Context, *GetKaxGlobal_Context, &KaxTagAudioGenre::ClassInfos);
-const EbmlSemanticContext KaxTagVideoGenre_Context = EbmlSemanticContext(0, NULL, &KaxTagGenres_Context, *GetKaxGlobal_Context, &KaxTagVideoGenre::ClassInfos);
-const EbmlSemanticContext KaxTagSubGenre_Context = EbmlSemanticContext(0, NULL, &KaxTagGenres_Context, *GetKaxGlobal_Context, &KaxTagSubGenre::ClassInfos);
-const EbmlSemanticContext KaxTagAudioEncryption_Context = EbmlSemanticContext(0, NULL, &KaxTagAudioSpecific_Context, *GetKaxGlobal_Context, &KaxTagAudioEncryption::ClassInfos);
-const EbmlSemanticContext KaxTagAudioGain_Context = EbmlSemanticContext(0, NULL, &KaxTagAudioSpecific_Context, *GetKaxGlobal_Context, &KaxTagAudioGain::ClassInfos);
-const EbmlSemanticContext KaxTagAudioPeak_Context = EbmlSemanticContext(0, NULL, &KaxTagAudioSpecific_Context, *GetKaxGlobal_Context, &KaxTagAudioPeak::ClassInfos);
-const EbmlSemanticContext KaxTagBPM_Context = EbmlSemanticContext(0, NULL, &KaxTagAudioSpecific_Context, *GetKaxGlobal_Context, &KaxTagBPM::ClassInfos);
-const EbmlSemanticContext KaxTagDiscTrack_Context = EbmlSemanticContext(0, NULL, &KaxTagAudioSpecific_Context, *GetKaxGlobal_Context, &KaxTagDiscTrack::ClassInfos);
-const EbmlSemanticContext KaxTagSetPart_Context = EbmlSemanticContext(0, NULL, &KaxTagAudioSpecific_Context, *GetKaxGlobal_Context, &KaxTagSetPart::ClassInfos);
-const EbmlSemanticContext KaxTagEqualisation_Context = EbmlSemanticContext(0, NULL, &KaxTagAudioSpecific_Context, *GetKaxGlobal_Context, &KaxTagEqualisation::ClassInfos);
-const EbmlSemanticContext KaxTagInitialKey_Context = EbmlSemanticContext(0, NULL, &KaxTagAudioSpecific_Context, *GetKaxGlobal_Context, &KaxTagInitialKey::ClassInfos);
-const EbmlSemanticContext KaxTagOfficialAudioFileURL_Context = EbmlSemanticContext(0, NULL, &KaxTagAudioSpecific_Context, *GetKaxGlobal_Context, &KaxTagOfficialAudioFileURL::ClassInfos);
-const EbmlSemanticContext KaxTagOfficialAudioSourceURL_Context = EbmlSemanticContext(0, NULL, &KaxTagAudioSpecific_Context, *GetKaxGlobal_Context, &KaxTagOfficialAudioSourceURL::ClassInfos);
-const EbmlSemanticContext KaxTagCaptureDPI_Context = EbmlSemanticContext(0, NULL, &KaxTagImageSpecific_Context, *GetKaxGlobal_Context, &KaxTagCaptureDPI::ClassInfos);
-const EbmlSemanticContext KaxTagCaptureLightness_Context = EbmlSemanticContext(0, NULL, &KaxTagImageSpecific_Context, *GetKaxGlobal_Context, &KaxTagCaptureLightness::ClassInfos);
-const EbmlSemanticContext KaxTagCapturePaletteSetting_Context = EbmlSemanticContext(0, NULL, &KaxTagImageSpecific_Context, *GetKaxGlobal_Context, &KaxTagCapturePaletteSetting::ClassInfos);
-const EbmlSemanticContext KaxTagCaptureSharpness_Context = EbmlSemanticContext(0, NULL, &KaxTagImageSpecific_Context, *GetKaxGlobal_Context, &KaxTagCaptureSharpness::ClassInfos);
-const EbmlSemanticContext KaxTagCropped_Context = EbmlSemanticContext(0, NULL, &KaxTagImageSpecific_Context, *GetKaxGlobal_Context, &KaxTagCropped::ClassInfos);
-const EbmlSemanticContext KaxTagOriginalDimensions_Context = EbmlSemanticContext(0, NULL, &KaxTagImageSpecific_Context, *GetKaxGlobal_Context, &KaxTagOriginalDimensions::ClassInfos);
+const EbmlSemanticContext KaxTag_Context = EbmlSemanticContext(countof(KaxTag_ContextList), KaxTag_ContextList, &KaxTags_Context, *GetKaxTagsGlobal_Context, &EBML_INFO(KaxTag));
+const EbmlSemanticContext KaxTagTargets_Context = EbmlSemanticContext(countof(KaxTagTargets_ContextList), KaxTagTargets_ContextList, &KaxTag_Context, *GetKaxTagsGlobal_Context, &EBML_INFO(KaxTagTargets));
+const EbmlSemanticContext KaxTagGeneral_Context = EbmlSemanticContext(countof(KaxTagGeneral_ContextList), KaxTagGeneral_ContextList, &KaxTag_Context, *GetKaxTagsGlobal_Context, &EBML_INFO(KaxTagGeneral));
+const EbmlSemanticContext KaxTagGenres_Context = EbmlSemanticContext(countof(KaxTagGenres_ContextList), KaxTagGenres_ContextList, &KaxTag_Context, *GetKaxTagsGlobal_Context, &EBML_INFO(KaxTagGenres));
+const EbmlSemanticContext KaxTagAudioSpecific_Context = EbmlSemanticContext(countof(KaxTagAudioSpecific_ContextList), KaxTagAudioSpecific_ContextList, &KaxTag_Context, *GetKaxTagsGlobal_Context, &EBML_INFO(KaxTagAudioSpecific));
+const EbmlSemanticContext KaxTagImageSpecific_Context = EbmlSemanticContext(countof(KaxTagImageSpecific_ContextList), KaxTagImageSpecific_ContextList, &KaxTag_Context, *GetKaxTagsGlobal_Context, &EBML_INFO(KaxTagImageSpecific));
+const EbmlSemanticContext KaxTagBibliography_Context = EbmlSemanticContext(0, NULL, &KaxTag_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxTagBibliography));
+const EbmlSemanticContext KaxTagEncoder_Context = EbmlSemanticContext(0, NULL, &KaxTag_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxTagEncoder));
+const EbmlSemanticContext KaxTagEncodeSettings_Context = EbmlSemanticContext(0, NULL, &KaxTag_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxTagEncodeSettings));
+const EbmlSemanticContext KaxTagLanguage_Context = EbmlSemanticContext(0, NULL, &KaxTag_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxTagLanguage));
+const EbmlSemanticContext KaxTagLength_Context = EbmlSemanticContext(0, NULL, &KaxTag_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxTagLength));
+const EbmlSemanticContext KaxTagPlaylistDelay_Context = EbmlSemanticContext(0, NULL, &KaxTag_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxTagPlaylistDelay));
+const EbmlSemanticContext KaxTagRating_Context = EbmlSemanticContext(0, NULL, &KaxTag_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxTagRating));
+const EbmlSemanticContext KaxTagSubject_Context = EbmlSemanticContext(0, NULL, &KaxTag_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxTagSubject));
+const EbmlSemanticContext KaxTagUnsynchronisedText_Context = EbmlSemanticContext(0, NULL, &KaxTag_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxTagUnsynchronisedText));
+const EbmlSemanticContext KaxTagUserDefinedURL_Context = EbmlSemanticContext(0, NULL, &KaxTag_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxTagUserDefinedURL));
+const EbmlSemanticContext KaxTagTargetTypeValue_Context = EbmlSemanticContext(0, NULL, &KaxTagTargets_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxTagTargetTypeValue));
+const EbmlSemanticContext KaxTagTargetType_Context = EbmlSemanticContext(0, NULL, &KaxTagTargets_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxTagTargetType));
+const EbmlSemanticContext KaxTagTrackUID_Context = EbmlSemanticContext(0, NULL, &KaxTagTargets_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxTagTrackUID));
+const EbmlSemanticContext KaxTagEditionUID_Context = EbmlSemanticContext(0, NULL, &KaxTagTargets_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxTagEditionUID));
+const EbmlSemanticContext KaxTagChapterUID_Context = EbmlSemanticContext(0, NULL, &KaxTagTargets_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxTagChapterUID));
+const EbmlSemanticContext KaxTagAttachmentUID_Context = EbmlSemanticContext(0, NULL, &KaxTagTargets_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxTagAttachmentUID));
+const EbmlSemanticContext KaxTagArchivalLocation_Context = EbmlSemanticContext(0, NULL, &KaxTagGeneral_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxTagArchivalLocation));
+const EbmlSemanticContext KaxTagFile_Context = EbmlSemanticContext(0, NULL, &KaxTagGeneral_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxTagFile));
+const EbmlSemanticContext KaxTagKeywords_Context = EbmlSemanticContext(0, NULL, &KaxTagGeneral_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxTagKeywords));
+const EbmlSemanticContext KaxTagMood_Context = EbmlSemanticContext(0, NULL, &KaxTagGeneral_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxTagMood));
+const EbmlSemanticContext KaxTagRecordLocation_Context = EbmlSemanticContext(0, NULL, &KaxTagGeneral_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxTagRecordLocation));
+const EbmlSemanticContext KaxTagSource_Context = EbmlSemanticContext(0, NULL, &KaxTagGeneral_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxTagSource));
+const EbmlSemanticContext KaxTagSourceForm_Context = EbmlSemanticContext(0, NULL, &KaxTagGeneral_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxTagSourceForm));
+const EbmlSemanticContext KaxTagProduct_Context = EbmlSemanticContext(0, NULL, &KaxTagGeneral_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxTagProduct));
+const EbmlSemanticContext KaxTagOriginalMediaType_Context = EbmlSemanticContext(0, NULL, &KaxTagGeneral_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxTagOriginalMediaType));
+const EbmlSemanticContext KaxTagPlayCounter_Context = EbmlSemanticContext(0, NULL, &KaxTagGeneral_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxTagPlayCounter));
+const EbmlSemanticContext KaxTagPopularimeter_Context = EbmlSemanticContext(0, NULL, &KaxTagGeneral_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxTagPopularimeter));
+const EbmlSemanticContext KaxTagAudioGenre_Context = EbmlSemanticContext(0, NULL, &KaxTagGenres_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxTagAudioGenre));
+const EbmlSemanticContext KaxTagVideoGenre_Context = EbmlSemanticContext(0, NULL, &KaxTagGenres_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxTagVideoGenre));
+const EbmlSemanticContext KaxTagSubGenre_Context = EbmlSemanticContext(0, NULL, &KaxTagGenres_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxTagSubGenre));
+const EbmlSemanticContext KaxTagAudioEncryption_Context = EbmlSemanticContext(0, NULL, &KaxTagAudioSpecific_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxTagAudioEncryption));
+const EbmlSemanticContext KaxTagAudioGain_Context = EbmlSemanticContext(0, NULL, &KaxTagAudioSpecific_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxTagAudioGain));
+const EbmlSemanticContext KaxTagAudioPeak_Context = EbmlSemanticContext(0, NULL, &KaxTagAudioSpecific_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxTagAudioPeak));
+const EbmlSemanticContext KaxTagBPM_Context = EbmlSemanticContext(0, NULL, &KaxTagAudioSpecific_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxTagBPM));
+const EbmlSemanticContext KaxTagDiscTrack_Context = EbmlSemanticContext(0, NULL, &KaxTagAudioSpecific_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxTagDiscTrack));
+const EbmlSemanticContext KaxTagSetPart_Context = EbmlSemanticContext(0, NULL, &KaxTagAudioSpecific_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxTagSetPart));
+const EbmlSemanticContext KaxTagEqualisation_Context = EbmlSemanticContext(0, NULL, &KaxTagAudioSpecific_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxTagEqualisation));
+const EbmlSemanticContext KaxTagInitialKey_Context = EbmlSemanticContext(0, NULL, &KaxTagAudioSpecific_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxTagInitialKey));
+const EbmlSemanticContext KaxTagOfficialAudioFileURL_Context = EbmlSemanticContext(0, NULL, &KaxTagAudioSpecific_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxTagOfficialAudioFileURL));
+const EbmlSemanticContext KaxTagOfficialAudioSourceURL_Context = EbmlSemanticContext(0, NULL, &KaxTagAudioSpecific_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxTagOfficialAudioSourceURL));
+const EbmlSemanticContext KaxTagCaptureDPI_Context = EbmlSemanticContext(0, NULL, &KaxTagImageSpecific_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxTagCaptureDPI));
+const EbmlSemanticContext KaxTagCaptureLightness_Context = EbmlSemanticContext(0, NULL, &KaxTagImageSpecific_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxTagCaptureLightness));
+const EbmlSemanticContext KaxTagCapturePaletteSetting_Context = EbmlSemanticContext(0, NULL, &KaxTagImageSpecific_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxTagCapturePaletteSetting));
+const EbmlSemanticContext KaxTagCaptureSharpness_Context = EbmlSemanticContext(0, NULL, &KaxTagImageSpecific_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxTagCaptureSharpness));
+const EbmlSemanticContext KaxTagCropped_Context = EbmlSemanticContext(0, NULL, &KaxTagImageSpecific_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxTagCropped));
+const EbmlSemanticContext KaxTagOriginalDimensions_Context = EbmlSemanticContext(0, NULL, &KaxTagImageSpecific_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxTagOriginalDimensions));
 
-const EbmlSemanticContext KaxTagSimple_Context = EbmlSemanticContext(countof(KaxTagSimple_ContextList), KaxTagSimple_ContextList, &KaxTag_Context, *GetKaxGlobal_Context, &KaxTagSimple::ClassInfos);
-const EbmlSemanticContext KaxTagName_Context = EbmlSemanticContext(0, NULL, &KaxTagSimple_Context, *GetKaxGlobal_Context, &KaxTagName::ClassInfos);
-const EbmlSemanticContext KaxTagLangue_Context = EbmlSemanticContext(0, NULL, &KaxTagSimple_Context, *GetKaxGlobal_Context, &KaxTagLangue::ClassInfos);
-const EbmlSemanticContext KaxTagDefault_Context = EbmlSemanticContext(0, NULL, &KaxTagSimple_Context, *GetKaxGlobal_Context, &KaxTagDefault::ClassInfos);
-const EbmlSemanticContext KaxTagString_Context = EbmlSemanticContext(0, NULL, &KaxTagSimple_Context, *GetKaxGlobal_Context, &KaxTagString::ClassInfos);
-const EbmlSemanticContext KaxTagBinary_Context = EbmlSemanticContext(0, NULL, &KaxTagSimple_Context, *GetKaxGlobal_Context, &KaxTagBinary::ClassInfos);
+const EbmlSemanticContext KaxTagSimple_Context = EbmlSemanticContext(countof(KaxTagSimple_ContextList), KaxTagSimple_ContextList, &KaxTag_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxTagSimple));
+const EbmlSemanticContext KaxTagName_Context = EbmlSemanticContext(0, NULL, &KaxTagSimple_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxTagName));
+const EbmlSemanticContext KaxTagLangue_Context = EbmlSemanticContext(0, NULL, &KaxTagSimple_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxTagLangue));
+const EbmlSemanticContext KaxTagDefault_Context = EbmlSemanticContext(0, NULL, &KaxTagSimple_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxTagDefault));
+const EbmlSemanticContext KaxTagString_Context = EbmlSemanticContext(0, NULL, &KaxTagSimple_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxTagString));
+const EbmlSemanticContext KaxTagBinary_Context = EbmlSemanticContext(0, NULL, &KaxTagSimple_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxTagBinary));
 
 EbmlId KaxTag_TheId                      (0x7373, 2);
 EbmlId KaxTagTargets_TheId               (0x63C0, 2);

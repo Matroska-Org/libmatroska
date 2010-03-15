@@ -45,7 +45,7 @@ START_LIBMATROSKA_NAMESPACE
 
 const EbmlSemantic KaxTracks_ContextList[1] =
 {
-	EbmlSemantic(true, false, KaxTrackEntry::ClassInfos),
+	EbmlSemantic(true, false, EBML_INFO(KaxTrackEntry)),
 };
 
 #if MATROSKA_VERSION == 1
@@ -54,41 +54,41 @@ const EbmlSemantic KaxTrackEntry_ContextList[22] =
 const EbmlSemantic KaxTrackEntry_ContextList[27] =
 #endif // MATROSKA_VERSION
 {
-	EbmlSemantic(true , true, KaxTrackNumber::ClassInfos),
-	EbmlSemantic(true , true, KaxTrackUID::ClassInfos),
-	EbmlSemantic(true , true, KaxTrackType::ClassInfos),
+	EbmlSemantic(true , true, EBML_INFO(KaxTrackNumber)),
+	EbmlSemantic(true , true, EBML_INFO(KaxTrackUID)),
+	EbmlSemantic(true , true, EBML_INFO(KaxTrackType)),
 #if MATROSKA_VERSION >= 2
-	EbmlSemantic(true , true, KaxTrackFlagEnabled::ClassInfos),
+	EbmlSemantic(true , true, EBML_INFO(KaxTrackFlagEnabled)),
 #endif // MATROSKA_VERSION
-	EbmlSemantic(true , true, KaxTrackFlagDefault::ClassInfos),
-	EbmlSemantic(true , true, KaxTrackFlagForced::ClassInfos),
-	EbmlSemantic(true , true, KaxTrackFlagLacing::ClassInfos),
-	EbmlSemantic(true , true, KaxTrackMinCache::ClassInfos),
-	EbmlSemantic(false, true, KaxTrackMaxCache::ClassInfos),
-	EbmlSemantic(false, true, KaxTrackDefaultDuration::ClassInfos),
-	EbmlSemantic(true , true, KaxTrackTimecodeScale::ClassInfos),
-	EbmlSemantic(true , true, KaxMaxBlockAdditionID::ClassInfos),
-	EbmlSemantic(false, true, KaxTrackName::ClassInfos),
-	EbmlSemantic(false, true, KaxTrackLanguage::ClassInfos),
-	EbmlSemantic(true , true, KaxCodecID::ClassInfos),
-	EbmlSemantic(false, true, KaxCodecPrivate::ClassInfos),
-	EbmlSemantic(false, true, KaxCodecName::ClassInfos),
-	EbmlSemantic(false, true, KaxTrackAttachmentLink::ClassInfos),
+	EbmlSemantic(true , true, EBML_INFO(KaxTrackFlagDefault)),
+	EbmlSemantic(true , true, EBML_INFO(KaxTrackFlagForced)),
+	EbmlSemantic(true , true, EBML_INFO(KaxTrackFlagLacing)),
+	EbmlSemantic(true , true, EBML_INFO(KaxTrackMinCache)),
+	EbmlSemantic(false, true, EBML_INFO(KaxTrackMaxCache)),
+	EbmlSemantic(false, true, EBML_INFO(KaxTrackDefaultDuration)),
+	EbmlSemantic(true , true, EBML_INFO(KaxTrackTimecodeScale)),
+	EbmlSemantic(true , true, EBML_INFO(KaxMaxBlockAdditionID)),
+	EbmlSemantic(false, true, EBML_INFO(KaxTrackName)),
+	EbmlSemantic(false, true, EBML_INFO(KaxTrackLanguage)),
+	EbmlSemantic(true , true, EBML_INFO(KaxCodecID)),
+	EbmlSemantic(false, true, EBML_INFO(KaxCodecPrivate)),
+	EbmlSemantic(false, true, EBML_INFO(KaxCodecName)),
+	EbmlSemantic(false, true, EBML_INFO(KaxTrackAttachmentLink)),
 #if MATROSKA_VERSION >= 2
-	EbmlSemantic(false, true, KaxCodecSettings::ClassInfos),
-	EbmlSemantic(false, false,KaxCodecInfoURL::ClassInfos),
-	EbmlSemantic(false, false,KaxCodecDownloadURL::ClassInfos),
-	EbmlSemantic(true , true, KaxCodecDecodeAll::ClassInfos),
+	EbmlSemantic(false, true, EBML_INFO(KaxCodecSettings)),
+	EbmlSemantic(false, false,EBML_INFO(KaxCodecInfoURL)),
+	EbmlSemantic(false, false,EBML_INFO(KaxCodecDownloadURL)),
+	EbmlSemantic(true , true, EBML_INFO(KaxCodecDecodeAll)),
 #endif // MATROSKA_VERSION
-	EbmlSemantic(false, false,KaxTrackOverlay::ClassInfos),
-	EbmlSemantic(false, false,KaxTrackTranslate::ClassInfos),
-	EbmlSemantic(false, true, KaxTrackAudio::ClassInfos),
-	EbmlSemantic(false, true, KaxTrackVideo::ClassInfos),
-	EbmlSemantic(false, true, KaxContentEncodings::ClassInfos),
+	EbmlSemantic(false, false,EBML_INFO(KaxTrackOverlay)),
+	EbmlSemantic(false, false,EBML_INFO(KaxTrackTranslate)),
+	EbmlSemantic(false, true, EBML_INFO(KaxTrackAudio)),
+	EbmlSemantic(false, true, EBML_INFO(KaxTrackVideo)),
+	EbmlSemantic(false, true, EBML_INFO(KaxContentEncodings)),
 };
 
-const EbmlSemanticContext KaxTracks_Context = EbmlSemanticContext(countof(KaxTracks_ContextList), KaxTracks_ContextList, &KaxSegment_Context, *GetKaxGlobal_Context, &KaxTracks::ClassInfos);
-const EbmlSemanticContext KaxTrackEntry_Context = EbmlSemanticContext(countof(KaxTrackEntry_ContextList), KaxTrackEntry_ContextList, &KaxTracks_Context, *GetKaxGlobal_Context, &KaxTrackEntry::ClassInfos);
+const EbmlSemanticContext KaxTracks_Context = EbmlSemanticContext(countof(KaxTracks_ContextList), KaxTracks_ContextList, &KaxSegment_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxTracks));
+const EbmlSemanticContext KaxTrackEntry_Context = EbmlSemanticContext(countof(KaxTrackEntry_ContextList), KaxTrackEntry_ContextList, &KaxTracks_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxTrackEntry));
 
 EbmlId KaxTracks_TheId    (0x1654AE6B, 4);
 EbmlId KaxTrackEntry_TheId(0xAE, 1);

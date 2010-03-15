@@ -135,7 +135,7 @@ class MATROSKA_DLL_API KaxCluster : public EbmlMaster {
 		bool SetSilentTrackUsed()
 		{
 			bSilentTracksUsed = true;
-			return FindFirstElt(KaxClusterSilentTracks::ClassInfos, true) != NULL;
+			return FindFirstElt(EBML_INFO(KaxClusterSilentTracks), true) != NULL;
 		}
 
 		bool AddBlockBlob(KaxBlockBlob * NewBlob);

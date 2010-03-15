@@ -40,86 +40,86 @@ START_LIBMATROSKA_NAMESPACE
 
 EbmlSemantic KaxChapters_ContextList[1] =
 {
-    EbmlSemantic(true, false,  KaxEditionEntry::ClassInfos),
+    EbmlSemantic(true, false,  EBML_INFO(KaxEditionEntry)),
 };
 
 EbmlSemantic KaxEditionEntry_ContextList[5] =
 {
-    EbmlSemantic(false, true , KaxEditionUID::ClassInfos),
-    EbmlSemantic(true , true , KaxEditionFlagHidden::ClassInfos),
-    EbmlSemantic(true , true , KaxEditionFlagDefault::ClassInfos),
-    EbmlSemantic(false, true , KaxEditionFlagOrdered::ClassInfos),
-    EbmlSemantic(true , false, KaxChapterAtom::ClassInfos),
+    EbmlSemantic(false, true , EBML_INFO(KaxEditionUID)),
+    EbmlSemantic(true , true , EBML_INFO(KaxEditionFlagHidden)),
+    EbmlSemantic(true , true , EBML_INFO(KaxEditionFlagDefault)),
+    EbmlSemantic(false, true , EBML_INFO(KaxEditionFlagOrdered)),
+    EbmlSemantic(true , false, EBML_INFO(KaxChapterAtom)),
 };
 
 EbmlSemantic KaxChapterAtom_ContextList[12] =
 {
-    EbmlSemantic(false, false, KaxChapterAtom::ClassInfos),
-    EbmlSemantic(true,  true,  KaxChapterUID::ClassInfos),
-    EbmlSemantic(true,  true,  KaxChapterTimeStart::ClassInfos),
-    EbmlSemantic(false, true,  KaxChapterTimeEnd::ClassInfos),
-    EbmlSemantic(true , true,  KaxChapterFlagHidden::ClassInfos),
-    EbmlSemantic(true , true,  KaxChapterFlagEnabled::ClassInfos),
-    EbmlSemantic(false, true,  KaxChapterSegmentUID::ClassInfos),
-    EbmlSemantic(false, true,  KaxChapterSegmentEditionUID::ClassInfos),
-    EbmlSemantic(false, true,  KaxChapterPhysicalEquiv::ClassInfos),
-    EbmlSemantic(false, true,  KaxChapterTrack::ClassInfos),
-    EbmlSemantic(false, false, KaxChapterDisplay::ClassInfos),
-    EbmlSemantic(false, false, KaxChapterProcess::ClassInfos),
+    EbmlSemantic(false, false, EBML_INFO(KaxChapterAtom)),
+    EbmlSemantic(true,  true,  EBML_INFO(KaxChapterUID)),
+    EbmlSemantic(true,  true,  EBML_INFO(KaxChapterTimeStart)),
+    EbmlSemantic(false, true,  EBML_INFO(KaxChapterTimeEnd)),
+    EbmlSemantic(true , true,  EBML_INFO(KaxChapterFlagHidden)),
+    EbmlSemantic(true , true,  EBML_INFO(KaxChapterFlagEnabled)),
+    EbmlSemantic(false, true,  EBML_INFO(KaxChapterSegmentUID)),
+    EbmlSemantic(false, true,  EBML_INFO(KaxChapterSegmentEditionUID)),
+    EbmlSemantic(false, true,  EBML_INFO(KaxChapterPhysicalEquiv)),
+    EbmlSemantic(false, true,  EBML_INFO(KaxChapterTrack)),
+    EbmlSemantic(false, false, EBML_INFO(KaxChapterDisplay)),
+    EbmlSemantic(false, false, EBML_INFO(KaxChapterProcess)),
 };
 
 EbmlSemantic KaxChapterTrack_ContextList[1] =
 {
-    EbmlSemantic(true, false, KaxChapterTrackNumber::ClassInfos),
+    EbmlSemantic(true, false, EBML_INFO(KaxChapterTrackNumber)),
 };
 
 EbmlSemantic KaxChapterDisplay_ContextList[3] =
 {
-    EbmlSemantic(true,  true,  KaxChapterString::ClassInfos),
-    EbmlSemantic(true,  false, KaxChapterLanguage::ClassInfos),
-    EbmlSemantic(false, false, KaxChapterCountry::ClassInfos),
+    EbmlSemantic(true,  true,  EBML_INFO(KaxChapterString)),
+    EbmlSemantic(true,  false, EBML_INFO(KaxChapterLanguage)),
+    EbmlSemantic(false, false, EBML_INFO(KaxChapterCountry)),
 };
 
 EbmlSemantic KaxChapterProcess_ContextList[3] =
 {
-    EbmlSemantic(true,  true,  KaxChapterProcessCodecID::ClassInfos),
-    EbmlSemantic(false, true,  KaxChapterProcessPrivate::ClassInfos),
-    EbmlSemantic(false, false, KaxChapterProcessCommand::ClassInfos),
+    EbmlSemantic(true,  true,  EBML_INFO(KaxChapterProcessCodecID)),
+    EbmlSemantic(false, true,  EBML_INFO(KaxChapterProcessPrivate)),
+    EbmlSemantic(false, false, EBML_INFO(KaxChapterProcessCommand)),
 };
 
 EbmlSemantic KaxChapterProcessCommand_ContextList[2] =
 {
-    EbmlSemantic(true,  true,  KaxChapterProcessTime::ClassInfos),
-    EbmlSemantic(true,  true,  KaxChapterProcessData::ClassInfos),
+    EbmlSemantic(true,  true,  EBML_INFO(KaxChapterProcessTime)),
+    EbmlSemantic(true,  true,  EBML_INFO(KaxChapterProcessData)),
 };
 
-const EbmlSemanticContext KaxChapters_Context = EbmlSemanticContext(countof(KaxChapters_ContextList), KaxChapters_ContextList, &KaxSegment_Context, *GetKaxGlobal_Context, &KaxChapters::ClassInfos);
-const EbmlSemanticContext KaxEditionEntry_Context = EbmlSemanticContext(countof(KaxEditionEntry_ContextList), KaxEditionEntry_ContextList, &KaxChapters_Context, *GetKaxGlobal_Context, &KaxEditionEntry::ClassInfos);
-const EbmlSemanticContext KaxEditionUID_Context = EbmlSemanticContext(0, NULL, &KaxEditionEntry_Context, *GetKaxGlobal_Context, &KaxEditionUID::ClassInfos);
-const EbmlSemanticContext KaxEditionFlagHidden_Context = EbmlSemanticContext(0, NULL, &KaxEditionEntry_Context, *GetKaxGlobal_Context, &KaxEditionFlagHidden::ClassInfos);
-const EbmlSemanticContext KaxEditionFlagDefault_Context = EbmlSemanticContext(0, NULL, &KaxEditionEntry_Context, *GetKaxGlobal_Context, &KaxEditionFlagDefault::ClassInfos);
-const EbmlSemanticContext KaxEditionFlagOrdered_Context = EbmlSemanticContext(0, NULL, &KaxEditionEntry_Context, *GetKaxGlobal_Context, &KaxEditionFlagOrdered::ClassInfos);
-const EbmlSemanticContext KaxChapterAtom_Context = EbmlSemanticContext(countof(KaxChapterAtom_ContextList), KaxChapterAtom_ContextList, &KaxEditionEntry_Context, *GetKaxGlobal_Context, &KaxChapterAtom::ClassInfos);
-const EbmlSemanticContext KaxChapterTrack_Context = EbmlSemanticContext(countof(KaxChapterTrack_ContextList), KaxChapterTrack_ContextList, &KaxChapterAtom_Context, *GetKaxGlobal_Context, &KaxChapterTrack::ClassInfos);
-const EbmlSemanticContext KaxChapterDisplay_Context = EbmlSemanticContext(countof(KaxChapterDisplay_ContextList), KaxChapterDisplay_ContextList, &KaxChapterAtom_Context, *GetKaxGlobal_Context, &KaxChapterDisplay::ClassInfos);
-const EbmlSemanticContext KaxChapterUID_Context = EbmlSemanticContext(0, NULL, &KaxChapterAtom_Context, *GetKaxGlobal_Context, &KaxChapterUID::ClassInfos);
-const EbmlSemanticContext KaxChapterTimeStart_Context = EbmlSemanticContext(0, NULL, &KaxChapterAtom_Context, *GetKaxGlobal_Context, &KaxChapterTimeStart::ClassInfos);
-const EbmlSemanticContext KaxChapterTimeEnd_Context = EbmlSemanticContext(0, NULL, &KaxChapterAtom_Context, *GetKaxGlobal_Context, &KaxChapterTimeEnd::ClassInfos);
-const EbmlSemanticContext KaxChapterFlagHidden_Context = EbmlSemanticContext(0, NULL, &KaxChapterAtom_Context, *GetKaxGlobal_Context, &KaxChapterFlagHidden::ClassInfos);
-const EbmlSemanticContext KaxChapterFlagEnabled_Context = EbmlSemanticContext(0, NULL, &KaxChapterAtom_Context, *GetKaxGlobal_Context, &KaxChapterFlagEnabled::ClassInfos);
-const EbmlSemanticContext KaxChapterSegmentUID_Context = EbmlSemanticContext(0, NULL, &KaxChapterAtom_Context, *GetKaxGlobal_Context, &KaxChapterSegmentUID::ClassInfos);
-const EbmlSemanticContext KaxChapterSegmentEditionUID_Context = EbmlSemanticContext(0, NULL, &KaxChapterAtom_Context, *GetKaxGlobal_Context, &KaxChapterSegmentEditionUID::ClassInfos);
-const EbmlSemanticContext KaxChapterPhysicalEquiv_Context = EbmlSemanticContext(0, NULL, &KaxChapterAtom_Context, *GetKaxGlobal_Context, &KaxChapterPhysicalEquiv::ClassInfos);
-const EbmlSemanticContext KaxChapterTrackNumber_Context = EbmlSemanticContext(0, NULL, &KaxChapterTrack_Context, *GetKaxGlobal_Context, &KaxChapterTrackNumber::ClassInfos);
-const EbmlSemanticContext KaxChapterString_Context = EbmlSemanticContext(0, NULL, &KaxChapterDisplay_Context, *GetKaxGlobal_Context, &KaxChapterString::ClassInfos);
-const EbmlSemanticContext KaxChapterLanguage_Context = EbmlSemanticContext(0, NULL, &KaxChapterLanguage_Context, *GetKaxGlobal_Context, &KaxChapterLanguage::ClassInfos);
-const EbmlSemanticContext KaxChapterCountry_Context = EbmlSemanticContext(0, NULL, &KaxChapterCountry_Context, *GetKaxGlobal_Context, &KaxChapterCountry::ClassInfos);
-const EbmlSemanticContext KaxChapterProcess_Context = EbmlSemanticContext(countof(KaxChapterProcess_ContextList), KaxChapterProcess_ContextList, &KaxChapterAtom_Context, *GetKaxGlobal_Context, &KaxChapterProcess::ClassInfos);
-const EbmlSemanticContext KaxChapterProcessCodecID_Context = EbmlSemanticContext(0, NULL, &KaxChapterProcess_Context, *GetKaxGlobal_Context, &KaxChapterProcessCodecID::ClassInfos);
-const EbmlSemanticContext KaxChapterProcessPrivate_Context = EbmlSemanticContext(0, NULL, &KaxChapterProcess_Context, *GetKaxGlobal_Context, &KaxChapterProcessPrivate::ClassInfos);
-const EbmlSemanticContext KaxChapterProcessCommand_Context = EbmlSemanticContext(countof(KaxChapterProcessCommand_ContextList), KaxChapterProcessCommand_ContextList, &KaxChapterProcess_Context, *GetKaxGlobal_Context, &KaxChapterProcessCommand::ClassInfos);
-const EbmlSemanticContext KaxChapterProcessTime_Context = EbmlSemanticContext(0, NULL, &KaxChapterProcessCommand_Context, *GetKaxGlobal_Context, &KaxChapterProcessTime::ClassInfos);
-const EbmlSemanticContext KaxChapterProcessData_Context = EbmlSemanticContext(0, NULL, &KaxChapterProcessCommand_Context, *GetKaxGlobal_Context, &KaxChapterProcessData::ClassInfos);
+const EbmlSemanticContext KaxChapters_Context = EbmlSemanticContext(countof(KaxChapters_ContextList), KaxChapters_ContextList, &KaxSegment_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxChapters));
+const EbmlSemanticContext KaxEditionEntry_Context = EbmlSemanticContext(countof(KaxEditionEntry_ContextList), KaxEditionEntry_ContextList, &KaxChapters_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxEditionEntry));
+const EbmlSemanticContext KaxEditionUID_Context = EbmlSemanticContext(0, NULL, &KaxEditionEntry_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxEditionUID));
+const EbmlSemanticContext KaxEditionFlagHidden_Context = EbmlSemanticContext(0, NULL, &KaxEditionEntry_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxEditionFlagHidden));
+const EbmlSemanticContext KaxEditionFlagDefault_Context = EbmlSemanticContext(0, NULL, &KaxEditionEntry_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxEditionFlagDefault));
+const EbmlSemanticContext KaxEditionFlagOrdered_Context = EbmlSemanticContext(0, NULL, &KaxEditionEntry_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxEditionFlagOrdered));
+const EbmlSemanticContext KaxChapterAtom_Context = EbmlSemanticContext(countof(KaxChapterAtom_ContextList), KaxChapterAtom_ContextList, &KaxEditionEntry_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxChapterAtom));
+const EbmlSemanticContext KaxChapterTrack_Context = EbmlSemanticContext(countof(KaxChapterTrack_ContextList), KaxChapterTrack_ContextList, &KaxChapterAtom_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxChapterTrack));
+const EbmlSemanticContext KaxChapterDisplay_Context = EbmlSemanticContext(countof(KaxChapterDisplay_ContextList), KaxChapterDisplay_ContextList, &KaxChapterAtom_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxChapterDisplay));
+const EbmlSemanticContext KaxChapterUID_Context = EbmlSemanticContext(0, NULL, &KaxChapterAtom_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxChapterUID));
+const EbmlSemanticContext KaxChapterTimeStart_Context = EbmlSemanticContext(0, NULL, &KaxChapterAtom_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxChapterTimeStart));
+const EbmlSemanticContext KaxChapterTimeEnd_Context = EbmlSemanticContext(0, NULL, &KaxChapterAtom_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxChapterTimeEnd));
+const EbmlSemanticContext KaxChapterFlagHidden_Context = EbmlSemanticContext(0, NULL, &KaxChapterAtom_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxChapterFlagHidden));
+const EbmlSemanticContext KaxChapterFlagEnabled_Context = EbmlSemanticContext(0, NULL, &KaxChapterAtom_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxChapterFlagEnabled));
+const EbmlSemanticContext KaxChapterSegmentUID_Context = EbmlSemanticContext(0, NULL, &KaxChapterAtom_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxChapterSegmentUID));
+const EbmlSemanticContext KaxChapterSegmentEditionUID_Context = EbmlSemanticContext(0, NULL, &KaxChapterAtom_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxChapterSegmentEditionUID));
+const EbmlSemanticContext KaxChapterPhysicalEquiv_Context = EbmlSemanticContext(0, NULL, &KaxChapterAtom_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxChapterPhysicalEquiv));
+const EbmlSemanticContext KaxChapterTrackNumber_Context = EbmlSemanticContext(0, NULL, &KaxChapterTrack_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxChapterTrackNumber));
+const EbmlSemanticContext KaxChapterString_Context = EbmlSemanticContext(0, NULL, &KaxChapterDisplay_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxChapterString));
+const EbmlSemanticContext KaxChapterLanguage_Context = EbmlSemanticContext(0, NULL, &KaxChapterLanguage_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxChapterLanguage));
+const EbmlSemanticContext KaxChapterCountry_Context = EbmlSemanticContext(0, NULL, &KaxChapterCountry_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxChapterCountry));
+const EbmlSemanticContext KaxChapterProcess_Context = EbmlSemanticContext(countof(KaxChapterProcess_ContextList), KaxChapterProcess_ContextList, &KaxChapterAtom_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxChapterProcess));
+const EbmlSemanticContext KaxChapterProcessCodecID_Context = EbmlSemanticContext(0, NULL, &KaxChapterProcess_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxChapterProcessCodecID));
+const EbmlSemanticContext KaxChapterProcessPrivate_Context = EbmlSemanticContext(0, NULL, &KaxChapterProcess_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxChapterProcessPrivate));
+const EbmlSemanticContext KaxChapterProcessCommand_Context = EbmlSemanticContext(countof(KaxChapterProcessCommand_ContextList), KaxChapterProcessCommand_ContextList, &KaxChapterProcess_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxChapterProcessCommand));
+const EbmlSemanticContext KaxChapterProcessTime_Context = EbmlSemanticContext(0, NULL, &KaxChapterProcessCommand_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxChapterProcessTime));
+const EbmlSemanticContext KaxChapterProcessData_Context = EbmlSemanticContext(0, NULL, &KaxChapterProcessCommand_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxChapterProcessData));
 
 EbmlId KaxChapters_TheId               (0x1043A770, 4);
 EbmlId KaxEditionEntry_TheId           (0x45B9, 2);

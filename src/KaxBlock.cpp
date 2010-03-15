@@ -48,30 +48,30 @@ const EbmlSemantic KaxBlockGroup_ContextList[6] =
 const EbmlSemantic KaxBlockGroup_ContextList[9] =
 #endif // MATROSKA_VERSION
 {
-	EbmlSemantic(true,  true,  KaxBlock::ClassInfos),
+	EbmlSemantic(true,  true,  EBML_INFO(KaxBlock)),
 #if MATROSKA_VERSION >= 2
-	EbmlSemantic(false, true,  KaxBlockVirtual::ClassInfos),
+	EbmlSemantic(false, true,  EBML_INFO(KaxBlockVirtual)),
 #endif // MATROSKA_VERSION
-	EbmlSemantic(false, true,  KaxBlockDuration::ClassInfos),
-	EbmlSemantic(false, true,  KaxSlices::ClassInfos),
-	EbmlSemantic(true,  true,  KaxReferencePriority::ClassInfos),
-	EbmlSemantic(false, false, KaxReferenceBlock::ClassInfos),
+	EbmlSemantic(false, true,  EBML_INFO(KaxBlockDuration)),
+	EbmlSemantic(false, true,  EBML_INFO(KaxSlices)),
+	EbmlSemantic(true,  true,  EBML_INFO(KaxReferencePriority)),
+	EbmlSemantic(false, false, EBML_INFO(KaxReferenceBlock)),
 #if MATROSKA_VERSION >= 2
-	EbmlSemantic(false, true,  KaxReferenceVirtual::ClassInfos),
-	EbmlSemantic(false, true,  KaxCodecState::ClassInfos),
+	EbmlSemantic(false, true,  EBML_INFO(KaxReferenceVirtual)),
+	EbmlSemantic(false, true,  EBML_INFO(KaxCodecState)),
 #endif // MATROSKA_VERSION
-	EbmlSemantic(false, true,  KaxBlockAdditions::ClassInfos),
+	EbmlSemantic(false, true,  EBML_INFO(KaxBlockAdditions)),
 };
 
 const EbmlSemantic KaxBlockAdditions_ContextList[1] =
 {
-	EbmlSemantic(true,  false,  KaxBlockMore::ClassInfos)
+	EbmlSemantic(true,  false,  EBML_INFO(KaxBlockMore))
 };
 
 const EbmlSemantic KaxBlockMore_ContextList[2] =
 {
-	EbmlSemantic(true,  true,  KaxBlockAddID::ClassInfos),
-	EbmlSemantic(true,  true,  KaxBlockAdditional::ClassInfos)
+	EbmlSemantic(true,  true,  EBML_INFO(KaxBlockAddID)),
+	EbmlSemantic(true,  true,  EBML_INFO(KaxBlockAdditional))
 };
 
 EbmlId KaxBlockGroup_TheId     (0xA0, 1);
@@ -87,18 +87,18 @@ EbmlId KaxBlockMore_TheId      (0xA6, 1);
 EbmlId KaxBlockAddID_TheId     (0xEE, 1);
 EbmlId KaxBlockAdditional_TheId(0xA5, 1);
 
-const EbmlSemanticContext KaxBlockGroup_Context = EbmlSemanticContext(countof(KaxBlockGroup_ContextList), KaxBlockGroup_ContextList, &KaxCluster_Context, *GetKaxGlobal_Context, &KaxBlockGroup::ClassInfos);
-const EbmlSemanticContext KaxBlock_Context = EbmlSemanticContext(0, NULL, &KaxBlockGroup_Context, *GetKaxGlobal_Context, &KaxBlock::ClassInfos);
-const EbmlSemanticContext KaxBlockDuration_Context = EbmlSemanticContext(0, NULL, &KaxBlockGroup_Context, *GetKaxGlobal_Context, &KaxBlockDuration::ClassInfos);
+const EbmlSemanticContext KaxBlockGroup_Context = EbmlSemanticContext(countof(KaxBlockGroup_ContextList), KaxBlockGroup_ContextList, &KaxCluster_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxBlockGroup));
+const EbmlSemanticContext KaxBlock_Context = EbmlSemanticContext(0, NULL, &KaxBlockGroup_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxBlock));
+const EbmlSemanticContext KaxBlockDuration_Context = EbmlSemanticContext(0, NULL, &KaxBlockGroup_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxBlockDuration));
 #if MATROSKA_VERSION >= 2
-const EbmlSemanticContext KaxSimpleBlock_Context = EbmlSemanticContext(0, NULL, &KaxCluster_Context, *GetKaxGlobal_Context, &KaxSimpleBlock::ClassInfos);
-const EbmlSemanticContext KaxBlockVirtual_Context = EbmlSemanticContext(0, NULL, &KaxBlockGroup_Context, *GetKaxGlobal_Context, &KaxBlockVirtual::ClassInfos);
-const EbmlSemanticContext KaxCodecState_Context = EbmlSemanticContext(0, NULL, &KaxBlockGroup_Context, *GetKaxGlobal_Context, &KaxCodecState::ClassInfos);
+const EbmlSemanticContext KaxSimpleBlock_Context = EbmlSemanticContext(0, NULL, &KaxCluster_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxSimpleBlock));
+const EbmlSemanticContext KaxBlockVirtual_Context = EbmlSemanticContext(0, NULL, &KaxBlockGroup_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxBlockVirtual));
+const EbmlSemanticContext KaxCodecState_Context = EbmlSemanticContext(0, NULL, &KaxBlockGroup_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxCodecState));
 #endif // MATROSKA_VERSION
-const EbmlSemanticContext KaxBlockAdditions_Context = EbmlSemanticContext(countof(KaxBlockAdditions_ContextList), KaxBlockAdditions_ContextList, &KaxBlockGroup_Context, *GetKaxGlobal_Context, &KaxBlockAdditions::ClassInfos);
-const EbmlSemanticContext KaxBlockMore_Context = EbmlSemanticContext(countof(KaxBlockMore_ContextList), KaxBlockMore_ContextList, &KaxBlockAdditions_Context, *GetKaxGlobal_Context, &KaxBlockMore::ClassInfos);
-const EbmlSemanticContext KaxBlockAddID_Context = EbmlSemanticContext(0, NULL, &KaxBlockMore_Context, *GetKaxGlobal_Context, &KaxBlockAddID::ClassInfos);
-const EbmlSemanticContext KaxBlockAdditional_Context = EbmlSemanticContext(0, NULL, &KaxBlockMore_Context, *GetKaxGlobal_Context, &KaxBlockAdditional::ClassInfos);
+const EbmlSemanticContext KaxBlockAdditions_Context = EbmlSemanticContext(countof(KaxBlockAdditions_ContextList), KaxBlockAdditions_ContextList, &KaxBlockGroup_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxBlockAdditions));
+const EbmlSemanticContext KaxBlockMore_Context = EbmlSemanticContext(countof(KaxBlockMore_ContextList), KaxBlockMore_ContextList, &KaxBlockAdditions_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxBlockMore));
+const EbmlSemanticContext KaxBlockAddID_Context = EbmlSemanticContext(0, NULL, &KaxBlockMore_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxBlockAddID));
+const EbmlSemanticContext KaxBlockAdditional_Context = EbmlSemanticContext(0, NULL, &KaxBlockMore_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxBlockAdditional));
 
 const EbmlCallbacks KaxBlockGroup::ClassInfos(KaxBlockGroup::Create, KaxBlockGroup_TheId, "BlockGroup", KaxBlockGroup_Context);
 const EbmlCallbacks KaxBlock::ClassInfos(KaxBlock::Create, KaxBlock_TheId, "Block", KaxBlock_Context);
@@ -543,7 +543,7 @@ uint64 KaxInternalBlock::ReadData(IOCallback & input, ScopeMode ReadFully)
 		bLocalTimecodeUsed = true;
 		cursor += 2;
 
-		if (EbmlId(*this) == KaxSimpleBlock::ClassInfos.GlobalId) {
+		if (EbmlId(*this) == EBML_ID(KaxSimpleBlock)) {
 			bIsKeyframe = (*cursor & 0x80) != 0;
 			bIsDiscardable = (*cursor & 0x01) != 0;
 		}
@@ -650,7 +650,7 @@ uint64 KaxInternalBlock::ReadData(IOCallback & input, ScopeMode ReadFully)
 		bLocalTimecodeUsed = true;
 		cursor += 2;
 
-		if (EbmlId(*this) == KaxSimpleBlock::ClassInfos.GlobalId) {
+		if (EbmlId(*this) == EBML_ID(KaxSimpleBlock)) {
 			bIsKeyframe = (*cursor & 0x80) != 0;
 			bIsDiscardable = (*cursor & 0x01) != 0;
 		}
@@ -824,14 +824,14 @@ bool KaxBlockGroup::AddFrame(const KaxTrackEntry & track, uint64 timecode, DataB
 uint64 KaxBlockGroup::GlobalTimecode() const
 {
 	assert(ParentCluster != NULL); // impossible otherwise
-	KaxInternalBlock & MyBlock = *static_cast<KaxBlock *>(this->FindElt(KaxBlock::ClassInfos));
+	KaxInternalBlock & MyBlock = *static_cast<KaxBlock *>(this->FindElt(EBML_INFO(KaxBlock)));
 	return MyBlock.GlobalTimecode();
 
 }
 
 uint16 KaxBlockGroup::TrackNumber() const
 {
-	KaxInternalBlock & MyBlock = *static_cast<KaxBlock *>(this->FindElt(KaxBlock::ClassInfos));
+	KaxInternalBlock & MyBlock = *static_cast<KaxBlock *>(this->FindElt(EBML_INFO(KaxBlock)));
 	return MyBlock.TrackNum();
 }
 
@@ -850,7 +850,7 @@ uint64 KaxInternalBlock::ClusterPosition() const
 unsigned int KaxBlockGroup::ReferenceCount() const
 {
 	unsigned int Result = 0;
-	KaxReferenceBlock * MyBlockAdds = static_cast<KaxReferenceBlock *>(FindFirstElt(KaxReferenceBlock::ClassInfos));
+	KaxReferenceBlock * MyBlockAdds = static_cast<KaxReferenceBlock *>(FindFirstElt(EBML_INFO(KaxReferenceBlock)));
 	if (MyBlockAdds != NULL) {
 		Result++;
 		while ((MyBlockAdds = static_cast<KaxReferenceBlock *>(FindNextElt(*MyBlockAdds))) != NULL)
@@ -863,7 +863,7 @@ unsigned int KaxBlockGroup::ReferenceCount() const
 
 const KaxReferenceBlock & KaxBlockGroup::Reference(unsigned int Index) const
 {
-	KaxReferenceBlock * MyBlockAdds = static_cast<KaxReferenceBlock *>(FindFirstElt(KaxReferenceBlock::ClassInfos));
+	KaxReferenceBlock * MyBlockAdds = static_cast<KaxReferenceBlock *>(FindFirstElt(EBML_INFO(KaxReferenceBlock)));
 	assert(MyBlockAdds != NULL); // call of a non existing reference
 	
 	while (Index != 0) {
@@ -876,7 +876,7 @@ const KaxReferenceBlock & KaxBlockGroup::Reference(unsigned int Index) const
 
 void KaxBlockGroup::ReleaseFrames()
 {
-	KaxInternalBlock & MyBlock = *static_cast<KaxBlock *>(this->FindElt(KaxBlock::ClassInfos));
+	KaxInternalBlock & MyBlock = *static_cast<KaxBlock *>(this->FindElt(EBML_INFO(KaxBlock)));
 	MyBlock.ReleaseFrames();
 }
 
@@ -897,13 +897,13 @@ void KaxBlockGroup::SetBlockDuration(uint64 TimeLength)
 {
 	assert(ParentTrack != NULL);
 	int64 scale = ParentTrack->GlobalTimecodeScale();
-	KaxBlockDuration & myDuration = *static_cast<KaxBlockDuration *>(FindFirstElt(KaxBlockDuration::ClassInfos, true));
+	KaxBlockDuration & myDuration = *static_cast<KaxBlockDuration *>(FindFirstElt(EBML_INFO(KaxBlockDuration), true));
 	*(static_cast<EbmlUInteger *>(&myDuration)) = TimeLength / uint64(scale);
 }
 
 bool KaxBlockGroup::GetBlockDuration(uint64 &TheTimecode) const
 {
-	KaxBlockDuration * myDuration = static_cast<KaxBlockDuration *>(FindElt(KaxBlockDuration::ClassInfos));
+	KaxBlockDuration * myDuration = static_cast<KaxBlockDuration *>(FindElt(EBML_INFO(KaxBlockDuration)));
 	if (myDuration == NULL) {
 		return false;
 	}

@@ -44,10 +44,10 @@ START_LIBMATROSKA_NAMESPACE
 
 EbmlSemantic KaxTags_ContextList[1] =
 {
-	EbmlSemantic(true, false, KaxTag::ClassInfos),
+	EbmlSemantic(true, false, EBML_INFO(KaxTag)),
 };
 
-const EbmlSemanticContext KaxTags_Context = EbmlSemanticContext(countof(KaxTags_ContextList), KaxTags_ContextList, &KaxSegment_Context, *GetKaxGlobal_Context, &KaxTags::ClassInfos);
+const EbmlSemanticContext KaxTags_Context = EbmlSemanticContext(countof(KaxTags_ContextList), KaxTags_ContextList, &KaxSegment_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxTags));
 
 EbmlId KaxTags_TheId(0x1254C367, 4);
 

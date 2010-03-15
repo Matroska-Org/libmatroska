@@ -40,9 +40,9 @@ START_LIBMATROSKA_NAMESPACE
 
 const EbmlSemantic KaxChapterTranslate_ContextList[3] =
 {
-	EbmlSemantic(false, false, KaxChapterTranslateEditionUID::ClassInfos),
-	EbmlSemantic(true,  true,  KaxChapterTranslateCodec::ClassInfos),
-	EbmlSemantic(true,  true,  KaxChapterTranslateID::ClassInfos),
+	EbmlSemantic(false, false, EBML_INFO(KaxChapterTranslateEditionUID)),
+	EbmlSemantic(true,  true,  EBML_INFO(KaxChapterTranslateCodec)),
+	EbmlSemantic(true,  true,  EBML_INFO(KaxChapterTranslateID)),
 };
 
 EbmlId KaxSegmentUID_TheId      (0x73A4, 2);
@@ -61,21 +61,21 @@ EbmlId KaxDuration_TheId        (0x4489, 2);
 EbmlId KaxDateUTC_TheId         (0x4461, 2);
 EbmlId KaxTitle_TheId           (0x7BA9, 2);
 
-const EbmlSemanticContext KaxSegmentUID_Context = EbmlSemanticContext(0, NULL, &KaxInfo_Context, *GetKaxGlobal_Context, &KaxSegmentUID::ClassInfos);
-const EbmlSemanticContext KaxSegmentFilename_Context = EbmlSemanticContext(0, NULL, &KaxInfo_Context, *GetKaxGlobal_Context, &KaxSegmentFilename::ClassInfos);
-const EbmlSemanticContext KaxPrevUID_Context = EbmlSemanticContext(0, NULL, &KaxInfo_Context, *GetKaxGlobal_Context, &KaxPrevUID::ClassInfos);
-const EbmlSemanticContext KaxPrevFilename_Context = EbmlSemanticContext(0, NULL, &KaxInfo_Context, *GetKaxGlobal_Context, &KaxPrevFilename::ClassInfos);
-const EbmlSemanticContext KaxNextUID_Context = EbmlSemanticContext(0, NULL, &KaxInfo_Context, *GetKaxGlobal_Context, &KaxNextUID::ClassInfos);
-const EbmlSemanticContext KaxNextFilename_Context = EbmlSemanticContext(0, NULL, &KaxInfo_Context, *GetKaxGlobal_Context, &KaxNextFilename::ClassInfos);
-const EbmlSemanticContext KaxSegmentFamily_Context = EbmlSemanticContext(0, NULL, &KaxInfo_Context, *GetKaxGlobal_Context, &KaxSegmentFamily::ClassInfos);
-const EbmlSemanticContext KaxChapterTranslate_Context = EbmlSemanticContext(countof(KaxChapterTranslate_ContextList), KaxChapterTranslate_ContextList, &KaxInfo_Context, *GetKaxGlobal_Context, &KaxChapterTranslate::ClassInfos);
-const EbmlSemanticContext KaxChapterTranslateEditionUID_Context = EbmlSemanticContext(0, NULL, &KaxChapterTranslate_Context, *GetKaxGlobal_Context, &KaxChapterTranslateEditionUID::ClassInfos);
-const EbmlSemanticContext KaxChapterTranslateCodec_Context = EbmlSemanticContext(0, NULL, &KaxChapterTranslate_Context, *GetKaxGlobal_Context, &KaxChapterTranslateCodec::ClassInfos);
-const EbmlSemanticContext KaxChapterTranslateID_Context = EbmlSemanticContext(0, NULL, &KaxChapterTranslate_Context, *GetKaxGlobal_Context, &KaxChapterTranslateID::ClassInfos);
-const EbmlSemanticContext KaxTimecodeScale_Context = EbmlSemanticContext(0, NULL, &KaxInfo_Context, *GetKaxGlobal_Context, &KaxTimecodeScale::ClassInfos);
-const EbmlSemanticContext KaxDuration_Context = EbmlSemanticContext(0, NULL, &KaxInfo_Context, *GetKaxGlobal_Context, &KaxDuration::ClassInfos);
-const EbmlSemanticContext KaxDateUTC_Context = EbmlSemanticContext(0, NULL, &KaxInfo_Context, *GetKaxGlobal_Context, &KaxDateUTC::ClassInfos);
-const EbmlSemanticContext KaxTitle_Context = EbmlSemanticContext(0, NULL, &KaxInfo_Context, *GetKaxGlobal_Context, &KaxTitle::ClassInfos);
+const EbmlSemanticContext KaxSegmentUID_Context = EbmlSemanticContext(0, NULL, &KaxInfo_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxSegmentUID));
+const EbmlSemanticContext KaxSegmentFilename_Context = EbmlSemanticContext(0, NULL, &KaxInfo_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxSegmentFilename));
+const EbmlSemanticContext KaxPrevUID_Context = EbmlSemanticContext(0, NULL, &KaxInfo_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxPrevUID));
+const EbmlSemanticContext KaxPrevFilename_Context = EbmlSemanticContext(0, NULL, &KaxInfo_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxPrevFilename));
+const EbmlSemanticContext KaxNextUID_Context = EbmlSemanticContext(0, NULL, &KaxInfo_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxNextUID));
+const EbmlSemanticContext KaxNextFilename_Context = EbmlSemanticContext(0, NULL, &KaxInfo_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxNextFilename));
+const EbmlSemanticContext KaxSegmentFamily_Context = EbmlSemanticContext(0, NULL, &KaxInfo_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxSegmentFamily));
+const EbmlSemanticContext KaxChapterTranslate_Context = EbmlSemanticContext(countof(KaxChapterTranslate_ContextList), KaxChapterTranslate_ContextList, &KaxInfo_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxChapterTranslate));
+const EbmlSemanticContext KaxChapterTranslateEditionUID_Context = EbmlSemanticContext(0, NULL, &KaxChapterTranslate_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxChapterTranslateEditionUID));
+const EbmlSemanticContext KaxChapterTranslateCodec_Context = EbmlSemanticContext(0, NULL, &KaxChapterTranslate_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxChapterTranslateCodec));
+const EbmlSemanticContext KaxChapterTranslateID_Context = EbmlSemanticContext(0, NULL, &KaxChapterTranslate_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxChapterTranslateID));
+const EbmlSemanticContext KaxTimecodeScale_Context = EbmlSemanticContext(0, NULL, &KaxInfo_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxTimecodeScale));
+const EbmlSemanticContext KaxDuration_Context = EbmlSemanticContext(0, NULL, &KaxInfo_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxDuration));
+const EbmlSemanticContext KaxDateUTC_Context = EbmlSemanticContext(0, NULL, &KaxInfo_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxDateUTC));
+const EbmlSemanticContext KaxTitle_Context = EbmlSemanticContext(0, NULL, &KaxInfo_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxTitle));
 
 
 const EbmlCallbacks KaxSegmentUID::ClassInfos(KaxSegmentUID::Create, KaxSegmentUID_TheId, "SegmentUID", KaxSegmentUID_Context);

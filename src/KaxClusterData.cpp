@@ -45,14 +45,14 @@ EbmlId KaxClusterPosition_TheId         (0xA7, 1);
 
 EbmlSemantic KaxClusterSilentTracks_ContextList[1] =
 {
-	EbmlSemantic(false,  false, KaxClusterSilentTrackNumber::ClassInfos),
+	EbmlSemantic(false,  false, EBML_INFO(KaxClusterSilentTrackNumber)),
 };
 
-const EbmlSemanticContext KaxClusterTimecode_Context = EbmlSemanticContext(0, NULL, &KaxCluster_Context, *GetKaxGlobal_Context, &KaxClusterTimecode::ClassInfos);
-const EbmlSemanticContext KaxClusterSilentTracks_Context = EbmlSemanticContext(countof(KaxClusterSilentTracks_ContextList), KaxClusterSilentTracks_ContextList, &KaxCluster_Context, *GetKaxGlobal_Context, &KaxClusterSilentTracks::ClassInfos);
-const EbmlSemanticContext KaxClusterSilentTrackNumber_Context = EbmlSemanticContext(0, NULL, &KaxClusterSilentTracks_Context, *GetKaxGlobal_Context, &KaxClusterSilentTrackNumber::ClassInfos);
-const EbmlSemanticContext KaxClusterPosition_Context = EbmlSemanticContext(0, NULL, &KaxCluster_Context, *GetKaxGlobal_Context, &KaxClusterPosition::ClassInfos);
-const EbmlSemanticContext KaxClusterPrevSize_Context = EbmlSemanticContext(0, NULL, &KaxCluster_Context, *GetKaxGlobal_Context, &KaxClusterPrevSize::ClassInfos);
+const EbmlSemanticContext KaxClusterTimecode_Context = EbmlSemanticContext(0, NULL, &KaxCluster_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxClusterTimecode));
+const EbmlSemanticContext KaxClusterSilentTracks_Context = EbmlSemanticContext(countof(KaxClusterSilentTracks_ContextList), KaxClusterSilentTracks_ContextList, &KaxCluster_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxClusterSilentTracks));
+const EbmlSemanticContext KaxClusterSilentTrackNumber_Context = EbmlSemanticContext(0, NULL, &KaxClusterSilentTracks_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxClusterSilentTrackNumber));
+const EbmlSemanticContext KaxClusterPosition_Context = EbmlSemanticContext(0, NULL, &KaxCluster_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxClusterPosition));
+const EbmlSemanticContext KaxClusterPrevSize_Context = EbmlSemanticContext(0, NULL, &KaxCluster_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxClusterPrevSize));
 
 const EbmlCallbacks KaxClusterTimecode::ClassInfos(KaxClusterTimecode::Create, KaxClusterTimecode_TheId, "ClusterTimecode", KaxClusterTimecode_Context);
 const EbmlCallbacks KaxClusterSilentTracks::ClassInfos(KaxClusterSilentTracks::Create, KaxClusterSilentTracks_TheId, "ClusterSilentTracks", KaxClusterSilentTracks_Context);

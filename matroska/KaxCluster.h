@@ -52,11 +52,6 @@ class MATROSKA_DLL_API KaxCluster : public EbmlMaster {
 	public:
 		KaxCluster();
 		KaxCluster(const KaxCluster & ElementToClone);
-		static EbmlElement & Create() {return *(new KaxCluster);}
-		const EbmlCallbacks & Generic() const {return ClassInfos;}
-		static const EbmlCallbacks ClassInfos;
-		operator const EbmlId &() const {return ClassInfos.GlobalId;}
-		EbmlElement * Clone() const {return new KaxCluster(*this);}
 
 		/*!
 			\brief Addition of a frame without references
@@ -161,6 +156,7 @@ class MATROSKA_DLL_API KaxCluster : public EbmlMaster {
 		*/
 		bool AddFrameInternal(const KaxTrackEntry & track, uint64 timecode, DataBuffer & buffer, KaxBlockGroup * & MyNewBlock, const KaxBlockGroup * PastBlock, const KaxBlockGroup * ForwBlock, LacingType lacing);
 
+        EBML_CONCRETE_CLASS(KaxCluster)
 };
 
 END_LIBMATROSKA_NAMESPACE

@@ -47,55 +47,40 @@ class MATROSKA_DLL_API KaxClusterTimecode : public EbmlUInteger {
 	public:
 		KaxClusterTimecode() {}
 		KaxClusterTimecode(const KaxClusterTimecode & ElementToClone) :EbmlUInteger(ElementToClone) {}
-		static EbmlElement & Create() {return *(new KaxClusterTimecode);}
-		const EbmlCallbacks & Generic() const {return ClassInfos;}
-		static const EbmlCallbacks ClassInfos;
-		operator const EbmlId &() const {return ClassInfos.GlobalId;}
-		EbmlElement * Clone() const {return new KaxClusterTimecode(*this);}
+
+        EBML_CONCRETE_CLASS(KaxClusterTimecode)
 };
 
 class MATROSKA_DLL_API KaxClusterSilentTracks : public EbmlMaster {
 	public:
 		KaxClusterSilentTracks();
 		KaxClusterSilentTracks(const KaxClusterSilentTracks & ElementToClone) :EbmlMaster(ElementToClone) {}
-		static EbmlElement & Create() {return *(new KaxClusterSilentTracks);}
-		const EbmlCallbacks & Generic() const {return ClassInfos;}
-		static const EbmlCallbacks ClassInfos;
-		operator const EbmlId &() const {return ClassInfos.GlobalId;}
-		EbmlElement * Clone() const {return new KaxClusterSilentTracks(*this);}
+
+        EBML_CONCRETE_CLASS(KaxClusterSilentTracks)
 };
 
 class MATROSKA_DLL_API KaxClusterSilentTrackNumber : public EbmlUInteger {
 	public:
 		KaxClusterSilentTrackNumber() {}
 		KaxClusterSilentTrackNumber(const KaxClusterSilentTrackNumber & ElementToClone) :EbmlUInteger(ElementToClone) {}
-		static EbmlElement & Create() {return *(new KaxClusterSilentTrackNumber);}
-		const EbmlCallbacks & Generic() const {return ClassInfos;}
-		static const EbmlCallbacks ClassInfos;
-		operator const EbmlId &() const {return ClassInfos.GlobalId;}
-		EbmlElement * Clone() const {return new KaxClusterSilentTrackNumber(*this);}
+
+        EBML_CONCRETE_CLASS(KaxClusterSilentTrackNumber)
 };
 
 class MATROSKA_DLL_API KaxClusterPosition : public EbmlUInteger {
 	public:
 		KaxClusterPosition() {}
 		KaxClusterPosition(const KaxClusterPosition & ElementToClone) :EbmlUInteger(ElementToClone) {}
-		static EbmlElement & Create() {return *(new KaxClusterPosition);}
-		const EbmlCallbacks & Generic() const {return ClassInfos;}
-		static const EbmlCallbacks ClassInfos;
-		operator const EbmlId &() const {return ClassInfos.GlobalId;}
-		EbmlElement * Clone() const {return new KaxClusterPosition(*this);}
+
+        EBML_CONCRETE_CLASS(KaxClusterPosition)
 };
 
 class MATROSKA_DLL_API KaxClusterPrevSize : public EbmlUInteger {
 	public:
 		KaxClusterPrevSize() {}
 		KaxClusterPrevSize(const KaxClusterPrevSize & ElementToClone) :EbmlUInteger(ElementToClone) {}
-		static EbmlElement & Create() {return *(new KaxClusterPrevSize);}
-		const EbmlCallbacks & Generic() const {return ClassInfos;}
-		static const EbmlCallbacks ClassInfos;
-		operator const EbmlId &() const {return ClassInfos.GlobalId;}
-		EbmlElement * Clone() const {return new KaxClusterPrevSize(*this);}
+
+        EBML_CONCRETE_CLASS(KaxClusterPrevSize)
 };
 
 END_LIBMATROSKA_NAMESPACE

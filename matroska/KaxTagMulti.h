@@ -126,441 +126,321 @@ class MATROSKA_DLL_API KaxTagMultiComment : public EbmlMaster {
 	public:
 		KaxTagMultiComment();
 		KaxTagMultiComment(const KaxTagMultiComment & ElementToClone) :EbmlMaster(ElementToClone) {}
-		static EbmlElement & Create() {return *(new KaxTagMultiComment);}
-		const EbmlCallbacks & Generic() const {return ClassInfos;}
-		static const EbmlCallbacks ClassInfos;
-		operator const EbmlId &() const {return ClassInfos.GlobalId;}
-		EbmlElement * Clone() const {return new KaxTagMultiComment(*this);}
+
+        EBML_CONCRETE_CLASS(KaxTagMultiComment)
 };
 
 class MATROSKA_DLL_API KaxTagMultiCommentName : public EbmlString {
 	public:
 		KaxTagMultiCommentName() {}
 		KaxTagMultiCommentName(const KaxTagMultiCommentName & ElementToClone) :EbmlString(ElementToClone) {}
-		static EbmlElement & Create() {return *(new KaxTagMultiCommentName);}
-		const EbmlCallbacks & Generic() const {return ClassInfos;}
-		static const EbmlCallbacks ClassInfos;
-		operator const EbmlId &() const {return ClassInfos.GlobalId;}
-		EbmlElement * Clone() const {return new KaxTagMultiCommentName(*this);}
+
+        EBML_CONCRETE_CLASS(KaxTagMultiCommentName)
 };
 
 class MATROSKA_DLL_API KaxTagMultiCommentComments : public EbmlUnicodeString {
 	public:
 		KaxTagMultiCommentComments() {}
 		KaxTagMultiCommentComments(const KaxTagMultiCommentComments & ElementToClone) :EbmlUnicodeString(ElementToClone) {}
-		static EbmlElement & Create() {return *(new KaxTagMultiCommentComments);}
-		const EbmlCallbacks & Generic() const {return ClassInfos;}
-		static const EbmlCallbacks ClassInfos;
-		operator const EbmlId &() const {return ClassInfos.GlobalId;}
-		EbmlElement * Clone() const {return new KaxTagMultiCommentComments(*this);}
+
+        EBML_CONCRETE_CLASS(KaxTagMultiCommentComments)
 };
 
 class MATROSKA_DLL_API KaxTagMultiCommentLanguage : public EbmlString {
 	public:
 		KaxTagMultiCommentLanguage() {}
 		KaxTagMultiCommentLanguage(const KaxTagMultiCommentLanguage & ElementToClone) :EbmlString(ElementToClone) {}
-		static EbmlElement & Create() {return *(new KaxTagMultiCommentLanguage);}
-		const EbmlCallbacks & Generic() const {return ClassInfos;}
-		static const EbmlCallbacks ClassInfos;
-		operator const EbmlId &() const {return ClassInfos.GlobalId;}
-		EbmlElement * Clone() const {return new KaxTagMultiCommentLanguage(*this);}
+
+        EBML_CONCRETE_CLASS(KaxTagMultiCommentLanguage)
 };
 
 class MATROSKA_DLL_API KaxTagMultiCommercial : public EbmlMaster {
 	public:
 		KaxTagMultiCommercial();
 		KaxTagMultiCommercial(const KaxTagMultiCommercial & ElementToClone) :EbmlMaster(ElementToClone) {}
-		static EbmlElement & Create() {return *(new KaxTagMultiCommercial);}
-		const EbmlCallbacks & Generic() const {return ClassInfos;}
-		static const EbmlCallbacks ClassInfos;
-		operator const EbmlId &() const {return ClassInfos.GlobalId;}
-		EbmlElement * Clone() const {return new KaxTagMultiCommercial(*this);}
+
+        EBML_CONCRETE_CLASS(KaxTagMultiCommercial)
 };
 
 class MATROSKA_DLL_API KaxTagCommercial : public EbmlMaster {
 	public:
 		KaxTagCommercial();
 		KaxTagCommercial(const KaxTagCommercial & ElementToClone) :EbmlMaster(ElementToClone) {}
-		static EbmlElement & Create() {return *(new KaxTagCommercial);}
-		const EbmlCallbacks & Generic() const {return ClassInfos;}
-		static const EbmlCallbacks ClassInfos;
-		operator const EbmlId &() const {return ClassInfos.GlobalId;}
-		EbmlElement * Clone() const {return new KaxTagCommercial(*this);}
+
+        EBML_CONCRETE_CLASS(KaxTagCommercial)
 };
 
 class MATROSKA_DLL_API KaxTagMultiCommercialType : public EbmlUInteger {
 	public:
 		KaxTagMultiCommercialType() {}
 		KaxTagMultiCommercialType(const KaxTagMultiCommercialType & ElementToClone) :EbmlUInteger(ElementToClone) {}
-		static EbmlElement & Create() {return *(new KaxTagMultiCommercialType);}
-		const EbmlCallbacks & Generic() const {return ClassInfos;}
-		static const EbmlCallbacks ClassInfos;
-		operator const EbmlId &() const {return ClassInfos.GlobalId;}
-		EbmlElement * Clone() const {return new KaxTagMultiCommercialType(*this);}
+
+        EBML_CONCRETE_CLASS(KaxTagMultiCommercialType)
 };
 
 class MATROSKA_DLL_API KaxTagMultiCommercialAddress : public EbmlUnicodeString {
 	public:
 		KaxTagMultiCommercialAddress() {}
 		KaxTagMultiCommercialAddress(const KaxTagMultiCommercialAddress & ElementToClone) :EbmlUnicodeString(ElementToClone) {}
-		static EbmlElement & Create() {return *(new KaxTagMultiCommercialAddress);}
-		const EbmlCallbacks & Generic() const {return ClassInfos;}
-		static const EbmlCallbacks ClassInfos;
-		operator const EbmlId &() const {return ClassInfos.GlobalId;}
-		EbmlElement * Clone() const {return new KaxTagMultiCommercialAddress(*this);}
+
+        EBML_CONCRETE_CLASS(KaxTagMultiCommercialAddress)
 };
 
 class MATROSKA_DLL_API KaxTagMultiCommercialURL : public EbmlString {
 	public:
 		KaxTagMultiCommercialURL() {}
 		KaxTagMultiCommercialURL(const KaxTagMultiCommercialURL & ElementToClone) :EbmlString(ElementToClone) {}
-		static EbmlElement & Create() {return *(new KaxTagMultiCommercialURL);}
-		const EbmlCallbacks & Generic() const {return ClassInfos;}
-		static const EbmlCallbacks ClassInfos;
-		operator const EbmlId &() const {return ClassInfos.GlobalId;}
-		EbmlElement * Clone() const {return new KaxTagMultiCommercialURL(*this);}
+
+        EBML_CONCRETE_CLASS(KaxTagMultiCommercialURL)
 };
 
 class MATROSKA_DLL_API KaxTagMultiCommercialEmail : public EbmlString {
 	public:
 		KaxTagMultiCommercialEmail() {}
 		KaxTagMultiCommercialEmail(const KaxTagMultiCommercialEmail & ElementToClone) :EbmlString(ElementToClone) {}
-		static EbmlElement & Create() {return *(new KaxTagMultiCommercialEmail);}
-		const EbmlCallbacks & Generic() const {return ClassInfos;}
-		static const EbmlCallbacks ClassInfos;
-		operator const EbmlId &() const {return ClassInfos.GlobalId;}
-		EbmlElement * Clone() const {return new KaxTagMultiCommercialEmail(*this);}
+
+        EBML_CONCRETE_CLASS(KaxTagMultiCommercialEmail)
 };
 
 class MATROSKA_DLL_API KaxTagMultiPrice : public EbmlMaster {
 	public:
 		KaxTagMultiPrice();
 		KaxTagMultiPrice(const KaxTagMultiPrice & ElementToClone) :EbmlMaster(ElementToClone) {}
-		static EbmlElement & Create() {return *(new KaxTagMultiPrice);}
-		const EbmlCallbacks & Generic() const {return ClassInfos;}
-		static const EbmlCallbacks ClassInfos;
-		operator const EbmlId &() const {return ClassInfos.GlobalId;}
-		EbmlElement * Clone() const {return new KaxTagMultiPrice(*this);}
+
+        EBML_CONCRETE_CLASS(KaxTagMultiPrice)
 };
 
 class MATROSKA_DLL_API KaxTagMultiPriceCurrency : public EbmlString {
 	public:
 		KaxTagMultiPriceCurrency() {}
 		KaxTagMultiPriceCurrency(const KaxTagMultiPriceCurrency & ElementToClone) :EbmlString(ElementToClone) {}
-		static EbmlElement & Create() {return *(new KaxTagMultiPriceCurrency);}
-		const EbmlCallbacks & Generic() const {return ClassInfos;}
-		static const EbmlCallbacks ClassInfos;
-		operator const EbmlId &() const {return ClassInfos.GlobalId;}
-		EbmlElement * Clone() const {return new KaxTagMultiPriceCurrency(*this);}
+
+        EBML_CONCRETE_CLASS(KaxTagMultiPriceCurrency)
 };
 
 class MATROSKA_DLL_API KaxTagMultiPriceAmount : public EbmlFloat {
 	public:
 		KaxTagMultiPriceAmount() :EbmlFloat() {}
 		KaxTagMultiPriceAmount(const KaxTagMultiPriceAmount & ElementToClone) :EbmlFloat(ElementToClone) {}
-		static EbmlElement & Create() {return *(new KaxTagMultiPriceAmount);}
-		const EbmlCallbacks & Generic() const {return ClassInfos;}
-		static const EbmlCallbacks ClassInfos;
-		operator const EbmlId &() const {return ClassInfos.GlobalId;}
-		EbmlElement * Clone() const {return new KaxTagMultiPriceAmount(*this);}
+
+        EBML_CONCRETE_CLASS(KaxTagMultiPriceAmount)
 };
 
 class MATROSKA_DLL_API KaxTagMultiPricePriceDate : public EbmlDate {
 	public:
 		KaxTagMultiPricePriceDate() :EbmlDate() {}
 		KaxTagMultiPricePriceDate(const KaxTagMultiPricePriceDate & ElementToClone) :EbmlDate(ElementToClone) {}
-		static EbmlElement & Create() {return *(new KaxTagMultiPricePriceDate);}		
-		const EbmlCallbacks & Generic() const {return ClassInfos;}
-		static const EbmlCallbacks ClassInfos;
-		operator const EbmlId &() const {return ClassInfos.GlobalId;}
-		EbmlElement * Clone() const {return new KaxTagMultiPricePriceDate(*this);}
+
+        EBML_CONCRETE_CLASS(KaxTagMultiPricePriceDate)
 };
 
 class MATROSKA_DLL_API KaxTagMultiDate : public EbmlMaster {
 	public:
 		KaxTagMultiDate();
 		KaxTagMultiDate(const KaxTagMultiDate & ElementToClone) :EbmlMaster(ElementToClone) {}
-		static EbmlElement & Create() {return *(new KaxTagMultiDate);}
-		const EbmlCallbacks & Generic() const {return ClassInfos;}
-		static const EbmlCallbacks ClassInfos;
-		operator const EbmlId &() const {return ClassInfos.GlobalId;}
-		EbmlElement * Clone() const {return new KaxTagMultiDate(*this);}
+
+        EBML_CONCRETE_CLASS(KaxTagMultiDate)
 };
 
 class MATROSKA_DLL_API KaxTagDate : public EbmlMaster {
 	public:
 		KaxTagDate();
 		KaxTagDate(const KaxTagDate & ElementToClone) :EbmlMaster(ElementToClone) {}
-		static EbmlElement & Create() {return *(new KaxTagDate);}
-		const EbmlCallbacks & Generic() const {return ClassInfos;}
-		static const EbmlCallbacks ClassInfos;
-		operator const EbmlId &() const {return ClassInfos.GlobalId;}
-		EbmlElement * Clone() const {return new KaxTagDate(*this);}
+
+        EBML_CONCRETE_CLASS(KaxTagDate)
 };
 
 class MATROSKA_DLL_API KaxTagMultiDateType : public EbmlUInteger {
 	public:
 		KaxTagMultiDateType() {}
 		KaxTagMultiDateType(const KaxTagMultiDateType & ElementToClone) :EbmlUInteger(ElementToClone) {}
-		static EbmlElement & Create() {return *(new KaxTagMultiDateType);}
-		const EbmlCallbacks & Generic() const {return ClassInfos;}
-		static const EbmlCallbacks ClassInfos;
-		operator const EbmlId &() const {return ClassInfos.GlobalId;}
-		EbmlElement * Clone() const {return new KaxTagMultiDateType(*this);}
+
+        EBML_CONCRETE_CLASS(KaxTagMultiDateType)
 };
 
 class MATROSKA_DLL_API KaxTagMultiDateDateBegin : public EbmlDate {
 	public:
 		KaxTagMultiDateDateBegin() :EbmlDate() {}
 		KaxTagMultiDateDateBegin(const KaxTagMultiDateDateBegin & ElementToClone) :EbmlDate(ElementToClone) {}
-		static EbmlElement & Create() {return *(new KaxTagMultiDateDateBegin);}		
-		const EbmlCallbacks & Generic() const {return ClassInfos;}
-		static const EbmlCallbacks ClassInfos;
-		operator const EbmlId &() const {return ClassInfos.GlobalId;}
-		EbmlElement * Clone() const {return new KaxTagMultiDateDateBegin(*this);}
+
+        EBML_CONCRETE_CLASS(KaxTagMultiDateDateBegin)
 };
 
 class MATROSKA_DLL_API KaxTagMultiDateDateEnd : public EbmlDate {
 	public:
 		KaxTagMultiDateDateEnd() :EbmlDate() {}
 		KaxTagMultiDateDateEnd(const KaxTagMultiDateDateEnd & ElementToClone) :EbmlDate(ElementToClone) {}
-		static EbmlElement & Create() {return *(new KaxTagMultiDateDateEnd);}		
-		const EbmlCallbacks & Generic() const {return ClassInfos;}
-		static const EbmlCallbacks ClassInfos;
-		operator const EbmlId &() const {return ClassInfos.GlobalId;}
-		EbmlElement * Clone() const {return new KaxTagMultiDateDateEnd(*this);}
+
+        EBML_CONCRETE_CLASS(KaxTagMultiDateDateEnd)
 };
 
 class MATROSKA_DLL_API KaxTagMultiEntity : public EbmlMaster {
 	public:
 		KaxTagMultiEntity();
 		KaxTagMultiEntity(const KaxTagMultiEntity & ElementToClone) :EbmlMaster(ElementToClone) {}
-		static EbmlElement & Create() {return *(new KaxTagMultiEntity);}
-		const EbmlCallbacks & Generic() const {return ClassInfos;}
-		static const EbmlCallbacks ClassInfos;
-		operator const EbmlId &() const {return ClassInfos.GlobalId;}
-		EbmlElement * Clone() const {return new KaxTagMultiEntity(*this);}
+
+        EBML_CONCRETE_CLASS(KaxTagMultiEntity)
 };
 
 class MATROSKA_DLL_API KaxTagEntity : public EbmlMaster {
 	public:
 		KaxTagEntity();
 		KaxTagEntity(const KaxTagEntity & ElementToClone) :EbmlMaster(ElementToClone) {}
-		static EbmlElement & Create() {return *(new KaxTagEntity);}
-		const EbmlCallbacks & Generic() const {return ClassInfos;}
-		static const EbmlCallbacks ClassInfos;
-		operator const EbmlId &() const {return ClassInfos.GlobalId;}
-		EbmlElement * Clone() const {return new KaxTagEntity(*this);}
+
+        EBML_CONCRETE_CLASS(KaxTagEntity)
 };
 
 class MATROSKA_DLL_API KaxTagMultiEntityType : public EbmlUInteger {
 	public:
 		KaxTagMultiEntityType() {}
 		KaxTagMultiEntityType(const KaxTagMultiEntityType & ElementToClone) :EbmlUInteger(ElementToClone) {}
-		static EbmlElement & Create() {return *(new KaxTagMultiEntityType);}
-		const EbmlCallbacks & Generic() const {return ClassInfos;}
-		static const EbmlCallbacks ClassInfos;
-		operator const EbmlId &() const {return ClassInfos.GlobalId;}
-		EbmlElement * Clone() const {return new KaxTagMultiEntityType(*this);}
+
+        EBML_CONCRETE_CLASS(KaxTagMultiEntityType)
 };
 
 class MATROSKA_DLL_API KaxTagMultiEntityName : public EbmlUnicodeString {
 	public:
 		KaxTagMultiEntityName() {}
 		KaxTagMultiEntityName(const KaxTagMultiEntityName & ElementToClone) :EbmlUnicodeString(ElementToClone) {}
-		static EbmlElement & Create() {return *(new KaxTagMultiEntityName);}
-		const EbmlCallbacks & Generic() const {return ClassInfos;}
-		static const EbmlCallbacks ClassInfos;
-		operator const EbmlId &() const {return ClassInfos.GlobalId;}
-		EbmlElement * Clone() const {return new KaxTagMultiEntityName(*this);}
+
+        EBML_CONCRETE_CLASS(KaxTagMultiEntityName)
 };
 
 class MATROSKA_DLL_API KaxTagMultiEntityAddress : public EbmlUnicodeString {
 	public:
 		KaxTagMultiEntityAddress() {}
 		KaxTagMultiEntityAddress(const KaxTagMultiEntityAddress & ElementToClone) :EbmlUnicodeString(ElementToClone) {}
-		static EbmlElement & Create() {return *(new KaxTagMultiEntityAddress);}
-		const EbmlCallbacks & Generic() const {return ClassInfos;}
-		static const EbmlCallbacks ClassInfos;
-		operator const EbmlId &() const {return ClassInfos.GlobalId;}
-		EbmlElement * Clone() const {return new KaxTagMultiEntityAddress(*this);}
+
+        EBML_CONCRETE_CLASS(KaxTagMultiEntityAddress)
 };
 
 class MATROSKA_DLL_API KaxTagMultiEntityURL : public EbmlString {
 	public:
 		KaxTagMultiEntityURL() {}
 		KaxTagMultiEntityURL(const KaxTagMultiEntityURL & ElementToClone) :EbmlString(ElementToClone) {}
-		static EbmlElement & Create() {return *(new KaxTagMultiEntityURL);}
-		const EbmlCallbacks & Generic() const {return ClassInfos;}
-		static const EbmlCallbacks ClassInfos;
-		operator const EbmlId &() const {return ClassInfos.GlobalId;}
-		EbmlElement * Clone() const {return new KaxTagMultiEntityURL(*this);}
+
+        EBML_CONCRETE_CLASS(KaxTagMultiEntityURL)
 };
 
 class MATROSKA_DLL_API KaxTagMultiEntityEmail : public EbmlString {
 	public:
 		KaxTagMultiEntityEmail() {}
 		KaxTagMultiEntityEmail(const KaxTagMultiEntityEmail & ElementToClone) :EbmlString(ElementToClone) {}
-		static EbmlElement & Create() {return *(new KaxTagMultiEntityEmail);}
-		const EbmlCallbacks & Generic() const {return ClassInfos;}
-		static const EbmlCallbacks ClassInfos;
-		operator const EbmlId &() const {return ClassInfos.GlobalId;}
-		EbmlElement * Clone() const {return new KaxTagMultiEntityEmail(*this);}
+
+        EBML_CONCRETE_CLASS(KaxTagMultiEntityEmail)
 };
 
 class MATROSKA_DLL_API KaxTagMultiIdentifier : public EbmlMaster {
 	public:
 		KaxTagMultiIdentifier();
 		KaxTagMultiIdentifier(const KaxTagMultiIdentifier & ElementToClone) :EbmlMaster(ElementToClone) {}
-		static EbmlElement & Create() {return *(new KaxTagMultiIdentifier);}
-		const EbmlCallbacks & Generic() const {return ClassInfos;}
-		static const EbmlCallbacks ClassInfos;
-		operator const EbmlId &() const {return ClassInfos.GlobalId;}
-		EbmlElement * Clone() const {return new KaxTagMultiIdentifier(*this);}
+
+        EBML_CONCRETE_CLASS(KaxTagMultiIdentifier)
 };
 
 class MATROSKA_DLL_API KaxTagIdentifier : public EbmlMaster {
 	public:
 		KaxTagIdentifier();
 		KaxTagIdentifier(const KaxTagIdentifier & ElementToClone) :EbmlMaster(ElementToClone) {}
-		static EbmlElement & Create() {return *(new KaxTagIdentifier);}
-		const EbmlCallbacks & Generic() const {return ClassInfos;}
-		static const EbmlCallbacks ClassInfos;
-		operator const EbmlId &() const {return ClassInfos.GlobalId;}
-		EbmlElement * Clone() const {return new KaxTagIdentifier(*this);}
+
+        EBML_CONCRETE_CLASS(KaxTagIdentifier)
 };
 
 class MATROSKA_DLL_API KaxTagMultiIdentifierType : public EbmlUInteger {
 	public:
 		KaxTagMultiIdentifierType() {}
 		KaxTagMultiIdentifierType(const KaxTagMultiIdentifierType & ElementToClone) :EbmlUInteger(ElementToClone) {}
-		static EbmlElement & Create() {return *(new KaxTagMultiIdentifierType);}
-		const EbmlCallbacks & Generic() const {return ClassInfos;}
-		static const EbmlCallbacks ClassInfos;
-		operator const EbmlId &() const {return ClassInfos.GlobalId;}
-		EbmlElement * Clone() const {return new KaxTagMultiIdentifierType(*this);}
+
+        EBML_CONCRETE_CLASS(KaxTagMultiIdentifierType)
 };
 
 class MATROSKA_DLL_API KaxTagMultiIdentifierBinary : public EbmlBinary {
 	public:
 		KaxTagMultiIdentifierBinary() {}
 		KaxTagMultiIdentifierBinary(const KaxTagMultiIdentifierBinary & ElementToClone) :EbmlBinary(ElementToClone){}
-		static EbmlElement & Create() {return *(new KaxTagMultiIdentifierBinary);}
 		bool ValidateSize() const {return true;} // we don't mind about what's inside
-		const EbmlCallbacks & Generic() const {return ClassInfos;}
-		static const EbmlCallbacks ClassInfos;
-		operator const EbmlId &() const {return ClassInfos.GlobalId;}
-		EbmlElement * Clone() const {return new KaxTagMultiIdentifierBinary(*this);}
+
+        EBML_CONCRETE_CLASS(KaxTagMultiIdentifierBinary)
 };
 
 class MATROSKA_DLL_API KaxTagMultiIdentifierString : public EbmlUnicodeString {
 	public:
 		KaxTagMultiIdentifierString() {}
 		KaxTagMultiIdentifierString(const KaxTagMultiIdentifierString & ElementToClone) :EbmlUnicodeString(ElementToClone) {}
-		static EbmlElement & Create() {return *(new KaxTagMultiIdentifierString);}
-		const EbmlCallbacks & Generic() const {return ClassInfos;}
-		static const EbmlCallbacks ClassInfos;
-		operator const EbmlId &() const {return ClassInfos.GlobalId;}
-		EbmlElement * Clone() const {return new KaxTagMultiIdentifierString(*this);}
+
+        EBML_CONCRETE_CLASS(KaxTagMultiIdentifierString)
 };
 
 class MATROSKA_DLL_API KaxTagMultiLegal : public EbmlMaster {
 	public:
 		KaxTagMultiLegal();
 		KaxTagMultiLegal(const KaxTagMultiLegal & ElementToClone) :EbmlMaster(ElementToClone) {}
-		static EbmlElement & Create() {return *(new KaxTagMultiLegal);}
-		const EbmlCallbacks & Generic() const {return ClassInfos;}
-		static const EbmlCallbacks ClassInfos;
-		operator const EbmlId &() const {return ClassInfos.GlobalId;}
-		EbmlElement * Clone() const {return new KaxTagMultiLegal(*this);}
+
+        EBML_CONCRETE_CLASS(KaxTagMultiLegal)
 };
 
 class MATROSKA_DLL_API KaxTagLegal : public EbmlMaster {
 	public:
 		KaxTagLegal();
 		KaxTagLegal(const KaxTagLegal & ElementToClone) :EbmlMaster(ElementToClone) {}
-		static EbmlElement & Create() {return *(new KaxTagLegal);}
-		const EbmlCallbacks & Generic() const {return ClassInfos;}
-		static const EbmlCallbacks ClassInfos;
-		operator const EbmlId &() const {return ClassInfos.GlobalId;}
-		EbmlElement * Clone() const {return new KaxTagLegal(*this);}
+
+        EBML_CONCRETE_CLASS(KaxTagLegal)
 };
 
 class MATROSKA_DLL_API KaxTagMultiLegalType : public EbmlUInteger {
 	public:
 		KaxTagMultiLegalType() {}
 		KaxTagMultiLegalType(const KaxTagMultiLegalType & ElementToClone) :EbmlUInteger(ElementToClone) {}
-		static EbmlElement & Create() {return *(new KaxTagMultiLegalType);}
-		const EbmlCallbacks & Generic() const {return ClassInfos;}
-		static const EbmlCallbacks ClassInfos;
-		operator const EbmlId &() const {return ClassInfos.GlobalId;}
-		EbmlElement * Clone() const {return new KaxTagMultiLegalType(*this);}
+
+        EBML_CONCRETE_CLASS(KaxTagMultiLegalType)
 };
 
 class MATROSKA_DLL_API KaxTagMultiLegalContent : public EbmlUnicodeString {
 	public:
 		KaxTagMultiLegalContent() {}
 		KaxTagMultiLegalContent(const KaxTagMultiLegalContent & ElementToClone) :EbmlUnicodeString(ElementToClone) {}
-		static EbmlElement & Create() {return *(new KaxTagMultiLegalContent);}
-		const EbmlCallbacks & Generic() const {return ClassInfos;}
-		static const EbmlCallbacks ClassInfos;
-		operator const EbmlId &() const {return ClassInfos.GlobalId;}
-		EbmlElement * Clone() const {return new KaxTagMultiLegalContent(*this);}
+
+        EBML_CONCRETE_CLASS(KaxTagMultiLegalContent)
 };
 
 class MATROSKA_DLL_API KaxTagMultiLegalURL : public EbmlString {
 	public:
 		KaxTagMultiLegalURL() {}
 		KaxTagMultiLegalURL(const KaxTagMultiLegalURL & ElementToClone) :EbmlString(ElementToClone) {}
-		static EbmlElement & Create() {return *(new KaxTagMultiLegalURL);}
-		const EbmlCallbacks & Generic() const {return ClassInfos;}
-		static const EbmlCallbacks ClassInfos;
-		operator const EbmlId &() const {return ClassInfos.GlobalId;}
-		EbmlElement * Clone() const {return new KaxTagMultiLegalURL(*this);}
+
+        EBML_CONCRETE_CLASS(KaxTagMultiLegalURL)
 };
 
 class MATROSKA_DLL_API KaxTagMultiLegalAddress : public EbmlUnicodeString {
 	public:
 		KaxTagMultiLegalAddress() {}
 		KaxTagMultiLegalAddress(const KaxTagMultiLegalAddress & ElementToClone) :EbmlUnicodeString(ElementToClone) {}
-		static EbmlElement & Create() {return *(new KaxTagMultiLegalAddress);}
-		const EbmlCallbacks & Generic() const {return ClassInfos;}
-		static const EbmlCallbacks ClassInfos;
-		operator const EbmlId &() const {return ClassInfos.GlobalId;}
-		EbmlElement * Clone() const {return new KaxTagMultiLegalAddress(*this);}
+
+        EBML_CONCRETE_CLASS(KaxTagMultiLegalAddress)
 };
 
 class MATROSKA_DLL_API KaxTagMultiTitle : public EbmlMaster {
 	public:
 		KaxTagMultiTitle();
 		KaxTagMultiTitle(const KaxTagMultiTitle & ElementToClone) :EbmlMaster(ElementToClone) {}
-		static EbmlElement & Create() {return *(new KaxTagMultiTitle);}
-		const EbmlCallbacks & Generic() const {return ClassInfos;}
-		static const EbmlCallbacks ClassInfos;
-		operator const EbmlId &() const {return ClassInfos.GlobalId;}
-		EbmlElement * Clone() const {return new KaxTagMultiTitle(*this);}
+
+        EBML_CONCRETE_CLASS(KaxTagMultiTitle)
 };
 
 class MATROSKA_DLL_API KaxTagTitle : public EbmlMaster {
 	public:
 		KaxTagTitle();
 		KaxTagTitle(const KaxTagTitle & ElementToClone) :EbmlMaster(ElementToClone) {}
-		static EbmlElement & Create() {return *(new KaxTagTitle);}
-		const EbmlCallbacks & Generic() const {return ClassInfos;}
-		static const EbmlCallbacks ClassInfos;
-		operator const EbmlId &() const {return ClassInfos.GlobalId;}
-		EbmlElement * Clone() const {return new KaxTagTitle(*this);}
+
+        EBML_CONCRETE_CLASS(KaxTagTitle)
 };
 
 class MATROSKA_DLL_API KaxTagMultiTitleType : public EbmlUInteger {
 	public:
 		KaxTagMultiTitleType() {}
 		KaxTagMultiTitleType(const KaxTagMultiTitleType & ElementToClone) :EbmlUInteger(ElementToClone) {}
-		static EbmlElement & Create() {return *(new KaxTagMultiTitleType);}
-		const EbmlCallbacks & Generic() const {return ClassInfos;}
-		static const EbmlCallbacks ClassInfos;
-		operator const EbmlId &() const {return ClassInfos.GlobalId;}
-		EbmlElement * Clone() const {return new KaxTagMultiTitleType(*this);}
+
+        EBML_CONCRETE_CLASS(KaxTagMultiTitleType)
 };
 
 
@@ -568,176 +448,132 @@ class MATROSKA_DLL_API KaxTagMultiTitleName : public EbmlUnicodeString {
 	public:
 		KaxTagMultiTitleName() {}
 		KaxTagMultiTitleName(const KaxTagMultiTitleName & ElementToClone) :EbmlUnicodeString(ElementToClone) {}
-		static EbmlElement & Create() {return *(new KaxTagMultiTitleName);}
-		const EbmlCallbacks & Generic() const {return ClassInfos;}
-		static const EbmlCallbacks ClassInfos;
-		operator const EbmlId &() const {return ClassInfos.GlobalId;}
-		EbmlElement * Clone() const {return new KaxTagMultiTitleName(*this);}
+
+        EBML_CONCRETE_CLASS(KaxTagMultiTitleName)
 };
 
 class MATROSKA_DLL_API KaxTagMultiTitleSubTitle : public EbmlUnicodeString {
 	public:
 		KaxTagMultiTitleSubTitle() {}
 		KaxTagMultiTitleSubTitle(const KaxTagMultiTitleSubTitle & ElementToClone) :EbmlUnicodeString(ElementToClone) {}
-		static EbmlElement & Create() {return *(new KaxTagMultiTitleSubTitle);}
-		const EbmlCallbacks & Generic() const {return ClassInfos;}
-		static const EbmlCallbacks ClassInfos;
-		operator const EbmlId &() const {return ClassInfos.GlobalId;}
-		EbmlElement * Clone() const {return new KaxTagMultiTitleSubTitle(*this);}
+
+        EBML_CONCRETE_CLASS(KaxTagMultiTitleSubTitle)
 };
 
 class MATROSKA_DLL_API KaxTagMultiTitleEdition : public EbmlUnicodeString {
 	public:
 		KaxTagMultiTitleEdition() {}
 		KaxTagMultiTitleEdition(const KaxTagMultiTitleEdition & ElementToClone) :EbmlUnicodeString(ElementToClone) {}
-		static EbmlElement & Create() {return *(new KaxTagMultiTitleEdition);}
-		const EbmlCallbacks & Generic() const {return ClassInfos;}
-		static const EbmlCallbacks ClassInfos;
-		operator const EbmlId &() const {return ClassInfos.GlobalId;}
-		EbmlElement * Clone() const {return new KaxTagMultiTitleEdition(*this);}
+
+        EBML_CONCRETE_CLASS(KaxTagMultiTitleEdition)
 };
 
 class MATROSKA_DLL_API KaxTagMultiTitleAddress : public EbmlUnicodeString {
 	public:
 		KaxTagMultiTitleAddress() {}
 		KaxTagMultiTitleAddress(const KaxTagMultiTitleAddress & ElementToClone) :EbmlUnicodeString(ElementToClone) {}
-		static EbmlElement & Create() {return *(new KaxTagMultiTitleAddress);}
-		const EbmlCallbacks & Generic() const {return ClassInfos;}
-		static const EbmlCallbacks ClassInfos;
-		operator const EbmlId &() const {return ClassInfos.GlobalId;}
-		EbmlElement * Clone() const {return new KaxTagMultiTitleAddress(*this);}
+
+        EBML_CONCRETE_CLASS(KaxTagMultiTitleAddress)
 };
 
 class MATROSKA_DLL_API KaxTagMultiTitleURL : public EbmlString {
 	public:
 		KaxTagMultiTitleURL() {}
 		KaxTagMultiTitleURL(const KaxTagMultiTitleURL & ElementToClone) :EbmlString(ElementToClone) {}
-		static EbmlElement & Create() {return *(new KaxTagMultiTitleURL);}
-		const EbmlCallbacks & Generic() const {return ClassInfos;}
-		static const EbmlCallbacks ClassInfos;
-		operator const EbmlId &() const {return ClassInfos.GlobalId;}
-		EbmlElement * Clone() const {return new KaxTagMultiTitleURL(*this);}
+
+        EBML_CONCRETE_CLASS(KaxTagMultiTitleURL)
 };
 
 class MATROSKA_DLL_API KaxTagMultiTitleEmail : public EbmlString {
 	public:
 		KaxTagMultiTitleEmail() {}
 		KaxTagMultiTitleEmail(const KaxTagMultiTitleEmail & ElementToClone) :EbmlString(ElementToClone) {}
-		static EbmlElement & Create() {return *(new KaxTagMultiTitleEmail);}
-		const EbmlCallbacks & Generic() const {return ClassInfos;}
-		static const EbmlCallbacks ClassInfos;
-		operator const EbmlId &() const {return ClassInfos.GlobalId;}
-		EbmlElement * Clone() const {return new KaxTagMultiTitleEmail(*this);}
+
+        EBML_CONCRETE_CLASS(KaxTagMultiTitleEmail)
 };
 
 class MATROSKA_DLL_API KaxTagMultiTitleLanguage : public EbmlString {
 	public:
 		KaxTagMultiTitleLanguage() {}
 		KaxTagMultiTitleLanguage(const KaxTagMultiTitleLanguage & ElementToClone) :EbmlString(ElementToClone) {}
-		static EbmlElement & Create() {return *(new KaxTagMultiTitleLanguage);}
-		const EbmlCallbacks & Generic() const {return ClassInfos;}
-		static const EbmlCallbacks ClassInfos;
-		operator const EbmlId &() const {return ClassInfos.GlobalId;}
-		EbmlElement * Clone() const {return new KaxTagMultiTitleLanguage(*this);}
+
+        EBML_CONCRETE_CLASS(KaxTagMultiTitleLanguage)
 };
 
 class MATROSKA_DLL_API KaxTagMultiAttachment : public EbmlMaster {
 	public:
 		KaxTagMultiAttachment();
 		KaxTagMultiAttachment(const KaxTagMultiAttachment & ElementToClone) :EbmlMaster(ElementToClone) {}
-		static EbmlElement & Create() {return *(new KaxTagMultiAttachment);}
-		const EbmlCallbacks & Generic() const {return ClassInfos;}
-		static const EbmlCallbacks ClassInfos;
-		operator const EbmlId &() const {return ClassInfos.GlobalId;}
-		EbmlElement * Clone() const {return new KaxTagMultiAttachment(*this);}
+
+        EBML_CONCRETE_CLASS(KaxTagMultiAttachment)
 };
 
 class MATROSKA_DLL_API KaxTagAttachment : public EbmlMaster {
 	public:
 		KaxTagAttachment();
 		KaxTagAttachment(const KaxTagAttachment & ElementToClone) :EbmlMaster(ElementToClone) {}
-		static EbmlElement & Create() {return *(new KaxTagAttachment);}
-		const EbmlCallbacks & Generic() const {return ClassInfos;}
-		static const EbmlCallbacks ClassInfos;
-		operator const EbmlId &() const {return ClassInfos.GlobalId;}
-		EbmlElement * Clone() const {return new KaxTagAttachment(*this);}
+
+        EBML_CONCRETE_CLASS(KaxTagAttachment)
 };
 
 class MATROSKA_DLL_API KaxTagAttachmentID : public EbmlUInteger {
 	public:
 		KaxTagAttachmentID() {}
 		KaxTagAttachmentID(const KaxTagAttachmentID & ElementToClone) :EbmlUInteger(ElementToClone) {}
-		static EbmlElement & Create() {return *(new KaxTagAttachmentID);}
-		const EbmlCallbacks & Generic() const {return ClassInfos;}
-		static const EbmlCallbacks ClassInfos;
-		operator const EbmlId &() const {return ClassInfos.GlobalId;}
-		EbmlElement * Clone() const {return new KaxTagAttachmentID(*this);}
+
+        EBML_CONCRETE_CLASS(KaxTagAttachmentID)
 };
 
 #if 0
 class MATROSKA_DLL_API KaxTagBPM : public EbmlFloat {
 	public:
 		KaxTagBPM() :EbmlFloat() {}
-		static EbmlElement & Create() {return *(new KaxTagBPM);}
-		const EbmlCallbacks & Generic() const {return ClassInfos;}
-		static const EbmlCallbacks ClassInfos;
-		operator const EbmlId &() const {return ClassInfos.GlobalId;}
+
+        EBML_CONCRETE_CLASS(KaxTagBPM)
 };
 
 class MATROSKA_DLL_API KaxTagPopularimeter : public EbmlSInteger {
 	public:
 		KaxTagPopularimeter() {}
-		static EbmlElement & Create() {return *(new KaxTagPopularimeter);}
-		const EbmlCallbacks & Generic() const {return ClassInfos;}
-		static const EbmlCallbacks ClassInfos;
-		operator const EbmlId &() const {return ClassInfos.GlobalId;}
+
+        EBML_CONCRETE_CLASS(KaxTagPopularimeter)
 };
 
 class MATROSKA_DLL_API KaxTagRating : public EbmlBinary {
 	public:
 		KaxTagRating() {}
-		static EbmlElement & Create() {return *(new KaxTagRating);}
 		bool ValidateSize() const {return true;} // we don't mind about what's inside
-		const EbmlCallbacks & Generic() const {return ClassInfos;}
-		static const EbmlCallbacks ClassInfos;
-		operator const EbmlId &() const {return ClassInfos.GlobalId;}
+
+        EBML_CONCRETE_CLASS(KaxTagRating)
 };
 
 class MATROSKA_DLL_API KaxTagSetPart : public EbmlUInteger {
 	public:
 		KaxTagSetPart() {}
-		static EbmlElement & Create() {return *(new KaxTagSetPart);}
-		const EbmlCallbacks & Generic() const {return ClassInfos;}
-		static const EbmlCallbacks ClassInfos;
-		operator const EbmlId &() const {return ClassInfos.GlobalId;}
+
+        EBML_CONCRETE_CLASS(KaxTagSetPart)
 };
 
 class MATROSKA_DLL_API KaxTagUserDefinedURL : public EbmlString {
 	public:
 		KaxTagUserDefinedURL() {}
-		static EbmlElement & Create() {return *(new KaxTagUserDefinedURL);}
-		const EbmlCallbacks & Generic() const {return ClassInfos;}
-		static const EbmlCallbacks ClassInfos;
-		operator const EbmlId &() const {return ClassInfos.GlobalId;}
+
+        EBML_CONCRETE_CLASS(KaxTagUserDefinedURL)
 };
 
 class MATROSKA_DLL_API KaxTagVideoSecondaryGenre : public EbmlBinary {
 	public:
 		KaxTagVideoSecondaryGenre() {}
-		static EbmlElement & Create() {return *(new KaxTagVideoSecondaryGenre);}
 		bool ValidateSize() const {return (Size >= 4);}
-		const EbmlCallbacks & Generic() const {return ClassInfos;}
-		static const EbmlCallbacks ClassInfos;
-		operator const EbmlId &() const {return ClassInfos.GlobalId;}
+
+        EBML_CONCRETE_CLASS(KaxTagVideoSecondaryGenre)
 };
 
 class MATROSKA_DLL_API KaxWritingApp : public EbmlUnicodeString {
 	public:
 		KaxWritingApp() {}
-		static EbmlElement & Create() {return *(new KaxWritingApp);}
-		const EbmlCallbacks & Generic() const {return ClassInfos;}
-		static const EbmlCallbacks ClassInfos;
-		operator const EbmlId &() const {return ClassInfos.GlobalId;}
+
+        EBML_CONCRETE_CLASS(KaxWritingApp)
 };
 #endif
 

@@ -48,22 +48,14 @@ class MATROSKA_DLL_API KaxTracks : public EbmlMaster {
 	public:
 		KaxTracks();
 		KaxTracks(const KaxTracks & ElementToClone) :EbmlMaster(ElementToClone) {}
-		static EbmlElement & Create() {return *(new KaxTracks);}
-		const EbmlCallbacks & Generic() const {return ClassInfos;}
-		static const EbmlCallbacks ClassInfos;
-		operator const EbmlId &() const {return ClassInfos.GlobalId;}
-		EbmlElement * Clone() const {return new KaxTracks(*this);}
+
+        EBML_CONCRETE_CLASS(KaxTracks)
 };
 
 class MATROSKA_DLL_API KaxTrackEntry : public EbmlMaster {
 	public:
 		KaxTrackEntry();
 		KaxTrackEntry(const KaxTrackEntry & ElementToClone) :EbmlMaster(ElementToClone) {}
-		static EbmlElement & Create() {return *(new KaxTrackEntry);}
-		const EbmlCallbacks & Generic() const {return ClassInfos;}
-		static const EbmlCallbacks ClassInfos;
-		operator const EbmlId &() const {return ClassInfos.GlobalId;}
-		EbmlElement * Clone() const {return new KaxTrackEntry(*this);}
 
 		EbmlUInteger & TrackNumber() const { return *(static_cast<EbmlUInteger *>(FindElt(EBML_INFO(KaxTrackNumber)))); }
 
@@ -89,6 +81,8 @@ class MATROSKA_DLL_API KaxTrackEntry : public EbmlMaster {
 	protected:
 		bool   bGlobalTimecodeScaleIsSet;
 		uint64 mGlobalTimecodeScale;
+
+        EBML_CONCRETE_CLASS(KaxTrackEntry)
 };
 
 END_LIBMATROSKA_NAMESPACE

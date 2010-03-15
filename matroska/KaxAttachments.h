@@ -46,11 +46,8 @@ class MATROSKA_DLL_API KaxAttachments : public EbmlMaster {
 	public:
 		KaxAttachments();
 		KaxAttachments(const KaxAttachments & ElementToClone) : EbmlMaster(ElementToClone) {}
-		static EbmlElement & Create() {return *(new KaxAttachments);}
-		const EbmlCallbacks & Generic() const {return ClassInfos;}
-		static const EbmlCallbacks ClassInfos;
-		operator const EbmlId &() const {return ClassInfos.GlobalId;}
-		EbmlElement * Clone() const {return new KaxAttachments(*this);}
+        
+        EBML_CONCRETE_CLASS(KaxAttachments)
 };
 
 END_LIBMATROSKA_NAMESPACE

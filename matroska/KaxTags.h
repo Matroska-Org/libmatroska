@@ -46,11 +46,8 @@ class MATROSKA_DLL_API KaxTags : public EbmlMaster {
 	public:
 		KaxTags();
 		KaxTags(const KaxTags & ElementToClone) :EbmlMaster(ElementToClone) {}
-		static EbmlElement & Create() {return *(new KaxTags);}
-		const EbmlCallbacks & Generic() const {return ClassInfos;}
-		static const EbmlCallbacks ClassInfos;
-		operator const EbmlId &() const {return ClassInfos.GlobalId;}
-		EbmlElement * Clone() const {return new KaxTags(*this);}
+
+        EBML_CONCRETE_CLASS(KaxTags)
 };
 
 END_LIBMATROSKA_NAMESPACE

@@ -46,11 +46,6 @@ class MATROSKA_DLL_API KaxSegment : public EbmlMaster {
 	public:
 		KaxSegment();
 		KaxSegment(const KaxSegment & ElementToClone);
-		static EbmlElement & Create() {return *(new KaxSegment);}
-		const EbmlCallbacks & Generic() const {return ClassInfos;}
-		static const EbmlCallbacks ClassInfos;
-		operator const EbmlId &() const {return ClassInfos.GlobalId;}
-		EbmlElement * Clone() const {return new KaxSegment(*this);}
 
 		/*!
 			\brief give the position of the element in the segment
@@ -62,6 +57,8 @@ class MATROSKA_DLL_API KaxSegment : public EbmlMaster {
 			\brief give the position of the element in the file
 		*/
 		uint64 GetGlobalPosition(uint64 aRelativePosition) const;
+
+        EBML_CONCRETE_CLASS(KaxSegment)
 };
 
 END_LIBMATROSKA_NAMESPACE

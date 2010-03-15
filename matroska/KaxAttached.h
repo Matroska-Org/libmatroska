@@ -50,91 +50,59 @@ class MATROSKA_DLL_API KaxAttached : public EbmlMaster {
 	public:
 		KaxAttached();
 		KaxAttached(const KaxAttached & ElementToClone) : EbmlMaster(ElementToClone) {}
-		static EbmlElement & Create() {return *(new KaxAttached);}
-		const EbmlCallbacks & Generic() const {return ClassInfos;}
-		static const EbmlCallbacks ClassInfos;
-
-		operator const EbmlId &() const {return ClassInfos.GlobalId;}
-		bool IsYourId(const EbmlId & TestId) const;
-		EbmlElement * Clone() const {return new KaxAttached(*this);}
+        
+        EBML_CONCRETE_CLASS(KaxAttached)
 };
 
 class MATROSKA_DLL_API KaxFileDescription : public EbmlUnicodeString {
 	public:
 		KaxFileDescription() {}
 		KaxFileDescription(const KaxFileDescription & ElementToClone) : EbmlUnicodeString(ElementToClone) {}
-		static EbmlElement & Create() {return *(new KaxFileDescription);}
-		const EbmlCallbacks & Generic() const {return ClassInfos;}
-		static const EbmlCallbacks ClassInfos;
-
-		operator const EbmlId &() const {return ClassInfos.GlobalId;}
-		bool IsYourId(const EbmlId & TestId) const;
-		EbmlElement * Clone() const {return new KaxFileDescription(*this);}
+        
+        EBML_CONCRETE_CLASS(KaxFileDescription)
 };
 
 class MATROSKA_DLL_API KaxFileName : public EbmlUnicodeString {
 	public:
 		KaxFileName() {}
 		KaxFileName(const KaxFileName & ElementToClone) : EbmlUnicodeString(ElementToClone) {}
-		static EbmlElement & Create() {return *(new KaxFileName);}
-		const EbmlCallbacks & Generic() const {return ClassInfos;}
-		static const EbmlCallbacks ClassInfos;
-
-		operator const EbmlId &() const {return ClassInfos.GlobalId;}
-		bool IsYourId(const EbmlId & TestId) const;
-		EbmlElement * Clone() const {return new KaxFileName(*this);}
+        
+        EBML_CONCRETE_CLASS(KaxFileName)
 };
 
 class MATROSKA_DLL_API KaxMimeType : public EbmlString {
 	public:
 		KaxMimeType() {}
 		KaxMimeType(const KaxMimeType & ElementToClone) : EbmlString(ElementToClone) {}
-		static EbmlElement & Create() {return *(new KaxMimeType);}
-		const EbmlCallbacks & Generic() const {return ClassInfos;}
-		static const EbmlCallbacks ClassInfos;
-
-		operator const EbmlId &() const {return ClassInfos.GlobalId;}
-		bool IsYourId(const EbmlId & TestId) const;
-		EbmlElement * Clone() const {return new KaxMimeType(*this);}
+        
+        EBML_CONCRETE_CLASS(KaxMimeType)
 };
 
 class MATROSKA_DLL_API KaxFileData : public EbmlBinary {
 	public:
 		KaxFileData() {}
 		KaxFileData(const KaxFileData & ElementToClone) :EbmlBinary(ElementToClone){}
-		static EbmlElement & Create() {return *(new KaxFileData);}
-		const EbmlCallbacks & Generic() const {return ClassInfos;}
+	
 		bool ValidateSize() const {return true;} // we don't mind about what's inside
-		static const EbmlCallbacks ClassInfos;
-
-		operator const EbmlId &() const {return ClassInfos.GlobalId;}
-		bool IsYourId(const EbmlId & TestId) const;
-		EbmlElement * Clone() const {return new KaxFileData(*this);}
+		
+        EBML_CONCRETE_CLASS(KaxFileData)
 };
 
 class MATROSKA_DLL_API KaxFileReferral : public EbmlBinary {
 	public:
 		KaxFileReferral() {}
 		KaxFileReferral(const KaxFileReferral & ElementToClone) :EbmlBinary(ElementToClone){}
-		static EbmlElement & Create() {return *(new KaxFileReferral);}
-		const EbmlCallbacks & Generic() const {return ClassInfos;}
 		bool ValidateSize() const {return true;} // we don't mind about what's inside
-		static const EbmlCallbacks ClassInfos;
-		operator const EbmlId &() const {return ClassInfos.GlobalId;}
-		EbmlElement * Clone() const {return new KaxFileReferral(*this);}
+		
+        EBML_CONCRETE_CLASS(KaxFileReferral)
 };
 
 class MATROSKA_DLL_API KaxFileUID : public EbmlUInteger {
 	public:
 		KaxFileUID() {}
 		KaxFileUID(const KaxFileUID & ElementToClone) : EbmlUInteger(ElementToClone) {}
-		static EbmlElement & Create() {return *(new KaxFileUID);}
-		const EbmlCallbacks & Generic() const {return ClassInfos;}
-		static const EbmlCallbacks ClassInfos;
-
-		operator const EbmlId &() const {return ClassInfos.GlobalId;}
-		bool IsYourId(const EbmlId & TestId) const;
-		EbmlElement * Clone() const {return new KaxFileUID(*this);}
+        
+        EBML_CONCRETE_CLASS(KaxFileUID)
 };
 
 END_LIBMATROSKA_NAMESPACE

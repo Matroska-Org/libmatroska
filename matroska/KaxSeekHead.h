@@ -51,11 +51,6 @@ class MATROSKA_DLL_API KaxSeekHead : public EbmlMaster {
 	public:
 		KaxSeekHead();
 		KaxSeekHead(const KaxSeekHead & ElementToClone) :EbmlMaster(ElementToClone) {}
-		static EbmlElement & Create() {return *(new KaxSeekHead);}
-		const EbmlCallbacks & Generic() const {return ClassInfos;}
-		static const EbmlCallbacks ClassInfos;
-		operator const EbmlId &() const {return ClassInfos.GlobalId;}
-		EbmlElement * Clone() const {return new KaxSeekHead(*this);}
 
 		/*!
 			\brief add an element to index in the Meta Seek data
@@ -65,44 +60,37 @@ class MATROSKA_DLL_API KaxSeekHead : public EbmlMaster {
 
 		KaxSeek * FindFirstOf(const EbmlCallbacks & Callbacks) const;
 		KaxSeek * FindNextOf(const KaxSeek &aPrev) const;
+
+        EBML_CONCRETE_CLASS(KaxSeekHead)
 };
 
 class MATROSKA_DLL_API KaxSeek : public EbmlMaster {
 	public:
 		KaxSeek();
 		KaxSeek(const KaxSeek & ElementToClone) :EbmlMaster(ElementToClone) {}
-		static EbmlElement & Create() {return *(new KaxSeek);}
-		const EbmlCallbacks & Generic() const {return ClassInfos;}
-		static const EbmlCallbacks ClassInfos;
-		operator const EbmlId &() const {return ClassInfos.GlobalId;}
-		EbmlElement * Clone() const {return new KaxSeek(*this);}
 
 		int64 Location() const;
 		bool IsEbmlId(const EbmlId & aId) const;
 		bool IsEbmlId(const KaxSeek & aPoint) const;
+
+        EBML_CONCRETE_CLASS(KaxSeek)
 };
 
 class MATROSKA_DLL_API KaxSeekID : public EbmlBinary {
 	public:
 		KaxSeekID() {}
 		KaxSeekID(const KaxSeekID & ElementToClone) :EbmlBinary(ElementToClone){}
-		static EbmlElement & Create() {return *(new KaxSeekID);}
-		const EbmlCallbacks & Generic() const {return ClassInfos;}
-		static const EbmlCallbacks ClassInfos;
-		operator const EbmlId &() const {return ClassInfos.GlobalId;}
 		bool ValidateSize() const {return GetSize() <= 4;}
-		EbmlElement * Clone() const {return new KaxSeekID(*this);}
+
+        EBML_CONCRETE_CLASS(KaxSeekID)
 };
 
 class MATROSKA_DLL_API KaxSeekPosition : public EbmlUInteger {
 	public:
 		KaxSeekPosition() {}
 		KaxSeekPosition(const KaxSeekPosition & ElementToClone) :EbmlUInteger(ElementToClone) {}
-		static EbmlElement & Create() {return *(new KaxSeekPosition);}
-		const EbmlCallbacks & Generic() const {return ClassInfos;}
-		static const EbmlCallbacks ClassInfos;
-		operator const EbmlId &() const {return ClassInfos.GlobalId;}
-		EbmlElement * Clone() const {return new KaxSeekPosition(*this);}
+
+        EBML_CONCRETE_CLASS(KaxSeekPosition)
 };
 
 END_LIBMATROSKA_NAMESPACE

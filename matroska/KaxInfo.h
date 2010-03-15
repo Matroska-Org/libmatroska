@@ -47,33 +47,24 @@ class MATROSKA_DLL_API KaxInfo : public EbmlMaster {
 	public:
 		KaxInfo();
 		KaxInfo(const KaxInfo & ElementToClone) :EbmlMaster(ElementToClone) {}
-		static EbmlElement & Create() {return *(new KaxInfo);}
-		const EbmlCallbacks & Generic() const {return ClassInfos;}
-		static const EbmlCallbacks ClassInfos;
-		operator const EbmlId &() const {return ClassInfos.GlobalId;}
-		EbmlElement * Clone() const {return new KaxInfo(*this);}
+
+        EBML_CONCRETE_CLASS(KaxInfo)
 };
 
 class MATROSKA_DLL_API KaxMuxingApp : public EbmlUnicodeString {
 	public:
 		KaxMuxingApp() {}
 		KaxMuxingApp(const KaxMuxingApp & ElementToClone) :EbmlUnicodeString(ElementToClone) {}
-		static EbmlElement & Create() {return *(new KaxMuxingApp);}
-		const EbmlCallbacks & Generic() const {return ClassInfos;}
-		static const EbmlCallbacks ClassInfos;
-		operator const EbmlId &() const {return ClassInfos.GlobalId;}
-		EbmlElement * Clone() const {return new KaxMuxingApp(*this);}
+
+        EBML_CONCRETE_CLASS(KaxMuxingApp)
 };
 
 class MATROSKA_DLL_API KaxWritingApp : public EbmlUnicodeString {
 	public:
 		KaxWritingApp() {}
 		KaxWritingApp(const KaxWritingApp & ElementToClone) :EbmlUnicodeString(ElementToClone) {}
-		static EbmlElement & Create() {return *(new KaxWritingApp);}
-		const EbmlCallbacks & Generic() const {return ClassInfos;}
-		static const EbmlCallbacks ClassInfos;
-		operator const EbmlId &() const {return ClassInfos.GlobalId;}
-		EbmlElement * Clone() const {return new KaxWritingApp(*this);}
+
+        EBML_CONCRETE_CLASS(KaxWritingApp)
 };
 
 END_LIBMATROSKA_NAMESPACE

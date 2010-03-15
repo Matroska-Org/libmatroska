@@ -50,11 +50,6 @@ class MATROSKA_DLL_API KaxCuePoint : public EbmlMaster {
 	public:
 		KaxCuePoint();
 		KaxCuePoint(const KaxCuePoint & ElementToClone) :EbmlMaster(ElementToClone) {}
-		static EbmlElement & Create() {return *(new KaxCuePoint);}
-		const EbmlCallbacks & Generic() const {return ClassInfos;}
-		static const EbmlCallbacks ClassInfos;
-		operator const EbmlId &() const {return ClassInfos.GlobalId;}
-		EbmlElement * Clone() const {return new KaxCuePoint(*this);}
 		void PositionSet(const KaxBlockGroup & BlockReference, uint64 GlobalTimecodeScale);
 		void PositionSet(const KaxBlockBlob & BlobReference, uint64 GlobalTimecodeScale);
 
@@ -62,64 +57,51 @@ class MATROSKA_DLL_API KaxCuePoint : public EbmlMaster {
 
 		const KaxCueTrackPositions * GetSeekPosition() const;
 		bool Timecode(uint64 & aTimecode, uint64 GlobalTimecodeScale) const;
+
+        EBML_CONCRETE_CLASS(KaxCuePoint)
 };
 
 class MATROSKA_DLL_API KaxCueTime : public EbmlUInteger {
 	public:
 		KaxCueTime() {}
 		KaxCueTime(const KaxCueTime & ElementToClone) :EbmlUInteger(ElementToClone) {}
-		static EbmlElement & Create() {return *(new KaxCueTime);}
-		const EbmlCallbacks & Generic() const {return ClassInfos;}
-		static const EbmlCallbacks ClassInfos;
-		operator const EbmlId &() const {return ClassInfos.GlobalId;}
-		EbmlElement * Clone() const {return new KaxCueTime(*this);}
+
+        EBML_CONCRETE_CLASS(KaxCueTime)
 };
 
 class MATROSKA_DLL_API KaxCueTrackPositions : public EbmlMaster {
 	public:
 		KaxCueTrackPositions();
 		KaxCueTrackPositions(const KaxCueTrackPositions & ElementToClone) :EbmlMaster(ElementToClone) {}
-		static EbmlElement & Create() {return *(new KaxCueTrackPositions);}
-		const EbmlCallbacks & Generic() const {return ClassInfos;}
-		static const EbmlCallbacks ClassInfos;
-		operator const EbmlId &() const {return ClassInfos.GlobalId;}
-		EbmlElement * Clone() const {return new KaxCueTrackPositions(*this);}
 
 		uint64 ClusterPosition() const;
 		uint16 TrackNumber() const;
+
+        EBML_CONCRETE_CLASS(KaxCueTrackPositions)
 };
 
 class MATROSKA_DLL_API KaxCueTrack : public EbmlUInteger {
 	public:
 		KaxCueTrack() {}
 		KaxCueTrack(const KaxCueTrack & ElementToClone) :EbmlUInteger(ElementToClone) {}
-		static EbmlElement & Create() {return *(new KaxCueTrack);}
-		const EbmlCallbacks & Generic() const {return ClassInfos;}
-		static const EbmlCallbacks ClassInfos;
-		operator const EbmlId &() const {return ClassInfos.GlobalId;}
-		EbmlElement * Clone() const {return new KaxCueTrack(*this);}
+
+        EBML_CONCRETE_CLASS(KaxCueTrack)
 };
 
 class MATROSKA_DLL_API KaxCueClusterPosition : public EbmlUInteger {
 	public:
 		KaxCueClusterPosition() {}
 		KaxCueClusterPosition(const KaxCueClusterPosition & ElementToClone) :EbmlUInteger(ElementToClone) {}
-		static EbmlElement & Create() {return *(new KaxCueClusterPosition);}
-		const EbmlCallbacks & Generic() const {return ClassInfos;}
-		static const EbmlCallbacks ClassInfos;
-		operator const EbmlId &() const {return ClassInfos.GlobalId;}
-		EbmlElement * Clone() const {return new KaxCueClusterPosition(*this);}
+
+        EBML_CONCRETE_CLASS(KaxCueClusterPosition)
 };
 
 class MATROSKA_DLL_API KaxCueBlockNumber : public EbmlUInteger {
 	public:
 		KaxCueBlockNumber() :EbmlUInteger(1) {}
 		KaxCueBlockNumber(const KaxCueBlockNumber & ElementToClone) :EbmlUInteger(ElementToClone) {}
-		static EbmlElement & Create() {return *(new KaxCueBlockNumber);}
-		const EbmlCallbacks & Generic() const {return ClassInfos;}
-		static const EbmlCallbacks ClassInfos;
-		operator const EbmlId &() const {return ClassInfos.GlobalId;}
-		EbmlElement * Clone() const {return new KaxCueBlockNumber(*this);}
+
+        EBML_CONCRETE_CLASS(KaxCueBlockNumber)
 };
 
 #if MATROSKA_VERSION >= 2
@@ -127,69 +109,51 @@ class MATROSKA_DLL_API KaxCueCodecState : public EbmlUInteger {
 	public:
 		KaxCueCodecState() :EbmlUInteger(0) {}
 		KaxCueCodecState(const KaxCueCodecState & ElementToClone) :EbmlUInteger(ElementToClone) {}
-		static EbmlElement & Create() {return *(new KaxCueCodecState);}
-		const EbmlCallbacks & Generic() const {return ClassInfos;}
-		static const EbmlCallbacks ClassInfos;
-		operator const EbmlId &() const {return ClassInfos.GlobalId;}
-		EbmlElement * Clone() const {return new KaxCueCodecState(*this);}
+
+        EBML_CONCRETE_CLASS(KaxCueCodecState)
 };
 
 class MATROSKA_DLL_API KaxCueReference : public EbmlMaster {
 	public:
 		KaxCueReference();
 		KaxCueReference(const KaxCueReference & ElementToClone) :EbmlMaster(ElementToClone) {}
-		static EbmlElement & Create() {return *(new KaxCueReference);}
-		const EbmlCallbacks & Generic() const {return ClassInfos;}
-		static const EbmlCallbacks ClassInfos;
-		operator const EbmlId &() const {return ClassInfos.GlobalId;}
-		EbmlElement * Clone() const {return new KaxCueReference(*this);}
 		
 		void AddReference(const KaxBlockGroup & BlockReferenced, uint64 GlobalTimecodeScale);
 		void AddReference(const KaxBlockBlob & BlockReferenced, uint64 GlobalTimecodeScale);
+
+        EBML_CONCRETE_CLASS(KaxCueReference)
 };
 
 class MATROSKA_DLL_API KaxCueRefTime : public EbmlUInteger {
 	public:
 		KaxCueRefTime() {}
 		KaxCueRefTime(const KaxCueRefTime & ElementToClone) :EbmlUInteger(ElementToClone) {}
-		static EbmlElement & Create() {return *(new KaxCueRefTime);}
-		const EbmlCallbacks & Generic() const {return ClassInfos;}
-		static const EbmlCallbacks ClassInfos;
-		operator const EbmlId &() const {return ClassInfos.GlobalId;}
-		EbmlElement * Clone() const {return new KaxCueRefTime(*this);}
+
+        EBML_CONCRETE_CLASS(KaxCueRefTime)
 };
 
 class MATROSKA_DLL_API KaxCueRefCluster : public EbmlUInteger {
 	public:
 		KaxCueRefCluster() {}
 		KaxCueRefCluster(const KaxCueRefCluster & ElementToClone) :EbmlUInteger(ElementToClone) {}
-		static EbmlElement & Create() {return *(new KaxCueRefCluster);}
-		const EbmlCallbacks & Generic() const {return ClassInfos;}
-		static const EbmlCallbacks ClassInfos;
-		operator const EbmlId &() const {return ClassInfos.GlobalId;}
-		EbmlElement * Clone() const {return new KaxCueRefCluster(*this);}
+
+        EBML_CONCRETE_CLASS(KaxCueRefCluster)
 };
 
 class MATROSKA_DLL_API KaxCueRefNumber : public EbmlUInteger {
 	public:
 		KaxCueRefNumber() :EbmlUInteger(1) {}
 		KaxCueRefNumber(const KaxCueRefNumber & ElementToClone) :EbmlUInteger(ElementToClone) {}
-		static EbmlElement & Create() {return *(new KaxCueRefNumber);}
-		const EbmlCallbacks & Generic() const {return ClassInfos;}
-		static const EbmlCallbacks ClassInfos;
-		operator const EbmlId &() const {return ClassInfos.GlobalId;}
-		EbmlElement * Clone() const {return new KaxCueRefNumber(*this);}
+
+        EBML_CONCRETE_CLASS(KaxCueRefNumber)
 };
 
 class MATROSKA_DLL_API KaxCueRefCodecState : public EbmlUInteger {
 	public:
 		KaxCueRefCodecState() :EbmlUInteger(0) {}
 		KaxCueRefCodecState(const KaxCueRefCodecState & ElementToClone) :EbmlUInteger(ElementToClone) {}
-		static EbmlElement & Create() {return *(new KaxCueRefCodecState);}
-		const EbmlCallbacks & Generic() const {return ClassInfos;}
-		static const EbmlCallbacks ClassInfos;
-		operator const EbmlId &() const {return ClassInfos.GlobalId;}
-		EbmlElement * Clone() const {return new KaxCueRefCodecState(*this);}
+
+        EBML_CONCRETE_CLASS(KaxCueRefCodecState)
 };
 #endif // MATROSKA_VERSION
 

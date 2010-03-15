@@ -50,301 +50,220 @@ class MATROSKA_DLL_API KaxChapters : public EbmlMaster {
 	public:
 		KaxChapters();
 		KaxChapters(const KaxChapters & ElementToClone) :EbmlMaster(ElementToClone) {}
-		static EbmlElement & Create() {return *(new KaxChapters);}
-		const EbmlCallbacks & Generic() const {return ClassInfos;}
-		static const EbmlCallbacks ClassInfos;
-		operator const EbmlId &() const {return ClassInfos.GlobalId;}
-		EbmlElement * Clone() const {return new KaxChapters(*this);}
+        
+        EBML_CONCRETE_CLASS(KaxChapters)
 };
 
 class MATROSKA_DLL_API KaxEditionEntry : public EbmlMaster {
 	public:
 		KaxEditionEntry();
 		KaxEditionEntry(const KaxEditionEntry & ElementToClone) :EbmlMaster(ElementToClone) {}
-		static EbmlElement & Create() {return *(new KaxEditionEntry);}
-		const EbmlCallbacks & Generic() const {return ClassInfos;}
-		static const EbmlCallbacks ClassInfos;
-		operator const EbmlId &() const {return ClassInfos.GlobalId;}
-		EbmlElement * Clone() const {return new KaxEditionEntry(*this);}
+        
+        EBML_CONCRETE_CLASS(KaxEditionEntry)
 };
 
 class MATROSKA_DLL_API KaxEditionUID : public EbmlUInteger {
-public:
-    KaxEditionUID() {}
-	KaxEditionUID(const KaxEditionUID & ElementToClone) :EbmlUInteger(ElementToClone) {}
-    static EbmlElement & Create() {return *(new KaxEditionUID);}
-    const EbmlCallbacks & Generic() const {return ClassInfos;}
-    static const EbmlCallbacks ClassInfos;
-    operator const EbmlId &() const {return ClassInfos.GlobalId;}
-	EbmlElement * Clone() const {return new KaxEditionUID(*this);}
+    public:
+        KaxEditionUID() {}
+	    KaxEditionUID(const KaxEditionUID & ElementToClone) :EbmlUInteger(ElementToClone) {}
+            
+        EBML_CONCRETE_CLASS(KaxEditionUID)
 };
 
 class MATROSKA_DLL_API KaxEditionFlagHidden : public EbmlUInteger {
-public:
-    KaxEditionFlagHidden(): EbmlUInteger(0) {}
-	KaxEditionFlagHidden(const KaxEditionFlagHidden & ElementToClone) :EbmlUInteger(ElementToClone) {}
-    static EbmlElement & Create() {return *(new KaxEditionFlagHidden);}
-    const EbmlCallbacks & Generic() const {return ClassInfos;}
-    static const EbmlCallbacks ClassInfos;
-    operator const EbmlId &() const {return ClassInfos.GlobalId;}
-	EbmlElement * Clone() const {return new KaxEditionFlagHidden(*this);}
+    public:
+        KaxEditionFlagHidden(): EbmlUInteger(0) {}
+	    KaxEditionFlagHidden(const KaxEditionFlagHidden & ElementToClone) :EbmlUInteger(ElementToClone) {}
+        
+        EBML_CONCRETE_CLASS(KaxEditionFlagHidden)
 };
 
 class MATROSKA_DLL_API KaxEditionFlagDefault : public EbmlUInteger {
-public:
-    KaxEditionFlagDefault(): EbmlUInteger(0) {}
-	KaxEditionFlagDefault(const KaxEditionFlagDefault & ElementToClone) :EbmlUInteger(ElementToClone) {}
-    static EbmlElement & Create() {return *(new KaxEditionFlagDefault);}
-    const EbmlCallbacks & Generic() const {return ClassInfos;}
-    static const EbmlCallbacks ClassInfos;
-    operator const EbmlId &() const {return ClassInfos.GlobalId;}
-	EbmlElement * Clone() const {return new KaxEditionFlagDefault(*this);}
+    public:
+        KaxEditionFlagDefault(): EbmlUInteger(0) {}
+	    KaxEditionFlagDefault(const KaxEditionFlagDefault & ElementToClone) :EbmlUInteger(ElementToClone) {}
+        
+        EBML_CONCRETE_CLASS(KaxEditionFlagDefault)
 };
 
 class MATROSKA_DLL_API KaxEditionFlagOrdered : public EbmlUInteger {
-public:
-    KaxEditionFlagOrdered(): EbmlUInteger(0) {}
-	KaxEditionFlagOrdered(const KaxEditionFlagOrdered & ElementToClone) :EbmlUInteger(ElementToClone) {}
-    static EbmlElement & Create() {return *(new KaxEditionFlagOrdered);}
-    const EbmlCallbacks & Generic() const {return ClassInfos;}
-    static const EbmlCallbacks ClassInfos;
-    operator const EbmlId &() const {return ClassInfos.GlobalId;}
-	EbmlElement * Clone() const {return new KaxEditionFlagOrdered(*this);}
+    public:
+        KaxEditionFlagOrdered(): EbmlUInteger(0) {}
+	    KaxEditionFlagOrdered(const KaxEditionFlagOrdered & ElementToClone) :EbmlUInteger(ElementToClone) {}
+        
+        EBML_CONCRETE_CLASS(KaxEditionFlagOrdered)
 };
 
 class MATROSKA_DLL_API KaxChapterAtom : public EbmlMaster {
-public:
-    KaxChapterAtom();
-	KaxChapterAtom(const KaxChapterAtom & ElementToClone) :EbmlMaster(ElementToClone) {}
-    static EbmlElement & Create() {return *(new KaxChapterAtom);}
-    const EbmlCallbacks & Generic() const {return ClassInfos;}
-    static const EbmlCallbacks ClassInfos;
-    operator const EbmlId &() const {return ClassInfos.GlobalId;}
-	EbmlElement * Clone() const {return new KaxChapterAtom(*this);}
+    public:
+        KaxChapterAtom();
+	    KaxChapterAtom(const KaxChapterAtom & ElementToClone) :EbmlMaster(ElementToClone) {}
+        
+        EBML_CONCRETE_CLASS(KaxChapterAtom)
 };
 
 class MATROSKA_DLL_API KaxChapterUID : public EbmlUInteger {
-public:
-    KaxChapterUID() {}
-	KaxChapterUID(const KaxChapterUID & ElementToClone) :EbmlUInteger(ElementToClone) {}
-    static EbmlElement & Create() {return *(new KaxChapterUID);}
-    const EbmlCallbacks & Generic() const {return ClassInfos;}
-    static const EbmlCallbacks ClassInfos;
-    operator const EbmlId &() const {return ClassInfos.GlobalId;}
-	EbmlElement * Clone() const {return new KaxChapterUID(*this);}
+    public:
+        KaxChapterUID() {}
+	    KaxChapterUID(const KaxChapterUID & ElementToClone) :EbmlUInteger(ElementToClone) {}
+        
+        EBML_CONCRETE_CLASS(KaxChapterUID)
 };
 
 class MATROSKA_DLL_API KaxChapterTimeStart : public EbmlUInteger {
-public:
-    KaxChapterTimeStart() {}
-	KaxChapterTimeStart(const KaxChapterTimeStart & ElementToClone) :EbmlUInteger(ElementToClone) {}
-    static EbmlElement & Create() {return *(new KaxChapterTimeStart);}
-    const EbmlCallbacks & Generic() const {return ClassInfos;}
-    static const EbmlCallbacks ClassInfos;
-    operator const EbmlId &() const {return ClassInfos.GlobalId;}
-	EbmlElement * Clone() const {return new KaxChapterTimeStart(*this);}
+    public:
+        KaxChapterTimeStart() {}
+	    KaxChapterTimeStart(const KaxChapterTimeStart & ElementToClone) :EbmlUInteger(ElementToClone) {}
+        
+        EBML_CONCRETE_CLASS(KaxChapterTimeStart)
 };
 
 class MATROSKA_DLL_API KaxChapterTimeEnd : public EbmlUInteger {
-public:
-    KaxChapterTimeEnd() {}
-	KaxChapterTimeEnd(const KaxChapterTimeEnd & ElementToClone) :EbmlUInteger(ElementToClone) {}
-    static EbmlElement & Create() {return *(new KaxChapterTimeEnd);}
-    const EbmlCallbacks & Generic() const {return ClassInfos;}
-    static const EbmlCallbacks ClassInfos;
-    operator const EbmlId &() const {return ClassInfos.GlobalId;}
-	EbmlElement * Clone() const {return new KaxChapterTimeEnd(*this);}
+    public:
+        KaxChapterTimeEnd() {}
+	    KaxChapterTimeEnd(const KaxChapterTimeEnd & ElementToClone) :EbmlUInteger(ElementToClone) {}
+        
+        EBML_CONCRETE_CLASS(KaxChapterTimeEnd)
 };
 
 class MATROSKA_DLL_API KaxChapterFlagHidden : public EbmlUInteger {
-public:
-	KaxChapterFlagHidden(): EbmlUInteger(0) {}
-	KaxChapterFlagHidden(const KaxChapterFlagHidden & ElementToClone) :EbmlUInteger(ElementToClone) {}
-	static EbmlElement & Create() {return *(new KaxChapterFlagHidden);}
-	const EbmlCallbacks & Generic() const {return ClassInfos;}
-	static const EbmlCallbacks ClassInfos;
-	operator const EbmlId &() const {return ClassInfos.GlobalId;}
-	EbmlElement * Clone() const {return new KaxChapterFlagHidden(*this);}
+    public:
+	    KaxChapterFlagHidden(): EbmlUInteger(0) {}
+	    KaxChapterFlagHidden(const KaxChapterFlagHidden & ElementToClone) :EbmlUInteger(ElementToClone) {}
+        
+        EBML_CONCRETE_CLASS(KaxChapterFlagHidden)
 };
 
 class MATROSKA_DLL_API KaxChapterFlagEnabled : public EbmlUInteger {
-public:
-	KaxChapterFlagEnabled(): EbmlUInteger(1) {}
-	KaxChapterFlagEnabled(const KaxChapterFlagEnabled & ElementToClone) :EbmlUInteger(ElementToClone) {}
-	static EbmlElement & Create() {return *(new KaxChapterFlagEnabled);}
-	const EbmlCallbacks & Generic() const {return ClassInfos;}
-	static const EbmlCallbacks ClassInfos;
-	operator const EbmlId &() const {return ClassInfos.GlobalId;}
-	EbmlElement * Clone() const {return new KaxChapterFlagEnabled(*this);}
+    public:
+	    KaxChapterFlagEnabled(): EbmlUInteger(1) {}
+	    KaxChapterFlagEnabled(const KaxChapterFlagEnabled & ElementToClone) :EbmlUInteger(ElementToClone) {}
+        
+        EBML_CONCRETE_CLASS(KaxChapterFlagEnabled)
 };
 
 class MATROSKA_DLL_API KaxChapterSegmentUID : public EbmlBinary {
-public:
-    KaxChapterSegmentUID() {}
-	KaxChapterSegmentUID(const KaxChapterSegmentUID & ElementToClone) :EbmlBinary(ElementToClone) {}
-    static EbmlElement & Create() {return *(new KaxChapterSegmentUID);}
-    const EbmlCallbacks & Generic() const {return ClassInfos;}
-    static const EbmlCallbacks ClassInfos;
-    operator const EbmlId &() const {return ClassInfos.GlobalId;}
-	EbmlElement * Clone() const {return new KaxChapterSegmentUID(*this);}
-	bool ValidateSize() const { return (Size == 16);}
+    public:
+        KaxChapterSegmentUID() {}
+	    KaxChapterSegmentUID(const KaxChapterSegmentUID & ElementToClone) :EbmlBinary(ElementToClone) {}
+	    bool ValidateSize() const { return (GetSize() == 16);}
+            
+        EBML_CONCRETE_CLASS(KaxChapterSegmentUID)
 };
 
 class MATROSKA_DLL_API KaxChapterSegmentEditionUID : public EbmlBinary {
-public:
-    KaxChapterSegmentEditionUID() {}
-	KaxChapterSegmentEditionUID(const KaxChapterSegmentEditionUID & ElementToClone) :EbmlBinary(ElementToClone) {}
-    static EbmlElement & Create() {return *(new KaxChapterSegmentEditionUID);}
-    const EbmlCallbacks & Generic() const {return ClassInfos;}
-    static const EbmlCallbacks ClassInfos;
-    operator const EbmlId &() const {return ClassInfos.GlobalId;}
-	EbmlElement * Clone() const {return new KaxChapterSegmentEditionUID(*this);}
-	bool ValidateSize() const { return (Size == 16);}
+    public:
+        KaxChapterSegmentEditionUID() {}
+	    KaxChapterSegmentEditionUID(const KaxChapterSegmentEditionUID & ElementToClone) :EbmlBinary(ElementToClone) {}
+	    bool ValidateSize() const { return (GetSize() == 16);}
+        
+        EBML_CONCRETE_CLASS(KaxChapterSegmentEditionUID)
 };
 
 class MATROSKA_DLL_API KaxChapterPhysicalEquiv : public EbmlUInteger {
-public:
-	KaxChapterPhysicalEquiv(): EbmlUInteger() {}
-	KaxChapterPhysicalEquiv(const KaxChapterPhysicalEquiv & ElementToClone) :EbmlUInteger(ElementToClone) {}
-	static EbmlElement & Create() {return *(new KaxChapterPhysicalEquiv);}
-	const EbmlCallbacks & Generic() const {return ClassInfos;}
-	static const EbmlCallbacks ClassInfos;
-	operator const EbmlId &() const {return ClassInfos.GlobalId;}
-	EbmlElement * Clone() const {return new KaxChapterPhysicalEquiv(*this);}
+    public:
+	    KaxChapterPhysicalEquiv(): EbmlUInteger() {}
+	    KaxChapterPhysicalEquiv(const KaxChapterPhysicalEquiv & ElementToClone) :EbmlUInteger(ElementToClone) {}
+            
+        EBML_CONCRETE_CLASS(KaxChapterPhysicalEquiv)
 };
 
 class MATROSKA_DLL_API KaxChapterTrack : public EbmlMaster {
-public:
-    KaxChapterTrack();
-	KaxChapterTrack(const KaxChapterTrack & ElementToClone) :EbmlMaster(ElementToClone) {}
-    static EbmlElement & Create() {return *(new KaxChapterTrack);}
-    const EbmlCallbacks & Generic() const {return ClassInfos;}
-    static const EbmlCallbacks ClassInfos;
-    operator const EbmlId &() const {return ClassInfos.GlobalId;}
-	EbmlElement * Clone() const {return new KaxChapterTrack(*this);}
+    public:
+        KaxChapterTrack();
+	    KaxChapterTrack(const KaxChapterTrack & ElementToClone) :EbmlMaster(ElementToClone) {}
+            
+        EBML_CONCRETE_CLASS(KaxChapterTrack)
 };
 
 class MATROSKA_DLL_API KaxChapterTrackNumber : public EbmlUInteger {
-public:
-    KaxChapterTrackNumber() {}
-	KaxChapterTrackNumber(const KaxChapterTrackNumber & ElementToClone) :EbmlUInteger(ElementToClone) {}
-    static EbmlElement & Create() {return *(new KaxChapterTrackNumber);}
-    const EbmlCallbacks & Generic() const {return ClassInfos;}
-    static const EbmlCallbacks ClassInfos;
-    operator const EbmlId &() const {return ClassInfos.GlobalId;}
-	EbmlElement * Clone() const {return new KaxChapterTrackNumber(*this);}
+    public:
+        KaxChapterTrackNumber() {}
+	    KaxChapterTrackNumber(const KaxChapterTrackNumber & ElementToClone) :EbmlUInteger(ElementToClone) {}
+        
+        EBML_CONCRETE_CLASS(KaxChapterTrackNumber)
 };
 
 class MATROSKA_DLL_API KaxChapterDisplay : public EbmlMaster {
-public:
-    KaxChapterDisplay();
-	KaxChapterDisplay(const KaxChapterDisplay & ElementToClone) :EbmlMaster(ElementToClone) {}
-    static EbmlElement & Create() {return *(new KaxChapterDisplay);}
-    const EbmlCallbacks & Generic() const {return ClassInfos;}
-    static const EbmlCallbacks ClassInfos;
-    operator const EbmlId &() const {return ClassInfos.GlobalId;}
-	EbmlElement * Clone() const {return new KaxChapterDisplay(*this);}
+    public:
+        KaxChapterDisplay();
+	    KaxChapterDisplay(const KaxChapterDisplay & ElementToClone) :EbmlMaster(ElementToClone) {}
+        
+        EBML_CONCRETE_CLASS(KaxChapterDisplay)
 };
 
 class MATROSKA_DLL_API KaxChapterString : public EbmlUnicodeString {
-public:
-    KaxChapterString() {}
-	KaxChapterString(const KaxChapterString & ElementToClone) :EbmlUnicodeString(ElementToClone) {}
-    static EbmlElement & Create() {return *(new KaxChapterString);}
-    const EbmlCallbacks & Generic() const {return ClassInfos;}
-    static const EbmlCallbacks ClassInfos;
-    operator const EbmlId &() const {return ClassInfos.GlobalId;}
-	EbmlElement * Clone() const {return new KaxChapterString(*this);}
+    public:
+        KaxChapterString() {}
+	    KaxChapterString(const KaxChapterString & ElementToClone) :EbmlUnicodeString(ElementToClone) {}
+        
+        EBML_CONCRETE_CLASS(KaxChapterString)
 };
 
 class MATROSKA_DLL_API KaxChapterLanguage : public EbmlString {
-public:
-    KaxChapterLanguage() :EbmlString("eng") {}
-	KaxChapterLanguage(const KaxChapterLanguage & ElementToClone) :EbmlString(ElementToClone) {}
-    static EbmlElement & Create() {return *(new KaxChapterLanguage);}
-    const EbmlCallbacks & Generic() const {return ClassInfos;}
-    static const EbmlCallbacks ClassInfos;
-    operator const EbmlId &() const {return ClassInfos.GlobalId;}
-	EbmlElement * Clone() const {return new KaxChapterLanguage(*this);}
+    public:
+        KaxChapterLanguage() :EbmlString("eng") {}
+	    KaxChapterLanguage(const KaxChapterLanguage & ElementToClone) :EbmlString(ElementToClone) {}
+        
+        EBML_CONCRETE_CLASS(KaxChapterLanguage)
 };
 
 class MATROSKA_DLL_API KaxChapterCountry : public EbmlString {
-public:
-    KaxChapterCountry() :EbmlString() {}
-	KaxChapterCountry(const KaxChapterCountry & ElementToClone) :EbmlString(ElementToClone) {}
-    static EbmlElement & Create() {return *(new KaxChapterCountry);}
-    const EbmlCallbacks & Generic() const {return ClassInfos;}
-    static const EbmlCallbacks ClassInfos;
-    operator const EbmlId &() const {return ClassInfos.GlobalId;}
-	EbmlElement * Clone() const {return new KaxChapterCountry(*this);}
+    public:
+        KaxChapterCountry() :EbmlString() {}
+	    KaxChapterCountry(const KaxChapterCountry & ElementToClone) :EbmlString(ElementToClone) {}
+        
+        EBML_CONCRETE_CLASS(KaxChapterCountry)
 };
 
 class MATROSKA_DLL_API KaxChapterProcess : public EbmlMaster {
-public:
-    KaxChapterProcess();
-	KaxChapterProcess(const KaxChapterProcess & ElementToClone) :EbmlMaster(ElementToClone) {}
-    static EbmlElement & Create() {return *(new KaxChapterProcess);}
-    const EbmlCallbacks & Generic() const {return ClassInfos;}
-    static const EbmlCallbacks ClassInfos;
-    operator const EbmlId &() const {return ClassInfos.GlobalId;}
-	EbmlElement * Clone() const {return new KaxChapterProcess(*this);}
+    public:
+        KaxChapterProcess();
+	    KaxChapterProcess(const KaxChapterProcess & ElementToClone) :EbmlMaster(ElementToClone) {}
+        
+        EBML_CONCRETE_CLASS(KaxChapterProcess)
 };
 
 class MATROSKA_DLL_API KaxChapterProcessCodecID : public EbmlUInteger {
-public:
-    KaxChapterProcessCodecID() :EbmlUInteger(0) {}
-	KaxChapterProcessCodecID(const KaxChapterProcessCodecID & ElementToClone) :EbmlUInteger(ElementToClone) {}
-    static EbmlElement & Create() {return *(new KaxChapterProcessCodecID);}
-    const EbmlCallbacks & Generic() const {return ClassInfos;}
-    static const EbmlCallbacks ClassInfos;
-    operator const EbmlId &() const {return ClassInfos.GlobalId;}
-	EbmlElement * Clone() const {return new KaxChapterProcessCodecID(*this);}
+    public:
+        KaxChapterProcessCodecID() :EbmlUInteger(0) {}
+	    KaxChapterProcessCodecID(const KaxChapterProcessCodecID & ElementToClone) :EbmlUInteger(ElementToClone) {}
+        
+        EBML_CONCRETE_CLASS(KaxChapterProcessCodecID)
 };
 
 class MATROSKA_DLL_API KaxChapterProcessPrivate : public EbmlBinary {
-public:
-    KaxChapterProcessPrivate() {}
-	KaxChapterProcessPrivate(const KaxChapterProcessPrivate & ElementToClone) :EbmlBinary(ElementToClone) {}
-    static EbmlElement & Create() {return *(new KaxChapterProcessPrivate);}
-    const EbmlCallbacks & Generic() const {return ClassInfos;}
-    static const EbmlCallbacks ClassInfos;
-    operator const EbmlId &() const {return ClassInfos.GlobalId;}
-	EbmlElement * Clone() const {return new KaxChapterProcessPrivate(*this);}
-	bool ValidateSize() const {return true;}
+    public:
+        KaxChapterProcessPrivate() {}
+	    KaxChapterProcessPrivate(const KaxChapterProcessPrivate & ElementToClone) :EbmlBinary(ElementToClone) {}
+	    bool ValidateSize() const {return true;}
+        
+        EBML_CONCRETE_CLASS(KaxChapterProcessPrivate)
 };
 
 class MATROSKA_DLL_API KaxChapterProcessCommand : public EbmlMaster {
-public:
-    KaxChapterProcessCommand();
-	KaxChapterProcessCommand(const KaxChapterProcessCommand & ElementToClone) :EbmlMaster(ElementToClone) {}
-    static EbmlElement & Create() {return *(new KaxChapterProcessCommand);}
-    const EbmlCallbacks & Generic() const {return ClassInfos;}
-    static const EbmlCallbacks ClassInfos;
-    operator const EbmlId &() const {return ClassInfos.GlobalId;}
-	EbmlElement * Clone() const {return new KaxChapterProcessCommand(*this);}
+    public:
+        KaxChapterProcessCommand();
+	    KaxChapterProcessCommand(const KaxChapterProcessCommand & ElementToClone) :EbmlMaster(ElementToClone) {}
+        
+        EBML_CONCRETE_CLASS(KaxChapterProcessCommand)
 };
 
 class MATROSKA_DLL_API KaxChapterProcessTime : public EbmlUInteger {
-public:
-    KaxChapterProcessTime() {}
-	KaxChapterProcessTime(const KaxChapterProcessTime & ElementToClone) :EbmlUInteger(ElementToClone) {}
-    static EbmlElement & Create() {return *(new KaxChapterProcessTime);}
-    const EbmlCallbacks & Generic() const {return ClassInfos;}
-    static const EbmlCallbacks ClassInfos;
-    operator const EbmlId &() const {return ClassInfos.GlobalId;}
-	EbmlElement * Clone() const {return new KaxChapterProcessTime(*this);}
+    public:
+        KaxChapterProcessTime() {}
+	    KaxChapterProcessTime(const KaxChapterProcessTime & ElementToClone) :EbmlUInteger(ElementToClone) {}
+        
+        EBML_CONCRETE_CLASS(KaxChapterProcessTime)
 };
 
 class MATROSKA_DLL_API KaxChapterProcessData : public EbmlBinary {
-public:
-    KaxChapterProcessData() {}
-	KaxChapterProcessData(const KaxChapterProcessData & ElementToClone) :EbmlBinary(ElementToClone) {}
-    static EbmlElement & Create() {return *(new KaxChapterProcessData);}
-    const EbmlCallbacks & Generic() const {return ClassInfos;}
-    static const EbmlCallbacks ClassInfos;
-    operator const EbmlId &() const {return ClassInfos.GlobalId;}
-	EbmlElement * Clone() const {return new KaxChapterProcessData(*this);}
-	bool ValidateSize() const {return true;}
+    public:
+        KaxChapterProcessData() {}
+	    KaxChapterProcessData(const KaxChapterProcessData & ElementToClone) :EbmlBinary(ElementToClone) {}
+	    bool ValidateSize() const {return true;}
+        
+        EBML_CONCRETE_CLASS(KaxChapterProcessData)
 };
 
 END_LIBMATROSKA_NAMESPACE

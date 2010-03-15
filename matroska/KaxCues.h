@@ -52,11 +52,6 @@ class MATROSKA_DLL_API KaxCues : public EbmlMaster {
 		KaxCues();
 		KaxCues(const KaxCues & ElementToClone) :EbmlMaster(ElementToClone) {}
 		~KaxCues();
-		static EbmlElement & Create() {return *(new KaxCues);}
-		const EbmlCallbacks & Generic() const {return ClassInfos;}
-		static const EbmlCallbacks ClassInfos;
-		operator const EbmlId &() const {return ClassInfos.GlobalId;}
-		EbmlElement * Clone() const {return new KaxCues(*this);}
 
 		bool AddBlockGroup(const KaxBlockGroup & BlockReference);
 		bool AddBlockBlob(const KaxBlockBlob & BlockReference);
@@ -91,6 +86,8 @@ class MATROSKA_DLL_API KaxCues : public EbmlMaster {
 		std::vector<const KaxBlockBlob *> myTempReferences;
 		bool   bGlobalTimecodeScaleIsSet;
 		uint64 mGlobalTimecodeScale;
+
+        EBML_CONCRETE_CLASS(KaxCues)
 };
 
 END_LIBMATROSKA_NAMESPACE

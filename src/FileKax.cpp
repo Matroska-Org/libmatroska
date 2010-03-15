@@ -189,7 +189,7 @@ void FileMatroska::track_SetName(Track * aTrack, const std::string & aName)
     }
 }
 
-void FileMatroska::track_SetLaced(Track * aTrack, const bool bLaced)
+void FileMatroska::track_SetLaced(Track * aTrack, bool bLaced)
 {
     if (IsMyTrack(aTrack))
     {
@@ -198,7 +198,7 @@ void FileMatroska::track_SetLaced(Track * aTrack, const bool bLaced)
 }
 
 bool FileMatroska::AddFrame(Track * aTrack, const uint32 aTimecode, const binary *aFrame, const uint32 aFrameSize,
-					   const bool aKeyFrame, const bool aBFrame)
+					   bool aKeyFrame, bool aBFrame)
 {
     try {
 	// make sure we know that track

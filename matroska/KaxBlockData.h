@@ -83,7 +83,7 @@ class MATROSKA_DLL_API KaxReferenceBlock : public EbmlSInteger {
 	protected:
 		const KaxBlockBlob * RefdBlock;
 		const KaxBlockGroup * ParentBlock;
-		void SetReferencedTimecode(int64 refTimecode) {Value = refTimecode; bTimecodeSet = true; bValueIsSet = true;};
+		void SetReferencedTimecode(int64 refTimecode) {*static_cast<EbmlSInteger*>(this) = refTimecode; bTimecodeSet = true;};
 		bool bTimecodeSet;
 };
 

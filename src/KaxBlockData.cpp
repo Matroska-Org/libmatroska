@@ -114,7 +114,7 @@ uint64 KaxReferenceBlock::UpdateSize(bool bSaveDefault, bool bForceRender)
 		assert(ParentBlock != NULL);
 
 		const KaxInternalBlock &block = *RefdBlock;
-		Value = (int64(block.GlobalTimecode()) - int64(ParentBlock->GlobalTimecode())) / int64(ParentBlock->GlobalTimecodeScale());
+		*static_cast<EbmlSInteger*>(this) = (int64(block.GlobalTimecode()) - int64(ParentBlock->GlobalTimecode())) / int64(ParentBlock->GlobalTimecodeScale());
 	}
 	return EbmlSInteger::UpdateSize(bSaveDefault, bForceRender);
 }

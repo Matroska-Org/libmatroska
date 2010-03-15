@@ -90,7 +90,7 @@ class MATROSKA_DLL_API KaxSeekID : public EbmlBinary {
 		const EbmlCallbacks & Generic() const {return ClassInfos;}
 		static const EbmlCallbacks ClassInfos;
 		operator const EbmlId &() const {return ClassInfos.GlobalId;}
-		bool ValidateSize() const {return Size <= 4;}
+		bool ValidateSize() const {return GetSize() <= 4;}
 		EbmlElement * Clone() const {return new KaxSeekID(*this);}
 };
 

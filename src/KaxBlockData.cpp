@@ -124,7 +124,7 @@ void KaxReferenceBlock::SetReferencedBlock(const KaxBlockBlob * aRefdBlock)
 	assert(RefdBlock == NULL);
 	assert(aRefdBlock != NULL);
 	RefdBlock = aRefdBlock; 
-	bValueIsSet = true;
+	SetValueIsSet();
 }
 
 void KaxReferenceBlock::SetReferencedBlock(const KaxBlockGroup & aRefdBlock)
@@ -132,7 +132,7 @@ void KaxReferenceBlock::SetReferencedBlock(const KaxBlockGroup & aRefdBlock)
 	KaxBlockBlob *block_blob = new KaxBlockBlob(BLOCK_BLOB_NO_SIMPLE);
 	block_blob->SetBlockGroup(*const_cast<KaxBlockGroup*>(&aRefdBlock));
 	RefdBlock = block_blob; 
-	bValueIsSet = true;
+	SetValueIsSet();
 }
 
 END_LIBMATROSKA_NAMESPACE

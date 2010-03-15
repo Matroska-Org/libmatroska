@@ -126,19 +126,19 @@ KaxSeek * KaxSeekHead::FindNextOf(const KaxSeek &aPrev) const
 	KaxSeek *tmp;
 	
 	// look for the previous in the list
-	for (iIndex = 0; iIndex<ElementList.size(); iIndex++)
+	for (iIndex = 0; iIndex<ListSize(); iIndex++)
 	{
-		if (ElementList[iIndex] == static_cast<const EbmlElement*>(&aPrev))
+		if ((*this)[iIndex] == static_cast<const EbmlElement*>(&aPrev))
 			break;
 	}
 
-	if (iIndex <ElementList.size()) {
+	if (iIndex <ListSize()) {
 		iIndex++;
-		for (; iIndex<ElementList.size(); iIndex++)
+		for (; iIndex<ListSize(); iIndex++)
 		{
-			if (EbmlId(*(ElementList[iIndex])) == KaxSeek::ClassInfos.GlobalId)
+			if (EbmlId(*((*this)[iIndex])) == KaxSeek::ClassInfos.GlobalId)
 			{
-				tmp = static_cast<KaxSeek *>(ElementList[iIndex]);
+				tmp = (KaxSeek *)((*this)[iIndex]);
 				if (tmp->IsEbmlId(aPrev))
 					return tmp;
 			}

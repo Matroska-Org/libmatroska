@@ -75,8 +75,8 @@ KaxCluster::KaxCluster(const KaxCluster & ElementToClone)
  ,bSilentTracksUsed(ElementToClone.bSilentTracksUsed)
 {
 	// update the parent of each children
-	std::vector<EbmlElement *>::const_iterator Itr = ElementList.begin();
-	while (Itr != ElementList.end())
+	std::vector<EbmlElement *>::const_iterator Itr = begin();
+	while (Itr != end())
 	{
 		if (EbmlId(**Itr) == KaxBlockGroup::ClassInfos.GlobalId) {
 			static_cast<KaxBlockGroup   *>(*Itr)->SetParent(*this);
@@ -193,15 +193,15 @@ uint32 KaxCluster::Render(IOCallback & output, KaxCues & CueToUpdate, bool bSave
 				{
 					KaxTrackEntry & entry = *static_cast<KaxTrackEntry *>(MyTracks[TrkIndex]);
 					uint32 tracknum = entry.TrackNumber();
-					for (Index = 0; Index < ElementList.size(); Index++) {
-						if (EbmlId(*ElementList[Index]) == KaxBlockGroup::ClassInfos.GlobalId) {
-							KaxBlockGroup & group = *static_cast<KaxBlockGroup *>(ElementList[Index]);
+					for (Index = 0; Index < ListSize(); Index++) {
+						if (EbmlId(*(*this)[Index]) == KaxBlockGroup::ClassInfos.GlobalId) {
+							KaxBlockGroup & group = *static_cast<KaxBlockGroup *>((*this)[Index]);
 							if (group.TrackNumber() == tracknum)
 								break; // this track is used
 						}
 					}
 					// the track wasn't found in this cluster
-					if (Index == ElementList.size())
+					if (Index == ListSize())
 					{
 						KaxClusterSilentTracks * SilentTracks = static_cast<KaxClusterSilentTracks *>(this->FindFirstElt(KaxClusterSilentTracks::ClassInfos));
 						assert(SilentTracks != NULL); // the flag bSilentTracksUsed should be set when creating the Cluster
@@ -215,9 +215,9 @@ uint32 KaxCluster::Render(IOCallback & output, KaxCues & CueToUpdate, bool bSave
 		Result = EbmlMaster::Render(output, bSaveDefault);
 		// For all Blocks add their position on the CueEntry
 		
-		for (Index = 0; Index < ElementList.size(); Index++) {
-			if (EbmlId(*ElementList[Index]) == KaxBlockGroup::ClassInfos.GlobalId) {
-				CueToUpdate.PositionSet(*static_cast<const KaxBlockGroup *>(ElementList[Index]));
+		for (Index = 0; Index < ListSize(); Index++) {
+			if (EbmlId(*(*this)[Index]) == KaxBlockGroup::ClassInfos.GlobalId) {
+				CueToUpdate.PositionSet(*static_cast<const KaxBlockGroup *>((*this)[Index]));
 			}
 		}
 	} else {
@@ -226,10 +226,10 @@ uint32 KaxCluster::Render(IOCallback & output, KaxCues & CueToUpdate, bool bSave
 		{
 #if MATROSKA_VERSION >= 2
 			if (Blobs[Index]->IsSimpleBlock())
-				ElementList.push_back( &(KaxSimpleBlock&) *Blobs[Index] );
+				PushElement( (KaxSimpleBlock&) *Blobs[Index] );
 			else
 #endif
-				ElementList.push_back( &(KaxBlockGroup&) *Blobs[Index] );
+				PushElement( (KaxBlockGroup&) *Blobs[Index] );
 		}
 
 		// SilentTracks handling
@@ -247,7 +247,7 @@ uint32 KaxCluster::Render(IOCallback & output, KaxCues & CueToUpdate, bool bSave
 								break; // this track is used
 					}
 					// the track wasn't found in this cluster
-					if (Index == ElementList.size())
+					if (Index == ListSize())
 					{
 						KaxClusterSilentTracks * SilentTracks = static_cast<KaxClusterSilentTracks *>(this->FindFirstElt(KaxClusterSilentTracks::ClassInfos));
 						assert(SilentTracks != NULL); // the flag bSilentTracksUsed should be set when creating the Cluster
@@ -319,9 +319,9 @@ void KaxCluster::ReleaseFrames()
 {
 	size_t Index;
 	
-	for (Index = 0; Index < ElementList.size(); Index++) {
-		if (EbmlId(*ElementList[Index]) == KaxBlockGroup::ClassInfos.GlobalId) {
-			static_cast<KaxBlockGroup*>(ElementList[Index])->ReleaseFrames();
+	for (Index = 0; Index < ListSize(); Index++) {
+		if (EbmlId(*(*this)[Index]) == KaxBlockGroup::ClassInfos.GlobalId) {
+			static_cast<KaxBlockGroup*>((*this)[Index])->ReleaseFrames();
 		}
 	}
 }

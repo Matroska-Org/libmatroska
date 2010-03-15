@@ -199,7 +199,7 @@ class MATROSKA_DLL_API KaxVideoColourSpace : public EbmlBinary {
 		static EbmlElement & Create() {return *(new KaxVideoColourSpace);}
 		const EbmlCallbacks & Generic() const {return ClassInfos;}
 		static const EbmlCallbacks ClassInfos;
-		bool ValidateSize(void) const {return (Size == 4);}
+        bool ValidateSize(void) const {return (GetSize() == 4);}
 		operator const EbmlId &() const {return ClassInfos.GlobalId;}
 		EbmlElement * Clone() const {return new KaxVideoColourSpace(*this);}
 };

@@ -134,7 +134,7 @@ SimpleDataBuffer::SimpleDataBuffer(const SimpleDataBuffer & ToClone)
 
 bool KaxInternalBlock::ValidateSize() const
 {
-	return (Size >= 4); /// for the moment
+	return (GetSize() >= 4); /// for the moment
 }
 
 KaxInternalBlock::~KaxInternalBlock()
@@ -188,7 +188,7 @@ KaxBlockMore::KaxBlockMore()
 */
 bool KaxInternalBlock::AddFrame(const KaxTrackEntry & track, uint64 timecode, DataBuffer & buffer, LacingType lacing, bool invisible)
 {
-	bValueIsSet = true;
+	SetValueIsSet();
 	if (myBuffers.size() == 0) {
 		// first frame
 		Timecode = timecode;
@@ -228,7 +228,7 @@ LacingType KaxInternalBlock::GetBestLacingType() const {
 			SameSize = false;
 		XiphLacingSize += myBuffers[i]->Size() / 255 + 1;
 	}
-	EbmlLacingSize += CodedSizeLength(myBuffers[0]->Size(), 0, bSizeIsFinite);
+	EbmlLacingSize += CodedSizeLength(myBuffers[0]->Size(), 0, IsFiniteSize());
 	for (i = 1; i < (int)myBuffers.size() - 1; i++)
 		EbmlLacingSize += CodedSizeLengthSigned(int64(myBuffers[i]->Size()) - int64(myBuffers[i - 1]->Size()), 0);
 	if (SameSize)
@@ -242,20 +242,20 @@ LacingType KaxInternalBlock::GetBestLacingType() const {
 uint64 KaxInternalBlock::UpdateSize(bool bSaveDefault, bool bForceRender)
 {
 	LacingType LacingHere;
-	assert(Data == NULL); // Data is not used for KaxInternalBlock
+	assert(GetData() == NULL); // Data is not used for KaxInternalBlock
 	assert(TrackNumber < 0x4000); // no more allowed for the moment
 	unsigned int i;
 
 	// compute the final size of the data
 	switch (myBuffers.size()) {
 		case 0:
-			Size = 0;
+			SetSize_(0);
 			break;
 		case 1:
-			Size = 4 + myBuffers[0]->Size();
+			SetSize_(4 + myBuffers[0]->Size());
 			break;
 		default:
-			Size = 4 + 1; // 1 for the lacing head
+			SetSize_(4 + 1); // 1 for the lacing head
 			if (mLacing == LACING_AUTO)
 				LacingHere = GetBestLacingType();
 			else
@@ -264,33 +264,32 @@ uint64 KaxInternalBlock::UpdateSize(bool bSaveDefault, bool bForceRender)
 			{
 			case LACING_XIPH:
 				for (i=0; i<myBuffers.size()-1; i++) {
-					Size += myBuffers[i]->Size() + (myBuffers[i]->Size() / 0xFF + 1);
+					SetSize_(GetSize() + myBuffers[i]->Size() + (myBuffers[i]->Size() / 0xFF + 1));
 				}
 				break;
 			case LACING_EBML:
-				Size += myBuffers[0]->Size() + CodedSizeLength(myBuffers[0]->Size(), 0, bSizeIsFinite);
+				SetSize_(GetSize() + myBuffers[0]->Size() + CodedSizeLength(myBuffers[0]->Size(), 0, IsFiniteSize()));
 				for (i=1; i<myBuffers.size()-1; i++) {
-					Size += myBuffers[i]->Size() 
-						+ CodedSizeLengthSigned(int64(myBuffers[i]->Size()) - int64(myBuffers[i-1]->Size()), 0);;
+					SetSize_(GetSize() + myBuffers[i]->Size() + CodedSizeLengthSigned(int64(myBuffers[i]->Size()) - int64(myBuffers[i-1]->Size()), 0));
 				}
 				break;
 			case LACING_FIXED:
 				for (i=0; i<myBuffers.size()-1; i++) {
-					Size += myBuffers[i]->Size();
+					SetSize_(GetSize() + myBuffers[i]->Size());
 				}
 				break;
 			default:
 				assert(0);
 			}
 			// Size of the last frame (not in lace)
-			Size += myBuffers[i]->Size();
+			SetSize_(GetSize() + myBuffers[i]->Size());
 			break;
 	}
 
 	if (TrackNumber >= 0x80)
-		Size++; // the size will be coded with one more octet
+		SetSize_(GetSize() + 1); // the size will be coded with one more octet
 
-	return Size;
+	return GetSize();
 }
 
 #if MATROSKA_VERSION >= 2
@@ -300,13 +299,14 @@ KaxBlockVirtual::KaxBlockVirtual(const KaxBlockVirtual & ElementToClone)
  ,TrackNumber(ElementToClone.TrackNumber)
  ,ParentCluster(ElementToClone.ParentCluster) ///< \todo not exactly
 {
-	Data = DataBlock;
+    SetBuffer(DataBlock,sizeof(DataBlock));
+    SetValueIsSet(false);
 }
 
 uint64 KaxBlockVirtual::UpdateSize(bool bSaveDefault, bool bForceRender)
 {
 	assert(TrackNumber < 0x4000);
-	binary *cursor = Data;
+	binary *cursor = GetData();
 	// fill data
 	if (TrackNumber < 0x80) {
 		*cursor++ = TrackNumber | 0x80; // set the first bit to 1 
@@ -323,7 +323,7 @@ uint64 KaxBlockVirtual::UpdateSize(bool bSaveDefault, bool bForceRender)
 
 	*cursor++ = 0; // flags
 
-	return Size;
+	return GetSize();
 }
 #endif // MATROSKA_VERSION
 
@@ -341,15 +341,15 @@ uint32 KaxInternalBlock::RenderData(IOCallback & output, bool bForceRender, bool
 		unsigned int i;
 
 		if (myBuffers.size() == 1) {
-			Size = 4;
+			SetSize_(4);
 			mLacing = LACING_NONE;
 		} else {
 			if (mLacing == LACING_NONE)
 				mLacing = LACING_EBML; // supposedly the best of all
-			Size = 4 + 1; // 1 for the lacing head (number of laced elements)
+			SetSize_(4 + 1); // 1 for the lacing head (number of laced elements)
 		}
 		if (TrackNumber > 0x80)
-			Size++;
+			SetSize_(GetSize() + 1);
 
 		// write Block Head
 		if (TrackNumber < 0x80) {
@@ -416,12 +416,12 @@ uint32 KaxInternalBlock::RenderData(IOCallback & output, bool bForceRender, bool
 				uint16 tmpSize = myBuffers[i]->Size();
 				while (tmpSize >= 0xFF) {
 					output.writeFully(&tmpValue, 1);
-					Size++;
+					SetSize_(GetSize() + 1);
 					tmpSize -= 0xFF;
 				}
 				tmpValue = binary(tmpSize);
 				output.writeFully(&tmpValue, 1);
-				Size++;
+				SetSize_(GetSize() + 1);
 			}
 			break;
 		case LACING_EBML:
@@ -436,12 +436,12 @@ uint32 KaxInternalBlock::RenderData(IOCallback & output, bool bForceRender, bool
 
 				_Size = myBuffers[0]->Size();
 
-				_CodedSize = CodedSizeLength(_Size, 0, bSizeIsFinite);
+				_CodedSize = CodedSizeLength(_Size, 0, IsFiniteSize());
 
 				// first size in the lace is not a signed
 				CodedValueLength(_Size, _CodedSize, _FinalHead);
 				output.writeFully(_FinalHead, _CodedSize);
-				Size += _CodedSize;
+				SetSize_(GetSize() + _CodedSize);
 
 				// set the size of each member in the lace
 				for (i=1; i<myBuffers.size()-1; i++) {
@@ -449,7 +449,7 @@ uint32 KaxInternalBlock::RenderData(IOCallback & output, bool bForceRender, bool
 					_CodedSize = CodedSizeLengthSigned(_Size, 0);
 					CodedValueLengthSigned(_Size, _CodedSize, _FinalHead);
 					output.writeFully(_FinalHead, _CodedSize);
-					Size += _CodedSize;
+					SetSize_(GetSize() + _CodedSize);
 				}
 			}
 			break;
@@ -467,11 +467,11 @@ uint32 KaxInternalBlock::RenderData(IOCallback & output, bool bForceRender, bool
 		// put the data of each frame
 		for (i=0; i<myBuffers.size(); i++) {
 			output.writeFully(myBuffers[i]->Buffer(), myBuffers[i]->Size());
-			Size += myBuffers[i]->Size();
+			SetSize_(GetSize() + myBuffers[i]->Size());
 		}
 	}
 
-	return Size;
+	return GetSize();
 }
 
 uint64 KaxInternalBlock::ReadInternalHead(IOCallback & input)
@@ -519,7 +519,7 @@ uint64 KaxInternalBlock::ReadData(IOCallback & input, ScopeMode ReadFully)
 	if (ReadFully == SCOPE_ALL_DATA)
 	{
 		Result = EbmlBinary::ReadData(input, ReadFully);
-		binary *cursor = Data;
+		binary *cursor = GetData();
 		uint8 BlockHeadSize = 4;
 
 		// update internal values
@@ -552,14 +552,14 @@ uint64 KaxInternalBlock::ReadData(IOCallback & input, ScopeMode ReadFully)
 
 		// put all Frames in the list
 		if (mLacing == LACING_NONE) {
-			FirstFrameLocation += cursor - Data;
-			DataBuffer * soloFrame = new DataBuffer(cursor, Size - BlockHeadSize);
+			FirstFrameLocation += cursor - GetData();
+			DataBuffer * soloFrame = new DataBuffer(cursor, GetSize() - BlockHeadSize);
 			myBuffers.push_back(soloFrame);
 			SizeList.resize(1);
-			SizeList[0] = Size - BlockHeadSize;
+			SizeList[0] = GetSize() - BlockHeadSize;
 		} else {
 			// read the number of frames in the lace
-			uint32 LastBufferSize = Size - BlockHeadSize - 1; // 1 for number of frame
+			uint32 LastBufferSize = GetSize() - BlockHeadSize - 1; // 1 for number of frame
 			uint8 FrameNum = *cursor++; // number of frames in the lace - 1
 			// read the list of frame sizes
 			uint8 Index;
@@ -611,7 +611,7 @@ uint64 KaxInternalBlock::ReadData(IOCallback & input, ScopeMode ReadFully)
 				assert(0);
 			}
 
-			FirstFrameLocation += cursor - Data;
+			FirstFrameLocation += cursor - GetData();
 
 			for (Index=0; Index<=FrameNum; Index++) {
 				DataBuffer * lacedFrame = new DataBuffer(cursor, SizeList[Index]);
@@ -619,7 +619,7 @@ uint64 KaxInternalBlock::ReadData(IOCallback & input, ScopeMode ReadFully)
 				cursor += SizeList[Index];
 			}
 		}
-		bValueIsSet = true;
+		SetValueIsSet();
 	}
 	else if (ReadFully == SCOPE_PARTIAL_DATA)
 	{
@@ -668,7 +668,7 @@ uint64 KaxInternalBlock::ReadData(IOCallback & input, ScopeMode ReadFully)
 		// put all Frames in the list
 		if (mLacing != LACING_NONE) {
 			// read the number of frames in the lace
-			uint32 LastBufferSize = Size - BlockHeadSize - 1; // 1 for number of frame
+			uint32 LastBufferSize = GetSize() - BlockHeadSize - 1; // 1 for number of frame
 			uint8 FrameNum = _TempHead[0]; // number of frames in the lace - 1
 			// read the list of frame sizes
 			uint8 Index;
@@ -732,13 +732,13 @@ uint64 KaxInternalBlock::ReadData(IOCallback & input, ScopeMode ReadFully)
 			}
 		} else {
 			SizeList.resize(1);
-			SizeList[0] = Size - BlockHeadSize;
+			SizeList[0] = GetSize() - BlockHeadSize;
 		}
-		bValueIsSet = false;
-		Result = Size;
+		SetValueIsSet(false);
+		Result = GetSize();
 	} else {
-		bValueIsSet = false;
-		Result = Size;
+		SetValueIsSet(false);
+		Result = GetSize();
 	}
 
 	return Result;
@@ -937,7 +937,7 @@ int64 KaxInternalBlock::GetDataPosition(size_t FrameNumber)
 {
 	int64 _Result = -1;
 
-	if (bValueIsSet && FrameNumber < SizeList.size())
+	if (ValueIsSet() && FrameNumber < SizeList.size())
 	{
 		_Result = FirstFrameLocation;
 	

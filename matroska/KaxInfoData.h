@@ -54,7 +54,7 @@ class MATROSKA_DLL_API KaxSegmentUID : public EbmlBinary {
 		KaxSegmentUID() {}
 		KaxSegmentUID(const KaxSegmentUID & ElementToClone) :EbmlBinary(ElementToClone){}
 		static EbmlElement & Create() {return *(new KaxSegmentUID);}
-		bool ValidateSize() const { return (Size == 16);}
+		bool ValidateSize() const { return (GetSize() == 16);}
 		const EbmlCallbacks & Generic() const {return ClassInfos;}
 		static const EbmlCallbacks ClassInfos;
 		operator const EbmlId &() const {return ClassInfos.GlobalId;}
@@ -77,7 +77,7 @@ class MATROSKA_DLL_API KaxPrevUID : public KaxSegmentUID {
 		KaxPrevUID() {}
 		KaxPrevUID(const KaxPrevUID & ElementToClone) :KaxSegmentUID(ElementToClone){}
 		static EbmlElement & Create() {return *(new KaxPrevUID);}
-		bool ValidateSize() const { return (Size == 16);}
+		bool ValidateSize() const { return (GetSize() == 16);}
 		const EbmlCallbacks & Generic() const {return ClassInfos;}
 		static const EbmlCallbacks ClassInfos;
 		operator const EbmlId &() const {return ClassInfos.GlobalId;}
@@ -100,7 +100,7 @@ class MATROSKA_DLL_API KaxNextUID : public KaxSegmentUID {
 		KaxNextUID() {}
 		KaxNextUID(const KaxNextUID & ElementToClone) :KaxSegmentUID(ElementToClone){}
 		static EbmlElement & Create() {return *(new KaxNextUID);}
-		bool ValidateSize() const { return (Size == 16);}
+		bool ValidateSize() const { return (GetSize() == 16);}
 		const EbmlCallbacks & Generic() const {return ClassInfos;}
 		static const EbmlCallbacks ClassInfos;
 		operator const EbmlId &() const {return ClassInfos.GlobalId;}
@@ -123,7 +123,7 @@ class MATROSKA_DLL_API KaxSegmentFamily : public EbmlBinary {
 		KaxSegmentFamily() {}
 		KaxSegmentFamily(const KaxSegmentFamily & ElementToClone) :EbmlBinary(ElementToClone){}
 		static EbmlElement & Create() {return *(new KaxSegmentFamily);}
-		bool ValidateSize() const { return (Size == 16);}
+		bool ValidateSize() const { return (GetSize() == 16);}
 		const EbmlCallbacks & Generic() const {return ClassInfos;}
 		static const EbmlCallbacks ClassInfos;
 		operator const EbmlId &() const {return ClassInfos.GlobalId;}

@@ -687,7 +687,7 @@ class MATROSKA_DLL_API KaxTagBinary : public EbmlBinary {
 		KaxTagBinary() {}
 		KaxTagBinary(const KaxTagBinary & ElementToClone) :EbmlBinary(ElementToClone){}
 		static EbmlElement & Create() {return *(new KaxTagBinary);}
-		bool ValidateSize() const {return (Size >= 0);}
+		bool ValidateSize() const {return true;} // {return (GetSize() >= 0);}
 		const EbmlCallbacks & Generic() const {return ClassInfos;}
 		static const EbmlCallbacks ClassInfos;
 		operator const EbmlId &() const {return ClassInfos.GlobalId;}

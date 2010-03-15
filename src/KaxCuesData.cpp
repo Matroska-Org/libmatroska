@@ -166,7 +166,7 @@ void KaxCuePoint::PositionSet(const KaxBlockGroup & BlockReference, uint64 Globa
 	}
 #endif // MATROSKA_VERSION
 
-	bValueIsSet = true;
+	SetValueIsSet();
 }
 
 void KaxCuePoint::PositionSet(const KaxBlockBlob & BlobReference, uint64 GlobalTimecodeScale)
@@ -207,7 +207,7 @@ void KaxCuePoint::PositionSet(const KaxBlockBlob & BlobReference, uint64 GlobalT
 	}
 #endif // MATROSKA_VERSION
 
-	bValueIsSet = true;
+	SetValueIsSet();
 }
 
 #if MATROSKA_VERSION >= 2

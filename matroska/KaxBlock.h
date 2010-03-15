@@ -365,7 +365,7 @@ class MATROSKA_DLL_API KaxBlockDuration : public EbmlUInteger {
 #if MATROSKA_VERSION >= 2
 class MATROSKA_DLL_API KaxBlockVirtual : public EbmlBinary {
 	public:
-		KaxBlockVirtual() :ParentCluster(NULL) {Data = DataBlock; Size = countof(DataBlock);}
+		KaxBlockVirtual() :ParentCluster(NULL) {SetBuffer(DataBlock,sizeof(DataBlock)); SetValueIsSet(false);}
 		KaxBlockVirtual(const KaxBlockVirtual & ElementToClone);
 		static EbmlElement & Create() {return *(new KaxBlockVirtual);}
 		const EbmlCallbacks & Generic() const {return ClassInfos;}

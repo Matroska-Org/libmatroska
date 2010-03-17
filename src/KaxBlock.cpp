@@ -242,7 +242,7 @@ LacingType KaxInternalBlock::GetBestLacingType() const {
 uint64 KaxInternalBlock::UpdateSize(bool bSaveDefault, bool bForceRender)
 {
 	LacingType LacingHere;
-	assert(GetData() == NULL); // Data is not used for KaxInternalBlock
+    assert(EbmlBinary::GetBuffer() == NULL); // Data is not used for KaxInternalBlock
 	assert(TrackNumber < 0x4000); // no more allowed for the moment
 	unsigned int i;
 
@@ -306,7 +306,7 @@ KaxBlockVirtual::KaxBlockVirtual(const KaxBlockVirtual & ElementToClone)
 uint64 KaxBlockVirtual::UpdateSize(bool bSaveDefault, bool bForceRender)
 {
 	assert(TrackNumber < 0x4000);
-	binary *cursor = GetData();
+	binary *cursor = EbmlBinary::GetBuffer();
 	// fill data
 	if (TrackNumber < 0x80) {
 		*cursor++ = TrackNumber | 0x80; // set the first bit to 1 
@@ -519,7 +519,7 @@ uint64 KaxInternalBlock::ReadData(IOCallback & input, ScopeMode ReadFully)
 	if (ReadFully == SCOPE_ALL_DATA)
 	{
 		Result = EbmlBinary::ReadData(input, ReadFully);
-		binary *cursor = GetData();
+        binary *cursor = EbmlBinary::GetBuffer();
 		uint8 BlockHeadSize = 4;
 
 		// update internal values
@@ -552,7 +552,7 @@ uint64 KaxInternalBlock::ReadData(IOCallback & input, ScopeMode ReadFully)
 
 		// put all Frames in the list
 		if (mLacing == LACING_NONE) {
-			FirstFrameLocation += cursor - GetData();
+			FirstFrameLocation += cursor - EbmlBinary::GetBuffer();
 			DataBuffer * soloFrame = new DataBuffer(cursor, GetSize() - BlockHeadSize);
 			myBuffers.push_back(soloFrame);
 			SizeList.resize(1);
@@ -611,7 +611,7 @@ uint64 KaxInternalBlock::ReadData(IOCallback & input, ScopeMode ReadFully)
 				assert(0);
 			}
 
-			FirstFrameLocation += cursor - GetData();
+			FirstFrameLocation += cursor - EbmlBinary::GetBuffer();
 
 			for (Index=0; Index<=FrameNum; Index++) {
 				DataBuffer * lacedFrame = new DataBuffer(cursor, SizeList[Index]);

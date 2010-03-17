@@ -107,7 +107,7 @@ KaxSeek * KaxSeekHead::FindFirstOf(const EbmlCallbacks & Callbacks) const
 			if (EbmlId(*(*aElt)[i]) == EBML_ID(KaxSeekID)) {
 				aId = static_cast<KaxSeekID*>((*aElt)[i]);
 				EbmlId aEbmlId(aId->GetBuffer(), aId->GetSize());
-				if (aEbmlId == Callbacks.GlobalId)
+				if (aEbmlId == EBML_INFO_ID(Callbacks))
 				{
 					return aElt;
 				}

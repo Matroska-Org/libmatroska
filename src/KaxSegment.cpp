@@ -83,7 +83,7 @@ KaxSegment::KaxSegment(const KaxSegment & ElementToClone)
  :EbmlMaster(ElementToClone)
 {
 	// update the parent of each children
-	std::vector<EbmlElement *>::const_iterator Itr = begin();
+	EBML_MASTER_ITERATOR Itr = begin();
 	while (Itr != end())
 	{
 		if (EbmlId(**Itr) == EBML_ID(KaxCluster)) {

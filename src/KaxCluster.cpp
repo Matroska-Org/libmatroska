@@ -87,6 +87,7 @@ KaxCluster::KaxCluster(const KaxCluster & ElementToClone)
 			static_cast<KaxBlockVirtual *>(*Itr)->SetParent(*this);
 #endif // MATROSKA_VERSION
 		}
+        ++Itr;
 	}
 }
 

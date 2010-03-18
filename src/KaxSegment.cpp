@@ -89,6 +89,7 @@ KaxSegment::KaxSegment(const KaxSegment & ElementToClone)
 		if (EbmlId(**Itr) == EBML_ID(KaxCluster)) {
 			static_cast<KaxCluster *>(*Itr)->SetParent(*this);
 		}
+        ++Itr;
 	}
 }
 

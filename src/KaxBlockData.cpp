@@ -107,7 +107,7 @@ const KaxBlockBlob & KaxReferenceBlock::RefBlock() const
 	return *RefdBlock;
 }
 
-uint64 KaxReferenceBlock::UpdateSize(bool bSaveDefault, bool bForceRender)
+filepos_t KaxReferenceBlock::UpdateSize(bool bSaveDefault, bool bForceRender)
 {
 	if (!bTimecodeSet) {
 		assert(RefdBlock != NULL);

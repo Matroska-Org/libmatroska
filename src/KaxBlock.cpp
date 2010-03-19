@@ -239,7 +239,7 @@ LacingType KaxInternalBlock::GetBestLacingType() const {
 		return LACING_EBML;
 }
 
-uint64 KaxInternalBlock::UpdateSize(bool bSaveDefault, bool bForceRender)
+filepos_t KaxInternalBlock::UpdateSize(bool bSaveDefault, bool bForceRender)
 {
 	LacingType LacingHere;
     assert(EbmlBinary::GetBuffer() == NULL); // Data is not used for KaxInternalBlock
@@ -303,7 +303,7 @@ KaxBlockVirtual::KaxBlockVirtual(const KaxBlockVirtual & ElementToClone)
     SetValueIsSet(false);
 }
 
-uint64 KaxBlockVirtual::UpdateSize(bool bSaveDefault, bool bForceRender)
+filepos_t KaxBlockVirtual::UpdateSize(bool bSaveDefault, bool bForceRender)
 {
 	assert(TrackNumber < 0x4000);
 	binary *cursor = EbmlBinary::GetBuffer();
@@ -331,7 +331,7 @@ uint64 KaxBlockVirtual::UpdateSize(bool bSaveDefault, bool bForceRender)
 	\todo more optimisation is possible (render the Block head and don't copy the buffer in memory, care should be taken with the allocation of Data)
 	\todo the actual timecode to write should be retrieved from the Cluster from here
 */
-uint32 KaxInternalBlock::RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault)
+filepos_t KaxInternalBlock::RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault)
 {
 	if (myBuffers.size() == 0) {
 		return 0;
@@ -510,9 +510,9 @@ uint64 KaxInternalBlock::ReadInternalHead(IOCallback & input)
 /*!
 	\todo better zero copy handling
 */
-uint64 KaxInternalBlock::ReadData(IOCallback & input, ScopeMode ReadFully)
+filepos_t KaxInternalBlock::ReadData(IOCallback & input, ScopeMode ReadFully)
 {
-	uint64 Result;
+	filepos_t Result;
 
 	FirstFrameLocation = input.getFilePointer(); // will be updated accordingly below
 

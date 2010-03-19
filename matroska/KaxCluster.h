@@ -76,7 +76,7 @@ class MATROSKA_DLL_API KaxCluster : public EbmlMaster {
 		/*!
 			\brief Render the data to the stream and retrieve the position of BlockGroups for later cue entries
 		*/
-		uint32 Render(IOCallback & output, KaxCues & CueToUpdate, bool bSaveDefault = false);
+		filepos_t Render(IOCallback & output, KaxCues & CueToUpdate, bool bSaveDefault = false);
 
 		/*!
 			\return the global timecode of this Cluster

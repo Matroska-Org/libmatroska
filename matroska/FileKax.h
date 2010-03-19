@@ -63,7 +63,7 @@ class MATROSKA_DLL_API FileMatroska {
 		FileMatroska(IOCallback & output);
 		~FileMatroska();
 #ifdef OLD
-	uint32 RenderHead(const std::string & aEncoderApp);
+	filepos_t RenderHead(const std::string & aEncoderApp);
 	uint32 ReadHead();
 	uint32 ReadTracks();
 	uint32 ReadCodec();

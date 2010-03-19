@@ -114,7 +114,7 @@ void FileMatroska::Close(const uint32 aTimeLength)
 /*!
     \warning after rendering the head, some parameters are locked
 */
-uint32 FileMatroska::RenderHead(const std::string & aEncoderApp)
+filepos_t FileMatroska::RenderHead(const std::string & aEncoderApp)
 {
     try {
 	uint32 track_entries_size = 0;
@@ -141,7 +141,7 @@ uint32 FileMatroska::RenderHead(const std::string & aEncoderApp)
 	}
 
 	// Main Header
-	uint32 result = myMainHeader.Render(myFile, myStreamInfo);
+	filepos_t result = myMainHeader.Render(myFile, myStreamInfo);
 
 	// Track Entries
 	for (i=0; i<myTracks.size(); i++)

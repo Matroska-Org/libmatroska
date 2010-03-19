@@ -209,8 +209,8 @@ class KaxInternalBlock : public EbmlBinary {
 		/*!
 			\note override this function to generate the Data/Size on the fly, unlike the usual binary elements
 		*/
-		uint64 UpdateSize(bool bSaveDefault = false, bool bForceRender = false);
-		uint64 ReadData(IOCallback & input, ScopeMode ReadFully = SCOPE_ALL_DATA);
+		filepos_t UpdateSize(bool bSaveDefault = false, bool bForceRender = false);
+		filepos_t ReadData(IOCallback & input, ScopeMode ReadFully = SCOPE_ALL_DATA);
 		
 		/*!
 			\brief Only read the head of the Block (not internal data)
@@ -264,7 +264,7 @@ class KaxInternalBlock : public EbmlBinary {
 		bool       mInvisible;
 		uint64     FirstFrameLocation;
 
-		uint32 RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault = false);
+		filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault = false);
 
 		KaxCluster * ParentCluster;
 		bool       bIsSimple;
@@ -360,7 +360,7 @@ class MATROSKA_DLL_API KaxBlockVirtual : public EbmlBinary {
 		/*!
 			\note override this function to generate the Data/Size on the fly, unlike the usual binary elements
 		*/
-		uint64 UpdateSize(bool bSaveDefault = false, bool bForceRender = false);
+		filepos_t UpdateSize(bool bSaveDefault = false, bool bForceRender = false);
 
 		void SetParent(const KaxCluster & aParentCluster) {ParentCluster = &aParentCluster;}
 

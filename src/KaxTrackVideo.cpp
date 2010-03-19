@@ -125,7 +125,7 @@ KaxTrackVideo::KaxTrackVideo()
 	:EbmlMaster(KaxTrackVideo_Context)
 {}
 
-uint32 KaxVideoFrameRate::RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault)
+filepos_t KaxVideoFrameRate::RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault)
 {
 	assert(false); // no you are not allowed to use this element !
 	return 0;

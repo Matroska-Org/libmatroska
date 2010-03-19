@@ -65,7 +65,7 @@ class MATROSKA_DLL_API KaxReferenceBlock : public EbmlSInteger {
 		/*!
 			\brief override this method to compute the timecode value
 		*/
-		virtual uint64 UpdateSize(bool bSaveDefault = false, bool bForceRender = false);
+		virtual filepos_t UpdateSize(bool bSaveDefault = false, bool bForceRender = false);
 
 		const KaxBlockBlob & RefBlock() const;
 		void SetReferencedBlock(const KaxBlockBlob * aRefdBlock);

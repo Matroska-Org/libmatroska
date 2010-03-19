@@ -176,7 +176,7 @@ class MATROSKA_DLL_API KaxVideoFrameRate : public EbmlFloat {
 	public:
 		KaxVideoFrameRate() {}
 		KaxVideoFrameRate(const KaxVideoFrameRate & ElementToClone) :EbmlFloat(ElementToClone) {}
-		uint32 RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault);
+		filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault);
 
         EBML_CONCRETE_CLASS(KaxVideoFrameRate)
 };

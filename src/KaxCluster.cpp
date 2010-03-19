@@ -172,9 +172,9 @@ bool KaxCluster::AddFrame(const KaxTrackEntry & track, uint64 timecode, DataBuff
 /*!
 	\todo only put the Blocks written in the cue entries
 */
-uint32 KaxCluster::Render(IOCallback & output, KaxCues & CueToUpdate, bool bSaveDefault)
+filepos_t KaxCluster::Render(IOCallback & output, KaxCues & CueToUpdate, bool bSaveDefault)
 {
-	uint32 Result = 0;
+	filepos_t Result = 0;
 	size_t TrkIndex, Index;
 
 	// update the Timecode of the Cluster before writing

@@ -65,7 +65,7 @@ class MATROSKA_DLL_API KaxCues : public EbmlMaster {
 		/*!
 			\brief override to sort by timecode/track
 		*/
-		uint32 Render(IOCallback & output, bool bSaveDefault = false) {
+		filepos_t Render(IOCallback & output, bool bSaveDefault = false) {
 			Sort();
 			return EbmlMaster::Render(output, bSaveDefault);
 		}

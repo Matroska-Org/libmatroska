@@ -9,7 +9,7 @@ LIB matroska
     USE ebml2_legacy
   ELSE
     USE ebml
-    USEINCLUDE corec // so that stdafx can build
+    USEINCLUDE corec // so that stdafx implied by ebml2_legacy can build
   ENDIF
 
 //  OPTIMIZE_GLOBALLY .

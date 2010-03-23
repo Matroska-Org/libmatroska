@@ -37,8 +37,10 @@ DLLFLAGS = -DMATROSKA_DLL_EXPORT
 else
 LIBS = libmatroska.a
 endif
+ifeq (yes,$(SHARED))
 ifeq (yes,$(EBML_DLL))
 CXXFLAGS += -DEBML_DLL
+endif
 endif
 INCS = -I../.. -I$(EBML_DIR)
 LDFLAGS = -L. -L$(EBML_DIR)/make/mingw32

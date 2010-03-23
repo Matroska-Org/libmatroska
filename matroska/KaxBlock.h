@@ -355,6 +355,7 @@ class MATROSKA_DLL_API KaxBlockVirtual : public EbmlBinary {
 	public:
 		KaxBlockVirtual() :ParentCluster(NULL) {SetBuffer(DataBlock,sizeof(DataBlock)); SetValueIsSet(false);}
 		KaxBlockVirtual(const KaxBlockVirtual & ElementToClone);
+		~KaxBlockVirtual() { if( Data == DataBlock ) SetBuffer( NULL, 0 ); };
 		bool ValidateSize() const {return true;}
 
 		/*!

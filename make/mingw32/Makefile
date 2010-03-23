@@ -21,10 +21,13 @@ EBML_DLL = yes
 ifeq (yes,$(DEBUG))
 DEBUGFLAGS=-g -DDEBUG
 endif
-CXX  = g++.exe
-LD = g++.exe
-WINDRES = windres.exe
-RES  = 
+CROSS   =
+CXX     = $(CROSS)g++
+CC      = $(CROSS)gcc
+WINDRES = $(CROSS)windres
+RANLIB  = $(CROSS)ranlib
+AR      = $(CROSS)ar
+RES  =
 SRC  = $(wildcard ../../src/*.cpp)
 OBJ  = $(patsubst %.cpp,%.o,$(SRC))
 ifeq (yes,$(SHARED))
@@ -39,7 +42,7 @@ CXXFLAGS += -DEBML_DLL
 endif
 INCS = -I../.. -I$(EBML_DIR)
 LDFLAGS = -L. -L$(EBML_DIR)/make/mingw32
-CXXFLAGS += $(DEBUGFLAGS) $(INCS) 
+CXXFLAGS += $(DEBUGFLAGS) $(INCS)
 TESTS = test6 test8 test9
 
 .PHONY: all all-before all-after clean clean-custom
@@ -61,8 +64,8 @@ distclean dist-clean: clean
 	rm -f .depend
 
 libmatroska.a: $(OBJ)
-	ar r $@ $(OBJ)
-	ranlib $@
+	$(AR) r $@ $(OBJ)
+	$(RANLIB) $@
 
 libmatroska.dll: $(OBJ)
 	$(CXX) -shared -Wl,--export-all -Wl,--out-implib=$@.a -o $@ $(OBJ) \

@@ -34,6 +34,8 @@
 */
 //#include "StdInclude.h"
 #include "matroska/FileKax.h"
+#include "ebml/EbmlVersion.h"
+#include "ebml/EbmlContexts.h"
 //#include "Cluster.h"
 //#include "Track.h"
 //#include "Block.h"
@@ -447,3 +449,17 @@ bool FileMatroska::ReadFrame(Track * & aTrack, uint32 & aTimecode, const binary 
 #endif // OLD
 
 END_LIBMATROSKA_NAMESPACE
+
+void matroska_init()
+{
+#if LIBEBML_VERSION >= 0x010000
+    ebml_init();
+#endif
+}
+
+void matroska_done()
+{
+#if LIBEBML_VERSION >= 0x010000
+    ebml_done();
+#endif
+}

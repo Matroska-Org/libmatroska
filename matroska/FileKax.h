@@ -149,4 +149,15 @@ class MATROSKA_DLL_API FileMatroska {
 
 END_LIBMATROSKA_NAMESPACE
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+MATROSKA_DLL_API void matroska_init();
+MATROSKA_DLL_API void matroska_done();
+
+#ifdef __cplusplus
+}
+#endif
+
 #endif // FILE_KAX_HPP

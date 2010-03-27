@@ -236,12 +236,12 @@ void KaxCueReference::AddReference(const KaxBlockBlob & BlockReference, uint64 G
 }
 #endif
 
-bool KaxCuePoint::operator<(const EbmlElement & EltB) const
+bool KaxCuePoint::IsSmallerThan(const EbmlElement * EltB) const
 {
 	assert(EbmlId(*this) == KaxCuePoint_TheId);
-	assert(EbmlId(EltB) == KaxCuePoint_TheId);
+	assert(EbmlId(*EltB) == KaxCuePoint_TheId);
 
-	const KaxCuePoint & theEltB = *static_cast<const KaxCuePoint *>(&EltB);
+	const KaxCuePoint & theEltB = *static_cast<const KaxCuePoint *>(EltB);
 
 	// compare timecode
 	const KaxCueTime * TimeCodeA = static_cast<const KaxCueTime *>(FindElt(EBML_INFO(KaxCueTime)));
@@ -252,10 +252,10 @@ bool KaxCuePoint::operator<(const EbmlElement & EltB) const
 	if (TimeCodeB == NULL)
 		return false;
 
-	if (*TimeCodeA < *TimeCodeB)
+	if (TimeCodeA->IsSmallerThan(TimeCodeB))
 		return true;
 
-	if (*TimeCodeB < *TimeCodeA)
+	if (TimeCodeB->IsSmallerThan(TimeCodeA))
 		return false;
 
 	// compare tracks (timecodes are equal)
@@ -267,10 +267,10 @@ bool KaxCuePoint::operator<(const EbmlElement & EltB) const
 	if (TrackB == NULL)
 		return false;
 
-	if (*TrackA < *TrackB)
+	if (TrackA->IsSmallerThan(TrackB))
 		return true;
 
-	if (*TrackB < *TrackA)
+	if (TrackB->IsSmallerThan(TrackA))
 		return false;
 
 	return false;

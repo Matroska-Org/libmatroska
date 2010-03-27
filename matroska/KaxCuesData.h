@@ -53,7 +53,7 @@ class MATROSKA_DLL_API KaxCuePoint : public EbmlMaster {
 		void PositionSet(const KaxBlockGroup & BlockReference, uint64 GlobalTimecodeScale);
 		void PositionSet(const KaxBlockBlob & BlobReference, uint64 GlobalTimecodeScale);
 
-		bool operator<(const EbmlElement & EltB) const;
+		virtual bool IsSmallerThan(const EbmlElement *Cmp) const;
 
 		const KaxCueTrackPositions * GetSeekPosition() const;
 		bool Timecode(uint64 & aTimecode, uint64 GlobalTimecodeScale) const;

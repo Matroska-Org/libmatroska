@@ -303,6 +303,12 @@ KaxBlockVirtual::KaxBlockVirtual(const KaxBlockVirtual & ElementToClone)
     SetValueIsSet(false);
 }
 
+KaxBlockVirtual::~KaxBlockVirtual()
+{
+    if(GetBuffer() == DataBlock)
+        SetBuffer( NULL, 0 ); 
+}
+
 filepos_t KaxBlockVirtual::UpdateSize(bool bSaveDefault, bool bForceRender)
 {
 	assert(TrackNumber < 0x4000);

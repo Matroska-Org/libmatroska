@@ -34,6 +34,7 @@
 */
 #include "matroska/KaxAttached.h"
 #include "matroska/KaxContexts.h"
+#include "matroska/KaxDefines.h"
 
 // sub elements
 
@@ -42,9 +43,9 @@ using namespace LIBEBML_NAMESPACE;
 START_LIBMATROSKA_NAMESPACE
 
 #if MATROSKA_VERSION == 1
-EbmlSemantic KaxAttached_ContextList[5] =
+static const EbmlSemantic ContextList_KaxAttached[5] =
 #else // MATROSKA_VERSION
-EbmlSemantic KaxAttached_ContextList[6] =
+static const EbmlSemantic ContextList_KaxAttached[6] =
 #endif // MATROSKA_VERSION
 {
 	EbmlSemantic(true,  true, EBML_INFO(KaxFileName)),
@@ -57,35 +58,15 @@ EbmlSemantic KaxAttached_ContextList[6] =
 #endif // MATROSKA_VERSION
 };
 
-EbmlId KaxAttached_TheId       (0x61A7, 2);
-EbmlId KaxFileDescription_TheId(0x467E, 2);
-EbmlId KaxFileName_TheId       (0x466E, 2);
-EbmlId KaxMimeType_TheId       (0x4660, 2);
-EbmlId KaxFileData_TheId       (0x465C, 2);
-EbmlId KaxFileUID_TheId        (0x46AE, 2);
+DEFINE_MKX_MASTER   (KaxAttached,        0x61A7, 2, KaxAttachments, "AttachedFile");
+DEFINE_MKX_UNISTRING(KaxFileDescription, 0x467E, 2, KaxAttachments, "FileDescription");
+DEFINE_MKX_UNISTRING(KaxFileName,        0x466E, 2, KaxAttachments, "FileName");
+DEFINE_MKX_STRING   (KaxMimeType,        0x4660, 2, KaxAttachments, "FileMimeType");
+DEFINE_MKX_BINARY   (KaxFileData,        0x465C, 2, KaxAttachments, "FileData");
+DEFINE_MKX_UINTEGER (KaxFileUID,         0x46AE, 2, KaxAttachments, "FileUID");
 #if MATROSKA_VERSION >= 2
-EbmlId KaxFileReferral_TheId   (0x4675, 2);
-#endif // MATROSKA_VERSION
-
-const EbmlSemanticContext KaxAttached_Context = EbmlSemanticContext(countof(KaxAttached_ContextList), KaxAttached_ContextList, &KaxAttachments_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxAttached));
-const EbmlSemanticContext KaxFileDescription_Context = EbmlSemanticContext(0, NULL, &KaxAttachments_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxFileDescription));
-const EbmlSemanticContext KaxFileName_Context        = EbmlSemanticContext(0, NULL, &KaxAttachments_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxFileName));
-const EbmlSemanticContext KaxMimeType_Context        = EbmlSemanticContext(0, NULL, &KaxAttachments_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxMimeType));
-const EbmlSemanticContext KaxFileData_Context        = EbmlSemanticContext(0, NULL, &KaxAttachments_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxFileData));
-const EbmlSemanticContext KaxFileUID_Context         = EbmlSemanticContext(0, NULL, &KaxAttachments_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxFileUID));
-#if MATROSKA_VERSION >= 2
-const EbmlSemanticContext KaxFileReferral_Context    = EbmlSemanticContext(0, NULL, &KaxAttachments_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxFileReferral));
-#endif // MATROSKA_VERSION
-
-const EbmlCallbacks KaxAttached::ClassInfos(KaxAttached::Create, KaxAttached_TheId, "AttachedFile", KaxAttached_Context);
-const EbmlCallbacks KaxFileDescription::ClassInfos(KaxFileDescription::Create, KaxFileDescription_TheId, "FileDescription", KaxFileDescription_Context);
-const EbmlCallbacks KaxFileName::ClassInfos(KaxFileName::Create, KaxFileName_TheId, "FileName", KaxFileName_Context);
-const EbmlCallbacks KaxMimeType::ClassInfos(KaxMimeType::Create, KaxMimeType_TheId, "FileMimeType", KaxMimeType_Context);
-const EbmlCallbacks KaxFileData::ClassInfos(KaxFileData::Create, KaxFileData_TheId, "FileData", KaxFileData_Context);
-const EbmlCallbacks KaxFileUID::ClassInfos(KaxFileUID::Create, KaxFileUID_TheId, "FileUID", KaxFileUID_Context);
-#if MATROSKA_VERSION >= 2
-const EbmlCallbacks KaxFileReferral::ClassInfos(KaxFileReferral::Create, KaxFileReferral_TheId, "FileReferral", KaxFileReferral_Context);
-#endif // MATROSKA_VERSION
+DEFINE_MKX_BINARY   (KaxFileReferral,    0x4675, 2, KaxAttachments, "FileReferral");
+#endif
 
 KaxAttached::KaxAttached()
  :EbmlMaster(KaxAttached_Context)

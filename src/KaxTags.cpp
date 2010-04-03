@@ -36,22 +36,19 @@
 #include "matroska/KaxTags.h"
 #include "matroska/KaxTag.h"
 #include "matroska/KaxContexts.h"
+#include "matroska/KaxDefines.h"
 
 using namespace LIBEBML_NAMESPACE;
 
 // sub elements
 START_LIBMATROSKA_NAMESPACE
 
-EbmlSemantic KaxTags_ContextList[1] =
+static const EbmlSemantic ContextList_KaxTags[1] =
 {
 	EbmlSemantic(true, false, EBML_INFO(KaxTag)),
 };
 
-const EbmlSemanticContext KaxTags_Context = EbmlSemanticContext(countof(KaxTags_ContextList), KaxTags_ContextList, &KaxSegment_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxTags));
-
-EbmlId KaxTags_TheId(0x1254C367, 4);
-
-const EbmlCallbacks KaxTags::ClassInfos(KaxTags::Create, KaxTags_TheId, "Tags", KaxTags_Context);
+DEFINE_MKX_MASTER(KaxTags, 0x1254C367, 4, KaxSegment, "Tags");
 
 KaxTags::KaxTags()
 	:EbmlMaster(KaxTags_Context)

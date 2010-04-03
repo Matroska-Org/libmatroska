@@ -36,11 +36,12 @@
 #include "matroska/KaxInfoData.h"
 
 #include "matroska/KaxContexts.h"
+#include "matroska/KaxDefines.h"
 
 // sub elements
 START_LIBMATROSKA_NAMESPACE
 
-const EbmlSemantic KaxInfo_ContextList[14] =
+static const EbmlSemantic ContextList_KaxInfo[14] =
 {
 	EbmlSemantic(false, true,  EBML_INFO(KaxSegmentUID)),
 	EbmlSemantic(false, true,  EBML_INFO(KaxSegmentFilename)),
@@ -58,17 +59,9 @@ const EbmlSemantic KaxInfo_ContextList[14] =
 	EbmlSemantic(true,  true,  EBML_INFO(KaxWritingApp)),
 };
 
-const EbmlSemanticContext KaxInfo_Context = EbmlSemanticContext(countof(KaxInfo_ContextList), KaxInfo_ContextList, &KaxSegment_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxInfo));
-const EbmlSemanticContext KaxMuxingApp_Context = EbmlSemanticContext(0, NULL, &KaxInfo_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxMuxingApp));
-const EbmlSemanticContext KaxWritingApp_Context = EbmlSemanticContext(0, NULL, &KaxInfo_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxWritingApp));
-
-EbmlId KaxInfo_TheId      (0x1549A966, 4);
-EbmlId KaxMuxingApp_TheId (0x4D80, 2);
-EbmlId KaxWritingApp_TheId(0x5741, 2);
-
-const EbmlCallbacks KaxInfo::ClassInfos(KaxInfo::Create, KaxInfo_TheId, "Info", KaxInfo_Context);
-const EbmlCallbacks KaxMuxingApp::ClassInfos(KaxMuxingApp::Create, KaxMuxingApp_TheId, "MuxingApp", KaxMuxingApp_Context);
-const EbmlCallbacks KaxWritingApp::ClassInfos(KaxWritingApp::Create, KaxWritingApp_TheId, "WritingApp", KaxWritingApp_Context);
+DEFINE_MKX_MASTER   (KaxInfo,   0x1549A966, 4, KaxSegment, "Info");
+DEFINE_MKX_UNISTRING(KaxMuxingApp,  0x4D80, 2, KaxInfo, "MuxingApp");
+DEFINE_MKX_UNISTRING(KaxWritingApp, 0x5741, 2, KaxInfo, "WritingApp");
 
 KaxInfo::KaxInfo()
 	:EbmlMaster(KaxInfo_Context)

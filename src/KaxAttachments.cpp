@@ -35,21 +35,19 @@
 #include "matroska/KaxAttachments.h"
 #include "matroska/KaxAttached.h"
 #include "matroska/KaxContexts.h"
+#include "matroska/KaxDefines.h"
 
 using namespace LIBEBML_NAMESPACE;
 
 // sub elements
 START_LIBMATROSKA_NAMESPACE
 
-EbmlSemantic KaxAttachments_ContextList[1] =
+static const EbmlSemantic ContextList_KaxAttachments[1] =
 {
 	EbmlSemantic(true, false, EBML_INFO(KaxAttached)),        ///< EBMLVersion
 };
 
-const EbmlSemanticContext KaxAttachments_Context = EbmlSemanticContext(countof(KaxAttachments_ContextList), KaxAttachments_ContextList, &KaxSegment_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxAttachments));
-
-EbmlId KaxAttachments_TheId(0x1941A469, 4);
-const EbmlCallbacks KaxAttachments::ClassInfos(KaxAttachments::Create, KaxAttachments_TheId, "Attachments", KaxAttachments_Context);
+DEFINE_MKX_MASTER(KaxAttachments, 0x1941A469, 4, KaxSegment, "Attachments");
 
 KaxAttachments::KaxAttachments()
  :EbmlMaster(KaxAttachments_Context)

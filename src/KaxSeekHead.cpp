@@ -36,37 +36,28 @@
 #include "matroska/KaxContexts.h"
 #include "matroska/KaxSegment.h"
 #include "matroska/KaxCues.h"
+#include "matroska/KaxDefines.h"
 
 using namespace LIBEBML_NAMESPACE;
 
 // sub elements
 START_LIBMATROSKA_NAMESPACE
 
-EbmlSemantic KaxSeekHead_ContextList[1] = 
+static const EbmlSemantic ContextList_KaxSeekHead[1] =
 {
 	EbmlSemantic(true,  false,  EBML_INFO(KaxSeek)),
 };
 
-EbmlSemantic KaxSeek_ContextList[2] = 
+static const EbmlSemantic ContextList_KaxSeek[2] = 
 {
 	EbmlSemantic(true,  true,  EBML_INFO(KaxSeekID)),
 	EbmlSemantic(true,  true,  EBML_INFO(KaxSeekPosition)),
 };
 
-const EbmlSemanticContext KaxSeekHead_Context = EbmlSemanticContext(countof(KaxSeekHead_ContextList), KaxSeekHead_ContextList, &KaxSegment_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxSeekHead));
-const EbmlSemanticContext KaxSeek_Context = EbmlSemanticContext(countof(KaxSeek_ContextList), KaxSeek_ContextList, &KaxSeekHead_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxSeek));
-const EbmlSemanticContext KaxSeekID_Context = EbmlSemanticContext(0, NULL, &KaxSeek_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxSeekID));
-const EbmlSemanticContext KaxSeekPosition_Context = EbmlSemanticContext(0, NULL, &KaxSeek_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxSeekPosition));
-
-EbmlId KaxSeekHead_TheId    (0x114D9B74, 4);
-EbmlId KaxSeek_TheId        (0x4DBB, 2);
-EbmlId KaxSeekID_TheId      (0x53AB, 2);
-EbmlId KaxSeekPosition_TheId(0x53AC, 2);
-
-const EbmlCallbacks KaxSeekHead::ClassInfos(KaxSeekHead::Create, KaxSeekHead_TheId, "SeekHeader", KaxSeekHead_Context);
-const EbmlCallbacks KaxSeek::ClassInfos(KaxSeek::Create, KaxSeek_TheId, "SeekPoint", KaxSeek_Context);
-const EbmlCallbacks KaxSeekID::ClassInfos(KaxSeekID::Create, KaxSeekID_TheId, "SeekID", KaxSeekID_Context);
-const EbmlCallbacks KaxSeekPosition::ClassInfos(KaxSeekPosition::Create, KaxSeekPosition_TheId, "SeekPosition", KaxSeekPosition_Context);
+DEFINE_MKX_MASTER  (KaxSeekHead, 0x114D9B74, 4, KaxSegment, "SeekHeader");
+DEFINE_MKX_MASTER  (KaxSeek,         0x4DBB, 2, KaxSeekHead, "SeekPoint");
+DEFINE_MKX_BINARY  (KaxSeekID,       0x53AB, 2, KaxSeek, "SeekID");
+DEFINE_MKX_UINTEGER(KaxSeekPosition, 0x53AC, 2, KaxSeek, "SeekPosition");
 
 KaxSeekHead::KaxSeekHead()
 	:EbmlMaster(KaxSeekHead_Context)

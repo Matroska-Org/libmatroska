@@ -79,6 +79,43 @@ extern const EbmlSemanticContext MATROSKA_DLL_API KaxCodecDownloadURL_Context;
 extern const EbmlSemanticContext MATROSKA_DLL_API KaxCodecDecodeAll_Context;
 extern const EbmlSemanticContext MATROSKA_DLL_API KaxTrackOverlay_Context;
 
+#define Context_KaxMatroska              KaxMatroska_Context
+#define Context_KaxSegment               KaxSegment_Context
+#define Context_KaxTrackEntry            KaxTrackEntry_Context
+#define Context_KaxTracks                KaxTracks_Context
+#define Context_KaxTrackVideo            KaxTrackVideo_Context
+#define Context_KaxCluster               KaxCluster_Context
+#define Context_KaxBlockMore             KaxBlockMore_Context
+#define Context_KaxBlockAdditions        KaxBlockAdditions_Context
+#define Context_KaxBlockGroup            KaxBlockGroup_Context
+#define Context_KaxTimeSlice             KaxTimeSlice_Context
+#define Context_KaxSlices                KaxSlices_Context
+#define Context_KaxContentEncoding       KaxContentEncoding_Context
+#define Context_KaxContentEncodings      KaxContentEncodings_Context
+#define Context_KaxContentCompression    KaxContentCompression_Context
+#define Context_KaxContentEncryption     KaxContentEncryption_Context
+#define Context_KaxInfo                  KaxInfo_Context
+#define Context_KaxChapterTranslate      KaxChapterTranslate_Context
+#define Context_KaxTrackAudio            KaxTrackAudio_Context
+#define Context_KaxTrackTranslate        KaxTrackTranslate_Context
+#define Context_KaxAttached              KaxAttached_Context
+#define Context_KaxAttachments           KaxAttachments_Context
+#define Context_KaxEditionEntry          KaxEditionEntry_Context
+#define Context_KaxChapters              KaxChapters_Context
+#define Context_KaxChapterAtom           KaxChapterAtom_Context
+#define Context_KaxChapterTrack          KaxChapterTrack_Context
+#define Context_KaxChapterDisplay        KaxChapterDisplay_Context
+#define Context_KaxChapterProcess        KaxChapterProcess_Context
+#define Context_KaxChapterProcessCommand KaxChapterProcessCommand_Context
+#define Context_KaxClusterSilentTracks   KaxClusterSilentTracks_Context
+#define Context_KaxCues                  KaxCues_Context
+#define Context_KaxCuePoint              KaxCuePoint_Context
+#define Context_KaxCueTrackPositions     KaxCueTrackPositions_Context
+#define Context_KaxCueReference          KaxCueReference_Context
+#define Context_KaxSeek                  KaxSeek_Context
+#define Context_KaxTags                  KaxTags_Context
+#define Context_KaxSeekHead              KaxSeekHead_Context
+
 extern const EbmlSemanticContext & MATROSKA_DLL_API GetKaxGlobal_Context();
 extern const EbmlSemanticContext & MATROSKA_DLL_API GetKaxTagsGlobal_Context();
 

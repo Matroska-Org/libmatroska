@@ -36,13 +36,14 @@
 
 // sub elements
 #include "matroska/KaxContexts.h"
+#include "matroska/KaxDefines.h"
 
 START_LIBMATROSKA_NAMESPACE
 
 #if MATROSKA_VERSION == 1
-const EbmlSemantic KaxTrackAudio_ContextList[4] =
+static const EbmlSemantic ContextList_KaxTrackAudio[4] =
 #else // MATROSKA_VERSION
-const EbmlSemantic KaxTrackAudio_ContextList[5] =
+static const EbmlSemantic ContextList_KaxTrackAudio[5] =
 #endif // MATROSKA_VERSION
 {
 	EbmlSemantic(true , true, EBML_INFO(KaxAudioSamplingFreq)),
@@ -54,32 +55,14 @@ const EbmlSemantic KaxTrackAudio_ContextList[5] =
 #endif // MATROSKA_VERSION
 };
 
-const EbmlSemanticContext KaxTrackAudio_Context = EbmlSemanticContext(countof(KaxTrackAudio_ContextList), KaxTrackAudio_ContextList, &KaxTrackEntry_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxTrackAudio));
-const EbmlSemanticContext KaxAudioSamplingFreq_Context = EbmlSemanticContext(0, NULL, &KaxTrackAudio_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxAudioSamplingFreq));
-const EbmlSemanticContext KaxAudioOutputSamplingFreq_Context = EbmlSemanticContext(0, NULL, &KaxTrackAudio_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxAudioOutputSamplingFreq));
-const EbmlSemanticContext KaxAudioChannels_Context = EbmlSemanticContext(0, NULL, &KaxTrackAudio_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxAudioChannels));
-const EbmlSemanticContext KaxAudioBitDepth_Context = EbmlSemanticContext(0, NULL, &KaxTrackAudio_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxAudioBitDepth));
+DEFINE_MKX_MASTER  (KaxTrackAudio,                0xE1, 1, KaxTrackEntry, "TrackAudio");
+DEFINE_MKX_FLOAT   (KaxAudioSamplingFreq,         0xB5, 1, KaxTrackAudio, "AudioSamplingFreq");
+DEFINE_MKX_FLOAT   (KaxAudioOutputSamplingFreq, 0x78B5, 2, KaxTrackAudio, "AudioOutputSamplingFreq");
+DEFINE_MKX_UINTEGER(KaxAudioChannels,             0x9F, 1, KaxTrackAudio, "AudioChannels");
+DEFINE_MKX_UINTEGER(KaxAudioBitDepth,           0x6264, 2, KaxTrackAudio, "AudioBitDepth");
 #if MATROSKA_VERSION >= 2
-const EbmlSemanticContext KaxAudioPosition_Context = EbmlSemanticContext(0, NULL, &KaxTrackAudio_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxAudioPosition));
-#endif // MATROSKA_VERSION
-
-EbmlId KaxTrackAudio_TheId       (0xE1, 1);
-EbmlId KaxAudioSamplingFreq_TheId(0xB5, 1);
-EbmlId KaxAudioOutputSamplingFreq_TheId(0x78B5, 2);
-EbmlId KaxAudioChannels_TheId    (0x9F, 1);
-EbmlId KaxAudioBitDepth_TheId    (0x6264, 2);
-#if MATROSKA_VERSION >= 2
-EbmlId KaxAudioPosition_TheId    (0x7D7B, 2);
-#endif // MATROSKA_VERSION
-
-const EbmlCallbacks KaxTrackAudio::ClassInfos(KaxTrackAudio::Create, KaxTrackAudio_TheId, "TrackAudio", KaxTrackAudio_Context);
-const EbmlCallbacks KaxAudioSamplingFreq::ClassInfos(KaxAudioSamplingFreq::Create, KaxAudioSamplingFreq_TheId, "AudioSamplingFreq", KaxAudioSamplingFreq_Context);
-const EbmlCallbacks KaxAudioOutputSamplingFreq::ClassInfos(KaxAudioOutputSamplingFreq::Create, KaxAudioOutputSamplingFreq_TheId, "AudioOutputSamplingFreq", KaxAudioOutputSamplingFreq_Context);
-const EbmlCallbacks KaxAudioChannels::ClassInfos(KaxAudioChannels::Create, KaxAudioChannels_TheId, "AudioChannels", KaxAudioChannels_Context);
-const EbmlCallbacks KaxAudioBitDepth::ClassInfos(KaxAudioBitDepth::Create, KaxAudioBitDepth_TheId, "AudioBitDepth", KaxAudioBitDepth_Context);
-#if MATROSKA_VERSION >= 2
-const EbmlCallbacks KaxAudioPosition::ClassInfos(KaxAudioPosition::Create, KaxAudioPosition_TheId, "AudioPosition", KaxAudioPosition_Context);
-#endif // MATROSKA_VERSION
+DEFINE_MKX_BINARY  (KaxAudioPosition,           0x7D7B, 2, KaxTrackAudio, "AudioPosition");
+#endif
 
 KaxTrackAudio::KaxTrackAudio()
 	:EbmlMaster(KaxTrackAudio_Context)

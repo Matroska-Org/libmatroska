@@ -35,105 +35,46 @@
 */
 #include "matroska/KaxTrackEntryData.h"
 #include "matroska/KaxContexts.h"
+#include "matroska/KaxDefines.h"
 
 START_LIBMATROSKA_NAMESPACE
 
-const EbmlSemantic KaxTrackTranslate_ContextList[3] =
+static const EbmlSemantic ContextList_KaxTrackTranslate[3] =
 {
 	EbmlSemantic(false, false,EBML_INFO(KaxTrackTranslateEditionUID)),
 	EbmlSemantic(true , true, EBML_INFO(KaxTrackTranslateCodec)),
 	EbmlSemantic(true , true, EBML_INFO(KaxTrackTranslateTrackID)),
 };
 
-EbmlId KaxTrackNumber_TheId            (0xD7, 1);
-EbmlId KaxTrackUID_TheId               (0x73C5, 2);
-EbmlId KaxTrackType_TheId              (0x83, 1);
-EbmlId KaxTrackFlagDefault_TheId       (0x88, 1);
-EbmlId KaxTrackFlagForced_TheId        (0x55AA, 2);
-EbmlId KaxTrackFlagLacing_TheId        (0x9C, 1);
-EbmlId KaxTrackMinCache_TheId          (0x6DE7, 2);
-EbmlId KaxTrackMaxCache_TheId          (0x6DF8, 2);
-EbmlId KaxTrackDefaultDuration_TheId   (0x23E383, 3);
-EbmlId KaxTrackTimecodeScale_TheId     (0x23314F, 3);
-EbmlId KaxMaxBlockAdditionID_TheId     (0x55EE, 2);
-EbmlId KaxTrackName_TheId              (0x536E, 2);
-EbmlId KaxTrackLanguage_TheId          (0x22B59C, 3);
-EbmlId KaxCodecID_TheId                (0x86, 1);
-EbmlId KaxCodecPrivate_TheId           (0x63A2, 2);
-EbmlId KaxCodecName_TheId              (0x258688, 3);
-EbmlId KaxTrackAttachmentLink_TheId    (0x7446, 2);
-EbmlId KaxTrackOverlay_TheId           (0x6FAB, 2);
-EbmlId KaxTrackTranslate_TheId         (0x6624, 2);
-EbmlId KaxTrackTranslateEditionUID_TheId(0x66FC, 2);
-EbmlId KaxTrackTranslateCodec_TheId    (0x66BF, 2);
-EbmlId KaxTrackTranslateTrackID_TheId  (0x66A5, 2);
+DEFINE_MKX_UINTEGER (KaxTrackNumber,                0xD7, 1, KaxTracks, "TrackNumber");
+DEFINE_MKX_UINTEGER (KaxTrackUID,                 0x73C5, 2, KaxTracks, "TrackUID");
+DEFINE_MKX_UINTEGER (KaxTrackType,                  0x83, 1, KaxTracks, "TrackType");
+DEFINE_MKX_UINTEGER (KaxTrackFlagDefault,           0x88, 1, KaxTracks, "TrackFlagEnabled");
+DEFINE_MKX_UINTEGER (KaxTrackFlagForced,          0x55AA, 2, KaxTracks, "TrackFlagForced");
+DEFINE_MKX_UINTEGER (KaxTrackFlagLacing,            0x9C, 1, KaxTracks, "TrackFlagLacing");
+DEFINE_MKX_UINTEGER (KaxTrackMinCache,            0x6DE7, 2, KaxTracks, "TrackMinCache");
+DEFINE_MKX_UINTEGER (KaxTrackMaxCache,            0x6DF8, 2, KaxTracks, "TrackMaxCache\0rotomodobopo");
+DEFINE_MKX_UINTEGER (KaxTrackDefaultDuration,   0x23E383, 3, KaxTracks, "TrackDefaultDuration");
+DEFINE_MKX_FLOAT    (KaxTrackTimecodeScale,     0x23314F, 3, KaxTracks, "TrackTimecodeScale");
+DEFINE_MKX_UINTEGER (KaxMaxBlockAdditionID,       0x55EE, 2, KaxTracks, "MaxBlockAdditionID");
+DEFINE_MKX_UNISTRING(KaxTrackName,                0x536E, 2, KaxTracks, "TrackName");
+DEFINE_MKX_STRING   (KaxTrackLanguage,          0x22B59C, 3, KaxTracks, "TrackLanguage");
+DEFINE_MKX_STRING   (KaxCodecID,                    0x86, 1, KaxTracks, "CodecID");
+DEFINE_MKX_BINARY   (KaxCodecPrivate,             0x63A2, 2, KaxTracks, "CodecPrivate");
+DEFINE_MKX_UNISTRING(KaxCodecName,              0x258688, 3, KaxTracks, "CodecName");
+DEFINE_MKX_BINARY   (KaxTrackAttachmentLink,      0x7446, 2, KaxTracks, "TrackAttachmentLink");
+DEFINE_MKX_UINTEGER (KaxTrackOverlay,             0x6FAB, 2, KaxTracks, "TrackOverlay");
+DEFINE_MKX_MASTER   (KaxTrackTranslate,           0x6624, 2, KaxTracks, "TrackTranslate");
+DEFINE_MKX_UINTEGER (KaxTrackTranslateEditionUID, 0x66FC, 2, KaxTrackTranslate, "TrackTranslateEditionUID");
+DEFINE_MKX_UINTEGER (KaxTrackTranslateCodec,      0x66BF, 2, KaxTrackTranslate, "TrackTranslateCodec");
+DEFINE_MKX_BINARY   (KaxTrackTranslateTrackID,    0x66A5, 2, KaxTrackTranslate, "TrackTranslateTrackID");
 #if MATROSKA_VERSION >= 2
-EbmlId KaxTrackFlagEnabled_TheId       (0xB9, 1);
-EbmlId KaxCodecSettings_TheId          (0x3A9697, 3);
-EbmlId KaxCodecInfoURL_TheId           (0x3B4040, 3);
-EbmlId KaxCodecDownloadURL_TheId       (0x26B240, 3);
-EbmlId KaxCodecDecodeAll_TheId         (0xAA, 1);
-#endif // MATROSKA_VERSION
-
-const EbmlSemanticContext KaxTrackNumber_Context = EbmlSemanticContext(0, NULL, &KaxTracks_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxTrackNumber));
-const EbmlSemanticContext KaxTrackUID_Context = EbmlSemanticContext(0, NULL, &KaxTracks_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxTrackUID));
-const EbmlSemanticContext KaxTrackType_Context = EbmlSemanticContext(0, NULL, &KaxTracks_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxTrackType));
-const EbmlSemanticContext KaxTrackFlagDefault_Context = EbmlSemanticContext(0, NULL, &KaxTracks_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxTrackFlagDefault));
-const EbmlSemanticContext KaxTrackFlagForced_Context = EbmlSemanticContext(0, NULL, &KaxTracks_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxTrackFlagForced));
-const EbmlSemanticContext KaxTrackFlagLacing_Context = EbmlSemanticContext(0, NULL, &KaxTracks_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxTrackFlagLacing));
-const EbmlSemanticContext KaxTrackMinCache_Context = EbmlSemanticContext(0, NULL, &KaxTracks_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxTrackMinCache));
-const EbmlSemanticContext KaxTrackMaxCache_Context = EbmlSemanticContext(0, NULL, &KaxTracks_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxTrackMaxCache));
-const EbmlSemanticContext KaxTrackDefaultDuration_Context = EbmlSemanticContext(0, NULL, &KaxTracks_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxTrackDefaultDuration));
-const EbmlSemanticContext KaxTrackTimecodeScale_Context = EbmlSemanticContext(0, NULL, &KaxTracks_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxTrackTimecodeScale));
-const EbmlSemanticContext KaxMaxBlockAdditionID_Context = EbmlSemanticContext(0, NULL, &KaxTracks_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxMaxBlockAdditionID));
-const EbmlSemanticContext KaxTrackName_Context = EbmlSemanticContext(0, NULL, &KaxTracks_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxTrackName));
-const EbmlSemanticContext KaxTrackLanguage_Context = EbmlSemanticContext(0, NULL, &KaxTracks_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxTrackLanguage));
-const EbmlSemanticContext KaxCodecID_Context = EbmlSemanticContext(0, NULL, &KaxTracks_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxCodecID));
-const EbmlSemanticContext KaxCodecPrivate_Context = EbmlSemanticContext(0, NULL, &KaxTracks_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxCodecPrivate));
-const EbmlSemanticContext KaxCodecName_Context = EbmlSemanticContext(0, NULL, &KaxTracks_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxCodecName));
-const EbmlSemanticContext KaxTrackAttachmentLink_Context = EbmlSemanticContext(0, NULL, &KaxTracks_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxTrackAttachmentLink));
-const EbmlSemanticContext KaxTrackOverlay_Context = EbmlSemanticContext(0, NULL, &KaxTracks_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxTrackOverlay));
-const EbmlSemanticContext KaxTrackTranslate_Context = EbmlSemanticContext(countof(KaxTrackTranslate_ContextList), KaxTrackTranslate_ContextList, &KaxTracks_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxTrackTranslate));
-const EbmlSemanticContext KaxTrackTranslateEditionUID_Context = EbmlSemanticContext(0, NULL, &KaxTrackTranslate_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxTrackTranslateEditionUID));
-const EbmlSemanticContext KaxTrackTranslateCodec_Context = EbmlSemanticContext(0, NULL, &KaxTrackTranslate_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxTrackTranslateCodec));
-const EbmlSemanticContext KaxTrackTranslateTrackID_Context = EbmlSemanticContext(0, NULL, &KaxTrackTranslate_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxTrackTranslateTrackID));
-#if MATROSKA_VERSION >= 2
-const EbmlSemanticContext KaxTrackFlagEnabled_Context = EbmlSemanticContext(0, NULL, &KaxTracks_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxTrackFlagEnabled));
-const EbmlSemanticContext KaxCodecSettings_Context = EbmlSemanticContext(0, NULL, &KaxTracks_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxCodecSettings));
-const EbmlSemanticContext KaxCodecInfoURL_Context = EbmlSemanticContext(0, NULL, &KaxTracks_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxCodecInfoURL));
-const EbmlSemanticContext KaxCodecDownloadURL_Context = EbmlSemanticContext(0, NULL, &KaxTracks_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxCodecDownloadURL));
-const EbmlSemanticContext KaxCodecDecodeAll_Context = EbmlSemanticContext(0, NULL, &KaxTracks_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxCodecDecodeAll));
-#endif // MATROSKA_VERSION
-
-const EbmlCallbacks KaxTrackNumber::ClassInfos(KaxTrackNumber::Create, KaxTrackNumber_TheId, "TrackNumber", KaxTrackNumber_Context);
-const EbmlCallbacks KaxTrackUID::ClassInfos(KaxTrackUID::Create, KaxTrackUID_TheId, "TrackUID", KaxTrackUID_Context);
-const EbmlCallbacks KaxTrackType::ClassInfos(KaxTrackType::Create, KaxTrackType_TheId, "TrackType", KaxTrackType_Context);
-const EbmlCallbacks KaxTrackFlagDefault::ClassInfos(KaxTrackFlagDefault::Create, KaxTrackFlagDefault_TheId, "TrackFlagDefault", KaxTrackFlagDefault_Context);
-const EbmlCallbacks KaxTrackFlagForced::ClassInfos(KaxTrackFlagForced::Create, KaxTrackFlagForced_TheId, "TrackFlagForced", KaxTrackFlagForced_Context);
-const EbmlCallbacks KaxTrackFlagLacing::ClassInfos(KaxTrackFlagLacing::Create, KaxTrackFlagLacing_TheId, "TrackFlagLacing", KaxTrackFlagLacing_Context);
-const EbmlCallbacks KaxTrackMinCache::ClassInfos(KaxTrackMinCache::Create, KaxTrackMinCache_TheId, "TrackMinCache", KaxTrackMinCache_Context);
-const EbmlCallbacks KaxTrackMaxCache::ClassInfos(KaxTrackMaxCache::Create, KaxTrackMaxCache_TheId, "TrackMaxCache\0rotomodobopo", KaxTrackMaxCache_Context);
-const EbmlCallbacks KaxTrackDefaultDuration::ClassInfos(KaxTrackDefaultDuration::Create, KaxTrackDefaultDuration_TheId, "TrackDefaultDuration", KaxTrackDefaultDuration_Context);
-const EbmlCallbacks KaxTrackTimecodeScale::ClassInfos(KaxTrackTimecodeScale::Create, KaxTrackTimecodeScale_TheId, "TrackTimecodeScale", KaxTrackTimecodeScale_Context);
-const EbmlCallbacks KaxMaxBlockAdditionID::ClassInfos(KaxMaxBlockAdditionID::Create, KaxMaxBlockAdditionID_TheId, "MaxBlockAdditionID", KaxMaxBlockAdditionID_Context);
-const EbmlCallbacks KaxTrackName::ClassInfos(KaxTrackName::Create, KaxTrackName_TheId, "TrackName", KaxTrackName_Context);
-const EbmlCallbacks KaxTrackLanguage::ClassInfos(KaxTrackLanguage::Create, KaxTrackLanguage_TheId, "TrackLanguage", KaxTrackLanguage_Context);
-const EbmlCallbacks KaxCodecID::ClassInfos(KaxCodecID::Create, KaxCodecID_TheId, "CodecID", KaxCodecID_Context);
-const EbmlCallbacks KaxCodecPrivate::ClassInfos(KaxCodecPrivate::Create, KaxCodecPrivate_TheId, "CodecPrivate", KaxCodecPrivate_Context);
-const EbmlCallbacks KaxCodecName::ClassInfos(KaxCodecName::Create, KaxCodecName_TheId, "CodecName", KaxCodecName_Context);
-const EbmlCallbacks KaxTrackAttachmentLink::ClassInfos(KaxTrackAttachmentLink::Create, KaxTrackAttachmentLink_TheId, "TrackAttachmentLink", KaxTrackAttachmentLink_Context);
-const EbmlCallbacks KaxTrackOverlay::ClassInfos(KaxTrackOverlay::Create, KaxTrackOverlay_TheId, "TrackOverlay", KaxTrackOverlay_Context);
-const EbmlCallbacks KaxTrackTranslate::ClassInfos(KaxTrackTranslate::Create, KaxTrackTranslate_TheId, "TrackTranslate", KaxTrackTranslate_Context);
-const EbmlCallbacks KaxTrackTranslateEditionUID::ClassInfos(KaxTrackTranslateEditionUID::Create, KaxTrackTranslateEditionUID_TheId, "TrackTranslateEditionUID", KaxTrackTranslateEditionUID_Context);
-const EbmlCallbacks KaxTrackTranslateCodec::ClassInfos(KaxTrackTranslateCodec::Create, KaxTrackTranslateCodec_TheId, "TrackTranslateCodec", KaxTrackTranslateCodec_Context);
-const EbmlCallbacks KaxTrackTranslateTrackID::ClassInfos(KaxTrackTranslateTrackID::Create, KaxTrackTranslateTrackID_TheId, "TrackTranslateTrackID", KaxTrackTranslateTrackID_Context);
-#if MATROSKA_VERSION >= 2
-const EbmlCallbacks KaxTrackFlagEnabled::ClassInfos(KaxTrackFlagEnabled::Create, KaxTrackFlagEnabled_TheId, "TrackFlagEnabled", KaxTrackFlagEnabled_Context);
-const EbmlCallbacks KaxCodecSettings::ClassInfos(KaxCodecSettings::Create, KaxCodecSettings_TheId, "CodecSettings", KaxCodecSettings_Context);
-const EbmlCallbacks KaxCodecInfoURL::ClassInfos(KaxCodecInfoURL::Create, KaxCodecInfoURL_TheId, "CodecInfoURL", KaxCodecInfoURL_Context);
-const EbmlCallbacks KaxCodecDownloadURL::ClassInfos(KaxCodecDownloadURL::Create, KaxCodecDownloadURL_TheId, "CodecDownloadURL", KaxCodecDownloadURL_Context);
-const EbmlCallbacks KaxCodecDecodeAll::ClassInfos(KaxCodecDecodeAll::Create, KaxCodecDecodeAll_TheId, "CodecDecodeAll", KaxCodecDecodeAll_Context);
-#endif // MATROSKA_VERSION
+DEFINE_MKX_UINTEGER (KaxTrackFlagEnabled,           0xB9, 1, KaxTracks, "TrackFlagDefault");
+DEFINE_MKX_UNISTRING(KaxCodecSettings,          0x3A9697, 3, KaxTracks, "CodecSettings");
+DEFINE_MKX_STRING   (KaxCodecInfoURL,           0x3B4040, 3, KaxTracks, "CodecInfoURL");
+DEFINE_MKX_STRING   (KaxCodecDownloadURL,       0x26B240, 3, KaxTracks, "CodecDownloadURL");
+DEFINE_MKX_UINTEGER (KaxCodecDecodeAll,             0xAA, 1, KaxTracks, "CodecDecodeAll");
+#endif
 
 KaxTrackTranslate::KaxTrackTranslate()
 	:EbmlMaster(KaxTrackTranslate_Context)

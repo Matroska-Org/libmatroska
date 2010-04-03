@@ -35,14 +35,15 @@
 #include "matroska/KaxBlock.h"
 #include "matroska/KaxContexts.h"
 #include "matroska/KaxSegment.h"
+#include "matroska/KaxDefines.h"
 
 // sub elements
 START_LIBMATROSKA_NAMESPACE
 
 #if MATROSKA_VERSION == 1
-EbmlSemantic KaxCluster_ContextList[5] =
+static const EbmlSemantic ContextList_KaxCluster[5] =
 #else // MATROSKA_VERSION
-EbmlSemantic KaxCluster_ContextList[6] =
+static const EbmlSemantic ContextList_KaxCluster[6] =
 #endif // MATROSKA_VERSION
 {
 	EbmlSemantic(true,  true,  EBML_INFO(KaxClusterTimecode)),
@@ -55,10 +56,7 @@ EbmlSemantic KaxCluster_ContextList[6] =
 	EbmlSemantic(false, true,  EBML_INFO(KaxClusterPosition)),
 };
 
-const EbmlSemanticContext KaxCluster_Context = EbmlSemanticContext(countof(KaxCluster_ContextList), KaxCluster_ContextList, &KaxSegment_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxCluster));
-
-EbmlId KaxCluster_TheId(0x1F43B675, 4);
-const EbmlCallbacks KaxCluster::ClassInfos(KaxCluster::Create, KaxCluster_TheId, "Cluster", KaxCluster_Context);
+DEFINE_MKX_MASTER(KaxCluster, 0x1F43B675, 4, KaxSegment, "Cluster");
 
 KaxCluster::KaxCluster()
 	:EbmlMaster(KaxCluster_Context)

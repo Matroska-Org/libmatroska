@@ -36,19 +36,17 @@
 #include "matroska/KaxCuesData.h"
 #include "matroska/KaxContexts.h"
 #include "ebml/EbmlStream.h"
+#include "matroska/KaxDefines.h"
 
 // sub elements
 START_LIBMATROSKA_NAMESPACE
 
-EbmlSemantic KaxCues_ContextList[1] = 
+static const EbmlSemantic ContextList_KaxCues[1] = 
 {
 	EbmlSemantic(true,  false,  EBML_INFO(KaxCuePoint)),
 };
 
-const EbmlSemanticContext KaxCues_Context = EbmlSemanticContext(countof(KaxCues_ContextList), KaxCues_ContextList, &KaxSegment_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxCues));
-
-EbmlId KaxCues_TheId(0x1C53BB6B, 4);
-const EbmlCallbacks KaxCues::ClassInfos(KaxCues::Create, KaxCues_TheId, "Cues", KaxCues_Context);
+DEFINE_MKX_MASTER(KaxCues, 0x1C53BB6B, 4, KaxSegment, "Cues");
 
 KaxCues::KaxCues()
 	:EbmlMaster(KaxCues_Context)

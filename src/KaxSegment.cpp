@@ -45,16 +45,17 @@
 #include "matroska/KaxAttachments.h"
 #include "matroska/KaxTags.h"
 #include "matroska/KaxContexts.h"
+#include "matroska/KaxDefines.h"
 
 START_LIBMATROSKA_NAMESPACE
 
-EbmlSemantic KaxMatroska_ContextList[2] =
+static const EbmlSemantic ContextList_KaxMatroska[2] =
 {
 	EbmlSemantic(true, true,  EBML_INFO(EbmlHead)),
 	EbmlSemantic(true, false, EBML_INFO(KaxSegment)),
 };
 
-EbmlSemantic KaxSegment_ContextList[8] =
+static const EbmlSemantic ContextList_KaxSegment[8] =
 {
 	EbmlSemantic(false, false, EBML_INFO(KaxCluster)),
 	EbmlSemantic(false, false, EBML_INFO(KaxSeekHead)),
@@ -66,11 +67,8 @@ EbmlSemantic KaxSegment_ContextList[8] =
 	EbmlSemantic(false, true,  EBML_INFO(KaxTags)),
 };
 
-const EbmlSemanticContext KaxMatroska_Context = EbmlSemanticContext(countof(KaxMatroska_ContextList), KaxMatroska_ContextList, NULL, *GetKaxGlobal_Context, NULL);
-const EbmlSemanticContext KaxSegment_Context = EbmlSemanticContext(countof(KaxSegment_ContextList), KaxSegment_ContextList, NULL, *GetKaxGlobal_Context, &EBML_INFO(KaxSegment));
-
-EbmlId KaxSegment_TheId(0x18538067, 4);
-const EbmlCallbacks KaxSegment::ClassInfos(KaxSegment::Create, KaxSegment_TheId, "Segment\0rotomopogo", KaxSegment_Context);
+DEFINE_MKX_MASTER_GLOBAL(KaxMatroska, -1, 5, "Matroska");
+DEFINE_MKX_MASTER_ORPHAN(KaxSegment, 0x18538067, 4, "Segment\0rotomopogo");
 
 KaxSegment::KaxSegment()
 	:EbmlMaster(KaxSegment_Context)

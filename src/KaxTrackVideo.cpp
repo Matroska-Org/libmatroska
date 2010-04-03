@@ -36,13 +36,14 @@
 
 // sub elements
 #include "matroska/KaxContexts.h"
+#include "matroska/KaxDefines.h"
 
 START_LIBMATROSKA_NAMESPACE
 
 #if MATROSKA_VERSION == 1
-const EbmlSemantic KaxTrackVideo_ContextList[10] =
+static const EbmlSemantic ContextList_KaxTrackVideo[10] =
 #else // MATROSKA_VERSION
-const EbmlSemantic KaxTrackVideo_ContextList[15] =
+static const EbmlSemantic ContextList_KaxTrackVideo[15] =
 #endif // MATROSKA_VERSION
 {
 	EbmlSemantic(true , true, EBML_INFO(KaxVideoPixelWidth)),
@@ -64,62 +65,24 @@ const EbmlSemantic KaxTrackVideo_ContextList[15] =
 #endif // MATROSKA_VERSION
 };
 
-const EbmlSemanticContext KaxTrackVideo_Context = EbmlSemanticContext(countof(KaxTrackVideo_ContextList), KaxTrackVideo_ContextList, &KaxTrackEntry_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxTrackVideo));
-const EbmlSemanticContext KaxVideoPixelWidth_Context = EbmlSemanticContext(0, NULL, &KaxTrackVideo_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxVideoPixelWidth));
-const EbmlSemanticContext KaxVideoPixelHeight_Context = EbmlSemanticContext(0, NULL, &KaxTrackVideo_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxVideoPixelHeight));
-const EbmlSemanticContext KaxVideoPixelCropBottom_Context = EbmlSemanticContext(0, NULL, &KaxTrackVideo_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxVideoPixelCropBottom));
-const EbmlSemanticContext KaxVideoPixelCropTop_Context = EbmlSemanticContext(0, NULL, &KaxTrackVideo_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxVideoPixelCropTop));
-const EbmlSemanticContext KaxVideoPixelCropRight_Context = EbmlSemanticContext(0, NULL, &KaxTrackVideo_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxVideoPixelCropLeft));
-const EbmlSemanticContext KaxVideoPixelCropLeft_Context = EbmlSemanticContext(0, NULL, &KaxTrackVideo_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxVideoPixelCropRight));
-const EbmlSemanticContext KaxVideoDisplayWidth_Context = EbmlSemanticContext(0, NULL, &KaxTrackVideo_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxVideoDisplayWidth));
-const EbmlSemanticContext KaxVideoDisplayHeight_Context = EbmlSemanticContext(0, NULL, &KaxTrackVideo_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxVideoDisplayHeight));
-const EbmlSemanticContext KaxVideoColourSpace_Context = EbmlSemanticContext(0, NULL, &KaxTrackVideo_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxVideoColourSpace));
-const EbmlSemanticContext KaxVideoFrameRate_Context = EbmlSemanticContext(0, NULL, &KaxTrackVideo_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxVideoFrameRate));
+DEFINE_MKX_MASTER  (KaxTrackVideo,             0xE0, 1, KaxTrackEntry, "TrackVideo");
+DEFINE_MKX_UINTEGER(KaxVideoPixelWidth,        0xB0, 1, KaxTrackVideo, "VideoPixelWidth");
+DEFINE_MKX_UINTEGER(KaxVideoPixelHeight,       0xBA, 1, KaxTrackVideo, "VideoPixelHeight");
+DEFINE_MKX_UINTEGER(KaxVideoPixelCropBottom, 0x54AA, 2, KaxTrackVideo, "VideoPixelCropBottom");
+DEFINE_MKX_UINTEGER(KaxVideoPixelCropTop,    0x54BB, 2, KaxTrackVideo, "VideoPixelCropTop");
+DEFINE_MKX_UINTEGER(KaxVideoPixelCropLeft,   0x54CC, 2, KaxTrackVideo, "VideoPixelCropLeft");
+DEFINE_MKX_UINTEGER(KaxVideoPixelCropRight,  0x54DD, 2, KaxTrackVideo, "VideoPixelCropRight");
+DEFINE_MKX_UINTEGER(KaxVideoDisplayWidth,    0x54B0, 2, KaxTrackVideo, "VideoDisplayWidth");
+DEFINE_MKX_UINTEGER(KaxVideoDisplayHeight,   0x54BA, 2, KaxTrackVideo, "VideoDisplayHeight");
+DEFINE_MKX_BINARY  (KaxVideoColourSpace,   0x2EB524, 3, KaxTrackVideo, "VideoColourSpace");
+DEFINE_MKX_FLOAT   (KaxVideoFrameRate,     0x2383E3, 3, KaxTrackVideo, "VideoFrameRate");
 #if MATROSKA_VERSION >= 2
-const EbmlSemanticContext KaxVideoFlagInterlaced_Context = EbmlSemanticContext(0, NULL, &KaxTrackVideo_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxVideoFlagInterlaced));
-const EbmlSemanticContext KaxVideoStereoMode_Context = EbmlSemanticContext(0, NULL, &KaxTrackVideo_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxVideoStereoMode));
-const EbmlSemanticContext KaxVideoDisplayUnit_Context = EbmlSemanticContext(0, NULL, &KaxTrackVideo_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxVideoDisplayUnit));
-const EbmlSemanticContext KaxVideoAspectRatio_Context = EbmlSemanticContext(0, NULL, &KaxTrackVideo_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxVideoAspectRatio));
-const EbmlSemanticContext KaxVideoGamma_Context = EbmlSemanticContext(0, NULL, &KaxTrackVideo_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxVideoGamma));
-#endif // MATROSKA_VERSION
-
-EbmlId KaxTrackVideo_TheId          (0xE0, 1);
-EbmlId KaxVideoPixelWidth_TheId     (0xB0, 1);
-EbmlId KaxVideoPixelHeight_TheId    (0xBA, 1);
-EbmlId KaxVideoPixelCropBottom_TheId(0x54AA, 2);
-EbmlId KaxVideoPixelCropTop_TheId   (0x54BB, 2);
-EbmlId KaxVideoPixelCropLeft_TheId  (0x54CC, 2);
-EbmlId KaxVideoPixelCropRight_TheId (0x54DD, 2);
-EbmlId KaxVideoDisplayWidth_TheId   (0x54B0, 2);
-EbmlId KaxVideoDisplayHeight_TheId  (0x54BA, 2);
-EbmlId KaxVideoColourSpace_TheId    (0x2EB524, 3);
-EbmlId KaxVideoFrameRate_TheId      (0x2383E3, 3);
-#if MATROSKA_VERSION >= 2
-EbmlId KaxVideoFlagInterlaced_TheId (0x9A, 1);
-EbmlId KaxVideoStereoMode_TheId     (0x53B9, 2);
-EbmlId KaxVideoDisplayUnit_TheId    (0x54B2, 2);
-EbmlId KaxVideoAspectRatio_TheId    (0x54B3, 1);
-EbmlId KaxVideoGamma_TheId          (0x2FB523, 3);
-#endif // MATROSKA_VERSION
-
-const EbmlCallbacks KaxTrackVideo::ClassInfos(KaxTrackVideo::Create, KaxTrackVideo_TheId, "TrackAudio", KaxTrackVideo_Context);
-const EbmlCallbacks KaxVideoPixelWidth::ClassInfos(KaxVideoPixelWidth::Create, KaxVideoPixelWidth_TheId, "VideoPixelWidth", KaxVideoPixelWidth_Context);
-const EbmlCallbacks KaxVideoPixelHeight::ClassInfos(KaxVideoPixelHeight::Create, KaxVideoPixelHeight_TheId, "VideoPixelHeight", KaxVideoPixelHeight_Context);
-const EbmlCallbacks KaxVideoPixelCropBottom::ClassInfos(KaxVideoPixelCropBottom::Create, KaxVideoPixelCropBottom_TheId, "VideoPixelCropBottom", KaxVideoPixelCropBottom_Context);
-const EbmlCallbacks KaxVideoPixelCropTop::ClassInfos(KaxVideoPixelCropTop::Create, KaxVideoPixelCropTop_TheId, "VideoPixelCropTop", KaxVideoPixelCropTop_Context);
-const EbmlCallbacks KaxVideoPixelCropLeft::ClassInfos(KaxVideoPixelCropLeft::Create, KaxVideoPixelCropLeft_TheId, "VideoPixelCropLeft", KaxVideoPixelCropLeft_Context);
-const EbmlCallbacks KaxVideoPixelCropRight::ClassInfos(KaxVideoPixelCropRight::Create, KaxVideoPixelCropRight_TheId, "VideoPixelCropRight", KaxVideoPixelCropRight_Context);
-const EbmlCallbacks KaxVideoDisplayWidth::ClassInfos(KaxVideoDisplayWidth::Create, KaxVideoDisplayWidth_TheId, "VideoDisplayWidth", KaxVideoDisplayWidth_Context);
-const EbmlCallbacks KaxVideoDisplayHeight::ClassInfos(KaxVideoDisplayHeight::Create, KaxVideoDisplayHeight_TheId, "VideoDisplayHeight", KaxVideoDisplayHeight_Context);
-const EbmlCallbacks KaxVideoColourSpace::ClassInfos(KaxVideoColourSpace::Create, KaxVideoColourSpace_TheId, "VideoColourSpace", KaxVideoColourSpace_Context);
-const EbmlCallbacks KaxVideoFrameRate::ClassInfos(KaxVideoFrameRate::Create, KaxVideoFrameRate_TheId, "VideoFrameRate", KaxVideoFrameRate_Context);
-#if MATROSKA_VERSION >= 2
-const EbmlCallbacks KaxVideoFlagInterlaced::ClassInfos(KaxVideoFlagInterlaced::Create, KaxVideoFlagInterlaced_TheId, "VideoFlagInterlaced", KaxVideoFlagInterlaced_Context);
-const EbmlCallbacks KaxVideoStereoMode::ClassInfos(KaxVideoStereoMode::Create, KaxVideoStereoMode_TheId, "VideoStereoMode", KaxVideoStereoMode_Context);
-const EbmlCallbacks KaxVideoDisplayUnit::ClassInfos(KaxVideoDisplayUnit::Create, KaxVideoDisplayUnit_TheId, "VideoDisplayUnit", KaxVideoDisplayUnit_Context);
-const EbmlCallbacks KaxVideoAspectRatio::ClassInfos(KaxVideoAspectRatio::Create, KaxVideoAspectRatio_TheId, "VideoAspectRatio", KaxVideoAspectRatio_Context);
-const EbmlCallbacks KaxVideoGamma::ClassInfos(KaxVideoGamma::Create, KaxVideoGamma_TheId, "VideoGamma", KaxVideoGamma_Context);
-#endif // MATROSKA_VERSION
+DEFINE_MKX_UINTEGER(KaxVideoFlagInterlaced,    0x9A, 1, KaxTrackVideo, "VideoFlagInterlaced");
+DEFINE_MKX_UINTEGER(KaxVideoStereoMode,      0x53B9, 2, KaxTrackVideo, "VideoStereoMode");
+DEFINE_MKX_UINTEGER(KaxVideoDisplayUnit,     0x54B2, 2, KaxTrackVideo, "VideoDisplayUnit");
+DEFINE_MKX_UINTEGER(KaxVideoAspectRatio,     0x54B3, 2, KaxTrackVideo, "VideoAspectRatio");
+DEFINE_MKX_FLOAT   (KaxVideoGamma,         0x2FB523, 3, KaxTrackVideo, "VideoGamma");
+#endif
 
 KaxTrackVideo::KaxTrackVideo()
 	:EbmlMaster(KaxTrackVideo_Context)

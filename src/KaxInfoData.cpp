@@ -35,64 +35,32 @@
 */
 #include "matroska/KaxInfoData.h"
 #include "matroska/KaxContexts.h"
+#include "matroska/KaxDefines.h"
 
 START_LIBMATROSKA_NAMESPACE
 
-const EbmlSemantic KaxChapterTranslate_ContextList[3] =
+static const EbmlSemantic ContextList_KaxChapterTranslate[3] =
 {
 	EbmlSemantic(false, false, EBML_INFO(KaxChapterTranslateEditionUID)),
 	EbmlSemantic(true,  true,  EBML_INFO(KaxChapterTranslateCodec)),
 	EbmlSemantic(true,  true,  EBML_INFO(KaxChapterTranslateID)),
 };
 
-EbmlId KaxSegmentUID_TheId      (0x73A4, 2);
-EbmlId KaxSegmentFilename_TheId (0x7384, 2);
-EbmlId KaxPrevUID_TheId         (0x3CB923, 3);
-EbmlId KaxPrevFilename_TheId    (0x3C83AB, 3);
-EbmlId KaxNextUID_TheId         (0x3EB923, 3);
-EbmlId KaxNextFilename_TheId    (0x3E83BB, 3);
-EbmlId KaxSegmentFamily_TheId   (0x4444, 2);
-EbmlId KaxChapterTranslate_TheId(0x6924, 2);
-EbmlId KaxChapterTranslateEditionUID_TheId(0x69FC, 2);
-EbmlId KaxChapterTranslateCodec_TheId(0x69BF, 2);
-EbmlId KaxChapterTranslateID_TheId(0x69A5, 2);
-EbmlId KaxTimecodeScale_TheId   (0x2AD7B1, 3);
-EbmlId KaxDuration_TheId        (0x4489, 2);
-EbmlId KaxDateUTC_TheId         (0x4461, 2);
-EbmlId KaxTitle_TheId           (0x7BA9, 2);
-
-const EbmlSemanticContext KaxSegmentUID_Context = EbmlSemanticContext(0, NULL, &KaxInfo_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxSegmentUID));
-const EbmlSemanticContext KaxSegmentFilename_Context = EbmlSemanticContext(0, NULL, &KaxInfo_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxSegmentFilename));
-const EbmlSemanticContext KaxPrevUID_Context = EbmlSemanticContext(0, NULL, &KaxInfo_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxPrevUID));
-const EbmlSemanticContext KaxPrevFilename_Context = EbmlSemanticContext(0, NULL, &KaxInfo_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxPrevFilename));
-const EbmlSemanticContext KaxNextUID_Context = EbmlSemanticContext(0, NULL, &KaxInfo_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxNextUID));
-const EbmlSemanticContext KaxNextFilename_Context = EbmlSemanticContext(0, NULL, &KaxInfo_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxNextFilename));
-const EbmlSemanticContext KaxSegmentFamily_Context = EbmlSemanticContext(0, NULL, &KaxInfo_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxSegmentFamily));
-const EbmlSemanticContext KaxChapterTranslate_Context = EbmlSemanticContext(countof(KaxChapterTranslate_ContextList), KaxChapterTranslate_ContextList, &KaxInfo_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxChapterTranslate));
-const EbmlSemanticContext KaxChapterTranslateEditionUID_Context = EbmlSemanticContext(0, NULL, &KaxChapterTranslate_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxChapterTranslateEditionUID));
-const EbmlSemanticContext KaxChapterTranslateCodec_Context = EbmlSemanticContext(0, NULL, &KaxChapterTranslate_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxChapterTranslateCodec));
-const EbmlSemanticContext KaxChapterTranslateID_Context = EbmlSemanticContext(0, NULL, &KaxChapterTranslate_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxChapterTranslateID));
-const EbmlSemanticContext KaxTimecodeScale_Context = EbmlSemanticContext(0, NULL, &KaxInfo_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxTimecodeScale));
-const EbmlSemanticContext KaxDuration_Context = EbmlSemanticContext(0, NULL, &KaxInfo_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxDuration));
-const EbmlSemanticContext KaxDateUTC_Context = EbmlSemanticContext(0, NULL, &KaxInfo_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxDateUTC));
-const EbmlSemanticContext KaxTitle_Context = EbmlSemanticContext(0, NULL, &KaxInfo_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxTitle));
-
-
-const EbmlCallbacks KaxSegmentUID::ClassInfos(KaxSegmentUID::Create, KaxSegmentUID_TheId, "SegmentUID", KaxSegmentUID_Context);
-const EbmlCallbacks KaxSegmentFilename::ClassInfos(KaxSegmentFilename::Create, KaxSegmentFilename_TheId, "SegmentFilename", KaxSegmentFilename_Context);
-const EbmlCallbacks KaxPrevUID::ClassInfos(KaxPrevUID::Create, KaxPrevUID_TheId, "PrevUID", KaxPrevUID_Context);
-const EbmlCallbacks KaxPrevFilename::ClassInfos(KaxPrevFilename::Create, KaxPrevFilename_TheId, "PrevFilename", KaxPrevFilename_Context);
-const EbmlCallbacks KaxNextUID::ClassInfos(KaxNextUID::Create, KaxNextUID_TheId, "NextUID", KaxNextUID_Context);
-const EbmlCallbacks KaxNextFilename::ClassInfos(KaxNextFilename::Create, KaxNextFilename_TheId, "NextFilename", KaxNextFilename_Context);
-const EbmlCallbacks KaxSegmentFamily::ClassInfos(KaxSegmentFamily::Create, KaxSegmentFamily_TheId, "SegmentFamily", KaxSegmentFamily_Context);
-const EbmlCallbacks KaxChapterTranslate::ClassInfos(KaxChapterTranslate::Create, KaxChapterTranslate_TheId, "ChapterTranslate", KaxChapterTranslate_Context);
-const EbmlCallbacks KaxChapterTranslateEditionUID::ClassInfos(KaxChapterTranslateEditionUID::Create, KaxChapterTranslateEditionUID_TheId, "ChapterTranslateEditionUID", KaxChapterTranslateEditionUID_Context);
-const EbmlCallbacks KaxChapterTranslateCodec::ClassInfos(KaxChapterTranslateCodec::Create, KaxChapterTranslateCodec_TheId, "ChapterTranslateCodec", KaxChapterTranslateCodec_Context);
-const EbmlCallbacks KaxChapterTranslateID::ClassInfos(KaxChapterTranslateID::Create, KaxChapterTranslateID_TheId, "ChapterTranslateID", KaxChapterTranslateID_Context);
-const EbmlCallbacks KaxTimecodeScale::ClassInfos(KaxTimecodeScale::Create, KaxTimecodeScale_TheId, "TimecodeScale", KaxTimecodeScale_Context);
-const EbmlCallbacks KaxDuration::ClassInfos(KaxDuration::Create, KaxDuration_TheId, "Duration", KaxDuration_Context);
-const EbmlCallbacks KaxDateUTC::ClassInfos(KaxDateUTC::Create, KaxDateUTC_TheId, "DateUTC", KaxDateUTC_Context);
-const EbmlCallbacks KaxTitle::ClassInfos(KaxTitle::Create, KaxTitle_TheId, "Title", KaxTitle_Context);
+DEFINE_MKX_BINARY   (KaxSegmentUID,                 0x73A4, 2, KaxInfo, "ChapterTranslate");
+DEFINE_MKX_UNISTRING(KaxSegmentFilename,            0x7384, 2, KaxInfo, "SegmentFilename");
+DEFINE_MKX_BINARY   (KaxPrevUID,                  0x3CB923, 3, KaxInfo, "PrevUID");
+DEFINE_MKX_UNISTRING(KaxPrevFilename,             0x3C83AB, 3, KaxInfo, "PrevFilename");
+DEFINE_MKX_BINARY   (KaxNextUID,                  0x3EB923, 3, KaxInfo, "NextUID");
+DEFINE_MKX_UNISTRING(KaxNextFilename,             0x3E83BB, 3, KaxInfo, "NextFilename");
+DEFINE_MKX_BINARY   (KaxSegmentFamily,              0x4444, 2, KaxInfo, "SegmentFamily");
+DEFINE_MKX_MASTER   (KaxChapterTranslate,           0x6924, 2, KaxInfo, "ChapterTranslate");
+DEFINE_MKX_UINTEGER (KaxChapterTranslateEditionUID, 0x69FC, 2, KaxChapterTranslate, "ChapterTranslateEditionUID");
+DEFINE_MKX_UINTEGER (KaxChapterTranslateCodec,      0x69BF, 2, KaxChapterTranslate, "ChapterTranslateCodec");
+DEFINE_MKX_BINARY   (KaxChapterTranslateID,         0x69A5, 2, KaxChapterTranslate, "ChapterTranslateID");
+DEFINE_MKX_UINTEGER (KaxTimecodeScale,            0x2AD7B1, 3, KaxInfo, "TimecodeScale");
+DEFINE_MKX_FLOAT    (KaxDuration,                   0x4489, 2, KaxInfo, "Duration");
+DEFINE_MKX_DATE     (KaxDateUTC,                    0x4461, 2, KaxInfo, "DateUTC");
+DEFINE_MKX_UNISTRING(KaxTitle,                      0x7BA9, 2, KaxInfo, "Title");
 
 KaxChapterTranslate::KaxChapterTranslate()
 	:EbmlMaster(KaxChapterTranslate_Context)

@@ -39,13 +39,14 @@
 #include "matroska/KaxContexts.h"
 #include "matroska/KaxBlockData.h"
 #include "matroska/KaxCluster.h"
+#include "matroska/KaxDefines.h"
 
 START_LIBMATROSKA_NAMESPACE
 
 #if MATROSKA_VERSION == 1
-const EbmlSemantic KaxBlockGroup_ContextList[6] =
+static const EbmlSemantic ContextList_KaxBlockGroup[6] =
 #else // MATROSKA_VERSION
-const EbmlSemantic KaxBlockGroup_ContextList[9] =
+static const EbmlSemantic ContextList_KaxBlockGroup[9] =
 #endif // MATROSKA_VERSION
 {
 	EbmlSemantic(true,  true,  EBML_INFO(KaxBlock)),
@@ -63,55 +64,30 @@ const EbmlSemantic KaxBlockGroup_ContextList[9] =
 	EbmlSemantic(false, true,  EBML_INFO(KaxBlockAdditions)),
 };
 
-const EbmlSemantic KaxBlockAdditions_ContextList[1] =
+static const EbmlSemantic ContextList_KaxBlockAdditions[1] =
 {
 	EbmlSemantic(true,  false,  EBML_INFO(KaxBlockMore))
 };
 
-const EbmlSemantic KaxBlockMore_ContextList[2] =
+static const EbmlSemantic ContextList_KaxBlockMore[2] =
 {
 	EbmlSemantic(true,  true,  EBML_INFO(KaxBlockAddID)),
 	EbmlSemantic(true,  true,  EBML_INFO(KaxBlockAdditional))
 };
 
-EbmlId KaxBlockGroup_TheId     (0xA0, 1);
-EbmlId KaxBlock_TheId          (0xA1, 1);
-EbmlId KaxSimpleBlock_TheId    (0xA3, 1);
-EbmlId KaxBlockDuration_TheId  (0x9B, 1);
+DEFINE_MKX_MASTER  (KaxBlockGroup,       0xA0, 1, KaxCluster, "BlockGroup");
+DEFINE_MKX_BINARY  (KaxBlock,            0xA1, 1, KaxBlockGroup, "Block");
+DEFINE_MKX_UINTEGER(KaxBlockDuration,    0x9B, 1, KaxBlockGroup, "BlockDuration");
 #if MATROSKA_VERSION >= 2
-EbmlId KaxBlockVirtual_TheId   (0xA2, 1);
-EbmlId KaxCodecState_TheId     (0xA4, 1);
-#endif // MATROSKA_VERSION
-EbmlId KaxBlockAdditions_TheId (0x75A1, 2);
-EbmlId KaxBlockMore_TheId      (0xA6, 1);
-EbmlId KaxBlockAddID_TheId     (0xEE, 1);
-EbmlId KaxBlockAdditional_TheId(0xA5, 1);
+DEFINE_MKX_BINARY  (KaxSimpleBlock,      0xA3, 1, KaxCluster, "SimpleBlock");
+DEFINE_MKX_BINARY  (KaxBlockVirtual,     0xA2, 1, KaxBlockGroup, "BlockVirtual");
+DEFINE_MKX_BINARY  (KaxCodecState,       0xA4, 1, KaxBlockGroup, "CodecState");
+#endif
+DEFINE_MKX_MASTER  (KaxBlockAdditions, 0x75A1, 2, KaxBlockGroup, "BlockAdditions");
+DEFINE_MKX_MASTER  (KaxBlockMore,        0xA6, 1, KaxBlockAdditions, "BlockMore");
+DEFINE_MKX_UINTEGER(KaxBlockAddID,       0xEE, 1, KaxBlockMore, "BlockAddID");
+DEFINE_MKX_BINARY  (KaxBlockAdditional,  0xA5, 1, KaxBlockMore, "BlockAdditional");
 
-const EbmlSemanticContext KaxBlockGroup_Context = EbmlSemanticContext(countof(KaxBlockGroup_ContextList), KaxBlockGroup_ContextList, &KaxCluster_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxBlockGroup));
-const EbmlSemanticContext KaxBlock_Context = EbmlSemanticContext(0, NULL, &KaxBlockGroup_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxBlock));
-const EbmlSemanticContext KaxBlockDuration_Context = EbmlSemanticContext(0, NULL, &KaxBlockGroup_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxBlockDuration));
-#if MATROSKA_VERSION >= 2
-const EbmlSemanticContext KaxSimpleBlock_Context = EbmlSemanticContext(0, NULL, &KaxCluster_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxSimpleBlock));
-const EbmlSemanticContext KaxBlockVirtual_Context = EbmlSemanticContext(0, NULL, &KaxBlockGroup_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxBlockVirtual));
-const EbmlSemanticContext KaxCodecState_Context = EbmlSemanticContext(0, NULL, &KaxBlockGroup_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxCodecState));
-#endif // MATROSKA_VERSION
-const EbmlSemanticContext KaxBlockAdditions_Context = EbmlSemanticContext(countof(KaxBlockAdditions_ContextList), KaxBlockAdditions_ContextList, &KaxBlockGroup_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxBlockAdditions));
-const EbmlSemanticContext KaxBlockMore_Context = EbmlSemanticContext(countof(KaxBlockMore_ContextList), KaxBlockMore_ContextList, &KaxBlockAdditions_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxBlockMore));
-const EbmlSemanticContext KaxBlockAddID_Context = EbmlSemanticContext(0, NULL, &KaxBlockMore_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxBlockAddID));
-const EbmlSemanticContext KaxBlockAdditional_Context = EbmlSemanticContext(0, NULL, &KaxBlockMore_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxBlockAdditional));
-
-const EbmlCallbacks KaxBlockGroup::ClassInfos(KaxBlockGroup::Create, KaxBlockGroup_TheId, "BlockGroup", KaxBlockGroup_Context);
-const EbmlCallbacks KaxBlock::ClassInfos(KaxBlock::Create, KaxBlock_TheId, "Block", KaxBlock_Context);
-const EbmlCallbacks KaxBlockDuration::ClassInfos(KaxBlockDuration::Create, KaxBlockDuration_TheId, "BlockDuration", KaxBlockDuration_Context);
-#if MATROSKA_VERSION >= 2
-const EbmlCallbacks KaxSimpleBlock::ClassInfos(KaxSimpleBlock::Create, KaxSimpleBlock_TheId, "SimpleBlock", KaxSimpleBlock_Context);
-const EbmlCallbacks KaxBlockVirtual::ClassInfos(KaxBlockVirtual::Create, KaxBlockVirtual_TheId, "BlockVirtual", KaxBlockVirtual_Context);
-const EbmlCallbacks KaxCodecState::ClassInfos(KaxCodecState::Create, KaxCodecState_TheId, "CodecState", KaxCodecState_Context);
-#endif // MATROSKA_VERSION
-const EbmlCallbacks KaxBlockAdditions::ClassInfos(KaxBlockAdditions::Create, KaxBlockAdditions_TheId, "BlockAdditions", KaxBlockAdditions_Context);
-const EbmlCallbacks KaxBlockMore::ClassInfos(KaxBlockMore::Create, KaxBlockMore_TheId, "BlockMore", KaxBlockMore_Context);
-const EbmlCallbacks KaxBlockAddID::ClassInfos(KaxBlockAddID::Create, KaxBlockAddID_TheId, "BlockAddID", KaxBlockAddID_Context);
-const EbmlCallbacks KaxBlockAdditional::ClassInfos(KaxBlockAdditional::Create, KaxBlockAdditional_TheId, "BlockAdditional", KaxBlockAdditional_Context);
 
 DataBuffer * DataBuffer::Clone()
 {

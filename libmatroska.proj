@@ -55,6 +55,7 @@ LIB matroska
   HEADER matroska/KaxContexts.h
   HEADER matroska/KaxCues.h
   HEADER matroska/KaxCuesData.h
+  HEADER matroska/KaxDefines.h
   HEADER matroska/KaxInfo.h
   HEADER matroska/KaxInfoData.h
   HEADER matroska/KaxSeekHead.h

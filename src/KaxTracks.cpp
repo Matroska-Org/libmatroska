@@ -40,18 +40,19 @@
 #include "matroska/KaxTrackVideo.h"
 #include "matroska/KaxContentEncoding.h"
 #include "matroska/KaxContexts.h"
+#include "matroska/KaxDefines.h"
 
 START_LIBMATROSKA_NAMESPACE
 
-const EbmlSemantic KaxTracks_ContextList[1] =
+static const EbmlSemantic ContextList_KaxTracks[1] =
 {
 	EbmlSemantic(true, false, EBML_INFO(KaxTrackEntry)),
 };
 
 #if MATROSKA_VERSION == 1
-const EbmlSemantic KaxTrackEntry_ContextList[22] =
+static const EbmlSemantic ContextList_KaxTrackEntry[22] =
 #else // MATROSKA_VERSION
-const EbmlSemantic KaxTrackEntry_ContextList[27] =
+static const EbmlSemantic ContextList_KaxTrackEntry[27] =
 #endif // MATROSKA_VERSION
 {
 	EbmlSemantic(true , true, EBML_INFO(KaxTrackNumber)),
@@ -87,14 +88,8 @@ const EbmlSemantic KaxTrackEntry_ContextList[27] =
 	EbmlSemantic(false, true, EBML_INFO(KaxContentEncodings)),
 };
 
-const EbmlSemanticContext KaxTracks_Context = EbmlSemanticContext(countof(KaxTracks_ContextList), KaxTracks_ContextList, &KaxSegment_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxTracks));
-const EbmlSemanticContext KaxTrackEntry_Context = EbmlSemanticContext(countof(KaxTrackEntry_ContextList), KaxTrackEntry_ContextList, &KaxTracks_Context, *GetKaxGlobal_Context, &EBML_INFO(KaxTrackEntry));
-
-EbmlId KaxTracks_TheId    (0x1654AE6B, 4);
-EbmlId KaxTrackEntry_TheId(0xAE, 1);
-
-const EbmlCallbacks KaxTracks::ClassInfos(KaxTracks::Create, KaxTracks_TheId, "Tracks", KaxTracks_Context);
-const EbmlCallbacks KaxTrackEntry::ClassInfos(KaxTrackEntry::Create, KaxTrackEntry_TheId, "TrackEntry", KaxTrackEntry_Context);
+DEFINE_MKX_MASTER(KaxTracks, 0x1654AE6B, 4, KaxSegment, "Tracks");
+DEFINE_MKX_MASTER(KaxTrackEntry,   0xAE, 1, KaxTracks, "TrackEntry");
 
 KaxTracks::KaxTracks()
 	:EbmlMaster(KaxTracks_Context)

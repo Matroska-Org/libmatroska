@@ -65,7 +65,7 @@ DEFINE_MKX_BINARY  (KaxAudioPosition,           0x7D7B, 2, KaxTrackAudio, "Audio
 #endif
 
 KaxTrackAudio::KaxTrackAudio()
-	:EbmlMaster(KaxTrackAudio_Context)
+	:EbmlMaster(Context_KaxTrackAudio)
 {}
 
 END_LIBMATROSKA_NAMESPACE

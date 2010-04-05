@@ -124,31 +124,31 @@ DEFINE_MKX_BINARY   (KaxChapterProcessData,       0x6933, 2, KaxChapterProcessCo
 
 
 KaxChapters::KaxChapters()
- :EbmlMaster(KaxChapters_Context)
+ :EbmlMaster(Context_KaxChapters)
 {}
 
 KaxEditionEntry::KaxEditionEntry()
-:EbmlMaster(KaxEditionEntry_Context)
+:EbmlMaster(Context_KaxEditionEntry)
 {}
 
 KaxChapterAtom::KaxChapterAtom()
-:EbmlMaster(KaxChapterAtom_Context)
+:EbmlMaster(Context_KaxChapterAtom)
 {}
 
 KaxChapterTrack::KaxChapterTrack()
-:EbmlMaster(KaxChapterTrack_Context)
+:EbmlMaster(Context_KaxChapterTrack)
 {}
 
 KaxChapterDisplay::KaxChapterDisplay()
-:EbmlMaster(KaxChapterDisplay_Context)
+:EbmlMaster(Context_KaxChapterDisplay)
 {}
 
 KaxChapterProcess::KaxChapterProcess()
-:EbmlMaster(KaxChapterProcess_Context)
+:EbmlMaster(Context_KaxChapterProcess)
 {}
 
 KaxChapterProcessCommand::KaxChapterProcessCommand()
-:EbmlMaster(KaxChapterProcessCommand_Context)
+:EbmlMaster(Context_KaxChapterProcessCommand)
 {}
 
 END_LIBMATROSKA_NAMESPACE

@@ -85,7 +85,7 @@ DEFINE_MKX_FLOAT   (KaxVideoGamma,         0x2FB523, 3, KaxTrackVideo, "VideoGam
 #endif
 
 KaxTrackVideo::KaxTrackVideo()
-	:EbmlMaster(KaxTrackVideo_Context)
+	:EbmlMaster(Context_KaxTrackVideo)
 {}
 
 filepos_t KaxVideoFrameRate::RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault)

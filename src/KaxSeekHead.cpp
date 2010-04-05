@@ -60,11 +60,11 @@ DEFINE_MKX_BINARY  (KaxSeekID,       0x53AB, 2, KaxSeek, "SeekID");
 DEFINE_MKX_UINTEGER(KaxSeekPosition, 0x53AC, 2, KaxSeek, "SeekPosition");
 
 KaxSeekHead::KaxSeekHead()
-	:EbmlMaster(KaxSeekHead_Context)
+	:EbmlMaster(Context_KaxSeekHead)
 {}
 
 KaxSeek::KaxSeek()
-	:EbmlMaster(KaxSeek_Context)
+	:EbmlMaster(Context_KaxSeek)
 {}
 
 /*!

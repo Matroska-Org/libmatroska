@@ -144,17 +144,17 @@ KaxBlockGroup::~KaxBlockGroup()
 }
 
 KaxBlockGroup::KaxBlockGroup()
- :EbmlMaster(KaxBlockGroup_Context)
+ :EbmlMaster(Context_KaxBlockGroup)
  ,ParentCluster(NULL)
  ,ParentTrack(NULL)
 {}
 
 KaxBlockAdditions::KaxBlockAdditions()
- :EbmlMaster(KaxBlockAdditions_Context)
+ :EbmlMaster(Context_KaxBlockAdditions)
 {}
 
 KaxBlockMore::KaxBlockMore()
- :EbmlMaster(KaxBlockMore_Context)
+ :EbmlMaster(Context_KaxBlockMore)
 {}
 
 /*!

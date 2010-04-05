@@ -220,68 +220,68 @@ DEFINE_xxx_MASTER   (KaxTagAttachment,             0x4EC3, 2, KaxTagMultiAttachm
 DEFINE_MKX_UINTEGER (KaxTagAttachmentID,           0x5BA0, 2, KaxTagAttachment, "AttachmentID");
 
 KaxTagMultiComment::KaxTagMultiComment()
-	:EbmlMaster(KaxTagMultiComment_Context)
+	:EbmlMaster(Context_KaxTagMultiComment)
 {}
 
 
 KaxTagMultiCommercial::KaxTagMultiCommercial()
-	:EbmlMaster(KaxTagMultiCommercial_Context)
+	:EbmlMaster(Context_KaxTagMultiCommercial)
 {}
 
 KaxTagCommercial::KaxTagCommercial()
-	:EbmlMaster(KaxTagCommercial_Context)
+	:EbmlMaster(Context_KaxTagCommercial)
 {}
 
 KaxTagMultiPrice::KaxTagMultiPrice()
-	:EbmlMaster(KaxTagMultiPrice_Context)
+	:EbmlMaster(Context_KaxTagMultiPrice)
 {}
 
 KaxTagMultiDate::KaxTagMultiDate()
-	:EbmlMaster(KaxTagMultiDate_Context)
+	:EbmlMaster(Context_KaxTagMultiDate)
 {}
 
 KaxTagDate::KaxTagDate()
-	:EbmlMaster(KaxTagDate_Context)
+	:EbmlMaster(Context_KaxTagDate)
 {}
 
 KaxTagMultiEntity::KaxTagMultiEntity()
-	:EbmlMaster(KaxTagMultiEntity_Context)
+	:EbmlMaster(Context_KaxTagMultiEntity)
 {}
 	
 KaxTagEntity::KaxTagEntity()
-	:EbmlMaster(KaxTagEntity_Context)
+	:EbmlMaster(Context_KaxTagEntity)
 {}
 	
 KaxTagMultiLegal::KaxTagMultiLegal()
-	:EbmlMaster(KaxTagMultiLegal_Context)
+	:EbmlMaster(Context_KaxTagMultiLegal)
 {}
 
 KaxTagLegal::KaxTagLegal()
-	:EbmlMaster(KaxTagLegal_Context)
+	:EbmlMaster(Context_KaxTagLegal)
 {}
 
 KaxTagMultiIdentifier::KaxTagMultiIdentifier()
-	:EbmlMaster(KaxTagMultiIdentifier_Context)
+	:EbmlMaster(Context_KaxTagMultiIdentifier)
 {}
 
 KaxTagIdentifier::KaxTagIdentifier()
-	:EbmlMaster(KaxTagIdentifier_Context)
+	:EbmlMaster(Context_KaxTagIdentifier)
 {}
 
 KaxTagMultiTitle::KaxTagMultiTitle()
-	:EbmlMaster(KaxTagMultiTitle_Context)
+	:EbmlMaster(Context_KaxTagMultiTitle)
 {}
 
 KaxTagTitle::KaxTagTitle()
-	:EbmlMaster(KaxTagTitle_Context)
+	:EbmlMaster(Context_KaxTagTitle)
 {}
 
 KaxTagMultiAttachment::KaxTagMultiAttachment()
-	:EbmlMaster(KaxTagMultiAttachment_Context)
+	:EbmlMaster(Context_KaxTagMultiAttachment)
 {}
 
 KaxTagAttachment::KaxTagAttachment()
-	:EbmlMaster(KaxTagAttachment_Context)
+	:EbmlMaster(Context_KaxTagAttachment)
 {}
 
 END_LIBMATROSKA_NAMESPACE

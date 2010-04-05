@@ -89,16 +89,16 @@ DEFINE_MKX_UINTEGER(KaxCueRefCodecState,   0xEB, 1, KaxCueRefTime, "CueRefCodecS
 #endif
 
 KaxCuePoint::KaxCuePoint() 
- :EbmlMaster(KaxCuePoint_Context)
+ :EbmlMaster(Context_KaxCuePoint)
 {}
 
 KaxCueTrackPositions::KaxCueTrackPositions()
- :EbmlMaster(KaxCueTrackPositions_Context)
+ :EbmlMaster(Context_KaxCueTrackPositions)
 {}
 
 #if MATROSKA_VERSION >= 2
 KaxCueReference::KaxCueReference()
- :EbmlMaster(KaxCueReference_Context)
+ :EbmlMaster(Context_KaxCueReference)
 {}
 #endif // MATROSKA_VERSION
 

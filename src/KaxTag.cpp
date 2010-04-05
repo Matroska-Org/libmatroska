@@ -198,31 +198,31 @@ DEFINE_MKX_UNISTRING(KaxTagString,                 0x4487, 2, KaxTagSimple, "Tag
 DEFINE_MKX_BINARY   (KaxTagBinary,                 0x4485, 2, KaxTagSimple, "TagBinary");
 
 KaxTag::KaxTag()
-	:EbmlMaster(KaxTag_Context)
+	:EbmlMaster(Context_KaxTag)
 {}
 
 KaxTagTargets::KaxTagTargets()
-	:EbmlMaster(KaxTagTargets_Context)
+	:EbmlMaster(Context_KaxTagTargets)
 {}
 
 KaxTagGeneral::KaxTagGeneral()
-	:EbmlMaster(KaxTagGeneral_Context)
+	:EbmlMaster(Context_KaxTagGeneral)
 {}
 
 KaxTagGenres::KaxTagGenres()
-	:EbmlMaster(KaxTagGenres_Context)
+	:EbmlMaster(Context_KaxTagGenres)
 {}
 
 KaxTagAudioSpecific::KaxTagAudioSpecific()
-	:EbmlMaster(KaxTagAudioSpecific_Context)
+	:EbmlMaster(Context_KaxTagAudioSpecific)
 {}
 
 KaxTagImageSpecific::KaxTagImageSpecific()
-	:EbmlMaster(KaxTagImageSpecific_Context)
+	:EbmlMaster(Context_KaxTagImageSpecific)
 {}
 
 KaxTagSimple::KaxTagSimple()
-	:EbmlMaster(KaxTagSimple_Context)
+	:EbmlMaster(Context_KaxTagSimple)
 {}
 
 END_LIBMATROSKA_NAMESPACE

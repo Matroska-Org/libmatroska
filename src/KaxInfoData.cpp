@@ -63,7 +63,7 @@ DEFINE_MKX_DATE     (KaxDateUTC,                    0x4461, 2, KaxInfo, "DateUTC
 DEFINE_MKX_UNISTRING(KaxTitle,                      0x7BA9, 2, KaxInfo, "Title");
 
 KaxChapterTranslate::KaxChapterTranslate()
-	:EbmlMaster(KaxChapterTranslate_Context)
+	:EbmlMaster(Context_KaxChapterTranslate)
 {}
 
 END_LIBMATROSKA_NAMESPACE

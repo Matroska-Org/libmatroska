@@ -70,11 +70,11 @@ DEFINE_MKX_UINTEGER(KaxReferenceVirtual,  0xFD, 1, KaxBlockGroup, "ReferenceVirt
 
 
 KaxSlices::KaxSlices()
- :EbmlMaster(KaxSlices_Context)
+ :EbmlMaster(Context_KaxSlices)
 {}
 
 KaxTimeSlice::KaxTimeSlice()
- :EbmlMaster(KaxTimeSlice_Context)
+ :EbmlMaster(Context_KaxTimeSlice)
 {}
 
 const KaxBlockBlob & KaxReferenceBlock::RefBlock() const

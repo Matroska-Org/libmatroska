@@ -77,7 +77,7 @@ DEFINE_MKX_UINTEGER (KaxCodecDecodeAll,             0xAA, 1, KaxTracks, "CodecDe
 #endif
 
 KaxTrackTranslate::KaxTrackTranslate()
-	:EbmlMaster(KaxTrackTranslate_Context)
+	:EbmlMaster(Context_KaxTrackTranslate)
 {}
 
 END_LIBMATROSKA_NAMESPACE

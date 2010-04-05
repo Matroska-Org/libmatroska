@@ -49,8 +49,4 @@ DEFINE_MKX_UINTEGER(KaxClusterSilentTrackNumber, 0x58D7, 2, KaxClusterSilentTrac
 DEFINE_MKX_UINTEGER(KaxClusterPosition,            0xA7, 1, KaxCluster, "ClusterPosition");
 DEFINE_MKX_UINTEGER(KaxClusterPrevSize,            0xAB, 1, KaxCluster, "ClusterPrevSize");
 
-KaxClusterSilentTracks::KaxClusterSilentTracks()
-:EbmlMaster(Context_KaxClusterSilentTracks)
-{}
-
 END_LIBMATROSKA_NAMESPACE

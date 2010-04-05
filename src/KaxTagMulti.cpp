@@ -160,52 +160,56 @@ const EbmlSemanticContext & GetKaxTagsGlobal_Context()
 	return Context_KaxTagMultiGlobal;
 }
 
+#define DEFINE_TAG_MASTER(a,b,c,d,e)   DEFINE_xxx_MASTER(a,b,c,d,e,*GetKaxTagsGlobal_Context) \
+    a::a() :EbmlMaster(Context_##a) {}
+
+
 
 DEFINE_MKX_MASTER   (KaxTagMultiComment,           0x5B7B, 2, KaxTag, "MultiComment");
 DEFINE_MKX_STRING   (KaxTagMultiCommentName,       0x5F7D, 2, KaxTagMultiComment, "MultiCommentName");
 DEFINE_MKX_UNISTRING(KaxTagMultiCommentComments,   0x5F7C, 2, KaxTagMultiComment, "MultiCommentComments");
 DEFINE_MKX_STRING   (KaxTagMultiCommentLanguage, 0x22B59D, 3, KaxTagMultiComment, "MultiCommentLanguage");
 
-DEFINE_xxx_MASTER   (KaxTagMultiCommercial,        0x4DC7, 2, KaxTag, "MultiCommercial", GetKaxTagsGlobal_Context);
-DEFINE_xxx_MASTER   (KaxTagCommercial,             0x4EC7, 2, KaxTagMultiCommercial, "Commercial", GetKaxTagsGlobal_Context);
+DEFINE_TAG_MASTER   (KaxTagMultiCommercial,        0x4DC7, 2, KaxTag, "MultiCommercial");
+DEFINE_TAG_MASTER   (KaxTagCommercial,             0x4EC7, 2, KaxTagMultiCommercial, "Commercial");
 DEFINE_MKX_UINTEGER (KaxTagMultiCommercialType,    0x5BD7, 2, KaxTagCommercial, "MultiCommercialType");
 DEFINE_MKX_UNISTRING(KaxTagMultiCommercialAddress, 0x5BBB, 2, KaxTagCommercial, "MultiCommercialAddress");
 DEFINE_MKX_STRING   (KaxTagMultiCommercialURL,     0x5BDA, 2, KaxTagCommercial, "MultiCommercialURL");
 DEFINE_MKX_STRING   (KaxTagMultiCommercialEmail,   0x5BC0, 2, KaxTagCommercial, "MultiCommercialEmail");
-DEFINE_xxx_MASTER   (KaxTagMultiPrice,             0x5BC3, 2, KaxTagCommercial, "MultiPrice", GetKaxTagsGlobal_Context);
+DEFINE_TAG_MASTER   (KaxTagMultiPrice,             0x5BC3, 2, KaxTagCommercial, "MultiPrice");
 DEFINE_MKX_STRING   (KaxTagMultiPriceCurrency,     0x5B6C, 2, KaxTagMultiPrice, "MultiPriceCurrency");
 DEFINE_MKX_FLOAT    (KaxTagMultiPriceAmount,       0x5B6E, 2, KaxTagMultiPrice, "MultiPriceAmount");
 DEFINE_MKX_DATE     (KaxTagMultiPricePriceDate,    0x5B6F, 2, KaxTagMultiPrice, "MultiPricePriceDate");
 
-DEFINE_xxx_MASTER   (KaxTagMultiDate,              0x4DC8, 2, KaxTag, "MultiDate", GetKaxTagsGlobal_Context);
-DEFINE_xxx_MASTER   (KaxTagDate,                   0x4EC8, 2, KaxTagMultiDate, "Date", GetKaxTagsGlobal_Context);
+DEFINE_TAG_MASTER   (KaxTagMultiDate,              0x4DC8, 2, KaxTag, "MultiDate");
+DEFINE_TAG_MASTER   (KaxTagDate,                   0x4EC8, 2, KaxTagMultiDate, "Date");
 DEFINE_MKX_UINTEGER (KaxTagMultiDateType,          0x5BD8, 2, KaxTagDate, "MultiDateType");
 DEFINE_MKX_DATE     (KaxTagMultiDateDateBegin,     0x4460, 2, KaxTagDate, "MultiDateDateBegin");
 DEFINE_MKX_DATE     (KaxTagMultiDateDateEnd,       0x4462, 2, KaxTagDate, "MultiDateDateEnd");
 
-DEFINE_xxx_MASTER   (KaxTagMultiEntity,            0x4DC9, 2, KaxTag, "MultiEntity", GetKaxTagsGlobal_Context);
-DEFINE_xxx_MASTER   (KaxTagEntity,                 0x4EC9, 2, KaxTagMultiEntity, "Entity", GetKaxTagsGlobal_Context);
+DEFINE_TAG_MASTER   (KaxTagMultiEntity,            0x4DC9, 2, KaxTag, "MultiEntity");
+DEFINE_TAG_MASTER   (KaxTagEntity,                 0x4EC9, 2, KaxTagMultiEntity, "Entity");
 DEFINE_MKX_UINTEGER (KaxTagMultiEntityType,        0x5BD9, 2, KaxTagEntity, "MultiEntityType");
 DEFINE_MKX_UNISTRING(KaxTagMultiEntityName,        0x5BED, 2, KaxTagEntity, "MultiEntityName");
 DEFINE_MKX_STRING   (KaxTagMultiEntityURL,         0x5BDB, 2, KaxTagEntity, "MultiEntityURL");
 DEFINE_MKX_STRING   (KaxTagMultiEntityEmail,       0x5BC1, 2, KaxTagEntity, "MultiEntityEmail");
 DEFINE_MKX_UNISTRING(KaxTagMultiEntityAddress,     0x5BDC, 2, KaxTagEntity, "MultiEntityAddress");
 
-DEFINE_xxx_MASTER   (KaxTagMultiIdentifier,        0x4DC6, 2, KaxTag, "MultiIdentifier", GetKaxTagsGlobal_Context);
-DEFINE_xxx_MASTER   (KaxTagIdentifier,             0x4EC6, 2, KaxTagMultiIdentifier, "Identifier", GetKaxTagsGlobal_Context);
+DEFINE_TAG_MASTER   (KaxTagMultiIdentifier,        0x4DC6, 2, KaxTag, "MultiIdentifier");
+DEFINE_TAG_MASTER   (KaxTagIdentifier,             0x4EC6, 2, KaxTagMultiIdentifier, "Identifier");
 DEFINE_MKX_UINTEGER (KaxTagMultiIdentifierType,    0x5BAD, 2, KaxTagIdentifier, "MultiIdentifierType");
 DEFINE_MKX_BINARY   (KaxTagMultiIdentifierBinary,  0x6B67, 2, KaxTagIdentifier, "MultiIdentifierBinary");
 DEFINE_MKX_UNISTRING(KaxTagMultiIdentifierString,  0x6B68, 2, KaxTagIdentifier, "MultiIdentifierString");
 
-DEFINE_xxx_MASTER   (KaxTagMultiLegal,             0x4DC5, 2, KaxTag, "MultiLegal", GetKaxTagsGlobal_Context);
-DEFINE_xxx_MASTER   (KaxTagLegal,                  0x4EC5, 2, KaxTagMultiLegal, "Legal", GetKaxTagsGlobal_Context);
+DEFINE_TAG_MASTER   (KaxTagMultiLegal,             0x4DC5, 2, KaxTag, "MultiLegal");
+DEFINE_TAG_MASTER   (KaxTagLegal,                  0x4EC5, 2, KaxTagMultiLegal, "Legal");
 DEFINE_MKX_UINTEGER (KaxTagMultiLegalType,         0x5BBD, 2, KaxTagLegal, "MultiLegalType");
 DEFINE_MKX_UNISTRING(KaxTagMultiLegalContent,      0x5BB2, 2, KaxTagLegal, "MultiLegalContent");
 DEFINE_MKX_STRING   (KaxTagMultiLegalURL,          0x5B34, 2, KaxTagLegal, "MultiLegalURL");
 DEFINE_MKX_UNISTRING(KaxTagMultiLegalAddress,      0x5B9B, 2, KaxTagLegal, "MultiLegalAddress");
 
-DEFINE_xxx_MASTER   (KaxTagMultiTitle,             0x4DC4, 2, KaxTag, "MultiTitle", GetKaxTagsGlobal_Context);
-DEFINE_xxx_MASTER   (KaxTagTitle,                  0x4EC4, 2, KaxTagMultiTitle, "Title", GetKaxTagsGlobal_Context);
+DEFINE_TAG_MASTER   (KaxTagMultiTitle,             0x4DC4, 2, KaxTag, "MultiTitle");
+DEFINE_TAG_MASTER   (KaxTagTitle,                  0x4EC4, 2, KaxTagMultiTitle, "Title");
 DEFINE_MKX_UINTEGER (KaxTagMultiTitleType,         0x5B7D, 2, KaxTagTitle, "MultiTitleType");
 DEFINE_MKX_UNISTRING(KaxTagMultiTitleName,         0x5BB9, 2, KaxTagTitle, "MultiTitleName");
 DEFINE_MKX_UNISTRING(KaxTagMultiTitleSubTitle,     0x5B5B, 2, KaxTagTitle, "MultiTitleSubTitle");
@@ -215,73 +219,8 @@ DEFINE_MKX_STRING   (KaxTagMultiTitleURL,          0x5BA9, 2, KaxTagTitle, "Mult
 DEFINE_MKX_STRING   (KaxTagMultiTitleEmail,        0x5BC9, 2, KaxTagTitle, "MultiTitleEmail");
 DEFINE_MKX_STRING   (KaxTagMultiTitleLanguage,   0x22B59E, 3, KaxTagTitle, "MultiTitleLanguage");
 
-DEFINE_xxx_MASTER   (KaxTagMultiAttachment,        0x4DC3, 2, KaxTag, "MultiAttachment", GetKaxTagsGlobal_Context);
-DEFINE_xxx_MASTER   (KaxTagAttachment,             0x4EC3, 2, KaxTagMultiAttachment, "Attachment", GetKaxTagsGlobal_Context);
+DEFINE_TAG_MASTER   (KaxTagMultiAttachment,        0x4DC3, 2, KaxTag, "MultiAttachment");
+DEFINE_TAG_MASTER   (KaxTagAttachment,             0x4EC3, 2, KaxTagMultiAttachment, "Attachment");
 DEFINE_MKX_UINTEGER (KaxTagAttachmentID,           0x5BA0, 2, KaxTagAttachment, "AttachmentID");
-
-KaxTagMultiComment::KaxTagMultiComment()
-	:EbmlMaster(Context_KaxTagMultiComment)
-{}
-
-
-KaxTagMultiCommercial::KaxTagMultiCommercial()
-	:EbmlMaster(Context_KaxTagMultiCommercial)
-{}
-
-KaxTagCommercial::KaxTagCommercial()
-	:EbmlMaster(Context_KaxTagCommercial)
-{}
-
-KaxTagMultiPrice::KaxTagMultiPrice()
-	:EbmlMaster(Context_KaxTagMultiPrice)
-{}
-
-KaxTagMultiDate::KaxTagMultiDate()
-	:EbmlMaster(Context_KaxTagMultiDate)
-{}
-
-KaxTagDate::KaxTagDate()
-	:EbmlMaster(Context_KaxTagDate)
-{}
-
-KaxTagMultiEntity::KaxTagMultiEntity()
-	:EbmlMaster(Context_KaxTagMultiEntity)
-{}
-	
-KaxTagEntity::KaxTagEntity()
-	:EbmlMaster(Context_KaxTagEntity)
-{}
-	
-KaxTagMultiLegal::KaxTagMultiLegal()
-	:EbmlMaster(Context_KaxTagMultiLegal)
-{}
-
-KaxTagLegal::KaxTagLegal()
-	:EbmlMaster(Context_KaxTagLegal)
-{}
-
-KaxTagMultiIdentifier::KaxTagMultiIdentifier()
-	:EbmlMaster(Context_KaxTagMultiIdentifier)
-{}
-
-KaxTagIdentifier::KaxTagIdentifier()
-	:EbmlMaster(Context_KaxTagIdentifier)
-{}
-
-KaxTagMultiTitle::KaxTagMultiTitle()
-	:EbmlMaster(Context_KaxTagMultiTitle)
-{}
-
-KaxTagTitle::KaxTagTitle()
-	:EbmlMaster(Context_KaxTagTitle)
-{}
-
-KaxTagMultiAttachment::KaxTagMultiAttachment()
-	:EbmlMaster(Context_KaxTagMultiAttachment)
-{}
-
-KaxTagAttachment::KaxTagAttachment()
-	:EbmlMaster(Context_KaxTagAttachment)
-{}
 
 END_LIBMATROSKA_NAMESPACE

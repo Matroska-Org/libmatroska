@@ -59,14 +59,6 @@ DEFINE_MKX_MASTER  (KaxSeek,         0x4DBB, 2, KaxSeekHead, "SeekPoint");
 DEFINE_MKX_BINARY  (KaxSeekID,       0x53AB, 2, KaxSeek, "SeekID");
 DEFINE_MKX_UINTEGER(KaxSeekPosition, 0x53AC, 2, KaxSeek, "SeekPosition");
 
-KaxSeekHead::KaxSeekHead()
-	:EbmlMaster(Context_KaxSeekHead)
-{}
-
-KaxSeek::KaxSeek()
-	:EbmlMaster(Context_KaxSeek)
-{}
-
 /*!
 	\todo verify that the element is not already in the list
 */

@@ -84,10 +84,6 @@ DEFINE_MKX_UINTEGER(KaxVideoAspectRatio,     0x54B3, 2, KaxTrackVideo, "VideoAsp
 DEFINE_MKX_FLOAT   (KaxVideoGamma,         0x2FB523, 3, KaxTrackVideo, "VideoGamma");
 #endif
 
-KaxTrackVideo::KaxTrackVideo()
-	:EbmlMaster(Context_KaxTrackVideo)
-{}
-
 filepos_t KaxVideoFrameRate::RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault)
 {
 	assert(false); // no you are not allowed to use this element !

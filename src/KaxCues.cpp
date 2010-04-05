@@ -48,10 +48,6 @@ static const EbmlSemantic ContextList_KaxCues[1] =
 
 DEFINE_MKX_MASTER(KaxCues, 0x1C53BB6B, 4, KaxSegment, "Cues");
 
-KaxCues::KaxCues()
-	:EbmlMaster(KaxCues_Context)
-{}
-
 KaxCues::~KaxCues()
 {
 	assert(myTempReferences.size() == 0); // otherwise that means you have added references and forgot to set the position

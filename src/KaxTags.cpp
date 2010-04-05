@@ -50,8 +50,4 @@ static const EbmlSemantic ContextList_KaxTags[1] =
 
 DEFINE_MKX_MASTER(KaxTags, 0x1254C367, 4, KaxSegment, "Tags");
 
-KaxTags::KaxTags()
-	:EbmlMaster(KaxTags_Context)
-{}
-
 END_LIBMATROSKA_NAMESPACE

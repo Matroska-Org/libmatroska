@@ -69,14 +69,6 @@ DEFINE_MKX_UINTEGER(KaxReferenceVirtual,  0xFD, 1, KaxBlockGroup, "ReferenceVirt
 #endif
 
 
-KaxSlices::KaxSlices()
- :EbmlMaster(Context_KaxSlices)
-{}
-
-KaxTimeSlice::KaxTimeSlice()
- :EbmlMaster(Context_KaxTimeSlice)
-{}
-
 const KaxBlockBlob & KaxReferenceBlock::RefBlock() const
 {
 	assert(RefdBlock != NULL);

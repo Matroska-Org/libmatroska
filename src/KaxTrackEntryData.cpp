@@ -76,8 +76,4 @@ DEFINE_MKX_STRING   (KaxCodecDownloadURL,       0x26B240, 3, KaxTracks, "CodecDo
 DEFINE_MKX_UINTEGER (KaxCodecDecodeAll,             0xAA, 1, KaxTracks, "CodecDecodeAll");
 #endif
 
-KaxTrackTranslate::KaxTrackTranslate()
-	:EbmlMaster(Context_KaxTrackTranslate)
-{}
-
 END_LIBMATROSKA_NAMESPACE

@@ -88,20 +88,6 @@ DEFINE_MKX_UINTEGER(KaxCueRefNumber,     0x535F, 2, KaxCueRefTime, "CueRefNumber
 DEFINE_MKX_UINTEGER(KaxCueRefCodecState,   0xEB, 1, KaxCueRefTime, "CueRefCodecState");
 #endif
 
-KaxCuePoint::KaxCuePoint() 
- :EbmlMaster(Context_KaxCuePoint)
-{}
-
-KaxCueTrackPositions::KaxCueTrackPositions()
- :EbmlMaster(Context_KaxCueTrackPositions)
-{}
-
-#if MATROSKA_VERSION >= 2
-KaxCueReference::KaxCueReference()
- :EbmlMaster(Context_KaxCueReference)
-{}
-#endif // MATROSKA_VERSION
-
 /*!
 	\todo handle codec state checking
 	\todo remove duplicate references (reference to 2 frames that each reference the same frame)

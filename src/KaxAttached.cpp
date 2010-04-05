@@ -58,7 +58,7 @@ static const EbmlSemantic ContextList_KaxAttached[6] =
 #endif // MATROSKA_VERSION
 };
 
-DEFINE_MKX_MASTER   (KaxAttached,        0x61A7, 2, KaxAttachments, "AttachedFile");
+DEFINE_MKX_MASTER_NOBODY(KaxAttached,    0x61A7, 2, KaxAttachments, "AttachedFile");
 DEFINE_MKX_UNISTRING(KaxFileDescription, 0x467E, 2, KaxAttachments, "FileDescription");
 DEFINE_MKX_UNISTRING(KaxFileName,        0x466E, 2, KaxAttachments, "FileName");
 DEFINE_MKX_STRING   (KaxMimeType,        0x4660, 2, KaxAttachments, "FileMimeType");
@@ -69,7 +69,7 @@ DEFINE_MKX_BINARY   (KaxFileReferral,    0x4675, 2, KaxAttachments, "FileReferra
 #endif
 
 KaxAttached::KaxAttached()
- :EbmlMaster(KaxAttached_Context)
+ :EbmlMaster(Context_KaxAttached)
 {
 	SetSizeLength(2); // mandatory min size support (for easier updating) (2^(7*2)-2 = 16Ko)
 }

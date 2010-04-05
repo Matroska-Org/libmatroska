@@ -63,8 +63,4 @@ DEFINE_MKX_MASTER   (KaxInfo,   0x1549A966, 4, KaxSegment, "Info");
 DEFINE_MKX_UNISTRING(KaxMuxingApp,  0x4D80, 2, KaxInfo, "MuxingApp");
 DEFINE_MKX_UNISTRING(KaxWritingApp, 0x5741, 2, KaxInfo, "WritingApp");
 
-KaxInfo::KaxInfo()
-	:EbmlMaster(KaxInfo_Context)
-{}
-
 END_LIBMATROSKA_NAMESPACE

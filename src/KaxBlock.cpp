@@ -75,7 +75,7 @@ static const EbmlSemantic ContextList_KaxBlockMore[2] =
 	EbmlSemantic(true,  true,  EBML_INFO(KaxBlockAdditional))
 };
 
-DEFINE_MKX_MASTER  (KaxBlockGroup,       0xA0, 1, KaxCluster, "BlockGroup");
+DEFINE_MKX_MASTER_NOBODY(KaxBlockGroup,  0xA0, 1, KaxCluster, "BlockGroup");
 DEFINE_MKX_BINARY  (KaxBlock,            0xA1, 1, KaxBlockGroup, "Block");
 DEFINE_MKX_UINTEGER(KaxBlockDuration,    0x9B, 1, KaxBlockGroup, "BlockDuration");
 #if MATROSKA_VERSION >= 2
@@ -147,14 +147,6 @@ KaxBlockGroup::KaxBlockGroup()
  :EbmlMaster(Context_KaxBlockGroup)
  ,ParentCluster(NULL)
  ,ParentTrack(NULL)
-{}
-
-KaxBlockAdditions::KaxBlockAdditions()
- :EbmlMaster(Context_KaxBlockAdditions)
-{}
-
-KaxBlockMore::KaxBlockMore()
- :EbmlMaster(Context_KaxBlockMore)
 {}
 
 /*!

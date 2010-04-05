@@ -56,10 +56,10 @@ static const EbmlSemantic ContextList_KaxCluster[6] =
 	EbmlSemantic(false, true,  EBML_INFO(KaxClusterPosition)),
 };
 
-DEFINE_MKX_MASTER(KaxCluster, 0x1F43B675, 4, KaxSegment, "Cluster");
+DEFINE_MKX_MASTER_NOBODY(KaxCluster, 0x1F43B675, 4, KaxSegment, "Cluster");
 
 KaxCluster::KaxCluster()
-	:EbmlMaster(KaxCluster_Context)
+	:EbmlMaster(Context_KaxCluster)
 	,currentNewBlock(NULL)
 	,ParentSegment(NULL)
 	,bFirstFrameInside(false)

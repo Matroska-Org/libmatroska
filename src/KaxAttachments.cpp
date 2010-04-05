@@ -47,10 +47,10 @@ static const EbmlSemantic ContextList_KaxAttachments[1] =
 	EbmlSemantic(true, false, EBML_INFO(KaxAttached)),        ///< EBMLVersion
 };
 
-DEFINE_MKX_MASTER(KaxAttachments, 0x1941A469, 4, KaxSegment, "Attachments");
+DEFINE_MKX_MASTER_NOBODY(KaxAttachments, 0x1941A469, 4, KaxSegment, "Attachments");
 
 KaxAttachments::KaxAttachments()
- :EbmlMaster(KaxAttachments_Context)
+ :EbmlMaster(Context_KaxAttachments)
 {
 	SetSizeLength(2); // mandatory min size support (for easier updating) (2^(7*2)-2 = 16Ko)
 }

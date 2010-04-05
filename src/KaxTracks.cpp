@@ -88,15 +88,11 @@ static const EbmlSemantic ContextList_KaxTrackEntry[27] =
 	EbmlSemantic(false, true, EBML_INFO(KaxContentEncodings)),
 };
 
-DEFINE_MKX_MASTER(KaxTracks, 0x1654AE6B, 4, KaxSegment, "Tracks");
-DEFINE_MKX_MASTER(KaxTrackEntry,   0xAE, 1, KaxTracks, "TrackEntry");
-
-KaxTracks::KaxTracks()
-	:EbmlMaster(KaxTracks_Context)
-{}
+DEFINE_MKX_MASTER(KaxTracks,        0x1654AE6B, 4, KaxSegment, "Tracks");
+DEFINE_MKX_MASTER_NOBODY(KaxTrackEntry,   0xAE, 1, KaxTracks, "TrackEntry");
 
 KaxTrackEntry::KaxTrackEntry()
-	:EbmlMaster(KaxTrackEntry_Context)
+	:EbmlMaster(Context_KaxTrackEntry)
 	,bGlobalTimecodeScaleIsSet(false)
 {}
 

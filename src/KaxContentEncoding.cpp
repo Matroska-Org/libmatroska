@@ -80,20 +80,4 @@ DEFINE_MKX_BINARY  (KaxContentSigKeyID,      0x47e4, 2, KaxContentEncryption, "C
 DEFINE_MKX_UINTEGER(KaxContentSigAlgo,       0x47e5, 2, KaxContentEncryption, "ContentSigAlgo");
 DEFINE_MKX_UINTEGER(KaxContentSigHashAlgo,   0x47e6, 2, KaxContentEncryption, "ContentSigHashAlgo");
 
-KaxContentEncodings::KaxContentEncodings():
-  EbmlMaster(Context_KaxContentEncodings) {
-}
-
-KaxContentEncoding::KaxContentEncoding():
-  EbmlMaster(Context_KaxContentEncoding) {
-}
-
-KaxContentCompression::KaxContentCompression():
-  EbmlMaster(Context_KaxContentCompression) {
-}
-
-KaxContentEncryption::KaxContentEncryption():
-  EbmlMaster(Context_KaxContentEncryption) {
-}
-
 END_LIBMATROSKA_NAMESPACE

@@ -67,7 +67,8 @@ static const EbmlSemantic ContextList_KaxSegment[8] =
 	EbmlSemantic(false, true,  EBML_INFO(KaxTags)),
 };
 
-DEFINE_MKX_MASTER_GLOBAL(KaxMatroska, -1, 5, "Matroska");
+DEFINE_MKX_CONTEXT(KaxMatroska);
+
 DEFINE_MKX_MASTER_ORPHAN(KaxSegment, 0x18538067, 4, "Segment\0rotomopogo");
 
 KaxSegment::KaxSegment()

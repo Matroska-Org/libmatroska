@@ -115,9 +115,32 @@ extern const EbmlSemanticContext MATROSKA_DLL_API KaxTrackOverlay_Context;
 #define Context_KaxSeek                  KaxSeek_Context
 #define Context_KaxTags                  KaxTags_Context
 #define Context_KaxSeekHead              KaxSeekHead_Context
+#define Context_KaxTagGeneral            KaxTagGeneral_Context
+#define Context_KaxTagAudioSpecific      KaxTagAudioSpecific_Context
+#define Context_KaxTagImageSpecific      KaxTagImageSpecific_Context
+#define Context_KaxTagGenres             KaxTagGenres_Context
+#define Context_KaxTagTargets            KaxTagTargets_Context
+#define Context_KaxTag                   KaxTag_Context
+#define Context_KaxTagSimple             KaxTagSimple_Context
+#define Context_KaxTagMultiComment       KaxTagMultiComment_Context
+#define Context_KaxTagMultiCommercial    KaxTagMultiCommercial_Context
+#define Context_KaxTagCommercial         KaxTagCommercial_Context
+#define Context_KaxTagMultiPrice         KaxTagMultiPrice_Context
+#define Context_KaxTagMultiDate          KaxTagMultiDate_Context
+#define Context_KaxTagDate               KaxTagDate_Context
+#define Context_KaxTagMultiEntity        KaxTagMultiEntity_Context
+#define Context_KaxTagEntity             KaxTagEntity_Context
+#define Context_KaxTagMultiLegal         KaxTagMultiLegal_Context
+#define Context_KaxTagLegal              KaxTagLegal_Context
+#define Context_KaxTagMultiIdentifier    KaxTagMultiIdentifier_Context
+#define Context_KaxTagIdentifier         KaxTagIdentifier_Context
+#define Context_KaxTagMultiTitle         KaxTagMultiTitle_Context
+#define Context_KaxTagTitle              KaxTagTitle_Context
+#define Context_KaxTagMultiAttachment    KaxTagMultiAttachment_Context
+#define Context_KaxTagAttachment         KaxTagAttachment_Context
 
 extern const EbmlSemanticContext & MATROSKA_DLL_API GetKaxGlobal_Context();
-extern const EbmlSemanticContext & MATROSKA_DLL_API GetKaxTagsGlobal_Context();
+//extern const EbmlSemanticContext & MATROSKA_DLL_API GetKaxTagsGlobal_Context();
 
 END_LIBMATROSKA_NAMESPACE
 

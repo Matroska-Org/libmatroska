@@ -46,8 +46,8 @@
 #define DEFINE_MKX_FLOAT(a,b,c,d,e)     DEFINE_xxx_FLOAT(a,b,c,d,e,*GetKaxGlobal_Context)
 #define DEFINE_MKX_DATE(a,b,c,d,e)      DEFINE_xxx_DATE(a,b,c,d,e,*GetKaxGlobal_Context)
 #else
+#define DEFINE_MKX_CONTEXT(a)             DEFINE_xxx_CONTEXT(a,*GetKaxGlobal_Context)
 #define DEFINE_MKX_MASTER(a,b,c,d,e)      DEFINE_xxx_MASTER(a,b,c,d,e,*GetKaxGlobal_Context)
-#define DEFINE_MKX_MASTER_GLOBAL(a,b,c,d) DEFINE_xxx_MASTER_GLOBAL(a,b,c,d,*GetKaxGlobal_Context)
 #define DEFINE_MKX_MASTER_ORPHAN(a,b,c,d) DEFINE_xxx_MASTER_ORPHAN(a,b,c,d,*GetKaxGlobal_Context)
 #define DEFINE_MKX_UINTEGER(a,b,c,d,e)    DEFINE_xxx_CLASS(a,b,c,d,e,*GetKaxGlobal_Context)
 #define DEFINE_MKX_SINTEGER(a,b,c,d,e)    DEFINE_xxx_CLASS(a,b,c,d,e,*GetKaxGlobal_Context)

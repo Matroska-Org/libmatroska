@@ -37,14 +37,14 @@
 
 #include "matroska/KaxTypes.h"
 #include "ebml/EbmlMaster.h"
+#include "matroska/KaxDefines.h"
 
 using namespace LIBEBML_NAMESPACE;
 
 START_LIBMATROSKA_NAMESPACE
 
-class MATROSKA_DLL_API KaxAttachments : public EbmlMaster {
+DECLARE_MKX_MASTER(KaxAttachments)
 	public:
-		KaxAttachments();
 		KaxAttachments(const KaxAttachments & ElementToClone) : EbmlMaster(ElementToClone) {}
         
         EBML_CONCRETE_CLASS(KaxAttachments)

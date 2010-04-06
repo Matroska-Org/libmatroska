@@ -38,30 +38,28 @@
 #include "matroska/KaxTypes.h"
 #include "ebml/EbmlMaster.h"
 #include "ebml/EbmlUnicodeString.h"
+#include "matroska/KaxDefines.h"
 
 using namespace LIBEBML_NAMESPACE;
 
 START_LIBMATROSKA_NAMESPACE
 
-class MATROSKA_DLL_API KaxInfo : public EbmlMaster {
+DECLARE_MKX_MASTER(KaxInfo)
 	public:
-		KaxInfo();
 		KaxInfo(const KaxInfo & ElementToClone) :EbmlMaster(ElementToClone) {}
 
         EBML_CONCRETE_CLASS(KaxInfo)
 };
 
-class MATROSKA_DLL_API KaxMuxingApp : public EbmlUnicodeString {
+DECLARE_MKX_UNISTRING(KaxMuxingApp)
 	public:
-		KaxMuxingApp() {}
 		KaxMuxingApp(const KaxMuxingApp & ElementToClone) :EbmlUnicodeString(ElementToClone) {}
 
         EBML_CONCRETE_CLASS(KaxMuxingApp)
 };
 
-class MATROSKA_DLL_API KaxWritingApp : public EbmlUnicodeString {
+DECLARE_MKX_UNISTRING(KaxWritingApp)
 	public:
-		KaxWritingApp() {}
 		KaxWritingApp(const KaxWritingApp & ElementToClone) :EbmlUnicodeString(ElementToClone) {}
 
         EBML_CONCRETE_CLASS(KaxWritingApp)

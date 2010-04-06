@@ -47,9 +47,8 @@ START_LIBMATROSKA_NAMESPACE
 
 class KaxCuePoint;
 
-class MATROSKA_DLL_API KaxCues : public EbmlMaster {
+DECLARE_MKX_MASTER(KaxCues)
 	public:
-		KaxCues();
 		KaxCues(const KaxCues & ElementToClone) :EbmlMaster(ElementToClone) {}
 		~KaxCues();
 

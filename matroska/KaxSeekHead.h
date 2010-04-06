@@ -39,6 +39,7 @@
 #include "ebml/EbmlMaster.h"
 #include "ebml/EbmlBinary.h"
 #include "ebml/EbmlUInteger.h"
+#include "matroska/KaxDefines.h"
 
 using namespace LIBEBML_NAMESPACE;
 
@@ -47,9 +48,8 @@ START_LIBMATROSKA_NAMESPACE
 class KaxSegment;
 class KaxSeek;
 
-class MATROSKA_DLL_API KaxSeekHead : public EbmlMaster {
+DECLARE_MKX_MASTER(KaxSeekHead)
 	public:
-		KaxSeekHead();
 		KaxSeekHead(const KaxSeekHead & ElementToClone) :EbmlMaster(ElementToClone) {}
 
 		/*!
@@ -64,9 +64,8 @@ class MATROSKA_DLL_API KaxSeekHead : public EbmlMaster {
         EBML_CONCRETE_CLASS(KaxSeekHead)
 };
 
-class MATROSKA_DLL_API KaxSeek : public EbmlMaster {
+DECLARE_MKX_MASTER(KaxSeek)
 	public:
-		KaxSeek();
 		KaxSeek(const KaxSeek & ElementToClone) :EbmlMaster(ElementToClone) {}
 
 		int64 Location() const;
@@ -76,18 +75,16 @@ class MATROSKA_DLL_API KaxSeek : public EbmlMaster {
         EBML_CONCRETE_CLASS(KaxSeek)
 };
 
-class MATROSKA_DLL_API KaxSeekID : public EbmlBinary {
+DECLARE_MKX_BINARY(KaxSeekID)
 	public:
-		KaxSeekID() {}
 		KaxSeekID(const KaxSeekID & ElementToClone) :EbmlBinary(ElementToClone){}
 		bool ValidateSize() const {return GetSize() <= 4;}
 
         EBML_CONCRETE_CLASS(KaxSeekID)
 };
 
-class MATROSKA_DLL_API KaxSeekPosition : public EbmlUInteger {
+DECLARE_MKX_UINTEGER(KaxSeekPosition)
 	public:
-		KaxSeekPosition() {}
 		KaxSeekPosition(const KaxSeekPosition & ElementToClone) :EbmlUInteger(ElementToClone) {}
 
         EBML_CONCRETE_CLASS(KaxSeekPosition)

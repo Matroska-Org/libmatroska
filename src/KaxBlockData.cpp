@@ -55,17 +55,17 @@ const EbmlSemantic ContextList_KaxTimeSlice[5] =
 	EbmlSemantic(false, true,  EBML_INFO(KaxSliceDuration)),
 };
 
-DEFINE_MKX_UINTEGER(KaxReferencePriority, 0xFA, 1, KaxBlockGroup, "FlagReferenced");
-DEFINE_MKX_SINTEGER(KaxReferenceBlock,    0xFB, 1, KaxBlockGroup, "ReferenceBlock");
-DEFINE_MKX_MASTER  (KaxSlices,            0x8E, 1, KaxBlockGroup, "Slices");
-DEFINE_MKX_MASTER  (KaxTimeSlice,         0xE8, 1, KaxSlices, "TimeSlice");
-DEFINE_MKX_UINTEGER(KaxSliceLaceNumber,   0xCC, 1, KaxTimeSlice, "SliceLaceNumber");
-DEFINE_MKX_UINTEGER(KaxSliceFrameNumber,  0xCD, 1, KaxTimeSlice, "SliceFrameNumber");
-DEFINE_MKX_UINTEGER(KaxSliceBlockAddID,   0xCB, 1, KaxTimeSlice, "SliceBlockAddID");
-DEFINE_MKX_UINTEGER(KaxSliceDelay,        0xCE, 1, KaxTimeSlice, "SliceDelay");
-DEFINE_MKX_UINTEGER(KaxSliceDuration,     0xCF, 1, KaxTimeSlice, "SliceDuration");
+DEFINE_MKX_UINTEGER_DEF (KaxReferencePriority, 0xFA, 1, KaxBlockGroup, "FlagReferenced", 0);
+DEFINE_MKX_SINTEGER_CONS(KaxReferenceBlock,    0xFB, 1, KaxBlockGroup, "ReferenceBlock");
+DEFINE_MKX_MASTER       (KaxSlices,            0x8E, 1, KaxBlockGroup, "Slices");
+DEFINE_MKX_MASTER       (KaxTimeSlice,         0xE8, 1, KaxSlices, "TimeSlice");
+DEFINE_MKX_UINTEGER_DEF (KaxSliceLaceNumber,   0xCC, 1, KaxTimeSlice, "SliceLaceNumber", 0);
+DEFINE_MKX_UINTEGER_DEF (KaxSliceFrameNumber,  0xCD, 1, KaxTimeSlice, "SliceFrameNumber", 0);
+DEFINE_MKX_UINTEGER_DEF (KaxSliceBlockAddID,   0xCB, 1, KaxTimeSlice, "SliceBlockAddID", 0);
+DEFINE_MKX_UINTEGER     (KaxSliceDelay,        0xCE, 1, KaxTimeSlice, "SliceDelay");
+DEFINE_MKX_UINTEGER_DEF (KaxSliceDuration,     0xCF, 1, KaxTimeSlice, "SliceDuration", 0);
 #if MATROSKA_VERSION >= 2
-DEFINE_MKX_UINTEGER(KaxReferenceVirtual,  0xFD, 1, KaxBlockGroup, "ReferenceVirtual");
+DEFINE_MKX_UINTEGER     (KaxReferenceVirtual,  0xFD, 1, KaxBlockGroup, "ReferenceVirtual");
 #endif
 
 

@@ -65,23 +65,23 @@ static const EbmlSemantic ContextList_KaxTrackVideo[15] =
 #endif // MATROSKA_VERSION
 };
 
-DEFINE_MKX_MASTER  (KaxTrackVideo,             0xE0, 1, KaxTrackEntry, "TrackVideo");
-DEFINE_MKX_UINTEGER(KaxVideoPixelWidth,        0xB0, 1, KaxTrackVideo, "VideoPixelWidth");
-DEFINE_MKX_UINTEGER(KaxVideoPixelHeight,       0xBA, 1, KaxTrackVideo, "VideoPixelHeight");
-DEFINE_MKX_UINTEGER(KaxVideoPixelCropBottom, 0x54AA, 2, KaxTrackVideo, "VideoPixelCropBottom");
-DEFINE_MKX_UINTEGER(KaxVideoPixelCropTop,    0x54BB, 2, KaxTrackVideo, "VideoPixelCropTop");
-DEFINE_MKX_UINTEGER(KaxVideoPixelCropLeft,   0x54CC, 2, KaxTrackVideo, "VideoPixelCropLeft");
-DEFINE_MKX_UINTEGER(KaxVideoPixelCropRight,  0x54DD, 2, KaxTrackVideo, "VideoPixelCropRight");
-DEFINE_MKX_UINTEGER(KaxVideoDisplayWidth,    0x54B0, 2, KaxTrackVideo, "VideoDisplayWidth");
-DEFINE_MKX_UINTEGER(KaxVideoDisplayHeight,   0x54BA, 2, KaxTrackVideo, "VideoDisplayHeight");
-DEFINE_MKX_BINARY  (KaxVideoColourSpace,   0x2EB524, 3, KaxTrackVideo, "VideoColourSpace");
-DEFINE_MKX_FLOAT   (KaxVideoFrameRate,     0x2383E3, 3, KaxTrackVideo, "VideoFrameRate");
+DEFINE_MKX_MASTER      (KaxTrackVideo,             0xE0, 1, KaxTrackEntry, "TrackVideo");
+DEFINE_MKX_UINTEGER    (KaxVideoPixelWidth,        0xB0, 1, KaxTrackVideo, "VideoPixelWidth");
+DEFINE_MKX_UINTEGER    (KaxVideoPixelHeight,       0xBA, 1, KaxTrackVideo, "VideoPixelHeight");
+DEFINE_MKX_UINTEGER_DEF(KaxVideoPixelCropBottom, 0x54AA, 2, KaxTrackVideo, "VideoPixelCropBottom", 0);
+DEFINE_MKX_UINTEGER_DEF(KaxVideoPixelCropTop,    0x54BB, 2, KaxTrackVideo, "VideoPixelCropTop", 0);
+DEFINE_MKX_UINTEGER_DEF(KaxVideoPixelCropLeft,   0x54CC, 2, KaxTrackVideo, "VideoPixelCropLeft", 0);
+DEFINE_MKX_UINTEGER_DEF(KaxVideoPixelCropRight,  0x54DD, 2, KaxTrackVideo, "VideoPixelCropRight", 0);
+DEFINE_MKX_UINTEGER    (KaxVideoDisplayWidth,    0x54B0, 2, KaxTrackVideo, "VideoDisplayWidth");
+DEFINE_MKX_UINTEGER    (KaxVideoDisplayHeight,   0x54BA, 2, KaxTrackVideo, "VideoDisplayHeight");
+DEFINE_MKX_BINARY      (KaxVideoColourSpace,   0x2EB524, 3, KaxTrackVideo, "VideoColourSpace");
+DEFINE_MKX_FLOAT       (KaxVideoFrameRate,     0x2383E3, 3, KaxTrackVideo, "VideoFrameRate");
 #if MATROSKA_VERSION >= 2
-DEFINE_MKX_UINTEGER(KaxVideoFlagInterlaced,    0x9A, 1, KaxTrackVideo, "VideoFlagInterlaced");
-DEFINE_MKX_UINTEGER(KaxVideoStereoMode,      0x53B9, 2, KaxTrackVideo, "VideoStereoMode");
-DEFINE_MKX_UINTEGER(KaxVideoDisplayUnit,     0x54B2, 2, KaxTrackVideo, "VideoDisplayUnit");
-DEFINE_MKX_UINTEGER(KaxVideoAspectRatio,     0x54B3, 2, KaxTrackVideo, "VideoAspectRatio");
-DEFINE_MKX_FLOAT   (KaxVideoGamma,         0x2FB523, 3, KaxTrackVideo, "VideoGamma");
+DEFINE_MKX_UINTEGER_DEF(KaxVideoFlagInterlaced,    0x9A, 1, KaxTrackVideo, "VideoFlagInterlaced", 0);
+DEFINE_MKX_UINTEGER_DEF(KaxVideoStereoMode,      0x53B9, 2, KaxTrackVideo, "VideoStereoMode", 0);
+DEFINE_MKX_UINTEGER_DEF(KaxVideoDisplayUnit,     0x54B2, 2, KaxTrackVideo, "VideoDisplayUnit", 0);
+DEFINE_MKX_UINTEGER_DEF(KaxVideoAspectRatio,     0x54B3, 2, KaxTrackVideo, "VideoAspectRatio", 0);
+DEFINE_MKX_FLOAT       (KaxVideoGamma,         0x2FB523, 3, KaxTrackVideo, "VideoGamma");
 #endif
 
 filepos_t KaxVideoFrameRate::RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault)

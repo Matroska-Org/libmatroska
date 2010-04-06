@@ -37,33 +37,107 @@
 #include "ebml/EbmlElement.h"
 
 #if LIBEBML_VERSION >= 0x010000
-#define DEFINE_MKX_CONTEXT(a)               DEFINE_xxx_CONTEXT(a,*GetKaxGlobal_Context)
-#define DEFINE_MKX_MASTER_NOBODY(a,b,c,d,e) DEFINE_xxx_MASTER(a,b,c,d,e,*GetKaxGlobal_Context)
-#define DEFINE_MKX_MASTER(a,b,c,d,e)        DEFINE_xxx_MASTER(a,b,c,d,e,*GetKaxGlobal_Context) \
+#define DEFINE_MKX_CONTEXT(a)                DEFINE_xxx_CONTEXT(a,*GetKaxGlobal_Context)
+#define DEFINE_MKX_MASTER_NOBODY(a,b,c,d,e)  DEFINE_xxx_MASTER(a,b,c,d,e,*GetKaxGlobal_Context)
+#define DEFINE_MKX_MASTER(a,b,c,d,e)         DEFINE_xxx_MASTER(a,b,c,d,e,*GetKaxGlobal_Context) \
     a::a() :EbmlMaster(Context_##a) {}
 
-#define DEFINE_MKX_MASTER_ORPHAN(a,b,c,d)   DEFINE_xxx_MASTER_ORPHAN(a,b,c,d,*GetKaxGlobal_Context)
-#define DEFINE_MKX_UINTEGER(a,b,c,d,e)      DEFINE_xxx_UINTEGER(a,b,c,d,e,*GetKaxGlobal_Context)
-#define DEFINE_MKX_SINTEGER(a,b,c,d,e)      DEFINE_xxx_SINTEGER(a,b,c,d,e,*GetKaxGlobal_Context)
-#define DEFINE_MKX_STRING(a,b,c,d,e)        DEFINE_xxx_STRING(a,b,c,d,e,*GetKaxGlobal_Context)
-#define DEFINE_MKX_UNISTRING(a,b,c,d,e)     DEFINE_xxx_UNISTRING(a,b,c,d,e,*GetKaxGlobal_Context)
-#define DEFINE_MKX_BINARY(a,b,c,d,e)        DEFINE_xxx_BINARY(a,b,c,d,e,*GetKaxGlobal_Context)
-#define DEFINE_MKX_FLOAT(a,b,c,d,e)         DEFINE_xxx_FLOAT(a,b,c,d,e,*GetKaxGlobal_Context)
-#define DEFINE_MKX_DATE(a,b,c,d,e)          DEFINE_xxx_DATE(a,b,c,d,e,*GetKaxGlobal_Context)
+#define DEFINE_MKX_MASTER_ORPHAN(a,b,c,d)    DEFINE_xxx_MASTER_ORPHAN(a,b,c,d,*GetKaxGlobal_Context)
+#define DEFINE_MKX_UINTEGER_DEF(a,b,c,d,e,v) DEFINE_xxx_UINTEGER_DEF(a,b,c,d,e,*GetKaxGlobal_Context,v)
+#define DEFINE_MKX_UINTEGER(a,b,c,d,e)       DEFINE_xxx_UINTEGER(a,b,c,d,e,*GetKaxGlobal_Context)
+#define DEFINE_MKX_SINTEGER(a,b,c,d,e)       DEFINE_xxx_SINTEGER(a,b,c,d,e,*GetKaxGlobal_Context)
+#define DEFINE_MKX_SINTEGER_CONS(a,b,c,d,e)  DEFINE_xxx_SINTEGER_CONS(a,b,c,d,e,*GetKaxGlobal_Context)
+#define DEFINE_MKX_STRING_DEF(a,b,c,d,e,v)   DEFINE_xxx_STRING_DEF(a,b,c,d,e,*GetKaxGlobal_Context,v)
+#define DEFINE_MKX_STRING(a,b,c,d,e)         DEFINE_xxx_STRING(a,b,c,d,e,*GetKaxGlobal_Context)
+#define DEFINE_MKX_UNISTRING(a,b,c,d,e)      DEFINE_xxx_UNISTRING(a,b,c,d,e,*GetKaxGlobal_Context)
+#define DEFINE_MKX_BINARY(a,b,c,d,e)         DEFINE_xxx_BINARY(a,b,c,d,e,*GetKaxGlobal_Context)
+#define DEFINE_MKX_BINARY_CONS(a,b,c,d,e)    DEFINE_xxx_BINARY_CONS(a,b,c,d,e,*GetKaxGlobal_Context)
+#define DEFINE_MKX_FLOAT_DEF(a,b,c,d,e,v)    DEFINE_xxx_FLOAT_DEF(a,b,c,d,e,*GetKaxGlobal_Context,v)
+#define DEFINE_MKX_FLOAT(a,b,c,d,e)          DEFINE_xxx_FLOAT(a,b,c,d,e,*GetKaxGlobal_Context)
+#define DEFINE_MKX_FLOAT64(a,b,c,d,e)        DEFINE_xxx_FLOAT64(a,b,c,d,e,*GetKaxGlobal_Context)
+#define DEFINE_MKX_DATE(a,b,c,d,e)           DEFINE_xxx_DATE(a,b,c,d,e,*GetKaxGlobal_Context)
+
+#define DECLARE_MKX_CONTEXT(x) extern const ebml_context MATROSKA_DLL_API EBML_Context##x;
+
+#define DECLARE_MKX_MASTER(x)     DECLARE_MKX_CONTEXT(x) \
+class MATROSKA_DLL_API x : public EbmlMaster { \
+    public: x();
+#define DECLARE_MKX_BINARY(x)     DECLARE_MKX_CONTEXT(x) \
+  class MATROSKA_DLL_API x : public EbmlBinary { \
+    public: x();
+#define DECLARE_MKX_BINARY_CONS(x) DECLARE_MKX_CONTEXT(x) \
+  class MATROSKA_DLL_API x : public EbmlBinary {
+#define DECLARE_MKX_UNISTRING(x)  DECLARE_MKX_CONTEXT(x) \
+  class MATROSKA_DLL_API x : public EbmlUnicodeString { \
+    public: x();
+#define DECLARE_MKX_STRING(x)     DECLARE_MKX_CONTEXT(x) \
+  class MATROSKA_DLL_API x : public EbmlString { \
+    public: x();
+#define DECLARE_MKX_UINTEGER(x)   DECLARE_MKX_CONTEXT(x) \
+  class MATROSKA_DLL_API x : public EbmlUInteger { \
+    public: x();
+#define DECLARE_MKX_SINTEGER_CONS(x)   DECLARE_MKX_CONTEXT(x) \
+  class MATROSKA_DLL_API x : public EbmlSInteger {
+#define DECLARE_MKX_SINTEGER(x)   DECLARE_MKX_CONTEXT(x) \
+  class MATROSKA_DLL_API x : public EbmlSInteger { \
+    public: x();
+#define DECLARE_MKX_DATE(x)       DECLARE_MKX_CONTEXT(x) \
+  class MATROSKA_DLL_API x : public EbmlDate { \
+    public: x();
+#define DECLARE_MKX_FLOAT(x)      DECLARE_MKX_CONTEXT(x) \
+  class MATROSKA_DLL_API x : public EbmlFloat { \
+    public: x();
+
 #else
-#define DEFINE_MKX_CONTEXT(a)               DEFINE_xxx_CONTEXT(a,*GetKaxGlobal_Context)
-#define DEFINE_MKX_MASTER_NOBODY(a,b,c,d,e) DEFINE_xxx_MASTER(a,b,c,d,e,*GetKaxGlobal_Context)
-#define DEFINE_MKX_MASTER(a,b,c,d,e)        DEFINE_xxx_MASTER(a,b,c,d,e,*GetKaxGlobal_Context) \
+#define DEFINE_MKX_CONTEXT(a)                DEFINE_xxx_CONTEXT(a,*GetKaxGlobal_Context)
+#define DEFINE_MKX_MASTER_NOBODY(a,b,c,d,e)  DEFINE_xxx_MASTER(a,b,c,d,e,*GetKaxGlobal_Context)
+#define DEFINE_MKX_MASTER(a,b,c,d,e)         DEFINE_xxx_MASTER(a,b,c,d,e,*GetKaxGlobal_Context) \
     a::a() :EbmlMaster(Context_##a) {}
 
-#define DEFINE_MKX_MASTER_ORPHAN(a,b,c,d)   DEFINE_xxx_MASTER_ORPHAN(a,b,c,d,*GetKaxGlobal_Context)
-#define DEFINE_MKX_UINTEGER(a,b,c,d,e)      DEFINE_xxx_CLASS(a,b,c,d,e,*GetKaxGlobal_Context)
-#define DEFINE_MKX_SINTEGER(a,b,c,d,e)      DEFINE_xxx_CLASS(a,b,c,d,e,*GetKaxGlobal_Context)
-#define DEFINE_MKX_STRING(a,b,c,d,e)        DEFINE_xxx_CLASS(a,b,c,d,e,*GetKaxGlobal_Context)
-#define DEFINE_MKX_UNISTRING(a,b,c,d,e)     DEFINE_xxx_CLASS(a,b,c,d,e,*GetKaxGlobal_Context)
-#define DEFINE_MKX_BINARY(a,b,c,d,e)        DEFINE_xxx_CLASS(a,b,c,d,e,*GetKaxGlobal_Context)
-#define DEFINE_MKX_FLOAT(a,b,c,d,e)         DEFINE_xxx_CLASS(a,b,c,d,e,*GetKaxGlobal_Context)
-#define DEFINE_MKX_DATE(a,b,c,d,e)          DEFINE_xxx_CLASS(a,b,c,d,e,*GetKaxGlobal_Context)
+#define DEFINE_MKX_MASTER_ORPHAN(a,b,c,d)    DEFINE_xxx_MASTER_ORPHAN(a,b,c,d,*GetKaxGlobal_Context)
+#define DEFINE_MKX_UINTEGER_DEF(a,b,c,d,e,v) DEFINE_xxx_UINTEGER_DEF(a,b,c,d,e,*GetKaxGlobal_Context,v)
+#define DEFINE_MKX_UINTEGER(a,b,c,d,e)       DEFINE_xxx_CLASS(a,b,c,d,e,*GetKaxGlobal_Context)
+#define DEFINE_MKX_SINTEGER(a,b,c,d,e)       DEFINE_xxx_CLASS(a,b,c,d,e,*GetKaxGlobal_Context)
+#define DEFINE_MKX_STRING_DEF(a,b,c,d,e,v)   DEFINE_xxx_STRING_DEF(a,b,c,d,e,*GetKaxGlobal_Context,v)
+#define DEFINE_MKX_STRING(a,b,c,d,e)         DEFINE_xxx_CLASS(a,b,c,d,e,*GetKaxGlobal_Context)
+#define DEFINE_MKX_UNISTRING(a,b,c,d,e)      DEFINE_xxx_CLASS(a,b,c,d,e,*GetKaxGlobal_Context)
+#define DEFINE_MKX_BINARY(a,b,c,d,e)         DEFINE_xxx_CLASS(a,b,c,d,e,*GetKaxGlobal_Context)
+#define DEFINE_MKX_FLOAT_DEF(a,b,c,d,e,v)    DEFINE_xxx_FLOAT_DEF(a,b,c,d,e,*GetKaxGlobal_Context,v)
+#define DEFINE_MKX_FLOAT(a,b,c,d,e)          DEFINE_xxx_CLASS(a,b,c,d,e,*GetKaxGlobal_Context)
+#define DEFINE_MKX_DATE(a,b,c,d,e)           DEFINE_xxx_CLASS(a,b,c,d,e,*GetKaxGlobal_Context)
+#define DEFINE_MKX_BINARY_CONS(a,b,c,d,e)    DEFINE_xxx_CLASS_CONS(a,b,c,d,e,*GetKaxGlobal_Context)
+#define DEFINE_MKX_SINTEGER_CONS(a,b,c,d,e)  DEFINE_xxx_CLASS_CONS(a,b,c,d,e,*GetKaxGlobal_Context)
+
+#define DECLARE_MKX_CONTEXT(x)
+
+#define DECLARE_MKX_MASTER(x)     DECLARE_MKX_CONTEXT(x) \
+class MATROSKA_DLL_API x : public EbmlMaster { \
+    public: x();
+#define DECLARE_MKX_BINARY(x)     DECLARE_MKX_CONTEXT(x) \
+  class MATROSKA_DLL_API x : public EbmlBinary { \
+    public: x();
+#define DECLARE_MKX_BINARY_CONS(x) DECLARE_MKX_CONTEXT(x) \
+  class MATROSKA_DLL_API x : public EbmlBinary {
+#define DECLARE_MKX_UNISTRING(x)  DECLARE_MKX_CONTEXT(x) \
+  class MATROSKA_DLL_API x : public EbmlUnicodeString { \
+    public: x();
+#define DECLARE_MKX_STRING(x)     DECLARE_MKX_CONTEXT(x) \
+  class MATROSKA_DLL_API x : public EbmlString { \
+    public: x();
+#define DECLARE_MKX_UINTEGER(x)   DECLARE_MKX_CONTEXT(x) \
+  class MATROSKA_DLL_API x : public EbmlUInteger { \
+    public: x();
+#define DECLARE_MKX_SINTEGER_CONS(x)   DECLARE_MKX_CONTEXT(x) \
+  class MATROSKA_DLL_API x : public EbmlSInteger {
+#define DECLARE_MKX_SINTEGER(x)   DECLARE_MKX_CONTEXT(x) \
+  class MATROSKA_DLL_API x : public EbmlSInteger { \
+    public: x();
+#define DECLARE_MKX_DATE(x)       DECLARE_MKX_CONTEXT(x) \
+  class MATROSKA_DLL_API x : public EbmlDate { \
+    public: x();
+#define DECLARE_MKX_FLOAT(x)      DECLARE_MKX_CONTEXT(x) \
+  class MATROSKA_DLL_API x : public EbmlFloat { \
+    public: x();
 #endif
 
 #endif // LIBMATROSKA_DEFINES_H

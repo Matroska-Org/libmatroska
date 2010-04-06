@@ -41,6 +41,7 @@
 #include "ebml/EbmlBinary.h"
 #include "ebml/EbmlMaster.h"
 #include "matroska/KaxTracks.h"
+#include "matroska/KaxDefines.h"
 
 using namespace LIBEBML_NAMESPACE;
 
@@ -122,9 +123,8 @@ class MATROSKA_DLL_API NotSoSimpleDataBuffer : public SimpleDataBuffer {
 };
 */
 
-class MATROSKA_DLL_API KaxBlockGroup : public EbmlMaster {
+DECLARE_MKX_MASTER(KaxBlockGroup)
 	public:
-		KaxBlockGroup();
 		KaxBlockGroup(const KaxBlockGroup & ElementToClone) :EbmlMaster(ElementToClone) {}
 
 		~KaxBlockGroup();
@@ -272,6 +272,7 @@ class KaxInternalBlock : public EbmlBinary {
 		bool       bIsDiscardable;
 };
 
+DECLARE_MKX_CONTEXT(KaxBlock);
 class MATROSKA_DLL_API KaxBlock : public KaxInternalBlock {
 	public:
 		KaxBlock() :KaxInternalBlock(false) {}
@@ -280,6 +281,7 @@ class MATROSKA_DLL_API KaxBlock : public KaxInternalBlock {
 };
 
 #if MATROSKA_VERSION >= 2
+DECLARE_MKX_CONTEXT(KaxSimpleBlock);
 class MATROSKA_DLL_API KaxSimpleBlock : public KaxInternalBlock {
 	public:
 		KaxSimpleBlock() :KaxInternalBlock(true) {}
@@ -342,16 +344,15 @@ protected:
 	BlockBlobType SimpleBlockMode;
 };
 
-class MATROSKA_DLL_API KaxBlockDuration : public EbmlUInteger {
+DECLARE_MKX_UINTEGER(KaxBlockDuration)
 	public:
-		KaxBlockDuration() {}
 		KaxBlockDuration(const KaxBlockDuration & ElementToClone) :EbmlUInteger(ElementToClone) {}
         
         EBML_CONCRETE_CLASS(KaxBlockDuration)
 };
 
 #if MATROSKA_VERSION >= 2
-class MATROSKA_DLL_API KaxBlockVirtual : public EbmlBinary {
+DECLARE_MKX_BINARY_CONS(KaxBlockVirtual)
 	public:
 		KaxBlockVirtual() :ParentCluster(NULL) {SetBuffer(DataBlock,sizeof(DataBlock)); SetValueIsSet(false);}
 		KaxBlockVirtual(const KaxBlockVirtual & ElementToClone);
@@ -376,42 +377,37 @@ class MATROSKA_DLL_API KaxBlockVirtual : public EbmlBinary {
 };
 #endif // MATROSKA_VERSION
 
-class MATROSKA_DLL_API KaxBlockAdditional : public EbmlBinary {
+DECLARE_MKX_BINARY(KaxBlockAdditional)
 	public:
-		KaxBlockAdditional() {}
 		KaxBlockAdditional(const KaxBlockAdditional & ElementToClone) :EbmlBinary(ElementToClone){}
         bool ValidateSize() const {return true;}
 
         EBML_CONCRETE_CLASS(KaxBlockAdditional)
 };
 
-class MATROSKA_DLL_API KaxBlockAdditions : public EbmlMaster {
+DECLARE_MKX_MASTER(KaxBlockAdditions)
 	public:
-		KaxBlockAdditions();
 		KaxBlockAdditions(const KaxBlockAdditions & ElementToClone) :EbmlMaster(ElementToClone) {}
         
         EBML_CONCRETE_CLASS(KaxBlockAdditions)
 };
 
-class MATROSKA_DLL_API KaxBlockMore : public EbmlMaster {
+DECLARE_MKX_MASTER(KaxBlockMore)
 	public:
-		KaxBlockMore();
 		KaxBlockMore(const KaxBlockMore & ElementToClone) :EbmlMaster(ElementToClone) {}
         
         EBML_CONCRETE_CLASS(KaxBlockMore)
 };
 
-class MATROSKA_DLL_API KaxBlockAddID : public EbmlUInteger {
+DECLARE_MKX_UINTEGER(KaxBlockAddID)
 	public:
-		KaxBlockAddID() :EbmlUInteger(1) {}
 		KaxBlockAddID(const KaxBlockAddID & ElementToClone) :EbmlUInteger(ElementToClone) {}
         
         EBML_CONCRETE_CLASS(KaxBlockAddID)
 };
 
-class MATROSKA_DLL_API KaxCodecState : public EbmlBinary {
+DECLARE_MKX_BINARY(KaxCodecState)
 	public:
-		KaxCodecState() {}
 		KaxCodecState(const KaxCodecState & ElementToClone) :EbmlBinary(ElementToClone){}
 
         bool ValidateSize() const {return true;}

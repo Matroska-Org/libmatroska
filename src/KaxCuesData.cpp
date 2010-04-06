@@ -73,19 +73,19 @@ static const EbmlSemantic ContextList_KaxCueReference[4] =
 };
 #endif // MATROSKA_VERSION
 
-DEFINE_MKX_MASTER  (KaxCuePoint,           0xBB, 1, KaxCues, "CuePoint");
-DEFINE_MKX_UINTEGER(KaxCueTime,            0xB3, 1, KaxCuePoint, "CueTime");
-DEFINE_MKX_MASTER  (KaxCueTrackPositions,  0xB7, 1, KaxCuePoint, "CueTrackPositions");
-DEFINE_MKX_UINTEGER(KaxCueTrack,           0xF7, 1, KaxCueTrackPositions, "CueTrack");
-DEFINE_MKX_UINTEGER(KaxCueClusterPosition, 0xF1, 1, KaxCueTrackPositions, "CueClusterPosition");
-DEFINE_MKX_UINTEGER(KaxCueBlockNumber,   0x5378, 2, KaxCueTrackPositions, "CueBlockNumber");
+DEFINE_MKX_MASTER      (KaxCuePoint,           0xBB, 1, KaxCues, "CuePoint");
+DEFINE_MKX_UINTEGER    (KaxCueTime,            0xB3, 1, KaxCuePoint, "CueTime");
+DEFINE_MKX_MASTER      (KaxCueTrackPositions,  0xB7, 1, KaxCuePoint, "CueTrackPositions");
+DEFINE_MKX_UINTEGER    (KaxCueTrack,           0xF7, 1, KaxCueTrackPositions, "CueTrack");
+DEFINE_MKX_UINTEGER    (KaxCueClusterPosition, 0xF1, 1, KaxCueTrackPositions, "CueClusterPosition");
+DEFINE_MKX_UINTEGER_DEF(KaxCueBlockNumber,   0x5378, 2, KaxCueTrackPositions, "CueBlockNumber", 1);
 #if MATROSKA_VERSION >= 2
-DEFINE_MKX_UINTEGER(KaxCueCodecState,      0xEA, 1, KaxCueTrackPositions, "CueCodecState");
-DEFINE_MKX_MASTER  (KaxCueReference,       0xDB, 1, KaxCueTrackPositions, "CueReference");
-DEFINE_MKX_UINTEGER(KaxCueRefTime,         0x96, 1, KaxCueReference, "CueRefTime");
-DEFINE_MKX_UINTEGER(KaxCueRefCluster,      0x97, 1, KaxCueRefTime, "CueRefCluster");
-DEFINE_MKX_UINTEGER(KaxCueRefNumber,     0x535F, 2, KaxCueRefTime, "CueRefNumber");
-DEFINE_MKX_UINTEGER(KaxCueRefCodecState,   0xEB, 1, KaxCueRefTime, "CueRefCodecState");
+DEFINE_MKX_UINTEGER_DEF(KaxCueCodecState,      0xEA, 1, KaxCueTrackPositions, "CueCodecState", 0);
+DEFINE_MKX_MASTER      (KaxCueReference,       0xDB, 1, KaxCueTrackPositions, "CueReference");
+DEFINE_MKX_UINTEGER    (KaxCueRefTime,         0x96, 1, KaxCueReference, "CueRefTime");
+DEFINE_MKX_UINTEGER    (KaxCueRefCluster,      0x97, 1, KaxCueRefTime, "CueRefCluster");
+DEFINE_MKX_UINTEGER_DEF(KaxCueRefNumber,     0x535F, 2, KaxCueRefTime, "CueRefNumber", 1);
+DEFINE_MKX_UINTEGER_DEF(KaxCueRefCodecState,   0xEB, 1, KaxCueRefTime, "CueRefCodecState", 0);
 #endif
 
 /*!

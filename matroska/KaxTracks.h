@@ -39,22 +39,21 @@
 #include "ebml/EbmlMaster.h"
 #include "ebml/EbmlUInteger.h"
 #include "matroska/KaxTrackEntryData.h"
+#include "matroska/KaxDefines.h"
 
 using namespace LIBEBML_NAMESPACE;
 
 START_LIBMATROSKA_NAMESPACE
 
-class MATROSKA_DLL_API KaxTracks : public EbmlMaster {
+DECLARE_MKX_MASTER(KaxTracks)
 	public:
-		KaxTracks();
 		KaxTracks(const KaxTracks & ElementToClone) :EbmlMaster(ElementToClone) {}
 
         EBML_CONCRETE_CLASS(KaxTracks)
 };
 
-class MATROSKA_DLL_API KaxTrackEntry : public EbmlMaster {
+DECLARE_MKX_MASTER(KaxTrackEntry)
 	public:
-		KaxTrackEntry();
 		KaxTrackEntry(const KaxTrackEntry & ElementToClone) :EbmlMaster(ElementToClone) {}
 
 		EbmlUInteger & TrackNumber() const { return *(static_cast<EbmlUInteger *>(FindElt(EBML_INFO(KaxTrackNumber)))); }

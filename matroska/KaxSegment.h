@@ -37,14 +37,14 @@
 
 #include "matroska/KaxTypes.h"
 #include "ebml/EbmlMaster.h"
+#include "matroska/KaxDefines.h"
 
 using namespace LIBEBML_NAMESPACE;
 
 START_LIBMATROSKA_NAMESPACE
 
-class MATROSKA_DLL_API KaxSegment : public EbmlMaster {
+DECLARE_MKX_MASTER(KaxSegment)
 	public:
-		KaxSegment();
 		KaxSegment(const KaxSegment & ElementToClone);
 
 		/*!

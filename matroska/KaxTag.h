@@ -44,476 +44,419 @@
 #include "ebml/EbmlString.h"
 #include "ebml/EbmlUnicodeString.h"
 #include "ebml/EbmlBinary.h"
+#include "matroska/KaxDefines.h"
 
 using namespace LIBEBML_NAMESPACE;
 
 START_LIBMATROSKA_NAMESPACE
 
-class MATROSKA_DLL_API KaxTag : public EbmlMaster {
+DECLARE_MKX_MASTER(KaxTag)
 	public:
-		KaxTag();
 		KaxTag(const KaxTag & ElementToClone) :EbmlMaster(ElementToClone) {}
 
         EBML_CONCRETE_CLASS(KaxTag)
 };
 
-class MATROSKA_DLL_API KaxTagTargets : public EbmlMaster {
+DECLARE_MKX_MASTER(KaxTagTargets)
 	public:
-		KaxTagTargets();
 		KaxTagTargets(const KaxTagTargets & ElementToClone) :EbmlMaster(ElementToClone) {}
 
         EBML_CONCRETE_CLASS(KaxTagTargets)
 };
 
-class MATROSKA_DLL_API KaxTagGeneral : public EbmlMaster {
+DECLARE_MKX_MASTER(KaxTagGeneral)
 	public:
-		KaxTagGeneral();
 		KaxTagGeneral(const KaxTagGeneral & ElementToClone) :EbmlMaster(ElementToClone) {}
 
         EBML_CONCRETE_CLASS(KaxTagGeneral)
 };
 
-class MATROSKA_DLL_API KaxTagGenres : public EbmlMaster {
+DECLARE_MKX_MASTER(KaxTagGenres)
 	public:
-		KaxTagGenres();
 		KaxTagGenres(const KaxTagGenres & ElementToClone) :EbmlMaster(ElementToClone) {}
 
         EBML_CONCRETE_CLASS(KaxTagGenres)
 };
 
-class MATROSKA_DLL_API KaxTagAudioSpecific : public EbmlMaster {
+DECLARE_MKX_MASTER(KaxTagAudioSpecific)
 	public:
-		KaxTagAudioSpecific();
 		KaxTagAudioSpecific(const KaxTagAudioSpecific & ElementToClone) :EbmlMaster(ElementToClone) {}
 
         EBML_CONCRETE_CLASS(KaxTagAudioSpecific)
 };
 
-class MATROSKA_DLL_API KaxTagImageSpecific : public EbmlMaster {
+DECLARE_MKX_MASTER(KaxTagImageSpecific)
 	public:
-		KaxTagImageSpecific();
 		KaxTagImageSpecific(const KaxTagImageSpecific & ElementToClone) :EbmlMaster(ElementToClone) {}
 
         EBML_CONCRETE_CLASS(KaxTagImageSpecific)
 };
 
-class MATROSKA_DLL_API KaxTagTargetTypeValue : public EbmlUInteger {
+DECLARE_MKX_UINTEGER(KaxTagTargetTypeValue)
 	public:
-		KaxTagTargetTypeValue() :EbmlUInteger(50) {}
 		KaxTagTargetTypeValue(const KaxTagTargetTypeValue & ElementToClone) :EbmlUInteger(ElementToClone) {}
 
         EBML_CONCRETE_CLASS(KaxTagTargetTypeValue)
 };
 
-class MATROSKA_DLL_API KaxTagTargetType : public EbmlString {
+DECLARE_MKX_STRING(KaxTagTargetType)
 	public:
-		KaxTagTargetType() {}
 		KaxTagTargetType(const KaxTagTargetType & ElementToClone) :EbmlString(ElementToClone) {}
 
         EBML_CONCRETE_CLASS(KaxTagTargetType)
 };
 
-class MATROSKA_DLL_API KaxTagTrackUID : public EbmlUInteger {
+DECLARE_MKX_UINTEGER(KaxTagTrackUID)
 	public:
-		KaxTagTrackUID() :EbmlUInteger(0) {}
 		KaxTagTrackUID(const KaxTagTrackUID & ElementToClone) :EbmlUInteger(ElementToClone) {}
 
         EBML_CONCRETE_CLASS(KaxTagTrackUID)
 };
 
-class MATROSKA_DLL_API KaxTagEditionUID : public EbmlUInteger {
+DECLARE_MKX_UINTEGER(KaxTagEditionUID)
 	public:
-		KaxTagEditionUID() :EbmlUInteger(0) {}
 		KaxTagEditionUID(const KaxTagEditionUID & ElementToClone) :EbmlUInteger(ElementToClone) {}
 
         EBML_CONCRETE_CLASS(KaxTagEditionUID)
 };
 
-class MATROSKA_DLL_API KaxTagChapterUID : public EbmlUInteger {
+DECLARE_MKX_UINTEGER(KaxTagChapterUID)
 	public:
-		KaxTagChapterUID() :EbmlUInteger(0) {}
 		KaxTagChapterUID(const KaxTagChapterUID & ElementToClone) :EbmlUInteger(ElementToClone) {}
 
         EBML_CONCRETE_CLASS(KaxTagChapterUID)
 };
 
-class MATROSKA_DLL_API KaxTagAttachmentUID : public EbmlUInteger {
+DECLARE_MKX_UINTEGER(KaxTagAttachmentUID)
 	public:
-		KaxTagAttachmentUID() :EbmlUInteger(0) {}
 		KaxTagAttachmentUID(const KaxTagAttachmentUID & ElementToClone) :EbmlUInteger(ElementToClone) {}
 
         EBML_CONCRETE_CLASS(KaxTagAttachmentUID)
 };
 
-class MATROSKA_DLL_API KaxTagArchivalLocation : public EbmlUnicodeString {
+DECLARE_MKX_UNISTRING(KaxTagArchivalLocation)
 	public:
-		KaxTagArchivalLocation() {}
 		KaxTagArchivalLocation(const KaxTagArchivalLocation & ElementToClone) :EbmlUnicodeString(ElementToClone) {}
 
         EBML_CONCRETE_CLASS(KaxTagArchivalLocation)
 };
 
-class MATROSKA_DLL_API KaxTagAudioEncryption : public EbmlBinary {
+DECLARE_MKX_BINARY(KaxTagAudioEncryption)
 	public:
-		KaxTagAudioEncryption() {}
 		KaxTagAudioEncryption(const KaxTagAudioEncryption & ElementToClone) :EbmlBinary(ElementToClone){}
 		bool ValidateSize() const {return true;} // we don't mind about what's inside
 
         EBML_CONCRETE_CLASS(KaxTagAudioEncryption)
 };
 
-class MATROSKA_DLL_API KaxTagAudioGain : public EbmlFloat {
+DECLARE_MKX_FLOAT(KaxTagAudioGain)
 	public:
-		KaxTagAudioGain() {}
 		KaxTagAudioGain(const KaxTagAudioGain & ElementToClone) :EbmlFloat(ElementToClone) {}
 
         EBML_CONCRETE_CLASS(KaxTagAudioGain)
 };
 
-class MATROSKA_DLL_API KaxTagAudioGenre : public EbmlString {
+DECLARE_MKX_STRING(KaxTagAudioGenre)
 	public:
-		KaxTagAudioGenre() {}
 		KaxTagAudioGenre(const KaxTagAudioGenre & ElementToClone) :EbmlString(ElementToClone) {}
 
         EBML_CONCRETE_CLASS(KaxTagAudioGenre)
 };
 
-class MATROSKA_DLL_API KaxTagAudioPeak : public EbmlFloat {
+DECLARE_MKX_FLOAT(KaxTagAudioPeak)
 	public:
-		KaxTagAudioPeak() {}
 		KaxTagAudioPeak(const KaxTagAudioPeak & ElementToClone) :EbmlFloat(ElementToClone) {}
 
         EBML_CONCRETE_CLASS(KaxTagAudioPeak)
 };
 
-class MATROSKA_DLL_API KaxTagBibliography : public EbmlUnicodeString {
+DECLARE_MKX_UNISTRING(KaxTagBibliography)
 	public:
-		KaxTagBibliography() {}
 		KaxTagBibliography(const KaxTagBibliography & ElementToClone) :EbmlUnicodeString(ElementToClone) {}
 
         EBML_CONCRETE_CLASS(KaxTagBibliography)
 };
 
-class MATROSKA_DLL_API KaxTagBPM : public EbmlFloat {
+DECLARE_MKX_FLOAT(KaxTagBPM)
 	public:
-		KaxTagBPM() {}
 		KaxTagBPM(const KaxTagBPM & ElementToClone) :EbmlFloat(ElementToClone) {}
 
         EBML_CONCRETE_CLASS(KaxTagBPM)
 };
 
-class MATROSKA_DLL_API KaxTagCaptureDPI : public EbmlUInteger {
+DECLARE_MKX_UINTEGER(KaxTagCaptureDPI)
 	public:
-		KaxTagCaptureDPI() {}
 		KaxTagCaptureDPI(const KaxTagCaptureDPI & ElementToClone) :EbmlUInteger(ElementToClone) {}
 
         EBML_CONCRETE_CLASS(KaxTagCaptureDPI)
 };
 
-class MATROSKA_DLL_API KaxTagCaptureLightness : public EbmlBinary {
+DECLARE_MKX_BINARY(KaxTagCaptureLightness)
 	public:
-		KaxTagCaptureLightness() {}
 		KaxTagCaptureLightness(const KaxTagCaptureLightness & ElementToClone) :EbmlBinary(ElementToClone){}
 		bool ValidateSize() const {return true;} // we don't mind about what's inside
 
         EBML_CONCRETE_CLASS(KaxTagCaptureLightness)
 };
 
-class MATROSKA_DLL_API KaxTagCapturePaletteSetting : public EbmlUInteger {
+DECLARE_MKX_UINTEGER(KaxTagCapturePaletteSetting)
 	public:
-		KaxTagCapturePaletteSetting() {}
 		KaxTagCapturePaletteSetting(const KaxTagCapturePaletteSetting & ElementToClone) :EbmlUInteger(ElementToClone) {}
 
         EBML_CONCRETE_CLASS(KaxTagCapturePaletteSetting)
 };
 
-class MATROSKA_DLL_API KaxTagCaptureSharpness : public EbmlBinary {
+DECLARE_MKX_BINARY(KaxTagCaptureSharpness)
 	public:
-		KaxTagCaptureSharpness() {}
 		KaxTagCaptureSharpness(const KaxTagCaptureSharpness & ElementToClone) :EbmlBinary(ElementToClone){}
 		bool ValidateSize() const {return true;} // we don't mind about what's inside
 
         EBML_CONCRETE_CLASS(KaxTagCaptureSharpness)
 };
 
-class MATROSKA_DLL_API KaxTagCropped : public EbmlUnicodeString {
+DECLARE_MKX_UNISTRING(KaxTagCropped)
 	public:
-		KaxTagCropped() {}
 		KaxTagCropped(const KaxTagCropped & ElementToClone) :EbmlUnicodeString(ElementToClone) {}
 
         EBML_CONCRETE_CLASS(KaxTagCropped)
 };
 
-class MATROSKA_DLL_API KaxTagDiscTrack : public EbmlUInteger {
+DECLARE_MKX_UINTEGER(KaxTagDiscTrack)
 	public:
-		KaxTagDiscTrack() {}
 		KaxTagDiscTrack(const KaxTagDiscTrack & ElementToClone) :EbmlUInteger(ElementToClone) {}
 
         EBML_CONCRETE_CLASS(KaxTagDiscTrack)
 };
 
-class MATROSKA_DLL_API KaxTagEncoder : public EbmlUnicodeString {
+DECLARE_MKX_UNISTRING(KaxTagEncoder)
 	public:
-		KaxTagEncoder() {}
 		KaxTagEncoder(const KaxTagEncoder & ElementToClone) :EbmlUnicodeString(ElementToClone) {}
 
         EBML_CONCRETE_CLASS(KaxTagEncoder)
 };
 
-class MATROSKA_DLL_API KaxTagEncodeSettings : public EbmlUnicodeString {
+DECLARE_MKX_UNISTRING(KaxTagEncodeSettings)
 	public:
-		KaxTagEncodeSettings() {}
 		KaxTagEncodeSettings(const KaxTagEncodeSettings & ElementToClone) :EbmlUnicodeString(ElementToClone) {}
 
         EBML_CONCRETE_CLASS(KaxTagEncodeSettings)
 };
 
-class MATROSKA_DLL_API KaxTagEqualisation : public EbmlBinary {
+DECLARE_MKX_BINARY(KaxTagEqualisation)
 	public:
-		KaxTagEqualisation() {}
 		KaxTagEqualisation(const KaxTagEqualisation & ElementToClone) :EbmlBinary(ElementToClone){}
 		bool ValidateSize() const {return true;} // we don't mind about what's inside
 
         EBML_CONCRETE_CLASS(KaxTagEqualisation)
 };
 
-class MATROSKA_DLL_API KaxTagFile : public EbmlUnicodeString {
+DECLARE_MKX_UNISTRING(KaxTagFile)
 	public:
-		KaxTagFile() {}
 		KaxTagFile(const KaxTagFile & ElementToClone) :EbmlUnicodeString(ElementToClone) {}
 
         EBML_CONCRETE_CLASS(KaxTagFile)
 };
 
-class MATROSKA_DLL_API KaxTagInitialKey : public EbmlString {
+DECLARE_MKX_STRING(KaxTagInitialKey)
 	public:
-		KaxTagInitialKey() {}
 		KaxTagInitialKey(const KaxTagInitialKey & ElementToClone) :EbmlString(ElementToClone) {}
 
         EBML_CONCRETE_CLASS(KaxTagInitialKey)
 };
 
-class MATROSKA_DLL_API KaxTagKeywords : public EbmlUnicodeString {
+DECLARE_MKX_UNISTRING(KaxTagKeywords)
 	public:
-		KaxTagKeywords() {}
 		KaxTagKeywords(const KaxTagKeywords & ElementToClone) :EbmlUnicodeString(ElementToClone) {}
 
         EBML_CONCRETE_CLASS(KaxTagKeywords)
 };
 
-class MATROSKA_DLL_API KaxTagLanguage : public EbmlString {
+DECLARE_MKX_STRING(KaxTagLanguage)
 	public:
-		KaxTagLanguage() {}
 		KaxTagLanguage(const KaxTagLanguage & ElementToClone) :EbmlString(ElementToClone) {}
 
         EBML_CONCRETE_CLASS(KaxTagLanguage)
 };
 
-class MATROSKA_DLL_API KaxTagLength : public EbmlUInteger {
+DECLARE_MKX_UINTEGER(KaxTagLength)
 	public:
-		KaxTagLength() {}
 		KaxTagLength(const KaxTagLength & ElementToClone) :EbmlUInteger(ElementToClone) {}
 
         EBML_CONCRETE_CLASS(KaxTagLength)
 };
 
-class MATROSKA_DLL_API KaxTagMood : public EbmlUnicodeString {
+DECLARE_MKX_UNISTRING(KaxTagMood)
 	public:
-		KaxTagMood() {}
 		KaxTagMood(const KaxTagMood & ElementToClone) :EbmlUnicodeString(ElementToClone) {}
 
         EBML_CONCRETE_CLASS(KaxTagMood)
 };
 
-class MATROSKA_DLL_API KaxTagOfficialAudioFileURL : public EbmlString {
+DECLARE_MKX_STRING(KaxTagOfficialAudioFileURL)
 	public:
-		KaxTagOfficialAudioFileURL() {}
 		KaxTagOfficialAudioFileURL(const KaxTagOfficialAudioFileURL & ElementToClone) :EbmlString(ElementToClone) {}
 
         EBML_CONCRETE_CLASS(KaxTagOfficialAudioFileURL)
 };
 
-class MATROSKA_DLL_API KaxTagOfficialAudioSourceURL : public EbmlString {
+DECLARE_MKX_STRING(KaxTagOfficialAudioSourceURL)
 	public:
-		KaxTagOfficialAudioSourceURL() {}
 		KaxTagOfficialAudioSourceURL(const KaxTagOfficialAudioSourceURL & ElementToClone) :EbmlString(ElementToClone) {}
 
         EBML_CONCRETE_CLASS(KaxTagOfficialAudioSourceURL)
 };
 
-class MATROSKA_DLL_API KaxTagOriginalDimensions : public EbmlString {
+DECLARE_MKX_STRING(KaxTagOriginalDimensions)
 	public:
-		KaxTagOriginalDimensions() {}
 		KaxTagOriginalDimensions(const KaxTagOriginalDimensions & ElementToClone) :EbmlString(ElementToClone) {}
 
         EBML_CONCRETE_CLASS(KaxTagOriginalDimensions)
 };
 
-class MATROSKA_DLL_API KaxTagOriginalMediaType : public EbmlUnicodeString {
+DECLARE_MKX_UNISTRING(KaxTagOriginalMediaType)
 	public:
-		KaxTagOriginalMediaType() {}
 		KaxTagOriginalMediaType(const KaxTagOriginalMediaType & ElementToClone) :EbmlUnicodeString(ElementToClone) {}
 
         EBML_CONCRETE_CLASS(KaxTagOriginalMediaType)
 };
 
-class MATROSKA_DLL_API KaxTagPlayCounter : public EbmlUInteger {
+DECLARE_MKX_UINTEGER(KaxTagPlayCounter)
 	public:
-		KaxTagPlayCounter() {}
 		KaxTagPlayCounter(const KaxTagPlayCounter & ElementToClone) :EbmlUInteger(ElementToClone) {}
 
         EBML_CONCRETE_CLASS(KaxTagPlayCounter)
 };			 
 
-class MATROSKA_DLL_API KaxTagPlaylistDelay : public EbmlUInteger {
+DECLARE_MKX_UINTEGER(KaxTagPlaylistDelay)
 	public:
-		KaxTagPlaylistDelay() {}
 		KaxTagPlaylistDelay(const KaxTagPlaylistDelay & ElementToClone) :EbmlUInteger(ElementToClone) {}
 
         EBML_CONCRETE_CLASS(KaxTagPlaylistDelay)
 };
 
-class MATROSKA_DLL_API KaxTagPopularimeter : public EbmlSInteger {
+DECLARE_MKX_SINTEGER(KaxTagPopularimeter)
 	public:
-		KaxTagPopularimeter() {}
 		KaxTagPopularimeter(const KaxTagPopularimeter & ElementToClone) :EbmlSInteger(ElementToClone) {}
 
         EBML_CONCRETE_CLASS(KaxTagPopularimeter)
 };
 
-class MATROSKA_DLL_API KaxTagProduct : public EbmlUnicodeString {
+DECLARE_MKX_UNISTRING(KaxTagProduct)
 	public:
-		KaxTagProduct() {}
 		KaxTagProduct(const KaxTagProduct & ElementToClone) :EbmlUnicodeString(ElementToClone) {}
 
         EBML_CONCRETE_CLASS(KaxTagProduct)
 };
 
-class MATROSKA_DLL_API KaxTagRating : public EbmlBinary {
+DECLARE_MKX_BINARY(KaxTagRating)
 	public:
-		KaxTagRating() {}
 		KaxTagRating(const KaxTagRating & ElementToClone) :EbmlBinary(ElementToClone){}
 		bool ValidateSize() const {return true;} // we don't mind about what's inside
 
         EBML_CONCRETE_CLASS(KaxTagRating)
 };
 
-class MATROSKA_DLL_API KaxTagRecordLocation : public EbmlString {
+DECLARE_MKX_STRING(KaxTagRecordLocation)
 	public:
-		KaxTagRecordLocation() {}
 		KaxTagRecordLocation(const KaxTagRecordLocation & ElementToClone) :EbmlString(ElementToClone) {}
 
         EBML_CONCRETE_CLASS(KaxTagRecordLocation)
 };
 
-class MATROSKA_DLL_API KaxTagSetPart : public EbmlUInteger {
+DECLARE_MKX_UINTEGER(KaxTagSetPart)
 	public:
-		KaxTagSetPart() {}
 		KaxTagSetPart(const KaxTagSetPart & ElementToClone) :EbmlUInteger(ElementToClone) {}
 
         EBML_CONCRETE_CLASS(KaxTagSetPart)
 };
 
-class MATROSKA_DLL_API KaxTagSource : public EbmlUnicodeString {
+DECLARE_MKX_UNISTRING(KaxTagSource)
 	public:
-		KaxTagSource() {}
 		KaxTagSource(const KaxTagSource & ElementToClone) :EbmlUnicodeString(ElementToClone) {}
 
         EBML_CONCRETE_CLASS(KaxTagSource)
 };
 
-class MATROSKA_DLL_API KaxTagSourceForm : public EbmlUnicodeString {
+DECLARE_MKX_UNISTRING(KaxTagSourceForm)
 	public:
-		KaxTagSourceForm() {}
 		KaxTagSourceForm(const KaxTagSourceForm & ElementToClone) :EbmlUnicodeString(ElementToClone) {}
 
         EBML_CONCRETE_CLASS(KaxTagSourceForm)
 };
 
-class MATROSKA_DLL_API KaxTagSubGenre : public EbmlString {
+DECLARE_MKX_STRING(KaxTagSubGenre)
 	public:
-		KaxTagSubGenre() {}
 		KaxTagSubGenre(const KaxTagSubGenre & ElementToClone) :EbmlString(ElementToClone) {}
 
         EBML_CONCRETE_CLASS(KaxTagSubGenre)
 };
 
-class MATROSKA_DLL_API KaxTagSubject : public EbmlUnicodeString {
+DECLARE_MKX_UNISTRING(KaxTagSubject)
 	public:
-		KaxTagSubject() {}
 		KaxTagSubject(const KaxTagSubject & ElementToClone) :EbmlUnicodeString(ElementToClone) {}
 
         EBML_CONCRETE_CLASS(KaxTagSubject)
 };
 
-class MATROSKA_DLL_API KaxTagUnsynchronisedText : public EbmlUnicodeString {
+DECLARE_MKX_UNISTRING(KaxTagUnsynchronisedText)
 	public:
-		KaxTagUnsynchronisedText() {}
 		KaxTagUnsynchronisedText(const KaxTagUnsynchronisedText & ElementToClone) :EbmlUnicodeString(ElementToClone) {}
 
         EBML_CONCRETE_CLASS(KaxTagUnsynchronisedText)
 };
 
-class MATROSKA_DLL_API KaxTagUserDefinedURL : public EbmlString {
+DECLARE_MKX_STRING(KaxTagUserDefinedURL)
 	public:
-		KaxTagUserDefinedURL() {}
 		KaxTagUserDefinedURL(const KaxTagUserDefinedURL & ElementToClone) :EbmlString(ElementToClone) {}
 
         EBML_CONCRETE_CLASS(KaxTagUserDefinedURL)
 };
 
-class MATROSKA_DLL_API KaxTagVideoGenre : public EbmlBinary {
+DECLARE_MKX_BINARY(KaxTagVideoGenre)
 	public:
-		KaxTagVideoGenre() {}
 		KaxTagVideoGenre(const KaxTagVideoGenre & ElementToClone) :EbmlBinary(ElementToClone){}
 		bool ValidateSize() const {return (GetSize() >= 2);}
 
         EBML_CONCRETE_CLASS(KaxTagVideoGenre)
 };
 
-class MATROSKA_DLL_API KaxTagSimple : public EbmlMaster {
+DECLARE_MKX_MASTER(KaxTagSimple)
 	public:
-		KaxTagSimple();
 		KaxTagSimple(const KaxTagSimple & ElementToClone) :EbmlMaster(ElementToClone) {}
 
         EBML_CONCRETE_CLASS(KaxTagSimple)
 };
 
-class MATROSKA_DLL_API KaxTagName : public EbmlUnicodeString {
+DECLARE_MKX_UNISTRING(KaxTagName)
 	public:
-		KaxTagName() {}
 		KaxTagName(const KaxTagName & ElementToClone) :EbmlUnicodeString(ElementToClone) {}
 
         EBML_CONCRETE_CLASS(KaxTagName)
 };
 
-class MATROSKA_DLL_API KaxTagLangue : public EbmlString {
+DECLARE_MKX_STRING(KaxTagLangue)
 	public:
-		KaxTagLangue(): EbmlString("und") {}
 		KaxTagLangue(const KaxTagLangue & ElementToClone) :EbmlString(ElementToClone) {}
 
         EBML_CONCRETE_CLASS(KaxTagLangue)
 };
 
-class MATROSKA_DLL_API KaxTagDefault : public EbmlUInteger {
+DECLARE_MKX_UINTEGER(KaxTagDefault)
 	public:
-		KaxTagDefault() :EbmlUInteger(1) {}
 		KaxTagDefault(const KaxTagTrackUID & ElementToClone) :EbmlUInteger(ElementToClone) {}
 
         EBML_CONCRETE_CLASS(KaxTagDefault)
 };
 
-class MATROSKA_DLL_API KaxTagString : public EbmlUnicodeString {
+DECLARE_MKX_UNISTRING(KaxTagString)
 	public:
-		KaxTagString() {}
 		KaxTagString(const KaxTagString & ElementToClone) :EbmlUnicodeString(ElementToClone) {}
 
         EBML_CONCRETE_CLASS(KaxTagString)
 };
 
-class MATROSKA_DLL_API KaxTagBinary : public EbmlBinary {
+DECLARE_MKX_BINARY(KaxTagBinary)
 	public:
-		KaxTagBinary() {}
 		KaxTagBinary(const KaxTagBinary & ElementToClone) :EbmlBinary(ElementToClone){}
 		bool ValidateSize() const {return true;} // {return (GetSize() >= 0);}
 

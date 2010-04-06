@@ -94,32 +94,32 @@ static const EbmlSemantic ContextList_KaxChapterProcessCommand[2] =
     EbmlSemantic(true,  true,  EBML_INFO(KaxChapterProcessData)),
 };
 
-DEFINE_MKX_MASTER   (KaxChapters,             0x1043A770, 4, KaxSegment, "Chapters");
-DEFINE_MKX_MASTER   (KaxEditionEntry,             0x45B9, 2, KaxChapters, "EditionEntry");
-DEFINE_MKX_UINTEGER (KaxEditionUID,               0x45BC, 2, KaxEditionEntry, "EditionUID");
-DEFINE_MKX_UINTEGER (KaxEditionFlagHidden,        0x45BD, 2, KaxEditionEntry, "EditionFlagHidden");
-DEFINE_MKX_UINTEGER (KaxEditionFlagDefault,       0x45DB, 2, KaxEditionEntry, "EditionFlagDefault");
-DEFINE_MKX_UINTEGER (KaxEditionFlagOrdered,       0x45DD, 2, KaxEditionEntry, "EditionFlagOrdered");
-DEFINE_MKX_MASTER   (KaxChapterAtom,                0xB6, 1, KaxEditionEntry, "ChapterAtom");
-DEFINE_MKX_UINTEGER (KaxChapterUID,               0x73C4, 2, KaxChapterAtom, "ChapterUID");
-DEFINE_MKX_UINTEGER (KaxChapterTimeStart,           0x91, 1, KaxChapterAtom, "ChapterTimeStart");
-DEFINE_MKX_UINTEGER (KaxChapterTimeEnd,             0x92, 1, KaxChapterAtom, "ChapterTimeEnd");
-DEFINE_MKX_UINTEGER (KaxChapterFlagHidden,          0x98, 1, KaxChapterAtom, "ChapterFlagHidden");
-DEFINE_MKX_UINTEGER (KaxChapterFlagEnabled,       0x4598, 2, KaxChapterAtom, "ChapterFlagEnabled");
-DEFINE_MKX_BINARY   (KaxChapterSegmentUID,        0x6E67, 2, KaxChapterAtom, "ChapterSegmentUID");
-DEFINE_MKX_BINARY   (KaxChapterSegmentEditionUID, 0x6EBC, 2, KaxChapterAtom, "ChapterSegmentEditionUID");
-DEFINE_MKX_UINTEGER (KaxChapterPhysicalEquiv,     0x63C3, 2, KaxChapterAtom, "ChapterPhysicalEquiv");
-DEFINE_MKX_MASTER   (KaxChapterTrack,               0x8F, 1, KaxChapterAtom, "ChapterTrack");
-DEFINE_MKX_UINTEGER (KaxChapterTrackNumber,         0x89, 1, KaxChapterTrack, "ChapterTrackNumber");
-DEFINE_MKX_MASTER   (KaxChapterDisplay,             0x80, 1, KaxChapterAtom, "ChapterDisplay");
-DEFINE_MKX_UNISTRING(KaxChapterString,              0x85, 1, KaxChapterDisplay, "ChapterString");
-DEFINE_MKX_STRING   (KaxChapterLanguage,          0x437C, 2, KaxChapterLanguage, "ChapterLanguage"); // parent context ?
-DEFINE_MKX_STRING   (KaxChapterCountry,           0x437E, 2, KaxChapterCountry, "ChapterCountry"); // parent context ?
-DEFINE_MKX_MASTER   (KaxChapterProcess,           0x6944, 2, KaxChapterAtom, "ChapterProcess");
-DEFINE_MKX_UINTEGER (KaxChapterProcessCodecID,    0x6955, 2, KaxChapterProcess, "ChapterProcessCodecID");
-DEFINE_MKX_BINARY   (KaxChapterProcessPrivate,    0x450D, 2, KaxChapterProcess, "ChapterProcessPrivate");
-DEFINE_MKX_MASTER   (KaxChapterProcessCommand,    0x6911, 2, KaxChapterProcess, "ChapterProcessCommand");
-DEFINE_MKX_UINTEGER (KaxChapterProcessTime,       0x6922, 2, KaxChapterProcessCommand, "ChapterProcessTime");
-DEFINE_MKX_BINARY   (KaxChapterProcessData,       0x6933, 2, KaxChapterProcessCommand, "ChapterProcessData");
+DEFINE_MKX_MASTER      (KaxChapters,             0x1043A770, 4, KaxSegment, "Chapters");
+DEFINE_MKX_MASTER      (KaxEditionEntry,             0x45B9, 2, KaxChapters, "EditionEntry");
+DEFINE_MKX_UINTEGER    (KaxEditionUID,               0x45BC, 2, KaxEditionEntry, "EditionUID");
+DEFINE_MKX_UINTEGER_DEF(KaxEditionFlagHidden,        0x45BD, 2, KaxEditionEntry, "EditionFlagHidden", 0);
+DEFINE_MKX_UINTEGER_DEF(KaxEditionFlagDefault,       0x45DB, 2, KaxEditionEntry, "EditionFlagDefault", 0);
+DEFINE_MKX_UINTEGER_DEF(KaxEditionFlagOrdered,       0x45DD, 2, KaxEditionEntry, "EditionFlagOrdered", 0);
+DEFINE_MKX_MASTER      (KaxChapterAtom,                0xB6, 1, KaxEditionEntry, "ChapterAtom");
+DEFINE_MKX_UINTEGER    (KaxChapterUID,               0x73C4, 2, KaxChapterAtom, "ChapterUID");
+DEFINE_MKX_UINTEGER    (KaxChapterTimeStart,           0x91, 1, KaxChapterAtom, "ChapterTimeStart");
+DEFINE_MKX_UINTEGER    (KaxChapterTimeEnd,             0x92, 1, KaxChapterAtom, "ChapterTimeEnd");
+DEFINE_MKX_UINTEGER_DEF(KaxChapterFlagHidden,          0x98, 1, KaxChapterAtom, "ChapterFlagHidden", 0);
+DEFINE_MKX_UINTEGER_DEF(KaxChapterFlagEnabled,       0x4598, 2, KaxChapterAtom, "ChapterFlagEnabled", 1);
+DEFINE_MKX_BINARY      (KaxChapterSegmentUID,        0x6E67, 2, KaxChapterAtom, "ChapterSegmentUID");
+DEFINE_MKX_BINARY      (KaxChapterSegmentEditionUID, 0x6EBC, 2, KaxChapterAtom, "ChapterSegmentEditionUID");
+DEFINE_MKX_UINTEGER    (KaxChapterPhysicalEquiv,     0x63C3, 2, KaxChapterAtom, "ChapterPhysicalEquiv");
+DEFINE_MKX_MASTER      (KaxChapterTrack,               0x8F, 1, KaxChapterAtom, "ChapterTrack");
+DEFINE_MKX_UINTEGER    (KaxChapterTrackNumber,         0x89, 1, KaxChapterTrack, "ChapterTrackNumber");
+DEFINE_MKX_MASTER      (KaxChapterDisplay,             0x80, 1, KaxChapterAtom, "ChapterDisplay");
+DEFINE_MKX_UNISTRING   (KaxChapterString,              0x85, 1, KaxChapterDisplay, "ChapterString");
+DEFINE_MKX_STRING_DEF  (KaxChapterLanguage,          0x437C, 2, KaxChapterLanguage, "ChapterLanguage", "eng"); // parent context ?
+DEFINE_MKX_STRING      (KaxChapterCountry,           0x437E, 2, KaxChapterCountry, "ChapterCountry"); // parent context ?
+DEFINE_MKX_MASTER      (KaxChapterProcess,           0x6944, 2, KaxChapterAtom, "ChapterProcess");
+DEFINE_MKX_UINTEGER_DEF(KaxChapterProcessCodecID,    0x6955, 2, KaxChapterProcess, "ChapterProcessCodecID", 0);
+DEFINE_MKX_BINARY      (KaxChapterProcessPrivate,    0x450D, 2, KaxChapterProcess, "ChapterProcessPrivate");
+DEFINE_MKX_MASTER      (KaxChapterProcessCommand,    0x6911, 2, KaxChapterProcess, "ChapterProcessCommand");
+DEFINE_MKX_UINTEGER    (KaxChapterProcessTime,       0x6922, 2, KaxChapterProcessCommand, "ChapterProcessTime");
+DEFINE_MKX_BINARY      (KaxChapterProcessData,       0x6933, 2, KaxChapterProcessCommand, "ChapterProcessData");
 
 END_LIBMATROSKA_NAMESPACE

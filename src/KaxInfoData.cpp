@@ -46,20 +46,20 @@ static const EbmlSemantic ContextList_KaxChapterTranslate[3] =
 	EbmlSemantic(true,  true,  EBML_INFO(KaxChapterTranslateID)),
 };
 
-DEFINE_MKX_BINARY   (KaxSegmentUID,                 0x73A4, 2, KaxInfo, "ChapterTranslate");
-DEFINE_MKX_UNISTRING(KaxSegmentFilename,            0x7384, 2, KaxInfo, "SegmentFilename");
-DEFINE_MKX_BINARY   (KaxPrevUID,                  0x3CB923, 3, KaxInfo, "PrevUID");
-DEFINE_MKX_UNISTRING(KaxPrevFilename,             0x3C83AB, 3, KaxInfo, "PrevFilename");
-DEFINE_MKX_BINARY   (KaxNextUID,                  0x3EB923, 3, KaxInfo, "NextUID");
-DEFINE_MKX_UNISTRING(KaxNextFilename,             0x3E83BB, 3, KaxInfo, "NextFilename");
-DEFINE_MKX_BINARY   (KaxSegmentFamily,              0x4444, 2, KaxInfo, "SegmentFamily");
-DEFINE_MKX_MASTER   (KaxChapterTranslate,           0x6924, 2, KaxInfo, "ChapterTranslate");
-DEFINE_MKX_UINTEGER (KaxChapterTranslateEditionUID, 0x69FC, 2, KaxChapterTranslate, "ChapterTranslateEditionUID");
-DEFINE_MKX_UINTEGER (KaxChapterTranslateCodec,      0x69BF, 2, KaxChapterTranslate, "ChapterTranslateCodec");
-DEFINE_MKX_BINARY   (KaxChapterTranslateID,         0x69A5, 2, KaxChapterTranslate, "ChapterTranslateID");
-DEFINE_MKX_UINTEGER (KaxTimecodeScale,            0x2AD7B1, 3, KaxInfo, "TimecodeScale");
-DEFINE_MKX_FLOAT    (KaxDuration,                   0x4489, 2, KaxInfo, "Duration");
-DEFINE_MKX_DATE     (KaxDateUTC,                    0x4461, 2, KaxInfo, "DateUTC");
-DEFINE_MKX_UNISTRING(KaxTitle,                      0x7BA9, 2, KaxInfo, "Title");
+DEFINE_MKX_BINARY       (KaxSegmentUID,                 0x73A4, 2, KaxInfo, "ChapterTranslate");
+DEFINE_MKX_UNISTRING    (KaxSegmentFilename,            0x7384, 2, KaxInfo, "SegmentFilename");
+DEFINE_MKX_BINARY       (KaxPrevUID,                  0x3CB923, 3, KaxInfo, "PrevUID");
+DEFINE_MKX_UNISTRING    (KaxPrevFilename,             0x3C83AB, 3, KaxInfo, "PrevFilename");
+DEFINE_MKX_BINARY       (KaxNextUID,                  0x3EB923, 3, KaxInfo, "NextUID");
+DEFINE_MKX_UNISTRING    (KaxNextFilename,             0x3E83BB, 3, KaxInfo, "NextFilename");
+DEFINE_MKX_BINARY       (KaxSegmentFamily,              0x4444, 2, KaxInfo, "SegmentFamily");
+DEFINE_MKX_MASTER       (KaxChapterTranslate,           0x6924, 2, KaxInfo, "ChapterTranslate");
+DEFINE_MKX_UINTEGER     (KaxChapterTranslateEditionUID, 0x69FC, 2, KaxChapterTranslate, "ChapterTranslateEditionUID");
+DEFINE_MKX_UINTEGER     (KaxChapterTranslateCodec,      0x69BF, 2, KaxChapterTranslate, "ChapterTranslateCodec");
+DEFINE_MKX_BINARY       (KaxChapterTranslateID,         0x69A5, 2, KaxChapterTranslate, "ChapterTranslateID");
+DEFINE_MKX_UINTEGER_DEF(KaxTimecodeScale,            0x2AD7B1, 3, KaxInfo, "TimecodeScale", 1000000);
+DEFINE_MKX_FLOAT        (KaxDuration,                   0x4489, 2, KaxInfo, "Duration");
+DEFINE_MKX_DATE         (KaxDateUTC,                    0x4461, 2, KaxInfo, "DateUTC");
+DEFINE_MKX_UNISTRING    (KaxTitle,                      0x7BA9, 2, KaxInfo, "Title");
 
 END_LIBMATROSKA_NAMESPACE

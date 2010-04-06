@@ -40,122 +40,109 @@
 #include "ebml/EbmlUInteger.h"
 #include "ebml/EbmlBinary.h"
 #include "ebml/EbmlFloat.h"
+#include "matroska/KaxDefines.h"
 
 using namespace LIBEBML_NAMESPACE;
 
 START_LIBMATROSKA_NAMESPACE
 
-class MATROSKA_DLL_API KaxTrackVideo : public EbmlMaster {
+DECLARE_MKX_MASTER(KaxTrackVideo)
 	public:
-		KaxTrackVideo();
 		KaxTrackVideo(const KaxTrackVideo & ElementToClone) :EbmlMaster(ElementToClone) {}
 
         EBML_CONCRETE_CLASS(KaxTrackVideo)
 };
 
 #if MATROSKA_VERSION >= 2
-class MATROSKA_DLL_API KaxVideoFlagInterlaced : public EbmlUInteger {
+DECLARE_MKX_UINTEGER(KaxVideoFlagInterlaced)
 	public:
-		KaxVideoFlagInterlaced() :EbmlUInteger(0) {}
 		KaxVideoFlagInterlaced(const KaxVideoFlagInterlaced & ElementToClone) :EbmlUInteger(ElementToClone) {}
 
         EBML_CONCRETE_CLASS(KaxVideoFlagInterlaced)
 };
 
-class MATROSKA_DLL_API KaxVideoStereoMode : public EbmlUInteger {
+DECLARE_MKX_UINTEGER(KaxVideoStereoMode)
 	public:
-		KaxVideoStereoMode() :EbmlUInteger(0) {}
 		KaxVideoStereoMode(const KaxVideoStereoMode & ElementToClone) :EbmlUInteger(ElementToClone) {}
 
         EBML_CONCRETE_CLASS(KaxVideoStereoMode)
 };
 #endif // MATROSKA_VERSION
 
-class MATROSKA_DLL_API KaxVideoPixelWidth : public EbmlUInteger {
+DECLARE_MKX_UINTEGER(KaxVideoPixelWidth)
 	public:
-		KaxVideoPixelWidth() {}
 		KaxVideoPixelWidth(const KaxVideoPixelWidth & ElementToClone) :EbmlUInteger(ElementToClone) {}
 
         EBML_CONCRETE_CLASS(KaxVideoPixelWidth)
 };
 
-class MATROSKA_DLL_API KaxVideoPixelHeight : public EbmlUInteger {
+DECLARE_MKX_UINTEGER(KaxVideoPixelHeight)
 	public:
-		KaxVideoPixelHeight() {}
 		KaxVideoPixelHeight(const KaxVideoPixelHeight & ElementToClone) :EbmlUInteger(ElementToClone) {}
 
         EBML_CONCRETE_CLASS(KaxVideoPixelHeight)
 };
 
-class MATROSKA_DLL_API KaxVideoPixelCropBottom : public EbmlUInteger {
+DECLARE_MKX_UINTEGER(KaxVideoPixelCropBottom)
 	public:
-		KaxVideoPixelCropBottom(): EbmlUInteger(0) {}
 		KaxVideoPixelCropBottom(const KaxVideoPixelCropBottom & ElementToClone) :EbmlUInteger(ElementToClone) {}
 
         EBML_CONCRETE_CLASS(KaxVideoPixelCropBottom)
 };
 
-class MATROSKA_DLL_API KaxVideoPixelCropTop : public EbmlUInteger {
+DECLARE_MKX_UINTEGER(KaxVideoPixelCropTop)
 	public:
-		KaxVideoPixelCropTop(): EbmlUInteger(0) {}
 		KaxVideoPixelCropTop(const KaxVideoPixelCropTop & ElementToClone) :EbmlUInteger(ElementToClone) {}
 
         EBML_CONCRETE_CLASS(KaxVideoPixelCropTop)
 };
 
-class MATROSKA_DLL_API KaxVideoPixelCropLeft : public EbmlUInteger {
+DECLARE_MKX_UINTEGER(KaxVideoPixelCropLeft)
 	public:
-		KaxVideoPixelCropLeft(): EbmlUInteger(0) {}
 		KaxVideoPixelCropLeft(const KaxVideoPixelCropLeft & ElementToClone) :EbmlUInteger(ElementToClone) {}
 
         EBML_CONCRETE_CLASS(KaxVideoPixelCropLeft)
 };
 
-class MATROSKA_DLL_API KaxVideoPixelCropRight : public EbmlUInteger {
+DECLARE_MKX_UINTEGER(KaxVideoPixelCropRight)
 	public:
-		KaxVideoPixelCropRight(): EbmlUInteger(0) {}
 		KaxVideoPixelCropRight(const KaxVideoPixelCropRight & ElementToClone) :EbmlUInteger(ElementToClone) {}
 
         EBML_CONCRETE_CLASS(KaxVideoPixelCropRight)
 };
 
-class MATROSKA_DLL_API KaxVideoDisplayWidth : public EbmlUInteger {
+DECLARE_MKX_UINTEGER(KaxVideoDisplayWidth)
 	public:
-		KaxVideoDisplayWidth() {}
 		KaxVideoDisplayWidth(const KaxVideoDisplayWidth & ElementToClone) :EbmlUInteger(ElementToClone) {}
 
         EBML_CONCRETE_CLASS(KaxVideoDisplayWidth)
 };
 
-class MATROSKA_DLL_API KaxVideoDisplayHeight : public EbmlUInteger {
+DECLARE_MKX_UINTEGER(KaxVideoDisplayHeight)
 	public:
-		KaxVideoDisplayHeight() {}
 		KaxVideoDisplayHeight(const KaxVideoDisplayHeight & ElementToClone) :EbmlUInteger(ElementToClone) {}
 
         EBML_CONCRETE_CLASS(KaxVideoDisplayHeight)
 };
 
 #if MATROSKA_VERSION >= 2
-class MATROSKA_DLL_API KaxVideoDisplayUnit : public EbmlUInteger {
+DECLARE_MKX_UINTEGER(KaxVideoDisplayUnit)
 	public:
-		KaxVideoDisplayUnit() {}
 		KaxVideoDisplayUnit(const KaxVideoDisplayUnit & ElementToClone) :EbmlUInteger(ElementToClone) {}
 
         EBML_CONCRETE_CLASS(KaxVideoDisplayUnit)
 };
 
-class MATROSKA_DLL_API KaxVideoAspectRatio : public EbmlUInteger {
+DECLARE_MKX_UINTEGER(KaxVideoAspectRatio)
 	public:
-		KaxVideoAspectRatio() {}
 		KaxVideoAspectRatio(const KaxVideoAspectRatio & ElementToClone) :EbmlUInteger(ElementToClone) {}
 
         EBML_CONCRETE_CLASS(KaxVideoAspectRatio)
 };
 #endif // MATROSKA_VERSION
 
-class MATROSKA_DLL_API KaxVideoColourSpace : public EbmlBinary {
+DECLARE_MKX_BINARY(KaxVideoColourSpace)
 	public:
-		KaxVideoColourSpace() {}
 		KaxVideoColourSpace(const KaxVideoColourSpace & ElementToClone) :EbmlBinary(ElementToClone){}
         bool ValidateSize(void) const {return (GetSize() == 4);}
 
@@ -163,18 +150,16 @@ class MATROSKA_DLL_API KaxVideoColourSpace : public EbmlBinary {
 };
 
 #if MATROSKA_VERSION >= 2
-class MATROSKA_DLL_API KaxVideoGamma : public EbmlFloat {
+DECLARE_MKX_FLOAT(KaxVideoGamma)
 	public:
-		KaxVideoGamma() {}
 		KaxVideoGamma(const KaxVideoGamma & ElementToClone) :EbmlFloat(ElementToClone) {}
 
         EBML_CONCRETE_CLASS(KaxVideoGamma)
 };
 #endif // MATROSKA_VERSION
 
-class MATROSKA_DLL_API KaxVideoFrameRate : public EbmlFloat {
+DECLARE_MKX_FLOAT(KaxVideoFrameRate)
 	public:
-		KaxVideoFrameRate() {}
 		KaxVideoFrameRate(const KaxVideoFrameRate & ElementToClone) :EbmlFloat(ElementToClone) {}
 		filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault);
 

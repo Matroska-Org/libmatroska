@@ -64,20 +64,20 @@ static const EbmlSemantic ContextList_KaxContentEncryption[6] = {
   EbmlSemantic(false, true, EBML_INFO(KaxContentSigHashAlgo)),
 };
 
-DEFINE_MKX_MASTER  (KaxContentEncodings,     0x6d80, 2, KaxTrackEntry, "ContentEncodings");
-DEFINE_MKX_MASTER  (KaxContentEncoding,      0x6240, 2, KaxContentEncodings, "ContentEncoding");
-DEFINE_MKX_UINTEGER(KaxContentEncodingOrder, 0x5031, 2, KaxContentEncoding, "ContentEncodingOrder");
-DEFINE_MKX_UINTEGER(KaxContentEncodingScope, 0x5032, 2, KaxContentEncoding, "ContentEncodingScope");
-DEFINE_MKX_UINTEGER(KaxContentEncodingType,  0x5033, 2, KaxContentEncoding, "ContentEncodingType");
-DEFINE_MKX_MASTER  (KaxContentCompression,   0x5034, 2, KaxContentEncoding, "ContentCompression");
-DEFINE_MKX_UINTEGER(KaxContentCompAlgo,      0x4254, 2, KaxContentCompression, "ContentCompAlgo");
-DEFINE_MKX_UINTEGER(KaxContentCompSettings,  0x4255, 2, KaxContentCompression, "ContentCompSettings");
-DEFINE_MKX_MASTER  (KaxContentEncryption,    0x5035, 2, KaxContentEncoding, "ContentEncryption");
-DEFINE_MKX_UINTEGER(KaxContentEncAlgo,       0x47e1, 2, KaxContentEncryption, "ContentEncAlgo");
-DEFINE_MKX_BINARY  (KaxContentEncKeyID,      0x47e2, 2, KaxContentEncryption, "ContentEncKeyID");
-DEFINE_MKX_BINARY  (KaxContentSignature,     0x47e3, 2, KaxContentEncryption, "ContentSignature");
-DEFINE_MKX_BINARY  (KaxContentSigKeyID,      0x47e4, 2, KaxContentEncryption, "ContentSigKeyID");
-DEFINE_MKX_UINTEGER(KaxContentSigAlgo,       0x47e5, 2, KaxContentEncryption, "ContentSigAlgo");
-DEFINE_MKX_UINTEGER(KaxContentSigHashAlgo,   0x47e6, 2, KaxContentEncryption, "ContentSigHashAlgo");
+DEFINE_MKX_MASTER      (KaxContentEncodings,     0x6d80, 2, KaxTrackEntry, "ContentEncodings");
+DEFINE_MKX_MASTER      (KaxContentEncoding,      0x6240, 2, KaxContentEncodings, "ContentEncoding");
+DEFINE_MKX_UINTEGER_DEF(KaxContentEncodingOrder, 0x5031, 2, KaxContentEncoding, "ContentEncodingOrder", 0);
+DEFINE_MKX_UINTEGER_DEF(KaxContentEncodingScope, 0x5032, 2, KaxContentEncoding, "ContentEncodingScope", 1);
+DEFINE_MKX_UINTEGER_DEF(KaxContentEncodingType,  0x5033, 2, KaxContentEncoding, "ContentEncodingType", 0);
+DEFINE_MKX_MASTER      (KaxContentCompression,   0x5034, 2, KaxContentEncoding, "ContentCompression");
+DEFINE_MKX_UINTEGER_DEF(KaxContentCompAlgo,      0x4254, 2, KaxContentCompression, "ContentCompAlgo", 0);
+DEFINE_MKX_UINTEGER    (KaxContentCompSettings,  0x4255, 2, KaxContentCompression, "ContentCompSettings");
+DEFINE_MKX_MASTER      (KaxContentEncryption,    0x5035, 2, KaxContentEncoding, "ContentEncryption");
+DEFINE_MKX_UINTEGER_DEF(KaxContentEncAlgo,       0x47e1, 2, KaxContentEncryption, "ContentEncAlgo", 0);
+DEFINE_MKX_BINARY      (KaxContentEncKeyID,      0x47e2, 2, KaxContentEncryption, "ContentEncKeyID");
+DEFINE_MKX_BINARY      (KaxContentSignature,     0x47e3, 2, KaxContentEncryption, "ContentSignature");
+DEFINE_MKX_BINARY      (KaxContentSigKeyID,      0x47e4, 2, KaxContentEncryption, "ContentSigKeyID");
+DEFINE_MKX_UINTEGER_DEF(KaxContentSigAlgo,       0x47e5, 2, KaxContentEncryption, "ContentSigAlgo", 0);
+DEFINE_MKX_UINTEGER_DEF(KaxContentSigHashAlgo,   0x47e6, 2, KaxContentEncryption, "ContentSigHashAlgo", 0);
 
 END_LIBMATROSKA_NAMESPACE

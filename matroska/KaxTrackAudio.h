@@ -40,47 +40,43 @@
 #include "ebml/EbmlFloat.h"
 #include "ebml/EbmlUInteger.h"
 #include "ebml/EbmlBinary.h"
+#include "matroska/KaxDefines.h"
 
 using namespace LIBEBML_NAMESPACE;
 
 START_LIBMATROSKA_NAMESPACE
 
-class MATROSKA_DLL_API KaxTrackAudio : public EbmlMaster {
+DECLARE_MKX_MASTER(KaxTrackAudio)
 	public:
-		KaxTrackAudio();
 		KaxTrackAudio(const KaxTrackAudio & ElementToClone) :EbmlMaster(ElementToClone) {}
 
         EBML_CONCRETE_CLASS(KaxTrackAudio)
 };
 
-class MATROSKA_DLL_API KaxAudioSamplingFreq : public EbmlFloat {
+DECLARE_MKX_FLOAT(KaxAudioSamplingFreq)
 	public:
-		KaxAudioSamplingFreq() :EbmlFloat(8000.0) {}
 		KaxAudioSamplingFreq(const KaxAudioSamplingFreq & ElementToClone) :EbmlFloat(ElementToClone) {}
 
         EBML_CONCRETE_CLASS(KaxAudioSamplingFreq)
 };
 
-class MATROSKA_DLL_API KaxAudioOutputSamplingFreq : public EbmlFloat {
+DECLARE_MKX_FLOAT(KaxAudioOutputSamplingFreq)
 	public:
-		KaxAudioOutputSamplingFreq() :EbmlFloat() {}
 		KaxAudioOutputSamplingFreq(const KaxAudioOutputSamplingFreq & ElementToClone) :EbmlFloat(ElementToClone) {}
 
         EBML_CONCRETE_CLASS(KaxAudioOutputSamplingFreq)
 };
 
-class MATROSKA_DLL_API KaxAudioChannels : public EbmlUInteger {
+DECLARE_MKX_UINTEGER(KaxAudioChannels)
 	public:
-		KaxAudioChannels() :EbmlUInteger(1) {}
 		KaxAudioChannels(const KaxAudioChannels & ElementToClone) :EbmlUInteger(ElementToClone) {}
 
         EBML_CONCRETE_CLASS(KaxAudioChannels)
 };
 
 #if MATROSKA_VERSION >= 2
-class MATROSKA_DLL_API KaxAudioPosition : public EbmlBinary {
+DECLARE_MKX_BINARY(KaxAudioPosition)
 	public:
-		KaxAudioPosition() {}
 		KaxAudioPosition(const KaxAudioPosition & ElementToClone) :EbmlBinary(ElementToClone){}
         bool ValidateSize(void) const {return true;}
 		
@@ -88,9 +84,8 @@ class MATROSKA_DLL_API KaxAudioPosition : public EbmlBinary {
 };
 #endif // MATROSKA_VERSION
 
-class MATROSKA_DLL_API KaxAudioBitDepth : public EbmlUInteger {
+DECLARE_MKX_UINTEGER(KaxAudioBitDepth)
 	public:
-		KaxAudioBitDepth() {}
 		KaxAudioBitDepth(const KaxAudioBitDepth & ElementToClone) :EbmlUInteger(ElementToClone) {}
 
         EBML_CONCRETE_CLASS(KaxAudioBitDepth)

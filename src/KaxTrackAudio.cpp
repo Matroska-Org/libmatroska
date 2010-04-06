@@ -55,13 +55,13 @@ static const EbmlSemantic ContextList_KaxTrackAudio[5] =
 #endif // MATROSKA_VERSION
 };
 
-DEFINE_MKX_MASTER  (KaxTrackAudio,                0xE1, 1, KaxTrackEntry, "TrackAudio");
-DEFINE_MKX_FLOAT   (KaxAudioSamplingFreq,         0xB5, 1, KaxTrackAudio, "AudioSamplingFreq");
-DEFINE_MKX_FLOAT   (KaxAudioOutputSamplingFreq, 0x78B5, 2, KaxTrackAudio, "AudioOutputSamplingFreq");
-DEFINE_MKX_UINTEGER(KaxAudioChannels,             0x9F, 1, KaxTrackAudio, "AudioChannels");
-DEFINE_MKX_UINTEGER(KaxAudioBitDepth,           0x6264, 2, KaxTrackAudio, "AudioBitDepth");
+DEFINE_MKX_MASTER      (KaxTrackAudio,                0xE1, 1, KaxTrackEntry, "TrackAudio");
+DEFINE_MKX_FLOAT_DEF   (KaxAudioSamplingFreq,         0xB5, 1, KaxTrackAudio, "AudioSamplingFreq", 8000.0);
+DEFINE_MKX_FLOAT       (KaxAudioOutputSamplingFreq, 0x78B5, 2, KaxTrackAudio, "AudioOutputSamplingFreq");
+DEFINE_MKX_UINTEGER_DEF(KaxAudioChannels,             0x9F, 1, KaxTrackAudio, "AudioChannels", 1);
+DEFINE_MKX_UINTEGER    (KaxAudioBitDepth,           0x6264, 2, KaxTrackAudio, "AudioBitDepth");
 #if MATROSKA_VERSION >= 2
-DEFINE_MKX_BINARY  (KaxAudioPosition,           0x7D7B, 2, KaxTrackAudio, "AudioPosition");
+DEFINE_MKX_BINARY      (KaxAudioPosition,           0x7D7B, 2, KaxTrackAudio, "AudioPosition");
 #endif
 
 END_LIBMATROSKA_NAMESPACE

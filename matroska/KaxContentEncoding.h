@@ -39,77 +39,70 @@
 #include "ebml/EbmlMaster.h"
 #include "ebml/EbmlUInteger.h"
 #include "ebml/EbmlBinary.h"
+#include "matroska/KaxDefines.h"
 
 using namespace LIBEBML_NAMESPACE;
 
 START_LIBMATROSKA_NAMESPACE
 
-class MATROSKA_DLL_API KaxContentEncodings: public EbmlMaster {
+DECLARE_MKX_MASTER(KaxContentEncodings)
     public:
-        KaxContentEncodings();
         KaxContentEncodings(const KaxContentEncodings &ElementToClone):
             EbmlMaster(ElementToClone) {}
 
         EBML_CONCRETE_CLASS(KaxContentEncodings)
 };
 
-class MATROSKA_DLL_API KaxContentEncoding: public EbmlMaster {
+DECLARE_MKX_MASTER(KaxContentEncoding)
     public:
-        KaxContentEncoding();
         KaxContentEncoding(const KaxContentEncoding &ElementToClone):
             EbmlMaster(ElementToClone) {}
 
         EBML_CONCRETE_CLASS(KaxContentEncoding)
 };
 
-class MATROSKA_DLL_API KaxContentEncodingOrder: public EbmlUInteger {
+DECLARE_MKX_UINTEGER(KaxContentEncodingOrder)
     public:
-        KaxContentEncodingOrder(): EbmlUInteger(0) {}
         KaxContentEncodingOrder(const KaxContentEncodingOrder &ElementToClone):
             EbmlUInteger(ElementToClone) {}
 
         EBML_CONCRETE_CLASS(KaxContentEncodingOrder)
 };
 
-class MATROSKA_DLL_API KaxContentEncodingScope: public EbmlUInteger {
+DECLARE_MKX_UINTEGER(KaxContentEncodingScope)
     public:
-        KaxContentEncodingScope(): EbmlUInteger(1) {}
         KaxContentEncodingScope(const KaxContentEncodingScope &ElementToClone):
         EbmlUInteger(ElementToClone) {}
 
         EBML_CONCRETE_CLASS(KaxContentEncodingScope)
 };
 
-class MATROSKA_DLL_API KaxContentEncodingType: public EbmlUInteger {
+DECLARE_MKX_UINTEGER(KaxContentEncodingType)
     public:
-        KaxContentEncodingType(): EbmlUInteger(0) {}
         KaxContentEncodingType(const KaxContentEncodingType &ElementToClone):
             EbmlUInteger(ElementToClone) {}
 
         EBML_CONCRETE_CLASS(KaxContentEncodingType)
 };
 
-class MATROSKA_DLL_API KaxContentCompression: public EbmlMaster {
+DECLARE_MKX_MASTER(KaxContentCompression)
     public:
-        KaxContentCompression();
         KaxContentCompression(const KaxContentCompression &ElementToClone):
             EbmlMaster(ElementToClone) {}
 
         EBML_CONCRETE_CLASS(KaxContentCompression)
 };
 
-class MATROSKA_DLL_API KaxContentCompAlgo: public EbmlUInteger {
+DECLARE_MKX_UINTEGER(KaxContentCompAlgo)
     public:
-        KaxContentCompAlgo(): EbmlUInteger(0) {}
         KaxContentCompAlgo(const KaxContentCompAlgo &ElementToClone):
             EbmlUInteger(ElementToClone) {}
 
         EBML_CONCRETE_CLASS(KaxContentCompAlgo)
 };
 
-class MATROSKA_DLL_API KaxContentCompSettings: public EbmlBinary {
+DECLARE_MKX_BINARY(KaxContentCompSettings)
     public:
-        KaxContentCompSettings() {}
         KaxContentCompSettings(const KaxContentCompSettings &ElementToClone):
             EbmlBinary(ElementToClone) {}
         bool ValidateSize(void) const { return true; }
@@ -117,27 +110,24 @@ class MATROSKA_DLL_API KaxContentCompSettings: public EbmlBinary {
         EBML_CONCRETE_CLASS(KaxContentCompSettings)
 };
 
-class MATROSKA_DLL_API KaxContentEncryption: public EbmlMaster {
+DECLARE_MKX_MASTER(KaxContentEncryption)
     public:
-        KaxContentEncryption();
         KaxContentEncryption(const KaxContentEncryption &ElementToClone):
             EbmlMaster(ElementToClone) {}
 
         EBML_CONCRETE_CLASS(KaxContentEncryption)
 };
 
-class MATROSKA_DLL_API KaxContentEncAlgo: public EbmlUInteger {
+DECLARE_MKX_UINTEGER(KaxContentEncAlgo)
     public:
-        KaxContentEncAlgo(): EbmlUInteger(0) {}
         KaxContentEncAlgo(const KaxContentEncAlgo &ElementToClone):
             EbmlUInteger(ElementToClone) {}
 
         EBML_CONCRETE_CLASS(KaxContentEncAlgo)
 };
 
-class MATROSKA_DLL_API KaxContentEncKeyID: public EbmlBinary {
+DECLARE_MKX_BINARY(KaxContentEncKeyID)
     public:
-        KaxContentEncKeyID() {}
         KaxContentEncKeyID(const KaxContentEncKeyID &ElementToClone):
             EbmlBinary(ElementToClone) {}
         bool ValidateSize(void) const { return true; }
@@ -145,9 +135,8 @@ class MATROSKA_DLL_API KaxContentEncKeyID: public EbmlBinary {
         EBML_CONCRETE_CLASS(KaxContentEncKeyID)
 };
 
-class MATROSKA_DLL_API KaxContentSignature: public EbmlBinary {
+DECLARE_MKX_BINARY(KaxContentSignature)
     public:
-        KaxContentSignature() {}
         KaxContentSignature(const KaxContentSignature &ElementToClone):
             EbmlBinary(ElementToClone) {}
         bool ValidateSize(void) const { return true; }
@@ -155,9 +144,8 @@ class MATROSKA_DLL_API KaxContentSignature: public EbmlBinary {
         EBML_CONCRETE_CLASS(KaxContentSignature)
 };
 
-class MATROSKA_DLL_API KaxContentSigKeyID: public EbmlBinary {
+DECLARE_MKX_BINARY(KaxContentSigKeyID)
     public:
-        KaxContentSigKeyID() {}
         KaxContentSigKeyID(const KaxContentSigKeyID &ElementToClone):
             EbmlBinary(ElementToClone) {}
         bool ValidateSize(void) const { return true; }
@@ -165,18 +153,16 @@ class MATROSKA_DLL_API KaxContentSigKeyID: public EbmlBinary {
         EBML_CONCRETE_CLASS(KaxContentSigKeyID)
 };
 
-class MATROSKA_DLL_API KaxContentSigAlgo: public EbmlUInteger {
+DECLARE_MKX_UINTEGER(KaxContentSigAlgo)
     public:
-        KaxContentSigAlgo() {}
         KaxContentSigAlgo(const KaxContentSigAlgo &ElementToClone):
             EbmlUInteger(ElementToClone) {}
 
         EBML_CONCRETE_CLASS(KaxContentSigAlgo)
 };
 
-class MATROSKA_DLL_API KaxContentSigHashAlgo: public EbmlUInteger {
+DECLARE_MKX_UINTEGER(KaxContentSigHashAlgo)
     public:
-        KaxContentSigHashAlgo() {}
         KaxContentSigHashAlgo(const KaxContentSigHashAlgo &ElementToClone):
             EbmlUInteger(ElementToClone) {}
 

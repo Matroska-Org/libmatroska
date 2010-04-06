@@ -41,46 +41,42 @@
 #include "ebml/EbmlString.h"
 #include "ebml/EbmlBinary.h"
 #include "ebml/EbmlUInteger.h"
+#include "matroska/KaxDefines.h"
 
 using namespace LIBEBML_NAMESPACE;
 
 START_LIBMATROSKA_NAMESPACE
 
-class MATROSKA_DLL_API KaxAttached : public EbmlMaster {
+DECLARE_MKX_MASTER(KaxAttached)
 	public:
-		KaxAttached();
 		KaxAttached(const KaxAttached & ElementToClone) : EbmlMaster(ElementToClone) {}
         
         EBML_CONCRETE_CLASS(KaxAttached)
 };
 
-class MATROSKA_DLL_API KaxFileDescription : public EbmlUnicodeString {
+DECLARE_MKX_UNISTRING(KaxFileDescription)
 	public:
-		KaxFileDescription() {}
 		KaxFileDescription(const KaxFileDescription & ElementToClone) : EbmlUnicodeString(ElementToClone) {}
         
         EBML_CONCRETE_CLASS(KaxFileDescription)
 };
 
-class MATROSKA_DLL_API KaxFileName : public EbmlUnicodeString {
+DECLARE_MKX_UNISTRING(KaxFileName)
 	public:
-		KaxFileName() {}
 		KaxFileName(const KaxFileName & ElementToClone) : EbmlUnicodeString(ElementToClone) {}
         
         EBML_CONCRETE_CLASS(KaxFileName)
 };
 
-class MATROSKA_DLL_API KaxMimeType : public EbmlString {
+DECLARE_MKX_STRING(KaxMimeType)
 	public:
-		KaxMimeType() {}
 		KaxMimeType(const KaxMimeType & ElementToClone) : EbmlString(ElementToClone) {}
         
         EBML_CONCRETE_CLASS(KaxMimeType)
 };
 
-class MATROSKA_DLL_API KaxFileData : public EbmlBinary {
+DECLARE_MKX_BINARY(KaxFileData)
 	public:
-		KaxFileData() {}
 		KaxFileData(const KaxFileData & ElementToClone) :EbmlBinary(ElementToClone){}
 	
 		bool ValidateSize() const {return true;} // we don't mind about what's inside
@@ -88,18 +84,16 @@ class MATROSKA_DLL_API KaxFileData : public EbmlBinary {
         EBML_CONCRETE_CLASS(KaxFileData)
 };
 
-class MATROSKA_DLL_API KaxFileReferral : public EbmlBinary {
+DECLARE_MKX_BINARY(KaxFileReferral)
 	public:
-		KaxFileReferral() {}
 		KaxFileReferral(const KaxFileReferral & ElementToClone) :EbmlBinary(ElementToClone){}
 		bool ValidateSize() const {return true;} // we don't mind about what's inside
 		
         EBML_CONCRETE_CLASS(KaxFileReferral)
 };
 
-class MATROSKA_DLL_API KaxFileUID : public EbmlUInteger {
+DECLARE_MKX_UINTEGER(KaxFileUID)
 	public:
-		KaxFileUID() {}
 		KaxFileUID(const KaxFileUID & ElementToClone) : EbmlUInteger(ElementToClone) {}
         
         EBML_CONCRETE_CLASS(KaxFileUID)

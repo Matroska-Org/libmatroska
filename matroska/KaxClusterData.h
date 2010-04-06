@@ -38,46 +38,42 @@
 #include "matroska/KaxTypes.h"
 #include "ebml/EbmlMaster.h"
 #include "ebml/EbmlUInteger.h"
+#include "matroska/KaxDefines.h"
 
 using namespace LIBEBML_NAMESPACE;
 
 START_LIBMATROSKA_NAMESPACE
 
-class MATROSKA_DLL_API KaxClusterTimecode : public EbmlUInteger {
+DECLARE_MKX_UINTEGER(KaxClusterTimecode)
 	public:
-		KaxClusterTimecode() {}
 		KaxClusterTimecode(const KaxClusterTimecode & ElementToClone) :EbmlUInteger(ElementToClone) {}
 
         EBML_CONCRETE_CLASS(KaxClusterTimecode)
 };
 
-class MATROSKA_DLL_API KaxClusterSilentTracks : public EbmlMaster {
+DECLARE_MKX_MASTER(KaxClusterSilentTracks)
 	public:
-		KaxClusterSilentTracks();
 		KaxClusterSilentTracks(const KaxClusterSilentTracks & ElementToClone) :EbmlMaster(ElementToClone) {}
 
         EBML_CONCRETE_CLASS(KaxClusterSilentTracks)
 };
 
-class MATROSKA_DLL_API KaxClusterSilentTrackNumber : public EbmlUInteger {
+DECLARE_MKX_UINTEGER(KaxClusterSilentTrackNumber)
 	public:
-		KaxClusterSilentTrackNumber() {}
 		KaxClusterSilentTrackNumber(const KaxClusterSilentTrackNumber & ElementToClone) :EbmlUInteger(ElementToClone) {}
 
         EBML_CONCRETE_CLASS(KaxClusterSilentTrackNumber)
 };
 
-class MATROSKA_DLL_API KaxClusterPosition : public EbmlUInteger {
+DECLARE_MKX_UINTEGER(KaxClusterPosition)
 	public:
-		KaxClusterPosition() {}
 		KaxClusterPosition(const KaxClusterPosition & ElementToClone) :EbmlUInteger(ElementToClone) {}
 
         EBML_CONCRETE_CLASS(KaxClusterPosition)
 };
 
-class MATROSKA_DLL_API KaxClusterPrevSize : public EbmlUInteger {
+DECLARE_MKX_UINTEGER(KaxClusterPrevSize)
 	public:
-		KaxClusterPrevSize() {}
 		KaxClusterPrevSize(const KaxClusterPrevSize & ElementToClone) :EbmlUInteger(ElementToClone) {}
 
         EBML_CONCRETE_CLASS(KaxClusterPrevSize)

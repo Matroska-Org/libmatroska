@@ -41,6 +41,7 @@
 #include "matroska/KaxBlock.h"
 #include "matroska/KaxCues.h"
 #include "matroska/KaxClusterData.h"
+#include "matroska/KaxDefines.h"
 
 using namespace LIBEBML_NAMESPACE;
 
@@ -48,9 +49,8 @@ START_LIBMATROSKA_NAMESPACE
 
 class KaxSegment;
 
-class MATROSKA_DLL_API KaxCluster : public EbmlMaster {
+DECLARE_MKX_MASTER(KaxCluster)
 	public:
-		KaxCluster();
 		KaxCluster(const KaxCluster & ElementToClone);
 
 		/*!

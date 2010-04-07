@@ -85,8 +85,6 @@ DECLARE_MKX_MASTER(KaxCues)
 		std::vector<const KaxBlockBlob *> myTempReferences;
 		bool   bGlobalTimecodeScaleIsSet;
 		uint64 mGlobalTimecodeScale;
-
-        EBML_CONCRETE_CLASS(KaxCues)
 };
 
 END_LIBMATROSKA_NAMESPACE

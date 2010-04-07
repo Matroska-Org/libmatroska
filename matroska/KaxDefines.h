@@ -61,32 +61,42 @@
 
 #define DECLARE_MKX_MASTER(x)     DECLARE_MKX_CONTEXT(x) \
 class MATROSKA_DLL_API x : public EbmlMaster { \
-    public: x();
+    public: x(); \
+    EBML_CONCRETE_CLASS(x)
 #define DECLARE_MKX_BINARY(x)     DECLARE_MKX_CONTEXT(x) \
   class MATROSKA_DLL_API x : public EbmlBinary { \
-    public: x();
+    public: x(); \
+    EBML_CONCRETE_CLASS(x)
 #define DECLARE_MKX_BINARY_CONS(x) DECLARE_MKX_CONTEXT(x) \
-  class MATROSKA_DLL_API x : public EbmlBinary {
+  class MATROSKA_DLL_API x : public EbmlBinary { \
+    EBML_CONCRETE_CLASS(x)
 #define DECLARE_MKX_UNISTRING(x)  DECLARE_MKX_CONTEXT(x) \
   class MATROSKA_DLL_API x : public EbmlUnicodeString { \
-    public: x();
+    public: x(); \
+    EBML_CONCRETE_CLASS(x)
 #define DECLARE_MKX_STRING(x)     DECLARE_MKX_CONTEXT(x) \
   class MATROSKA_DLL_API x : public EbmlString { \
-    public: x();
+    public: x(); \
+    EBML_CONCRETE_CLASS(x)
 #define DECLARE_MKX_UINTEGER(x)   DECLARE_MKX_CONTEXT(x) \
   class MATROSKA_DLL_API x : public EbmlUInteger { \
-    public: x();
+    public: x(); \
+    EBML_CONCRETE_CLASS(x)
 #define DECLARE_MKX_SINTEGER_CONS(x)   DECLARE_MKX_CONTEXT(x) \
-  class MATROSKA_DLL_API x : public EbmlSInteger {
+  class MATROSKA_DLL_API x : public EbmlSInteger { \
+    EBML_CONCRETE_CLASS(x)
 #define DECLARE_MKX_SINTEGER(x)   DECLARE_MKX_CONTEXT(x) \
   class MATROSKA_DLL_API x : public EbmlSInteger { \
-    public: x();
+    public: x(); \
+    EBML_CONCRETE_CLASS(x)
 #define DECLARE_MKX_DATE(x)       DECLARE_MKX_CONTEXT(x) \
   class MATROSKA_DLL_API x : public EbmlDate { \
-    public: x();
+    public: x(); \
+    EBML_CONCRETE_CLASS(x)
 #define DECLARE_MKX_FLOAT(x)      DECLARE_MKX_CONTEXT(x) \
   class MATROSKA_DLL_API x : public EbmlFloat { \
-    public: x();
+    public: x(); \
+    EBML_CONCRETE_CLASS(x)
 
 #else
 #define DEFINE_MKX_CONTEXT(a)                DEFINE_xxx_CONTEXT(a,*GetKaxGlobal_Context)
@@ -112,32 +122,42 @@ class MATROSKA_DLL_API x : public EbmlMaster { \
 
 #define DECLARE_MKX_MASTER(x)     DECLARE_MKX_CONTEXT(x) \
 class MATROSKA_DLL_API x : public EbmlMaster { \
-    public: x();
+    public: x(); \
+    EBML_CONCRETE_CLASS(x)
 #define DECLARE_MKX_BINARY(x)     DECLARE_MKX_CONTEXT(x) \
   class MATROSKA_DLL_API x : public EbmlBinary { \
-    public: x();
+    public: x(); \
+    EBML_CONCRETE_CLASS(x)
 #define DECLARE_MKX_BINARY_CONS(x) DECLARE_MKX_CONTEXT(x) \
-  class MATROSKA_DLL_API x : public EbmlBinary {
+  class MATROSKA_DLL_API x : public EbmlBinary { \
+    EBML_CONCRETE_CLASS(x)
 #define DECLARE_MKX_UNISTRING(x)  DECLARE_MKX_CONTEXT(x) \
   class MATROSKA_DLL_API x : public EbmlUnicodeString { \
-    public: x();
+    public: x(); \
+    EBML_CONCRETE_CLASS(x)
 #define DECLARE_MKX_STRING(x)     DECLARE_MKX_CONTEXT(x) \
   class MATROSKA_DLL_API x : public EbmlString { \
-    public: x();
+    public: x(); \
+    EBML_CONCRETE_CLASS(x)
 #define DECLARE_MKX_UINTEGER(x)   DECLARE_MKX_CONTEXT(x) \
   class MATROSKA_DLL_API x : public EbmlUInteger { \
-    public: x();
+    public: x(); \
+    EBML_CONCRETE_CLASS(x)
 #define DECLARE_MKX_SINTEGER_CONS(x)   DECLARE_MKX_CONTEXT(x) \
-  class MATROSKA_DLL_API x : public EbmlSInteger {
+  class MATROSKA_DLL_API x : public EbmlSInteger { \
+    EBML_CONCRETE_CLASS(x)
 #define DECLARE_MKX_SINTEGER(x)   DECLARE_MKX_CONTEXT(x) \
   class MATROSKA_DLL_API x : public EbmlSInteger { \
-    public: x();
+    public: x(); \
+    EBML_CONCRETE_CLASS(x)
 #define DECLARE_MKX_DATE(x)       DECLARE_MKX_CONTEXT(x) \
   class MATROSKA_DLL_API x : public EbmlDate { \
-    public: x();
+    public: x(); \
+    EBML_CONCRETE_CLASS(x)
 #define DECLARE_MKX_FLOAT(x)      DECLARE_MKX_CONTEXT(x) \
   class MATROSKA_DLL_API x : public EbmlFloat { \
-    public: x();
+    public: x(); \
+    EBML_CONCRETE_CLASS(x)
 #endif
 
 #endif // LIBMATROSKA_DEFINES_H

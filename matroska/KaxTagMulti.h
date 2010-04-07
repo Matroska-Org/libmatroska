@@ -126,391 +126,277 @@ enum KaxTagMultiTitleTypes {
 DECLARE_MKX_MASTER(KaxTagMultiComment)
 	public:
 		KaxTagMultiComment(const KaxTagMultiComment & ElementToClone) :EbmlMaster(ElementToClone) {}
-
-        EBML_CONCRETE_CLASS(KaxTagMultiComment)
 };
 
 DECLARE_MKX_STRING(KaxTagMultiCommentName)
 	public:
 		KaxTagMultiCommentName(const KaxTagMultiCommentName & ElementToClone) :EbmlString(ElementToClone) {}
-
-        EBML_CONCRETE_CLASS(KaxTagMultiCommentName)
 };
 
 DECLARE_MKX_UNISTRING(KaxTagMultiCommentComments)
 	public:
 		KaxTagMultiCommentComments(const KaxTagMultiCommentComments & ElementToClone) :EbmlUnicodeString(ElementToClone) {}
-
-        EBML_CONCRETE_CLASS(KaxTagMultiCommentComments)
 };
 
 DECLARE_MKX_STRING(KaxTagMultiCommentLanguage)
 	public:
 		KaxTagMultiCommentLanguage(const KaxTagMultiCommentLanguage & ElementToClone) :EbmlString(ElementToClone) {}
-
-        EBML_CONCRETE_CLASS(KaxTagMultiCommentLanguage)
 };
 
 DECLARE_MKX_MASTER(KaxTagMultiCommercial)
 	public:
 		KaxTagMultiCommercial(const KaxTagMultiCommercial & ElementToClone) :EbmlMaster(ElementToClone) {}
-
-        EBML_CONCRETE_CLASS(KaxTagMultiCommercial)
 };
 
 DECLARE_MKX_MASTER(KaxTagCommercial)
 	public:
 		KaxTagCommercial(const KaxTagCommercial & ElementToClone) :EbmlMaster(ElementToClone) {}
-
-        EBML_CONCRETE_CLASS(KaxTagCommercial)
 };
 
 DECLARE_MKX_UINTEGER(KaxTagMultiCommercialType)
 	public:
 		KaxTagMultiCommercialType(const KaxTagMultiCommercialType & ElementToClone) :EbmlUInteger(ElementToClone) {}
-
-        EBML_CONCRETE_CLASS(KaxTagMultiCommercialType)
 };
 
 DECLARE_MKX_UNISTRING(KaxTagMultiCommercialAddress)
 	public:
 		KaxTagMultiCommercialAddress(const KaxTagMultiCommercialAddress & ElementToClone) :EbmlUnicodeString(ElementToClone) {}
-
-        EBML_CONCRETE_CLASS(KaxTagMultiCommercialAddress)
 };
 
 DECLARE_MKX_STRING(KaxTagMultiCommercialURL)
 	public:
 		KaxTagMultiCommercialURL(const KaxTagMultiCommercialURL & ElementToClone) :EbmlString(ElementToClone) {}
-
-        EBML_CONCRETE_CLASS(KaxTagMultiCommercialURL)
 };
 
 DECLARE_MKX_STRING(KaxTagMultiCommercialEmail)
 	public:
 		KaxTagMultiCommercialEmail(const KaxTagMultiCommercialEmail & ElementToClone) :EbmlString(ElementToClone) {}
-
-        EBML_CONCRETE_CLASS(KaxTagMultiCommercialEmail)
 };
 
 DECLARE_MKX_MASTER(KaxTagMultiPrice)
 	public:
 		KaxTagMultiPrice(const KaxTagMultiPrice & ElementToClone) :EbmlMaster(ElementToClone) {}
-
-        EBML_CONCRETE_CLASS(KaxTagMultiPrice)
 };
 
 DECLARE_MKX_STRING(KaxTagMultiPriceCurrency)
 	public:
 		KaxTagMultiPriceCurrency(const KaxTagMultiPriceCurrency & ElementToClone) :EbmlString(ElementToClone) {}
-
-        EBML_CONCRETE_CLASS(KaxTagMultiPriceCurrency)
 };
 
 DECLARE_MKX_FLOAT(KaxTagMultiPriceAmount)
 	public:
 		KaxTagMultiPriceAmount(const KaxTagMultiPriceAmount & ElementToClone) :EbmlFloat(ElementToClone) {}
-
-        EBML_CONCRETE_CLASS(KaxTagMultiPriceAmount)
 };
 
 DECLARE_MKX_DATE(KaxTagMultiPricePriceDate)
 	public:
 		KaxTagMultiPricePriceDate(const KaxTagMultiPricePriceDate & ElementToClone) :EbmlDate(ElementToClone) {}
-
-        EBML_CONCRETE_CLASS(KaxTagMultiPricePriceDate)
 };
 
 DECLARE_MKX_MASTER(KaxTagMultiDate)
 	public:
 		KaxTagMultiDate(const KaxTagMultiDate & ElementToClone) :EbmlMaster(ElementToClone) {}
-
-        EBML_CONCRETE_CLASS(KaxTagMultiDate)
 };
 
 DECLARE_MKX_MASTER(KaxTagDate)
 	public:
 		KaxTagDate(const KaxTagDate & ElementToClone) :EbmlMaster(ElementToClone) {}
-
-        EBML_CONCRETE_CLASS(KaxTagDate)
 };
 
 DECLARE_MKX_UINTEGER(KaxTagMultiDateType)
 	public:
 		KaxTagMultiDateType(const KaxTagMultiDateType & ElementToClone) :EbmlUInteger(ElementToClone) {}
-
-        EBML_CONCRETE_CLASS(KaxTagMultiDateType)
 };
 
 DECLARE_MKX_DATE(KaxTagMultiDateDateBegin)
 	public:
 		KaxTagMultiDateDateBegin(const KaxTagMultiDateDateBegin & ElementToClone) :EbmlDate(ElementToClone) {}
-
-        EBML_CONCRETE_CLASS(KaxTagMultiDateDateBegin)
 };
 
 DECLARE_MKX_DATE(KaxTagMultiDateDateEnd)
 	public:
 		KaxTagMultiDateDateEnd(const KaxTagMultiDateDateEnd & ElementToClone) :EbmlDate(ElementToClone) {}
-
-        EBML_CONCRETE_CLASS(KaxTagMultiDateDateEnd)
 };
 
 DECLARE_MKX_MASTER(KaxTagMultiEntity)
 	public:
 		KaxTagMultiEntity(const KaxTagMultiEntity & ElementToClone) :EbmlMaster(ElementToClone) {}
-
-        EBML_CONCRETE_CLASS(KaxTagMultiEntity)
 };
 
 DECLARE_MKX_MASTER(KaxTagEntity)
 	public:
 		KaxTagEntity(const KaxTagEntity & ElementToClone) :EbmlMaster(ElementToClone) {}
-
-        EBML_CONCRETE_CLASS(KaxTagEntity)
 };
 
 DECLARE_MKX_UINTEGER(KaxTagMultiEntityType)
 	public:
 		KaxTagMultiEntityType(const KaxTagMultiEntityType & ElementToClone) :EbmlUInteger(ElementToClone) {}
-
-        EBML_CONCRETE_CLASS(KaxTagMultiEntityType)
 };
 
 DECLARE_MKX_UNISTRING(KaxTagMultiEntityName)
 	public:
 		KaxTagMultiEntityName(const KaxTagMultiEntityName & ElementToClone) :EbmlUnicodeString(ElementToClone) {}
-
-        EBML_CONCRETE_CLASS(KaxTagMultiEntityName)
 };
 
 DECLARE_MKX_UNISTRING(KaxTagMultiEntityAddress)
 	public:
 		KaxTagMultiEntityAddress(const KaxTagMultiEntityAddress & ElementToClone) :EbmlUnicodeString(ElementToClone) {}
-
-        EBML_CONCRETE_CLASS(KaxTagMultiEntityAddress)
 };
 
 DECLARE_MKX_STRING(KaxTagMultiEntityURL)
 	public:
 		KaxTagMultiEntityURL(const KaxTagMultiEntityURL & ElementToClone) :EbmlString(ElementToClone) {}
-
-        EBML_CONCRETE_CLASS(KaxTagMultiEntityURL)
 };
 
 DECLARE_MKX_STRING(KaxTagMultiEntityEmail)
 	public:
 		KaxTagMultiEntityEmail(const KaxTagMultiEntityEmail & ElementToClone) :EbmlString(ElementToClone) {}
-
-        EBML_CONCRETE_CLASS(KaxTagMultiEntityEmail)
 };
 
 DECLARE_MKX_MASTER(KaxTagMultiIdentifier)
 	public:
 		KaxTagMultiIdentifier(const KaxTagMultiIdentifier & ElementToClone) :EbmlMaster(ElementToClone) {}
-
-        EBML_CONCRETE_CLASS(KaxTagMultiIdentifier)
 };
 
 DECLARE_MKX_MASTER(KaxTagIdentifier)
 	public:
 		KaxTagIdentifier(const KaxTagIdentifier & ElementToClone) :EbmlMaster(ElementToClone) {}
-
-        EBML_CONCRETE_CLASS(KaxTagIdentifier)
 };
 
 DECLARE_MKX_UINTEGER(KaxTagMultiIdentifierType)
 	public:
 		KaxTagMultiIdentifierType(const KaxTagMultiIdentifierType & ElementToClone) :EbmlUInteger(ElementToClone) {}
-
-        EBML_CONCRETE_CLASS(KaxTagMultiIdentifierType)
 };
 
 DECLARE_MKX_BINARY(KaxTagMultiIdentifierBinary)
 	public:
 		KaxTagMultiIdentifierBinary(const KaxTagMultiIdentifierBinary & ElementToClone) :EbmlBinary(ElementToClone){}
 		bool ValidateSize() const {return true;} // we don't mind about what's inside
-
-        EBML_CONCRETE_CLASS(KaxTagMultiIdentifierBinary)
 };
 
 DECLARE_MKX_UNISTRING(KaxTagMultiIdentifierString)
 	public:
 		KaxTagMultiIdentifierString(const KaxTagMultiIdentifierString & ElementToClone) :EbmlUnicodeString(ElementToClone) {}
-
-        EBML_CONCRETE_CLASS(KaxTagMultiIdentifierString)
 };
 
 DECLARE_MKX_MASTER(KaxTagMultiLegal)
 	public:
 		KaxTagMultiLegal(const KaxTagMultiLegal & ElementToClone) :EbmlMaster(ElementToClone) {}
-
-        EBML_CONCRETE_CLASS(KaxTagMultiLegal)
 };
 
 DECLARE_MKX_MASTER(KaxTagLegal)
 	public:
 		KaxTagLegal(const KaxTagLegal & ElementToClone) :EbmlMaster(ElementToClone) {}
-
-        EBML_CONCRETE_CLASS(KaxTagLegal)
 };
 
 DECLARE_MKX_UINTEGER(KaxTagMultiLegalType)
 	public:
 		KaxTagMultiLegalType(const KaxTagMultiLegalType & ElementToClone) :EbmlUInteger(ElementToClone) {}
-
-        EBML_CONCRETE_CLASS(KaxTagMultiLegalType)
 };
 
 DECLARE_MKX_UNISTRING(KaxTagMultiLegalContent)
 	public:
 		KaxTagMultiLegalContent(const KaxTagMultiLegalContent & ElementToClone) :EbmlUnicodeString(ElementToClone) {}
-
-        EBML_CONCRETE_CLASS(KaxTagMultiLegalContent)
 };
 
 DECLARE_MKX_STRING(KaxTagMultiLegalURL)
 	public:
 		KaxTagMultiLegalURL(const KaxTagMultiLegalURL & ElementToClone) :EbmlString(ElementToClone) {}
-
-        EBML_CONCRETE_CLASS(KaxTagMultiLegalURL)
 };
 
 DECLARE_MKX_UNISTRING(KaxTagMultiLegalAddress)
 	public:
 		KaxTagMultiLegalAddress(const KaxTagMultiLegalAddress & ElementToClone) :EbmlUnicodeString(ElementToClone) {}
-
-        EBML_CONCRETE_CLASS(KaxTagMultiLegalAddress)
 };
 
 DECLARE_MKX_MASTER(KaxTagMultiTitle)
 	public:
 		KaxTagMultiTitle(const KaxTagMultiTitle & ElementToClone) :EbmlMaster(ElementToClone) {}
-
-        EBML_CONCRETE_CLASS(KaxTagMultiTitle)
 };
 
 DECLARE_MKX_MASTER(KaxTagTitle)
 	public:
 		KaxTagTitle(const KaxTagTitle & ElementToClone) :EbmlMaster(ElementToClone) {}
-
-        EBML_CONCRETE_CLASS(KaxTagTitle)
 };
 
 DECLARE_MKX_UINTEGER(KaxTagMultiTitleType)
 	public:
 		KaxTagMultiTitleType(const KaxTagMultiTitleType & ElementToClone) :EbmlUInteger(ElementToClone) {}
-
-        EBML_CONCRETE_CLASS(KaxTagMultiTitleType)
 };
 
 
 DECLARE_MKX_UNISTRING(KaxTagMultiTitleName)
 	public:
 		KaxTagMultiTitleName(const KaxTagMultiTitleName & ElementToClone) :EbmlUnicodeString(ElementToClone) {}
-
-        EBML_CONCRETE_CLASS(KaxTagMultiTitleName)
 };
 
 DECLARE_MKX_UNISTRING(KaxTagMultiTitleSubTitle)
 	public:
 		KaxTagMultiTitleSubTitle(const KaxTagMultiTitleSubTitle & ElementToClone) :EbmlUnicodeString(ElementToClone) {}
-
-        EBML_CONCRETE_CLASS(KaxTagMultiTitleSubTitle)
 };
 
 DECLARE_MKX_UNISTRING(KaxTagMultiTitleEdition)
 	public:
 		KaxTagMultiTitleEdition(const KaxTagMultiTitleEdition & ElementToClone) :EbmlUnicodeString(ElementToClone) {}
-
-        EBML_CONCRETE_CLASS(KaxTagMultiTitleEdition)
 };
 
 DECLARE_MKX_UNISTRING(KaxTagMultiTitleAddress)
 	public:
 		KaxTagMultiTitleAddress(const KaxTagMultiTitleAddress & ElementToClone) :EbmlUnicodeString(ElementToClone) {}
-
-        EBML_CONCRETE_CLASS(KaxTagMultiTitleAddress)
 };
 
 DECLARE_MKX_STRING(KaxTagMultiTitleURL)
 	public:
 		KaxTagMultiTitleURL(const KaxTagMultiTitleURL & ElementToClone) :EbmlString(ElementToClone) {}
-
-        EBML_CONCRETE_CLASS(KaxTagMultiTitleURL)
 };
 
 DECLARE_MKX_STRING(KaxTagMultiTitleEmail)
 	public:
 		KaxTagMultiTitleEmail(const KaxTagMultiTitleEmail & ElementToClone) :EbmlString(ElementToClone) {}
-
-        EBML_CONCRETE_CLASS(KaxTagMultiTitleEmail)
 };
 
 DECLARE_MKX_STRING(KaxTagMultiTitleLanguage)
 	public:
 		KaxTagMultiTitleLanguage(const KaxTagMultiTitleLanguage & ElementToClone) :EbmlString(ElementToClone) {}
-
-        EBML_CONCRETE_CLASS(KaxTagMultiTitleLanguage)
 };
 
 DECLARE_MKX_MASTER(KaxTagMultiAttachment)
 	public:
 		KaxTagMultiAttachment(const KaxTagMultiAttachment & ElementToClone) :EbmlMaster(ElementToClone) {}
-
-        EBML_CONCRETE_CLASS(KaxTagMultiAttachment)
 };
 
 DECLARE_MKX_MASTER(KaxTagAttachment)
 	public:
 		KaxTagAttachment(const KaxTagAttachment & ElementToClone) :EbmlMaster(ElementToClone) {}
-
-        EBML_CONCRETE_CLASS(KaxTagAttachment)
 };
 
 DECLARE_MKX_UINTEGER(KaxTagAttachmentID)
 	public:
 		KaxTagAttachmentID(const KaxTagAttachmentID & ElementToClone) :EbmlUInteger(ElementToClone) {}
-
-        EBML_CONCRETE_CLASS(KaxTagAttachmentID)
 };
 
 #if 0
 DECLARE_MKX_FLOAT(KaxTagBPM)
-	public:
-        EBML_CONCRETE_CLASS(KaxTagBPM)
-};
+	public:};
 
 DECLARE_MKX_SINTEGER(KaxTagPopularimeter)
-	public:
-        EBML_CONCRETE_CLASS(KaxTagPopularimeter)
-};
+	public:};
 
 DECLARE_MKX_BINARY(KaxTagRating)
 	public:
 		bool ValidateSize() const {return true;} // we don't mind about what's inside
-
-        EBML_CONCRETE_CLASS(KaxTagRating)
 };
 
-DECLARE_MKX_UINTEGER(KaxTagSetPart)
-        EBML_CONCRETE_CLASS(KaxTagSetPart)
-};
+DECLARE_MKX_UINTEGER(KaxTagSetPart)};
 
-DECLARE_MKX_STRING(KaxTagUserDefinedURL)
-        EBML_CONCRETE_CLASS(KaxTagUserDefinedURL)
-};
+DECLARE_MKX_STRING(KaxTagUserDefinedURL)};
 
 DECLARE_MKX_BINARY(KaxTagVideoSecondaryGenre)
 	public:
 		bool ValidateSize() const {return (Size >= 4);}
-
-        EBML_CONCRETE_CLASS(KaxTagVideoSecondaryGenre)
 };
 
-DECLARE_MKX_UNISTRING(KaxWritingApp)
-        EBML_CONCRETE_CLASS(KaxWritingApp)
-};
+DECLARE_MKX_UNISTRING(KaxWritingApp)};
 #endif
 
 END_LIBMATROSKA_NAMESPACE

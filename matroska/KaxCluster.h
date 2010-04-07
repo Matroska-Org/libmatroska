@@ -155,8 +155,6 @@ DECLARE_MKX_MASTER(KaxCluster)
 			\note method used internally
 		*/
 		bool AddFrameInternal(const KaxTrackEntry & track, uint64 timecode, DataBuffer & buffer, KaxBlockGroup * & MyNewBlock, const KaxBlockGroup * PastBlock, const KaxBlockGroup * ForwBlock, LacingType lacing);
-
-        EBML_CONCRETE_CLASS(KaxCluster)
 };
 
 END_LIBMATROSKA_NAMESPACE

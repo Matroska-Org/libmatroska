@@ -48,8 +48,6 @@ START_LIBMATROSKA_NAMESPACE
 DECLARE_MKX_MASTER(KaxTracks)
 	public:
 		KaxTracks(const KaxTracks & ElementToClone) :EbmlMaster(ElementToClone) {}
-
-        EBML_CONCRETE_CLASS(KaxTracks)
 };
 
 DECLARE_MKX_MASTER(KaxTrackEntry)
@@ -80,8 +78,6 @@ DECLARE_MKX_MASTER(KaxTrackEntry)
 	protected:
 		bool   bGlobalTimecodeScaleIsSet;
 		uint64 mGlobalTimecodeScale;
-
-        EBML_CONCRETE_CLASS(KaxTrackEntry)
 };
 
 END_LIBMATROSKA_NAMESPACE

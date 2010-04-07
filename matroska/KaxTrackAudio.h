@@ -49,29 +49,21 @@ START_LIBMATROSKA_NAMESPACE
 DECLARE_MKX_MASTER(KaxTrackAudio)
 	public:
 		KaxTrackAudio(const KaxTrackAudio & ElementToClone) :EbmlMaster(ElementToClone) {}
-
-        EBML_CONCRETE_CLASS(KaxTrackAudio)
 };
 
 DECLARE_MKX_FLOAT(KaxAudioSamplingFreq)
 	public:
 		KaxAudioSamplingFreq(const KaxAudioSamplingFreq & ElementToClone) :EbmlFloat(ElementToClone) {}
-
-        EBML_CONCRETE_CLASS(KaxAudioSamplingFreq)
 };
 
 DECLARE_MKX_FLOAT(KaxAudioOutputSamplingFreq)
 	public:
 		KaxAudioOutputSamplingFreq(const KaxAudioOutputSamplingFreq & ElementToClone) :EbmlFloat(ElementToClone) {}
-
-        EBML_CONCRETE_CLASS(KaxAudioOutputSamplingFreq)
 };
 
 DECLARE_MKX_UINTEGER(KaxAudioChannels)
 	public:
 		KaxAudioChannels(const KaxAudioChannels & ElementToClone) :EbmlUInteger(ElementToClone) {}
-
-        EBML_CONCRETE_CLASS(KaxAudioChannels)
 };
 
 #if MATROSKA_VERSION >= 2
@@ -79,16 +71,12 @@ DECLARE_MKX_BINARY(KaxAudioPosition)
 	public:
 		KaxAudioPosition(const KaxAudioPosition & ElementToClone) :EbmlBinary(ElementToClone){}
         bool ValidateSize(void) const {return true;}
-		
-        EBML_CONCRETE_CLASS(KaxAudioPosition)
-};
+		};
 #endif // MATROSKA_VERSION
 
 DECLARE_MKX_UINTEGER(KaxAudioBitDepth)
 	public:
 		KaxAudioBitDepth(const KaxAudioBitDepth & ElementToClone) :EbmlUInteger(ElementToClone) {}
-
-        EBML_CONCRETE_CLASS(KaxAudioBitDepth)
 };
 
 END_LIBMATROSKA_NAMESPACE

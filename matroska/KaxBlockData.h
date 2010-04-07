@@ -50,8 +50,6 @@ class KaxBlockBlob;
 DECLARE_MKX_UINTEGER(KaxReferencePriority)
 	public:
 		KaxReferencePriority(const KaxReferencePriority & ElementToClone) :EbmlUInteger(ElementToClone) {}
-        
-        EBML_CONCRETE_CLASS(KaxReferencePriority)
 };
 
 /*!
@@ -77,66 +75,48 @@ DECLARE_MKX_SINTEGER_CONS(KaxReferenceBlock)
 		const KaxBlockGroup * ParentBlock;
 		void SetReferencedTimecode(int64 refTimecode) {*static_cast<EbmlSInteger*>(this) = refTimecode; bTimecodeSet = true;};
 		bool bTimecodeSet;
-        
-        EBML_CONCRETE_CLASS(KaxReferenceBlock)
 };
 
 #if MATROSKA_VERSION >= 2
 DECLARE_MKX_SINTEGER(KaxReferenceVirtual)
 	public:
 		KaxReferenceVirtual(const KaxReferenceVirtual & ElementToClone) :EbmlSInteger(ElementToClone) {}
-        
-        EBML_CONCRETE_CLASS(KaxReferenceVirtual)
 };
 #endif // MATROSKA_VERSION
 
 DECLARE_MKX_MASTER(KaxTimeSlice)
 	public:
 		KaxTimeSlice(const KaxTimeSlice & ElementToClone) :EbmlMaster(ElementToClone) {}
-        
-        EBML_CONCRETE_CLASS(KaxTimeSlice)
 };
 
 DECLARE_MKX_MASTER(KaxSlices)
 	public:
 		KaxSlices(const KaxSlices & ElementToClone) :EbmlMaster(ElementToClone) {}
-        
-        EBML_CONCRETE_CLASS(KaxSlices)
 };
 
 DECLARE_MKX_UINTEGER(KaxSliceLaceNumber)
 	public:
 		KaxSliceLaceNumber(const KaxSliceLaceNumber & ElementToClone) :EbmlUInteger(ElementToClone) {}
-        
-        EBML_CONCRETE_CLASS(KaxSliceLaceNumber)
 };
 
 DECLARE_MKX_UINTEGER(KaxSliceFrameNumber)
 	public:
 		KaxSliceFrameNumber(const KaxSliceFrameNumber & ElementToClone) :EbmlUInteger(ElementToClone) {}
-        
-        EBML_CONCRETE_CLASS(KaxSliceFrameNumber)
 };
 
 DECLARE_MKX_UINTEGER(KaxSliceBlockAddID)
 	public:
 		KaxSliceBlockAddID(const KaxSliceBlockAddID & ElementToClone) :EbmlUInteger(ElementToClone) {}
-        
-        EBML_CONCRETE_CLASS(KaxSliceBlockAddID)
 };
 
 DECLARE_MKX_UINTEGER(KaxSliceDelay)
 	public:
 		KaxSliceDelay(const KaxSliceDelay & ElementToClone) :EbmlUInteger(ElementToClone) {}
-        
-        EBML_CONCRETE_CLASS(KaxSliceDelay)
 };
 
 DECLARE_MKX_UINTEGER(KaxSliceDuration)
 	public:
 		KaxSliceDuration(const KaxSliceDuration & ElementToClone) :EbmlUInteger(ElementToClone) {}
-        
-        EBML_CONCRETE_CLASS(KaxSliceDuration)
 };
 
 END_LIBMATROSKA_NAMESPACE

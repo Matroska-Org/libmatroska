@@ -47,36 +47,26 @@ START_LIBMATROSKA_NAMESPACE
 DECLARE_MKX_UINTEGER(KaxClusterTimecode)
 	public:
 		KaxClusterTimecode(const KaxClusterTimecode & ElementToClone) :EbmlUInteger(ElementToClone) {}
-
-        EBML_CONCRETE_CLASS(KaxClusterTimecode)
 };
 
 DECLARE_MKX_MASTER(KaxClusterSilentTracks)
 	public:
 		KaxClusterSilentTracks(const KaxClusterSilentTracks & ElementToClone) :EbmlMaster(ElementToClone) {}
-
-        EBML_CONCRETE_CLASS(KaxClusterSilentTracks)
 };
 
 DECLARE_MKX_UINTEGER(KaxClusterSilentTrackNumber)
 	public:
 		KaxClusterSilentTrackNumber(const KaxClusterSilentTrackNumber & ElementToClone) :EbmlUInteger(ElementToClone) {}
-
-        EBML_CONCRETE_CLASS(KaxClusterSilentTrackNumber)
 };
 
 DECLARE_MKX_UINTEGER(KaxClusterPosition)
 	public:
 		KaxClusterPosition(const KaxClusterPosition & ElementToClone) :EbmlUInteger(ElementToClone) {}
-
-        EBML_CONCRETE_CLASS(KaxClusterPosition)
 };
 
 DECLARE_MKX_UINTEGER(KaxClusterPrevSize)
 	public:
 		KaxClusterPrevSize(const KaxClusterPrevSize & ElementToClone) :EbmlUInteger(ElementToClone) {}
-
-        EBML_CONCRETE_CLASS(KaxClusterPrevSize)
 };
 
 END_LIBMATROSKA_NAMESPACE

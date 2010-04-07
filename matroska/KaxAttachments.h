@@ -46,8 +46,6 @@ START_LIBMATROSKA_NAMESPACE
 DECLARE_MKX_MASTER(KaxAttachments)
 	public:
 		KaxAttachments(const KaxAttachments & ElementToClone) : EbmlMaster(ElementToClone) {}
-        
-        EBML_CONCRETE_CLASS(KaxAttachments)
 };
 
 END_LIBMATROSKA_NAMESPACE

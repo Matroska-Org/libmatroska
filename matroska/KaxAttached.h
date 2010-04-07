@@ -50,29 +50,21 @@ START_LIBMATROSKA_NAMESPACE
 DECLARE_MKX_MASTER(KaxAttached)
 	public:
 		KaxAttached(const KaxAttached & ElementToClone) : EbmlMaster(ElementToClone) {}
-        
-        EBML_CONCRETE_CLASS(KaxAttached)
 };
 
 DECLARE_MKX_UNISTRING(KaxFileDescription)
 	public:
 		KaxFileDescription(const KaxFileDescription & ElementToClone) : EbmlUnicodeString(ElementToClone) {}
-        
-        EBML_CONCRETE_CLASS(KaxFileDescription)
 };
 
 DECLARE_MKX_UNISTRING(KaxFileName)
 	public:
 		KaxFileName(const KaxFileName & ElementToClone) : EbmlUnicodeString(ElementToClone) {}
-        
-        EBML_CONCRETE_CLASS(KaxFileName)
 };
 
 DECLARE_MKX_STRING(KaxMimeType)
 	public:
 		KaxMimeType(const KaxMimeType & ElementToClone) : EbmlString(ElementToClone) {}
-        
-        EBML_CONCRETE_CLASS(KaxMimeType)
 };
 
 DECLARE_MKX_BINARY(KaxFileData)
@@ -80,23 +72,17 @@ DECLARE_MKX_BINARY(KaxFileData)
 		KaxFileData(const KaxFileData & ElementToClone) :EbmlBinary(ElementToClone){}
 	
 		bool ValidateSize() const {return true;} // we don't mind about what's inside
-		
-        EBML_CONCRETE_CLASS(KaxFileData)
 };
 
 DECLARE_MKX_BINARY(KaxFileReferral)
 	public:
 		KaxFileReferral(const KaxFileReferral & ElementToClone) :EbmlBinary(ElementToClone){}
 		bool ValidateSize() const {return true;} // we don't mind about what's inside
-		
-        EBML_CONCRETE_CLASS(KaxFileReferral)
 };
 
 DECLARE_MKX_UINTEGER(KaxFileUID)
 	public:
 		KaxFileUID(const KaxFileUID & ElementToClone) : EbmlUInteger(ElementToClone) {}
-        
-        EBML_CONCRETE_CLASS(KaxFileUID)
 };
 
 END_LIBMATROSKA_NAMESPACE

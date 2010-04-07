@@ -57,15 +57,11 @@ DECLARE_MKX_MASTER(KaxCuePoint)
 
 		const KaxCueTrackPositions * GetSeekPosition() const;
 		bool Timecode(uint64 & aTimecode, uint64 GlobalTimecodeScale) const;
-
-        EBML_CONCRETE_CLASS(KaxCuePoint)
 };
 
 DECLARE_MKX_UINTEGER(KaxCueTime)
 	public:
 		KaxCueTime(const KaxCueTime & ElementToClone) :EbmlUInteger(ElementToClone) {}
-
-        EBML_CONCRETE_CLASS(KaxCueTime)
 };
 
 DECLARE_MKX_MASTER(KaxCueTrackPositions)
@@ -74,37 +70,27 @@ DECLARE_MKX_MASTER(KaxCueTrackPositions)
 
 		uint64 ClusterPosition() const;
 		uint16 TrackNumber() const;
-
-        EBML_CONCRETE_CLASS(KaxCueTrackPositions)
 };
 
 DECLARE_MKX_UINTEGER(KaxCueTrack)
 	public:
 		KaxCueTrack(const KaxCueTrack & ElementToClone) :EbmlUInteger(ElementToClone) {}
-
-        EBML_CONCRETE_CLASS(KaxCueTrack)
 };
 
 DECLARE_MKX_UINTEGER(KaxCueClusterPosition)
 	public:
 		KaxCueClusterPosition(const KaxCueClusterPosition & ElementToClone) :EbmlUInteger(ElementToClone) {}
-
-        EBML_CONCRETE_CLASS(KaxCueClusterPosition)
 };
 
 DECLARE_MKX_UINTEGER(KaxCueBlockNumber)
 	public:
 		KaxCueBlockNumber(const KaxCueBlockNumber & ElementToClone) :EbmlUInteger(ElementToClone) {}
-
-        EBML_CONCRETE_CLASS(KaxCueBlockNumber)
 };
 
 #if MATROSKA_VERSION >= 2
 DECLARE_MKX_UINTEGER(KaxCueCodecState)
 	public:
 		KaxCueCodecState(const KaxCueCodecState & ElementToClone) :EbmlUInteger(ElementToClone) {}
-
-        EBML_CONCRETE_CLASS(KaxCueCodecState)
 };
 
 DECLARE_MKX_MASTER(KaxCueReference)
@@ -113,36 +99,26 @@ DECLARE_MKX_MASTER(KaxCueReference)
 		
 		void AddReference(const KaxBlockGroup & BlockReferenced, uint64 GlobalTimecodeScale);
 		void AddReference(const KaxBlockBlob & BlockReferenced, uint64 GlobalTimecodeScale);
-
-        EBML_CONCRETE_CLASS(KaxCueReference)
 };
 
 DECLARE_MKX_UINTEGER(KaxCueRefTime)
 	public:
 		KaxCueRefTime(const KaxCueRefTime & ElementToClone) :EbmlUInteger(ElementToClone) {}
-
-        EBML_CONCRETE_CLASS(KaxCueRefTime)
 };
 
 DECLARE_MKX_UINTEGER(KaxCueRefCluster)
 	public:
 		KaxCueRefCluster(const KaxCueRefCluster & ElementToClone) :EbmlUInteger(ElementToClone) {}
-
-        EBML_CONCRETE_CLASS(KaxCueRefCluster)
 };
 
 DECLARE_MKX_UINTEGER(KaxCueRefNumber)
 	public:
 		KaxCueRefNumber(const KaxCueRefNumber & ElementToClone) :EbmlUInteger(ElementToClone) {}
-
-        EBML_CONCRETE_CLASS(KaxCueRefNumber)
 };
 
 DECLARE_MKX_UINTEGER(KaxCueRefCodecState)
 	public:
 		KaxCueRefCodecState(const KaxCueRefCodecState & ElementToClone) :EbmlUInteger(ElementToClone) {}
-
-        EBML_CONCRETE_CLASS(KaxCueRefCodecState)
 };
 #endif // MATROSKA_VERSION
 

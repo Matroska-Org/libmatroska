@@ -60,8 +60,6 @@ DECLARE_MKX_MASTER(KaxSeekHead)
 
 		KaxSeek * FindFirstOf(const EbmlCallbacks & Callbacks) const;
 		KaxSeek * FindNextOf(const KaxSeek &aPrev) const;
-
-        EBML_CONCRETE_CLASS(KaxSeekHead)
 };
 
 DECLARE_MKX_MASTER(KaxSeek)
@@ -71,23 +69,17 @@ DECLARE_MKX_MASTER(KaxSeek)
 		int64 Location() const;
 		bool IsEbmlId(const EbmlId & aId) const;
 		bool IsEbmlId(const KaxSeek & aPoint) const;
-
-        EBML_CONCRETE_CLASS(KaxSeek)
 };
 
 DECLARE_MKX_BINARY(KaxSeekID)
 	public:
 		KaxSeekID(const KaxSeekID & ElementToClone) :EbmlBinary(ElementToClone){}
 		bool ValidateSize() const {return GetSize() <= 4;}
-
-        EBML_CONCRETE_CLASS(KaxSeekID)
 };
 
 DECLARE_MKX_UINTEGER(KaxSeekPosition)
 	public:
 		KaxSeekPosition(const KaxSeekPosition & ElementToClone) :EbmlUInteger(ElementToClone) {}
-
-        EBML_CONCRETE_CLASS(KaxSeekPosition)
 };
 
 END_LIBMATROSKA_NAMESPACE

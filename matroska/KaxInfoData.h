@@ -54,15 +54,11 @@ DECLARE_MKX_BINARY(KaxSegmentUID)
 	public:
 		KaxSegmentUID(const KaxSegmentUID & ElementToClone) :EbmlBinary(ElementToClone){}
 		bool ValidateSize() const { return (GetSize() == 16);}
-
-        EBML_CONCRETE_CLASS(KaxSegmentUID)
 };
 
 DECLARE_MKX_UNISTRING(KaxSegmentFilename)
 	public:
 		KaxSegmentFilename(const KaxSegmentFilename & ElementToClone) :EbmlUnicodeString(ElementToClone){}
-
-        EBML_CONCRETE_CLASS(KaxSegmentFilename)
 };
 
 DECLARE_MKX_CONTEXT(KaxPrevUID);
@@ -78,8 +74,6 @@ class MATROSKA_DLL_API KaxPrevUID : public KaxSegmentUID {
 DECLARE_MKX_UNISTRING(KaxPrevFilename)
 	public:
 		KaxPrevFilename(const KaxPrevFilename & ElementToClone) :EbmlUnicodeString(ElementToClone) {}
-
-        EBML_CONCRETE_CLASS(KaxPrevFilename)
 };
 
 DECLARE_MKX_CONTEXT(KaxNextUID);
@@ -95,73 +89,53 @@ class MATROSKA_DLL_API KaxNextUID : public KaxSegmentUID {
 DECLARE_MKX_UNISTRING(KaxNextFilename)
 	public:
 		KaxNextFilename(const KaxNextFilename & ElementToClone) :EbmlUnicodeString(ElementToClone) {}
-
-        EBML_CONCRETE_CLASS(KaxNextFilename)
 };
 
 DECLARE_MKX_BINARY(KaxSegmentFamily)
 	public:
 		KaxSegmentFamily(const KaxSegmentFamily & ElementToClone) :EbmlBinary(ElementToClone){}
 		bool ValidateSize() const { return (GetSize() == 16);}
-
-        EBML_CONCRETE_CLASS(KaxSegmentFamily)
 };
 
 DECLARE_MKX_MASTER(KaxChapterTranslate)
 	public:
 		KaxChapterTranslate(const KaxChapterTranslate & ElementToClone) :EbmlMaster(ElementToClone) {}
-
-        EBML_CONCRETE_CLASS(KaxChapterTranslate)
 };
 
 DECLARE_MKX_UINTEGER(KaxChapterTranslateCodec)
 	public:
 		KaxChapterTranslateCodec(const KaxChapterTranslateCodec & ElementToClone) :EbmlUInteger(ElementToClone) {}
-
-        EBML_CONCRETE_CLASS(KaxChapterTranslateCodec)
 };
 
 DECLARE_MKX_UINTEGER(KaxChapterTranslateEditionUID)
 	public:
 		KaxChapterTranslateEditionUID(const KaxChapterTranslateEditionUID & ElementToClone) :EbmlUInteger(ElementToClone) {}
-
-        EBML_CONCRETE_CLASS(KaxChapterTranslateEditionUID)
 };
 
 DECLARE_MKX_BINARY(KaxChapterTranslateID)
 	public:
 		KaxChapterTranslateID(const KaxChapterTranslateID & ElementToClone) :EbmlBinary(ElementToClone){}
 		bool ValidateSize() const { return true;}
-
-        EBML_CONCRETE_CLASS(KaxChapterTranslateID)
 };
 
 DECLARE_MKX_UINTEGER(KaxTimecodeScale)
 	public:
 		KaxTimecodeScale(const KaxTimecodeScale & ElementToClone) :EbmlUInteger(ElementToClone) {}
-
-        EBML_CONCRETE_CLASS(KaxTimecodeScale)
 };
 
 DECLARE_MKX_FLOAT(KaxDuration)
 	public:
 		KaxDuration(const KaxDuration & ElementToClone) :EbmlFloat(ElementToClone) {}
-
-        EBML_CONCRETE_CLASS(KaxDuration)
 };
 
 DECLARE_MKX_DATE(KaxDateUTC)
 	public:
 		KaxDateUTC(const KaxDateUTC & ElementToClone) :EbmlDate(ElementToClone) {}
-
-        EBML_CONCRETE_CLASS(KaxDateUTC)
 };
 
 DECLARE_MKX_UNISTRING(KaxTitle)
 	public:
 		KaxTitle(const KaxTitle & ElementToClone) :EbmlUnicodeString(ElementToClone) {}
-
-        EBML_CONCRETE_CLASS(KaxTitle)
 };
 
 END_LIBMATROSKA_NAMESPACE

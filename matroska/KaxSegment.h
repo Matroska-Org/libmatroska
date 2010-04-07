@@ -57,8 +57,6 @@ DECLARE_MKX_MASTER(KaxSegment)
 			\brief give the position of the element in the file
 		*/
 		uint64 GetGlobalPosition(uint64 aRelativePosition) const;
-
-        EBML_CONCRETE_CLASS(KaxSegment)
 };
 
 END_LIBMATROSKA_NAMESPACE

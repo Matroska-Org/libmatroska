@@ -46,8 +46,6 @@ START_LIBMATROSKA_NAMESPACE
 DECLARE_MKX_MASTER(KaxTags)
 	public:
 		KaxTags(const KaxTags & ElementToClone) :EbmlMaster(ElementToClone) {}
-
-        EBML_CONCRETE_CLASS(KaxTags)
 };
 
 END_LIBMATROSKA_NAMESPACE

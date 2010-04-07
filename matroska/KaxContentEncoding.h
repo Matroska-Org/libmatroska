@@ -49,56 +49,42 @@ DECLARE_MKX_MASTER(KaxContentEncodings)
     public:
         KaxContentEncodings(const KaxContentEncodings &ElementToClone):
             EbmlMaster(ElementToClone) {}
-
-        EBML_CONCRETE_CLASS(KaxContentEncodings)
 };
 
 DECLARE_MKX_MASTER(KaxContentEncoding)
     public:
         KaxContentEncoding(const KaxContentEncoding &ElementToClone):
             EbmlMaster(ElementToClone) {}
-
-        EBML_CONCRETE_CLASS(KaxContentEncoding)
 };
 
 DECLARE_MKX_UINTEGER(KaxContentEncodingOrder)
     public:
         KaxContentEncodingOrder(const KaxContentEncodingOrder &ElementToClone):
             EbmlUInteger(ElementToClone) {}
-
-        EBML_CONCRETE_CLASS(KaxContentEncodingOrder)
 };
 
 DECLARE_MKX_UINTEGER(KaxContentEncodingScope)
     public:
         KaxContentEncodingScope(const KaxContentEncodingScope &ElementToClone):
         EbmlUInteger(ElementToClone) {}
-
-        EBML_CONCRETE_CLASS(KaxContentEncodingScope)
 };
 
 DECLARE_MKX_UINTEGER(KaxContentEncodingType)
     public:
         KaxContentEncodingType(const KaxContentEncodingType &ElementToClone):
             EbmlUInteger(ElementToClone) {}
-
-        EBML_CONCRETE_CLASS(KaxContentEncodingType)
 };
 
 DECLARE_MKX_MASTER(KaxContentCompression)
     public:
         KaxContentCompression(const KaxContentCompression &ElementToClone):
             EbmlMaster(ElementToClone) {}
-
-        EBML_CONCRETE_CLASS(KaxContentCompression)
 };
 
 DECLARE_MKX_UINTEGER(KaxContentCompAlgo)
     public:
         KaxContentCompAlgo(const KaxContentCompAlgo &ElementToClone):
             EbmlUInteger(ElementToClone) {}
-
-        EBML_CONCRETE_CLASS(KaxContentCompAlgo)
 };
 
 DECLARE_MKX_BINARY(KaxContentCompSettings)
@@ -106,24 +92,18 @@ DECLARE_MKX_BINARY(KaxContentCompSettings)
         KaxContentCompSettings(const KaxContentCompSettings &ElementToClone):
             EbmlBinary(ElementToClone) {}
         bool ValidateSize(void) const { return true; }
-
-        EBML_CONCRETE_CLASS(KaxContentCompSettings)
 };
 
 DECLARE_MKX_MASTER(KaxContentEncryption)
     public:
         KaxContentEncryption(const KaxContentEncryption &ElementToClone):
             EbmlMaster(ElementToClone) {}
-
-        EBML_CONCRETE_CLASS(KaxContentEncryption)
 };
 
 DECLARE_MKX_UINTEGER(KaxContentEncAlgo)
     public:
         KaxContentEncAlgo(const KaxContentEncAlgo &ElementToClone):
             EbmlUInteger(ElementToClone) {}
-
-        EBML_CONCRETE_CLASS(KaxContentEncAlgo)
 };
 
 DECLARE_MKX_BINARY(KaxContentEncKeyID)
@@ -131,8 +111,6 @@ DECLARE_MKX_BINARY(KaxContentEncKeyID)
         KaxContentEncKeyID(const KaxContentEncKeyID &ElementToClone):
             EbmlBinary(ElementToClone) {}
         bool ValidateSize(void) const { return true; }
-
-        EBML_CONCRETE_CLASS(KaxContentEncKeyID)
 };
 
 DECLARE_MKX_BINARY(KaxContentSignature)
@@ -140,8 +118,6 @@ DECLARE_MKX_BINARY(KaxContentSignature)
         KaxContentSignature(const KaxContentSignature &ElementToClone):
             EbmlBinary(ElementToClone) {}
         bool ValidateSize(void) const { return true; }
-
-        EBML_CONCRETE_CLASS(KaxContentSignature)
 };
 
 DECLARE_MKX_BINARY(KaxContentSigKeyID)
@@ -149,24 +125,18 @@ DECLARE_MKX_BINARY(KaxContentSigKeyID)
         KaxContentSigKeyID(const KaxContentSigKeyID &ElementToClone):
             EbmlBinary(ElementToClone) {}
         bool ValidateSize(void) const { return true; }
-
-        EBML_CONCRETE_CLASS(KaxContentSigKeyID)
 };
 
 DECLARE_MKX_UINTEGER(KaxContentSigAlgo)
     public:
         KaxContentSigAlgo(const KaxContentSigAlgo &ElementToClone):
             EbmlUInteger(ElementToClone) {}
-
-        EBML_CONCRETE_CLASS(KaxContentSigAlgo)
 };
 
 DECLARE_MKX_UINTEGER(KaxContentSigHashAlgo)
     public:
         KaxContentSigHashAlgo(const KaxContentSigHashAlgo &ElementToClone):
             EbmlUInteger(ElementToClone) {}
-
-        EBML_CONCRETE_CLASS(KaxContentSigHashAlgo)
 };
 
 END_LIBMATROSKA_NAMESPACE

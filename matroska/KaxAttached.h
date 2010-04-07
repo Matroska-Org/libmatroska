@@ -48,41 +48,28 @@ using namespace LIBEBML_NAMESPACE;
 START_LIBMATROSKA_NAMESPACE
 
 DECLARE_MKX_MASTER(KaxAttached)
-	public:
-		KaxAttached(const KaxAttached & ElementToClone) : EbmlMaster(ElementToClone) {}
 };
 
 DECLARE_MKX_UNISTRING(KaxFileDescription)
-	public:
-		KaxFileDescription(const KaxFileDescription & ElementToClone) : EbmlUnicodeString(ElementToClone) {}
 };
 
 DECLARE_MKX_UNISTRING(KaxFileName)
-	public:
-		KaxFileName(const KaxFileName & ElementToClone) : EbmlUnicodeString(ElementToClone) {}
 };
 
 DECLARE_MKX_STRING(KaxMimeType)
-	public:
-		KaxMimeType(const KaxMimeType & ElementToClone) : EbmlString(ElementToClone) {}
 };
 
 DECLARE_MKX_BINARY(KaxFileData)
 	public:
-		KaxFileData(const KaxFileData & ElementToClone) :EbmlBinary(ElementToClone){}
-	
 		bool ValidateSize() const {return true;} // we don't mind about what's inside
 };
 
 DECLARE_MKX_BINARY(KaxFileReferral)
 	public:
-		KaxFileReferral(const KaxFileReferral & ElementToClone) :EbmlBinary(ElementToClone){}
 		bool ValidateSize() const {return true;} // we don't mind about what's inside
 };
 
 DECLARE_MKX_UINTEGER(KaxFileUID)
-	public:
-		KaxFileUID(const KaxFileUID & ElementToClone) : EbmlUInteger(ElementToClone) {}
 };
 
 END_LIBMATROSKA_NAMESPACE

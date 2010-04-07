@@ -48,8 +48,6 @@ class KaxBlockGroup;
 class KaxBlockBlob;
 
 DECLARE_MKX_UINTEGER(KaxReferencePriority)
-	public:
-		KaxReferencePriority(const KaxReferencePriority & ElementToClone) :EbmlUInteger(ElementToClone) {}
 };
 
 /*!
@@ -57,9 +55,6 @@ DECLARE_MKX_UINTEGER(KaxReferencePriority)
 */
 DECLARE_MKX_SINTEGER_CONS(KaxReferenceBlock)
 	public:
-		KaxReferenceBlock() :RefdBlock(NULL), ParentBlock(NULL) {bTimecodeSet = false;}
-		KaxReferenceBlock(const KaxReferenceBlock & ElementToClone) :EbmlSInteger(ElementToClone), bTimecodeSet(ElementToClone.bTimecodeSet) {}
-		
 		/*!
 			\brief override this method to compute the timecode value
 		*/
@@ -79,44 +74,28 @@ DECLARE_MKX_SINTEGER_CONS(KaxReferenceBlock)
 
 #if MATROSKA_VERSION >= 2
 DECLARE_MKX_SINTEGER(KaxReferenceVirtual)
-	public:
-		KaxReferenceVirtual(const KaxReferenceVirtual & ElementToClone) :EbmlSInteger(ElementToClone) {}
 };
 #endif // MATROSKA_VERSION
 
 DECLARE_MKX_MASTER(KaxTimeSlice)
-	public:
-		KaxTimeSlice(const KaxTimeSlice & ElementToClone) :EbmlMaster(ElementToClone) {}
 };
 
 DECLARE_MKX_MASTER(KaxSlices)
-	public:
-		KaxSlices(const KaxSlices & ElementToClone) :EbmlMaster(ElementToClone) {}
 };
 
 DECLARE_MKX_UINTEGER(KaxSliceLaceNumber)
-	public:
-		KaxSliceLaceNumber(const KaxSliceLaceNumber & ElementToClone) :EbmlUInteger(ElementToClone) {}
 };
 
 DECLARE_MKX_UINTEGER(KaxSliceFrameNumber)
-	public:
-		KaxSliceFrameNumber(const KaxSliceFrameNumber & ElementToClone) :EbmlUInteger(ElementToClone) {}
 };
 
 DECLARE_MKX_UINTEGER(KaxSliceBlockAddID)
-	public:
-		KaxSliceBlockAddID(const KaxSliceBlockAddID & ElementToClone) :EbmlUInteger(ElementToClone) {}
 };
 
 DECLARE_MKX_UINTEGER(KaxSliceDelay)
-	public:
-		KaxSliceDelay(const KaxSliceDelay & ElementToClone) :EbmlUInteger(ElementToClone) {}
 };
 
 DECLARE_MKX_UINTEGER(KaxSliceDuration)
-	public:
-		KaxSliceDuration(const KaxSliceDuration & ElementToClone) :EbmlUInteger(ElementToClone) {}
 };
 
 END_LIBMATROSKA_NAMESPACE

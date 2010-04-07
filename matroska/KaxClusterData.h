@@ -45,28 +45,18 @@ using namespace LIBEBML_NAMESPACE;
 START_LIBMATROSKA_NAMESPACE
 
 DECLARE_MKX_UINTEGER(KaxClusterTimecode)
-	public:
-		KaxClusterTimecode(const KaxClusterTimecode & ElementToClone) :EbmlUInteger(ElementToClone) {}
 };
 
 DECLARE_MKX_MASTER(KaxClusterSilentTracks)
-	public:
-		KaxClusterSilentTracks(const KaxClusterSilentTracks & ElementToClone) :EbmlMaster(ElementToClone) {}
 };
 
 DECLARE_MKX_UINTEGER(KaxClusterSilentTrackNumber)
-	public:
-		KaxClusterSilentTrackNumber(const KaxClusterSilentTrackNumber & ElementToClone) :EbmlUInteger(ElementToClone) {}
 };
 
 DECLARE_MKX_UINTEGER(KaxClusterPosition)
-	public:
-		KaxClusterPosition(const KaxClusterPosition & ElementToClone) :EbmlUInteger(ElementToClone) {}
 };
 
 DECLARE_MKX_UINTEGER(KaxClusterPrevSize)
-	public:
-		KaxClusterPrevSize(const KaxClusterPrevSize & ElementToClone) :EbmlUInteger(ElementToClone) {}
 };
 
 END_LIBMATROSKA_NAMESPACE

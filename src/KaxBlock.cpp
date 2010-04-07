@@ -271,6 +271,13 @@ KaxBlockVirtual::KaxBlockVirtual(const KaxBlockVirtual & ElementToClone)
     SetValueIsSet(false);
 }
 
+KaxBlockVirtual::KaxBlockVirtual()
+:ParentCluster(NULL)
+{
+    SetBuffer(DataBlock,sizeof(DataBlock));
+    SetValueIsSet(false);
+}
+
 KaxBlockVirtual::~KaxBlockVirtual()
 {
     if(GetBuffer() == DataBlock)

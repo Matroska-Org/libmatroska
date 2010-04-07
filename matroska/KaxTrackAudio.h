@@ -47,36 +47,25 @@ using namespace LIBEBML_NAMESPACE;
 START_LIBMATROSKA_NAMESPACE
 
 DECLARE_MKX_MASTER(KaxTrackAudio)
-	public:
-		KaxTrackAudio(const KaxTrackAudio & ElementToClone) :EbmlMaster(ElementToClone) {}
 };
 
 DECLARE_MKX_FLOAT(KaxAudioSamplingFreq)
-	public:
-		KaxAudioSamplingFreq(const KaxAudioSamplingFreq & ElementToClone) :EbmlFloat(ElementToClone) {}
 };
 
 DECLARE_MKX_FLOAT(KaxAudioOutputSamplingFreq)
-	public:
-		KaxAudioOutputSamplingFreq(const KaxAudioOutputSamplingFreq & ElementToClone) :EbmlFloat(ElementToClone) {}
 };
 
 DECLARE_MKX_UINTEGER(KaxAudioChannels)
-	public:
-		KaxAudioChannels(const KaxAudioChannels & ElementToClone) :EbmlUInteger(ElementToClone) {}
 };
 
 #if MATROSKA_VERSION >= 2
 DECLARE_MKX_BINARY(KaxAudioPosition)
 	public:
-		KaxAudioPosition(const KaxAudioPosition & ElementToClone) :EbmlBinary(ElementToClone){}
         bool ValidateSize(void) const {return true;}
-		};
+};
 #endif // MATROSKA_VERSION
 
 DECLARE_MKX_UINTEGER(KaxAudioBitDepth)
-	public:
-		KaxAudioBitDepth(const KaxAudioBitDepth & ElementToClone) :EbmlUInteger(ElementToClone) {}
 };
 
 END_LIBMATROSKA_NAMESPACE

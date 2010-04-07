@@ -50,144 +50,93 @@ using namespace LIBEBML_NAMESPACE;
 START_LIBMATROSKA_NAMESPACE
 
 DECLARE_MKX_UINTEGER(KaxTrackNumber)
-	public:
-		KaxTrackNumber(const KaxTrackNumber & ElementToClone) :EbmlUInteger(ElementToClone) {}
 };
 
 DECLARE_MKX_UINTEGER(KaxTrackUID)
-	public:
-		KaxTrackUID(const KaxTrackUID & ElementToClone) :EbmlUInteger(ElementToClone) {}
 };
 
 DECLARE_MKX_UINTEGER(KaxTrackType)
-	public:
-		KaxTrackType(const KaxTrackType & ElementToClone) :EbmlUInteger(ElementToClone) {}
 };
 
 #if MATROSKA_VERSION >= 2
 DECLARE_MKX_UINTEGER(KaxTrackFlagEnabled)
-	public:
-		KaxTrackFlagEnabled(const KaxTrackFlagEnabled & ElementToClone) :EbmlUInteger(ElementToClone) {}
 };
 #endif // MATROSKA_VERSION
 
 DECLARE_MKX_UINTEGER(KaxTrackFlagDefault)
-	public:
-		KaxTrackFlagDefault(const KaxTrackFlagDefault & ElementToClone) :EbmlUInteger(ElementToClone) {}
 };
 
 DECLARE_MKX_UINTEGER(KaxTrackFlagForced)
-	public:
-		KaxTrackFlagForced(const KaxTrackFlagForced & ElementToClone) :EbmlUInteger(ElementToClone) {}
 };
 
 DECLARE_MKX_UINTEGER(KaxTrackFlagLacing)
-	public:
-		KaxTrackFlagLacing(const KaxTrackFlagLacing & ElementToClone) :EbmlUInteger(ElementToClone) {}
 };
 
 DECLARE_MKX_UINTEGER(KaxTrackMinCache)
-	public:
-		KaxTrackMinCache(const KaxTrackMinCache & ElementToClone) :EbmlUInteger(ElementToClone) {}
 };
 
 DECLARE_MKX_UINTEGER(KaxTrackMaxCache)
-	public:
-		KaxTrackMaxCache(const KaxTrackMaxCache & ElementToClone) :EbmlUInteger(ElementToClone) {}
 };
 
 DECLARE_MKX_UINTEGER(KaxTrackDefaultDuration)
-	public:
-		KaxTrackDefaultDuration(const KaxTrackDefaultDuration & ElementToClone) :EbmlUInteger(ElementToClone) {}
 };
 
 DECLARE_MKX_FLOAT(KaxTrackTimecodeScale)
-	public:
-		KaxTrackTimecodeScale(const KaxTrackTimecodeScale & ElementToClone) :EbmlFloat(ElementToClone) {}
 };
 
 DECLARE_MKX_UINTEGER(KaxMaxBlockAdditionID)
-	public:
-		KaxMaxBlockAdditionID(const KaxMaxBlockAdditionID & ElementToClone) :EbmlUInteger(ElementToClone) {}
 };
 
 DECLARE_MKX_UNISTRING(KaxTrackName)
-	public:
-		KaxTrackName(const KaxTrackName & ElementToClone) :EbmlUnicodeString(ElementToClone) {}
 };
 
 DECLARE_MKX_STRING(KaxTrackLanguage)
-	public:
-		KaxTrackLanguage(const KaxTrackLanguage & ElementToClone) :EbmlString(ElementToClone) {}
 };
 
 DECLARE_MKX_STRING(KaxCodecID)
-	public:
-		KaxCodecID(const KaxCodecID & ElementToClone) :EbmlString(ElementToClone) {}
 };
 
 DECLARE_MKX_BINARY(KaxCodecPrivate)
 	public:
-		KaxCodecPrivate(const KaxCodecPrivate & ElementToClone) :EbmlBinary(ElementToClone){}
 		bool ValidateSize() const {return true;} // we don't mind about what's inside
 };
 
 DECLARE_MKX_UNISTRING(KaxCodecName)
-	public:
-		KaxCodecName(const KaxCodecName & ElementToClone) :EbmlUnicodeString(ElementToClone) {}
 };
 
 DECLARE_MKX_BINARY(KaxTrackAttachmentLink)
 	public:
-		KaxTrackAttachmentLink(const KaxTrackAttachmentLink & ElementToClone) :EbmlBinary(ElementToClone){}
 		bool ValidateSize() const {return true;} // we don't mind about what's inside
 };
 
 DECLARE_MKX_UINTEGER(KaxTrackOverlay)
-	public:
-		KaxTrackOverlay(const KaxTrackOverlay & ElementToClone) :EbmlUInteger(ElementToClone) {}
 };
 
 DECLARE_MKX_MASTER(KaxTrackTranslate)
-	public:
-		KaxTrackTranslate(const KaxTrackTranslate & ElementToClone) :EbmlMaster(ElementToClone) {}
 };
 
 DECLARE_MKX_UINTEGER(KaxTrackTranslateCodec)
-	public:
-		KaxTrackTranslateCodec(const KaxTrackTranslateCodec & ElementToClone) :EbmlUInteger(ElementToClone) {}
 };
 
 DECLARE_MKX_UINTEGER(KaxTrackTranslateEditionUID)
-	public:
-		KaxTrackTranslateEditionUID(const KaxTrackTranslateEditionUID & ElementToClone) :EbmlUInteger(ElementToClone) {}
 };
 
 DECLARE_MKX_BINARY(KaxTrackTranslateTrackID)
 	public:
-		KaxTrackTranslateTrackID(const KaxTrackTranslateTrackID & ElementToClone) :EbmlBinary(ElementToClone){}
 		bool ValidateSize() const { return true;}
 };
 
 #if MATROSKA_VERSION >= 2
 DECLARE_MKX_UNISTRING(KaxCodecSettings)
-	public:
-		KaxCodecSettings(const KaxCodecSettings & ElementToClone) :EbmlUnicodeString(ElementToClone) {}
 };
 
 DECLARE_MKX_STRING(KaxCodecInfoURL)
-	public:
-		KaxCodecInfoURL(const KaxCodecInfoURL & ElementToClone) :EbmlString(ElementToClone) {}
 };
 
 DECLARE_MKX_STRING(KaxCodecDownloadURL)
-	public:
-		KaxCodecDownloadURL(const KaxCodecDownloadURL & ElementToClone) :EbmlString(ElementToClone) {}
 };
 
 DECLARE_MKX_UINTEGER(KaxCodecDecodeAll)
-	public:
-		KaxCodecDecodeAll(const KaxCodecDecodeAll & ElementToClone) :EbmlUInteger(ElementToClone) {}
 };
 #endif // MATROSKA_VERSION
 

@@ -75,6 +75,19 @@ const KaxBlockBlob & KaxReferenceBlock::RefBlock() const
 	return *RefdBlock;
 }
 
+KaxReferenceBlock::KaxReferenceBlock()
+:RefdBlock(NULL)
+,ParentBlock(NULL)
+{
+    bTimecodeSet = false;
+}
+
+KaxReferenceBlock::KaxReferenceBlock(const KaxReferenceBlock & ElementToClone)
+:EbmlSInteger(ElementToClone)
+,bTimecodeSet(ElementToClone.bTimecodeSet)
+{
+}
+
 filepos_t KaxReferenceBlock::UpdateSize(bool bSaveDefault, bool bForceRender)
 {
 	if (!bTimecodeSet) {

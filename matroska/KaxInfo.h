@@ -45,18 +45,12 @@ using namespace LIBEBML_NAMESPACE;
 START_LIBMATROSKA_NAMESPACE
 
 DECLARE_MKX_MASTER(KaxInfo)
-	public:
-		KaxInfo(const KaxInfo & ElementToClone) :EbmlMaster(ElementToClone) {}
 };
 
 DECLARE_MKX_UNISTRING(KaxMuxingApp)
-	public:
-		KaxMuxingApp(const KaxMuxingApp & ElementToClone) :EbmlUnicodeString(ElementToClone) {}
 };
 
 DECLARE_MKX_UNISTRING(KaxWritingApp)
-	public:
-		KaxWritingApp(const KaxWritingApp & ElementToClone) :EbmlUnicodeString(ElementToClone) {}
 };
 
 END_LIBMATROSKA_NAMESPACE

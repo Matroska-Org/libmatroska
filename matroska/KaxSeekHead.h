@@ -50,8 +50,6 @@ class KaxSeek;
 
 DECLARE_MKX_MASTER(KaxSeekHead)
 	public:
-		KaxSeekHead(const KaxSeekHead & ElementToClone) :EbmlMaster(ElementToClone) {}
-
 		/*!
 			\brief add an element to index in the Meta Seek data
 			\note the element should already be written in the file
@@ -64,8 +62,6 @@ DECLARE_MKX_MASTER(KaxSeekHead)
 
 DECLARE_MKX_MASTER(KaxSeek)
 	public:
-		KaxSeek(const KaxSeek & ElementToClone) :EbmlMaster(ElementToClone) {}
-
 		int64 Location() const;
 		bool IsEbmlId(const EbmlId & aId) const;
 		bool IsEbmlId(const KaxSeek & aPoint) const;
@@ -73,13 +69,10 @@ DECLARE_MKX_MASTER(KaxSeek)
 
 DECLARE_MKX_BINARY(KaxSeekID)
 	public:
-		KaxSeekID(const KaxSeekID & ElementToClone) :EbmlBinary(ElementToClone){}
 		bool ValidateSize() const {return GetSize() <= 4;}
 };
 
 DECLARE_MKX_UINTEGER(KaxSeekPosition)
-	public:
-		KaxSeekPosition(const KaxSeekPosition & ElementToClone) :EbmlUInteger(ElementToClone) {}
 };
 
 END_LIBMATROSKA_NAMESPACE

@@ -43,10 +43,8 @@ using namespace LIBEBML_NAMESPACE;
 
 START_LIBMATROSKA_NAMESPACE
 
-DECLARE_MKX_MASTER(KaxSegment)
+DECLARE_MKX_MASTER_CONS(KaxSegment)
 	public:
-		KaxSegment(const KaxSegment & ElementToClone);
-
 		/*!
 			\brief give the position of the element in the segment
 		*/

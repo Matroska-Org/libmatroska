@@ -51,299 +51,190 @@ using namespace LIBEBML_NAMESPACE;
 START_LIBMATROSKA_NAMESPACE
 
 DECLARE_MKX_MASTER(KaxTag)
-	public:
-		KaxTag(const KaxTag & ElementToClone) :EbmlMaster(ElementToClone) {}
 };
 
 DECLARE_MKX_MASTER(KaxTagTargets)
-	public:
-		KaxTagTargets(const KaxTagTargets & ElementToClone) :EbmlMaster(ElementToClone) {}
 };
 
 DECLARE_MKX_MASTER(KaxTagGeneral)
-	public:
-		KaxTagGeneral(const KaxTagGeneral & ElementToClone) :EbmlMaster(ElementToClone) {}
 };
 
 DECLARE_MKX_MASTER(KaxTagGenres)
-	public:
-		KaxTagGenres(const KaxTagGenres & ElementToClone) :EbmlMaster(ElementToClone) {}
 };
 
 DECLARE_MKX_MASTER(KaxTagAudioSpecific)
-	public:
-		KaxTagAudioSpecific(const KaxTagAudioSpecific & ElementToClone) :EbmlMaster(ElementToClone) {}
 };
 
 DECLARE_MKX_MASTER(KaxTagImageSpecific)
-	public:
-		KaxTagImageSpecific(const KaxTagImageSpecific & ElementToClone) :EbmlMaster(ElementToClone) {}
 };
 
 DECLARE_MKX_UINTEGER(KaxTagTargetTypeValue)
-	public:
-		KaxTagTargetTypeValue(const KaxTagTargetTypeValue & ElementToClone) :EbmlUInteger(ElementToClone) {}
 };
 
 DECLARE_MKX_STRING(KaxTagTargetType)
-	public:
-		KaxTagTargetType(const KaxTagTargetType & ElementToClone) :EbmlString(ElementToClone) {}
 };
 
 DECLARE_MKX_UINTEGER(KaxTagTrackUID)
-	public:
-		KaxTagTrackUID(const KaxTagTrackUID & ElementToClone) :EbmlUInteger(ElementToClone) {}
 };
 
 DECLARE_MKX_UINTEGER(KaxTagEditionUID)
-	public:
-		KaxTagEditionUID(const KaxTagEditionUID & ElementToClone) :EbmlUInteger(ElementToClone) {}
 };
 
 DECLARE_MKX_UINTEGER(KaxTagChapterUID)
-	public:
-		KaxTagChapterUID(const KaxTagChapterUID & ElementToClone) :EbmlUInteger(ElementToClone) {}
 };
 
 DECLARE_MKX_UINTEGER(KaxTagAttachmentUID)
-	public:
-		KaxTagAttachmentUID(const KaxTagAttachmentUID & ElementToClone) :EbmlUInteger(ElementToClone) {}
 };
 
 DECLARE_MKX_UNISTRING(KaxTagArchivalLocation)
-	public:
-		KaxTagArchivalLocation(const KaxTagArchivalLocation & ElementToClone) :EbmlUnicodeString(ElementToClone) {}
 };
 
 DECLARE_MKX_BINARY(KaxTagAudioEncryption)
 	public:
-		KaxTagAudioEncryption(const KaxTagAudioEncryption & ElementToClone) :EbmlBinary(ElementToClone){}
 		bool ValidateSize() const {return true;} // we don't mind about what's inside
 };
 
 DECLARE_MKX_FLOAT(KaxTagAudioGain)
-	public:
-		KaxTagAudioGain(const KaxTagAudioGain & ElementToClone) :EbmlFloat(ElementToClone) {}
 };
 
 DECLARE_MKX_STRING(KaxTagAudioGenre)
-	public:
-		KaxTagAudioGenre(const KaxTagAudioGenre & ElementToClone) :EbmlString(ElementToClone) {}
 };
 
 DECLARE_MKX_FLOAT(KaxTagAudioPeak)
-	public:
-		KaxTagAudioPeak(const KaxTagAudioPeak & ElementToClone) :EbmlFloat(ElementToClone) {}
 };
 
 DECLARE_MKX_UNISTRING(KaxTagBibliography)
-	public:
-		KaxTagBibliography(const KaxTagBibliography & ElementToClone) :EbmlUnicodeString(ElementToClone) {}
 };
 
 DECLARE_MKX_FLOAT(KaxTagBPM)
-	public:
-		KaxTagBPM(const KaxTagBPM & ElementToClone) :EbmlFloat(ElementToClone) {}
 };
 
 DECLARE_MKX_UINTEGER(KaxTagCaptureDPI)
-	public:
-		KaxTagCaptureDPI(const KaxTagCaptureDPI & ElementToClone) :EbmlUInteger(ElementToClone) {}
 };
 
 DECLARE_MKX_BINARY(KaxTagCaptureLightness)
 	public:
-		KaxTagCaptureLightness(const KaxTagCaptureLightness & ElementToClone) :EbmlBinary(ElementToClone){}
 		bool ValidateSize() const {return true;} // we don't mind about what's inside
 };
 
 DECLARE_MKX_UINTEGER(KaxTagCapturePaletteSetting)
-	public:
-		KaxTagCapturePaletteSetting(const KaxTagCapturePaletteSetting & ElementToClone) :EbmlUInteger(ElementToClone) {}
 };
 
 DECLARE_MKX_BINARY(KaxTagCaptureSharpness)
 	public:
-		KaxTagCaptureSharpness(const KaxTagCaptureSharpness & ElementToClone) :EbmlBinary(ElementToClone){}
 		bool ValidateSize() const {return true;} // we don't mind about what's inside
 };
 
 DECLARE_MKX_UNISTRING(KaxTagCropped)
-	public:
-		KaxTagCropped(const KaxTagCropped & ElementToClone) :EbmlUnicodeString(ElementToClone) {}
 };
 
 DECLARE_MKX_UINTEGER(KaxTagDiscTrack)
-	public:
-		KaxTagDiscTrack(const KaxTagDiscTrack & ElementToClone) :EbmlUInteger(ElementToClone) {}
 };
 
 DECLARE_MKX_UNISTRING(KaxTagEncoder)
-	public:
-		KaxTagEncoder(const KaxTagEncoder & ElementToClone) :EbmlUnicodeString(ElementToClone) {}
 };
 
 DECLARE_MKX_UNISTRING(KaxTagEncodeSettings)
-	public:
-		KaxTagEncodeSettings(const KaxTagEncodeSettings & ElementToClone) :EbmlUnicodeString(ElementToClone) {}
 };
 
 DECLARE_MKX_BINARY(KaxTagEqualisation)
 	public:
-		KaxTagEqualisation(const KaxTagEqualisation & ElementToClone) :EbmlBinary(ElementToClone){}
 		bool ValidateSize() const {return true;} // we don't mind about what's inside
 };
 
 DECLARE_MKX_UNISTRING(KaxTagFile)
-	public:
-		KaxTagFile(const KaxTagFile & ElementToClone) :EbmlUnicodeString(ElementToClone) {}
 };
 
 DECLARE_MKX_STRING(KaxTagInitialKey)
-	public:
-		KaxTagInitialKey(const KaxTagInitialKey & ElementToClone) :EbmlString(ElementToClone) {}
 };
 
 DECLARE_MKX_UNISTRING(KaxTagKeywords)
-	public:
-		KaxTagKeywords(const KaxTagKeywords & ElementToClone) :EbmlUnicodeString(ElementToClone) {}
 };
 
 DECLARE_MKX_STRING(KaxTagLanguage)
-	public:
-		KaxTagLanguage(const KaxTagLanguage & ElementToClone) :EbmlString(ElementToClone) {}
 };
 
 DECLARE_MKX_UINTEGER(KaxTagLength)
-	public:
-		KaxTagLength(const KaxTagLength & ElementToClone) :EbmlUInteger(ElementToClone) {}
 };
 
 DECLARE_MKX_UNISTRING(KaxTagMood)
-	public:
-		KaxTagMood(const KaxTagMood & ElementToClone) :EbmlUnicodeString(ElementToClone) {}
 };
 
 DECLARE_MKX_STRING(KaxTagOfficialAudioFileURL)
-	public:
-		KaxTagOfficialAudioFileURL(const KaxTagOfficialAudioFileURL & ElementToClone) :EbmlString(ElementToClone) {}
 };
 
 DECLARE_MKX_STRING(KaxTagOfficialAudioSourceURL)
-	public:
-		KaxTagOfficialAudioSourceURL(const KaxTagOfficialAudioSourceURL & ElementToClone) :EbmlString(ElementToClone) {}
 };
 
 DECLARE_MKX_STRING(KaxTagOriginalDimensions)
-	public:
-		KaxTagOriginalDimensions(const KaxTagOriginalDimensions & ElementToClone) :EbmlString(ElementToClone) {}
 };
 
 DECLARE_MKX_UNISTRING(KaxTagOriginalMediaType)
-	public:
-		KaxTagOriginalMediaType(const KaxTagOriginalMediaType & ElementToClone) :EbmlUnicodeString(ElementToClone) {}
 };
 
 DECLARE_MKX_UINTEGER(KaxTagPlayCounter)
-	public:
-		KaxTagPlayCounter(const KaxTagPlayCounter & ElementToClone) :EbmlUInteger(ElementToClone) {}
 };			 
 
 DECLARE_MKX_UINTEGER(KaxTagPlaylistDelay)
-	public:
-		KaxTagPlaylistDelay(const KaxTagPlaylistDelay & ElementToClone) :EbmlUInteger(ElementToClone) {}
 };
 
 DECLARE_MKX_SINTEGER(KaxTagPopularimeter)
-	public:
-		KaxTagPopularimeter(const KaxTagPopularimeter & ElementToClone) :EbmlSInteger(ElementToClone) {}
 };
 
 DECLARE_MKX_UNISTRING(KaxTagProduct)
-	public:
-		KaxTagProduct(const KaxTagProduct & ElementToClone) :EbmlUnicodeString(ElementToClone) {}
 };
 
 DECLARE_MKX_BINARY(KaxTagRating)
 	public:
-		KaxTagRating(const KaxTagRating & ElementToClone) :EbmlBinary(ElementToClone){}
 		bool ValidateSize() const {return true;} // we don't mind about what's inside
 };
 
 DECLARE_MKX_STRING(KaxTagRecordLocation)
-	public:
-		KaxTagRecordLocation(const KaxTagRecordLocation & ElementToClone) :EbmlString(ElementToClone) {}
 };
 
 DECLARE_MKX_UINTEGER(KaxTagSetPart)
-	public:
-		KaxTagSetPart(const KaxTagSetPart & ElementToClone) :EbmlUInteger(ElementToClone) {}
 };
 
 DECLARE_MKX_UNISTRING(KaxTagSource)
-	public:
-		KaxTagSource(const KaxTagSource & ElementToClone) :EbmlUnicodeString(ElementToClone) {}
 };
 
 DECLARE_MKX_UNISTRING(KaxTagSourceForm)
-	public:
-		KaxTagSourceForm(const KaxTagSourceForm & ElementToClone) :EbmlUnicodeString(ElementToClone) {}
 };
 
 DECLARE_MKX_STRING(KaxTagSubGenre)
-	public:
-		KaxTagSubGenre(const KaxTagSubGenre & ElementToClone) :EbmlString(ElementToClone) {}
 };
 
 DECLARE_MKX_UNISTRING(KaxTagSubject)
-	public:
-		KaxTagSubject(const KaxTagSubject & ElementToClone) :EbmlUnicodeString(ElementToClone) {}
 };
 
 DECLARE_MKX_UNISTRING(KaxTagUnsynchronisedText)
-	public:
-		KaxTagUnsynchronisedText(const KaxTagUnsynchronisedText & ElementToClone) :EbmlUnicodeString(ElementToClone) {}
 };
 
 DECLARE_MKX_STRING(KaxTagUserDefinedURL)
-	public:
-		KaxTagUserDefinedURL(const KaxTagUserDefinedURL & ElementToClone) :EbmlString(ElementToClone) {}
 };
 
 DECLARE_MKX_BINARY(KaxTagVideoGenre)
 	public:
-		KaxTagVideoGenre(const KaxTagVideoGenre & ElementToClone) :EbmlBinary(ElementToClone){}
 		bool ValidateSize() const {return (GetSize() >= 2);}
 };
 
 DECLARE_MKX_MASTER(KaxTagSimple)
-	public:
-		KaxTagSimple(const KaxTagSimple & ElementToClone) :EbmlMaster(ElementToClone) {}
 };
 
 DECLARE_MKX_UNISTRING(KaxTagName)
-	public:
-		KaxTagName(const KaxTagName & ElementToClone) :EbmlUnicodeString(ElementToClone) {}
 };
 
 DECLARE_MKX_STRING(KaxTagLangue)
-	public:
-		KaxTagLangue(const KaxTagLangue & ElementToClone) :EbmlString(ElementToClone) {}
 };
 
 DECLARE_MKX_UINTEGER(KaxTagDefault)
-	public:
-		KaxTagDefault(const KaxTagTrackUID & ElementToClone) :EbmlUInteger(ElementToClone) {}
 };
 
 DECLARE_MKX_UNISTRING(KaxTagString)
-	public:
-		KaxTagString(const KaxTagString & ElementToClone) :EbmlUnicodeString(ElementToClone) {}
 };
 
 DECLARE_MKX_BINARY(KaxTagBinary)
 	public:
-		KaxTagBinary(const KaxTagBinary & ElementToClone) :EbmlBinary(ElementToClone){}
 		bool ValidateSize() const {return true;} // {return (GetSize() >= 0);}
 };
 

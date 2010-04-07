@@ -49,7 +49,6 @@ class KaxCuePoint;
 
 DECLARE_MKX_MASTER(KaxCues)
 	public:
-		KaxCues(const KaxCues & ElementToClone) :EbmlMaster(ElementToClone) {}
 		~KaxCues();
 
 		bool AddBlockGroup(const KaxBlockGroup & BlockReference);

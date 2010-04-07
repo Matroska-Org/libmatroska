@@ -47,90 +47,60 @@ using namespace LIBEBML_NAMESPACE;
 START_LIBMATROSKA_NAMESPACE
 
 DECLARE_MKX_MASTER(KaxTrackVideo)
-	public:
-		KaxTrackVideo(const KaxTrackVideo & ElementToClone) :EbmlMaster(ElementToClone) {}
 };
 
 #if MATROSKA_VERSION >= 2
 DECLARE_MKX_UINTEGER(KaxVideoFlagInterlaced)
-	public:
-		KaxVideoFlagInterlaced(const KaxVideoFlagInterlaced & ElementToClone) :EbmlUInteger(ElementToClone) {}
 };
 
 DECLARE_MKX_UINTEGER(KaxVideoStereoMode)
-	public:
-		KaxVideoStereoMode(const KaxVideoStereoMode & ElementToClone) :EbmlUInteger(ElementToClone) {}
 };
 #endif // MATROSKA_VERSION
 
 DECLARE_MKX_UINTEGER(KaxVideoPixelWidth)
-	public:
-		KaxVideoPixelWidth(const KaxVideoPixelWidth & ElementToClone) :EbmlUInteger(ElementToClone) {}
 };
 
 DECLARE_MKX_UINTEGER(KaxVideoPixelHeight)
-	public:
-		KaxVideoPixelHeight(const KaxVideoPixelHeight & ElementToClone) :EbmlUInteger(ElementToClone) {}
 };
 
 DECLARE_MKX_UINTEGER(KaxVideoPixelCropBottom)
-	public:
-		KaxVideoPixelCropBottom(const KaxVideoPixelCropBottom & ElementToClone) :EbmlUInteger(ElementToClone) {}
 };
 
 DECLARE_MKX_UINTEGER(KaxVideoPixelCropTop)
-	public:
-		KaxVideoPixelCropTop(const KaxVideoPixelCropTop & ElementToClone) :EbmlUInteger(ElementToClone) {}
 };
 
 DECLARE_MKX_UINTEGER(KaxVideoPixelCropLeft)
-	public:
-		KaxVideoPixelCropLeft(const KaxVideoPixelCropLeft & ElementToClone) :EbmlUInteger(ElementToClone) {}
 };
 
 DECLARE_MKX_UINTEGER(KaxVideoPixelCropRight)
-	public:
-		KaxVideoPixelCropRight(const KaxVideoPixelCropRight & ElementToClone) :EbmlUInteger(ElementToClone) {}
 };
 
 DECLARE_MKX_UINTEGER(KaxVideoDisplayWidth)
-	public:
-		KaxVideoDisplayWidth(const KaxVideoDisplayWidth & ElementToClone) :EbmlUInteger(ElementToClone) {}
 };
 
 DECLARE_MKX_UINTEGER(KaxVideoDisplayHeight)
-	public:
-		KaxVideoDisplayHeight(const KaxVideoDisplayHeight & ElementToClone) :EbmlUInteger(ElementToClone) {}
 };
 
 #if MATROSKA_VERSION >= 2
 DECLARE_MKX_UINTEGER(KaxVideoDisplayUnit)
-	public:
-		KaxVideoDisplayUnit(const KaxVideoDisplayUnit & ElementToClone) :EbmlUInteger(ElementToClone) {}
 };
 
 DECLARE_MKX_UINTEGER(KaxVideoAspectRatio)
-	public:
-		KaxVideoAspectRatio(const KaxVideoAspectRatio & ElementToClone) :EbmlUInteger(ElementToClone) {}
 };
 #endif // MATROSKA_VERSION
 
 DECLARE_MKX_BINARY(KaxVideoColourSpace)
 	public:
-		KaxVideoColourSpace(const KaxVideoColourSpace & ElementToClone) :EbmlBinary(ElementToClone){}
         bool ValidateSize(void) const {return (GetSize() == 4);}
 };
 
 #if MATROSKA_VERSION >= 2
 DECLARE_MKX_FLOAT(KaxVideoGamma)
-	public:
-		KaxVideoGamma(const KaxVideoGamma & ElementToClone) :EbmlFloat(ElementToClone) {}
 };
 #endif // MATROSKA_VERSION
 
 DECLARE_MKX_FLOAT(KaxVideoFrameRate)
 	public:
-		KaxVideoFrameRate(const KaxVideoFrameRate & ElementToClone) :EbmlFloat(ElementToClone) {}
 		filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault);
 };
 

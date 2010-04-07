@@ -49,10 +49,8 @@ START_LIBMATROSKA_NAMESPACE
 
 class KaxSegment;
 
-DECLARE_MKX_MASTER(KaxCluster)
+DECLARE_MKX_MASTER_CONS(KaxCluster)
 	public:
-		KaxCluster(const KaxCluster & ElementToClone);
-
 		/*!
 			\brief Addition of a frame without references
 

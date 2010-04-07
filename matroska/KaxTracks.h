@@ -46,14 +46,10 @@ using namespace LIBEBML_NAMESPACE;
 START_LIBMATROSKA_NAMESPACE
 
 DECLARE_MKX_MASTER(KaxTracks)
-	public:
-		KaxTracks(const KaxTracks & ElementToClone) :EbmlMaster(ElementToClone) {}
 };
 
 DECLARE_MKX_MASTER(KaxTrackEntry)
 	public:
-		KaxTrackEntry(const KaxTrackEntry & ElementToClone) :EbmlMaster(ElementToClone) {}
-
 		EbmlUInteger & TrackNumber() const { return *(static_cast<EbmlUInteger *>(FindElt(EBML_INFO(KaxTrackNumber)))); }
 
 		void EnableLacing(bool bEnable = true);

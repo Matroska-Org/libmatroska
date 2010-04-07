@@ -46,97 +46,56 @@ using namespace LIBEBML_NAMESPACE;
 START_LIBMATROSKA_NAMESPACE
 
 DECLARE_MKX_MASTER(KaxContentEncodings)
-    public:
-        KaxContentEncodings(const KaxContentEncodings &ElementToClone):
-            EbmlMaster(ElementToClone) {}
 };
 
 DECLARE_MKX_MASTER(KaxContentEncoding)
-    public:
-        KaxContentEncoding(const KaxContentEncoding &ElementToClone):
-            EbmlMaster(ElementToClone) {}
 };
 
 DECLARE_MKX_UINTEGER(KaxContentEncodingOrder)
-    public:
-        KaxContentEncodingOrder(const KaxContentEncodingOrder &ElementToClone):
-            EbmlUInteger(ElementToClone) {}
 };
 
 DECLARE_MKX_UINTEGER(KaxContentEncodingScope)
-    public:
-        KaxContentEncodingScope(const KaxContentEncodingScope &ElementToClone):
-        EbmlUInteger(ElementToClone) {}
 };
 
 DECLARE_MKX_UINTEGER(KaxContentEncodingType)
-    public:
-        KaxContentEncodingType(const KaxContentEncodingType &ElementToClone):
-            EbmlUInteger(ElementToClone) {}
 };
 
 DECLARE_MKX_MASTER(KaxContentCompression)
-    public:
-        KaxContentCompression(const KaxContentCompression &ElementToClone):
-            EbmlMaster(ElementToClone) {}
 };
 
 DECLARE_MKX_UINTEGER(KaxContentCompAlgo)
-    public:
-        KaxContentCompAlgo(const KaxContentCompAlgo &ElementToClone):
-            EbmlUInteger(ElementToClone) {}
 };
 
 DECLARE_MKX_BINARY(KaxContentCompSettings)
     public:
-        KaxContentCompSettings(const KaxContentCompSettings &ElementToClone):
-            EbmlBinary(ElementToClone) {}
         bool ValidateSize(void) const { return true; }
 };
 
 DECLARE_MKX_MASTER(KaxContentEncryption)
-    public:
-        KaxContentEncryption(const KaxContentEncryption &ElementToClone):
-            EbmlMaster(ElementToClone) {}
 };
 
 DECLARE_MKX_UINTEGER(KaxContentEncAlgo)
-    public:
-        KaxContentEncAlgo(const KaxContentEncAlgo &ElementToClone):
-            EbmlUInteger(ElementToClone) {}
 };
 
 DECLARE_MKX_BINARY(KaxContentEncKeyID)
     public:
-        KaxContentEncKeyID(const KaxContentEncKeyID &ElementToClone):
-            EbmlBinary(ElementToClone) {}
         bool ValidateSize(void) const { return true; }
 };
 
 DECLARE_MKX_BINARY(KaxContentSignature)
     public:
-        KaxContentSignature(const KaxContentSignature &ElementToClone):
-            EbmlBinary(ElementToClone) {}
         bool ValidateSize(void) const { return true; }
 };
 
 DECLARE_MKX_BINARY(KaxContentSigKeyID)
     public:
-        KaxContentSigKeyID(const KaxContentSigKeyID &ElementToClone):
-            EbmlBinary(ElementToClone) {}
         bool ValidateSize(void) const { return true; }
 };
 
 DECLARE_MKX_UINTEGER(KaxContentSigAlgo)
-    public:
-        KaxContentSigAlgo(const KaxContentSigAlgo &ElementToClone):
-            EbmlUInteger(ElementToClone) {}
 };
 
 DECLARE_MKX_UINTEGER(KaxContentSigHashAlgo)
-    public:
-        KaxContentSigHashAlgo(const KaxContentSigHashAlgo &ElementToClone):
-            EbmlUInteger(ElementToClone) {}
 };
 
 END_LIBMATROSKA_NAMESPACE

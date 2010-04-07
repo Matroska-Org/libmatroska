@@ -205,7 +205,7 @@ DECLARE_MKX_STRING(KaxTagUserDefinedURL)
 
 DECLARE_MKX_BINARY(KaxTagVideoGenre)
 	public:
-		bool ValidateSize() const {return (GetSize() >= 2);}
+		virtual bool ValidateSize() const {return (GetSize() >= 2);}
 };
 
 DECLARE_MKX_MASTER(KaxTagSimple)

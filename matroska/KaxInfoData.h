@@ -52,7 +52,7 @@ START_LIBMATROSKA_NAMESPACE
 
 DECLARE_MKX_BINARY(KaxSegmentUID)
 	public:
-		bool ValidateSize() const { return (GetSize() == 16);}
+		virtual bool ValidateSize() const { return (GetSize() == 16);}
 };
 
 DECLARE_MKX_UNISTRING(KaxSegmentFilename)
@@ -63,7 +63,7 @@ class MATROSKA_DLL_API KaxPrevUID : public KaxSegmentUID {
 	public:
 		KaxPrevUID();
 		KaxPrevUID(const KaxPrevUID & ElementToClone) :KaxSegmentUID(ElementToClone){}
-		bool ValidateSize() const { return (GetSize() == 16);}
+		virtual bool ValidateSize() const { return (GetSize() == 16);}
 
         EBML_CONCRETE_CLASS(KaxPrevUID)
 };
@@ -76,7 +76,7 @@ class MATROSKA_DLL_API KaxNextUID : public KaxSegmentUID {
 	public:
 		KaxNextUID();
 		KaxNextUID(const KaxNextUID & ElementToClone) :KaxSegmentUID(ElementToClone){}
-		bool ValidateSize() const { return (GetSize() == 16);}
+		virtual bool ValidateSize() const { return (GetSize() == 16);}
 
         EBML_CONCRETE_CLASS(KaxNextUID)
 };
@@ -86,7 +86,7 @@ DECLARE_MKX_UNISTRING(KaxNextFilename)
 
 DECLARE_MKX_BINARY(KaxSegmentFamily)
 	public:
-		bool ValidateSize() const { return (GetSize() == 16);}
+		virtual bool ValidateSize() const { return (GetSize() == 16);}
 };
 
 DECLARE_MKX_MASTER(KaxChapterTranslate)

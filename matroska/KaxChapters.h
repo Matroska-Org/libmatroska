@@ -85,12 +85,12 @@ DECLARE_MKX_UINTEGER(KaxChapterFlagEnabled)
 
 DECLARE_MKX_BINARY(KaxChapterSegmentUID)
     public:
-	    bool ValidateSize() const { return (GetSize() == 16);}
+	    virtual bool ValidateSize() const { return (GetSize() == 16);}
 };
 
 DECLARE_MKX_BINARY(KaxChapterSegmentEditionUID)
     public:
-	    bool ValidateSize() const { return (GetSize() == 16);}
+	    virtual bool ValidateSize() const { return (GetSize() == 16);}
 };
 
 DECLARE_MKX_UINTEGER(KaxChapterPhysicalEquiv)

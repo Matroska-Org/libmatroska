@@ -292,7 +292,7 @@ DECLARE_MKX_STRING(KaxTagUserDefinedURL)
 
 DECLARE_MKX_BINARY(KaxTagVideoSecondaryGenre)
 	public:
-		bool ValidateSize() const {return (Size >= 4);
+		virtual bool ValidateSize() const {return (Size >= 4);
 };
 
 DECLARE_MKX_UNISTRING(KaxWritingApp)

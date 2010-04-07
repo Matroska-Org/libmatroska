@@ -194,7 +194,7 @@ class KaxInternalBlock : public EbmlBinary {
 		{}
 		KaxInternalBlock(const KaxInternalBlock & ElementToClone);
 		~KaxInternalBlock();
-		bool ValidateSize() const;
+		virtual bool ValidateSize() const;
 
 		uint16 TrackNum() const {return TrackNumber;}
 		/*!

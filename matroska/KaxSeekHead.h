@@ -69,7 +69,7 @@ DECLARE_MKX_MASTER(KaxSeek)
 
 DECLARE_MKX_BINARY(KaxSeekID)
 	public:
-		bool ValidateSize() const {return GetSize() <= 4;}
+		virtual bool ValidateSize() const {return GetSize() <= 4;}
 };
 
 DECLARE_MKX_UINTEGER(KaxSeekPosition)

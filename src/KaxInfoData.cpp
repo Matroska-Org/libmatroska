@@ -45,7 +45,7 @@ DEFINE_SEMANTIC_ITEM(true, true, KaxChapterTranslateCodec)
 DEFINE_SEMANTIC_ITEM(true, true, KaxChapterTranslateID)
 DEFINE_END_SEMANTIC(KaxChapterTranslate)
 
-DEFINE_MKX_BINARY       (KaxSegmentUID,                 0x73A4, 2, KaxInfo, "ChapterTranslate");
+DEFINE_MKX_BINARY       (KaxSegmentUID,                 0x73A4, 2, KaxInfo, "SegmentUID");
 DEFINE_MKX_UNISTRING    (KaxSegmentFilename,            0x7384, 2, KaxInfo, "SegmentFilename");
 DEFINE_MKX_BINARY       (KaxPrevUID,                  0x3CB923, 3, KaxInfo, "PrevUID");
 DEFINE_MKX_UNISTRING    (KaxPrevFilename,             0x3C83AB, 3, KaxInfo, "PrevFilename");

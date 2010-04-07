@@ -38,10 +38,9 @@
 
 START_LIBMATROSKA_NAMESPACE
 
-static const EbmlSemantic ContextList_KaxClusterSilentTracks[1] =
-{
-	EbmlSemantic(false,  false, EBML_INFO(KaxClusterSilentTrackNumber)),
-};
+DEFINE_START_SEMANTIC(KaxClusterSilentTracks)
+DEFINE_SEMANTIC_ITEM(false, false, KaxClusterSilentTrackNumber)
+DEFINE_END_SEMANTIC(KaxClusterSilentTracks)
 
 DEFINE_MKX_UINTEGER(KaxClusterTimecode,            0xE7, 1, KaxCluster, "ClusterTimecode");
 DEFINE_MKX_MASTER  (KaxClusterSilentTracks,      0x5854, 2, KaxCluster, "ClusterSilentTracks")

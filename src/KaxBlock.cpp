@@ -43,37 +43,30 @@
 
 START_LIBMATROSKA_NAMESPACE
 
-#if MATROSKA_VERSION == 1
-static const EbmlSemantic ContextList_KaxBlockGroup[6] =
-#else // MATROSKA_VERSION
-static const EbmlSemantic ContextList_KaxBlockGroup[9] =
-#endif // MATROSKA_VERSION
-{
-	EbmlSemantic(true,  true,  EBML_INFO(KaxBlock)),
+DEFINE_START_SEMANTIC(KaxBlockGroup)
+DEFINE_SEMANTIC_ITEM(true, true, KaxBlock)
 #if MATROSKA_VERSION >= 2
-	EbmlSemantic(false, true,  EBML_INFO(KaxBlockVirtual)),
+DEFINE_SEMANTIC_ITEM(false, true, KaxBlockVirtual)
 #endif // MATROSKA_VERSION
-	EbmlSemantic(false, true,  EBML_INFO(KaxBlockDuration)),
-	EbmlSemantic(false, true,  EBML_INFO(KaxSlices)),
-	EbmlSemantic(true,  true,  EBML_INFO(KaxReferencePriority)),
-	EbmlSemantic(false, false, EBML_INFO(KaxReferenceBlock)),
+DEFINE_SEMANTIC_ITEM(false, true, KaxBlockDuration)
+DEFINE_SEMANTIC_ITEM(false, true, KaxSlices)
+DEFINE_SEMANTIC_ITEM(true, true, KaxReferencePriority)
+DEFINE_SEMANTIC_ITEM(false, false, KaxReferenceBlock)
 #if MATROSKA_VERSION >= 2
-	EbmlSemantic(false, true,  EBML_INFO(KaxReferenceVirtual)),
-	EbmlSemantic(false, true,  EBML_INFO(KaxCodecState)),
+DEFINE_SEMANTIC_ITEM(false, true, KaxReferenceVirtual)
+DEFINE_SEMANTIC_ITEM(false, true, KaxCodecState)
 #endif // MATROSKA_VERSION
-	EbmlSemantic(false, true,  EBML_INFO(KaxBlockAdditions)),
-};
+DEFINE_SEMANTIC_ITEM(false, true, KaxBlockAdditions)
+DEFINE_END_SEMANTIC(KaxBlockGroup)
 
-static const EbmlSemantic ContextList_KaxBlockAdditions[1] =
-{
-	EbmlSemantic(true,  false,  EBML_INFO(KaxBlockMore))
-};
+DEFINE_START_SEMANTIC(KaxBlockAdditions)
+DEFINE_SEMANTIC_ITEM(true,  false,  KaxBlockMore)
+DEFINE_END_SEMANTIC(KaxBlockAdditions)
 
-static const EbmlSemantic ContextList_KaxBlockMore[2] =
-{
-	EbmlSemantic(true,  true,  EBML_INFO(KaxBlockAddID)),
-	EbmlSemantic(true,  true,  EBML_INFO(KaxBlockAdditional))
-};
+DEFINE_START_SEMANTIC(KaxBlockMore)
+DEFINE_SEMANTIC_ITEM(true, true, KaxBlockAddID)
+DEFINE_SEMANTIC_ITEM(true,  true,  KaxBlockAdditional)
+DEFINE_END_SEMANTIC(KaxBlockMore)
 
 DEFINE_MKX_MASTER_CONS (KaxBlockGroup,       0xA0, 1, KaxCluster, "BlockGroup");
 DEFINE_MKX_BINARY_CONS (KaxBlock,            0xA1, 1, KaxBlockGroup, "Block");

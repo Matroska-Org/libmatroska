@@ -44,49 +44,43 @@
 
 START_LIBMATROSKA_NAMESPACE
 
-static const EbmlSemantic ContextList_KaxTracks[1] =
-{
-	EbmlSemantic(true, false, EBML_INFO(KaxTrackEntry)),
-};
+DEFINE_START_SEMANTIC(KaxTracks)
+DEFINE_SEMANTIC_ITEM(true, false, KaxTrackEntry)
+DEFINE_END_SEMANTIC(KaxTracks)
 
-#if MATROSKA_VERSION == 1
-static const EbmlSemantic ContextList_KaxTrackEntry[22] =
-#else // MATROSKA_VERSION
-static const EbmlSemantic ContextList_KaxTrackEntry[27] =
-#endif // MATROSKA_VERSION
-{
-	EbmlSemantic(true , true, EBML_INFO(KaxTrackNumber)),
-	EbmlSemantic(true , true, EBML_INFO(KaxTrackUID)),
-	EbmlSemantic(true , true, EBML_INFO(KaxTrackType)),
+DEFINE_START_SEMANTIC(KaxTrackEntry)
+DEFINE_SEMANTIC_ITEM(true, true, KaxTrackNumber)
+DEFINE_SEMANTIC_ITEM(true, true, KaxTrackUID)
+DEFINE_SEMANTIC_ITEM(true, true, KaxTrackType)
 #if MATROSKA_VERSION >= 2
-	EbmlSemantic(true , true, EBML_INFO(KaxTrackFlagEnabled)),
+DEFINE_SEMANTIC_ITEM(true, true, KaxTrackFlagEnabled)
 #endif // MATROSKA_VERSION
-	EbmlSemantic(true , true, EBML_INFO(KaxTrackFlagDefault)),
-	EbmlSemantic(true , true, EBML_INFO(KaxTrackFlagForced)),
-	EbmlSemantic(true , true, EBML_INFO(KaxTrackFlagLacing)),
-	EbmlSemantic(true , true, EBML_INFO(KaxTrackMinCache)),
-	EbmlSemantic(false, true, EBML_INFO(KaxTrackMaxCache)),
-	EbmlSemantic(false, true, EBML_INFO(KaxTrackDefaultDuration)),
-	EbmlSemantic(true , true, EBML_INFO(KaxTrackTimecodeScale)),
-	EbmlSemantic(true , true, EBML_INFO(KaxMaxBlockAdditionID)),
-	EbmlSemantic(false, true, EBML_INFO(KaxTrackName)),
-	EbmlSemantic(false, true, EBML_INFO(KaxTrackLanguage)),
-	EbmlSemantic(true , true, EBML_INFO(KaxCodecID)),
-	EbmlSemantic(false, true, EBML_INFO(KaxCodecPrivate)),
-	EbmlSemantic(false, true, EBML_INFO(KaxCodecName)),
-	EbmlSemantic(false, true, EBML_INFO(KaxTrackAttachmentLink)),
+DEFINE_SEMANTIC_ITEM(true, true, KaxTrackFlagDefault)
+DEFINE_SEMANTIC_ITEM(true, true, KaxTrackFlagForced)
+DEFINE_SEMANTIC_ITEM(true, true, KaxTrackFlagLacing)
+DEFINE_SEMANTIC_ITEM(true, true, KaxTrackMinCache)
+DEFINE_SEMANTIC_ITEM(false, true, KaxTrackMaxCache)
+DEFINE_SEMANTIC_ITEM(false, true, KaxTrackDefaultDuration)
+DEFINE_SEMANTIC_ITEM(true, true, KaxTrackTimecodeScale)
+DEFINE_SEMANTIC_ITEM(true, true, KaxMaxBlockAdditionID)
+DEFINE_SEMANTIC_ITEM(false, true, KaxTrackName)
+DEFINE_SEMANTIC_ITEM(false, true, KaxTrackLanguage)
+DEFINE_SEMANTIC_ITEM(true, true, KaxCodecID)
+DEFINE_SEMANTIC_ITEM(false, true, KaxCodecPrivate)
+DEFINE_SEMANTIC_ITEM(false, true, KaxCodecName)
+DEFINE_SEMANTIC_ITEM(false, true, KaxTrackAttachmentLink)
 #if MATROSKA_VERSION >= 2
-	EbmlSemantic(false, true, EBML_INFO(KaxCodecSettings)),
-	EbmlSemantic(false, false,EBML_INFO(KaxCodecInfoURL)),
-	EbmlSemantic(false, false,EBML_INFO(KaxCodecDownloadURL)),
-	EbmlSemantic(true , true, EBML_INFO(KaxCodecDecodeAll)),
+DEFINE_SEMANTIC_ITEM(false, true, KaxCodecSettings)
+DEFINE_SEMANTIC_ITEM(false, false, KaxCodecInfoURL)
+DEFINE_SEMANTIC_ITEM(false, false, KaxCodecDownloadURL)
+DEFINE_SEMANTIC_ITEM(true, true, KaxCodecDecodeAll)
 #endif // MATROSKA_VERSION
-	EbmlSemantic(false, false,EBML_INFO(KaxTrackOverlay)),
-	EbmlSemantic(false, false,EBML_INFO(KaxTrackTranslate)),
-	EbmlSemantic(false, true, EBML_INFO(KaxTrackAudio)),
-	EbmlSemantic(false, true, EBML_INFO(KaxTrackVideo)),
-	EbmlSemantic(false, true, EBML_INFO(KaxContentEncodings)),
-};
+DEFINE_SEMANTIC_ITEM(false, false, KaxTrackOverlay)
+DEFINE_SEMANTIC_ITEM(false, false, KaxTrackTranslate)
+DEFINE_SEMANTIC_ITEM(false, true, KaxTrackAudio)
+DEFINE_SEMANTIC_ITEM(false, true, KaxTrackVideo)
+DEFINE_SEMANTIC_ITEM(false, true, KaxContentEncodings)
+DEFINE_END_SEMANTIC(KaxTrackEntry)
 
 DEFINE_MKX_MASTER     (KaxTracks, 0x1654AE6B, 4, KaxSegment, "Tracks");
 DEFINE_MKX_MASTER_CONS(KaxTrackEntry,   0xAE, 1, KaxTracks, "TrackEntry");

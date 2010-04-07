@@ -42,10 +42,9 @@ using namespace LIBEBML_NAMESPACE;
 // sub elements
 START_LIBMATROSKA_NAMESPACE
 
-static const EbmlSemantic ContextList_KaxAttachments[1] =
-{
-	EbmlSemantic(true, false, EBML_INFO(KaxAttached)),        ///< EBMLVersion
-};
+DEFINE_START_SEMANTIC(KaxAttachments)
+DEFINE_SEMANTIC_ITEM(true, false, KaxAttached)        ///< EBMLVersion
+DEFINE_END_SEMANTIC(KaxAttachments)
 
 DEFINE_MKX_MASTER_CONS(KaxAttachments, 0x1941A469, 4, KaxSegment, "Attachments");
 

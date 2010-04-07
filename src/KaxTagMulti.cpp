@@ -41,116 +41,99 @@ using namespace LIBEBML_NAMESPACE;
 
 START_LIBMATROSKA_NAMESPACE
 
-static const EbmlSemantic ContextList_KaxTagMultiGlobal[1] =
-{
-	EbmlSemantic(false, false, EBML_INFO(KaxTagMultiComment)),
-};
+DEFINE_START_SEMANTIC(KaxTagMultiGlobal)
+DEFINE_SEMANTIC_ITEM(false, false, KaxTagMultiComment)
+DEFINE_END_SEMANTIC(KaxTagMultiGlobal)
 
-static const EbmlSemantic ContextList_KaxTagMultiComment[3] =
-{
-	EbmlSemantic(false, true, EBML_INFO(KaxTagMultiCommentName)),
-	EbmlSemantic(false, true, EBML_INFO(KaxTagMultiCommentComments)),
-	EbmlSemantic(false, true, EBML_INFO(KaxTagMultiCommentLanguage)),
-};
+DEFINE_START_SEMANTIC(KaxTagMultiComment)
+DEFINE_SEMANTIC_ITEM(false, true, KaxTagMultiCommentName)
+DEFINE_SEMANTIC_ITEM(false, true, KaxTagMultiCommentComments)
+DEFINE_SEMANTIC_ITEM(false, true, KaxTagMultiCommentLanguage)
+DEFINE_END_SEMANTIC(KaxTagMultiComment)
 
-static const EbmlSemantic ContextList_KaxTagMultiCommercial[1] =
-{
-	EbmlSemantic(true, false, EBML_INFO(KaxTagCommercial)),
-};
+DEFINE_START_SEMANTIC(KaxTagMultiCommercial)
+DEFINE_SEMANTIC_ITEM(true, false, KaxTagCommercial)
+DEFINE_END_SEMANTIC(KaxTagMultiCommercial)
 
-static const EbmlSemantic ContextList_KaxTagCommercial[5] =
-{
-	EbmlSemantic(true,  true,  EBML_INFO(KaxTagMultiCommercialType)),
-	EbmlSemantic(false, true,  EBML_INFO(KaxTagMultiCommercialAddress)),
-	EbmlSemantic(false, false, EBML_INFO(KaxTagMultiCommercialURL)),
-	EbmlSemantic(false, false, EBML_INFO(KaxTagMultiCommercialEmail)),
-	EbmlSemantic(false, false, EBML_INFO(KaxTagMultiPrice)),
-};
+DEFINE_START_SEMANTIC(KaxTagCommercial)
+DEFINE_SEMANTIC_ITEM(true, true, KaxTagMultiCommercialType)
+DEFINE_SEMANTIC_ITEM(false, true, KaxTagMultiCommercialAddress)
+DEFINE_SEMANTIC_ITEM(false, false, KaxTagMultiCommercialURL)
+DEFINE_SEMANTIC_ITEM(false, false, KaxTagMultiCommercialEmail)
+DEFINE_SEMANTIC_ITEM(false, false, KaxTagMultiPrice)
+DEFINE_END_SEMANTIC(KaxTagCommercial)
 
-static const EbmlSemantic ContextList_KaxTagMultiPrice[3] =
-{
-	EbmlSemantic(false, true, EBML_INFO(KaxTagMultiPriceCurrency)),
-	EbmlSemantic(false, true, EBML_INFO(KaxTagMultiPriceAmount)),
-	EbmlSemantic(false, true, EBML_INFO(KaxTagMultiPricePriceDate)),
-};
+DEFINE_START_SEMANTIC(KaxTagMultiPrice)
+DEFINE_SEMANTIC_ITEM(false, true, KaxTagMultiPriceCurrency)
+DEFINE_SEMANTIC_ITEM(false, true, KaxTagMultiPriceAmount)
+DEFINE_SEMANTIC_ITEM(false, true, KaxTagMultiPricePriceDate)
+DEFINE_END_SEMANTIC(KaxTagMultiPrice)
 
-static const EbmlSemantic ContextList_KaxTagMultiDate[1] =
-{
-	EbmlSemantic(true, false, EBML_INFO(KaxTagDate)),
-};
+DEFINE_START_SEMANTIC(KaxTagMultiDate)
+DEFINE_SEMANTIC_ITEM(true, false, KaxTagDate)
+DEFINE_END_SEMANTIC(KaxTagMultiDate)
 
-static const EbmlSemantic ContextList_KaxTagDate[3] =
-{
-	EbmlSemantic(true,  true, EBML_INFO(KaxTagMultiDateType)),
-	EbmlSemantic(false, true, EBML_INFO(KaxTagMultiDateDateBegin)),
-	EbmlSemantic(false, true, EBML_INFO(KaxTagMultiDateDateEnd)),
-};
+DEFINE_START_SEMANTIC(KaxTagDate)
+DEFINE_SEMANTIC_ITEM(true, true, KaxTagMultiDateType)
+DEFINE_SEMANTIC_ITEM(false, true, KaxTagMultiDateDateBegin)
+DEFINE_SEMANTIC_ITEM(false, true, KaxTagMultiDateDateEnd)
+DEFINE_END_SEMANTIC(KaxTagDate)
 
-static const EbmlSemantic ContextList_KaxTagMultiEntity[1] =
-{
-	EbmlSemantic(true, false, EBML_INFO(KaxTagEntity)),
-};
+DEFINE_START_SEMANTIC(KaxTagMultiEntity)
+DEFINE_SEMANTIC_ITEM(true, false, KaxTagEntity)
+DEFINE_END_SEMANTIC(KaxTagMultiEntity)
 
-static const EbmlSemantic ContextList_KaxTagEntity[5] =
-{
-	EbmlSemantic(true,  true,  EBML_INFO(KaxTagMultiEntityType)),
-	EbmlSemantic(false, true,  EBML_INFO(KaxTagMultiEntityName)),
-	EbmlSemantic(false, false, EBML_INFO(KaxTagMultiEntityURL)),
-	EbmlSemantic(false, false, EBML_INFO(KaxTagMultiEntityEmail)),
-	EbmlSemantic(false, true,  EBML_INFO(KaxTagMultiEntityAddress)),
-};
+DEFINE_START_SEMANTIC(KaxTagEntity)
+DEFINE_SEMANTIC_ITEM(true, true, KaxTagMultiEntityType)
+DEFINE_SEMANTIC_ITEM(false, true, KaxTagMultiEntityName)
+DEFINE_SEMANTIC_ITEM(false, false, KaxTagMultiEntityURL)
+DEFINE_SEMANTIC_ITEM(false, false, KaxTagMultiEntityEmail)
+DEFINE_SEMANTIC_ITEM(false, true, KaxTagMultiEntityAddress)
+DEFINE_END_SEMANTIC(KaxTagEntity)
 
-static const EbmlSemantic ContextList_KaxTagMultiIdentifier[1] =
-{
-	EbmlSemantic(true, false, EBML_INFO(KaxTagIdentifier)),
-};
+DEFINE_START_SEMANTIC(KaxTagMultiIdentifier)
+DEFINE_SEMANTIC_ITEM(true, false, KaxTagIdentifier)
+DEFINE_END_SEMANTIC(KaxTagMultiIdentifier)
 
-static const EbmlSemantic ContextList_KaxTagIdentifier[3] =
-{
-	EbmlSemantic(true,  true, EBML_INFO(KaxTagMultiIdentifierType)),
-	EbmlSemantic(false, true, EBML_INFO(KaxTagMultiIdentifierBinary)),
-	EbmlSemantic(false, true, EBML_INFO(KaxTagMultiIdentifierString)),
-};
+DEFINE_START_SEMANTIC(KaxTagIdentifier)
+DEFINE_SEMANTIC_ITEM(true, true, KaxTagMultiIdentifierType)
+DEFINE_SEMANTIC_ITEM(false, true, KaxTagMultiIdentifierBinary)
+DEFINE_SEMANTIC_ITEM(false, true, KaxTagMultiIdentifierString)
+DEFINE_END_SEMANTIC(KaxTagIdentifier)
 
-static const EbmlSemantic ContextList_KaxTagMultiLegal[1] =
-{
-	EbmlSemantic(true, false, EBML_INFO(KaxTagLegal)),
-};
+DEFINE_START_SEMANTIC(KaxTagMultiLegal)
+DEFINE_SEMANTIC_ITEM(true, false, KaxTagLegal)
+DEFINE_END_SEMANTIC(KaxTagMultiLegal)
 
-static const EbmlSemantic ContextList_KaxTagLegal[4] =
-{
-	EbmlSemantic(true,  true,  EBML_INFO(KaxTagMultiLegalType)),
-	EbmlSemantic(false, true,  EBML_INFO(KaxTagMultiLegalContent)),
-	EbmlSemantic(false, false, EBML_INFO(KaxTagMultiLegalURL)),
-	EbmlSemantic(false, true,  EBML_INFO(KaxTagMultiLegalAddress)),
-};
+DEFINE_START_SEMANTIC(KaxTagLegal)
+DEFINE_SEMANTIC_ITEM(true, true, KaxTagMultiLegalType)
+DEFINE_SEMANTIC_ITEM(false, true, KaxTagMultiLegalContent)
+DEFINE_SEMANTIC_ITEM(false, false, KaxTagMultiLegalURL)
+DEFINE_SEMANTIC_ITEM(false, true, KaxTagMultiLegalAddress)
+DEFINE_END_SEMANTIC(KaxTagLegal)
 
-static const EbmlSemantic ContextList_KaxTagMultiTitle[1] =
-{
-	EbmlSemantic(true, false, EBML_INFO(KaxTagTitle)),
-};
+DEFINE_START_SEMANTIC(KaxTagMultiTitle)
+DEFINE_SEMANTIC_ITEM(true, false, KaxTagTitle)
+DEFINE_END_SEMANTIC(KaxTagMultiTitle)
 
-static const EbmlSemantic ContextList_KaxTagTitle[8] =
-{
-	EbmlSemantic(true,  true,  EBML_INFO(KaxTagMultiTitleType)),
-	EbmlSemantic(false, true,  EBML_INFO(KaxTagMultiTitleName)),
-	EbmlSemantic(false, true,  EBML_INFO(KaxTagMultiTitleSubTitle)),
-	EbmlSemantic(false, true,  EBML_INFO(KaxTagMultiTitleEdition)),
-	EbmlSemantic(false, true,  EBML_INFO(KaxTagMultiTitleAddress)),
-	EbmlSemantic(false, false, EBML_INFO(KaxTagMultiTitleURL)),
-	EbmlSemantic(false, false, EBML_INFO(KaxTagMultiTitleEmail)),
-	EbmlSemantic(false, true,  EBML_INFO(KaxTagMultiTitleLanguage)),
-};
+DEFINE_START_SEMANTIC(KaxTagTitle)
+DEFINE_SEMANTIC_ITEM(true, true, KaxTagMultiTitleType)
+DEFINE_SEMANTIC_ITEM(false, true, KaxTagMultiTitleName)
+DEFINE_SEMANTIC_ITEM(false, true, KaxTagMultiTitleSubTitle)
+DEFINE_SEMANTIC_ITEM(false, true, KaxTagMultiTitleEdition)
+DEFINE_SEMANTIC_ITEM(false, true, KaxTagMultiTitleAddress)
+DEFINE_SEMANTIC_ITEM(false, false, KaxTagMultiTitleURL)
+DEFINE_SEMANTIC_ITEM(false, false, KaxTagMultiTitleEmail)
+DEFINE_SEMANTIC_ITEM(false, true, KaxTagMultiTitleLanguage)
+DEFINE_END_SEMANTIC(KaxTagTitle)
 
-static const EbmlSemantic ContextList_KaxTagMultiAttachment[1] =
-{
-	EbmlSemantic(true, false, EBML_INFO(KaxTagAttachment)),
-};
+DEFINE_START_SEMANTIC(KaxTagMultiAttachment)
+DEFINE_SEMANTIC_ITEM(true, false, KaxTagAttachment)
+DEFINE_END_SEMANTIC(KaxTagMultiAttachment)
 
-static const EbmlSemantic ContextList_KaxTagAttachment[1] =
-{
-	EbmlSemantic(false, true,  EBML_INFO(KaxTagAttachmentID)),
-};
+DEFINE_START_SEMANTIC(KaxTagAttachment)
+DEFINE_SEMANTIC_ITEM(false, true, KaxTagAttachmentID)
+DEFINE_END_SEMANTIC(KaxTagAttachment)
 
 
 DEFINE_MKX_CONTEXT(KaxTagMultiGlobal);

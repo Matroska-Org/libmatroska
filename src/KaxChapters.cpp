@@ -39,60 +39,53 @@
 // sub elements
 START_LIBMATROSKA_NAMESPACE
 
-static const EbmlSemantic ContextList_KaxChapters[1] =
-{
-    EbmlSemantic(true, false,  EBML_INFO(KaxEditionEntry)),
-};
+DEFINE_START_SEMANTIC(KaxChapters)
+DEFINE_SEMANTIC_ITEM(true, false, KaxEditionEntry)
+DEFINE_END_SEMANTIC(KaxChapters)
 
-static const EbmlSemantic ContextList_KaxEditionEntry[5] =
-{
-    EbmlSemantic(false, true , EBML_INFO(KaxEditionUID)),
-    EbmlSemantic(true , true , EBML_INFO(KaxEditionFlagHidden)),
-    EbmlSemantic(true , true , EBML_INFO(KaxEditionFlagDefault)),
-    EbmlSemantic(false, true , EBML_INFO(KaxEditionFlagOrdered)),
-    EbmlSemantic(true , false, EBML_INFO(KaxChapterAtom)),
-};
+DEFINE_START_SEMANTIC(KaxEditionEntry)
+DEFINE_SEMANTIC_ITEM(false, true, KaxEditionUID)
+DEFINE_SEMANTIC_ITEM(true, true, KaxEditionFlagHidden)
+DEFINE_SEMANTIC_ITEM(true, true, KaxEditionFlagDefault)
+DEFINE_SEMANTIC_ITEM(false, true, KaxEditionFlagOrdered)
+DEFINE_SEMANTIC_ITEM(true, false, KaxChapterAtom)
+DEFINE_END_SEMANTIC(KaxEditionEntry)
 
-static const EbmlSemantic ContextList_KaxChapterAtom[12] =
-{
-    EbmlSemantic(false, false, EBML_INFO(KaxChapterAtom)),
-    EbmlSemantic(true,  true,  EBML_INFO(KaxChapterUID)),
-    EbmlSemantic(true,  true,  EBML_INFO(KaxChapterTimeStart)),
-    EbmlSemantic(false, true,  EBML_INFO(KaxChapterTimeEnd)),
-    EbmlSemantic(true , true,  EBML_INFO(KaxChapterFlagHidden)),
-    EbmlSemantic(true , true,  EBML_INFO(KaxChapterFlagEnabled)),
-    EbmlSemantic(false, true,  EBML_INFO(KaxChapterSegmentUID)),
-    EbmlSemantic(false, true,  EBML_INFO(KaxChapterSegmentEditionUID)),
-    EbmlSemantic(false, true,  EBML_INFO(KaxChapterPhysicalEquiv)),
-    EbmlSemantic(false, true,  EBML_INFO(KaxChapterTrack)),
-    EbmlSemantic(false, false, EBML_INFO(KaxChapterDisplay)),
-    EbmlSemantic(false, false, EBML_INFO(KaxChapterProcess)),
-};
+DEFINE_START_SEMANTIC(KaxChapterAtom)
+DEFINE_SEMANTIC_ITEM(false, false, KaxChapterAtom)
+DEFINE_SEMANTIC_ITEM(true, true, KaxChapterUID)
+DEFINE_SEMANTIC_ITEM(true, true, KaxChapterTimeStart)
+DEFINE_SEMANTIC_ITEM(false, true, KaxChapterTimeEnd)
+DEFINE_SEMANTIC_ITEM(true, true, KaxChapterFlagHidden)
+DEFINE_SEMANTIC_ITEM(true, true, KaxChapterFlagEnabled)
+DEFINE_SEMANTIC_ITEM(false, true, KaxChapterSegmentUID)
+DEFINE_SEMANTIC_ITEM(false, true, KaxChapterSegmentEditionUID)
+DEFINE_SEMANTIC_ITEM(false, true, KaxChapterPhysicalEquiv)
+DEFINE_SEMANTIC_ITEM(false, true, KaxChapterTrack)
+DEFINE_SEMANTIC_ITEM(false, false, KaxChapterDisplay)
+DEFINE_SEMANTIC_ITEM(false, false, KaxChapterProcess)
+DEFINE_END_SEMANTIC(KaxChapterAtom)
 
-static const EbmlSemantic ContextList_KaxChapterTrack[1] =
-{
-    EbmlSemantic(true, false, EBML_INFO(KaxChapterTrackNumber)),
-};
+DEFINE_START_SEMANTIC(KaxChapterTrack)
+DEFINE_SEMANTIC_ITEM(true, false, KaxChapterTrackNumber)
+DEFINE_END_SEMANTIC(KaxChapterTrack)
 
-static const EbmlSemantic ContextList_KaxChapterDisplay[3] =
-{
-    EbmlSemantic(true,  true,  EBML_INFO(KaxChapterString)),
-    EbmlSemantic(true,  false, EBML_INFO(KaxChapterLanguage)),
-    EbmlSemantic(false, false, EBML_INFO(KaxChapterCountry)),
-};
+DEFINE_START_SEMANTIC(KaxChapterDisplay)
+DEFINE_SEMANTIC_ITEM(true, true, KaxChapterString)
+DEFINE_SEMANTIC_ITEM(true, false, KaxChapterLanguage)
+DEFINE_SEMANTIC_ITEM(false, false, KaxChapterCountry)
+DEFINE_END_SEMANTIC(KaxChapterDisplay)
 
-static const EbmlSemantic ContextList_KaxChapterProcess[3] =
-{
-    EbmlSemantic(true,  true,  EBML_INFO(KaxChapterProcessCodecID)),
-    EbmlSemantic(false, true,  EBML_INFO(KaxChapterProcessPrivate)),
-    EbmlSemantic(false, false, EBML_INFO(KaxChapterProcessCommand)),
-};
+DEFINE_START_SEMANTIC(KaxChapterProcess)
+DEFINE_SEMANTIC_ITEM(true, true, KaxChapterProcessCodecID)
+DEFINE_SEMANTIC_ITEM(false, true, KaxChapterProcessPrivate)
+DEFINE_SEMANTIC_ITEM(false, false, KaxChapterProcessCommand)
+DEFINE_END_SEMANTIC(KaxChapterProcess)
 
-static const EbmlSemantic ContextList_KaxChapterProcessCommand[2] =
-{
-    EbmlSemantic(true,  true,  EBML_INFO(KaxChapterProcessTime)),
-    EbmlSemantic(true,  true,  EBML_INFO(KaxChapterProcessData)),
-};
+DEFINE_START_SEMANTIC(KaxChapterProcessCommand)
+DEFINE_SEMANTIC_ITEM(true, true, KaxChapterProcessTime)
+DEFINE_SEMANTIC_ITEM(true, true, KaxChapterProcessData)
+DEFINE_END_SEMANTIC(KaxChapterProcessCommand)
 
 DEFINE_MKX_MASTER      (KaxChapters,             0x1043A770, 4, KaxSegment, "Chapters");
 DEFINE_MKX_MASTER      (KaxEditionEntry,             0x45B9, 2, KaxChapters, "EditionEntry");

@@ -38,31 +38,31 @@
 
 START_LIBMATROSKA_NAMESPACE
 
-static const EbmlSemantic ContextList_KaxContentEncodings[1] = {
-  EbmlSemantic(true, true, EBML_INFO(KaxContentEncoding)),
-};
+DEFINE_START_SEMANTIC(KaxContentEncodings)
+DEFINE_SEMANTIC_ITEM(true, true, KaxContentEncoding)
+DEFINE_END_SEMANTIC(KaxContentEncodings)
 
-static const EbmlSemantic ContextList_KaxContentEncoding[5] = {
-  EbmlSemantic(true, true, EBML_INFO(KaxContentEncodingOrder)),
-  EbmlSemantic(true, true, EBML_INFO(KaxContentEncodingScope)),
-  EbmlSemantic(true, true, EBML_INFO(KaxContentEncodingType)),
-  EbmlSemantic(false, true, EBML_INFO(KaxContentCompression)),
-  EbmlSemantic(false, true, EBML_INFO(KaxContentEncryption)),
-};
+DEFINE_START_SEMANTIC(KaxContentEncoding)
+DEFINE_SEMANTIC_ITEM(true, true, KaxContentEncodingOrder)
+DEFINE_SEMANTIC_ITEM(true, true, KaxContentEncodingScope)
+DEFINE_SEMANTIC_ITEM(true, true, KaxContentEncodingType)
+DEFINE_SEMANTIC_ITEM(false, true, KaxContentCompression)
+DEFINE_SEMANTIC_ITEM(false, true, KaxContentEncryption)
+DEFINE_END_SEMANTIC(KaxContentEncoding)
 
-static const EbmlSemantic ContextList_KaxContentCompression[2] = {
-  EbmlSemantic(true, true, EBML_INFO(KaxContentCompAlgo)),
-  EbmlSemantic(false, true, EBML_INFO(KaxContentCompSettings)),
-};
+DEFINE_START_SEMANTIC(KaxContentCompression)
+DEFINE_SEMANTIC_ITEM(true, true, KaxContentCompAlgo)
+DEFINE_SEMANTIC_ITEM(false, true, KaxContentCompSettings)
+DEFINE_END_SEMANTIC(KaxContentCompression)
 
-static const EbmlSemantic ContextList_KaxContentEncryption[6] = {
-  EbmlSemantic(false, true, EBML_INFO(KaxContentEncAlgo)),
-  EbmlSemantic(false, true, EBML_INFO(KaxContentEncKeyID)),
-  EbmlSemantic(false, true, EBML_INFO(KaxContentSignature)),
-  EbmlSemantic(false, true, EBML_INFO(KaxContentSigKeyID)),
-  EbmlSemantic(false, true, EBML_INFO(KaxContentSigAlgo)),
-  EbmlSemantic(false, true, EBML_INFO(KaxContentSigHashAlgo)),
-};
+DEFINE_START_SEMANTIC(KaxContentEncryption)
+DEFINE_SEMANTIC_ITEM(false, true, KaxContentEncAlgo)
+DEFINE_SEMANTIC_ITEM(false, true, KaxContentEncKeyID)
+DEFINE_SEMANTIC_ITEM(false, true, KaxContentSignature)
+DEFINE_SEMANTIC_ITEM(false, true, KaxContentSigKeyID)
+DEFINE_SEMANTIC_ITEM(false, true, KaxContentSigAlgo)
+DEFINE_SEMANTIC_ITEM(false, true, KaxContentSigHashAlgo)
+DEFINE_END_SEMANTIC(KaxContentEncryption)
 
 DEFINE_MKX_MASTER      (KaxContentEncodings,     0x6d80, 2, KaxTrackEntry, "ContentEncodings");
 DEFINE_MKX_MASTER      (KaxContentEncoding,      0x6240, 2, KaxContentEncodings, "ContentEncoding");

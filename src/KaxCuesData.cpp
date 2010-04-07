@@ -42,35 +42,28 @@
 
 START_LIBMATROSKA_NAMESPACE
 
-static const EbmlSemantic ContextList_KaxCuePoint[2] =
-{
-	EbmlSemantic(true,  true,  EBML_INFO(KaxCueTime)),
-	EbmlSemantic(true,  false, EBML_INFO(KaxCueTrackPositions)),
-};
+DEFINE_START_SEMANTIC(KaxCuePoint)
+DEFINE_SEMANTIC_ITEM(true, true, KaxCueTime)
+DEFINE_SEMANTIC_ITEM(true, false, KaxCueTrackPositions)
+DEFINE_END_SEMANTIC(KaxCuePoint)
 
-#if MATROSKA_VERSION == 1
-static const EbmlSemantic ContextList_KaxCueTrackPositions[3] =
-#else // MATROSKA_VERSION
-static const EbmlSemantic ContextList_KaxCueTrackPositions[5] =
-#endif // MATROSKA_VERSION
-{
-	EbmlSemantic(true,  true,  EBML_INFO(KaxCueTrack)),
-	EbmlSemantic(true,  true,  EBML_INFO(KaxCueClusterPosition)),
-	EbmlSemantic(false, true,  EBML_INFO(KaxCueBlockNumber)),
+DEFINE_START_SEMANTIC(KaxCueTrackPositions)
+DEFINE_SEMANTIC_ITEM(true, true, KaxCueTrack)
+DEFINE_SEMANTIC_ITEM(true, true, KaxCueClusterPosition)
+DEFINE_SEMANTIC_ITEM(false, true, KaxCueBlockNumber)
 #if MATROSKA_VERSION >= 2
-	EbmlSemantic(false, true,  EBML_INFO(KaxCueCodecState)),
-	EbmlSemantic(false, false, EBML_INFO(KaxCueReference)),
+DEFINE_SEMANTIC_ITEM(false, true, KaxCueCodecState)
+DEFINE_SEMANTIC_ITEM(false, false, KaxCueReference)
 #endif // MATROSKA_VERSION
-};
+DEFINE_END_SEMANTIC(KaxCueTrackPositions)
 
 #if MATROSKA_VERSION >= 2
-static const EbmlSemantic ContextList_KaxCueReference[4] =
-{
-	EbmlSemantic(true,  true,  EBML_INFO(KaxCueRefTime)),
-	EbmlSemantic(true,  true,  EBML_INFO(KaxCueRefCluster)),
-	EbmlSemantic(false, true,  EBML_INFO(KaxCueRefNumber)),
-	EbmlSemantic(false, true,  EBML_INFO(KaxCueRefCodecState)),
-};
+DEFINE_START_SEMANTIC(KaxCueReference)
+DEFINE_SEMANTIC_ITEM(true, true, KaxCueRefTime)
+DEFINE_SEMANTIC_ITEM(true, true, KaxCueRefCluster)
+DEFINE_SEMANTIC_ITEM(false, true, KaxCueRefNumber)
+DEFINE_SEMANTIC_ITEM(false, true, KaxCueRefCodecState)
+DEFINE_END_SEMANTIC(KaxCueReference)
 #endif // MATROSKA_VERSION
 
 DEFINE_MKX_MASTER      (KaxCuePoint,           0xBB, 1, KaxCues, "CuePoint");

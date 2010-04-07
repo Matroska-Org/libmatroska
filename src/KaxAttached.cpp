@@ -42,21 +42,16 @@ using namespace LIBEBML_NAMESPACE;
 
 START_LIBMATROSKA_NAMESPACE
 
-#if MATROSKA_VERSION == 1
-static const EbmlSemantic ContextList_KaxAttached[5] =
-#else // MATROSKA_VERSION
-static const EbmlSemantic ContextList_KaxAttached[6] =
-#endif // MATROSKA_VERSION
-{
-	EbmlSemantic(true,  true, EBML_INFO(KaxFileName)),
-	EbmlSemantic(true,  true, EBML_INFO(KaxMimeType)),
-	EbmlSemantic(true,  true, EBML_INFO(KaxFileData)),
-	EbmlSemantic(false, true, EBML_INFO(KaxFileDescription)),
-	EbmlSemantic(true,  true, EBML_INFO(KaxFileUID)),
+DEFINE_START_SEMANTIC(KaxAttached)
+DEFINE_SEMANTIC_ITEM(true, true, KaxFileName)
+DEFINE_SEMANTIC_ITEM(true, true, KaxMimeType)
+DEFINE_SEMANTIC_ITEM(true, true, KaxFileData)
+DEFINE_SEMANTIC_ITEM(false, true, KaxFileDescription)
+DEFINE_SEMANTIC_ITEM(true, true, KaxFileUID)
 #if MATROSKA_VERSION >= 2
-	EbmlSemantic(false, true, EBML_INFO(KaxFileReferral)),
+DEFINE_SEMANTIC_ITEM(false, true, KaxFileReferral)
 #endif // MATROSKA_VERSION
-};
+DEFINE_END_SEMANTIC(KaxAttached)
 
 DEFINE_MKX_MASTER_CONS(KaxAttached,        0x61A7, 2, KaxAttachments, "AttachedFile");
 DEFINE_MKX_UNISTRING  (KaxFileDescription, 0x467E, 2, KaxAttachments, "FileDescription");

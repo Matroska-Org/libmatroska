@@ -43,16 +43,16 @@ START_LIBMATROSKA_NAMESPACE
 
 const EbmlSemantic ContextList_KaxSlices[1] =
 {
-	EbmlSemantic(false, false,  EBML_INFO(KaxTimeSlice)),
+DEFINE_SEMANTIC_ITEM(false, false, KaxTimeSlice)
 };
 
 const EbmlSemantic ContextList_KaxTimeSlice[5] =
 {
-	EbmlSemantic(false, true,  EBML_INFO(KaxSliceLaceNumber)),
-	EbmlSemantic(false, true,  EBML_INFO(KaxSliceFrameNumber)),
-	EbmlSemantic(false, true,  EBML_INFO(KaxSliceBlockAddID)),
-	EbmlSemantic(false, true,  EBML_INFO(KaxSliceDelay)),
-	EbmlSemantic(false, true,  EBML_INFO(KaxSliceDuration)),
+DEFINE_SEMANTIC_ITEM(false, true, KaxSliceLaceNumber)
+DEFINE_SEMANTIC_ITEM(false, true, KaxSliceFrameNumber)
+DEFINE_SEMANTIC_ITEM(false, true, KaxSliceBlockAddID)
+DEFINE_SEMANTIC_ITEM(false, true, KaxSliceDelay)
+DEFINE_SEMANTIC_ITEM(false, true, KaxSliceDuration)
 };
 
 DEFINE_MKX_UINTEGER_DEF (KaxReferencePriority, 0xFA, 1, KaxBlockGroup, "FlagReferenced", 0);

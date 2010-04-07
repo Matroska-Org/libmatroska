@@ -40,21 +40,16 @@
 // sub elements
 START_LIBMATROSKA_NAMESPACE
 
-#if MATROSKA_VERSION == 1
-static const EbmlSemantic ContextList_KaxCluster[5] =
-#else // MATROSKA_VERSION
-static const EbmlSemantic ContextList_KaxCluster[6] =
-#endif // MATROSKA_VERSION
-{
-	EbmlSemantic(true,  true,  EBML_INFO(KaxClusterTimecode)),
-	EbmlSemantic(false, true,  EBML_INFO(KaxClusterSilentTracks)),
-	EbmlSemantic(false, true,  EBML_INFO(KaxClusterPrevSize)),
-	EbmlSemantic(false, false, EBML_INFO(KaxBlockGroup)),
+DEFINE_START_SEMANTIC(KaxCluster)
+DEFINE_SEMANTIC_ITEM(true, true, KaxClusterTimecode)
+DEFINE_SEMANTIC_ITEM(false, true, KaxClusterSilentTracks)
+DEFINE_SEMANTIC_ITEM(false, true, KaxClusterPrevSize)
+DEFINE_SEMANTIC_ITEM(false, false, KaxBlockGroup)
 #if MATROSKA_VERSION == 2
-	EbmlSemantic(false, false, EBML_INFO(KaxSimpleBlock)),
+DEFINE_SEMANTIC_ITEM(false, false, KaxSimpleBlock)
 #endif
-	EbmlSemantic(false, true,  EBML_INFO(KaxClusterPosition)),
-};
+DEFINE_SEMANTIC_ITEM(false, true, KaxClusterPosition)
+DEFINE_END_SEMANTIC(KaxCluster)
 
 DEFINE_MKX_MASTER_CONS(KaxCluster, 0x1F43B675, 4, KaxSegment, "Cluster");
 

@@ -43,10 +43,9 @@ using namespace LIBEBML_NAMESPACE;
 // sub elements
 START_LIBMATROSKA_NAMESPACE
 
-static const EbmlSemantic ContextList_KaxTags[1] =
-{
-	EbmlSemantic(true, false, EBML_INFO(KaxTag)),
-};
+DEFINE_START_SEMANTIC(KaxTags)
+DEFINE_SEMANTIC_ITEM(true, false, KaxTag)
+DEFINE_END_SEMANTIC(KaxTags)
 
 DEFINE_MKX_MASTER(KaxTags, 0x1254C367, 4, KaxSegment, "Tags");
 

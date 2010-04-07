@@ -40,30 +40,25 @@
 
 START_LIBMATROSKA_NAMESPACE
 
-#if MATROSKA_VERSION == 1
-static const EbmlSemantic ContextList_KaxTrackVideo[10] =
-#else // MATROSKA_VERSION
-static const EbmlSemantic ContextList_KaxTrackVideo[15] =
-#endif // MATROSKA_VERSION
-{
-	EbmlSemantic(true , true, EBML_INFO(KaxVideoPixelWidth)),
-	EbmlSemantic(true , true, EBML_INFO(KaxVideoPixelHeight)),
-	EbmlSemantic(false, true, EBML_INFO(KaxVideoPixelCropBottom)),
-	EbmlSemantic(false, true, EBML_INFO(KaxVideoPixelCropTop)),
-	EbmlSemantic(false, true, EBML_INFO(KaxVideoPixelCropLeft)),
-	EbmlSemantic(false, true, EBML_INFO(KaxVideoPixelCropRight)),
-	EbmlSemantic(false, true, EBML_INFO(KaxVideoDisplayWidth)),
-	EbmlSemantic(false, true, EBML_INFO(KaxVideoDisplayHeight)),
-	EbmlSemantic(false, true, EBML_INFO(KaxVideoColourSpace)),
-	EbmlSemantic(false, true, EBML_INFO(KaxVideoFrameRate)),
+DEFINE_START_SEMANTIC(KaxTrackVideo)
+DEFINE_SEMANTIC_ITEM(true, true, KaxVideoPixelWidth)
+DEFINE_SEMANTIC_ITEM(true, true, KaxVideoPixelHeight)
+DEFINE_SEMANTIC_ITEM(false, true, KaxVideoPixelCropBottom)
+DEFINE_SEMANTIC_ITEM(false, true, KaxVideoPixelCropTop)
+DEFINE_SEMANTIC_ITEM(false, true, KaxVideoPixelCropLeft)
+DEFINE_SEMANTIC_ITEM(false, true, KaxVideoPixelCropRight)
+DEFINE_SEMANTIC_ITEM(false, true, KaxVideoDisplayWidth)
+DEFINE_SEMANTIC_ITEM(false, true, KaxVideoDisplayHeight)
+DEFINE_SEMANTIC_ITEM(false, true, KaxVideoColourSpace)
+DEFINE_SEMANTIC_ITEM(false, true, KaxVideoFrameRate)
 #if MATROSKA_VERSION >= 2
-	EbmlSemantic(true , true, EBML_INFO(KaxVideoFlagInterlaced)),
-	EbmlSemantic(false, true, EBML_INFO(KaxVideoStereoMode)),
-	EbmlSemantic(false, true, EBML_INFO(KaxVideoDisplayUnit)),
-	EbmlSemantic(false, true, EBML_INFO(KaxVideoAspectRatio)),
-	EbmlSemantic(false, true, EBML_INFO(KaxVideoGamma)),
+DEFINE_SEMANTIC_ITEM(true, true, KaxVideoFlagInterlaced)
+DEFINE_SEMANTIC_ITEM(false, true, KaxVideoStereoMode)
+DEFINE_SEMANTIC_ITEM(false, true, KaxVideoDisplayUnit)
+DEFINE_SEMANTIC_ITEM(false, true, KaxVideoAspectRatio)
+DEFINE_SEMANTIC_ITEM(false, true, KaxVideoGamma)
 #endif // MATROSKA_VERSION
-};
+DEFINE_END_SEMANTIC(KaxTrackVideo)
 
 DEFINE_MKX_MASTER      (KaxTrackVideo,             0xE0, 1, KaxTrackEntry, "TrackVideo");
 DEFINE_MKX_UINTEGER    (KaxVideoPixelWidth,        0xB0, 1, KaxTrackVideo, "VideoPixelWidth");

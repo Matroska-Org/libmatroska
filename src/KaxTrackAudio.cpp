@@ -40,20 +40,15 @@
 
 START_LIBMATROSKA_NAMESPACE
 
-#if MATROSKA_VERSION == 1
-static const EbmlSemantic ContextList_KaxTrackAudio[4] =
-#else // MATROSKA_VERSION
-static const EbmlSemantic ContextList_KaxTrackAudio[5] =
-#endif // MATROSKA_VERSION
-{
-	EbmlSemantic(true , true, EBML_INFO(KaxAudioSamplingFreq)),
-	EbmlSemantic(true , true, EBML_INFO(KaxAudioChannels)),
-	EbmlSemantic(false, true, EBML_INFO(KaxAudioBitDepth)),
-	EbmlSemantic(false, true, EBML_INFO(KaxAudioOutputSamplingFreq)),
+DEFINE_START_SEMANTIC(KaxTrackAudio)
+DEFINE_SEMANTIC_ITEM(true, true, KaxAudioSamplingFreq)
+DEFINE_SEMANTIC_ITEM(true, true, KaxAudioChannels)
+DEFINE_SEMANTIC_ITEM(false, true, KaxAudioBitDepth)
+DEFINE_SEMANTIC_ITEM(false, true, KaxAudioOutputSamplingFreq)
 #if MATROSKA_VERSION >= 2
-	EbmlSemantic(false, true, EBML_INFO(KaxAudioPosition)),
+DEFINE_SEMANTIC_ITEM(false, true, KaxAudioPosition)
 #endif // MATROSKA_VERSION
-};
+DEFINE_END_SEMANTIC(KaxTrackAudio)
 
 DEFINE_MKX_MASTER      (KaxTrackAudio,                0xE1, 1, KaxTrackEntry, "TrackAudio");
 DEFINE_MKX_FLOAT_DEF   (KaxAudioSamplingFreq,         0xB5, 1, KaxTrackAudio, "AudioSamplingFreq", 8000.0);

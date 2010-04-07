@@ -41,23 +41,22 @@
 // sub elements
 START_LIBMATROSKA_NAMESPACE
 
-static const EbmlSemantic ContextList_KaxInfo[14] =
-{
-	EbmlSemantic(false, true,  EBML_INFO(KaxSegmentUID)),
-	EbmlSemantic(false, true,  EBML_INFO(KaxSegmentFilename)),
-	EbmlSemantic(false, true,  EBML_INFO(KaxPrevUID)),
-	EbmlSemantic(false, true,  EBML_INFO(KaxPrevFilename)),
-	EbmlSemantic(false, true,  EBML_INFO(KaxNextUID)),
-	EbmlSemantic(false, true,  EBML_INFO(KaxNextFilename)),
-	EbmlSemantic(false, false, EBML_INFO(KaxSegmentFamily)),
-	EbmlSemantic(false, false, EBML_INFO(KaxChapterTranslate)),
-	EbmlSemantic(true,  true,  EBML_INFO(KaxTimecodeScale)),
-	EbmlSemantic(false, true,  EBML_INFO(KaxDuration)),
-	EbmlSemantic(false, true,  EBML_INFO(KaxDateUTC)),
-	EbmlSemantic(false, true,  EBML_INFO(KaxTitle)),
-	EbmlSemantic(true,  true,  EBML_INFO(KaxMuxingApp)),
-	EbmlSemantic(true,  true,  EBML_INFO(KaxWritingApp)),
-};
+DEFINE_START_SEMANTIC(KaxInfo)
+DEFINE_SEMANTIC_ITEM(false, true, KaxSegmentUID)
+DEFINE_SEMANTIC_ITEM(false, true, KaxSegmentFilename)
+DEFINE_SEMANTIC_ITEM(false, true, KaxPrevUID)
+DEFINE_SEMANTIC_ITEM(false, true, KaxPrevFilename)
+DEFINE_SEMANTIC_ITEM(false, true, KaxNextUID)
+DEFINE_SEMANTIC_ITEM(false, true, KaxNextFilename)
+DEFINE_SEMANTIC_ITEM(false, false, KaxSegmentFamily)
+DEFINE_SEMANTIC_ITEM(false, false, KaxChapterTranslate)
+DEFINE_SEMANTIC_ITEM(true, true, KaxTimecodeScale)
+DEFINE_SEMANTIC_ITEM(false, true, KaxDuration)
+DEFINE_SEMANTIC_ITEM(false, true, KaxDateUTC)
+DEFINE_SEMANTIC_ITEM(false, true, KaxTitle)
+DEFINE_SEMANTIC_ITEM(true, true, KaxMuxingApp)
+DEFINE_SEMANTIC_ITEM(true, true, KaxWritingApp)
+DEFINE_END_SEMANTIC(KaxInfo)
 
 DEFINE_MKX_MASTER   (KaxInfo,   0x1549A966, 4, KaxSegment, "Info");
 DEFINE_MKX_UNISTRING(KaxMuxingApp,  0x4D80, 2, KaxInfo, "MuxingApp");

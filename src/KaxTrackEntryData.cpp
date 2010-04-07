@@ -39,12 +39,11 @@
 
 START_LIBMATROSKA_NAMESPACE
 
-static const EbmlSemantic ContextList_KaxTrackTranslate[3] =
-{
-	EbmlSemantic(false, false,EBML_INFO(KaxTrackTranslateEditionUID)),
-	EbmlSemantic(true , true, EBML_INFO(KaxTrackTranslateCodec)),
-	EbmlSemantic(true , true, EBML_INFO(KaxTrackTranslateTrackID)),
-};
+DEFINE_START_SEMANTIC(KaxTrackTranslate)
+DEFINE_SEMANTIC_ITEM(false, false, KaxTrackTranslateEditionUID)
+DEFINE_SEMANTIC_ITEM(true, true, KaxTrackTranslateCodec)
+DEFINE_SEMANTIC_ITEM(true, true, KaxTrackTranslateTrackID)
+DEFINE_END_SEMANTIC(KaxTrackTranslate)
 
 DEFINE_MKX_UINTEGER    (KaxTrackNumber,                0xD7, 1, KaxTracks, "TrackNumber");
 DEFINE_MKX_UINTEGER    (KaxTrackUID,                 0x73C5, 2, KaxTracks, "TrackUID");

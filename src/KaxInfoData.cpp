@@ -39,12 +39,11 @@
 
 START_LIBMATROSKA_NAMESPACE
 
-static const EbmlSemantic ContextList_KaxChapterTranslate[3] =
-{
-	EbmlSemantic(false, false, EBML_INFO(KaxChapterTranslateEditionUID)),
-	EbmlSemantic(true,  true,  EBML_INFO(KaxChapterTranslateCodec)),
-	EbmlSemantic(true,  true,  EBML_INFO(KaxChapterTranslateID)),
-};
+DEFINE_START_SEMANTIC(KaxChapterTranslate)
+DEFINE_SEMANTIC_ITEM(false, false, KaxChapterTranslateEditionUID)
+DEFINE_SEMANTIC_ITEM(true, true, KaxChapterTranslateCodec)
+DEFINE_SEMANTIC_ITEM(true, true, KaxChapterTranslateID)
+DEFINE_END_SEMANTIC(KaxChapterTranslate)
 
 DEFINE_MKX_BINARY       (KaxSegmentUID,                 0x73A4, 2, KaxInfo, "ChapterTranslate");
 DEFINE_MKX_UNISTRING    (KaxSegmentFilename,            0x7384, 2, KaxInfo, "SegmentFilename");

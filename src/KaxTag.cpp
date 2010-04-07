@@ -43,99 +43,92 @@ using namespace LIBEBML_NAMESPACE;
 // sub elements
 START_LIBMATROSKA_NAMESPACE
 
-static const EbmlSemantic ContextList_KaxTag[14] =
-{	
-	EbmlSemantic(true,  true,  EBML_INFO(KaxTagTargets)),
-	EbmlSemantic(false, true,  EBML_INFO(KaxTagGeneral)),
-	EbmlSemantic(false, true,  EBML_INFO(KaxTagGenres)),
-	EbmlSemantic(false, true,  EBML_INFO(KaxTagAudioSpecific)),
-	EbmlSemantic(false, true,  EBML_INFO(KaxTagImageSpecific)),
-	EbmlSemantic(false, true,  EBML_INFO(KaxTagMultiCommercial)),
-	EbmlSemantic(false, true,  EBML_INFO(KaxTagMultiDate)),
-	EbmlSemantic(false, true,  EBML_INFO(KaxTagMultiEntity)),
-	EbmlSemantic(false, true,  EBML_INFO(KaxTagMultiIdentifier)),
-	EbmlSemantic(false, true,  EBML_INFO(KaxTagMultiLegal)),
-	EbmlSemantic(false, true,  EBML_INFO(KaxTagMultiTitle)),
-	EbmlSemantic(false, true,  EBML_INFO(KaxTagMultiAttachment)),
-//	EbmlSemantic(false, false, EBML_INFO(KaxTagLength)),
-//	EbmlSemantic(false, false, EBML_INFO(KaxTagPlaylistDelay)),
-//	EbmlSemantic(false, false, EBML_INFO(KaxTagUnsynchronisedText)),
-//	EbmlSemantic(false, false, EBML_INFO(KaxTagUserDefinedURL)),
-	EbmlSemantic(false, false, EBML_INFO(KaxTagMultiComment)),
-	EbmlSemantic(true,  false, EBML_INFO(KaxTagSimple)),
-};
+DEFINE_START_SEMANTIC(KaxTag)
+DEFINE_SEMANTIC_ITEM(true, true, KaxTagTargets)
+DEFINE_SEMANTIC_ITEM(false, true, KaxTagGeneral)
+DEFINE_SEMANTIC_ITEM(false, true, KaxTagGenres)
+DEFINE_SEMANTIC_ITEM(false, true, KaxTagAudioSpecific)
+DEFINE_SEMANTIC_ITEM(false, true, KaxTagImageSpecific)
+DEFINE_SEMANTIC_ITEM(false, true, KaxTagMultiCommercial)
+DEFINE_SEMANTIC_ITEM(false, true, KaxTagMultiDate)
+DEFINE_SEMANTIC_ITEM(false, true, KaxTagMultiEntity)
+DEFINE_SEMANTIC_ITEM(false, true, KaxTagMultiIdentifier)
+DEFINE_SEMANTIC_ITEM(false, true, KaxTagMultiLegal)
+DEFINE_SEMANTIC_ITEM(false, true, KaxTagMultiTitle)
+DEFINE_SEMANTIC_ITEM(false, true, KaxTagMultiAttachment)
+//DEFINE_SEMANTIC_ITEM(false, false, KaxTagLength)
+//DEFINE_SEMANTIC_ITEM(false, false, KaxTagPlaylistDelay)
+//DEFINE_SEMANTIC_ITEM(false, false, KaxTagUnsynchronisedText)
+//DEFINE_SEMANTIC_ITEM(false, false, KaxTagUserDefinedURL)
+DEFINE_SEMANTIC_ITEM(false, false, KaxTagMultiComment)
+DEFINE_SEMANTIC_ITEM(true, false, KaxTagSimple)
+DEFINE_END_SEMANTIC(KaxTag)
 
-static const EbmlSemantic ContextList_KaxTagTargets[6] =
-{	
-	EbmlSemantic(false, true,  EBML_INFO(KaxTagTargetTypeValue)),
-	EbmlSemantic(false, true,  EBML_INFO(KaxTagTargetType)),
-	EbmlSemantic(false, false, EBML_INFO(KaxTagTrackUID)),
-	EbmlSemantic(false, false, EBML_INFO(KaxTagEditionUID)),
-	EbmlSemantic(false, false, EBML_INFO(KaxTagChapterUID)),
-	EbmlSemantic(false, false, EBML_INFO(KaxTagAttachmentUID)),
-};
+DEFINE_START_SEMANTIC(KaxTagTargets)
+DEFINE_SEMANTIC_ITEM(false, true, KaxTagTargetTypeValue)
+DEFINE_SEMANTIC_ITEM(false, true, KaxTagTargetType)
+DEFINE_SEMANTIC_ITEM(false, false, KaxTagTrackUID)
+DEFINE_SEMANTIC_ITEM(false, false, KaxTagEditionUID)
+DEFINE_SEMANTIC_ITEM(false, false, KaxTagChapterUID)
+DEFINE_SEMANTIC_ITEM(false, false, KaxTagAttachmentUID)
+DEFINE_END_SEMANTIC(KaxTagTargets)
 
-static const EbmlSemantic ContextList_KaxTagGeneral[17] =
-{	
-	EbmlSemantic(false, true,  EBML_INFO(KaxTagArchivalLocation)),
-	EbmlSemantic(false, true,  EBML_INFO(KaxTagFile)),
-	EbmlSemantic(false, false, EBML_INFO(KaxTagKeywords)),
-	EbmlSemantic(false, true,  EBML_INFO(KaxTagMood)),
-	EbmlSemantic(false, false, EBML_INFO(KaxTagRecordLocation)),
-	EbmlSemantic(false, true,  EBML_INFO(KaxTagSource)),
-	EbmlSemantic(false, true,  EBML_INFO(KaxTagSourceForm)),
-	EbmlSemantic(false, true,  EBML_INFO(KaxTagProduct)),
-	EbmlSemantic(false, true,  EBML_INFO(KaxTagOriginalMediaType)),
-	EbmlSemantic(false, true,  EBML_INFO(KaxTagPlayCounter)),
-	EbmlSemantic(false, true,  EBML_INFO(KaxTagPopularimeter)),
-	EbmlSemantic(false, true,  EBML_INFO(KaxTagSubject)),
-	EbmlSemantic(false, true,  EBML_INFO(KaxTagBibliography)),
-	EbmlSemantic(false, true,  EBML_INFO(KaxTagLanguage)),
-	EbmlSemantic(false, true,  EBML_INFO(KaxTagRating)),
-	EbmlSemantic(false, true,  EBML_INFO(KaxTagEncoder)),
-	EbmlSemantic(false, true,  EBML_INFO(KaxTagEncodeSettings)),
-};
+DEFINE_START_SEMANTIC(KaxTagGeneral)
+DEFINE_SEMANTIC_ITEM(false, true, KaxTagArchivalLocation)
+DEFINE_SEMANTIC_ITEM(false, true, KaxTagFile)
+DEFINE_SEMANTIC_ITEM(false, false, KaxTagKeywords)
+DEFINE_SEMANTIC_ITEM(false, true, KaxTagMood)
+DEFINE_SEMANTIC_ITEM(false, false, KaxTagRecordLocation)
+DEFINE_SEMANTIC_ITEM(false, true, KaxTagSource)
+DEFINE_SEMANTIC_ITEM(false, true, KaxTagSourceForm)
+DEFINE_SEMANTIC_ITEM(false, true, KaxTagProduct)
+DEFINE_SEMANTIC_ITEM(false, true, KaxTagOriginalMediaType)
+DEFINE_SEMANTIC_ITEM(false, true, KaxTagPlayCounter)
+DEFINE_SEMANTIC_ITEM(false, true, KaxTagPopularimeter)
+DEFINE_SEMANTIC_ITEM(false, true, KaxTagSubject)
+DEFINE_SEMANTIC_ITEM(false, true, KaxTagBibliography)
+DEFINE_SEMANTIC_ITEM(false, true, KaxTagLanguage)
+DEFINE_SEMANTIC_ITEM(false, true, KaxTagRating)
+DEFINE_SEMANTIC_ITEM(false, true, KaxTagEncoder)
+DEFINE_SEMANTIC_ITEM(false, true, KaxTagEncodeSettings)
+DEFINE_END_SEMANTIC(KaxTagGeneral)
 
-static const EbmlSemantic ContextList_KaxTagGenres[3] =
-{	
-	EbmlSemantic(false, false, EBML_INFO(KaxTagAudioGenre)),
-	EbmlSemantic(false, false, EBML_INFO(KaxTagVideoGenre)),
-	EbmlSemantic(false, true,  EBML_INFO(KaxTagSubGenre)),
-};
+DEFINE_START_SEMANTIC(KaxTagGenres)
+DEFINE_SEMANTIC_ITEM(false, false, KaxTagAudioGenre)
+DEFINE_SEMANTIC_ITEM(false, false, KaxTagVideoGenre)
+DEFINE_SEMANTIC_ITEM(false, true, KaxTagSubGenre)
+DEFINE_END_SEMANTIC(KaxTagGenres)
 
-static const EbmlSemantic ContextList_KaxTagAudioSpecific[10] =
-{	
-	EbmlSemantic(false, true, EBML_INFO(KaxTagAudioPeak)),
-	EbmlSemantic(false, true, EBML_INFO(KaxTagAudioEncryption)),
-	EbmlSemantic(false, true, EBML_INFO(KaxTagAudioGain)),
-	EbmlSemantic(false, true, EBML_INFO(KaxTagBPM)),
-	EbmlSemantic(false, true, EBML_INFO(KaxTagDiscTrack)),
-	EbmlSemantic(false, true, EBML_INFO(KaxTagSetPart)),
-	EbmlSemantic(false, true, EBML_INFO(KaxTagEqualisation)),
-	EbmlSemantic(false, true, EBML_INFO(KaxTagInitialKey)),
-	EbmlSemantic(false, true, EBML_INFO(KaxTagOfficialAudioFileURL)),
-	EbmlSemantic(false, true, EBML_INFO(KaxTagOfficialAudioSourceURL)),
-};
+DEFINE_START_SEMANTIC(KaxTagAudioSpecific)
+DEFINE_SEMANTIC_ITEM(false, true, KaxTagAudioPeak)
+DEFINE_SEMANTIC_ITEM(false, true, KaxTagAudioEncryption)
+DEFINE_SEMANTIC_ITEM(false, true, KaxTagAudioGain)
+DEFINE_SEMANTIC_ITEM(false, true, KaxTagBPM)
+DEFINE_SEMANTIC_ITEM(false, true, KaxTagDiscTrack)
+DEFINE_SEMANTIC_ITEM(false, true, KaxTagSetPart)
+DEFINE_SEMANTIC_ITEM(false, true, KaxTagEqualisation)
+DEFINE_SEMANTIC_ITEM(false, true, KaxTagInitialKey)
+DEFINE_SEMANTIC_ITEM(false, true, KaxTagOfficialAudioFileURL)
+DEFINE_SEMANTIC_ITEM(false, true, KaxTagOfficialAudioSourceURL)
+DEFINE_END_SEMANTIC(KaxTagAudioSpecific)
 
-static const EbmlSemantic ContextList_KaxTagImageSpecific[6] =
-{
-	EbmlSemantic(false, true, EBML_INFO(KaxTagCaptureDPI)),
-	EbmlSemantic(false, true, EBML_INFO(KaxTagCaptureLightness)),
-	EbmlSemantic(false, true, EBML_INFO(KaxTagCapturePaletteSetting)),
-	EbmlSemantic(false, true, EBML_INFO(KaxTagCaptureSharpness)),
-	EbmlSemantic(false, true, EBML_INFO(KaxTagCropped)),
-	EbmlSemantic(false, true, EBML_INFO(KaxTagOriginalDimensions)),
-};
+DEFINE_START_SEMANTIC(KaxTagImageSpecific)
+DEFINE_SEMANTIC_ITEM(false, true, KaxTagCaptureDPI)
+DEFINE_SEMANTIC_ITEM(false, true, KaxTagCaptureLightness)
+DEFINE_SEMANTIC_ITEM(false, true, KaxTagCapturePaletteSetting)
+DEFINE_SEMANTIC_ITEM(false, true, KaxTagCaptureSharpness)
+DEFINE_SEMANTIC_ITEM(false, true, KaxTagCropped)
+DEFINE_SEMANTIC_ITEM(false, true, KaxTagOriginalDimensions)
+DEFINE_END_SEMANTIC(KaxTagImageSpecific)
 
-static const EbmlSemantic ContextList_KaxTagSimple[6] =
-{	
-	EbmlSemantic(true,  true,  EBML_INFO(KaxTagName)),
-	EbmlSemantic(true,  true,  EBML_INFO(KaxTagLangue)),
-	EbmlSemantic(true,  true,  EBML_INFO(KaxTagDefault)),
-	EbmlSemantic(false, true,  EBML_INFO(KaxTagString)),
-	EbmlSemantic(false, true,  EBML_INFO(KaxTagBinary)),
-	EbmlSemantic(false, false, EBML_INFO(KaxTagSimple)),
-};
+DEFINE_START_SEMANTIC(KaxTagSimple)
+DEFINE_SEMANTIC_ITEM(true, true, KaxTagName)
+DEFINE_SEMANTIC_ITEM(true, true, KaxTagLangue)
+DEFINE_SEMANTIC_ITEM(true, true, KaxTagDefault)
+DEFINE_SEMANTIC_ITEM(false, true, KaxTagString)
+DEFINE_SEMANTIC_ITEM(false, true, KaxTagBinary)
+DEFINE_SEMANTIC_ITEM(false, false, KaxTagSimple)
+DEFINE_END_SEMANTIC(KaxTagSimple)
 
 DEFINE_MKX_MASTER      (KaxTag,                       0x7373, 2, KaxTags, "Tag");
 DEFINE_MKX_MASTER      (KaxTagTargets,                0x63C0, 2, KaxTag, "TagTargets");

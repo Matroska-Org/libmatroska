@@ -43,16 +43,14 @@ using namespace LIBEBML_NAMESPACE;
 // sub elements
 START_LIBMATROSKA_NAMESPACE
 
-static const EbmlSemantic ContextList_KaxSeekHead[1] =
-{
-	EbmlSemantic(true,  false,  EBML_INFO(KaxSeek)),
-};
+DEFINE_START_SEMANTIC(KaxSeekHead)
+DEFINE_SEMANTIC_ITEM(true, false, KaxSeek)
+DEFINE_END_SEMANTIC(KaxSeekHead)
 
-static const EbmlSemantic ContextList_KaxSeek[2] = 
-{
-	EbmlSemantic(true,  true,  EBML_INFO(KaxSeekID)),
-	EbmlSemantic(true,  true,  EBML_INFO(KaxSeekPosition)),
-};
+DEFINE_START_SEMANTIC(KaxSeek) 
+DEFINE_SEMANTIC_ITEM(true, true, KaxSeekID)
+DEFINE_SEMANTIC_ITEM(true, true, KaxSeekPosition)
+DEFINE_END_SEMANTIC(KaxSeek) 
 
 DEFINE_MKX_MASTER  (KaxSeekHead, 0x114D9B74, 4, KaxSegment, "SeekHeader");
 DEFINE_MKX_MASTER  (KaxSeek,         0x4DBB, 2, KaxSeekHead, "SeekPoint");

@@ -49,23 +49,21 @@
 
 START_LIBMATROSKA_NAMESPACE
 
-static const EbmlSemantic ContextList_KaxMatroska[2] =
-{
-	EbmlSemantic(true, true,  EBML_INFO(EbmlHead)),
-	EbmlSemantic(true, false, EBML_INFO(KaxSegment)),
-};
+DEFINE_START_SEMANTIC(KaxMatroska)
+DEFINE_SEMANTIC_ITEM(true, true, EbmlHead)
+DEFINE_SEMANTIC_ITEM(true, false, KaxSegment)
+DEFINE_END_SEMANTIC(KaxMatroska)
 
-static const EbmlSemantic ContextList_KaxSegment[8] =
-{
-	EbmlSemantic(false, false, EBML_INFO(KaxCluster)),
-	EbmlSemantic(false, false, EBML_INFO(KaxSeekHead)),
-	EbmlSemantic(false, true,  EBML_INFO(KaxCues)),
-	EbmlSemantic(false, false, EBML_INFO(KaxTracks)),
-	EbmlSemantic(true,  true,  EBML_INFO(KaxInfo)),
-	EbmlSemantic(false, true,  EBML_INFO(KaxChapters)),
-	EbmlSemantic(false, true,  EBML_INFO(KaxAttachments)),
-	EbmlSemantic(false, true,  EBML_INFO(KaxTags)),
-};
+DEFINE_START_SEMANTIC(KaxSegment)
+DEFINE_SEMANTIC_ITEM(false, false, KaxCluster)
+DEFINE_SEMANTIC_ITEM(false, false, KaxSeekHead)
+DEFINE_SEMANTIC_ITEM(false, true, KaxCues)
+DEFINE_SEMANTIC_ITEM(false, false, KaxTracks)
+DEFINE_SEMANTIC_ITEM(true, true, KaxInfo)
+DEFINE_SEMANTIC_ITEM(false, true, KaxChapters)
+DEFINE_SEMANTIC_ITEM(false, true, KaxAttachments)
+DEFINE_SEMANTIC_ITEM(false, true, KaxTags)
+DEFINE_END_SEMANTIC(KaxSegment)
 
 DEFINE_MKX_CONTEXT(KaxMatroska);
 

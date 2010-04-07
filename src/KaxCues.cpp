@@ -41,10 +41,9 @@
 // sub elements
 START_LIBMATROSKA_NAMESPACE
 
-static const EbmlSemantic ContextList_KaxCues[1] = 
-{
-	EbmlSemantic(true,  false,  EBML_INFO(KaxCuePoint)),
-};
+DEFINE_START_SEMANTIC(KaxCues) 
+DEFINE_SEMANTIC_ITEM(true, false, KaxCuePoint)
+DEFINE_END_SEMANTIC(KaxCues) 
 
 DEFINE_MKX_MASTER(KaxCues, 0x1C53BB6B, 4, KaxSegment, "Cues");
 

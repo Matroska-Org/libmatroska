@@ -121,8 +121,6 @@ DECLARE_MKX_UINTEGER(KaxChapterProcessCodecID)
 };
 
 DECLARE_MKX_BINARY(KaxChapterProcessPrivate)
-    public:
-	    bool ValidateSize() const {return true;}
 };
 
 DECLARE_MKX_MASTER(KaxChapterProcessCommand)
@@ -132,8 +130,6 @@ DECLARE_MKX_UINTEGER(KaxChapterProcessTime)
 };
 
 DECLARE_MKX_BINARY(KaxChapterProcessData)
-    public:
-	    bool ValidateSize() const {return true;}
 };
 
 END_LIBMATROSKA_NAMESPACE

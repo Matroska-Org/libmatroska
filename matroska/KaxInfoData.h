@@ -99,8 +99,6 @@ DECLARE_MKX_UINTEGER(KaxChapterTranslateEditionUID)
 };
 
 DECLARE_MKX_BINARY(KaxChapterTranslateID)
-	public:
-		bool ValidateSize() const { return true;}
 };
 
 DECLARE_MKX_UINTEGER(KaxTimecodeScale)

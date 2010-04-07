@@ -60,13 +60,9 @@ DECLARE_MKX_STRING(KaxMimeType)
 };
 
 DECLARE_MKX_BINARY(KaxFileData)
-	public:
-		bool ValidateSize() const {return true;} // we don't mind about what's inside
 };
 
 DECLARE_MKX_BINARY(KaxFileReferral)
-	public:
-		bool ValidateSize() const {return true;} // we don't mind about what's inside
 };
 
 DECLARE_MKX_UINTEGER(KaxFileUID)

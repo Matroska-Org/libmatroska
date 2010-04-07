@@ -211,8 +211,6 @@ DECLARE_MKX_UINTEGER(KaxTagMultiIdentifierType)
 };
 
 DECLARE_MKX_BINARY(KaxTagMultiIdentifierBinary)
-	public:
-		bool ValidateSize() const {return true;} // we don't mind about what's inside
 };
 
 DECLARE_MKX_UNISTRING(KaxTagMultiIdentifierString)
@@ -284,8 +282,6 @@ DECLARE_MKX_SINTEGER(KaxTagPopularimeter)
 };
 
 DECLARE_MKX_BINARY(KaxTagRating)
-	public:
-		bool ValidateSize() const {return true;} // we don't mind about what's inside
 };
 
 DECLARE_MKX_UINTEGER(KaxTagSetPart)

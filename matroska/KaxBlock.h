@@ -347,7 +347,6 @@ DECLARE_MKX_UINTEGER(KaxBlockDuration)
 DECLARE_MKX_BINARY_CONS(KaxBlockVirtual)
 	public:
 		~KaxBlockVirtual();
-		bool ValidateSize() const {return true;}
 
 		/*!
 			\note override this function to generate the Data/Size on the fly, unlike the usual binary elements
@@ -366,8 +365,6 @@ DECLARE_MKX_BINARY_CONS(KaxBlockVirtual)
 #endif // MATROSKA_VERSION
 
 DECLARE_MKX_BINARY(KaxBlockAdditional)
-	public:
-        bool ValidateSize() const {return true;}
 };
 
 DECLARE_MKX_MASTER(KaxBlockAdditions)
@@ -380,8 +377,6 @@ DECLARE_MKX_UINTEGER(KaxBlockAddID)
 };
 
 DECLARE_MKX_BINARY(KaxCodecState)
-	public:
-        bool ValidateSize() const {return true;}
 };
 
 END_LIBMATROSKA_NAMESPACE

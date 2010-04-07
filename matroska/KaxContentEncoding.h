@@ -67,8 +67,6 @@ DECLARE_MKX_UINTEGER(KaxContentCompAlgo)
 };
 
 DECLARE_MKX_BINARY(KaxContentCompSettings)
-    public:
-        bool ValidateSize(void) const { return true; }
 };
 
 DECLARE_MKX_MASTER(KaxContentEncryption)
@@ -78,18 +76,12 @@ DECLARE_MKX_UINTEGER(KaxContentEncAlgo)
 };
 
 DECLARE_MKX_BINARY(KaxContentEncKeyID)
-    public:
-        bool ValidateSize(void) const { return true; }
 };
 
 DECLARE_MKX_BINARY(KaxContentSignature)
-    public:
-        bool ValidateSize(void) const { return true; }
 };
 
 DECLARE_MKX_BINARY(KaxContentSigKeyID)
-    public:
-        bool ValidateSize(void) const { return true; }
 };
 
 DECLARE_MKX_UINTEGER(KaxContentSigAlgo)

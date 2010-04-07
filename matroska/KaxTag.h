@@ -90,8 +90,6 @@ DECLARE_MKX_UNISTRING(KaxTagArchivalLocation)
 };
 
 DECLARE_MKX_BINARY(KaxTagAudioEncryption)
-	public:
-		bool ValidateSize() const {return true;} // we don't mind about what's inside
 };
 
 DECLARE_MKX_FLOAT(KaxTagAudioGain)
@@ -113,16 +111,12 @@ DECLARE_MKX_UINTEGER(KaxTagCaptureDPI)
 };
 
 DECLARE_MKX_BINARY(KaxTagCaptureLightness)
-	public:
-		bool ValidateSize() const {return true;} // we don't mind about what's inside
 };
 
 DECLARE_MKX_UINTEGER(KaxTagCapturePaletteSetting)
 };
 
 DECLARE_MKX_BINARY(KaxTagCaptureSharpness)
-	public:
-		bool ValidateSize() const {return true;} // we don't mind about what's inside
 };
 
 DECLARE_MKX_UNISTRING(KaxTagCropped)
@@ -138,8 +132,6 @@ DECLARE_MKX_UNISTRING(KaxTagEncodeSettings)
 };
 
 DECLARE_MKX_BINARY(KaxTagEqualisation)
-	public:
-		bool ValidateSize() const {return true;} // we don't mind about what's inside
 };
 
 DECLARE_MKX_UNISTRING(KaxTagFile)
@@ -185,8 +177,6 @@ DECLARE_MKX_UNISTRING(KaxTagProduct)
 };
 
 DECLARE_MKX_BINARY(KaxTagRating)
-	public:
-		bool ValidateSize() const {return true;} // we don't mind about what's inside
 };
 
 DECLARE_MKX_STRING(KaxTagRecordLocation)
@@ -234,8 +224,6 @@ DECLARE_MKX_UNISTRING(KaxTagString)
 };
 
 DECLARE_MKX_BINARY(KaxTagBinary)
-	public:
-		bool ValidateSize() const {return true;} // {return (GetSize() >= 0);}
 };
 
 END_LIBMATROSKA_NAMESPACE

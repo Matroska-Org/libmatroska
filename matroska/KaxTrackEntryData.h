@@ -97,16 +97,12 @@ DECLARE_MKX_STRING(KaxCodecID)
 };
 
 DECLARE_MKX_BINARY(KaxCodecPrivate)
-	public:
-		bool ValidateSize() const {return true;} // we don't mind about what's inside
 };
 
 DECLARE_MKX_UNISTRING(KaxCodecName)
 };
 
 DECLARE_MKX_BINARY(KaxTrackAttachmentLink)
-	public:
-		bool ValidateSize() const {return true;} // we don't mind about what's inside
 };
 
 DECLARE_MKX_UINTEGER(KaxTrackOverlay)
@@ -122,8 +118,6 @@ DECLARE_MKX_UINTEGER(KaxTrackTranslateEditionUID)
 };
 
 DECLARE_MKX_BINARY(KaxTrackTranslateTrackID)
-	public:
-		bool ValidateSize() const { return true;}
 };
 
 #if MATROSKA_VERSION >= 2

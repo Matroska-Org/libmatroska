@@ -60,8 +60,6 @@ DECLARE_MKX_UINTEGER(KaxAudioChannels)
 
 #if MATROSKA_VERSION >= 2
 DECLARE_MKX_BINARY(KaxAudioPosition)
-	public:
-        bool ValidateSize(void) const {return true;}
 };
 #endif // MATROSKA_VERSION
 

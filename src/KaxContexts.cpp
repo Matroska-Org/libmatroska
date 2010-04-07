@@ -34,10 +34,23 @@
 */
 #include "ebml/EbmlContexts.h"
 #include "matroska/KaxContexts.h"
+#include "matroska/KaxAttached.h"
+#include "matroska/KaxAttachments.h"
+#include "matroska/KaxBlock.h"
+#include "matroska/KaxCluster.h"
+#include "matroska/KaxSegment.h"
+#include "matroska/KaxTracks.h"
 
 using namespace LIBEBML_NAMESPACE;
 
 START_LIBMATROSKA_NAMESPACE
+
+DEFINE_SEMANTIC_CONTEXT(KaxSegment)
+DEFINE_SEMANTIC_CONTEXT(KaxAttached)
+DEFINE_SEMANTIC_CONTEXT(KaxAttachments)
+DEFINE_SEMANTIC_CONTEXT(KaxBlockGroup)
+DEFINE_SEMANTIC_CONTEXT(KaxCluster)
+DEFINE_SEMANTIC_CONTEXT(KaxTrackEntry)
 
 // for the moment
 const EbmlSemanticContext & GetKaxGlobal_Context()

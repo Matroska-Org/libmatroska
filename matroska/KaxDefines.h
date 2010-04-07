@@ -38,10 +38,8 @@
 
 #if LIBEBML_VERSION >= 0x010000
 #define DEFINE_MKX_CONTEXT(a)                DEFINE_xxx_CONTEXT(a,*GetKaxGlobal_Context)
-#define DEFINE_MKX_MASTER_NOBODY(a,b,c,d,e)  DEFINE_xxx_MASTER(a,b,c,d,e,*GetKaxGlobal_Context)
-#define DEFINE_MKX_MASTER(a,b,c,d,e)         DEFINE_xxx_MASTER(a,b,c,d,e,*GetKaxGlobal_Context) \
-    a::a() :EbmlMaster(Context_##a) {}
-
+#define DEFINE_MKX_MASTER_CONS(a,b,c,d,e)    DEFINE_xxx_MASTER_CONS(a,b,c,d,e,*GetKaxGlobal_Context)
+#define DEFINE_MKX_MASTER(a,b,c,d,e)         DEFINE_xxx_MASTER(a,b,c,d,e,*GetKaxGlobal_Context)
 #define DEFINE_MKX_MASTER_ORPHAN(a,b,c,d)    DEFINE_xxx_MASTER_ORPHAN(a,b,c,d,*GetKaxGlobal_Context)
 #define DEFINE_MKX_UINTEGER_DEF(a,b,c,d,e,v) DEFINE_xxx_UINTEGER_DEF(a,b,c,d,e,*GetKaxGlobal_Context,v)
 #define DEFINE_MKX_UINTEGER(a,b,c,d,e)       DEFINE_xxx_UINTEGER(a,b,c,d,e,*GetKaxGlobal_Context)
@@ -128,10 +126,8 @@ class MATROSKA_DLL_API x : public EbmlMaster { \
 
 #else
 #define DEFINE_MKX_CONTEXT(a)                DEFINE_xxx_CONTEXT(a,*GetKaxGlobal_Context)
-#define DEFINE_MKX_MASTER_NOBODY(a,b,c,d,e)  DEFINE_xxx_MASTER(a,b,c,d,e,*GetKaxGlobal_Context)
-#define DEFINE_MKX_MASTER(a,b,c,d,e)         DEFINE_xxx_MASTER(a,b,c,d,e,*GetKaxGlobal_Context) \
-    a::a() :EbmlMaster(Context_##a) {}
-
+#define DEFINE_MKX_MASTER_CONS(a,b,c,d,e)    DEFINE_xxx_MASTER_CONS(a,b,c,d,e,*GetKaxGlobal_Context)
+#define DEFINE_MKX_MASTER(a,b,c,d,e)         DEFINE_xxx_MASTER(a,b,c,d,e,*GetKaxGlobal_Context)
 #define DEFINE_MKX_MASTER_ORPHAN(a,b,c,d)    DEFINE_xxx_MASTER_ORPHAN(a,b,c,d,*GetKaxGlobal_Context)
 #define DEFINE_MKX_UINTEGER_DEF(a,b,c,d,e,v) DEFINE_xxx_UINTEGER_DEF(a,b,c,d,e,*GetKaxGlobal_Context,v)
 #define DEFINE_MKX_UINTEGER(a,b,c,d,e)       DEFINE_xxx_CLASS(a,b,c,d,e,*GetKaxGlobal_Context)

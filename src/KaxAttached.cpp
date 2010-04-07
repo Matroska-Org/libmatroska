@@ -58,14 +58,14 @@ static const EbmlSemantic ContextList_KaxAttached[6] =
 #endif // MATROSKA_VERSION
 };
 
-DEFINE_MKX_MASTER_NOBODY(KaxAttached,    0x61A7, 2, KaxAttachments, "AttachedFile");
-DEFINE_MKX_UNISTRING(KaxFileDescription, 0x467E, 2, KaxAttachments, "FileDescription");
-DEFINE_MKX_UNISTRING(KaxFileName,        0x466E, 2, KaxAttachments, "FileName");
-DEFINE_MKX_STRING   (KaxMimeType,        0x4660, 2, KaxAttachments, "FileMimeType");
-DEFINE_MKX_BINARY   (KaxFileData,        0x465C, 2, KaxAttachments, "FileData");
-DEFINE_MKX_UINTEGER (KaxFileUID,         0x46AE, 2, KaxAttachments, "FileUID");
+DEFINE_MKX_MASTER_CONS(KaxAttached,        0x61A7, 2, KaxAttachments, "AttachedFile");
+DEFINE_MKX_UNISTRING  (KaxFileDescription, 0x467E, 2, KaxAttachments, "FileDescription");
+DEFINE_MKX_UNISTRING  (KaxFileName,        0x466E, 2, KaxAttachments, "FileName");
+DEFINE_MKX_STRING     (KaxMimeType,        0x4660, 2, KaxAttachments, "FileMimeType");
+DEFINE_MKX_BINARY     (KaxFileData,        0x465C, 2, KaxAttachments, "FileData");
+DEFINE_MKX_UINTEGER   (KaxFileUID,         0x46AE, 2, KaxAttachments, "FileUID");
 #if MATROSKA_VERSION >= 2
-DEFINE_MKX_BINARY   (KaxFileReferral,    0x4675, 2, KaxAttachments, "FileReferral");
+DEFINE_MKX_BINARY     (KaxFileReferral,    0x4675, 2, KaxAttachments, "FileReferral");
 #endif
 
 KaxAttached::KaxAttached()

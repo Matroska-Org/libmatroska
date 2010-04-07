@@ -56,7 +56,7 @@ static const EbmlSemantic ContextList_KaxCluster[6] =
 	EbmlSemantic(false, true,  EBML_INFO(KaxClusterPosition)),
 };
 
-DEFINE_MKX_MASTER_NOBODY(KaxCluster, 0x1F43B675, 4, KaxSegment, "Cluster");
+DEFINE_MKX_MASTER_CONS(KaxCluster, 0x1F43B675, 4, KaxSegment, "Cluster");
 
 KaxCluster::KaxCluster()
 	:EbmlMaster(Context_KaxCluster)

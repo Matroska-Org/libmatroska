@@ -160,9 +160,7 @@ const EbmlSemanticContext & GetKaxTagsGlobal_Context()
 	return Context_KaxTagMultiGlobal;
 }
 
-#define DEFINE_TAG_MASTER(a,b,c,d,e)   DEFINE_xxx_MASTER(a,b,c,d,e,*GetKaxTagsGlobal_Context) \
-    a::a() :EbmlMaster(Context_##a) {}
-
+#define DEFINE_TAG_MASTER(a,b,c,d,e)   DEFINE_xxx_MASTER(a,b,c,d,e,*GetKaxTagsGlobal_Context)
 
 
 DEFINE_MKX_MASTER   (KaxTagMultiComment,           0x5B7B, 2, KaxTag, "MultiComment");

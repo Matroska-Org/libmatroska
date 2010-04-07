@@ -47,7 +47,7 @@ static const EbmlSemantic ContextList_KaxAttachments[1] =
 	EbmlSemantic(true, false, EBML_INFO(KaxAttached)),        ///< EBMLVersion
 };
 
-DEFINE_MKX_MASTER_NOBODY(KaxAttachments, 0x1941A469, 4, KaxSegment, "Attachments");
+DEFINE_MKX_MASTER_CONS(KaxAttachments, 0x1941A469, 4, KaxSegment, "Attachments");
 
 KaxAttachments::KaxAttachments()
  :EbmlMaster(Context_KaxAttachments)

@@ -75,18 +75,18 @@ static const EbmlSemantic ContextList_KaxBlockMore[2] =
 	EbmlSemantic(true,  true,  EBML_INFO(KaxBlockAdditional))
 };
 
-DEFINE_MKX_MASTER_NOBODY(KaxBlockGroup,       0xA0, 1, KaxCluster, "BlockGroup");
-DEFINE_MKX_BINARY_CONS  (KaxBlock,            0xA1, 1, KaxBlockGroup, "Block");
-DEFINE_MKX_UINTEGER     (KaxBlockDuration,    0x9B, 1, KaxBlockGroup, "BlockDuration");
+DEFINE_MKX_MASTER_CONS (KaxBlockGroup,       0xA0, 1, KaxCluster, "BlockGroup");
+DEFINE_MKX_BINARY_CONS (KaxBlock,            0xA1, 1, KaxBlockGroup, "Block");
+DEFINE_MKX_UINTEGER    (KaxBlockDuration,    0x9B, 1, KaxBlockGroup, "BlockDuration");
 #if MATROSKA_VERSION >= 2
-DEFINE_MKX_BINARY_CONS  (KaxSimpleBlock,      0xA3, 1, KaxCluster, "SimpleBlock");
-DEFINE_MKX_BINARY_CONS  (KaxBlockVirtual,     0xA2, 1, KaxBlockGroup, "BlockVirtual");
-DEFINE_MKX_BINARY       (KaxCodecState,       0xA4, 1, KaxBlockGroup, "CodecState");
+DEFINE_MKX_BINARY_CONS (KaxSimpleBlock,      0xA3, 1, KaxCluster, "SimpleBlock");
+DEFINE_MKX_BINARY_CONS (KaxBlockVirtual,     0xA2, 1, KaxBlockGroup, "BlockVirtual");
+DEFINE_MKX_BINARY      (KaxCodecState,       0xA4, 1, KaxBlockGroup, "CodecState");
 #endif
-DEFINE_MKX_MASTER       (KaxBlockAdditions, 0x75A1, 2, KaxBlockGroup, "BlockAdditions");
-DEFINE_MKX_MASTER       (KaxBlockMore,        0xA6, 1, KaxBlockAdditions, "BlockMore");
-DEFINE_MKX_UINTEGER_DEF (KaxBlockAddID,       0xEE, 1, KaxBlockMore, "BlockAddID", 1);
-DEFINE_MKX_BINARY       (KaxBlockAdditional,  0xA5, 1, KaxBlockMore, "BlockAdditional");
+DEFINE_MKX_MASTER      (KaxBlockAdditions, 0x75A1, 2, KaxBlockGroup, "BlockAdditions");
+DEFINE_MKX_MASTER      (KaxBlockMore,        0xA6, 1, KaxBlockAdditions, "BlockMore");
+DEFINE_MKX_UINTEGER_DEF(KaxBlockAddID,       0xEE, 1, KaxBlockMore, "BlockAddID", 1);
+DEFINE_MKX_BINARY      (KaxBlockAdditional,  0xA5, 1, KaxBlockMore, "BlockAdditional");
 
 
 DataBuffer * DataBuffer::Clone()

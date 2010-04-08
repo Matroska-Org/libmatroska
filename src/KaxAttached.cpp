@@ -64,7 +64,7 @@ DEFINE_MKX_BINARY     (KaxFileReferral,    0x4675, 2, KaxAttachments, "FileRefer
 #endif
 
 KaxAttached::KaxAttached()
- :EbmlMaster(Context_KaxAttached)
+ :EbmlMaster(EBML_CLASS_SEMCONTEXT(KaxAttached))
 {
 	SetSizeLength(2); // mandatory min size support (for easier updating) (2^(7*2)-2 = 16Ko)
 }

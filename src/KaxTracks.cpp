@@ -86,7 +86,7 @@ DEFINE_MKX_MASTER     (KaxTracks, 0x1654AE6B, 4, KaxSegment, "Tracks");
 DEFINE_MKX_MASTER_CONS(KaxTrackEntry,   0xAE, 1, KaxTracks, "TrackEntry");
 
 KaxTrackEntry::KaxTrackEntry()
-	:EbmlMaster(Context_KaxTrackEntry)
+	:EbmlMaster(EBML_CLASS_SEMCONTEXT(KaxTrackEntry))
 	,bGlobalTimecodeScaleIsSet(false)
 {}
 

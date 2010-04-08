@@ -137,7 +137,7 @@ KaxBlockGroup::~KaxBlockGroup()
 }
 
 KaxBlockGroup::KaxBlockGroup()
- :EbmlMaster(Context_KaxBlockGroup)
+ :EbmlMaster(EBML_CLASS_SEMCONTEXT(KaxBlockGroup))
  ,ParentCluster(NULL)
  ,ParentTrack(NULL)
 {}

@@ -140,7 +140,7 @@ DEFINE_MKX_CONTEXT(KaxTagMultiGlobal);
 
 const EbmlSemanticContext & GetKaxTagsGlobal_Context()
 {
-	return Context_KaxTagMultiGlobal;
+    return EBML_CLASS_SEMCONTEXT(KaxTagMultiGlobal);
 }
 
 #define DEFINE_TAG_MASTER(a,b,c,d,e)   DEFINE_xxx_MASTER(a,b,c,d,e,*GetKaxTagsGlobal_Context)

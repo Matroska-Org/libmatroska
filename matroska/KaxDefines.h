@@ -55,7 +55,7 @@
 #define DEFINE_MKX_FLOAT64(a,b,c,d,e)        DEFINE_xxx_FLOAT64(a,b,c,d,e,*GetKaxGlobal_Context)
 #define DEFINE_MKX_DATE(a,b,c,d,e)           DEFINE_xxx_DATE(a,b,c,d,e,*GetKaxGlobal_Context)
 
-#define DECLARE_MKX_CONTEXT(x) extern const ebml_context MATROSKA_DLL_API EBML_Context##x;
+#define DECLARE_MKX_CONTEXT(x)
 
 #define DECLARE_MKX_MASTER(x)     DECLARE_MKX_CONTEXT(x) \
 class MATROSKA_DLL_API x : public EbmlMaster { \

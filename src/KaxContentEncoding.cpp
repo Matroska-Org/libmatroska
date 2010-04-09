@@ -71,7 +71,7 @@ DEFINE_MKX_UINTEGER_DEF(KaxContentEncodingScope, 0x5032, 2, KaxContentEncoding, 
 DEFINE_MKX_UINTEGER_DEF(KaxContentEncodingType,  0x5033, 2, KaxContentEncoding, "ContentEncodingType", 0);
 DEFINE_MKX_MASTER      (KaxContentCompression,   0x5034, 2, KaxContentEncoding, "ContentCompression");
 DEFINE_MKX_UINTEGER_DEF(KaxContentCompAlgo,      0x4254, 2, KaxContentCompression, "ContentCompAlgo", 0);
-DEFINE_MKX_UINTEGER    (KaxContentCompSettings,  0x4255, 2, KaxContentCompression, "ContentCompSettings");
+DEFINE_MKX_BINARY      (KaxContentCompSettings,  0x4255, 2, KaxContentCompression, "ContentCompSettings");
 DEFINE_MKX_MASTER      (KaxContentEncryption,    0x5035, 2, KaxContentEncoding, "ContentEncryption");
 DEFINE_MKX_UINTEGER_DEF(KaxContentEncAlgo,       0x47e1, 2, KaxContentEncryption, "ContentEncAlgo", 0);
 DEFINE_MKX_BINARY      (KaxContentEncKeyID,      0x47e2, 2, KaxContentEncryption, "ContentEncKeyID");

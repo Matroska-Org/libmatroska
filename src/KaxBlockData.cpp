@@ -63,7 +63,7 @@ DEFINE_MKX_UINTEGER_DEF (KaxSliceBlockAddID,   0xCB, 1, KaxTimeSlice, "SliceBloc
 DEFINE_MKX_UINTEGER     (KaxSliceDelay,        0xCE, 1, KaxTimeSlice, "SliceDelay");
 DEFINE_MKX_UINTEGER_DEF (KaxSliceDuration,     0xCF, 1, KaxTimeSlice, "SliceDuration", 0);
 #if MATROSKA_VERSION >= 2
-DEFINE_MKX_UINTEGER     (KaxReferenceVirtual,  0xFD, 1, KaxBlockGroup, "ReferenceVirtual");
+DEFINE_MKX_SINTEGER     (KaxReferenceVirtual,  0xFD, 1, KaxBlockGroup, "ReferenceVirtual");
 #endif
 
 

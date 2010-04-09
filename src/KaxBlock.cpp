@@ -265,7 +265,7 @@ KaxBlockVirtual::KaxBlockVirtual(const KaxBlockVirtual & ElementToClone)
 }
 
 KaxBlockVirtual::KaxBlockVirtual()
-:ParentCluster(NULL)
+:EBML_DEF_BINARY(KaxBlockVirtual)EBML_DEF_SEP ParentCluster(NULL)
 {
     SetBuffer(DataBlock,sizeof(DataBlock));
     SetValueIsSet(false);

@@ -74,7 +74,8 @@ const KaxBlockBlob & KaxReferenceBlock::RefBlock() const
 }
 
 KaxReferenceBlock::KaxReferenceBlock()
-:RefdBlock(NULL)
+:EBML_DEF_SINTEGER(KaxReferenceBlock)EBML_DEF_SEP
+RefdBlock(NULL)
 ,ParentBlock(NULL)
 {
     bTimecodeSet = false;

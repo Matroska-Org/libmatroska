@@ -47,9 +47,9 @@ DEFINE_END_SEMANTIC(KaxChapterTranslate)
 
 DEFINE_MKX_BINARY       (KaxSegmentUID,                 0x73A4, 2, KaxInfo, "SegmentUID");
 DEFINE_MKX_UNISTRING    (KaxSegmentFilename,            0x7384, 2, KaxInfo, "SegmentFilename");
-DEFINE_MKX_BINARY       (KaxPrevUID,                  0x3CB923, 3, KaxInfo, "PrevUID");
+DEFINE_MKX_BINARY_CONS  (KaxPrevUID,                  0x3CB923, 3, KaxInfo, "PrevUID");
 DEFINE_MKX_UNISTRING    (KaxPrevFilename,             0x3C83AB, 3, KaxInfo, "PrevFilename");
-DEFINE_MKX_BINARY       (KaxNextUID,                  0x3EB923, 3, KaxInfo, "NextUID");
+DEFINE_MKX_BINARY_CONS  (KaxNextUID,                  0x3EB923, 3, KaxInfo, "NextUID");
 DEFINE_MKX_UNISTRING    (KaxNextFilename,             0x3E83BB, 3, KaxInfo, "NextFilename");
 DEFINE_MKX_BINARY       (KaxSegmentFamily,              0x4444, 2, KaxInfo, "SegmentFamily");
 DEFINE_MKX_MASTER       (KaxChapterTranslate,           0x6924, 2, KaxInfo, "ChapterTranslate");
@@ -60,5 +60,22 @@ DEFINE_MKX_UINTEGER_DEF(KaxTimecodeScale,            0x2AD7B1, 3, KaxInfo, "Time
 DEFINE_MKX_FLOAT        (KaxDuration,                   0x4489, 2, KaxInfo, "Duration");
 DEFINE_MKX_DATE         (KaxDateUTC,                    0x4461, 2, KaxInfo, "DateUTC");
 DEFINE_MKX_UNISTRING    (KaxTitle,                      0x7BA9, 2, KaxInfo, "Title");
+
+KaxPrevUID::KaxPrevUID()
+:KaxSegmentUID(EBML_DEF_BINARY_CTX(KaxPrevUID))
+{
+}
+
+KaxNextUID::KaxNextUID()
+:KaxSegmentUID(EBML_DEF_BINARY_CTX(KaxNextUID))
+{
+}
+
+#if LIBEBML_VERSION >= 0x010000
+KaxSegmentUID::KaxSegmentUID(EBML_DEF_CONS)
+:EbmlBinary(EBML_DEF_PARAM)
+{
+}
+#endif
 
 END_LIBMATROSKA_NAMESPACE

@@ -32,25 +32,26 @@ SRC  = $(wildcard ../../src/*.cpp)
 OBJ  = $(patsubst %.cpp,%.o,$(SRC))
 ifeq (yes,$(SHARED))
 LIBS = libmatroska.dll
-CXXFLAGS = -DMATROSKA_DLL
+FLAGS = -DMATROSKA_DLL
 DLLFLAGS = -DMATROSKA_DLL_EXPORT
 else
 LIBS = libmatroska.a
 endif
 ifeq (yes,$(SHARED))
 ifeq (yes,$(EBML_DLL))
-CXXFLAGS += -DEBML_DLL
+FLAGS += -DEBML_DLL
 endif
 endif
-INCS = -I../.. -I$(EBML_DIR)
+CWD = $(shell pwd)
+INCS = -I$(CWD)/../.. -I$(EBML_DIR)
 LDFLAGS = -L. -L$(EBML_DIR)/make/mingw32
-CXXFLAGS += $(DEBUGFLAGS) $(INCS)
+COMPILEFLAGS = $(DEBUGFLAGS) $(INCS) $(FLAGS) $(CXXFLAGS)
 TESTS = test6 test8 test9
 
 .PHONY: all all-before all-after clean clean-custom
 
 .cpp.o:
-	$(CXX) $(DLLFLAGS) $(CXXFLAGS) -c -o $@ $<
+	$(CXX) $(DLLFLAGS) $(COMPILEFLAGS) -c -o $@ $<
 
 all: lib
 
@@ -76,19 +77,19 @@ libmatroska.dll: $(OBJ)
 # Explicitely list these object files because for them
 # MATROSKA_DLL_EXPORT must NOT be defined.
 ../../test/mux/test6.o: ../../test/mux/test6.cpp
-	$(CXX) $(CXXFLAGS) -c -o $@ $<
+	$(CXX) $(COMPILEFLAGS) -c -o $@ $<
 
 test6:	../../test/mux/test6.o $(LIBS)
 	$(LD) -o $@ $(LDFLAGS) $< -lmatroska -lebml
 
 ../../test/mux/test8.o: ../../test/mux/test8.cpp
-	$(CXX) $(CXXFLAGS) -c -o $@ $<
+	$(CXX) $(COMPILEFLAGS) -c -o $@ $<
 
 test8:	../../test/mux/test8.o $(LIBS)
 	$(LD) -o $@ $(LDFLAGS) $< -lmatroska -lebml
 
 ../../test/tags/test9.o: ../../test/tags/test9.cpp
-	$(CXX) $(CXXFLAGS) -c -o $@ $<
+	$(CXX) $(COMPILEFLAGS) -c -o $@ $<
 
 test9:	../../test/tags/test9.o $(LIBS)
 	$(LD) -o $@ $(LDFLAGS) $< -lmatroska -lebml
@@ -100,7 +101,7 @@ depend:
 	@for i in $(SRC); do \
 		o="`echo $$i | sed -e 's/\.c$$/.o/' -e 's/\.cpp$$/.o/'`" ; \
 		echo '  ' $$i: $$o ; \
-		$(CXX) $(CXXFLAGS) -MM -MT $$o $$i >> .depend ; \
+		$(CXX) $(COMPILEFLAGS) -MM -MT $$o $$i >> .depend ; \
 	done
 
 #

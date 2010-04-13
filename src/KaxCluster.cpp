@@ -53,8 +53,8 @@ DEFINE_END_SEMANTIC(KaxCluster)
 
 DEFINE_MKX_MASTER_CONS(KaxCluster, 0x1F43B675, 4, KaxSegment, "Cluster");
 
-KaxCluster::KaxCluster()
-	:EbmlMaster(EBML_CLASS_SEMCONTEXT(KaxCluster))
+KaxCluster::KaxCluster(EBML_EXTRA_DEF)
+	:EbmlMaster(EBML_CLASS_SEMCONTEXT(KaxCluster) EBML_DEF_SEP EBML_EXTRA_CALL)
 	,currentNewBlock(NULL)
 	,ParentSegment(NULL)
 	,bFirstFrameInside(false)

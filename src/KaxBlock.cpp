@@ -136,8 +136,8 @@ KaxBlockGroup::~KaxBlockGroup()
 //NOTE("KaxBlockGroup::~KaxBlockGroup");
 }
 
-KaxBlockGroup::KaxBlockGroup()
- :EbmlMaster(EBML_CLASS_SEMCONTEXT(KaxBlockGroup))
+KaxBlockGroup::KaxBlockGroup(EBML_EXTRA_DEF)
+ :EbmlMaster(EBML_CLASS_SEMCONTEXT(KaxBlockGroup) EBML_DEF_SEP EBML_EXTRA_CALL)
  ,ParentCluster(NULL)
  ,ParentTrack(NULL)
 {}
@@ -264,7 +264,7 @@ KaxBlockVirtual::KaxBlockVirtual(const KaxBlockVirtual & ElementToClone)
     SetValueIsSet(false);
 }
 
-KaxBlockVirtual::KaxBlockVirtual()
+KaxBlockVirtual::KaxBlockVirtual(EBML_EXTRA_DEF)
 :EBML_DEF_BINARY(KaxBlockVirtual)EBML_DEF_SEP ParentCluster(NULL)
 {
     SetBuffer(DataBlock,sizeof(DataBlock));

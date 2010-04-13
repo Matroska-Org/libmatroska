@@ -63,8 +63,8 @@ DEFINE_MKX_UINTEGER   (KaxFileUID,         0x46AE, 2, KaxAttachments, "FileUID")
 DEFINE_MKX_BINARY     (KaxFileReferral,    0x4675, 2, KaxAttachments, "FileReferral");
 #endif
 
-KaxAttached::KaxAttached()
- :EbmlMaster(EBML_CLASS_SEMCONTEXT(KaxAttached))
+KaxAttached::KaxAttached(EBML_EXTRA_DEF)
+ :EbmlMaster(EBML_CLASS_SEMCONTEXT(KaxAttached) EBML_DEF_SEP EBML_EXTRA_CALL)
 {
 	SetSizeLength(2); // mandatory min size support (for easier updating) (2^(7*2)-2 = 16Ko)
 }

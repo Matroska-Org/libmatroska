@@ -53,7 +53,7 @@ START_LIBMATROSKA_NAMESPACE
 DECLARE_MKX_BINARY(KaxSegmentUID)
 	public:
 #if LIBEBML_VERSION >= 0x010000
-        KaxSegmentUID(EBML_DEF_CONS);
+        KaxSegmentUID(EBML_DEF_CONS EBML_DEF_SEP EBML_EXTRA_PARAM);
 #endif
 		virtual bool ValidateSize() const { return (GetSize() == 16);}
 };
@@ -64,7 +64,7 @@ DECLARE_MKX_UNISTRING(KaxSegmentFilename)
 DECLARE_MKX_CONTEXT(KaxPrevUID);
 class MATROSKA_DLL_API KaxPrevUID : public KaxSegmentUID {
 	public:
-		KaxPrevUID();
+		KaxPrevUID(EBML_EXTRA_PARAM);
 		KaxPrevUID(const KaxPrevUID & ElementToClone) :KaxSegmentUID(ElementToClone){}
 		virtual bool ValidateSize() const { return (GetSize() == 16);}
 
@@ -77,7 +77,7 @@ DECLARE_MKX_UNISTRING(KaxPrevFilename)
 DECLARE_MKX_CONTEXT(KaxNextUID);
 class MATROSKA_DLL_API KaxNextUID : public KaxSegmentUID {
 	public:
-		KaxNextUID();
+		KaxNextUID(EBML_EXTRA_PARAM);
 		KaxNextUID(const KaxNextUID & ElementToClone) :KaxSegmentUID(ElementToClone){}
 		virtual bool ValidateSize() const { return (GetSize() == 16);}
 

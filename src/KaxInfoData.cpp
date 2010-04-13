@@ -61,19 +61,19 @@ DEFINE_MKX_FLOAT        (KaxDuration,                   0x4489, 2, KaxInfo, "Dur
 DEFINE_MKX_DATE         (KaxDateUTC,                    0x4461, 2, KaxInfo, "DateUTC");
 DEFINE_MKX_UNISTRING    (KaxTitle,                      0x7BA9, 2, KaxInfo, "Title");
 
-KaxPrevUID::KaxPrevUID()
-:KaxSegmentUID(EBML_DEF_BINARY_CTX(KaxPrevUID))
+KaxPrevUID::KaxPrevUID(EBML_EXTRA_DEF)
+:KaxSegmentUID(EBML_DEF_BINARY_CTX(KaxPrevUID) EBML_DEF_SEP EBML_EXTRA_CALL)
 {
 }
 
-KaxNextUID::KaxNextUID()
-:KaxSegmentUID(EBML_DEF_BINARY_CTX(KaxNextUID))
+KaxNextUID::KaxNextUID(EBML_EXTRA_DEF)
+:KaxSegmentUID(EBML_DEF_BINARY_CTX(KaxNextUID) EBML_DEF_SEP EBML_EXTRA_CALL)
 {
 }
 
 #if LIBEBML_VERSION >= 0x010000
-KaxSegmentUID::KaxSegmentUID(EBML_DEF_CONS)
-:EbmlBinary(EBML_DEF_PARAM)
+KaxSegmentUID::KaxSegmentUID(EBML_DEF_CONS EBML_DEF_SEP EBML_EXTRA_DEF)
+:EbmlBinary(EBML_DEF_PARAM EBML_DEF_SEP EBML_EXTRA_CALL)
 {
 }
 #endif

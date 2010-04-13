@@ -85,8 +85,8 @@ DEFINE_END_SEMANTIC(KaxTrackEntry)
 DEFINE_MKX_MASTER     (KaxTracks, 0x1654AE6B, 4, KaxSegment, "Tracks");
 DEFINE_MKX_MASTER_CONS(KaxTrackEntry,   0xAE, 1, KaxTracks, "TrackEntry");
 
-KaxTrackEntry::KaxTrackEntry()
-	:EbmlMaster(EBML_CLASS_SEMCONTEXT(KaxTrackEntry))
+KaxTrackEntry::KaxTrackEntry(EBML_EXTRA_DEF)
+	:EbmlMaster(EBML_CLASS_SEMCONTEXT(KaxTrackEntry) EBML_DEF_SEP EBML_EXTRA_CALL)
 	,bGlobalTimecodeScaleIsSet(false)
 {}
 

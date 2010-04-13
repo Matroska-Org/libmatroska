@@ -73,7 +73,7 @@ const KaxBlockBlob & KaxReferenceBlock::RefBlock() const
 	return *RefdBlock;
 }
 
-KaxReferenceBlock::KaxReferenceBlock()
+KaxReferenceBlock::KaxReferenceBlock(EBML_EXTRA_DEF)
 :EBML_DEF_SINTEGER(KaxReferenceBlock)EBML_DEF_SEP
 RefdBlock(NULL)
 ,ParentBlock(NULL)

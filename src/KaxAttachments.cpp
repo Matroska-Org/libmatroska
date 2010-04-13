@@ -48,8 +48,8 @@ DEFINE_END_SEMANTIC(KaxAttachments)
 
 DEFINE_MKX_MASTER_CONS(KaxAttachments, 0x1941A469, 4, KaxSegment, "Attachments");
 
-KaxAttachments::KaxAttachments()
- :EbmlMaster(EBML_CLASS_SEMCONTEXT(KaxAttachments))
+KaxAttachments::KaxAttachments(EBML_EXTRA_DEF)
+ :EbmlMaster(EBML_CLASS_SEMCONTEXT(KaxAttachments) EBML_DEF_SEP EBML_EXTRA_CALL)
 {
 	SetSizeLength(2); // mandatory min size support (for easier updating) (2^(7*2)-2 = 16Ko)
 }

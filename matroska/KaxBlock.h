@@ -189,7 +189,7 @@ DECLARE_MKX_MASTER(KaxBlockGroup)
 
 class KaxInternalBlock : public EbmlBinary {
 	public:
-		KaxInternalBlock(EBML_DEF_CONS EBML_DEF_SEP bool bSimple ) :EBML_DEF_BINARY_INIT EBML_DEF_SEP bLocalTimecodeUsed(false), mLacing(LACING_AUTO), mInvisible(false)
+		KaxInternalBlock(EBML_DEF_CONS EBML_DEF_SEP bool bSimple EBML_DEF_SEP EBML_EXTRA_PARAM) :EBML_DEF_BINARY_INIT EBML_DEF_SEP bLocalTimecodeUsed(false), mLacing(LACING_AUTO), mInvisible(false)
 			,ParentCluster(NULL), bIsSimple(bSimple), bIsKeyframe(true), bIsDiscardable(false)
 		{}
 		KaxInternalBlock(const KaxInternalBlock & ElementToClone);
@@ -271,7 +271,7 @@ class KaxInternalBlock : public EbmlBinary {
 DECLARE_MKX_CONTEXT(KaxBlock);
 class MATROSKA_DLL_API KaxBlock : public KaxInternalBlock {
 	public:
-		KaxBlock() :KaxInternalBlock(EBML_DEF_BINARY_CTX(KaxBlock)EBML_DEF_SEP false) {}
+		KaxBlock(EBML_EXTRA_PARAM) :KaxInternalBlock(EBML_DEF_BINARY_CTX(KaxBlock)EBML_DEF_SEP false EBML_DEF_SEP EBML_EXTRA_CALL) {}
         EBML_CONCRETE_CLASS(KaxBlock)
 };
 
@@ -279,7 +279,7 @@ class MATROSKA_DLL_API KaxBlock : public KaxInternalBlock {
 DECLARE_MKX_CONTEXT(KaxSimpleBlock);
 class MATROSKA_DLL_API KaxSimpleBlock : public KaxInternalBlock {
 	public:
-		KaxSimpleBlock() :KaxInternalBlock(EBML_DEF_BINARY_CTX(KaxSimpleBlock)EBML_DEF_SEP true) {}
+		KaxSimpleBlock(EBML_EXTRA_PARAM) :KaxInternalBlock(EBML_DEF_BINARY_CTX(KaxSimpleBlock)EBML_DEF_SEP true EBML_DEF_SEP EBML_EXTRA_CALL) {}
 
 		void SetKeyframe(bool b_keyframe) { bIsKeyframe = b_keyframe; }
 		void SetDiscardable(bool b_discard) { bIsDiscardable = b_discard; }

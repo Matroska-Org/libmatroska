@@ -69,8 +69,8 @@ DEFINE_MKX_CONTEXT(KaxMatroska);
 
 DEFINE_MKX_MASTER_ORPHAN(KaxSegment, 0x18538067, 4, "Segment\0rotomopogo");
 
-KaxSegment::KaxSegment()
-	:EbmlMaster(EBML_CLASS_SEMCONTEXT(KaxSegment))
+KaxSegment::KaxSegment(EBML_EXTRA_DEF)
+	:EbmlMaster(EBML_CLASS_SEMCONTEXT(KaxSegment) EBML_DEF_SEP EBML_EXTRA_CALL)
 {
 	SetSizeLength(5); // mandatory min size support (for easier updating) (2^(7*5)-2 = 32Go)
 	SetSizeInfinite(); // by default a segment is big and the size is unknown in advance

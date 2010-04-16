@@ -283,8 +283,10 @@ filepos_t KaxBlockVirtual::UpdateSize(bool bSaveDefault, bool bForceRender)
 	binary *cursor = EbmlBinary::GetBuffer();
 	// fill data
 	if (TrackNumber < 0x80) {
+        assert(GetSize() >= 4);
 		*cursor++ = TrackNumber | 0x80; // set the first bit to 1 
 	} else {
+        assert(GetSize() >= 5);
 		*cursor++ = (TrackNumber >> 8) | 0x40; // set the second bit to 1
 		*cursor++ = TrackNumber & 0xFF;
 	}

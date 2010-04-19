@@ -82,9 +82,11 @@ KaxSeek * KaxSeekHead::FindFirstOf(const EbmlCallbacks & Callbacks) const
 	while (aElt != NULL)
 	{
 		KaxSeekID * aId = NULL;
-		for (unsigned int i = 0; i<aElt->ListSize(); i++) {
-			if (EbmlId(*(*aElt)[i]) == EBML_ID(KaxSeekID)) {
-				aId = static_cast<KaxSeekID*>((*aElt)[i]);
+        EBML_MASTER_ITERATOR Itr;
+		for (Itr = aElt->begin(); Itr != aElt->end(); ++Itr)
+        {
+			if (EbmlId(*(*Itr)) == EBML_ID(KaxSeekID)) {
+				aId = static_cast<KaxSeekID*>(*Itr);
 				EbmlId aEbmlId(aId->GetBuffer(), aId->GetSize());
 				if (aEbmlId == EBML_INFO_ID(Callbacks))
 				{
@@ -101,23 +103,24 @@ KaxSeek * KaxSeekHead::FindFirstOf(const EbmlCallbacks & Callbacks) const
 
 KaxSeek * KaxSeekHead::FindNextOf(const KaxSeek &aPrev) const
 {
-	unsigned int iIndex;
+    EBML_MASTER_ITERATOR Itr;
 	KaxSeek *tmp;
 	
 	// look for the previous in the list
-	for (iIndex = 0; iIndex<ListSize(); iIndex++)
-	{
-		if ((*this)[iIndex] == static_cast<const EbmlElement*>(&aPrev))
+	for (Itr = begin(); Itr != end(); ++Itr)
+    {
+		if (*Itr == static_cast<const EbmlElement*>(&aPrev))
 			break;
 	}
 
-	if (iIndex <ListSize()) {
-		iIndex++;
-		for (; iIndex<ListSize(); iIndex++)
-		{
-			if (EbmlId(*((*this)[iIndex])) == EBML_ID(KaxSeek))
+	if (Itr != end())
+    {
+		++Itr;
+	    for (; Itr != end(); ++Itr)
+        {
+			if (EbmlId(*(*Itr)) == EBML_ID(KaxSeek))
 			{
-				tmp = (KaxSeek *)((*this)[iIndex]);
+				tmp = (KaxSeek *)(*Itr);
 				if (tmp->IsEbmlId(aPrev))
 					return tmp;
 			}

@@ -125,10 +125,11 @@ const KaxCuePoint * KaxCues::GetTimecodePoint(uint64 aTimecode) const
 	const KaxCuePoint * aPointNext = NULL;
 	uint64 aNextTime = EBML_PRETTYLONGINT(0xFFFFFFFFFFFF);
 
-	for (unsigned int i=0; i<ListSize(); i++)
-	{
-		if (EbmlId(*(*this)[i]) == EBML_ID(KaxCuePoint)) {
-			const KaxCuePoint *tmp = static_cast<const KaxCuePoint *>((*this)[i]);
+    EBML_MASTER_ITERATOR Itr;
+	for (Itr = begin(); Itr != end(); ++Itr)
+    {
+		if (EbmlId(*(*Itr)) == EBML_ID(KaxCuePoint)) {
+			const KaxCuePoint *tmp = static_cast<const KaxCuePoint *>(*Itr);
 			// check the tile
 			const KaxCueTime *aTime = static_cast<const KaxCueTime *>(tmp->FindFirstElt(EBML_INFO(KaxCueTime)));
 			if (aTime != NULL)

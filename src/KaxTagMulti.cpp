@@ -145,7 +145,7 @@ const EbmlSemanticContext & GetKaxTagsGlobal_Context()
 }
 
 #if LIBEBML_VERSION >= 0x010000
-#define DEFINE_TAG_MASTER(a,b,c,d,e)   DEFINE_xxx_MASTER(a,b,c,d,e,EBML_SemanticKaxTagMultiGlobal)
+#define DEFINE_TAG_MASTER(a,b,c,d,e)   DEFINE_xxx_MASTER(a,b,d,e,EBML_SemanticKaxTagMultiGlobal)
 #else
 #define DEFINE_TAG_MASTER(a,b,c,d,e)   DEFINE_xxx_MASTER(a,b,c,d,e,*GetKaxTagsGlobal_Context)
 #endif

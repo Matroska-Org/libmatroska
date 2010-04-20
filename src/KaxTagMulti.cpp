@@ -42,6 +42,7 @@ using namespace LIBEBML_NAMESPACE;
 START_LIBMATROSKA_NAMESPACE
 
 DEFINE_START_SEMANTIC(KaxTagMultiGlobal)
+// TODO: have the default EBML global semantic as well
 DEFINE_SEMANTIC_ITEM(false, false, KaxTagMultiComment)
 DEFINE_END_SEMANTIC(KaxTagMultiGlobal)
 
@@ -143,7 +144,11 @@ const EbmlSemanticContext & GetKaxTagsGlobal_Context()
     return EBML_CLASS_SEMCONTEXT(KaxTagMultiGlobal);
 }
 
+#if LIBEBML_VERSION >= 0x010000
+#define DEFINE_TAG_MASTER(a,b,c,d,e)   DEFINE_xxx_MASTER(a,b,c,d,e,EBML_SemanticKaxTagMultiGlobal)
+#else
 #define DEFINE_TAG_MASTER(a,b,c,d,e)   DEFINE_xxx_MASTER(a,b,c,d,e,*GetKaxTagsGlobal_Context)
+#endif
 
 
 DEFINE_MKX_MASTER   (KaxTagMultiComment,           0x5B7B, 2, KaxTag, "MultiComment");

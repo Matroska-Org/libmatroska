@@ -1,3 +1,12 @@
+2010-04-30 robux4/mosu
+New 0.9.0 version:
+    - fix a memory freeing issue in KaxBlock
+    - use the macros from the new libebml 0.8.0 to simplify the element definitions and avoid possible typo bugs
+    - fix some building issues on Linux and MinGW
+    - add matroska_init() and matroska_done() functions, necessary when used with libebml v2
+    - use the new libebml iterators of EbmlMaster where possible
+
+
 2007-01-19 09:58  robux4
 
 	* trunk/libebml/libebml.proj, trunk/libmatroska/libmatroska.proj,

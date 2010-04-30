@@ -125,7 +125,7 @@ const KaxCuePoint * KaxCues::GetTimecodePoint(uint64 aTimecode) const
 	const KaxCuePoint * aPointNext = NULL;
 	uint64 aNextTime = EBML_PRETTYLONGINT(0xFFFFFFFFFFFF);
 
-    EBML_MASTER_ITERATOR Itr;
+    EBML_MASTER_CONST_ITERATOR Itr;
 	for (Itr = begin(); Itr != end(); ++Itr)
     {
 		if (EbmlId(*(*Itr)) == EBML_ID(KaxCuePoint)) {

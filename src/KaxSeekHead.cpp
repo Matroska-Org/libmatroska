@@ -103,7 +103,7 @@ KaxSeek * KaxSeekHead::FindFirstOf(const EbmlCallbacks & Callbacks) const
 
 KaxSeek * KaxSeekHead::FindNextOf(const KaxSeek &aPrev) const
 {
-    EBML_MASTER_ITERATOR Itr;
+    EBML_MASTER_CONST_ITERATOR Itr;
 	KaxSeek *tmp;
 	
 	// look for the previous in the list

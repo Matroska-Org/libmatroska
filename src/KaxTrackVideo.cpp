@@ -73,7 +73,7 @@ DEFINE_MKX_BINARY      (KaxVideoColourSpace,   0x2EB524, 3, KaxTrackVideo, "Vide
 DEFINE_MKX_FLOAT       (KaxVideoFrameRate,     0x2383E3, 3, KaxTrackVideo, "VideoFrameRate");
 #if MATROSKA_VERSION >= 2
 DEFINE_MKX_UINTEGER_DEF(KaxVideoFlagInterlaced,    0x9A, 1, KaxTrackVideo, "VideoFlagInterlaced", 0);
-DEFINE_MKX_UINTEGER_DEF(KaxVideoStereoMode,      0x53B9, 2, KaxTrackVideo, "VideoStereoMode", 0);
+DEFINE_MKX_UINTEGER_DEF(KaxVideoStereoMode,      0x53B8, 2, KaxTrackVideo, "VideoStereoMode", 0);
 DEFINE_MKX_UINTEGER_DEF(KaxVideoDisplayUnit,     0x54B2, 2, KaxTrackVideo, "VideoDisplayUnit", 0);
 DEFINE_MKX_UINTEGER_DEF(KaxVideoAspectRatio,     0x54B3, 2, KaxTrackVideo, "VideoAspectRatio", 0);
 DEFINE_MKX_FLOAT       (KaxVideoGamma,         0x2FB523, 3, KaxTrackVideo, "VideoGamma");

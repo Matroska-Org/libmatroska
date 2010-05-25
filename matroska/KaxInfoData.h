@@ -29,7 +29,7 @@
 
 /*!
 	\file
-	\version \$Id: KaxInfoData.h,v 1.7 2004/04/14 23:26:17 robux4 Exp $
+	\version \$Id$
 	\author Steve Lhomme     <robux4 @ users.sf.net>
 	\author John Cannon      <spyder2555 @ users.sf.net>
 	\author Moritz Bunkus    <moritz @ bunkus.org>
@@ -55,7 +55,7 @@ DECLARE_MKX_BINARY(KaxSegmentUID)
 #if LIBEBML_VERSION >= 0x010000
         KaxSegmentUID(EBML_DEF_CONS EBML_DEF_SEP EBML_EXTRA_PARAM);
 #endif
-		virtual bool ValidateSize() const { return (GetSize() == 16);}
+		virtual bool ValidateSize() const { return IsFiniteSize() && (GetSize() == 16);}
 };
 
 DECLARE_MKX_UNISTRING(KaxSegmentFilename)
@@ -66,7 +66,7 @@ class MATROSKA_DLL_API KaxPrevUID : public KaxSegmentUID {
 	public:
 		KaxPrevUID(EBML_EXTRA_PARAM);
 		KaxPrevUID(const KaxPrevUID & ElementToClone) :KaxSegmentUID(ElementToClone){}
-		virtual bool ValidateSize() const { return (GetSize() == 16);}
+		virtual bool ValidateSize() const { return IsFiniteSize() && (GetSize() == 16);}
 
         EBML_CONCRETE_CLASS(KaxPrevUID)
 };
@@ -79,7 +79,7 @@ class MATROSKA_DLL_API KaxNextUID : public KaxSegmentUID {
 	public:
 		KaxNextUID(EBML_EXTRA_PARAM);
 		KaxNextUID(const KaxNextUID & ElementToClone) :KaxSegmentUID(ElementToClone){}
-		virtual bool ValidateSize() const { return (GetSize() == 16);}
+		virtual bool ValidateSize() const { return IsFiniteSize() && (GetSize() == 16);}
 
         EBML_CONCRETE_CLASS(KaxNextUID)
 };
@@ -89,7 +89,7 @@ DECLARE_MKX_UNISTRING(KaxNextFilename)
 
 DECLARE_MKX_BINARY(KaxSegmentFamily)
 	public:
-		virtual bool ValidateSize() const { return (GetSize() == 16);}
+		virtual bool ValidateSize() const { return IsFiniteSize() && (GetSize() == 16);}
 };
 
 DECLARE_MKX_MASTER(KaxChapterTranslate)

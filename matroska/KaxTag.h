@@ -29,7 +29,7 @@
 
 /*!
 	\file
-	\version \$Id: KaxTag.h,v 1.9 2004/04/14 23:26:17 robux4 Exp $
+	\version \$Id$
 	\author Jory Stone     <jcsston @ toughguy.net>
 	\author Steve Lhomme   <robux4 @ users.sf.net>
 */
@@ -205,7 +205,7 @@ DECLARE_MKX_STRING(KaxTagUserDefinedURL)
 
 DECLARE_MKX_BINARY(KaxTagVideoGenre)
 	public:
-		virtual bool ValidateSize() const {return (GetSize() >= 2);}
+		virtual bool ValidateSize() const {return IsFiniteSize() && (GetSize() >= 2);}
 };
 
 DECLARE_MKX_MASTER(KaxTagSimple)

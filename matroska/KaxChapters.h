@@ -29,7 +29,7 @@
 
 /*!
 	\file
-	\version \$Id: KaxChapters.h,v 1.9 2004/04/14 23:26:17 robux4 Exp $
+	\version \$Id$
 	\author Steve Lhomme     <robux4 @ users.sf.net>
 */
 #ifndef LIBMATROSKA_CHAPTERS_H
@@ -85,12 +85,12 @@ DECLARE_MKX_UINTEGER(KaxChapterFlagEnabled)
 
 DECLARE_MKX_BINARY(KaxChapterSegmentUID)
     public:
-	    virtual bool ValidateSize() const { return (GetSize() == 16);}
+	    virtual bool ValidateSize() const { return IsFiniteSize() && (GetSize() == 16);}
 };
 
 DECLARE_MKX_BINARY(KaxChapterSegmentEditionUID)
     public:
-	    virtual bool ValidateSize() const { return (GetSize() == 16);}
+	    virtual bool ValidateSize() const { return IsFiniteSize() && (GetSize() == 16);}
 };
 
 DECLARE_MKX_UINTEGER(KaxChapterPhysicalEquiv)

@@ -29,7 +29,7 @@
 
 /*!
 	\file
-	\version \$Id: KaxTrackVideo.h,v 1.9 2004/04/14 23:26:17 robux4 Exp $
+	\version \$Id$
 	\author Steve Lhomme     <robux4 @ users.sf.net>
 */
 #ifndef LIBMATROSKA_TRACK_VIDEO_H
@@ -91,7 +91,7 @@ DECLARE_MKX_UINTEGER(KaxVideoAspectRatio)
 
 DECLARE_MKX_BINARY(KaxVideoColourSpace)
 	public:
-        bool ValidateSize(void) const {return (GetSize() == 4);}
+        bool ValidateSize(void) const {return IsFiniteSize() && (GetSize() == 4);}
 };
 
 #if MATROSKA_VERSION >= 2

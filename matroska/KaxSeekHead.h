@@ -29,7 +29,7 @@
 
 /*!
 	\file
-	\version \$Id: KaxSeekHead.h,v 1.7 2004/04/14 23:26:17 robux4 Exp $
+	\version \$Id$
 	\author Steve Lhomme     <robux4 @ users.sf.net>
 */
 #ifndef LIBMATROSKA_SEEK_HEAD_H
@@ -69,7 +69,7 @@ DECLARE_MKX_MASTER(KaxSeek)
 
 DECLARE_MKX_BINARY(KaxSeekID)
 	public:
-		virtual bool ValidateSize() const {return GetSize() <= 4;}
+		virtual bool ValidateSize() const {return IsFiniteSize() && GetSize() <= 4;}
 };
 
 DECLARE_MKX_UINTEGER(KaxSeekPosition)

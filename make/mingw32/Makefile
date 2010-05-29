@@ -67,7 +67,7 @@ distclean dist-clean: clean
 	rm -f .depend
 
 libmatroska.a: $(OBJ)
-	$(AR) r $@ $(OBJ)
+	$(AR) rcvu $@ $(OBJ)
 	$(RANLIB) $@
 
 libmatroska.dll: $(OBJ)

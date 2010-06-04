@@ -52,7 +52,7 @@ START_LIBMATROSKA_NAMESPACE
 
 DECLARE_MKX_BINARY(KaxSegmentUID)
 	public:
-#if LIBEBML_VERSION >= 0x010000
+#if defined(HAVE_EBML2)
         KaxSegmentUID(EBML_DEF_CONS EBML_DEF_SEP EBML_EXTRA_PARAM);
 #endif
 		virtual bool ValidateSize() const { return IsFiniteSize() && (GetSize() == 16);}

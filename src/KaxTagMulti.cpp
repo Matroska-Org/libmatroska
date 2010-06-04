@@ -29,7 +29,7 @@
 
 /*!
 	\file
-	\version \$Id: KaxTagMulti.cpp 640 2004-07-09 21:05:36Z mosu $
+	\version \$Id$
 	\author Jory Stone       <jcsston @ toughguy.net>
 	\author Steve Lhomme     <robux4 @ users.sf.net>
 */
@@ -144,7 +144,7 @@ const EbmlSemanticContext & GetKaxTagsGlobal_Context()
     return EBML_CLASS_SEMCONTEXT(KaxTagMultiGlobal);
 }
 
-#if LIBEBML_VERSION >= 0x010000
+#if defined(HAVE_EBML2)
 #define DEFINE_TAG_MASTER(a,b,c,d,e)   DEFINE_xxx_MASTER(a,b,d,e,EBML_SemanticKaxTagMultiGlobal)
 #else
 #define DEFINE_TAG_MASTER(a,b,c,d,e)   DEFINE_xxx_MASTER(a,b,c,d,e,*GetKaxTagsGlobal_Context)

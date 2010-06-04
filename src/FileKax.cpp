@@ -29,7 +29,7 @@
 
 /*!
     \file
-    \version \$Id: FileKax.cpp 640 2004-07-09 21:05:36Z mosu $
+    \version \$Id$
     \author Steve Lhomme     <robux4 @ users.sf.net>
 */
 //#include "StdInclude.h"
@@ -452,14 +452,14 @@ END_LIBMATROSKA_NAMESPACE
 
 void matroska_init()
 {
-#if LIBEBML_VERSION >= 0x010000
+#if defined(HAVE_EBML2)
     ebml_init();
 #endif
 }
 
 void matroska_done()
 {
-#if LIBEBML_VERSION >= 0x010000
+#if defined(HAVE_EBML2)
     ebml_done();
 #endif
 }

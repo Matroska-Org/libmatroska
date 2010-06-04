@@ -29,7 +29,7 @@
 
 /*!
 	\file
-	\version \$Id: KaxInfoData.cpp 1078 2005-03-03 13:13:04Z robux4 $
+	\version \$Id$
 	\author Steve Lhomme     <robux4 @ users.sf.net>
 	\author John Cannon      <spyder2555 @ users.sf.net>
 */
@@ -71,7 +71,7 @@ KaxNextUID::KaxNextUID(EBML_EXTRA_DEF)
 {
 }
 
-#if LIBEBML_VERSION >= 0x010000
+#if defined(HAVE_EBML2)
 KaxSegmentUID::KaxSegmentUID(EBML_DEF_CONS EBML_DEF_SEP EBML_EXTRA_DEF)
 :EbmlBinary(EBML_DEF_PARAM EBML_DEF_SEP EBML_EXTRA_CALL)
 {

@@ -1,3 +1,7 @@
+2010-06-04 robux4/mosu
+New 1.0.0 version:
+    - rename the library .so name as it's backward incompatible
+
 2010-04-30 robux4/mosu
 New 0.9.0 version:
     - fix a memory freeing issue in KaxBlock

@@ -40,9 +40,9 @@
 
 START_LIBMATROSKA_NAMESPACE
 
-#define LIBMATROSKA_VERSION 0x010000
+#define LIBMATROSKA_VERSION 0x010100
 
-static const std::string KaxCodeVersion = "1.0.0";
+static const std::string KaxCodeVersion = "1.1.0";
 static const std::string KaxCodeDate    = __TIMESTAMP__;
 
 /*!

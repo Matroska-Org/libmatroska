@@ -900,6 +900,10 @@ void KaxBlockGroup::SetParent(KaxCluster & aParentCluster) {
 	theBlock.SetParent( aParentCluster );
 }
 
+void KaxSimpleBlock::SetParent(KaxCluster & aParentCluster) {
+	KaxInternalBlock::SetParent( aParentCluster );
+}
+
 void KaxInternalBlock::SetParent(KaxCluster & aParentCluster)
 {
 	ParentCluster = &aParentCluster;

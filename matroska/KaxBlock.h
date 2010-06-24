@@ -288,7 +288,8 @@ class MATROSKA_DLL_API KaxSimpleBlock : public KaxInternalBlock {
 		bool IsDiscardable() const { return bIsDiscardable; }
 
 		operator KaxInternalBlock &() { return *this; }
-        
+		void SetParent(KaxCluster & aParentCluster);
+
         EBML_CONCRETE_CLASS(KaxSimpleBlock)
 };
 #endif // MATROSKA_VERSION

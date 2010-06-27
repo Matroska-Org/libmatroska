@@ -71,7 +71,7 @@ KaxNextUID::KaxNextUID(EBML_EXTRA_DEF)
 {
 }
 
-#if defined(HAVE_EBML2)
+#if defined(HAVE_EBML2) || defined(HAS_EBML2)
 KaxSegmentUID::KaxSegmentUID(EBML_DEF_CONS EBML_DEF_SEP EBML_EXTRA_DEF)
 :EbmlBinary(EBML_DEF_PARAM EBML_DEF_SEP EBML_EXTRA_CALL)
 {

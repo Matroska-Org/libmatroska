@@ -144,7 +144,7 @@ const EbmlSemanticContext & GetKaxTagsGlobal_Context()
     return EBML_CLASS_SEMCONTEXT(KaxTagMultiGlobal);
 }
 
-#if defined(HAVE_EBML2)
+#if defined(HAVE_EBML2) || defined(HAS_EBML2)
 #define DEFINE_TAG_MASTER(a,b,c,d,e)   DEFINE_xxx_MASTER(a,b,d,e,EBML_SemanticKaxTagMultiGlobal)
 #else
 #define DEFINE_TAG_MASTER(a,b,c,d,e)   DEFINE_xxx_MASTER(a,b,c,d,e,*GetKaxTagsGlobal_Context)

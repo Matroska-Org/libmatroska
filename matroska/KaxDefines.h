@@ -36,7 +36,7 @@
 #include "ebml/EbmlVersion.h"
 #include "ebml/EbmlElement.h"
 
-#if defined(HAVE_EBML2)
+#if defined(HAVE_EBML2) || defined(HAS_EBML2)
 #define DEFINE_MKX_CONTEXT(a)                DEFINE_xxx_CONTEXT(a,EBML_SemanticGlobal)
 #define DEFINE_MKX_MASTER_CONS(a,b,c,d,e)    DEFINE_xxx_MASTER_CONS(a,b,d,e,EBML_SemanticGlobal)
 #define DEFINE_MKX_MASTER(a,b,c,d,e)         DEFINE_xxx_MASTER(a,b,d,e,EBML_SemanticGlobal)

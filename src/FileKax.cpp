@@ -452,14 +452,14 @@ END_LIBMATROSKA_NAMESPACE
 
 void matroska_init()
 {
-#if defined(HAVE_EBML2)
+#if defined(HAVE_EBML2) || defined(HAS_EBML2)
     ebml_init();
 #endif
 }
 
 void matroska_done()
 {
-#if defined(HAVE_EBML2)
+#if defined(HAVE_EBML2) || defined(HAS_EBML2)
     ebml_done();
 #endif
 }

@@ -340,7 +340,7 @@ int main(int argc, char **argv)
 		AllTags.EnableChecksum();
 		KaxTag & aTag = GetChild<KaxTag>(AllTags);
 		KaxTagTargets & Targets = GetChild<KaxTagTargets>(aTag);
-		KaxTagGeneral & TagGeneral = GetChild<KaxTagGeneral>(aTag);
+		KaxTagSimple & TagSimple = GetChild<KaxTagSimple>(aTag);
 
 		KaxTagTrackUID & TrackUID = GetChild<KaxTagTrackUID>(Targets);
 		*static_cast<EbmlUInteger *>(&TrackUID) = 0x12345;
@@ -348,6 +348,7 @@ int main(int argc, char **argv)
 		KaxTagChapterUID & ChapterUID = GetChild<KaxTagChapterUID>(Targets);
 		*static_cast<EbmlUInteger *>(&ChapterUID) = 0x67890;
 
+#if 0
 		KaxTagSubject & Subject = GetChild<KaxTagSubject>(TagGeneral);
 		*static_cast<EbmlUnicodeString *>(&Subject) = L"Testé123";
 
@@ -359,6 +360,13 @@ int main(int argc, char **argv)
 
 		KaxTagLanguage & Lang = GetChild<KaxTagLanguage>(TagGeneral);
 		*static_cast<EbmlString *>(&Lang) = "fra";
+#else
+        KaxTagName & aTagName = GetChild<KaxTagName>(TagSimple);
+        *static_cast<EbmlUnicodeString *>(&aTagName) = L"NAME";
+
+        KaxTagString & aTagtring = GetChild<KaxTagString>(TagSimple);
+        *static_cast<EbmlUnicodeString *>(&aTagtring) = L"Testé123";
+#endif
 
 		uint32 TagsSize = AllTags.Render(out_file, bWriteDefaultValues);
 		MetaSeek.IndexThis(AllTags, FileSegment);

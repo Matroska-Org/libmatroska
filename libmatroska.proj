@@ -36,7 +36,6 @@ LIB matroska
   SOURCE src/KaxSeekHead.cpp
   SOURCE src/KaxSegment.cpp
   SOURCE src/KaxTag.cpp
-  SOURCE src/KaxTagMulti.cpp
   SOURCE src/KaxTags.cpp
   SOURCE src/KaxTrackAudio.cpp
   SOURCE src/KaxTrackEntryData.cpp
@@ -63,7 +62,6 @@ LIB matroska
   HEADER matroska/KaxSeekHead.h
   HEADER matroska/KaxSegment.h
   HEADER matroska/KaxTag.h
-  HEADER matroska/KaxTagMulti.h
   HEADER matroska/KaxTags.h
   HEADER matroska/KaxTrackAudio.h
   HEADER matroska/KaxTrackEntryData.h

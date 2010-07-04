@@ -29,7 +29,7 @@
 
 /*!
     \file
-    \version \$Id: test6.cpp 1078 2005-03-03 13:13:04Z robux4 $
+    \version \$Id$
     \brief Test muxing two tracks into valid clusters/blocks/frames
     \author Steve Lhomme     <robux4 @ users.sf.net>
 */
@@ -125,7 +125,7 @@ int main(int argc, char **argv)
 		*((EbmlUnicodeString *)&GetChild<KaxWritingApp>(MyInfos)) = L"È‡ÙÔ";
 		GetChild<KaxWritingApp>(MyInfos).SetDefaultSize(25);
 
-		uint32 InfoSize = MyInfos.Render(out_file);
+		filepos_t InfoSize = MyInfos.Render(out_file);
 		MetaSeek.IndexThis(MyInfos, FileSegment);
 
 		// fill track 1 params
@@ -301,7 +301,7 @@ int main(int argc, char **argv)
 		Clust2.ReleaseFrames();
 
 // older version, write at the end		AllCues.Render(out_file);
-		uint32 CueSize = AllCues.Render(out_file, bWriteDefaultValues);
+		filepos_t CueSize = AllCues.Render(out_file, bWriteDefaultValues);
 		MetaSeek.IndexThis(AllCues, FileSegment);
 
 		// Chapters
@@ -332,7 +332,7 @@ int main(int argc, char **argv)
 		KaxChapterLanguage & aChapLang2 = GetChild<KaxChapterLanguage>(aDisplay2);
 		*static_cast<EbmlString *>(&aChapLang2) = "eng";
 
-		uint32 ChapterSize = Chapters.Render(out_file, bWriteDefaultValues);
+		filepos_t ChapterSize = Chapters.Render(out_file, bWriteDefaultValues);
 		MetaSeek.IndexThis(Chapters, FileSegment);
 
 		// Write some tags
@@ -348,34 +348,20 @@ int main(int argc, char **argv)
 		KaxTagChapterUID & ChapterUID = GetChild<KaxTagChapterUID>(Targets);
 		*static_cast<EbmlUInteger *>(&ChapterUID) = 0x67890;
 
-#if 0
-		KaxTagSubject & Subject = GetChild<KaxTagSubject>(TagGeneral);
-		*static_cast<EbmlUnicodeString *>(&Subject) = L"TestÈ123";
-
-		KaxTagBibliography & Biblio = GetChild<KaxTagBibliography>(TagGeneral);
-		*static_cast<EbmlUnicodeString *>(&Biblio) = L"Áa marche";
-
-		KaxTagFile & File = GetChild<KaxTagFile>(TagGeneral);
-		*static_cast<EbmlUnicodeString *>(&File) = L"Fichier";
-
-		KaxTagLanguage & Lang = GetChild<KaxTagLanguage>(TagGeneral);
-		*static_cast<EbmlString *>(&Lang) = "fra";
-#else
         KaxTagName & aTagName = GetChild<KaxTagName>(TagSimple);
         *static_cast<EbmlUnicodeString *>(&aTagName) = L"NAME";
 
         KaxTagString & aTagtring = GetChild<KaxTagString>(TagSimple);
         *static_cast<EbmlUnicodeString *>(&aTagtring) = L"TestÈ123";
-#endif
 
-		uint32 TagsSize = AllTags.Render(out_file, bWriteDefaultValues);
+		filepos_t TagsSize = AllTags.Render(out_file, bWriteDefaultValues);
 		MetaSeek.IndexThis(AllTags, FileSegment);
 
 		TrackSize += pMyTracks2->Render(out_file, bWriteDefaultValues);
 		MetaSeek.IndexThis(*pMyTracks2, FileSegment);
 
 		// \todo put it just before the Cue Entries
-		uint32 MetaSeekSize = Dummy.ReplaceWith(MetaSeek, out_file, bWriteDefaultValues);
+		filepos_t MetaSeekSize = Dummy.ReplaceWith(MetaSeek, out_file, bWriteDefaultValues);
 
 #ifdef VOID_TEST
 		MyInfos.VoidMe(out_file);

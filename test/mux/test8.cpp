@@ -27,7 +27,7 @@
 
 /*!
     \file
-    \version \$Id: test8.cpp 675 2004-07-27 07:56:14Z mosu $
+    \version \$Id$
     \brief Test reading of the Header
     \author Steve Lhomme     <robux4 @ users.sf.net>
 */
@@ -59,7 +59,6 @@
 #include "matroska/KaxChapters.h"
 #include "matroska/KaxTags.h"
 #include "matroska/KaxTag.h"
-#include "matroska/KaxTagMulti.h"
 #include "ebml/StdIOCallback.h"
 
 using namespace LIBMATROSKA_NAMESPACE;
@@ -656,6 +655,7 @@ int main(int argc, char **argv)
 #endif // TEST_REMOVE
 										} else if (Targets[Index2]->Generic().GlobalId == KaxTagChapterUID::ClassInfos.GlobalId) {
 											printf("     Chapter UID\n");
+#if 0
 										} else if (Targets[Index2]->Generic().GlobalId == KaxTagMultiComment::ClassInfos.GlobalId) {
 											printf("     Comment\n");
 											KaxTagMultiComment & Comment = *static_cast<KaxTagMultiComment *>(Targets[Index2]);
@@ -667,6 +667,7 @@ int main(int argc, char **argv)
 												}	
 											}
 //										} else if (Targets[Index2]->Generic().GlobalId == DummyRawElement::ClassInfos.GlobalId) {
+#endif
 										}
 									}
 #ifdef TEST_REMOVE
@@ -677,6 +678,7 @@ int main(int argc, char **argv)
 										printf("    -- Done --\n");
 									}
 #endif // TEST_REMOVE
+#if 0
 								} else if (TagElt[Index1]->Generic().GlobalId == KaxTagGeneral::ClassInfos.GlobalId) {
 									printf("    General\n");
 									KaxTagGeneral & General = *static_cast<KaxTagGeneral *>(TagElt[Index1]);
@@ -729,6 +731,7 @@ int main(int argc, char **argv)
 											printf("     Comment Name \"%s\"\n", std::string(CommentName).c_str());
 										}	
 									}
+#endif
 								}
 							}
 						}

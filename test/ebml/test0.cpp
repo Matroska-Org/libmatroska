@@ -32,7 +32,7 @@
 
 /*!
     \file
-    \version \$Id: test0.cpp 1078 2005-03-03 13:13:04Z robux4 $
+    \version \$Id$
     \author Steve Lhomme     <robux4 @ users.sf.net>
 		Test the EBML write possibilities
 		\see http://www.cl.cam.ac.uk/~mgk25/unicode.html
@@ -41,16 +41,16 @@
 
 #include <stdio.h>
 
-#include "StdIOCallback.hpp"
+#include "ebml/StdIOCallback.h"
 
-#include "EbmlUInteger.hpp"
-#include "EbmlSInteger.hpp"
-#include "EbmlBinary.hpp"
-#include "EbmlString.hpp"
-#include "EbmlUnicodeString.hpp"
-#include "EbmlMaster.hpp"
-#include "EbmlFloat.hpp"
-#include "EbmlStream.hpp"
+#include "ebml/EbmlUInteger.h"
+#include "ebml/EbmlSInteger.h"
+#include "ebml/EbmlBinary.h"
+#include "ebml/EbmlString.h"
+#include "ebml/EbmlUnicodeString.h"
+#include "ebml/EbmlMaster.h"
+#include "ebml/EbmlFloat.h"
+#include "ebml/EbmlStream.h"
 
 using namespace LIBMATROSKA_NAMESPACE;
 

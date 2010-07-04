@@ -32,7 +32,7 @@
 
 /*!
     \file
-    \version \$Id: test00.cpp 1078 2005-03-03 13:13:04Z robux4 $
+    \version \$Id$
     \author Steve Lhomme     <robux4 @ users.sf.net>
 		Test the writing a basic EBML file
 */
@@ -40,20 +40,20 @@
 #include <stdio.h>
 #include <string>
 
-#include "StdIOCallback.h"
+#include "ebml/StdIOCallback.h"
 
-#include "EbmlHead.h"
-#include "EbmlSubHead.h"
-#include "EbmlStream.h"
-#include "EbmlVoid.h"
-#include "EbmlContexts.h"
-#include "KaxSegment.h"
-#include "KaxAttachments.h"
-#include "KaxAttached.h"
-#include "KaxContexts.h"
+#include "ebml/EbmlHead.h"
+#include "ebml/EbmlSubHead.h"
+#include "ebml/EbmlStream.h"
+#include "ebml/EbmlVoid.h"
+#include "ebml/EbmlContexts.h"
+#include "matroska/KaxSegment.h"
+#include "matroska/KaxAttachments.h"
+#include "matroska/KaxAttached.h"
+#include "matroska/KaxContexts.h"
 
-#include "EbmlVersion.h"
-#include "KaxVersion.h"
+#include "ebml/EbmlVersion.h"
+#include "matroska/KaxVersion.h"
 
 using namespace LIBMATROSKA_NAMESPACE;
 

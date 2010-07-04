@@ -1,4 +1,4 @@
-Include "*/*.proj"
+#include "*/*.proj"
 
 LIB matroska
 {

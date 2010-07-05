@@ -153,10 +153,6 @@ SOURCE=..\..\..\..\src\KaxTag.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\..\..\src\KaxTagMulti.cpp
-# End Source File
-# Begin Source File
-
 SOURCE=..\..\..\..\src\KaxTags.cpp
 # End Source File
 # Begin Source File
@@ -254,10 +250,6 @@ SOURCE=..\..\..\..\matroska\KaxSegment.h
 # Begin Source File
 
 SOURCE=..\..\..\..\matroska\KaxTag.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\..\..\matroska\KaxTagMulti.h
 # End Source File
 # Begin Source File
 

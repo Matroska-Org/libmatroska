@@ -58,24 +58,42 @@ class MATROSKA_DLL_API DataBuffer {
 		uint32   mySize;
 		bool     bValidValue;
 		bool     (*myFreeBuffer)(const DataBuffer & aBuffer); // method to free the internal buffer
+		bool     bInternalBuffer;
 
 	public:
-		DataBuffer(binary * aBuffer, uint32 aSize, bool (*aFreeBuffer)(const DataBuffer & aBuffer) = NULL)
-			:myBuffer(aBuffer)
+		DataBuffer(binary * aBuffer, uint32 aSize, bool (*aFreeBuffer)(const DataBuffer & aBuffer) = NULL, bool _bInternalBuffer = false)
+			:myBuffer(NULL)
 			,mySize(aSize)
-			,bValidValue(true)	
-      ,myFreeBuffer(aFreeBuffer)
-		{}
+			,bValidValue(true)
+			,myFreeBuffer(aFreeBuffer)
+			,bInternalBuffer(_bInternalBuffer)
+		{
+			if (bInternalBuffer)
+			{
+				myBuffer = new binary[mySize];
+				if (myBuffer == NULL)
+					bValidValue = false;
+				else
+					memcpy(myBuffer, aBuffer, mySize); 
+			}
+			else
+				myBuffer = aBuffer;
+		}
+
 		virtual ~DataBuffer() {}
-		virtual binary * Buffer() {return myBuffer;}
+		virtual binary * Buffer() {assert(bValidValue); return myBuffer;}
 		virtual uint32   & Size() {return mySize;};
-		virtual const binary * Buffer() const {return myBuffer;}
+		virtual const binary * Buffer() const {assert(bValidValue); return myBuffer;}
 		virtual const uint32   Size()   const {return mySize;};
 		bool    FreeBuffer(const DataBuffer & aBuffer) {
 			bool bResult = true;
-			if (myBuffer != NULL && myFreeBuffer != NULL && bValidValue) {
-				bResult = myFreeBuffer(aBuffer);
+			if (myBuffer != NULL && bValidValue) {
+				if (myFreeBuffer != NULL)
+					bResult = myFreeBuffer(aBuffer);
+				if (bInternalBuffer)
+					delete [] myBuffer;
 				myBuffer = NULL;
+				mySize = 0;
 				bValidValue = false;
 			}
 			return bResult;

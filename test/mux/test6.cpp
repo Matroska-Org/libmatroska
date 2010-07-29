@@ -252,13 +252,17 @@ int main(int argc, char **argv)
 		Clust1.AddFrame(MyTrack2, 23 * TIMECODE_SCALE, *data5, MyNewBlock); // to test with another track
 
 		// add the "real" block to the cue entries
-		AllCues.AddBlockGroup(*MyLastBlockTrk1);
+        KaxBlockBlob *Blob1 = new KaxBlockBlob(BLOCK_BLOB_NO_SIMPLE);
+        Blob1->SetBlockGroup(*MyLastBlockTrk1);
+		AllCues.AddBlockBlob(*Blob1);
 
 		// frame for Track 2
 		DataBuffer *data8 = new DataBuffer((binary *)"tttyyy", countof("tttyyy"));
 		Clust1.AddFrame(MyTrack2, 107 * TIMECODE_SCALE, *data8, MyNewBlock, *MyLastBlockTrk2);
 
-		AllCues.AddBlockGroup(*MyNewBlock);
+        KaxBlockBlob *Blob2 = new KaxBlockBlob(BLOCK_BLOB_NO_SIMPLE);
+        Blob2->SetBlockGroup(*MyNewBlock);
+		AllCues.AddBlockBlob(*Blob2);
 
 		// frame with a past reference
 		DataBuffer *data4 = new DataBuffer((binary *)"tttyyy", countof("tttyyy"));
@@ -275,7 +279,9 @@ int main(int argc, char **argv)
 			}
 		}
 
-		AllCues.AddBlockGroup(*MyLastBlockTrk1);
+        KaxBlockBlob *Blob3 = new KaxBlockBlob(BLOCK_BLOB_NO_SIMPLE);
+        Blob3->SetBlockGroup(*MyLastBlockTrk1);
+		AllCues.AddBlockBlob(*Blob3);
 		//AllCues.UpdateSize();
 
 		// simulate the writing of the stream :
@@ -295,7 +301,9 @@ int main(int argc, char **argv)
 		DataBuffer *data2 = new DataBuffer((binary *)"tttyyy", countof("tttyyy"));
 		Clust2.AddFrame(MyTrack1, 350 * TIMECODE_SCALE, *data2, MyNewBlock, *MyLastBlockTrk1);
 		
-		AllCues.AddBlockGroup(*MyNewBlock);
+        KaxBlockBlob *Blob4 = new KaxBlockBlob(BLOCK_BLOB_NO_SIMPLE);
+        Blob4->SetBlockGroup(*MyNewBlock);
+		AllCues.AddBlockBlob(*Blob4);
 
 		ClusterSize += Clust2.Render(out_file, AllCues, bWriteDefaultValues);
 		Clust2.ReleaseFrames();
@@ -383,6 +391,11 @@ int main(int argc, char **argv)
 		MuxedFile.Close(1000); // 1000 ms
 #endif // OLD
 		out_file.close();
+
+        delete Blob1;
+        delete Blob2;
+        delete Blob3;
+        delete Blob4;
     }
     catch (exception & Ex)
     {

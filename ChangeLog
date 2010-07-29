@@ -4,6 +4,7 @@ New 1.1.0 version:
     - change the placement of a MATROSKA_DLL_API so that it actually works
     - remove all references to the old/outdated/previous tag system
     - add the possibility for a DataBuffer class to use its own internal memory
+    - KaxCues::AddBlockGroup() was removed as it's broken beyond repair
 
 2010-06-04 robux4/mosu
 New 1.0.0 version:

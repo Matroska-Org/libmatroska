@@ -51,22 +51,25 @@ KaxCues::~KaxCues()
 {
 	assert(myTempReferences.size() == 0); // otherwise that means you have added references and forgot to set the position
 }
-
+/* deprecated and wrong
 bool KaxCues::AddBlockGroup(const KaxBlockGroup & BlockRef)
 {
 	// Do not add the element if it's already present.
 	std::vector<const KaxBlockBlob *>::iterator ListIdx;
-	KaxBlockBlob &BlockReference = *(new KaxBlockBlob(BLOCK_BLOB_NO_SIMPLE));
-	BlockReference.SetBlockGroup(*const_cast<KaxBlockGroup*>(&BlockRef));
+	KaxBlockBlob *BlockReference = new KaxBlockBlob(BLOCK_BLOB_NO_SIMPLE);
+	BlockReference->SetBlockGroup(*const_cast<KaxBlockGroup*>(&BlockRef));
 
 	for (ListIdx = myTempReferences.begin(); ListIdx != myTempReferences.end(); ListIdx++)
-		if (*ListIdx == &BlockReference)
+		if (&(KaxBlockGroup&)*ListIdx == &BlockRef)
+        {
+            delete BlockReference;
 			return true;
+        }
 
-	myTempReferences.push_back(&BlockReference);
+	myTempReferences.push_back(BlockReference);
 	return true;
 }
-
+*/
 bool KaxCues::AddBlockBlob(const KaxBlockBlob & BlockReference)
 {
 	// Do not add the element if it's already present.

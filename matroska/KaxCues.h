@@ -51,7 +51,7 @@ DECLARE_MKX_MASTER(KaxCues)
 	public:
 		~KaxCues();
 
-		bool AddBlockGroup(const KaxBlockGroup & BlockReference);
+		//bool AddBlockGroup(const KaxBlockGroup & BlockReference); // deprecated
 		bool AddBlockBlob(const KaxBlockBlob & BlockReference);
 
 		/*!

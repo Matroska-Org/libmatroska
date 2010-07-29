@@ -312,6 +312,7 @@ class MATROSKA_DLL_API KaxSimpleBlock : public KaxInternalBlock {
 };
 #endif // MATROSKA_VERSION
 
+/// Placeholder class for either a BlockGroup or a SimpleBlock
 class MATROSKA_DLL_API KaxBlockBlob {
 public:
 	KaxBlockBlob(BlockBlobType sblock_mode) :ParentCluster(NULL), SimpleBlockMode(sblock_mode) {

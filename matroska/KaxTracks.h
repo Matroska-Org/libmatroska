@@ -76,6 +76,23 @@ DECLARE_MKX_MASTER(KaxTrackEntry)
 		uint64 mGlobalTimecodeScale;
 };
 
+#if MATROSKA_VERSION >= 2
+DECLARE_MKX_MASTER(KaxTrackDependency)
+};
+
+DECLARE_MKX_UINTEGER(KaxTrackDependencyType)
+};
+
+DECLARE_MKX_MASTER(KaxTrackDependencyItem)
+};
+
+DECLARE_MKX_UINTEGER(KaxTrackDependencyUID)
+};
+
+DECLARE_MKX_UINTEGER(KaxTrackDependencyStereoPos)
+};
+#endif
+
 END_LIBMATROSKA_NAMESPACE
 
 #endif // LIBMATROSKA_TRACKS_H

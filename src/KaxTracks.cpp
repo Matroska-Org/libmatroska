@@ -46,6 +46,9 @@ START_LIBMATROSKA_NAMESPACE
 
 DEFINE_START_SEMANTIC(KaxTracks)
 DEFINE_SEMANTIC_ITEM(true, false, KaxTrackEntry)
+#if MATROSKA_VERSION >= 2
+DEFINE_SEMANTIC_ITEM(false, false, KaxTrackDependency)
+#endif
 DEFINE_END_SEMANTIC(KaxTracks)
 
 DEFINE_START_SEMANTIC(KaxTrackEntry)
@@ -84,6 +87,24 @@ DEFINE_END_SEMANTIC(KaxTrackEntry)
 
 DEFINE_MKX_MASTER     (KaxTracks, 0x1654AE6B, 4, KaxSegment, "Tracks");
 DEFINE_MKX_MASTER_CONS(KaxTrackEntry,   0xAE, 1, KaxTracks, "TrackEntry");
+
+#if MATROSKA_VERSION >= 2
+DEFINE_START_SEMANTIC(KaxTrackDependency)
+DEFINE_SEMANTIC_ITEM(true, true, KaxTrackDependencyType)
+DEFINE_SEMANTIC_ITEM(true, false, KaxTrackDependencyItem)
+DEFINE_END_SEMANTIC(KaxTrackDependency)
+
+DEFINE_START_SEMANTIC(KaxTrackDependencyItem)
+DEFINE_SEMANTIC_ITEM(true, true, KaxTrackDependencyUID)
+DEFINE_SEMANTIC_ITEM(false, true, KaxTrackDependencyStereoPos)
+DEFINE_END_SEMANTIC(KaxTrackDependencyItem)
+
+DEFINE_MKX_MASTER  (KaxTrackDependency,          0xE2, 1, KaxTracks, "TrackDependency");
+DEFINE_MKX_UINTEGER(KaxTrackDependencyType,      0xE3, 1, KaxTrackDependency, "TrackDependencyType");
+DEFINE_MKX_MASTER  (KaxTrackDependencyItem,      0xE4, 1, KaxTrackDependency, "TrackDependencyItem");
+DEFINE_MKX_UINTEGER(KaxTrackDependencyUID,       0xE5, 1, KaxTrackDependencyItem, "TrackDependencyUID");
+DEFINE_MKX_UINTEGER(KaxTrackDependencyStereoPos, 0xE9, 1, KaxTrackDependencyItem, "TrackDependencyStereoPos");
+#endif
 
 KaxTrackEntry::KaxTrackEntry(EBML_EXTRA_DEF)
 	:EbmlMaster(EBML_CLASS_SEMCONTEXT(KaxTrackEntry) EBML_DEF_SEP EBML_EXTRA_CALL)

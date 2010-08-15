@@ -43,7 +43,7 @@ FLAGS += -DEBML_DLL
 endif
 endif
 CWD = $(shell pwd)
-INCS = -I$(CWD)/../.. -I$(EBML_DIR)
+INCS = -I"$(CWD)/../.." -I$(EBML_DIR)
 LDFLAGS = -L. -L$(EBML_DIR)/make/mingw32
 COMPILEFLAGS = $(DEBUGFLAGS) $(INCS) $(FLAGS) $(CXXFLAGS)
 TESTS = test6 test8 test9

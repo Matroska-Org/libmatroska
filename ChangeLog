@@ -5,7 +5,7 @@ New 1.1.0 version:
     - remove all references to the old/outdated/previous tag system
     - add the possibility for a DataBuffer class to use its own internal memory
     - KaxCues::AddBlockGroup() was removed as it's broken beyond repair
-    - add KaxTrackDependency and related elements for combined stereo/3D tracks
+    - add KaxTrackOperation and related elements for combined stereo/3D tracks or joined virtual tracks
 
 2010-06-04 robux4/mosu
 New 1.0.0 version:

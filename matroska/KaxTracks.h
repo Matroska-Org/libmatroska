@@ -77,19 +77,25 @@ DECLARE_MKX_MASTER(KaxTrackEntry)
 };
 
 #if MATROSKA_VERSION >= 2
-DECLARE_MKX_MASTER(KaxTrackDependency)
+DECLARE_MKX_MASTER(KaxTrackOperation)
 };
 
-DECLARE_MKX_UINTEGER(KaxTrackDependencyType)
+DECLARE_MKX_MASTER(KaxTrackCombinePlanes)
 };
 
-DECLARE_MKX_MASTER(KaxTrackDependencyItem)
+DECLARE_MKX_MASTER(KaxTrackPlane)
 };
 
-DECLARE_MKX_UINTEGER(KaxTrackDependencyUID)
+DECLARE_MKX_UINTEGER(KaxTrackPlaneUID)
 };
 
-DECLARE_MKX_UINTEGER(KaxTrackDependencyStereoPos)
+DECLARE_MKX_UINTEGER(KaxTrackPlaneType)
+};
+
+DECLARE_MKX_MASTER(KaxTrackJoinBlocks)
+};
+
+DECLARE_MKX_UINTEGER(KaxTrackJoinUID)
 };
 #endif
 

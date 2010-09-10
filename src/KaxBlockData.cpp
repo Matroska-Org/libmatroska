@@ -84,7 +84,20 @@ RefdBlock(NULL)
 KaxReferenceBlock::KaxReferenceBlock(const KaxReferenceBlock & ElementToClone)
 :EbmlSInteger(ElementToClone)
 ,bTimecodeSet(ElementToClone.bTimecodeSet)
+,bOurBlob(false)
 {
+}
+
+KaxReferenceBlock::~KaxReferenceBlock()
+{
+    FreeBlob();
+}
+
+void KaxReferenceBlock::FreeBlob()
+{
+    if (bOurBlob && RefdBlock!=NULL)
+        delete RefdBlock;
+    RefdBlock = NULL;
 }
 
 filepos_t KaxReferenceBlock::UpdateSize(bool bSaveDefault, bool bForceRender)
@@ -103,15 +116,19 @@ void KaxReferenceBlock::SetReferencedBlock(const KaxBlockBlob * aRefdBlock)
 {
 	assert(RefdBlock == NULL);
 	assert(aRefdBlock != NULL);
+    FreeBlob();
 	RefdBlock = aRefdBlock; 
+    bOurBlob = true;
 	SetValueIsSet();
 }
 
 void KaxReferenceBlock::SetReferencedBlock(const KaxBlockGroup & aRefdBlock)
 {
+    FreeBlob();
 	KaxBlockBlob *block_blob = new KaxBlockBlob(BLOCK_BLOB_NO_SIMPLE);
 	block_blob->SetBlockGroup(*const_cast<KaxBlockGroup*>(&aRefdBlock));
-	RefdBlock = block_blob; 
+	RefdBlock = block_blob;
+    bOurBlob = true;
 	SetValueIsSet();
 }
 

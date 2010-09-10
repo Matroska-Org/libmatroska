@@ -55,6 +55,7 @@ DECLARE_MKX_UINTEGER(KaxReferencePriority)
 */
 DECLARE_MKX_SINTEGER_CONS(KaxReferenceBlock)
 	public:
+        ~KaxReferenceBlock();
 		/*!
 			\brief override this method to compute the timecode value
 		*/
@@ -70,6 +71,8 @@ DECLARE_MKX_SINTEGER_CONS(KaxReferenceBlock)
 		const KaxBlockGroup * ParentBlock;
 		void SetReferencedTimecode(int64 refTimecode) {*static_cast<EbmlSInteger*>(this) = refTimecode; bTimecodeSet = true;};
 		bool bTimecodeSet;
+        bool bOurBlob;
+        void FreeBlob();
 };
 
 #if MATROSKA_VERSION >= 2

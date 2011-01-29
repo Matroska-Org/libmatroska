@@ -1,4 +1,4 @@
-2010-08-xx robux4
+2011-01-xx robux4/mosu
 New 1.1.0 version:
     - give access to the SetParent to KaxSimpleBlock as well
     - change the placement of a MATROSKA_DLL_API so that it actually works
@@ -7,6 +7,7 @@ New 1.1.0 version:
     - KaxCues::AddBlockGroup() was removed as it's broken beyond repair
     - add KaxTrackOperation and related elements for combined stereo/3D tracks or joined virtual tracks
     - fix a memory leak in KaxReferenceBlock when an internal KaxBlockBlob was created
+    - Increased library .so name due to binary incompatible changes in libebml
 
 2010-06-04 robux4/mosu
 New 1.0.0 version:

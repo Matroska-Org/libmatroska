@@ -54,7 +54,7 @@ MUX_LIBS=-lmatroska -lebml $(LIBICONV)
 # Names
 LIBRARY=libmatroska.a
 LIBRARY_SO=libmatroska.so
-LIBRARY_SO_VER=libmatroska.so.2
+LIBRARY_SO_VER=libmatroska.so.3
 
 # source-files
 sources:=$(wildcard ${SRC_DIR}*$(EXTENSION))

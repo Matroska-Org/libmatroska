@@ -1,4 +1,4 @@
-2011-01-xx robux4/mosu
+2011-01-30 robux4/mosu
 New 1.1.0 version:
     - give access to the SetParent to KaxSimpleBlock as well
     - change the placement of a MATROSKA_DLL_API so that it actually works

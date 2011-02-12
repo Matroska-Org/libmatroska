@@ -58,7 +58,6 @@
 #include <matroska/KaxSegment.h>
 #include <matroska/KaxTags.h>
 #include <matroska/KaxTag.h>
-#include <matroska/KaxTagMulti.h>
 #include <matroska/KaxTracks.h>
 #include <matroska/KaxTrackEntryData.h>
 #include <matroska/KaxTrackAudio.h>
@@ -101,6 +100,7 @@ int main() {
     *(static_cast<EbmlUInteger *>(&GetChild<KaxTagTrackUID>(targets))) =
       1234;
 
+#if 0
 	// comment of the Targets
      KaxTagMultiComment &mcomB = GetChild<KaxTagMultiComment>(targets);
     *(static_cast<EbmlString *>
@@ -335,6 +335,7 @@ int main() {
     *(static_cast<EbmlString *>
       (&GetChild<KaxTagMultiTitleLanguage>(tit))) =
       "MultiTitleLanguage";
+#endif
 
     KaxTagSimple &stag_l1 = GetChild<KaxTagSimple>(tag);
     *(static_cast<EbmlUnicodeString *>(&GetChild<KaxTagName>(stag_l1))) =

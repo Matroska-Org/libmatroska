@@ -1,3 +1,7 @@
+2011-02-02 impulze
+    * trunk/libmatroska/test/test9.cpp
+    - also remove no longer needed tests for old/outdated/previous tag system
+
 2011-01-30 robux4/mosu
 New 1.1.0 version:
     - give access to the SetParent to KaxSimpleBlock as well

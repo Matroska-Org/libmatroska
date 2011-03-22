@@ -106,8 +106,8 @@ DEFINE_MKX_MASTER      (KaxChapterTrack,               0x8F, 1, KaxChapterAtom, 
 DEFINE_MKX_UINTEGER    (KaxChapterTrackNumber,         0x89, 1, KaxChapterTrack, "ChapterTrackNumber");
 DEFINE_MKX_MASTER      (KaxChapterDisplay,             0x80, 1, KaxChapterAtom, "ChapterDisplay");
 DEFINE_MKX_UNISTRING   (KaxChapterString,              0x85, 1, KaxChapterDisplay, "ChapterString");
-DEFINE_MKX_STRING_DEF  (KaxChapterLanguage,          0x437C, 2, KaxChapterLanguage, "ChapterLanguage", "eng"); // parent context ?
-DEFINE_MKX_STRING      (KaxChapterCountry,           0x437E, 2, KaxChapterCountry, "ChapterCountry"); // parent context ?
+DEFINE_MKX_STRING_DEF  (KaxChapterLanguage,          0x437C, 2, KaxChapterDisplay, "ChapterLanguage", "eng"); // parent context ?
+DEFINE_MKX_STRING      (KaxChapterCountry,           0x437E, 2, KaxChapterDisplay, "ChapterCountry"); // parent context ?
 DEFINE_MKX_MASTER      (KaxChapterProcess,           0x6944, 2, KaxChapterAtom, "ChapterProcess");
 DEFINE_MKX_UINTEGER_DEF(KaxChapterProcessCodecID,    0x6955, 2, KaxChapterProcess, "ChapterProcessCodecID", 0);
 DEFINE_MKX_BINARY      (KaxChapterProcessPrivate,    0x450D, 2, KaxChapterProcess, "ChapterProcessPrivate");

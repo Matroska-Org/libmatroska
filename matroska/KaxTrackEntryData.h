@@ -102,7 +102,7 @@ DECLARE_MKX_BINARY(KaxCodecPrivate)
 DECLARE_MKX_UNISTRING(KaxCodecName)
 };
 
-DECLARE_MKX_BINARY(KaxTrackAttachmentLink)
+DECLARE_MKX_UINTEGER(KaxTrackAttachmentLink)
 };
 
 DECLARE_MKX_UINTEGER(KaxTrackOverlay)

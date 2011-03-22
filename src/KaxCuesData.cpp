@@ -76,9 +76,9 @@ DEFINE_MKX_UINTEGER_DEF(KaxCueBlockNumber,   0x5378, 2, KaxCueTrackPositions, "C
 DEFINE_MKX_UINTEGER_DEF(KaxCueCodecState,      0xEA, 1, KaxCueTrackPositions, "CueCodecState", 0);
 DEFINE_MKX_MASTER      (KaxCueReference,       0xDB, 1, KaxCueTrackPositions, "CueReference");
 DEFINE_MKX_UINTEGER    (KaxCueRefTime,         0x96, 1, KaxCueReference, "CueRefTime");
-DEFINE_MKX_UINTEGER    (KaxCueRefCluster,      0x97, 1, KaxCueRefTime, "CueRefCluster");
-DEFINE_MKX_UINTEGER_DEF(KaxCueRefNumber,     0x535F, 2, KaxCueRefTime, "CueRefNumber", 1);
-DEFINE_MKX_UINTEGER_DEF(KaxCueRefCodecState,   0xEB, 1, KaxCueRefTime, "CueRefCodecState", 0);
+DEFINE_MKX_UINTEGER    (KaxCueRefCluster,      0x97, 1, KaxCueReference, "CueRefCluster");
+DEFINE_MKX_UINTEGER_DEF(KaxCueRefNumber,     0x535F, 2, KaxCueReference, "CueRefNumber", 1);
+DEFINE_MKX_UINTEGER_DEF(KaxCueRefCodecState,   0xEB, 1, KaxCueReference, "CueRefCodecState", 0);
 #endif
 
 /*!

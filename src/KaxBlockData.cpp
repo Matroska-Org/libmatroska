@@ -60,7 +60,7 @@ DEFINE_MKX_MASTER       (KaxTimeSlice,         0xE8, 1, KaxSlices, "TimeSlice");
 DEFINE_MKX_UINTEGER_DEF (KaxSliceLaceNumber,   0xCC, 1, KaxTimeSlice, "SliceLaceNumber", 0);
 DEFINE_MKX_UINTEGER_DEF (KaxSliceFrameNumber,  0xCD, 1, KaxTimeSlice, "SliceFrameNumber", 0);
 DEFINE_MKX_UINTEGER_DEF (KaxSliceBlockAddID,   0xCB, 1, KaxTimeSlice, "SliceBlockAddID", 0);
-DEFINE_MKX_UINTEGER     (KaxSliceDelay,        0xCE, 1, KaxTimeSlice, "SliceDelay");
+DEFINE_MKX_UINTEGER_DEF (KaxSliceDelay,        0xCE, 1, KaxTimeSlice, "SliceDelay", 0);
 DEFINE_MKX_UINTEGER_DEF (KaxSliceDuration,     0xCF, 1, KaxTimeSlice, "SliceDuration", 0);
 #if MATROSKA_VERSION >= 2
 DEFINE_MKX_SINTEGER     (KaxReferenceVirtual,  0xFD, 1, KaxBlockGroup, "ReferenceVirtual");

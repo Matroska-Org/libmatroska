@@ -39,7 +39,7 @@
 START_LIBMATROSKA_NAMESPACE
 
 DEFINE_START_SEMANTIC(KaxContentEncodings)
-DEFINE_SEMANTIC_ITEM(true, true, KaxContentEncoding)
+DEFINE_SEMANTIC_ITEM(true, false, KaxContentEncoding)
 DEFINE_END_SEMANTIC(KaxContentEncodings)
 
 DEFINE_START_SEMANTIC(KaxContentEncoding)

@@ -107,7 +107,7 @@ DEFINE_START_SEMANTIC(KaxTrackJoinBlocks)
 DEFINE_SEMANTIC_ITEM(true, false, KaxTrackJoinUID)
 DEFINE_END_SEMANTIC(KaxTrackJoinBlocks)
 
-DEFINE_MKX_MASTER  (KaxTrackOperation,     0xE2, 1, KaxTracks, "TrackOperation");
+DEFINE_MKX_MASTER  (KaxTrackOperation,     0xE2, 1, KaxTrackEntry, "TrackOperation");
 DEFINE_MKX_MASTER  (KaxTrackCombinePlanes, 0xE3, 1, KaxTrackOperation, "TrackCombinePlanes");
 DEFINE_MKX_MASTER  (KaxTrackPlane,         0xE4, 1, KaxTrackCombinePlanes, "TrackPlane");
 DEFINE_MKX_UINTEGER(KaxTrackPlaneUID,      0xE5, 1, KaxTrackPlane, "TrackPlaneUID");

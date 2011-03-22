@@ -59,10 +59,10 @@ DEFINE_SEMANTIC_ITEM(false, false, KaxCluster)
 DEFINE_SEMANTIC_ITEM(false, false, KaxSeekHead)
 DEFINE_SEMANTIC_ITEM(false, true, KaxCues)
 DEFINE_SEMANTIC_ITEM(false, false, KaxTracks)
-DEFINE_SEMANTIC_ITEM(true, true, KaxInfo)
+DEFINE_SEMANTIC_ITEM(true, false, KaxInfo)
 DEFINE_SEMANTIC_ITEM(false, true, KaxChapters)
 DEFINE_SEMANTIC_ITEM(false, true, KaxAttachments)
-DEFINE_SEMANTIC_ITEM(false, true, KaxTags)
+DEFINE_SEMANTIC_ITEM(false, false, KaxTags)
 DEFINE_END_SEMANTIC(KaxSegment)
 
 DEFINE_MKX_CONTEXT(KaxMatroska);

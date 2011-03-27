@@ -48,9 +48,8 @@
 #include "ebml/EbmlVoid.h"
 #include "ebml/EbmlContexts.h"
 #include "matroska/KaxSegment.h"
-#include "matroska/KaxAttachments.h"
-#include "matroska/KaxAttached.h"
 #include "matroska/KaxContexts.h"
+#include "matroska/KaxSemantic.h"
 
 #include "ebml/EbmlVersion.h"
 #include "matroska/KaxVersion.h"

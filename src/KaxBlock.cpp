@@ -43,45 +43,6 @@
 
 START_LIBMATROSKA_NAMESPACE
 
-DEFINE_START_SEMANTIC(KaxBlockGroup)
-DEFINE_SEMANTIC_ITEM(true, true, KaxBlock)
-#if MATROSKA_VERSION >= 2
-DEFINE_SEMANTIC_ITEM(false, true, KaxBlockVirtual)
-#endif // MATROSKA_VERSION
-DEFINE_SEMANTIC_ITEM(false, true, KaxBlockDuration)
-DEFINE_SEMANTIC_ITEM(false, true, KaxSlices)
-DEFINE_SEMANTIC_ITEM(true, true, KaxReferencePriority)
-DEFINE_SEMANTIC_ITEM(false, false, KaxReferenceBlock)
-#if MATROSKA_VERSION >= 2
-DEFINE_SEMANTIC_ITEM(false, true, KaxReferenceVirtual)
-DEFINE_SEMANTIC_ITEM(false, true, KaxCodecState)
-#endif // MATROSKA_VERSION
-DEFINE_SEMANTIC_ITEM(false, true, KaxBlockAdditions)
-DEFINE_END_SEMANTIC(KaxBlockGroup)
-
-DEFINE_START_SEMANTIC(KaxBlockAdditions)
-DEFINE_SEMANTIC_ITEM(true,  false,  KaxBlockMore)
-DEFINE_END_SEMANTIC(KaxBlockAdditions)
-
-DEFINE_START_SEMANTIC(KaxBlockMore)
-DEFINE_SEMANTIC_ITEM(true, true, KaxBlockAddID)
-DEFINE_SEMANTIC_ITEM(true,  true,  KaxBlockAdditional)
-DEFINE_END_SEMANTIC(KaxBlockMore)
-
-DEFINE_MKX_MASTER_CONS (KaxBlockGroup,       0xA0, 1, KaxCluster, "BlockGroup");
-DEFINE_MKX_BINARY_CONS (KaxBlock,            0xA1, 1, KaxBlockGroup, "Block");
-DEFINE_MKX_UINTEGER    (KaxBlockDuration,    0x9B, 1, KaxBlockGroup, "BlockDuration");
-#if MATROSKA_VERSION >= 2
-DEFINE_MKX_BINARY_CONS (KaxSimpleBlock,      0xA3, 1, KaxCluster, "SimpleBlock");
-DEFINE_MKX_BINARY_CONS (KaxBlockVirtual,     0xA2, 1, KaxBlockGroup, "BlockVirtual");
-DEFINE_MKX_BINARY      (KaxCodecState,       0xA4, 1, KaxBlockGroup, "CodecState");
-#endif
-DEFINE_MKX_MASTER      (KaxBlockAdditions, 0x75A1, 2, KaxBlockGroup, "BlockAdditions");
-DEFINE_MKX_MASTER      (KaxBlockMore,        0xA6, 1, KaxBlockAdditions, "BlockMore");
-DEFINE_MKX_UINTEGER_DEF(KaxBlockAddID,       0xEE, 1, KaxBlockMore, "BlockAddID", 1);
-DEFINE_MKX_BINARY      (KaxBlockAdditional,  0xA5, 1, KaxBlockMore, "BlockAdditional");
-
-
 DataBuffer * DataBuffer::Clone()
 {
 	binary *ClonedData = (binary *)malloc(mySize * sizeof(binary));

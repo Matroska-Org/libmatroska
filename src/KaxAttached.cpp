@@ -32,36 +32,15 @@
 	\version \$Id: KaxAttached.cpp 1202 2005-08-30 14:39:01Z robux4 $
 	\author Steve Lhomme     <robux4 @ users.sf.net>
 */
-#include "matroska/KaxAttached.h"
 #include "matroska/KaxContexts.h"
 #include "matroska/KaxDefines.h"
+#include "matroska/KaxSemantic.h"
 
 // sub elements
 
 using namespace LIBEBML_NAMESPACE;
 
 START_LIBMATROSKA_NAMESPACE
-
-DEFINE_START_SEMANTIC(KaxAttached)
-DEFINE_SEMANTIC_ITEM(true, true, KaxFileName)
-DEFINE_SEMANTIC_ITEM(true, true, KaxMimeType)
-DEFINE_SEMANTIC_ITEM(true, true, KaxFileData)
-DEFINE_SEMANTIC_ITEM(false, true, KaxFileDescription)
-DEFINE_SEMANTIC_ITEM(true, true, KaxFileUID)
-#if MATROSKA_VERSION >= 2
-DEFINE_SEMANTIC_ITEM(false, true, KaxFileReferral)
-#endif // MATROSKA_VERSION
-DEFINE_END_SEMANTIC(KaxAttached)
-
-DEFINE_MKX_MASTER_CONS(KaxAttached,        0x61A7, 2, KaxAttachments, "AttachedFile");
-DEFINE_MKX_UNISTRING  (KaxFileDescription, 0x467E, 2, KaxAttached, "FileDescription");
-DEFINE_MKX_UNISTRING  (KaxFileName,        0x466E, 2, KaxAttached, "FileName");
-DEFINE_MKX_STRING     (KaxMimeType,        0x4660, 2, KaxAttached, "FileMimeType");
-DEFINE_MKX_BINARY     (KaxFileData,        0x465C, 2, KaxAttached, "FileData");
-DEFINE_MKX_UINTEGER   (KaxFileUID,         0x46AE, 2, KaxAttached, "FileUID");
-#if MATROSKA_VERSION >= 2
-DEFINE_MKX_BINARY     (KaxFileReferral,    0x4675, 2, KaxAttached, "FileReferral");
-#endif
 
 KaxAttached::KaxAttached(EBML_EXTRA_DEF)
  :EbmlMaster(EBML_CLASS_SEMCONTEXT(KaxAttached) EBML_DEF_SEP EBML_EXTRA_CALL)

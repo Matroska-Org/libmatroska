@@ -48,19 +48,10 @@
 #include "matroska/FileKax.h"
 #include "matroska/KaxSegment.h"
 #include "matroska/KaxTracks.h"
-#include "matroska/KaxTrackEntryData.h"
-#include "matroska/KaxTrackAudio.h"
-#include "matroska/KaxTrackVideo.h"
 #include "matroska/KaxCluster.h"
-#include "matroska/KaxClusterData.h"
 #include "matroska/KaxSeekHead.h"
 #include "matroska/KaxCues.h"
-#include "matroska/KaxInfo.h"
 #include "matroska/KaxInfoData.h"
-#include "matroska/KaxTags.h"
-#include "matroska/KaxTag.h"
-#include "matroska/KaxChapters.h"
-#include "matroska/KaxContentEncoding.h"
 
 using namespace LIBMATROSKA_NAMESPACE;
 using namespace std;

@@ -40,7 +40,6 @@
 #include "matroska/KaxTracks.h"
 #include "matroska/KaxBlock.h"
 #include "matroska/KaxCues.h"
-#include "matroska/KaxClusterData.h"
 #include "matroska/KaxDefines.h"
 
 using namespace LIBEBML_NAMESPACE;

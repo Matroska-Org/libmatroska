@@ -35,37 +35,6 @@
 #ifndef LIBMATROSKA_TRACK_AUDIO_H
 #define LIBMATROSKA_TRACK_AUDIO_H
 
-#include "matroska/KaxTypes.h"
-#include "ebml/EbmlMaster.h"
-#include "ebml/EbmlFloat.h"
-#include "ebml/EbmlUInteger.h"
-#include "ebml/EbmlBinary.h"
-#include "matroska/KaxDefines.h"
-
-using namespace LIBEBML_NAMESPACE;
-
-START_LIBMATROSKA_NAMESPACE
-
-DECLARE_MKX_MASTER(KaxTrackAudio)
-};
-
-DECLARE_MKX_FLOAT(KaxAudioSamplingFreq)
-};
-
-DECLARE_MKX_FLOAT(KaxAudioOutputSamplingFreq)
-};
-
-DECLARE_MKX_UINTEGER(KaxAudioChannels)
-};
-
-#if MATROSKA_VERSION >= 2
-DECLARE_MKX_BINARY(KaxAudioPosition)
-};
-#endif // MATROSKA_VERSION
-
-DECLARE_MKX_UINTEGER(KaxAudioBitDepth)
-};
-
-END_LIBMATROSKA_NAMESPACE
+#include "matroska/KaxSemantic.h"
 
 #endif // LIBMATROSKA_TRACK_AUDIO_H

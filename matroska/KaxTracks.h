@@ -38,15 +38,12 @@
 #include "matroska/KaxTypes.h"
 #include "ebml/EbmlMaster.h"
 #include "ebml/EbmlUInteger.h"
-#include "matroska/KaxTrackEntryData.h"
 #include "matroska/KaxDefines.h"
+#include "matroska/KaxSemantic.h"
 
 using namespace LIBEBML_NAMESPACE;
 
 START_LIBMATROSKA_NAMESPACE
-
-DECLARE_MKX_MASTER(KaxTracks)
-};
 
 DECLARE_MKX_MASTER(KaxTrackEntry)
 	public:
@@ -75,29 +72,6 @@ DECLARE_MKX_MASTER(KaxTrackEntry)
 		bool   bGlobalTimecodeScaleIsSet;
 		uint64 mGlobalTimecodeScale;
 };
-
-#if MATROSKA_VERSION >= 2
-DECLARE_MKX_MASTER(KaxTrackOperation)
-};
-
-DECLARE_MKX_MASTER(KaxTrackCombinePlanes)
-};
-
-DECLARE_MKX_MASTER(KaxTrackPlane)
-};
-
-DECLARE_MKX_UINTEGER(KaxTrackPlaneUID)
-};
-
-DECLARE_MKX_UINTEGER(KaxTrackPlaneType)
-};
-
-DECLARE_MKX_MASTER(KaxTrackJoinBlocks)
-};
-
-DECLARE_MKX_UINTEGER(KaxTrackJoinUID)
-};
-#endif
 
 END_LIBMATROSKA_NAMESPACE
 

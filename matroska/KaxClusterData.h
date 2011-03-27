@@ -35,30 +35,6 @@
 #ifndef LIBMATROSKA_CLUSTER_DATA_H
 #define LIBMATROSKA_CLUSTER_DATA_H
 
-#include "matroska/KaxTypes.h"
-#include "ebml/EbmlMaster.h"
-#include "ebml/EbmlUInteger.h"
-#include "matroska/KaxDefines.h"
-
-using namespace LIBEBML_NAMESPACE;
-
-START_LIBMATROSKA_NAMESPACE
-
-DECLARE_MKX_UINTEGER(KaxClusterTimecode)
-};
-
-DECLARE_MKX_MASTER(KaxClusterSilentTracks)
-};
-
-DECLARE_MKX_UINTEGER(KaxClusterSilentTrackNumber)
-};
-
-DECLARE_MKX_UINTEGER(KaxClusterPosition)
-};
-
-DECLARE_MKX_UINTEGER(KaxClusterPrevSize)
-};
-
-END_LIBMATROSKA_NAMESPACE
+#include "matroska/KaxSemantic.h"
 
 #endif // LIBMATROSKA_CLUSTER_DATA_H

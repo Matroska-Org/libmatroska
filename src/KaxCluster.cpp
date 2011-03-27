@@ -31,7 +31,6 @@
 	\author Steve Lhomme     <robux4 @ users.sf.net>
 */
 #include "matroska/KaxCluster.h"
-#include "matroska/KaxClusterData.h"
 #include "matroska/KaxBlock.h"
 #include "matroska/KaxContexts.h"
 #include "matroska/KaxSegment.h"
@@ -39,19 +38,6 @@
 
 // sub elements
 START_LIBMATROSKA_NAMESPACE
-
-DEFINE_START_SEMANTIC(KaxCluster)
-DEFINE_SEMANTIC_ITEM(true, true, KaxClusterTimecode)
-DEFINE_SEMANTIC_ITEM(false, true, KaxClusterSilentTracks)
-DEFINE_SEMANTIC_ITEM(false, true, KaxClusterPrevSize)
-DEFINE_SEMANTIC_ITEM(false, false, KaxBlockGroup)
-#if MATROSKA_VERSION == 2
-DEFINE_SEMANTIC_ITEM(false, false, KaxSimpleBlock)
-#endif
-DEFINE_SEMANTIC_ITEM(false, true, KaxClusterPosition)
-DEFINE_END_SEMANTIC(KaxCluster)
-
-DEFINE_MKX_MASTER_CONS(KaxCluster, 0x1F43B675, 4, KaxSegment, "Cluster");
 
 KaxCluster::KaxCluster(EBML_EXTRA_DEF)
 	:EbmlMaster(EBML_CLASS_SEMCONTEXT(KaxCluster) EBML_DEF_SEP EBML_EXTRA_CALL)

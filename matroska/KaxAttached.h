@@ -35,39 +35,6 @@
 #ifndef LIBMATROSKA_ATTACHED_H
 #define LIBMATROSKA_ATTACHED_H
 
-#include "matroska/KaxTypes.h"
-#include "ebml/EbmlMaster.h"
-#include "ebml/EbmlUnicodeString.h"
-#include "ebml/EbmlString.h"
-#include "ebml/EbmlBinary.h"
-#include "ebml/EbmlUInteger.h"
-#include "matroska/KaxDefines.h"
-
-using namespace LIBEBML_NAMESPACE;
-
-START_LIBMATROSKA_NAMESPACE
-
-DECLARE_MKX_MASTER(KaxAttached)
-};
-
-DECLARE_MKX_UNISTRING(KaxFileDescription)
-};
-
-DECLARE_MKX_UNISTRING(KaxFileName)
-};
-
-DECLARE_MKX_STRING(KaxMimeType)
-};
-
-DECLARE_MKX_BINARY(KaxFileData)
-};
-
-DECLARE_MKX_BINARY(KaxFileReferral)
-};
-
-DECLARE_MKX_UINTEGER(KaxFileUID)
-};
-
-END_LIBMATROSKA_NAMESPACE
+#include "matroska/KaxSemantic.h"
 
 #endif // LIBMATROSKA_ATTACHED_H

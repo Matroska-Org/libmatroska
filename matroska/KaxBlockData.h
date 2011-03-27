@@ -38,17 +38,11 @@
 #include "ebml/EbmlUInteger.h"
 #include "ebml/EbmlSInteger.h"
 #include "matroska/KaxDefines.h"
+#include "matroska/KaxBlock.h"
 
 using namespace LIBEBML_NAMESPACE;
 
 START_LIBMATROSKA_NAMESPACE
-
-class KaxReferenceBlock;
-class KaxBlockGroup;
-class KaxBlockBlob;
-
-DECLARE_MKX_UINTEGER(KaxReferencePriority)
-};
 
 /*!
 	\brief element used for B frame-likes
@@ -73,32 +67,6 @@ DECLARE_MKX_SINTEGER_CONS(KaxReferenceBlock)
 		bool bTimecodeSet;
         bool bOurBlob;
         void FreeBlob();
-};
-
-#if MATROSKA_VERSION >= 2
-DECLARE_MKX_SINTEGER(KaxReferenceVirtual)
-};
-#endif // MATROSKA_VERSION
-
-DECLARE_MKX_MASTER(KaxTimeSlice)
-};
-
-DECLARE_MKX_MASTER(KaxSlices)
-};
-
-DECLARE_MKX_UINTEGER(KaxSliceLaceNumber)
-};
-
-DECLARE_MKX_UINTEGER(KaxSliceFrameNumber)
-};
-
-DECLARE_MKX_UINTEGER(KaxSliceBlockAddID)
-};
-
-DECLARE_MKX_UINTEGER(KaxSliceDelay)
-};
-
-DECLARE_MKX_UINTEGER(KaxSliceDuration)
 };
 
 END_LIBMATROSKA_NAMESPACE

@@ -39,47 +39,9 @@
 #include "matroska/KaxCluster.h"
 #include "matroska/KaxSegment.h"
 #include "matroska/KaxDefines.h"
+#include "matroska/KaxSemantic.h"
 
 START_LIBMATROSKA_NAMESPACE
-
-DEFINE_START_SEMANTIC(KaxCuePoint)
-DEFINE_SEMANTIC_ITEM(true, true, KaxCueTime)
-DEFINE_SEMANTIC_ITEM(true, false, KaxCueTrackPositions)
-DEFINE_END_SEMANTIC(KaxCuePoint)
-
-DEFINE_START_SEMANTIC(KaxCueTrackPositions)
-DEFINE_SEMANTIC_ITEM(true, true, KaxCueTrack)
-DEFINE_SEMANTIC_ITEM(true, true, KaxCueClusterPosition)
-DEFINE_SEMANTIC_ITEM(false, true, KaxCueBlockNumber)
-#if MATROSKA_VERSION >= 2
-DEFINE_SEMANTIC_ITEM(false, true, KaxCueCodecState)
-DEFINE_SEMANTIC_ITEM(false, false, KaxCueReference)
-#endif // MATROSKA_VERSION
-DEFINE_END_SEMANTIC(KaxCueTrackPositions)
-
-#if MATROSKA_VERSION >= 2
-DEFINE_START_SEMANTIC(KaxCueReference)
-DEFINE_SEMANTIC_ITEM(true, true, KaxCueRefTime)
-DEFINE_SEMANTIC_ITEM(true, true, KaxCueRefCluster)
-DEFINE_SEMANTIC_ITEM(false, true, KaxCueRefNumber)
-DEFINE_SEMANTIC_ITEM(false, true, KaxCueRefCodecState)
-DEFINE_END_SEMANTIC(KaxCueReference)
-#endif // MATROSKA_VERSION
-
-DEFINE_MKX_MASTER      (KaxCuePoint,           0xBB, 1, KaxCues, "CuePoint");
-DEFINE_MKX_UINTEGER    (KaxCueTime,            0xB3, 1, KaxCuePoint, "CueTime");
-DEFINE_MKX_MASTER      (KaxCueTrackPositions,  0xB7, 1, KaxCuePoint, "CueTrackPositions");
-DEFINE_MKX_UINTEGER    (KaxCueTrack,           0xF7, 1, KaxCueTrackPositions, "CueTrack");
-DEFINE_MKX_UINTEGER    (KaxCueClusterPosition, 0xF1, 1, KaxCueTrackPositions, "CueClusterPosition");
-DEFINE_MKX_UINTEGER_DEF(KaxCueBlockNumber,   0x5378, 2, KaxCueTrackPositions, "CueBlockNumber", 1);
-#if MATROSKA_VERSION >= 2
-DEFINE_MKX_UINTEGER_DEF(KaxCueCodecState,      0xEA, 1, KaxCueTrackPositions, "CueCodecState", 0);
-DEFINE_MKX_MASTER      (KaxCueReference,       0xDB, 1, KaxCueTrackPositions, "CueReference");
-DEFINE_MKX_UINTEGER    (KaxCueRefTime,         0x96, 1, KaxCueReference, "CueRefTime");
-DEFINE_MKX_UINTEGER    (KaxCueRefCluster,      0x97, 1, KaxCueReference, "CueRefCluster");
-DEFINE_MKX_UINTEGER_DEF(KaxCueRefNumber,     0x535F, 2, KaxCueReference, "CueRefNumber", 1);
-DEFINE_MKX_UINTEGER_DEF(KaxCueRefCodecState,   0xEB, 1, KaxCueReference, "CueRefCodecState", 0);
-#endif
 
 /*!
 	\todo handle codec state checking

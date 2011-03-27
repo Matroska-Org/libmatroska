@@ -36,36 +36,11 @@
 #include "matroska/KaxContexts.h"
 #include "matroska/KaxBlock.h"
 #include "matroska/KaxDefines.h"
+#include "matroska/KaxSemantic.h"
 
 using namespace LIBEBML_NAMESPACE;
 
 START_LIBMATROSKA_NAMESPACE
-
-DEFINE_START_SEMANTIC(KaxSlices)
-DEFINE_SEMANTIC_ITEM(false, false, KaxTimeSlice)
-DEFINE_END_SEMANTIC(KaxSlices)
-
-DEFINE_START_SEMANTIC(KaxTimeSlice)
-DEFINE_SEMANTIC_ITEM(false, true, KaxSliceLaceNumber)
-DEFINE_SEMANTIC_ITEM(false, true, KaxSliceFrameNumber)
-DEFINE_SEMANTIC_ITEM(false, true, KaxSliceBlockAddID)
-DEFINE_SEMANTIC_ITEM(false, true, KaxSliceDelay)
-DEFINE_SEMANTIC_ITEM(false, true, KaxSliceDuration)
-DEFINE_END_SEMANTIC(KaxTimeSlice)
-
-DEFINE_MKX_UINTEGER_DEF (KaxReferencePriority, 0xFA, 1, KaxBlockGroup, "FlagReferenced", 0);
-DEFINE_MKX_SINTEGER_CONS(KaxReferenceBlock,    0xFB, 1, KaxBlockGroup, "ReferenceBlock");
-DEFINE_MKX_MASTER       (KaxSlices,            0x8E, 1, KaxBlockGroup, "Slices");
-DEFINE_MKX_MASTER       (KaxTimeSlice,         0xE8, 1, KaxSlices, "TimeSlice");
-DEFINE_MKX_UINTEGER_DEF (KaxSliceLaceNumber,   0xCC, 1, KaxTimeSlice, "SliceLaceNumber", 0);
-DEFINE_MKX_UINTEGER_DEF (KaxSliceFrameNumber,  0xCD, 1, KaxTimeSlice, "SliceFrameNumber", 0);
-DEFINE_MKX_UINTEGER_DEF (KaxSliceBlockAddID,   0xCB, 1, KaxTimeSlice, "SliceBlockAddID", 0);
-DEFINE_MKX_UINTEGER_DEF (KaxSliceDelay,        0xCE, 1, KaxTimeSlice, "SliceDelay", 0);
-DEFINE_MKX_UINTEGER_DEF (KaxSliceDuration,     0xCF, 1, KaxTimeSlice, "SliceDuration", 0);
-#if MATROSKA_VERSION >= 2
-DEFINE_MKX_SINTEGER     (KaxReferenceVirtual,  0xFD, 1, KaxBlockGroup, "ReferenceVirtual");
-#endif
-
 
 const KaxBlockBlob & KaxReferenceBlock::RefBlock() const
 {

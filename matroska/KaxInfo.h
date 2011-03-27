@@ -35,24 +35,6 @@
 #ifndef LIBMATROSKA_INFO_H
 #define LIBMATROSKA_INFO_H
 
-#include "matroska/KaxTypes.h"
-#include "ebml/EbmlMaster.h"
-#include "ebml/EbmlUnicodeString.h"
-#include "matroska/KaxDefines.h"
-
-using namespace LIBEBML_NAMESPACE;
-
-START_LIBMATROSKA_NAMESPACE
-
-DECLARE_MKX_MASTER(KaxInfo)
-};
-
-DECLARE_MKX_UNISTRING(KaxMuxingApp)
-};
-
-DECLARE_MKX_UNISTRING(KaxWritingApp)
-};
-
-END_LIBMATROSKA_NAMESPACE
+#include "matroska/KaxSemantic.h"
 
 #endif // LIBMATROSKA_INFO_H

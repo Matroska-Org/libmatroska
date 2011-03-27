@@ -30,66 +30,11 @@
 /*!
 	\file
 	\version \$Id: KaxContentEncoding.h,v 1.7 2004/04/14 23:26:17 robux4 Exp $
-	\author Moritz Bunkus <moritz @ bunkus.org>
+	\author Steve Lhomme     <robux4 @ users.sf.net>
 */
 #ifndef LIBMATROSKA_CONTENT_ENCODING_H
 #define LIBMATROSKA_CONTENT_ENCODING_H
 
-#include "matroska/KaxTypes.h"
-#include "ebml/EbmlMaster.h"
-#include "ebml/EbmlUInteger.h"
-#include "ebml/EbmlBinary.h"
-#include "matroska/KaxDefines.h"
-
-using namespace LIBEBML_NAMESPACE;
-
-START_LIBMATROSKA_NAMESPACE
-
-DECLARE_MKX_MASTER(KaxContentEncodings)
-};
-
-DECLARE_MKX_MASTER(KaxContentEncoding)
-};
-
-DECLARE_MKX_UINTEGER(KaxContentEncodingOrder)
-};
-
-DECLARE_MKX_UINTEGER(KaxContentEncodingScope)
-};
-
-DECLARE_MKX_UINTEGER(KaxContentEncodingType)
-};
-
-DECLARE_MKX_MASTER(KaxContentCompression)
-};
-
-DECLARE_MKX_UINTEGER(KaxContentCompAlgo)
-};
-
-DECLARE_MKX_BINARY(KaxContentCompSettings)
-};
-
-DECLARE_MKX_MASTER(KaxContentEncryption)
-};
-
-DECLARE_MKX_UINTEGER(KaxContentEncAlgo)
-};
-
-DECLARE_MKX_BINARY(KaxContentEncKeyID)
-};
-
-DECLARE_MKX_BINARY(KaxContentSignature)
-};
-
-DECLARE_MKX_BINARY(KaxContentSigKeyID)
-};
-
-DECLARE_MKX_UINTEGER(KaxContentSigAlgo)
-};
-
-DECLARE_MKX_UINTEGER(KaxContentSigHashAlgo)
-};
-
-END_LIBMATROSKA_NAMESPACE
+#include "matroska/KaxSemantic.h"
 
 #endif // LIBMATROSKA_CONTENT_ENCODING_H

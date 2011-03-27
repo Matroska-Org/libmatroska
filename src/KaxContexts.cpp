@@ -34,8 +34,6 @@
 */
 #include "ebml/EbmlContexts.h"
 #include "matroska/KaxContexts.h"
-#include "matroska/KaxAttached.h"
-#include "matroska/KaxAttachments.h"
 #include "matroska/KaxBlock.h"
 #include "matroska/KaxCluster.h"
 #include "matroska/KaxSegment.h"

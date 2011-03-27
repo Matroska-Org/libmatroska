@@ -40,34 +40,10 @@
 #include "matroska/KaxSeekHead.h"
 #include "matroska/KaxCues.h"
 #include "matroska/KaxTracks.h"
-#include "matroska/KaxInfo.h"
-#include "matroska/KaxChapters.h"
-#include "matroska/KaxAttachments.h"
-#include "matroska/KaxTags.h"
 #include "matroska/KaxContexts.h"
 #include "matroska/KaxDefines.h"
 
 START_LIBMATROSKA_NAMESPACE
-
-DEFINE_START_SEMANTIC(KaxMatroska)
-DEFINE_SEMANTIC_ITEM(true, true, EbmlHead)
-DEFINE_SEMANTIC_ITEM(true, false, KaxSegment)
-DEFINE_END_SEMANTIC(KaxMatroska)
-
-DEFINE_START_SEMANTIC(KaxSegment)
-DEFINE_SEMANTIC_ITEM(false, false, KaxCluster)
-DEFINE_SEMANTIC_ITEM(false, false, KaxSeekHead)
-DEFINE_SEMANTIC_ITEM(false, true, KaxCues)
-DEFINE_SEMANTIC_ITEM(false, false, KaxTracks)
-DEFINE_SEMANTIC_ITEM(true, false, KaxInfo)
-DEFINE_SEMANTIC_ITEM(false, true, KaxChapters)
-DEFINE_SEMANTIC_ITEM(false, true, KaxAttachments)
-DEFINE_SEMANTIC_ITEM(false, false, KaxTags)
-DEFINE_END_SEMANTIC(KaxSegment)
-
-DEFINE_MKX_CONTEXT(KaxMatroska);
-
-DEFINE_MKX_MASTER_ORPHAN(KaxSegment, 0x18538067, 4, "Segment\0rotomopogo");
 
 KaxSegment::KaxSegment(EBML_EXTRA_DEF)
 	:EbmlMaster(EBML_CLASS_SEMCONTEXT(KaxSegment) EBML_DEF_SEP EBML_EXTRA_CALL)

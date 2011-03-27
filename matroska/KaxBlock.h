@@ -359,9 +359,6 @@ protected:
 	BlockBlobType SimpleBlockMode;
 };
 
-DECLARE_MKX_UINTEGER(KaxBlockDuration)
-};
-
 #if MATROSKA_VERSION >= 2
 DECLARE_MKX_BINARY_CONS(KaxBlockVirtual)
 	public:
@@ -374,6 +371,8 @@ DECLARE_MKX_BINARY_CONS(KaxBlockVirtual)
 
 		void SetParent(const KaxCluster & aParentCluster) {ParentCluster = &aParentCluster;}
 
+        filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault);
+
 	protected:
 		uint64 Timecode; // temporary timecode of the first frame if there are more than one
 		uint16 TrackNumber;
@@ -382,21 +381,6 @@ DECLARE_MKX_BINARY_CONS(KaxBlockVirtual)
 		const KaxCluster * ParentCluster;
 };
 #endif // MATROSKA_VERSION
-
-DECLARE_MKX_BINARY(KaxBlockAdditional)
-};
-
-DECLARE_MKX_MASTER(KaxBlockAdditions)
-};
-
-DECLARE_MKX_MASTER(KaxBlockMore)
-};
-
-DECLARE_MKX_UINTEGER(KaxBlockAddID)
-};
-
-DECLARE_MKX_BINARY(KaxCodecState)
-};
 
 END_LIBMATROSKA_NAMESPACE
 

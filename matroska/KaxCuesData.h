@@ -58,44 +58,17 @@ DECLARE_MKX_MASTER(KaxCuePoint)
 		bool Timecode(uint64 & aTimecode, uint64 GlobalTimecodeScale) const;
 };
 
-DECLARE_MKX_UINTEGER(KaxCueTime)
-};
-
 DECLARE_MKX_MASTER(KaxCueTrackPositions)
 	public:
 		uint64 ClusterPosition() const;
 		uint16 TrackNumber() const;
 };
 
-DECLARE_MKX_UINTEGER(KaxCueTrack)
-};
-
-DECLARE_MKX_UINTEGER(KaxCueClusterPosition)
-};
-
-DECLARE_MKX_UINTEGER(KaxCueBlockNumber)
-};
-
 #if MATROSKA_VERSION >= 2
-DECLARE_MKX_UINTEGER(KaxCueCodecState)
-};
-
 DECLARE_MKX_MASTER(KaxCueReference)
 	public:
 		void AddReference(const KaxBlockGroup & BlockReferenced, uint64 GlobalTimecodeScale);
 		void AddReference(const KaxBlockBlob & BlockReferenced, uint64 GlobalTimecodeScale);
-};
-
-DECLARE_MKX_UINTEGER(KaxCueRefTime)
-};
-
-DECLARE_MKX_UINTEGER(KaxCueRefCluster)
-};
-
-DECLARE_MKX_UINTEGER(KaxCueRefNumber)
-};
-
-DECLARE_MKX_UINTEGER(KaxCueRefCodecState)
 };
 #endif // MATROSKA_VERSION
 

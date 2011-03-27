@@ -32,21 +32,14 @@
 	\version \$Id: KaxAttachments.cpp 640 2004-07-09 21:05:36Z mosu $
 	\author Steve Lhomme     <robux4 @ users.sf.net>
 */
-#include "matroska/KaxAttachments.h"
-#include "matroska/KaxAttached.h"
 #include "matroska/KaxContexts.h"
 #include "matroska/KaxDefines.h"
+#include "matroska/KaxSemantic.h"
 
 using namespace LIBEBML_NAMESPACE;
 
 // sub elements
 START_LIBMATROSKA_NAMESPACE
-
-DEFINE_START_SEMANTIC(KaxAttachments)
-DEFINE_SEMANTIC_ITEM(true, false, KaxAttached)        ///< EBMLVersion
-DEFINE_END_SEMANTIC(KaxAttachments)
-
-DEFINE_MKX_MASTER_CONS(KaxAttachments, 0x1941A469, 4, KaxSegment, "Attachments");
 
 KaxAttachments::KaxAttachments(EBML_EXTRA_DEF)
  :EbmlMaster(EBML_CLASS_SEMCONTEXT(KaxAttachments) EBML_DEF_SEP EBML_EXTRA_CALL)

@@ -51,8 +51,9 @@
 #include "ebml/EbmlMaster.h"
 #include "ebml/EbmlFloat.h"
 #include "ebml/EbmlStream.h"
+#include "ebml/StdIOCallback.h"
 
-using namespace LIBMATROSKA_NAMESPACE;
+using namespace LIBEBML_NAMESPACE;
 
 const char RW_FILENAME[] = "test.kax";
 

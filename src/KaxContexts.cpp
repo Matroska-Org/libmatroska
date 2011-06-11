@@ -33,6 +33,7 @@
 	\author Steve Lhomme     <robux4 @ users.sf.net>
 */
 #include "ebml/EbmlContexts.h"
+#include "ebml/EbmlHead.h"
 #include "matroska/KaxContexts.h"
 #include "matroska/KaxBlock.h"
 #include "matroska/KaxCluster.h"
@@ -42,6 +43,11 @@
 using namespace LIBEBML_NAMESPACE;
 
 START_LIBMATROSKA_NAMESPACE
+
+DEFINE_START_SEMANTIC(KaxMatroska_Context)
+DEFINE_SEMANTIC_ITEM(true, true, EbmlHead)
+DEFINE_SEMANTIC_ITEM(false, false, KaxSegment)
+DEFINE_END_SEMANTIC(KaxMatroska_Context)
 
 DEFINE_SEMANTIC_CONTEXT(KaxSegment)
 DEFINE_SEMANTIC_CONTEXT(KaxAttached)

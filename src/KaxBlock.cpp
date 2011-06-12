@@ -1034,4 +1034,10 @@ void KaxBlockBlob::SetBlockGroup( KaxBlockGroup &BlockRef )
 	Block.group = &BlockRef;
 }
 
+filepos_t KaxBlockVirtual::ReadData(IOCallback & input, ScopeMode ReadFully)
+{
+    input.setFilePointer(SizePosition + CodedSizeLength(Size, SizeLength, bSizeIsFinite) + Size, seek_beginning);
+    return GetSize();
+}
+
 END_LIBMATROSKA_NAMESPACE

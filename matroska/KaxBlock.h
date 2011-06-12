@@ -372,6 +372,8 @@ DECLARE_MKX_BINARY_CONS(KaxBlockVirtual)
 		void SetParent(const KaxCluster & aParentCluster) {ParentCluster = &aParentCluster;}
 
         filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault);
+        
+        filepos_t ReadData(IOCallback & input, ScopeMode ReadFully = SCOPE_ALL_DATA);
 
 	protected:
 		uint64 Timecode; // temporary timecode of the first frame if there are more than one

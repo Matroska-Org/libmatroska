@@ -1,5 +1,5 @@
-2011-06-12 robux4/mosu
-New 1.1.1 version:
+2011-06-17 robux4/mosu
+New 1.2.0 version:
     - skip data from KaxBlockVirtual as it should not be used
     - use semantic generated from the specs so there is no more possible mismatch
 

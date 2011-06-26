@@ -1,7 +1,7 @@
 # SPEC file for (at least) Fedora Core 1, 2, 3
 
 Name: 		libmatroska
-Version: 1.1.0
+Version: 1.2.0
 Release: 1
 License: 	LGPL
 Summary:	Matroska Video Container

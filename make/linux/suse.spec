@@ -14,7 +14,7 @@ BuildRequires: bzip2 cpp libebml make tar zlib zlib-devel binutils gcc gcc-c++ l
 
 Name:         libmatroska
 URL:          http://dl.matroska.org/downloads/libmatroska/
-Version: 1.1.0
+Version: 1.2.0
 Release: 1
 Summary:      library to deal with matroska files.
 License:      LGPL

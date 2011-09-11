@@ -580,7 +580,7 @@ DEFINE_MKX_UINTEGER(KaxChapterTimeEnd, 0x92, 1, KaxChapterAtom, "ChapterTimeEnd"
 DEFINE_MKX_UINTEGER_DEF(KaxChapterFlagHidden, 0x98, 1, KaxChapterAtom, "ChapterFlagHidden", 0);
 DEFINE_MKX_UINTEGER_DEF(KaxChapterFlagEnabled, 0x4598, 2, KaxChapterAtom, "ChapterFlagEnabled", 1);
 DEFINE_MKX_BINARY (KaxChapterSegmentUID, 0x6E67, 2, KaxChapterAtom, "ChapterSegmentUID");
-DEFINE_MKX_BINARY (KaxChapterSegmentEditionUID, 0x6EBC, 2, KaxChapterAtom, "ChapterSegmentEditionUID");
+DEFINE_MKX_UINTEGER(KaxChapterSegmentEditionUID, 0x6EBC, 2, KaxChapterAtom, "ChapterSegmentEditionUID");
 DEFINE_MKX_UINTEGER(KaxChapterPhysicalEquiv, 0x63C3, 2, KaxChapterAtom, "ChapterPhysicalEquiv");
 
 DEFINE_START_SEMANTIC(KaxChapterTrack)

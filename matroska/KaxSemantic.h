@@ -607,9 +607,7 @@ public:
 	virtual bool ValidateSize() const {return IsFiniteSize() && GetSize() == 16;}
 };
 
-DECLARE_MKX_BINARY (KaxChapterSegmentEditionUID)
-public:
-	virtual bool ValidateSize() const {return IsFiniteSize() && GetSize() == 16;}
+DECLARE_MKX_UINTEGER(KaxChapterSegmentEditionUID)
 };
 
 DECLARE_MKX_UINTEGER(KaxChapterPhysicalEquiv)

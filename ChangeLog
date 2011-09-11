@@ -1,3 +1,7 @@
+2011-09-11 robux4
+New 1.3.0 version:
+    - make KaxChapterSegmentEditionUID an unsigned integer to match the KaxChapterEditionUID it's supposed to target
+
 2011-06-26 robux4/mosu
 New 1.2.0 version:
     - skip data from KaxBlockVirtual as it should not be used

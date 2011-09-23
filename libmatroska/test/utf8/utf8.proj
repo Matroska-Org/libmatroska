@@ -1,0 +1,6 @@
+#include "*/*.proj"
+
+CON utf8-test5
+{
+  SOURCE test5.cpp
+}

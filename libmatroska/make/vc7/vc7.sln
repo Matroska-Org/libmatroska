@@ -1,0 +1,73 @@
+Microsoft Visual Studio Solution File, Format Version 7.00
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libebml", "..\..\..\libebml\make\vc7\lib\libebml.vcproj", "{C6902997-CF7C-42B5-AD42-5B7C11F4CFE6}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libebmldll", "..\..\..\libebml\make\vc7\dll\libebmldll.v71.vcproj", "{83136D19-2749-4640-AC38-33E0B1F0DCC2}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libmatroska", "lib\static\libmatroska.vcproj", "{061EEA22-F7D5-4477-AB15-0DCE85EA038A}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "test0", "test\test0.vcproj", "{8380F3AF-9E4A-4D5F-900F-991978CE44E1}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "test00", "test\test00.vcproj", "{78DA23EF-794A-4311-9B99-8C71D44CC749}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "test6", "test\test6.vcproj", "{4770FB10-8B2F-4E29-BA0B-517031ABC0F5}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "test8", "test\test8.vcproj", "{EAE085B0-7FD7-48DA-ABFE-A706DACC3794}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "test9", "test\test9.vcproj", "{F294A3C5-D355-49E7-A8B8-B9692345A5E0}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libmatroskadll", "lib\dll\libmatroskadll.v71.vcproj", "{B227AC03-C69E-46B1-B91E-A77BE4C6F83A}"
+EndProject
+Global
+	GlobalSection(DPCodeReviewSolutionGUID) = preSolution
+		DPCodeReviewSolutionGUID = {00000000-0000-0000-0000-000000000000}
+	EndGlobalSection
+	GlobalSection(DevPartner Solution Properties) = postSolution
+	EndGlobalSection
+	GlobalSection(SolutionConfiguration) = preSolution
+		ConfigName.0 = Debug
+		ConfigName.1 = Release
+	EndGlobalSection
+	EndGlobalSection
+	GlobalSection(ProjectConfiguration) = postSolution
+		{C6902997-CF7C-42B5-AD42-5B7C11F4CFE6}.Debug.ActiveCfg = Debug|Win32
+		{C6902997-CF7C-42B5-AD42-5B7C11F4CFE6}.Debug.Build.0 = Debug|Win32
+		{C6902997-CF7C-42B5-AD42-5B7C11F4CFE6}.Release.ActiveCfg = Release|Win32
+		{C6902997-CF7C-42B5-AD42-5B7C11F4CFE6}.Release.Build.0 = Release|Win32
+		{061EEA22-F7D5-4477-AB15-0DCE85EA038A}.Debug.ActiveCfg = Debug|Win32
+		{061EEA22-F7D5-4477-AB15-0DCE85EA038A}.Debug.Build.0 = Debug|Win32
+		{061EEA22-F7D5-4477-AB15-0DCE85EA038A}.Release.ActiveCfg = Release|Win32
+		{061EEA22-F7D5-4477-AB15-0DCE85EA038A}.Release.Build.0 = Release|Win32
+		{8380F3AF-9E4A-4D5F-900F-991978CE44E1}.Debug.ActiveCfg = Debug|Win32
+		{8380F3AF-9E4A-4D5F-900F-991978CE44E1}.Release.ActiveCfg = Release|Win32
+		{78DA23EF-794A-4311-9B99-8C71D44CC749}.Debug.ActiveCfg = Debug|Win32
+		{78DA23EF-794A-4311-9B99-8C71D44CC749}.Release.ActiveCfg = Release|Win32
+		{4770FB10-8B2F-4E29-BA0B-517031ABC0F5}.Debug.ActiveCfg = Debug|Win32
+		{4770FB10-8B2F-4E29-BA0B-517031ABC0F5}.Debug.Build.0 = Debug|Win32
+		{4770FB10-8B2F-4E29-BA0B-517031ABC0F5}.Release.ActiveCfg = Release|Win32
+		{4770FB10-8B2F-4E29-BA0B-517031ABC0F5}.Release.Build.0 = Release|Win32
+		{EAE085B0-7FD7-48DA-ABFE-A706DACC3794}.Debug.ActiveCfg = Debug|Win32
+		{EAE085B0-7FD7-48DA-ABFE-A706DACC3794}.Debug.Build.0 = Debug|Win32
+		{EAE085B0-7FD7-48DA-ABFE-A706DACC3794}.Release.ActiveCfg = Release|Win32
+		{EAE085B0-7FD7-48DA-ABFE-A706DACC3794}.Release.Build.0 = Release|Win32
+		{F294A3C5-D355-49E7-A8B8-B9692345A5E0}.Debug.ActiveCfg = Debug|Win32
+		{F294A3C5-D355-49E7-A8B8-B9692345A5E0}.Debug.Build.0 = Debug|Win32
+		{F294A3C5-D355-49E7-A8B8-B9692345A5E0}.Release.ActiveCfg = Release|Win32
+		{F294A3C5-D355-49E7-A8B8-B9692345A5E0}.Release.Build.0 = Release|Win32
+		{B227AC03-C69E-46B1-B91E-A77BE4C6F83A}.Debug.ActiveCfg = Debug|Win32
+		{B227AC03-C69E-46B1-B91E-A77BE4C6F83A}.Debug.Build.0 = Debug|Win32
+		{B227AC03-C69E-46B1-B91E-A77BE4C6F83A}.Release.ActiveCfg = Release|Win32
+		{B227AC03-C69E-46B1-B91E-A77BE4C6F83A}.Release.Build.0 = Release|Win32
+		{83136D19-2749-4640-AC38-33E0B1F0DCC2}.Debug.ActiveCfg = Debug|Win32
+		{83136D19-2749-4640-AC38-33E0B1F0DCC2}.Debug.Build.0 = Debug|Win32
+		{83136D19-2749-4640-AC38-33E0B1F0DCC2}.Release.ActiveCfg = Release|Win32
+		{83136D19-2749-4640-AC38-33E0B1F0DCC2}.Release.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+	GlobalSection(DevPartner) = postSolution
+	EndGlobalSection
+	GlobalSection(DevPartner) = postSolution
+	EndGlobalSection
+EndGlobal

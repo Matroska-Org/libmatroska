@@ -1,0 +1,134 @@
+Microsoft Developer Studio Workspace File, Format Version 6.00
+# WARNING: DO NOT EDIT OR DELETE THIS WORKSPACE FILE!
+
+###############################################################################
+
+Project: "libebml"=..\..\..\libebml\make\vc6\lib\static\libebml.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "libmatroska"=.\lib\static\libmatroska.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name libebml
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "test0"=test\test0.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name libebml
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name libmatroska
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "test00"=test\test00.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name libebml
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name libmatroska
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "test6"=test\test6.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name libebml
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name libmatroska
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "test8"=test\test8.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name libebml
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name libmatroska
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "test9"=test\test9.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name libebml
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name libmatroska
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Global:
+
+Package=<5>
+{{{
+}}}
+
+Package=<3>
+{{{
+}}}
+
+###############################################################################
+

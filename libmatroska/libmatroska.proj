@@ -1,0 +1,56 @@
+#include "*/*.proj"
+
+LIB matroska
+{
+  PROJECT_VERSION 1.3.0
+
+  INCLUDE .
+  EXPINCLUDE .
+
+  IF HAVE_EBML2
+    USE ebml2_legacy
+  ELSE
+    USE ebml
+    USEINCLUDE corec // so that stdafx implied by ebml2_legacy can build
+  ENDIF
+
+//  OPTIMIZE_GLOBALLY .
+  FAVOR_MAX_SPEED .
+  REDUCE_SIZE .
+  FASTER_FLOAT .
+  
+  SOURCE src/FileKax.cpp
+  SOURCE src/KaxAttached.cpp
+  SOURCE src/KaxAttachments.cpp
+  SOURCE src/KaxBlock.cpp
+  SOURCE src/KaxBlockData.cpp
+  SOURCE src/KaxCluster.cpp
+  SOURCE src/KaxContexts.cpp
+  SOURCE src/KaxCues.cpp
+  SOURCE src/KaxCuesData.cpp
+  SOURCE src/KaxInfoData.cpp
+  SOURCE src/KaxSeekHead.cpp
+  SOURCE src/KaxSegment.cpp
+  SOURCE src/KaxSemantic.cpp
+  SOURCE src/KaxTracks.cpp
+  SOURCE src/KaxVersion.cpp
+
+  HEADER matroska/FileKax.h
+  HEADER matroska/KaxBlock.h
+  HEADER matroska/KaxBlockData.h
+  HEADER matroska/KaxCluster.h
+  HEADER matroska/KaxConfig.h
+  HEADER matroska/KaxContexts.h
+  HEADER matroska/KaxCues.h
+  HEADER matroska/KaxCuesData.h
+  HEADER matroska/KaxDefines.h
+  HEADER matroska/KaxInfoData.h
+  HEADER matroska/KaxSeekHead.h
+  HEADER matroska/KaxSegment.h
+  HEADER matroska/KaxSemantic.h
+  HEADER matroska/KaxTracks.h
+  HEADER matroska/KaxTypes.h
+  HEADER matroska/KaxVersion.h
+  HEADER matroska/c/libmatroska_t.h
+  HEADER matroska/c/libmatroska.h
+}

@@ -1,0 +1,18 @@
+#!/bin/sh
+
+# A small script that looks for duplicate EBML IDs in all of libmatroska's
+# source files.
+
+echo 'Duplicate IDs:'
+grep -h '^EbmlId.*_TheId' ../../src/*cpp | \
+  sed -e 's/TheId/TheId /' | \
+  awk '{ print $3 }' | \
+  sed -e 's/(//' -e 's/,//' | \
+  sort  | \
+  uniq -d | \
+( while read id ; do
+    echo ''
+    echo ${id}:
+    grep -i $id ../../src/*cpp
+  done )
+

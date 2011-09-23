@@ -1,0 +1,13 @@
+#include "*/*.proj"
+
+CON mux-test6
+{
+  USE matroska
+  SOURCE test6.cpp
+}
+
+CON mux-test8
+{
+  USE matroska
+  SOURCE test8.cpp
+}

@@ -1,0 +1,9 @@
+#include "*/*.proj"
+
+WORKSPACE tests
+{
+  USE mux-test6
+  USE mux-test8
+  USE ebml-test00
+  USE ebml-test0
+}

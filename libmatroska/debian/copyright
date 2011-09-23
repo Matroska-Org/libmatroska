@@ -1,0 +1,26 @@
+This package was debianized by Moritz Bunkus <moritz@bunkus.org> on
+Mon, 21 Apr 2003 12:49:33 +0200.
+
+It was downloaded from http://www.matroska.org/
+
+Upstream Author: Steve Lhomme <steve.lhomme@free.fr>
+
+Copyright (C) 2002-2003 Steve Lhomme.  All rights reserved.
+
+This file may be distributed under the terms of the Q Public License
+as defined by Trolltech AS of Norway and appearing in the file
+LICENSE.QPL included in the packaging of this file.
+
+This proram is also licensed under the GPL. See
+/usr/share/common-licenses/GPL for details.
+
+Licensees holding an other license may use this file in accordance with 
+the Agreement provided with the Software.
+
+This file is provided AS IS with NO WARRANTY OF ANY KIND, INCLUDING THE
+WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
+
+See http://www.matroska.org/license/qpl/ for QPL licensing information.
+
+Contact license@matroska.org if any conditions of this licensing are
+not clear to you.

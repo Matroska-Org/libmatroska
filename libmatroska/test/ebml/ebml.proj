@@ -1,0 +1,13 @@
+#include "*/*.proj"
+
+CON ebml-test00
+{
+  USE matroska
+  SOURCE test00.cpp
+}
+
+CON ebml-test0
+{
+  USE matroska
+  SOURCE test0.cpp
+}

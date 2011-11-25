@@ -84,7 +84,7 @@ class MATROSKA_DLL_API DataBuffer {
 		virtual binary * Buffer() {assert(bValidValue); return myBuffer;}
 		virtual uint32   & Size() {return mySize;};
 		virtual const binary * Buffer() const {assert(bValidValue); return myBuffer;}
-		virtual const uint32   Size()   const {return mySize;};
+		virtual uint32   Size()   const {return mySize;};
 		bool    FreeBuffer(const DataBuffer & aBuffer) {
 			bool bResult = true;
 			if (myBuffer != NULL && bValidValue) {

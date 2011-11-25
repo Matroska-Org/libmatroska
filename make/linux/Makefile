@@ -67,7 +67,7 @@ objects:=$(patsubst %$(EXTENSION),%.o,$(sources))
 
 objects_so:=$(patsubst %$(EXTENSION),%.lo,$(sources))
 
-WARNINGFLAGS=-Wall -Wno-unknown-pragmas -ansi -fno-gnu-keywords -D_GNU_SOURCE \
+WARNINGFLAGS=-Wall -Wextra -Wno-unknown-pragmas -ansi -fno-gnu-keywords -D_GNU_SOURCE \
 		-Wshadow
 COMPILEFLAGS=$(DEBUGFLAGS) $(CXXFLAGS) $(CPPFLAGS) $(WARNINGFLAGS) $(INCLUDE)
 LINKFLAGS=-L. -L$(LIBEBML_LIB_DIR) $(LDFLAGS)

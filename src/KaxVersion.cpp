@@ -37,7 +37,7 @@
 
 START_LIBMATROSKA_NAMESPACE
 
-const std::string KaxCodeVersion = "1.3.0";
+const std::string KaxCodeVersion = "1.4.0";
 const std::string KaxCodeDate    = __TIMESTAMP__;
 
 END_LIBMATROSKA_NAMESPACE

@@ -495,11 +495,21 @@ DECLARE_MKX_UINTEGER(KaxContentSigHashAlgo)
 DECLARE_MKX_UINTEGER(KaxCueTime)
 };
 
+#if MATROSKA_VERSION >= 2
+DECLARE_MKX_UINTEGER(KaxCueDuration)
+};
+#endif
+
 DECLARE_MKX_UINTEGER(KaxCueTrack)
 };
 
 DECLARE_MKX_UINTEGER(KaxCueClusterPosition)
 };
+
+#if MATROSKA_VERSION >= 2
+DECLARE_MKX_UINTEGER(KaxCueRelativePosition)
+};
+#endif
 
 DECLARE_MKX_UINTEGER(KaxCueBlockNumber)
 };

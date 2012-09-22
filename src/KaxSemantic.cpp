@@ -470,15 +470,24 @@ DEFINE_MKX_MASTER(KaxCues, 0x1C53BB6B, 4, KaxSegment, "Cues");
 
 DEFINE_START_SEMANTIC(KaxCuePoint)
 DEFINE_SEMANTIC_ITEM(true, true, KaxCueTime)
+#if MATROSKA_VERSION >= 2
+DEFINE_SEMANTIC_ITEM(false, true, KaxCueDuration)
+#endif // MATROSKA_VERSION
 DEFINE_SEMANTIC_ITEM(true, false, KaxCueTrackPositions)
 DEFINE_END_SEMANTIC(KaxCuePoint)
 
 DEFINE_MKX_MASTER(KaxCuePoint, 0xBB, 1, KaxCues, "CuePoint");
 DEFINE_MKX_UINTEGER(KaxCueTime, 0xB3, 1, KaxCuePoint, "CueTime");
+#if MATROSKA_VERSION >= 2
+DEFINE_MKX_UINTEGER(KaxCueDuration, 0xB2, 1, KaxCuePoint, "CueDuration");
+#endif
 
 DEFINE_START_SEMANTIC(KaxCueTrackPositions)
 DEFINE_SEMANTIC_ITEM(true, true, KaxCueTrack)
 DEFINE_SEMANTIC_ITEM(true, true, KaxCueClusterPosition)
+#if MATROSKA_VERSION >= 2
+DEFINE_SEMANTIC_ITEM(false, true, KaxCueRelativePosition)
+#endif // MATROSKA_VERSION
 DEFINE_SEMANTIC_ITEM(false, true, KaxCueBlockNumber)
 #if MATROSKA_VERSION >= 2
 DEFINE_SEMANTIC_ITEM(false, true, KaxCueCodecState)
@@ -489,6 +498,9 @@ DEFINE_END_SEMANTIC(KaxCueTrackPositions)
 DEFINE_MKX_MASTER(KaxCueTrackPositions, 0xB7, 1, KaxCuePoint, "CueTrackPositions");
 DEFINE_MKX_UINTEGER(KaxCueTrack, 0xF7, 1, KaxCueTrackPositions, "CueTrack");
 DEFINE_MKX_UINTEGER(KaxCueClusterPosition, 0xF1, 1, KaxCueTrackPositions, "CueClusterPosition");
+#if MATROSKA_VERSION >= 2
+DEFINE_MKX_UINTEGER(KaxCueRelativePosition, 0xF0, 1, KaxCueTrackPositions, "CueRelativePosition");
+#endif
 DEFINE_MKX_UINTEGER_DEF(KaxCueBlockNumber, 0x5378, 2, KaxCueTrackPositions, "CueBlockNumber", 1);
 #if MATROSKA_VERSION >= 2
 DEFINE_MKX_UINTEGER_DEF(KaxCueCodecState, 0xEA, 1, KaxCueTrackPositions, "CueCodecState", 0);

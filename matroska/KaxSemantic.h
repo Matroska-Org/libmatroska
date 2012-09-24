@@ -249,6 +249,8 @@ DECLARE_MKX_UINTEGER(KaxTrackDefaultDuration)
 };
 
 DECLARE_MKX_FLOAT(KaxTrackTimecodeScale)
+public:
+	filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault);
 };
 
 #if MATROSKA_VERSION >= 2

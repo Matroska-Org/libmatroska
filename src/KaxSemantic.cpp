@@ -575,6 +575,9 @@ DEFINE_MKX_UINTEGER_DEF(KaxEditionFlagOrdered, 0x45DD, 2, KaxEditionEntry, "Edit
 DEFINE_START_SEMANTIC(KaxChapterAtom)
 DEFINE_SEMANTIC_ITEM(false, false, KaxChapterAtom) // recursive
 DEFINE_SEMANTIC_ITEM(true, true, KaxChapterUID)
+#if MATROSKA_VERSION >= 2
+DEFINE_SEMANTIC_ITEM(false, true, KaxChapterStringUID)
+#endif // MATROSKA_VERSION
 DEFINE_SEMANTIC_ITEM(true, true, KaxChapterTimeStart)
 DEFINE_SEMANTIC_ITEM(false, true, KaxChapterTimeEnd)
 DEFINE_SEMANTIC_ITEM(true, true, KaxChapterFlagHidden)
@@ -589,6 +592,9 @@ DEFINE_END_SEMANTIC(KaxChapterAtom)
 
 DEFINE_MKX_MASTER(KaxChapterAtom, 0xB6, 1, KaxEditionEntry, "ChapterAtom");
 DEFINE_MKX_UINTEGER(KaxChapterUID, 0x73C4, 2, KaxChapterAtom, "ChapterUID");
+#if MATROSKA_VERSION >= 2
+DEFINE_MKX_UNISTRING(KaxChapterStringUID, 0x5654, 2, KaxChapterAtom, "ChapterStringUID");
+#endif
 DEFINE_MKX_UINTEGER(KaxChapterTimeStart, 0x91, 1, KaxChapterAtom, "ChapterTimeStart");
 DEFINE_MKX_UINTEGER(KaxChapterTimeEnd, 0x92, 1, KaxChapterAtom, "ChapterTimeEnd");
 DEFINE_MKX_UINTEGER_DEF(KaxChapterFlagHidden, 0x98, 1, KaxChapterAtom, "ChapterFlagHidden", 0);

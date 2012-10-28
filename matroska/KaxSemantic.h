@@ -605,6 +605,11 @@ DECLARE_MKX_MASTER(KaxChapterAtom)
 DECLARE_MKX_UINTEGER(KaxChapterUID)
 };
 
+#if MATROSKA_VERSION >= 2
+DECLARE_MKX_UNISTRING(KaxChapterStringUID)
+};
+#endif
+
 DECLARE_MKX_UINTEGER(KaxChapterTimeStart)
 };
 

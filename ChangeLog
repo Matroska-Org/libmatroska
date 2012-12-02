@@ -1,3 +1,7 @@
+2012-12-02 mosu
+    - Remove element TimecodeScaleDenominator again
+    - Add new element KaxChapterStringUID
+
 2012-09-23 mosu
 New 1.4.0 version:
     - Add new elements CueDuration, CueRelativePosition, TimecodeScaleDenominator
@@ -1988,4 +1992,3 @@ New 0.9.0 version:
 	  trunk/libmatroska/test/utf8,
 	  trunk/libmatroska/test/utf8/test5.cpp: Initial CVS version after
 	  the crash
-

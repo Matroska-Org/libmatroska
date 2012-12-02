@@ -79,9 +79,6 @@ DEFINE_SEMANTIC_ITEM(false, true, KaxNextFilename)
 DEFINE_SEMANTIC_ITEM(false, false, KaxSegmentFamily)
 DEFINE_SEMANTIC_ITEM(false, false, KaxChapterTranslate)
 DEFINE_SEMANTIC_ITEM(true, true, KaxTimecodeScale)
-#if MATROSKA_VERSION >= 2
-DEFINE_SEMANTIC_ITEM(true, true, KaxTimecodeScaleDenominator)
-#endif // MATROSKA_VERSION
 DEFINE_SEMANTIC_ITEM(false, true, KaxDuration)
 DEFINE_SEMANTIC_ITEM(false, true, KaxDateUTC)
 DEFINE_SEMANTIC_ITEM(false, true, KaxTitle)
@@ -109,9 +106,6 @@ DEFINE_MKX_UINTEGER(KaxChapterTranslateEditionUID, 0x69FC, 2, KaxChapterTranslat
 DEFINE_MKX_UINTEGER(KaxChapterTranslateCodec, 0x69BF, 2, KaxChapterTranslate, "ChapterTranslateCodec");
 DEFINE_MKX_BINARY (KaxChapterTranslateID, 0x69A5, 2, KaxChapterTranslate, "ChapterTranslateID");
 DEFINE_MKX_UINTEGER_DEF(KaxTimecodeScale, 0x2AD7B1, 3, KaxInfo, "TimecodeScale", 1000000);
-#if MATROSKA_VERSION >= 2
-DEFINE_MKX_UINTEGER_DEF(KaxTimecodeScaleDenominator, 0x2AD7B2, 3, KaxInfo, "TimecodeScaleDenominator", 1000000000);
-#endif
 DEFINE_MKX_FLOAT(KaxDuration, 0x4489, 2, KaxInfo, "Duration");
 DEFINE_MKX_DATE    (KaxDateUTC, 0x4461, 2, KaxInfo, "DateUTC");
 DEFINE_MKX_UNISTRING(KaxTitle, 0x7BA9, 2, KaxInfo, "Title");

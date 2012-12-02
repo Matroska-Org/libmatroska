@@ -98,11 +98,6 @@ DECLARE_MKX_BINARY (KaxChapterTranslateID)
 DECLARE_MKX_UINTEGER(KaxTimecodeScale)
 };
 
-#if MATROSKA_VERSION >= 2
-DECLARE_MKX_UINTEGER(KaxTimecodeScaleDenominator)
-};
-#endif
-
 DECLARE_MKX_FLOAT(KaxDuration)
 };
 

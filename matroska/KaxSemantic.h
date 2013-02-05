@@ -323,6 +323,9 @@ DECLARE_MKX_UINTEGER(KaxVideoFlagInterlaced)
 DECLARE_MKX_UINTEGER(KaxVideoStereoMode)
 };
 
+DECLARE_MKX_UINTEGER(KaxVideoAlphaMode)
+};
+
 DECLARE_MKX_UINTEGER(KaxOldStereoMode)
 public:
 	filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault);

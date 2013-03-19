@@ -242,6 +242,9 @@ DEFINE_SEMANTIC_ITEM(true, true, KaxTrackFlagLacing)
 DEFINE_SEMANTIC_ITEM(true, true, KaxTrackMinCache)
 DEFINE_SEMANTIC_ITEM(false, true, KaxTrackMaxCache)
 DEFINE_SEMANTIC_ITEM(false, true, KaxTrackDefaultDuration)
+#if MATROSKA_VERSION >= 2
+DEFINE_SEMANTIC_ITEM(false, true, KaxTrackDefaultDecodedFieldDuration)
+#endif // MATROSKA_VERSION
 DEFINE_SEMANTIC_ITEM(true, true, KaxTrackTimecodeScale)
 #if MATROSKA_VERSION >= 2
 DEFINE_SEMANTIC_ITEM(false, true, KaxTrackOffset) // not supported
@@ -287,6 +290,9 @@ DEFINE_MKX_UINTEGER_DEF(KaxTrackFlagLacing, 0x9C, 1, KaxTrackEntry, "TrackFlagLa
 DEFINE_MKX_UINTEGER_DEF(KaxTrackMinCache, 0x6DE7, 2, KaxTrackEntry, "TrackMinCache", 0);
 DEFINE_MKX_UINTEGER(KaxTrackMaxCache, 0x6DF8, 2, KaxTrackEntry, "TrackMaxCache");
 DEFINE_MKX_UINTEGER(KaxTrackDefaultDuration, 0x23E383, 3, KaxTrackEntry, "TrackDefaultDuration");
+#if MATROSKA_VERSION >= 2
+DEFINE_MKX_UINTEGER(KaxTrackDefaultDecodedFieldDuration, 0x234E7A, 3, KaxTrackEntry, "TrackDefaultDecodedFieldDuration");
+#endif
 DEFINE_MKX_FLOAT_DEF(KaxTrackTimecodeScale, 0x23314F, 3, KaxTrackEntry, "TrackTimecodeScale", 1);
 #if MATROSKA_VERSION >= 2
 DEFINE_MKX_SINTEGER_DEF(KaxTrackOffset, 0x537F, 2, KaxTrackEntry, "TrackOffset", 0);

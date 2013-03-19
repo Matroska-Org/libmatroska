@@ -243,6 +243,11 @@ DECLARE_MKX_UINTEGER(KaxTrackMaxCache)
 DECLARE_MKX_UINTEGER(KaxTrackDefaultDuration)
 };
 
+#if MATROSKA_VERSION >= 2
+DECLARE_MKX_UINTEGER(KaxTrackDefaultDecodedFieldDuration)
+};
+#endif
+
 DECLARE_MKX_FLOAT(KaxTrackTimecodeScale)
 public:
 	filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault);

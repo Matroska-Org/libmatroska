@@ -56,7 +56,7 @@ INCLUDE_DIR=$(CWD)/../../matroska
 MUX_SRC_DIR=$(CWD)/../../test/mux/
 TAG_SRC_DIR=$(CWD)/../../test/tags/
 
-# Librarires
+# Libraries
 INCLUDE=-I$(CWD)/../.. -I$(LIBEBML_INCLUDE_DIR)
 LIBS=
 MUX_LIBS=-lmatroska -lebml $(LIBICONV)

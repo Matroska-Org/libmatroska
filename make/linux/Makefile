@@ -41,6 +41,16 @@ ifeq (yes,$(DEBUG))
 DEBUGFLAGS=-g -DDEBUG
 endif
 
+ifeq (Darwin,$(shell uname -s))
+link=static
+else
+link=both
+endif
+
+targets_both = staticlib sharedlib
+targets_shared = sharedlib
+targets_static = staticlib
+
 SRC_DIR=$(CWD)/../../src/
 INCLUDE_DIR=$(CWD)/../../matroska
 MUX_SRC_DIR=$(CWD)/../../test/mux/
@@ -72,11 +82,7 @@ COMPILEFLAGS=$(DEBUGFLAGS) $(CXXFLAGS) $(CPPFLAGS) $(WARNINGFLAGS) $(INCLUDE)
 LINKFLAGS=-L. -L$(LIBEBML_LIB_DIR) $(LDFLAGS)
 DEPENDFLAGS  = $(CXXFLAGS) $(INCLUDE)
 
-ifeq (Darwin,$(shell uname -s))
-all: staticlib
-else
-all: staticlib sharedlib
-endif
+all: $(targets_$(link))
 
 staticlib: $(LIBRARY)
 
@@ -145,11 +151,7 @@ test9:	test9.o $(LIBRARY) $(LIBRARY_SO)
 test9.o: $(TAG_SRC_DIR)test9.cpp
 	$(CXX) -c $(COMPILEFLAGS) -o $@ $<
 
-ifeq (Darwin,$(shell uname -s))
-install: install_staticlib install_headers
-else
-install: install_staticlib install_sharedlib install_headers
-endif
+install: $(targets_$(link):%=install_%) install_headers 
 
 install_headers:
 	$(INSTALL) $(INSTALL_DIR_OPTS) -d $(includedir)

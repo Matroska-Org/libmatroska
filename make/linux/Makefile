@@ -154,23 +154,23 @@ test9.o: $(TAG_SRC_DIR)test9.cpp
 install: $(targets_$(link):%=install_%) install_headers 
 
 install_headers:
-	$(INSTALL) $(INSTALL_DIR_OPTS) -d $(includedir)
+	$(INSTALL) $(INSTALL_DIR_OPTS) -d $(DESTDIR)$(includedir)
 	for i in $(INCLUDE_DIR)/*.h; do \
-		$(INSTALL) $(INSTALL_OPTS) $$i $(includedir) ; \
+		$(INSTALL) $(INSTALL_OPTS) $$i $(DESTDIR)$(includedir) ; \
 	done
-	$(INSTALL) $(INSTALL_DIR_OPTS) -d $(includedir)/c
+	$(INSTALL) $(INSTALL_DIR_OPTS) -d $(DESTDIR)$(includedir)/c
 	for i in $(INCLUDE_DIR)/c/*.h; do \
-		$(INSTALL) $(INSTALL_OPTS) $$i $(includedir)/c ; \
+		$(INSTALL) $(INSTALL_OPTS) $$i $(DESTDIR)$(includedir)/c ; \
 	done
 
 install_staticlib: $(LIBRARY)
-	$(INSTALL) $(INSTALL_DIR_OPTS) -d $(libdir)
-	$(INSTALL) $(INSTALL_OPTS_LIB) $(LIBRARY) $(libdir)
+	$(INSTALL) $(INSTALL_DIR_OPTS) -d $(DESTDIR)$(libdir)
+	$(INSTALL) $(INSTALL_OPTS_LIB) $(LIBRARY) $(DESTDIR)$(libdir)
 
 install_sharedlib: $(LIBRARY_SO)
-	$(INSTALL) $(INSTALL_DIR_OPTS) -d $(libdir)
-	$(INSTALL) $(INSTALL_OPTS_LIB) $(LIBRARY_SO_VER) $(libdir)
-	ln -fs $(LIBRARY_SO_VER) $(libdir)/$(LIBRARY_SO)
+	$(INSTALL) $(INSTALL_DIR_OPTS) -d $(DESTDIR)$(libdir)
+	$(INSTALL) $(INSTALL_OPTS_LIB) $(LIBRARY_SO_VER) $(DESTDIR)$(libdir)
+	ln -fs $(LIBRARY_SO_VER) $(DESTDIR)$(libdir)/$(LIBRARY_SO)
 
 ifneq ($(wildcard .depend),)
 include .depend

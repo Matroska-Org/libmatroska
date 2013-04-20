@@ -1,6 +1,6 @@
 ## libmatroska Makefile
 ## (c) 2002 Steve Lhomme
-## This software is licensed under the LGPL, see LGPL.txt
+## This software is licensed under the LGPL, see LICENSE.LGPL
 
 all: endian
 	echo "Making endianess tests"

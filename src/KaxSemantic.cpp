@@ -153,6 +153,7 @@ DEFINE_SEMANTIC_ITEM(false, false, KaxReferenceBlock)
 #if MATROSKA_VERSION >= 2
 DEFINE_SEMANTIC_ITEM(false, true, KaxReferenceVirtual) // not supported
 DEFINE_SEMANTIC_ITEM(false, true, KaxCodecState)
+DEFINE_SEMANTIC_ITEM(false, true, KaxDiscardPadding)
 #endif // MATROSKA_VERSION
 DEFINE_SEMANTIC_ITEM(false, true, KaxSlices)
 #if MATROSKA_VERSION >= 2
@@ -186,6 +187,7 @@ DEFINE_MKX_SINTEGER_CONS(KaxReferenceBlock, 0xFB, 1, KaxBlockGroup, "ReferenceBl
 #if MATROSKA_VERSION >= 2
 DEFINE_MKX_SINTEGER(KaxReferenceVirtual, 0xFD, 1, KaxBlockGroup, "ReferenceVirtual");
 DEFINE_MKX_BINARY (KaxCodecState, 0xA4, 1, KaxBlockGroup, "CodecState");
+DEFINE_MKX_SINTEGER(KaxDiscardPadding, 0x75A2, 2, KaxBlockGroup, "DiscardPadding");
 #endif
 
 DEFINE_START_SEMANTIC(KaxSlices)
@@ -263,6 +265,9 @@ DEFINE_SEMANTIC_ITEM(false, false, KaxCodecDownloadURL) // not supported
 DEFINE_SEMANTIC_ITEM(true, true, KaxCodecDecodeAll)
 #endif // MATROSKA_VERSION
 DEFINE_SEMANTIC_ITEM(false, false, KaxTrackOverlay)
+#if MATROSKA_VERSION >= 2
+DEFINE_SEMANTIC_ITEM(false, true, KaxCodecDelay)
+#endif // MATROSKA_VERSION
 DEFINE_SEMANTIC_ITEM(false, false, KaxTrackTranslate)
 DEFINE_SEMANTIC_ITEM(false, true, KaxTrackVideo)
 DEFINE_SEMANTIC_ITEM(false, true, KaxTrackAudio)
@@ -311,6 +316,9 @@ DEFINE_MKX_STRING(KaxCodecDownloadURL, 0x26B240, 3, KaxTrackEntry, "CodecDownloa
 DEFINE_MKX_UINTEGER_DEF(KaxCodecDecodeAll, 0xAA, 1, KaxTrackEntry, "CodecDecodeAll", 1);
 #endif
 DEFINE_MKX_UINTEGER(KaxTrackOverlay, 0x6FAB, 2, KaxTrackEntry, "TrackOverlay");
+#if MATROSKA_VERSION >= 2
+DEFINE_MKX_UINTEGER_DEF(KaxCodecDelay, 0x56AA, 2, KaxTrackEntry, "CodecDelay", 0);
+#endif
 
 DEFINE_START_SEMANTIC(KaxTrackTranslate)
 DEFINE_SEMANTIC_ITEM(false, false, KaxTrackTranslateEditionUID)

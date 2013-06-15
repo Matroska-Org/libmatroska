@@ -157,6 +157,9 @@ public:
 
 DECLARE_MKX_BINARY (KaxCodecState)
 };
+
+DECLARE_MKX_SINTEGER(KaxDiscardPadding)
+};
 #endif
 
 DECLARE_MKX_MASTER(KaxSlices)
@@ -303,6 +306,11 @@ DECLARE_MKX_UINTEGER(KaxCodecDecodeAll)
 
 DECLARE_MKX_UINTEGER(KaxTrackOverlay)
 };
+
+#if MATROSKA_VERSION >= 2
+DECLARE_MKX_UINTEGER(KaxCodecDelay)
+};
+#endif
 
 DECLARE_MKX_MASTER(KaxTrackTranslate)
 };

@@ -267,6 +267,7 @@ DEFINE_SEMANTIC_ITEM(true, true, KaxCodecDecodeAll)
 DEFINE_SEMANTIC_ITEM(false, false, KaxTrackOverlay)
 #if MATROSKA_VERSION >= 2
 DEFINE_SEMANTIC_ITEM(false, true, KaxCodecDelay)
+DEFINE_SEMANTIC_ITEM(true, true, KaxSeekPreRoll)
 #endif // MATROSKA_VERSION
 DEFINE_SEMANTIC_ITEM(false, false, KaxTrackTranslate)
 DEFINE_SEMANTIC_ITEM(false, true, KaxTrackVideo)
@@ -318,6 +319,7 @@ DEFINE_MKX_UINTEGER_DEF(KaxCodecDecodeAll, 0xAA, 1, KaxTrackEntry, "CodecDecodeA
 DEFINE_MKX_UINTEGER(KaxTrackOverlay, 0x6FAB, 2, KaxTrackEntry, "TrackOverlay");
 #if MATROSKA_VERSION >= 2
 DEFINE_MKX_UINTEGER_DEF(KaxCodecDelay, 0x56AA, 2, KaxTrackEntry, "CodecDelay", 0);
+DEFINE_MKX_UINTEGER_DEF(KaxSeekPreRoll, 0x56BB, 2, KaxTrackEntry, "SeekPreRoll", 0);
 #endif
 
 DEFINE_START_SEMANTIC(KaxTrackTranslate)

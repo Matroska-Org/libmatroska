@@ -310,6 +310,9 @@ DECLARE_MKX_UINTEGER(KaxTrackOverlay)
 #if MATROSKA_VERSION >= 2
 DECLARE_MKX_UINTEGER(KaxCodecDelay)
 };
+
+DECLARE_MKX_UINTEGER(KaxSeekPreRoll)
+};
 #endif
 
 DECLARE_MKX_MASTER(KaxTrackTranslate)

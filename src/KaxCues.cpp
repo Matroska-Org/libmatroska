@@ -70,7 +70,7 @@ bool KaxCues::AddBlockBlob(const KaxBlockBlob & BlockReference)
 	// Do not add the element if it's already present.
 	std::vector<const KaxBlockBlob *>::iterator ListIdx;
 
-	for (ListIdx = myTempReferences.begin(); ListIdx != myTempReferences.end(); ListIdx++)
+	for (ListIdx = myTempReferences.begin(); ListIdx != myTempReferences.end(); ++ListIdx)
 		if (*ListIdx == &BlockReference)
 			return true;
 
@@ -83,7 +83,7 @@ void KaxCues::PositionSet(const KaxBlockBlob & BlockReference)
 	// look for the element in the temporary references
 	std::vector<const KaxBlockBlob *>::iterator ListIdx;
 
-	for (ListIdx = myTempReferences.begin(); ListIdx != myTempReferences.end(); ListIdx++) {
+	for (ListIdx = myTempReferences.begin(); ListIdx != myTempReferences.end(); ++ListIdx) {
 		if (*ListIdx == &BlockReference) {
 			// found, now add the element to the entry list
 			KaxCuePoint & NewPoint = AddNewChild<KaxCuePoint>(*this);
@@ -99,7 +99,7 @@ void KaxCues::PositionSet(const KaxBlockGroup & BlockRef)
 	// look for the element in the temporary references
 	std::vector<const KaxBlockBlob *>::iterator ListIdx;
 
-	for (ListIdx = myTempReferences.begin(); ListIdx != myTempReferences.end(); ListIdx++) {
+	for (ListIdx = myTempReferences.begin(); ListIdx != myTempReferences.end(); ++ListIdx) {
 		const KaxInternalBlock &refTmp = **ListIdx;
 		if (refTmp.GlobalTimecode() == BlockRef.GlobalTimecode() &&
 			refTmp.TrackNum() == BlockRef.TrackNumber()) {

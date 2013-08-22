@@ -98,7 +98,6 @@ bool KaxCluster::AddFrameInternal(const KaxTrackEntry & track, uint64 timecode, 
 	if (currentNewBlock == NULL || uint32(track.TrackNumber()) != uint32(currentNewBlock->TrackNumber()) || PastBlock != NULL || ForwBlock != NULL) {
 		KaxBlockGroup & aNewBlock = GetNewBlock();
 		MyNewBlock = currentNewBlock = &aNewBlock;
-		currentNewBlock = &aNewBlock;
 	}
 
 	if (PastBlock != NULL) {

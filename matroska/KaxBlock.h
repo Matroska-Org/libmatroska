@@ -70,7 +70,7 @@ class MATROSKA_DLL_API DataBuffer {
 		{
 			if (bInternalBuffer)
 			{
-				myBuffer = new binary[mySize];
+				myBuffer = new (std::nothrow) binary[mySize];
 				if (myBuffer == NULL)
 					bValidValue = false;
 				else

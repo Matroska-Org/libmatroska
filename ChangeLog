@@ -1,3 +1,15 @@
+2013-09-17 mosu
+New 1.4.1 version:
+    - Added new elements/classes DiscardPadding, CodecDelay and
+      SeekPreRoll
+    - The licensing information has been cleared up/unified.
+    - The Makefile now contain options for specifying the destination
+      base directory during installation ("DESTDIR") and for
+      specifying which library types to build ("link").
+    - The libraries are built without the "-ansi" and
+      "-fno-gnu-keywords" flags on Linux
+    - Code cleanup
+
 2013-03-19 mosu/robux4
 New 1.4.0 version:
     * Note that this release is not binary compatible to 1.3.0 due to

@@ -201,6 +201,7 @@ filepos_t KaxInternalBlock::UpdateSize(bool /* bSaveDefault */, bool /* bForceRe
 				}
 				break;
 			default:
+				i = 0;
 				assert(0);
 			}
 			// Size of the last frame (not in lace)

@@ -11,12 +11,12 @@
 ** modify it under the terms of the GNU Lesser General Public
 ** License as published by the Free Software Foundation; either
 ** version 2.1 of the License, or (at your option) any later version.
-** 
+**
 ** This library is distributed in the hope that it will be useful,
 ** but WITHOUT ANY WARRANTY; without even the implied warranty of
 ** MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
 ** Lesser General Public License for more details.
-** 
+**
 ** You should have received a copy of the GNU Lesser General Public
 ** License along with this library; if not, write to the Free Software
 ** Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
@@ -45,10 +45,10 @@ using namespace LIBMATROSKA_NAMESPACE;
 using namespace std;
 
 /*!
-	\see http://www.unicode.org/charts/
-	\see http://www-106.ibm.com/developerworks/linux/library/l-linuni.html
-	\see http://www.cl.cam.ac.uk/~mgk25/unicode.html#libs
-	\see ftp://ftp.ilog.fr/pub/Users/haible/utf8/Unicode-HOWTO-6.html#ss6.1
+  \see http://www.unicode.org/charts/
+  \see http://www-106.ibm.com/developerworks/linux/library/l-linuni.html
+  \see http://www.cl.cam.ac.uk/~mgk25/unicode.html#libs
+  \see ftp://ftp.ilog.fr/pub/Users/haible/utf8/Unicode-HOWTO-6.html#ss6.1
 */
 int main(void)
 {
@@ -69,7 +69,7 @@ int main(void)
     testUTF8_1 = test1.c_str();
 
     TruncString8 testUTF8_2(10);
-    testUTF8_2 = test2.c_str(); 
+    testUTF8_2 = test2.c_str();
     // in UTF8 0xE8=1110-1000 should become 110.00110-10.001000=0xC6 0x88
 
     FileName test01(64);

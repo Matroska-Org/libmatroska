@@ -151,7 +151,7 @@ test9:	test9.o $(LIBRARY) $(LIBRARY_SO)
 test9.o: $(TAG_SRC_DIR)test9.cpp
 	$(CXX) -c $(COMPILEFLAGS) -o $@ $<
 
-install: $(targets_$(link):%=install_%) install_headers 
+install: $(targets_$(link):%=install_%) install_headers
 
 install_headers:
 	$(INSTALL) $(INSTALL_DIR_OPTS) -d $(DESTDIR)$(includedir)

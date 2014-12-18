@@ -11,12 +11,12 @@
 ** modify it under the terms of the GNU Lesser General Public
 ** License as published by the Free Software Foundation; either
 ** version 2.1 of the License, or (at your option) any later version.
-** 
+**
 ** This library is distributed in the hope that it will be useful,
 ** but WITHOUT ANY WARRANTY; without even the implied warranty of
 ** MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
 ** Lesser General Public License for more details.
-** 
+**
 ** You should have received a copy of the GNU Lesser General Public
 ** License along with this library; if not, write to the Free Software
 ** Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
@@ -28,8 +28,8 @@
 **********************************************************************/
 
 /*!
-	\file
-	\version \$Id: KaxTypes.h,v 1.4 2004/04/14 23:26:17 robux4 Exp $
+  \file
+  \version \$Id: KaxTypes.h,v 1.4 2004/04/14 23:26:17 robux4 Exp $
 */
 #ifndef LIBMATROSKA_TYPES_H
 #define LIBMATROSKA_TYPES_H
@@ -41,17 +41,17 @@
 START_LIBMATROSKA_NAMESPACE
 
 enum LacingType {
-	LACING_NONE = 0,
-	LACING_XIPH,
-	LACING_FIXED,
-	LACING_EBML,
-	LACING_AUTO
+  LACING_NONE = 0,
+  LACING_XIPH,
+  LACING_FIXED,
+  LACING_EBML,
+  LACING_AUTO
 };
 
 enum BlockBlobType {
-	BLOCK_BLOB_NO_SIMPLE = 0,
-	BLOCK_BLOB_SIMPLE_AUTO,
-	BLOCK_BLOB_ALWAYS_SIMPLE,
+  BLOCK_BLOB_NO_SIMPLE = 0,
+  BLOCK_BLOB_SIMPLE_AUTO,
+  BLOCK_BLOB_ALWAYS_SIMPLE,
 };
 
 END_LIBMATROSKA_NAMESPACE

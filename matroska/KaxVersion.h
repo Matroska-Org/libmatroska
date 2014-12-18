@@ -26,9 +26,9 @@
 **********************************************************************/
 
 /*!
-	\file
-	\version \$Id: KaxVersion.h,v 1.13 2004/04/23 16:46:07 mosu Exp $
-	\author Steve Lhomme     <robux4 @ users.sf.net>
+  \file
+  \version \$Id: KaxVersion.h,v 1.13 2004/04/23 16:46:07 mosu Exp $
+  \author Steve Lhomme     <robux4 @ users.sf.net>
 */
 #ifndef LIBMATROSKA_VERSION_H
 #define LIBMATROSKA_VERSION_H
@@ -46,7 +46,7 @@ extern const std::string KaxCodeVersion;
 extern const std::string KaxCodeDate;
 
 /*!
-	\todo Improve the CRC/ECC system (backward and forward possible ?) to fit streaming/live writing/simple reading
+  \todo Improve the CRC/ECC system (backward and forward possible ?) to fit streaming/live writing/simple reading
 */
 
 END_LIBMATROSKA_NAMESPACE

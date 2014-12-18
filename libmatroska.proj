@@ -18,7 +18,7 @@ LIB matroska
   FAVOR_MAX_SPEED .
   REDUCE_SIZE .
   FASTER_FLOAT .
-  
+
   SOURCE src/FileKax.cpp
   SOURCE src/KaxAttached.cpp
   SOURCE src/KaxAttachments.cpp

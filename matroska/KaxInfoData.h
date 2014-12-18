@@ -11,12 +11,12 @@
 ** modify it under the terms of the GNU Lesser General Public
 ** License as published by the Free Software Foundation; either
 ** version 2.1 of the License, or (at your option) any later version.
-** 
+**
 ** This library is distributed in the hope that it will be useful,
 ** but WITHOUT ANY WARRANTY; without even the implied warranty of
 ** MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
 ** Lesser General Public License for more details.
-** 
+**
 ** You should have received a copy of the GNU Lesser General Public
 ** License along with this library; if not, write to the Free Software
 ** Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
@@ -28,11 +28,11 @@
 **********************************************************************/
 
 /*!
-	\file
-	\version \$Id$
-	\author Steve Lhomme     <robux4 @ users.sf.net>
-	\author John Cannon      <spyder2555 @ users.sf.net>
-	\author Moritz Bunkus    <moritz @ bunkus.org>
+  \file
+  \version \$Id$
+  \author Steve Lhomme     <robux4 @ users.sf.net>
+  \author John Cannon      <spyder2555 @ users.sf.net>
+  \author Moritz Bunkus    <moritz @ bunkus.org>
 */
 #ifndef LIBMATROSKA_INFO_DATA_H
 #define LIBMATROSKA_INFO_DATA_H
@@ -53,20 +53,20 @@ START_LIBMATROSKA_NAMESPACE
 
 DECLARE_MKX_CONTEXT(KaxPrevUID);
 class MATROSKA_DLL_API KaxPrevUID : public KaxSegmentUID {
-	public:
-		KaxPrevUID(EBML_EXTRA_PARAM);
-		KaxPrevUID(const KaxPrevUID & ElementToClone) :KaxSegmentUID(ElementToClone){}
-		virtual bool ValidateSize() const { return IsFiniteSize() && (GetSize() == 16);}
+  public:
+    KaxPrevUID(EBML_EXTRA_PARAM);
+    KaxPrevUID(const KaxPrevUID & ElementToClone) :KaxSegmentUID(ElementToClone){}
+    virtual bool ValidateSize() const { return IsFiniteSize() && (GetSize() == 16);}
 
         EBML_CONCRETE_CLASS(KaxPrevUID)
 };
 
 DECLARE_MKX_CONTEXT(KaxNextUID);
 class MATROSKA_DLL_API KaxNextUID : public KaxSegmentUID {
-	public:
-		KaxNextUID(EBML_EXTRA_PARAM);
-		KaxNextUID(const KaxNextUID & ElementToClone) :KaxSegmentUID(ElementToClone){}
-		virtual bool ValidateSize() const { return IsFiniteSize() && (GetSize() == 16);}
+  public:
+    KaxNextUID(EBML_EXTRA_PARAM);
+    KaxNextUID(const KaxNextUID & ElementToClone) :KaxSegmentUID(ElementToClone){}
+    virtual bool ValidateSize() const { return IsFiniteSize() && (GetSize() == 16);}
 
         EBML_CONCRETE_CLASS(KaxNextUID)
 };

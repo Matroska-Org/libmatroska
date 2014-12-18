@@ -11,12 +11,12 @@
 ** modify it under the terms of the GNU Lesser General Public
 ** License as published by the Free Software Foundation; either
 ** version 2.1 of the License, or (at your option) any later version.
-** 
+**
 ** This library is distributed in the hope that it will be useful,
 ** but WITHOUT ANY WARRANTY; without even the implied warranty of
 ** MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
 ** Lesser General Public License for more details.
-** 
+**
 ** You should have received a copy of the GNU Lesser General Public
 ** License along with this library; if not, write to the Free Software
 ** Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
@@ -71,7 +71,7 @@ int main() {
     EbmlHead head;
     KaxSegment segment;
     StdIOCallback out("test.mkv", MODE_CREATE);
-    
+
     EDocType &doc_type = GetChild<EDocType>(head);
     *static_cast<EbmlString *>(&doc_type) = "matroska";
     EDocTypeVersion &doc_type_ver = GetChild<EDocTypeVersion>(head);
@@ -98,7 +98,7 @@ int main() {
       1234;
 
 #if 0
-	// comment of the Targets
+  // comment of the Targets
      KaxTagMultiComment &mcomB = GetChild<KaxTagMultiComment>(targets);
     *(static_cast<EbmlString *>
       (&GetChild<KaxTagMultiCommentName>(mcomB))) =
@@ -134,7 +134,7 @@ int main() {
       (&GetChild<KaxTagArchivalLocation>(general))) =
       L"ArchivalLocation";
     KaxTagKeywords &keywords1 = GetChild<KaxTagKeywords>(general);
-    *(static_cast<EbmlUnicodeString *>(&keywords1)) = 
+    *(static_cast<EbmlUnicodeString *>(&keywords1)) =
       L"Keywords, 1";
     *(static_cast<EbmlUnicodeString *>
       (&GetNextChild<KaxTagKeywords>(general, keywords1))) =
@@ -144,7 +144,7 @@ int main() {
       L"Mood";
     KaxTagRecordLocation &recordLocation1 =
       GetChild<KaxTagRecordLocation>(general);
-    *(static_cast<EbmlString *>(&recordLocation1)) = 
+    *(static_cast<EbmlString *>(&recordLocation1)) =
       "RecordLocation, 1";
     *(static_cast<EbmlString *>
       (&GetNextChild<KaxTagRecordLocation>(general, recordLocation1))) =
@@ -248,7 +248,7 @@ int main() {
      *(static_cast<EbmlFloat *>
        (&GetChild<KaxTagMultiPriceAmount>(mprice))) =
        42.0;
-     KaxTagMultiPricePriceDate &pdate = 
+     KaxTagMultiPricePriceDate &pdate =
        GetChild<KaxTagMultiPricePriceDate>(mprice);
      pdate.SetEpochDate(time(NULL));
 
@@ -257,10 +257,10 @@ int main() {
     *(static_cast<EbmlUInteger *>
       (&GetChild<KaxTagMultiDateType>(date))) =
       4;
-    KaxTagMultiDateDateBegin &dbeg = 
+    KaxTagMultiDateDateBegin &dbeg =
       GetChild<KaxTagMultiDateDateBegin>(date);
     dbeg.SetEpochDate(time(NULL));
-    KaxTagMultiDateDateEnd &dend = 
+    KaxTagMultiDateDateEnd &dend =
       GetChild<KaxTagMultiDateDateEnd>(date);
     dend.SetEpochDate(time(NULL));
 
@@ -355,7 +355,7 @@ int main() {
       L"SIMPLE_TAG_NAME_LEVEL3";
     *(static_cast<EbmlUnicodeString *>(&GetChild<KaxTagString>(stag_l3))) =
       L"SIMPLE_TAG_STRING_LEVEL3";
-    
+
     tags.Render(out);
 
   } catch (...) {

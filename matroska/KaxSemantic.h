@@ -1,23 +1,23 @@
 /**********************************************************************
 **  DO NOT EDIT, GENERATED WITH DATA2LIB
-** 
+**
 **  libmatroska : parse Matroska files, see http://www.matroska.org/
-** 
+**
 **  Copyright (c) 2002-2010, Matroska (non-profit organisation)
 **  All rights reserved.
-** 
+**
 ** This file is part of libmatroska.
 **
 ** This library is free software; you can redistribute it and/or
 ** modify it under the terms of the GNU Lesser General Public
 ** License as published by the Free Software Foundation; either
 ** version 2.1 of the License, or (at your option) any later version.
-** 
+**
 ** This library is distributed in the hope that it will be useful,
 ** but WITHOUT ANY WARRANTY; without even the implied warranty of
 ** MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
 ** Lesser General Public License for more details.
-** 
+**
 ** You should have received a copy of the GNU Lesser General Public
 ** License along with this library; if not, write to the Free Software
 ** Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
@@ -49,7 +49,7 @@ START_LIBMATROSKA_NAMESPACE
 
 DECLARE_MKX_BINARY (KaxSeekID)
 public:
-	virtual bool ValidateSize() const {return IsFiniteSize() && GetSize() <= 4;}
+  virtual bool ValidateSize() const {return IsFiniteSize() && GetSize() <= 4;}
 };
 
 DECLARE_MKX_UINTEGER(KaxSeekPosition)
@@ -62,10 +62,10 @@ DECLARE_MKX_MASTER(KaxInfo)
 DECLARE_MKX_BINARY (KaxSegmentUID)
 #if defined(HAVE_EBML2) || defined(HAS_EBML2)
 public:
-	KaxSegmentUID(EBML_DEF_CONS EBML_DEF_SEP EBML_EXTRA_PARAM);
+  KaxSegmentUID(EBML_DEF_CONS EBML_DEF_SEP EBML_EXTRA_PARAM);
 #endif
 public:
-	virtual bool ValidateSize() const {return IsFiniteSize() && GetSize() == 16;}
+  virtual bool ValidateSize() const {return IsFiniteSize() && GetSize() == 16;}
 };
 
 DECLARE_MKX_UNISTRING(KaxSegmentFilename)
@@ -79,7 +79,7 @@ DECLARE_MKX_UNISTRING(KaxNextFilename)
 
 DECLARE_MKX_BINARY (KaxSegmentFamily)
 public:
-	virtual bool ValidateSize() const {return IsFiniteSize() && GetSize() == 16;}
+  virtual bool ValidateSize() const {return IsFiniteSize() && GetSize() == 16;}
 };
 
 DECLARE_MKX_MASTER(KaxChapterTranslate)
@@ -152,7 +152,7 @@ DECLARE_MKX_UINTEGER(KaxReferencePriority)
 #if MATROSKA_VERSION >= 2
 DECLARE_MKX_SINTEGER(KaxReferenceVirtual)
 public:
-	filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault);
+  filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault);
 };
 
 DECLARE_MKX_BINARY (KaxCodecState)
@@ -176,22 +176,22 @@ DECLARE_MKX_UINTEGER(KaxSliceLaceNumber)
 #if MATROSKA_VERSION >= 2
 DECLARE_MKX_UINTEGER(KaxSliceFrameNumber)
 public:
-	filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault);
+  filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault);
 };
 
 DECLARE_MKX_UINTEGER(KaxSliceBlockAddID)
 public:
-	filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault);
+  filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault);
 };
 
 DECLARE_MKX_UINTEGER(KaxSliceDelay)
 public:
-	filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault);
+  filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault);
 };
 
 DECLARE_MKX_UINTEGER(KaxSliceDuration)
 public:
-	filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault);
+  filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault);
 };
 
 DECLARE_MKX_MASTER(KaxReferenceFrame)
@@ -206,7 +206,7 @@ DECLARE_MKX_UINTEGER(KaxReferenceTimeCode)
 
 DECLARE_MKX_BINARY (KaxEncryptedBlock)
 public:
-	filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault);
+  filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault);
 };
 #endif
 
@@ -253,13 +253,13 @@ DECLARE_MKX_UINTEGER(KaxTrackDefaultDecodedFieldDuration)
 
 DECLARE_MKX_FLOAT(KaxTrackTimecodeScale)
 public:
-	filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault);
+  filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault);
 };
 
 #if MATROSKA_VERSION >= 2
 DECLARE_MKX_SINTEGER(KaxTrackOffset)
 public:
-	filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault);
+  filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault);
 };
 #endif
 
@@ -287,17 +287,17 @@ DECLARE_MKX_UINTEGER(KaxTrackAttachmentLink)
 #if MATROSKA_VERSION >= 2
 DECLARE_MKX_UNISTRING(KaxCodecSettings)
 public:
-	filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault);
+  filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault);
 };
 
 DECLARE_MKX_STRING(KaxCodecInfoURL)
 public:
-	filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault);
+  filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault);
 };
 
 DECLARE_MKX_STRING(KaxCodecDownloadURL)
 public:
-	filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault);
+  filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault);
 };
 
 DECLARE_MKX_UINTEGER(KaxCodecDecodeAll)
@@ -344,7 +344,7 @@ DECLARE_MKX_UINTEGER(KaxVideoAlphaMode)
 
 DECLARE_MKX_UINTEGER(KaxOldStereoMode)
 public:
-	filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault);
+  filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault);
 };
 #endif
 
@@ -380,18 +380,18 @@ DECLARE_MKX_UINTEGER(KaxVideoAspectRatio)
 
 DECLARE_MKX_BINARY (KaxVideoColourSpace)
 public:
-	virtual bool ValidateSize() const {return IsFiniteSize() && GetSize() == 4;}
+  virtual bool ValidateSize() const {return IsFiniteSize() && GetSize() == 4;}
 };
 
 #if MATROSKA_VERSION >= 2
 DECLARE_MKX_FLOAT(KaxVideoGamma)
 public:
-	filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault);
+  filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault);
 };
 
 DECLARE_MKX_FLOAT(KaxVideoFrameRate)
 public:
-	filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault);
+  filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault);
 };
 #endif
 
@@ -411,7 +411,7 @@ DECLARE_MKX_UINTEGER(KaxAudioChannels)
 #if MATROSKA_VERSION >= 2
 DECLARE_MKX_BINARY (KaxAudioPosition)
 public:
-	filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault);
+  filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault);
 };
 #endif
 
@@ -449,7 +449,7 @@ DECLARE_MKX_UINTEGER(KaxTrickTrackUID)
 
 DECLARE_MKX_BINARY (KaxTrickTrackSegmentUID)
 public:
-	virtual bool ValidateSize() const {return IsFiniteSize() && GetSize() == 16;}
+  virtual bool ValidateSize() const {return IsFiniteSize() && GetSize() == 16;}
 };
 
 DECLARE_MKX_UINTEGER(KaxTrickTrackFlag)
@@ -460,7 +460,7 @@ DECLARE_MKX_UINTEGER(KaxTrickMasterTrackUID)
 
 DECLARE_MKX_BINARY (KaxTrickMasterTrackSegmentUID)
 public:
-	virtual bool ValidateSize() const {return IsFiniteSize() && GetSize() == 16;}
+  virtual bool ValidateSize() const {return IsFiniteSize() && GetSize() == 16;}
 };
 #endif
 
@@ -542,17 +542,17 @@ DECLARE_MKX_UINTEGER(KaxCueRefTime)
 
 DECLARE_MKX_UINTEGER(KaxCueRefCluster)
 public:
-	filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault);
+  filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault);
 };
 
 DECLARE_MKX_UINTEGER(KaxCueRefNumber)
 public:
-	filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault);
+  filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault);
 };
 
 DECLARE_MKX_UINTEGER(KaxCueRefCodecState)
 public:
-	filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault);
+  filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault);
 };
 #endif
 
@@ -582,7 +582,7 @@ DECLARE_MKX_UINTEGER(KaxFileUID)
 #if MATROSKA_VERSION >= 2
 DECLARE_MKX_BINARY (KaxFileReferral)
 public:
-	filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault);
+  filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault);
 };
 
 DECLARE_MKX_UINTEGER(KaxFileUsedStartTime)
@@ -638,7 +638,7 @@ DECLARE_MKX_UINTEGER(KaxChapterFlagEnabled)
 
 DECLARE_MKX_BINARY (KaxChapterSegmentUID)
 public:
-	virtual bool ValidateSize() const {return IsFiniteSize() && GetSize() == 16;}
+  virtual bool ValidateSize() const {return IsFiniteSize() && GetSize() == 16;}
 };
 
 DECLARE_MKX_UINTEGER(KaxChapterSegmentEditionUID)

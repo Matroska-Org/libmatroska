@@ -17,7 +17,7 @@ OBJ  = $(patsubst %.cpp,%.obj,$(SRC))
 INCS = /I../.. /I$(EBML_DIR)
 LDFLAGS = /NOLOGO /DLL /MAP:libmatroska.map /LIBPATH:$(EBML_DIR)/make/vc7 /VERSION:0.7
 OPTMIZ = /G6 /O2 /Oi /GL /Wp64
-CXXFLAGS = $(INCS) /DWIN32 /nologo /DEBML_DLL 
+CXXFLAGS = $(INCS) /DWIN32 /nologo /DEBML_DLL
 
 
 ifeq (yes,$(DEBUG))

@@ -21,7 +21,7 @@ DEPEND = makedepend
 INDENT =indent --gnu-style -ut -ts6 -br -npsl -npcs
 DELETE =rm -f
 
-GLOBAL_CFLAGS   = -Wall -Wno-unknown-pragmas -Wno-format 
+GLOBAL_CFLAGS   = -Wall -Wno-unknown-pragmas -Wno-format
 DEBUG_CFLAGS    = -g -O0 -DDEBUG ${GLOBAL_CFLAGS}
 RELEASE_CFLAGS  =  -O2 ${GLOBAL_CFLAGS}
 

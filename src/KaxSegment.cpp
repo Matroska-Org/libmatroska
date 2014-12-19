@@ -53,16 +53,15 @@ KaxSegment::KaxSegment(EBML_EXTRA_DEF)
 }
 
 KaxSegment::KaxSegment(const KaxSegment & ElementToClone)
- :EbmlMaster(ElementToClone)
+  :EbmlMaster(ElementToClone)
 {
   // update the parent of each children
   EBML_MASTER_ITERATOR Itr = begin();
-  while (Itr != end())
-  {
+  while (Itr != end()) {
     if (EbmlId(**Itr) == EBML_ID(KaxCluster)) {
       static_cast<KaxCluster *>(*Itr)->SetParent(*this);
     }
-        ++Itr;
+    ++Itr;
   }
 }
 

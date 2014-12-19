@@ -57,7 +57,7 @@ void KaxSeekHead::IndexThis(const EbmlElement & aElt, const KaxSegment & ParentS
 
   KaxSeekID & aNewID = GetChild<KaxSeekID>(aNewPoint);
   binary ID[4];
-    ((const EbmlId&)aElt).Fill(ID);
+  ((const EbmlId&)aElt).Fill(ID);
   aNewID.CopyBuffer(ID, EBML_ID_LENGTH((const EbmlId&)aElt));
 }
 
@@ -65,17 +65,14 @@ KaxSeek * KaxSeekHead::FindFirstOf(const EbmlCallbacks & Callbacks) const
 {
   // parse all the Entries and find the first to match the type
   KaxSeek * aElt = static_cast<KaxSeek *>(FindFirstElt(EBML_INFO(KaxSeek)));
-  while (aElt != NULL)
-  {
+  while (aElt != NULL) {
     KaxSeekID * aId = NULL;
-        EBML_MASTER_ITERATOR Itr;
-    for (Itr = aElt->begin(); Itr != aElt->end(); ++Itr)
-        {
+    EBML_MASTER_ITERATOR Itr;
+    for (Itr = aElt->begin(); Itr != aElt->end(); ++Itr) {
       if (EbmlId(*(*Itr)) == EBML_ID(KaxSeekID)) {
         aId = static_cast<KaxSeekID*>(*Itr);
         EbmlId aEbmlId(aId->GetBuffer(), aId->GetSize());
-        if (aEbmlId == EBML_INFO_ID(Callbacks))
-        {
+        if (aEbmlId == EBML_INFO_ID(Callbacks)) {
           return aElt;
         }
         break;
@@ -89,23 +86,19 @@ KaxSeek * KaxSeekHead::FindFirstOf(const EbmlCallbacks & Callbacks) const
 
 KaxSeek * KaxSeekHead::FindNextOf(const KaxSeek &aPrev) const
 {
-    EBML_MASTER_CONST_ITERATOR Itr;
+  EBML_MASTER_CONST_ITERATOR Itr;
   KaxSeek *tmp;
 
   // look for the previous in the list
-  for (Itr = begin(); Itr != end(); ++Itr)
-    {
+  for (Itr = begin(); Itr != end(); ++Itr) {
     if (*Itr == static_cast<const EbmlElement*>(&aPrev))
       break;
   }
 
-  if (Itr != end())
-    {
+  if (Itr != end()) {
     ++Itr;
-      for (; Itr != end(); ++Itr)
-        {
-      if (EbmlId(*(*Itr)) == EBML_ID(KaxSeek))
-      {
+    for (; Itr != end(); ++Itr) {
+      if (EbmlId(*(*Itr)) == EBML_ID(KaxSeek)) {
         tmp = (KaxSeek *)(*Itr);
         if (tmp->IsEbmlId(aPrev))
           return tmp;

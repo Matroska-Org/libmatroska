@@ -49,34 +49,34 @@ const KaxBlockBlob & KaxReferenceBlock::RefBlock() const
 }
 
 KaxReferenceBlock::KaxReferenceBlock(EBML_EXTRA_DEF)
-:EBML_DEF_SINTEGER(KaxReferenceBlock)EBML_DEF_SEP
-RefdBlock(NULL)
-,ParentBlock(NULL)
-,bTimecodeSet(false)
-,bOurBlob(false)
+  :EBML_DEF_SINTEGER(KaxReferenceBlock)EBML_DEF_SEP
+  RefdBlock(NULL)
+  ,ParentBlock(NULL)
+  ,bTimecodeSet(false)
+  ,bOurBlob(false)
 {
-    bTimecodeSet = false;
+  bTimecodeSet = false;
 }
 
 KaxReferenceBlock::KaxReferenceBlock(const KaxReferenceBlock & ElementToClone)
-:EbmlSInteger(ElementToClone)
-,RefdBlock(NULL)
-,ParentBlock(NULL)
-,bTimecodeSet(ElementToClone.bTimecodeSet)
-,bOurBlob(false)
+  :EbmlSInteger(ElementToClone)
+  ,RefdBlock(NULL)
+  ,ParentBlock(NULL)
+  ,bTimecodeSet(ElementToClone.bTimecodeSet)
+  ,bOurBlob(false)
 {
 }
 
 KaxReferenceBlock::~KaxReferenceBlock()
 {
-    FreeBlob();
+  FreeBlob();
 }
 
 void KaxReferenceBlock::FreeBlob()
 {
-    if (bOurBlob && RefdBlock!=NULL)
-        delete RefdBlock;
-    RefdBlock = NULL;
+  if (bOurBlob && RefdBlock!=NULL)
+    delete RefdBlock;
+  RefdBlock = NULL;
 }
 
 filepos_t KaxReferenceBlock::UpdateSize(bool bSaveDefault, bool bForceRender)
@@ -95,19 +95,19 @@ void KaxReferenceBlock::SetReferencedBlock(const KaxBlockBlob * aRefdBlock)
 {
   assert(RefdBlock == NULL);
   assert(aRefdBlock != NULL);
-    FreeBlob();
+  FreeBlob();
   RefdBlock = aRefdBlock;
-    bOurBlob = true;
+  bOurBlob = true;
   SetValueIsSet();
 }
 
 void KaxReferenceBlock::SetReferencedBlock(const KaxBlockGroup & aRefdBlock)
 {
-    FreeBlob();
+  FreeBlob();
   KaxBlockBlob *block_blob = new KaxBlockBlob(BLOCK_BLOB_NO_SIMPLE);
   block_blob->SetBlockGroup(*const_cast<KaxBlockGroup*>(&aRefdBlock));
   RefdBlock = block_blob;
-    bOurBlob = true;
+  bOurBlob = true;
   SetValueIsSet();
 }
 

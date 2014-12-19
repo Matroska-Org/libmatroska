@@ -55,7 +55,7 @@ DataBuffer * DataBuffer::Clone()
 }
 
 SimpleDataBuffer::SimpleDataBuffer(const SimpleDataBuffer & ToClone)
- :DataBuffer((binary *)malloc(ToClone.mySize * sizeof(binary)), ToClone.mySize, myFreeBuffer)
+  :DataBuffer((binary *)malloc(ToClone.mySize * sizeof(binary)), ToClone.mySize, myFreeBuffer)
 {
   assert(myBuffer != NULL);
   memcpy(myBuffer, ToClone.myBuffer ,mySize );
@@ -73,19 +73,18 @@ KaxInternalBlock::~KaxInternalBlock()
 }
 
 KaxInternalBlock::KaxInternalBlock(const KaxInternalBlock & ElementToClone)
- :EbmlBinary(ElementToClone)
- ,myBuffers(ElementToClone.myBuffers.size())
- ,Timecode(ElementToClone.Timecode)
- ,LocalTimecode(ElementToClone.LocalTimecode)
- ,bLocalTimecodeUsed(ElementToClone.bLocalTimecodeUsed)
- ,TrackNumber(ElementToClone.TrackNumber)
- ,ParentCluster(ElementToClone.ParentCluster) ///< \todo not exactly
+  :EbmlBinary(ElementToClone)
+  ,myBuffers(ElementToClone.myBuffers.size())
+  ,Timecode(ElementToClone.Timecode)
+  ,LocalTimecode(ElementToClone.LocalTimecode)
+  ,bLocalTimecodeUsed(ElementToClone.bLocalTimecodeUsed)
+  ,TrackNumber(ElementToClone.TrackNumber)
+  ,ParentCluster(ElementToClone.ParentCluster) ///< \todo not exactly
 {
   // add a clone of the list
   std::vector<DataBuffer *>::const_iterator Itr = ElementToClone.myBuffers.begin();
   std::vector<DataBuffer *>::iterator myItr = myBuffers.begin();
-  while (Itr != ElementToClone.myBuffers.end())
-  {
+  while (Itr != ElementToClone.myBuffers.end()) {
     *myItr = (*Itr)->Clone();
     Itr++; myItr++;
   }
@@ -94,13 +93,13 @@ KaxInternalBlock::KaxInternalBlock(const KaxInternalBlock & ElementToClone)
 
 KaxBlockGroup::~KaxBlockGroup()
 {
-//NOTE("KaxBlockGroup::~KaxBlockGroup");
+  //NOTE("KaxBlockGroup::~KaxBlockGroup");
 }
 
 KaxBlockGroup::KaxBlockGroup(EBML_EXTRA_DEF)
- :EbmlMaster(EBML_CLASS_SEMCONTEXT(KaxBlockGroup) EBML_DEF_SEP EBML_EXTRA_CALL)
- ,ParentCluster(NULL)
- ,ParentTrack(NULL)
+  :EbmlMaster(EBML_CLASS_SEMCONTEXT(KaxBlockGroup) EBML_DEF_SEP EBML_EXTRA_CALL)
+  ,ParentCluster(NULL)
+  ,ParentTrack(NULL)
 {}
 
 /*!
@@ -134,7 +133,7 @@ bool KaxInternalBlock::AddFrame(const KaxTrackEntry & track, uint64 timecode, Da
 }
 
 /*!
-       \return Returns the lacing type that produces the smallest footprint.
+  \return Returns the lacing type that produces the smallest footprint.
 */
 LacingType KaxInternalBlock::GetBestLacingType() const {
   int XiphLacingSize, EbmlLacingSize, i;
@@ -164,7 +163,7 @@ LacingType KaxInternalBlock::GetBestLacingType() const {
 filepos_t KaxInternalBlock::UpdateSize(bool /* bSaveDefault */, bool /* bForceRender */)
 {
   LacingType LacingHere;
-    assert(EbmlBinary::GetBuffer() == NULL); // Data is not used for KaxInternalBlock
+  assert(EbmlBinary::GetBuffer() == NULL); // Data is not used for KaxInternalBlock
   assert(TrackNumber < 0x4000); // no more allowed for the moment
   unsigned int i;
 
@@ -182,27 +181,26 @@ filepos_t KaxInternalBlock::UpdateSize(bool /* bSaveDefault */, bool /* bForceRe
         LacingHere = GetBestLacingType();
       else
         LacingHere = mLacing;
-      switch (LacingHere)
-      {
-      case LACING_XIPH:
-        for (i=0; i<myBuffers.size()-1; i++) {
-          SetSize_(GetSize() + myBuffers[i]->Size() + (myBuffers[i]->Size() / 0xFF + 1));
-        }
-        break;
-      case LACING_EBML:
-        SetSize_(GetSize() + myBuffers[0]->Size() + CodedSizeLength(myBuffers[0]->Size(), 0, IsFiniteSize()));
-        for (i=1; i<myBuffers.size()-1; i++) {
-          SetSize_(GetSize() + myBuffers[i]->Size() + CodedSizeLengthSigned(int64(myBuffers[i]->Size()) - int64(myBuffers[i-1]->Size()), 0));
-        }
-        break;
-      case LACING_FIXED:
-        for (i=0; i<myBuffers.size()-1; i++) {
-          SetSize_(GetSize() + myBuffers[i]->Size());
-        }
-        break;
-      default:
-        i = 0;
-        assert(0);
+      switch (LacingHere) {
+        case LACING_XIPH:
+          for (i=0; i<myBuffers.size()-1; i++) {
+            SetSize_(GetSize() + myBuffers[i]->Size() + (myBuffers[i]->Size() / 0xFF + 1));
+          }
+          break;
+        case LACING_EBML:
+          SetSize_(GetSize() + myBuffers[0]->Size() + CodedSizeLength(myBuffers[0]->Size(), 0, IsFiniteSize()));
+          for (i=1; i<myBuffers.size()-1; i++) {
+            SetSize_(GetSize() + myBuffers[i]->Size() + CodedSizeLengthSigned(int64(myBuffers[i]->Size()) - int64(myBuffers[i-1]->Size()), 0));
+          }
+          break;
+        case LACING_FIXED:
+          for (i=0; i<myBuffers.size()-1; i++) {
+            SetSize_(GetSize() + myBuffers[i]->Size());
+          }
+          break;
+        default:
+          i = 0;
+          assert(0);
       }
       // Size of the last frame (not in lace)
       SetSize_(GetSize() + myBuffers[i]->Size());
@@ -217,26 +215,26 @@ filepos_t KaxInternalBlock::UpdateSize(bool /* bSaveDefault */, bool /* bForceRe
 
 #if MATROSKA_VERSION >= 2
 KaxBlockVirtual::KaxBlockVirtual(const KaxBlockVirtual & ElementToClone)
- :EbmlBinary(ElementToClone)
- ,Timecode(ElementToClone.Timecode)
- ,TrackNumber(ElementToClone.TrackNumber)
- ,ParentCluster(ElementToClone.ParentCluster) ///< \todo not exactly
+  :EbmlBinary(ElementToClone)
+  ,Timecode(ElementToClone.Timecode)
+  ,TrackNumber(ElementToClone.TrackNumber)
+  ,ParentCluster(ElementToClone.ParentCluster) ///< \todo not exactly
 {
-    SetBuffer(DataBlock,sizeof(DataBlock));
-    SetValueIsSet(false);
+  SetBuffer(DataBlock,sizeof(DataBlock));
+  SetValueIsSet(false);
 }
 
 KaxBlockVirtual::KaxBlockVirtual(EBML_EXTRA_DEF)
-:EBML_DEF_BINARY(KaxBlockVirtual)EBML_DEF_SEP ParentCluster(NULL)
+  :EBML_DEF_BINARY(KaxBlockVirtual)EBML_DEF_SEP ParentCluster(NULL)
 {
-    SetBuffer(DataBlock,sizeof(DataBlock));
-    SetValueIsSet(false);
+  SetBuffer(DataBlock,sizeof(DataBlock));
+  SetValueIsSet(false);
 }
 
 KaxBlockVirtual::~KaxBlockVirtual()
 {
-    if(GetBuffer() == DataBlock)
-        SetBuffer( NULL, 0 );
+  if(GetBuffer() == DataBlock)
+    SetBuffer( NULL, 0 );
 }
 
 filepos_t KaxBlockVirtual::UpdateSize(bool /* bSaveDefault */, bool /* bForceRender */)
@@ -245,10 +243,10 @@ filepos_t KaxBlockVirtual::UpdateSize(bool /* bSaveDefault */, bool /* bForceRen
   binary *cursor = EbmlBinary::GetBuffer();
   // fill data
   if (TrackNumber < 0x80) {
-        assert(GetSize() >= 4);
+    assert(GetSize() >= 4);
     *cursor++ = TrackNumber | 0x80; // set the first bit to 1
   } else {
-        assert(GetSize() >= 5);
+    assert(GetSize() >= 5);
     *cursor++ = (TrackNumber >> 8) | 0x40; // set the second bit to 1
     *cursor++ = TrackNumber & 0xFF;
   }
@@ -321,85 +319,82 @@ filepos_t KaxInternalBlock::RenderData(IOCallback & output, bool /* bForceRender
     }
 
     // lacing flag
-    switch (mLacing)
-    {
-    case LACING_XIPH:
-      *cursor++ |= 0x02;
-      break;
-    case LACING_EBML:
-      *cursor++ |= 0x06;
-      break;
-    case LACING_FIXED:
-      *cursor++ |= 0x04;
-      break;
-    case LACING_NONE:
-      break;
+    switch (mLacing) {
+      case LACING_XIPH:
+        *cursor++ |= 0x02;
+        break;
+      case LACING_EBML:
+        *cursor++ |= 0x06;
+        break;
+      case LACING_FIXED:
+        *cursor++ |= 0x04;
+        break;
+      case LACING_NONE:
+        break;
       default:
-      assert(0);
+        assert(0);
     }
 
     output.writeFully(BlockHead, 4 + ((TrackNumber > 0x80) ? 1 : 0));
 
     binary tmpValue;
-    switch (mLacing)
-    {
-    case LACING_XIPH:
-      // number of laces
-      tmpValue = myBuffers.size()-1;
-      output.writeFully(&tmpValue, 1);
-
-      // set the size of each member in the lace
-      for (i=0; i<myBuffers.size()-1; i++) {
-        tmpValue = 0xFF;
-        uint16 tmpSize = myBuffers[i]->Size();
-        while (tmpSize >= 0xFF) {
-          output.writeFully(&tmpValue, 1);
-          SetSize_(GetSize() + 1);
-          tmpSize -= 0xFF;
-        }
-        tmpValue = binary(tmpSize);
+    switch (mLacing) {
+      case LACING_XIPH:
+        // number of laces
+        tmpValue = myBuffers.size()-1;
         output.writeFully(&tmpValue, 1);
-        SetSize_(GetSize() + 1);
-      }
-      break;
-    case LACING_EBML:
-      // number of laces
-      tmpValue = myBuffers.size()-1;
-      output.writeFully(&tmpValue, 1);
-
-      {
-        int64 _Size;
-        int _CodedSize;
-        binary _FinalHead[8]; // 64 bits max coded size
-
-        _Size = myBuffers[0]->Size();
-
-        _CodedSize = CodedSizeLength(_Size, 0, IsFiniteSize());
-
-        // first size in the lace is not a signed
-        CodedValueLength(_Size, _CodedSize, _FinalHead);
-        output.writeFully(_FinalHead, _CodedSize);
-        SetSize_(GetSize() + _CodedSize);
 
         // set the size of each member in the lace
-        for (i=1; i<myBuffers.size()-1; i++) {
-          _Size = int64(myBuffers[i]->Size()) - int64(myBuffers[i-1]->Size());
-          _CodedSize = CodedSizeLengthSigned(_Size, 0);
-          CodedValueLengthSigned(_Size, _CodedSize, _FinalHead);
+        for (i=0; i<myBuffers.size()-1; i++) {
+          tmpValue = 0xFF;
+          uint16 tmpSize = myBuffers[i]->Size();
+          while (tmpSize >= 0xFF) {
+            output.writeFully(&tmpValue, 1);
+            SetSize_(GetSize() + 1);
+            tmpSize -= 0xFF;
+          }
+          tmpValue = binary(tmpSize);
+          output.writeFully(&tmpValue, 1);
+          SetSize_(GetSize() + 1);
+        }
+        break;
+      case LACING_EBML:
+        // number of laces
+        tmpValue = myBuffers.size()-1;
+        output.writeFully(&tmpValue, 1);
+        {
+          int64 _Size;
+          int _CodedSize;
+          binary _FinalHead[8]; // 64 bits max coded size
+
+          _Size = myBuffers[0]->Size();
+
+          _CodedSize = CodedSizeLength(_Size, 0, IsFiniteSize());
+
+          // first size in the lace is not a signed
+          CodedValueLength(_Size, _CodedSize, _FinalHead);
           output.writeFully(_FinalHead, _CodedSize);
           SetSize_(GetSize() + _CodedSize);
+
+          // set the size of each member in the lace
+          for (i=1; i<myBuffers.size()-1; i++) {
+            _Size = int64(myBuffers[i]->Size()) - int64(myBuffers[i-1]->Size());
+            _CodedSize = CodedSizeLengthSigned(_Size, 0);
+            CodedValueLengthSigned(_Size, _CodedSize, _FinalHead);
+            output.writeFully(_FinalHead, _CodedSize);
+            SetSize_(GetSize() + _CodedSize);
+          }
         }
-      }
-      break;
-    case LACING_FIXED:
-      // number of laces
-      tmpValue = myBuffers.size()-1;
-      output.writeFully(&tmpValue, 1);
-      break;
-    case LACING_NONE:
-      break;
+        break;
+      case LACING_FIXED:
+        // number of laces
+        tmpValue = myBuffers.size()-1;
+        output.writeFully(&tmpValue, 1);
+        break;
+      case LACING_NONE:
+        break;
       default:
-      assert(0);
+        assert(0);
     }
 
     // put the data of each frame
@@ -454,10 +449,9 @@ filepos_t KaxInternalBlock::ReadData(IOCallback & input, ScopeMode ReadFully)
 
   FirstFrameLocation = input.getFilePointer(); // will be updated accordingly below
 
-  if (ReadFully == SCOPE_ALL_DATA)
-  {
+  if (ReadFully == SCOPE_ALL_DATA) {
     Result = EbmlBinary::ReadData(input, ReadFully);
-        binary *cursor = EbmlBinary::GetBuffer();
+    binary *cursor = EbmlBinary::GetBuffer();
     uint8 BlockHeadSize = 4;
 
     // update internal values
@@ -507,47 +501,46 @@ filepos_t KaxInternalBlock::ReadData(IOCallback & input, ScopeMode ReadFully)
 
       SizeList.resize(FrameNum + 1);
 
-      switch (mLacing)
-      {
-      case LACING_XIPH:
-        for (Index=0; Index<FrameNum; Index++) {
-          // get the size of the frame
-          FrameSize = 0;
-          do {
-            FrameSize += uint8(*cursor);
-            LastBufferSize--;
-          } while (*cursor++ == 0xFF);
-          SizeList[Index] = FrameSize;
-          LastBufferSize -= FrameSize;
-        }
-        SizeList[Index] = LastBufferSize;
-        break;
-      case LACING_EBML:
-        SizeRead = LastBufferSize;
-        FrameSize = ReadCodedSizeValue(cursor, SizeRead, SizeUnknown);
-        SizeList[0] = FrameSize;
-        cursor += SizeRead;
-        LastBufferSize -= FrameSize + SizeRead;
-
-        for (Index=1; Index<FrameNum; Index++) {
-          // get the size of the frame
+      switch (mLacing) {
+        case LACING_XIPH:
+          for (Index=0; Index<FrameNum; Index++) {
+            // get the size of the frame
+            FrameSize = 0;
+            do {
+              FrameSize += uint8(*cursor);
+              LastBufferSize--;
+            } while (*cursor++ == 0xFF);
+            SizeList[Index] = FrameSize;
+            LastBufferSize -= FrameSize;
+          }
+          SizeList[Index] = LastBufferSize;
+          break;
+        case LACING_EBML:
           SizeRead = LastBufferSize;
-          FrameSize += ReadCodedSizeSignedValue(cursor, SizeRead, SizeUnknown);
-          SizeList[Index] = FrameSize;
+          FrameSize = ReadCodedSizeValue(cursor, SizeRead, SizeUnknown);
+          SizeList[0] = FrameSize;
           cursor += SizeRead;
           LastBufferSize -= FrameSize + SizeRead;
-        }
-        if (Index <= FrameNum) // Safety check if FrameNum == 0
-          SizeList[Index] = LastBufferSize;
-        break;
-      case LACING_FIXED:
-        for (Index=0; Index<=FrameNum; Index++) {
-          // get the size of the frame
-          SizeList[Index] = LastBufferSize / (FrameNum + 1);
-        }
-        break;
-      default: // other lacing not supported
-        assert(0);
+
+          for (Index=1; Index<FrameNum; Index++) {
+            // get the size of the frame
+            SizeRead = LastBufferSize;
+            FrameSize += ReadCodedSizeSignedValue(cursor, SizeRead, SizeUnknown);
+            SizeList[Index] = FrameSize;
+            cursor += SizeRead;
+            LastBufferSize -= FrameSize + SizeRead;
+          }
+          if (Index <= FrameNum) // Safety check if FrameNum == 0
+            SizeList[Index] = LastBufferSize;
+          break;
+        case LACING_FIXED:
+          for (Index=0; Index<=FrameNum; Index++) {
+            // get the size of the frame
+            SizeList[Index] = LastBufferSize / (FrameNum + 1);
+          }
+          break;
+        default: // other lacing not supported
+          assert(0);
       }
 
       FirstFrameLocation += cursor - EbmlBinary::GetBuffer();
@@ -560,8 +553,7 @@ filepos_t KaxInternalBlock::ReadData(IOCallback & input, ScopeMode ReadFully)
     }
     SetValueIsSet();
   }
-  else if (ReadFully == SCOPE_PARTIAL_DATA)
-  {
+  else if (ReadFully == SCOPE_PARTIAL_DATA) {
     binary _TempHead[5];
     Result = input.read(_TempHead, 5);
     binary *cursor = _TempHead;
@@ -595,8 +587,7 @@ filepos_t KaxInternalBlock::ReadData(IOCallback & input, ScopeMode ReadFully)
     }
     mInvisible = (*cursor & 0x08) >> 3;
     mLacing = LacingType((*cursor++ & 0x06) >> 1);
-    if (cursor == &_TempHead[4])
-    {
+    if (cursor == &_TempHead[4]) {
       _TempHead[0] = _TempHead[4];
     } else {
       Result += input.read(_TempHead, 1);
@@ -617,57 +608,56 @@ filepos_t KaxInternalBlock::ReadData(IOCallback & input, ScopeMode ReadFully)
 
       SizeList.resize(FrameNum + 1);
 
-      switch (mLacing)
-      {
-      case LACING_XIPH:
-        for (Index=0; Index<FrameNum; Index++) {
-          // get the size of the frame
-          FrameSize = 0;
-          do {
-            Result += input.read(_TempHead, 1);
-            FrameSize += uint8(_TempHead[0]);
-            LastBufferSize--;
+      switch (mLacing) {
+        case LACING_XIPH:
+          for (Index=0; Index<FrameNum; Index++) {
+            // get the size of the frame
+            FrameSize = 0;
+            do {
+              Result += input.read(_TempHead, 1);
+              FrameSize += uint8(_TempHead[0]);
+              LastBufferSize--;
+
+              FirstFrameLocation++;
+            } while (_TempHead[0] == 0xFF);
 
             FirstFrameLocation++;
-          } while (_TempHead[0] == 0xFF);
-
-          FirstFrameLocation++;
-          SizeList[Index] = FrameSize;
-          LastBufferSize -= FrameSize;
-        }
-        SizeList[Index] = LastBufferSize;
-        break;
-      case LACING_EBML:
-        SizeRead = LastBufferSize;
-        cursor = _tmpBuf = new binary[FrameNum*4]; /// \warning assume the mean size will be coded in less than 4 bytes
-        Result += input.read(cursor, FrameNum*4);
-        FrameSize = ReadCodedSizeValue(cursor, SizeRead, SizeUnknown);
-        SizeList[0] = FrameSize;
-        cursor += SizeRead;
-        LastBufferSize -= FrameSize + SizeRead;
-
-        for (Index=1; Index<FrameNum; Index++) {
-          // get the size of the frame
+            SizeList[Index] = FrameSize;
+            LastBufferSize -= FrameSize;
+          }
+          SizeList[Index] = LastBufferSize;
+          break;
+        case LACING_EBML:
           SizeRead = LastBufferSize;
-          FrameSize += ReadCodedSizeSignedValue(cursor, SizeRead, SizeUnknown);
-          SizeList[Index] = FrameSize;
+          cursor = _tmpBuf = new binary[FrameNum*4]; /// \warning assume the mean size will be coded in less than 4 bytes
+          Result += input.read(cursor, FrameNum*4);
+          FrameSize = ReadCodedSizeValue(cursor, SizeRead, SizeUnknown);
+          SizeList[0] = FrameSize;
           cursor += SizeRead;
           LastBufferSize -= FrameSize + SizeRead;
-        }
 
-        FirstFrameLocation += cursor - _tmpBuf;
+          for (Index=1; Index<FrameNum; Index++) {
+            // get the size of the frame
+            SizeRead = LastBufferSize;
+            FrameSize += ReadCodedSizeSignedValue(cursor, SizeRead, SizeUnknown);
+            SizeList[Index] = FrameSize;
+            cursor += SizeRead;
+            LastBufferSize -= FrameSize + SizeRead;
+          }
 
-        SizeList[Index] = LastBufferSize;
-        delete [] _tmpBuf;
-        break;
-      case LACING_FIXED:
-        for (Index=0; Index<=FrameNum; Index++) {
-          // get the size of the frame
-          SizeList[Index] = LastBufferSize / (FrameNum + 1);
-        }
-        break;
-      default: // other lacing not supported
-        assert(0);
+          FirstFrameLocation += cursor - _tmpBuf;
+
+          SizeList[Index] = LastBufferSize;
+          delete [] _tmpBuf;
+          break;
+        case LACING_FIXED:
+          for (Index=0; Index<=FrameNum; Index++) {
+            // get the size of the frame
+            SizeList[Index] = LastBufferSize / (FrameNum + 1);
+          }
+          break;
+        default: // other lacing not supported
+          assert(0);
       }
     } else {
       SizeList.resize(1);
@@ -694,7 +684,7 @@ bool KaxBlockGroup::AddFrame(const KaxTrackEntry & track, uint64 timecode, DataB
 
 bool KaxBlockGroup::AddFrame(const KaxTrackEntry & track, uint64 timecode, DataBuffer & buffer, const KaxBlockGroup & PastBlock, LacingType lacing)
 {
-//  assert(past_timecode < 0);
+  //  assert(past_timecode < 0);
 
   KaxBlock & theBlock = GetChild<KaxBlock>(*this);
   assert(ParentCluster != NULL);
@@ -711,9 +701,9 @@ bool KaxBlockGroup::AddFrame(const KaxTrackEntry & track, uint64 timecode, DataB
 
 bool KaxBlockGroup::AddFrame(const KaxTrackEntry & track, uint64 timecode, DataBuffer & buffer, const KaxBlockGroup & PastBlock, const KaxBlockGroup & ForwBlock, LacingType lacing)
 {
-//  assert(past_timecode < 0);
+  //  assert(past_timecode < 0);
 
-//  assert(forw_timecode > 0);
+  //  assert(forw_timecode > 0);
 
   KaxBlock & theBlock = GetChild<KaxBlock>(*this);
   assert(ParentCluster != NULL);
@@ -740,15 +730,13 @@ bool KaxBlockGroup::AddFrame(const KaxTrackEntry & track, uint64 timecode, DataB
   ParentTrack = &track;
   bool bRes = theBlock.AddFrame(track, timecode, buffer, lacing);
 
-  if (PastBlock != NULL)
-  {
+  if (PastBlock != NULL) {
     KaxReferenceBlock & thePastRef = GetChild<KaxReferenceBlock>(*this);
     thePastRef.SetReferencedBlock(PastBlock);
     thePastRef.SetParentBlock(*this);
   }
 
-  if (ForwBlock != NULL)
-  {
+  if (ForwBlock != NULL) {
     KaxReferenceBlock & theFutureRef = AddNewChild<KaxReferenceBlock>(*this);
     theFutureRef.SetReferencedBlock(ForwBlock);
     theFutureRef.SetParentBlock(*this);
@@ -792,8 +780,7 @@ unsigned int KaxBlockGroup::ReferenceCount() const
   KaxReferenceBlock * MyBlockAdds = static_cast<KaxReferenceBlock *>(FindFirstElt(EBML_INFO(KaxReferenceBlock)));
   if (MyBlockAdds != NULL) {
     Result++;
-    while ((MyBlockAdds = static_cast<KaxReferenceBlock *>(FindNextElt(*MyBlockAdds))) != NULL)
-    {
+    while ((MyBlockAdds = static_cast<KaxReferenceBlock *>(FindNextElt(*MyBlockAdds))) != NULL) {
       Result++;
     }
   }
@@ -880,13 +867,11 @@ int64 KaxInternalBlock::GetDataPosition(size_t FrameNumber)
 {
   int64 _Result = -1;
 
-  if (ValueIsSet() && FrameNumber < SizeList.size())
-  {
+  if (ValueIsSet() && FrameNumber < SizeList.size()) {
     _Result = FirstFrameLocation;
 
     size_t _Idx = 0;
-    while(FrameNumber--)
-    {
+    while(FrameNumber--) {
       _Result += SizeList[_Idx++];
     }
   }
@@ -898,8 +883,7 @@ int64 KaxInternalBlock::GetFrameSize(size_t FrameNumber)
 {
   int64 _Result = -1;
 
-  if (/*bValueIsSet &&*/ FrameNumber < SizeList.size())
-  {
+  if (/*bValueIsSet &&*/ FrameNumber < SizeList.size()) {
     _Result = SizeList[FrameNumber];
   }
 
@@ -969,7 +953,7 @@ bool KaxBlockBlob::AddFrameAuto(const KaxTrackEntry & track, uint64 timecode, Da
     } else {
       Block.simpleblock->SetKeyframe(false);
       if ((ForwBlock == NULL || ((const KaxInternalBlock &)*ForwBlock).GlobalTimecode() <= timecode) &&
-        (PastBlock == NULL || ((const KaxInternalBlock &)*PastBlock).GlobalTimecode() <= timecode))
+          (PastBlock == NULL || ((const KaxInternalBlock &)*PastBlock).GlobalTimecode() <= timecode))
         Block.simpleblock->SetDiscardable(false);
       else
         Block.simpleblock->SetDiscardable(true);
@@ -977,11 +961,8 @@ bool KaxBlockBlob::AddFrameAuto(const KaxTrackEntry & track, uint64 timecode, Da
   }
   else
 #endif
-  {
-    if (ReplaceSimpleByGroup()) {
+    if (ReplaceSimpleByGroup())
       bResult = Block.group->AddFrame(track, timecode, buffer, PastBlock, ForwBlock, lacing);
-    }
-  }
 
   return bResult;
 }
@@ -1008,8 +989,7 @@ bool KaxBlockBlob::ReplaceSimpleByGroup()
     }
   }
 #if MATROSKA_VERSION >= 2
-  else
-  {
+  else {
 
     if (Block.simpleblock != NULL) {
       KaxSimpleBlock *old_simpleblock = Block.simpleblock;
@@ -1038,8 +1018,8 @@ void KaxBlockBlob::SetBlockGroup( KaxBlockGroup &BlockRef )
 
 filepos_t KaxBlockVirtual::ReadData(IOCallback & input, ScopeMode /* ReadFully */)
 {
-    input.setFilePointer(SizePosition + CodedSizeLength(Size, SizeLength, bSizeIsFinite) + Size, seek_beginning);
-    return GetSize();
+  input.setFilePointer(SizePosition + CodedSizeLength(Size, SizeLength, bSizeIsFinite) + Size, seek_beginning);
+  return GetSize();
 }
 
 END_LIBMATROSKA_NAMESPACE

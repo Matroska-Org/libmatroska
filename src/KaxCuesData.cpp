@@ -62,8 +62,7 @@ void KaxCuePoint::PositionSet(const KaxBlockGroup & BlockReference, uint64 Globa
 
 #if MATROSKA_VERSION >= 2
   // handle reference use
-  if (BlockReference.ReferenceCount() != 0)
-  {
+  if (BlockReference.ReferenceCount() != 0) {
     unsigned int i;
     for (i=0; i<BlockReference.ReferenceCount(); i++) {
       KaxCueReference & NewRefs = AddNewChild<KaxCueReference>(NewPositions);
@@ -98,8 +97,7 @@ void KaxCuePoint::PositionSet(const KaxBlockBlob & BlobReference, uint64 GlobalT
 
 #if 0 // MATROSKA_VERSION >= 2
   // handle reference use
-  if (BlockReference.ReferenceCount() != 0)
-  {
+  if (BlockReference.ReferenceCount() != 0) {
     unsigned int i;
     for (i=0; i<BlockReference.ReferenceCount(); i++) {
       KaxCueReference & NewRefs = AddNewChild<KaxCueReference>(NewPositions);
@@ -137,8 +135,7 @@ void KaxCueReference::AddReference(const KaxBlockBlob & BlockReference, uint64 G
 
 #ifdef OLD
   // handle recursive reference use
-  if (BlockReference.ReferenceCount() != 0)
-  {
+  if (BlockReference.ReferenceCount() != 0) {
     unsigned int i;
     for (i=0; i<BlockReference.ReferenceCount(); i++) {
       AddReference(BlockReference.Reference(i).RefBlock());
@@ -206,8 +203,7 @@ const KaxCueTrackPositions * KaxCuePoint::GetSeekPosition() const
   uint64 aPosition = EBML_PRETTYLONGINT(0xFFFFFFFFFFFFFFF);
   // find the position of the "earlier" Cluster
   const KaxCueTrackPositions *aPoss = static_cast<const KaxCueTrackPositions *>(FindFirstElt(EBML_INFO(KaxCueTrackPositions)));
-  while (aPoss != NULL)
-  {
+  while (aPoss != NULL) {
     const KaxCueClusterPosition *aPos = static_cast<const KaxCueClusterPosition *>(aPoss->FindFirstElt(EBML_INFO(KaxCueClusterPosition)));
     if (aPos != NULL && uint64(*aPos) < aPosition) {
       aPosition = uint64(*aPos);

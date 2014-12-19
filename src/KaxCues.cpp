@@ -55,11 +55,10 @@ bool KaxCues::AddBlockGroup(const KaxBlockGroup & BlockRef)
   BlockReference->SetBlockGroup(*const_cast<KaxBlockGroup*>(&BlockRef));
 
   for (ListIdx = myTempReferences.begin(); ListIdx != myTempReferences.end(); ListIdx++)
-    if (&(KaxBlockGroup&)*ListIdx == &BlockRef)
-        {
-            delete BlockReference;
+    if (&(KaxBlockGroup&)*ListIdx == &BlockRef) {
+      delete BlockReference;
       return true;
-        }
+    }
 
   myTempReferences.push_back(BlockReference);
   return true;
@@ -102,7 +101,7 @@ void KaxCues::PositionSet(const KaxBlockGroup & BlockRef)
   for (ListIdx = myTempReferences.begin(); ListIdx != myTempReferences.end(); ++ListIdx) {
     const KaxInternalBlock &refTmp = **ListIdx;
     if (refTmp.GlobalTimecode() == BlockRef.GlobalTimecode() &&
-      refTmp.TrackNum() == BlockRef.TrackNumber()) {
+        refTmp.TrackNum() == BlockRef.TrackNumber()) {
       // found, now add the element to the entry list
       KaxCuePoint & NewPoint = AddNewChild<KaxCuePoint>(*this);
       NewPoint.PositionSet(**ListIdx, GlobalTimecodeScale());
@@ -122,15 +121,13 @@ const KaxCuePoint * KaxCues::GetTimecodePoint(uint64 aTimecode) const
   uint64 aPrevTime = 0;
   uint64 aNextTime = EBML_PRETTYLONGINT(0xFFFFFFFFFFFF);
 
-    EBML_MASTER_CONST_ITERATOR Itr;
-  for (Itr = begin(); Itr != end(); ++Itr)
-    {
+  EBML_MASTER_CONST_ITERATOR Itr;
+  for (Itr = begin(); Itr != end(); ++Itr) {
     if (EbmlId(*(*Itr)) == EBML_ID(KaxCuePoint)) {
       const KaxCuePoint *tmp = static_cast<const KaxCuePoint *>(*Itr);
       // check the tile
       const KaxCueTime *aTime = static_cast<const KaxCueTime *>(tmp->FindFirstElt(EBML_INFO(KaxCueTime)));
-      if (aTime != NULL)
-      {
+      if (aTime != NULL) {
         uint64 _Time = uint64(*aTime);
         if (_Time > aPrevTime && _Time < TimecodeToLocate) {
           aPrevTime = _Time;

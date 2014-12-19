@@ -50,13 +50,12 @@ KaxCluster::KaxCluster(EBML_EXTRA_DEF)
 {}
 
 KaxCluster::KaxCluster(const KaxCluster & ElementToClone)
- :EbmlMaster(ElementToClone)
- ,bSilentTracksUsed(ElementToClone.bSilentTracksUsed)
+  :EbmlMaster(ElementToClone)
+  ,bSilentTracksUsed(ElementToClone.bSilentTracksUsed)
 {
   // update the parent of each children
   EBML_MASTER_ITERATOR Itr = begin();
-  while (Itr != end())
-  {
+  while (Itr != end()) {
     if (EbmlId(**Itr) == EBML_ID(KaxBlockGroup)) {
       static_cast<KaxBlockGroup   *>(*Itr)->SetParent(*this);
     } else if (EbmlId(**Itr) == EBML_ID(KaxBlock)) {
@@ -66,7 +65,7 @@ KaxCluster::KaxCluster(const KaxCluster & ElementToClone)
       static_cast<KaxBlockVirtual *>(*Itr)->SetParent(*this);
 #endif // MATROSKA_VERSION
     }
-        ++Itr;
+    ++Itr;
   }
 }
 
@@ -153,8 +152,8 @@ bool KaxCluster::AddFrame(const KaxTrackEntry & track, uint64 timecode, DataBuff
 filepos_t KaxCluster::Render(IOCallback & output, KaxCues & CueToUpdate, bool bSaveDefault)
 {
   filepos_t Result = 0;
-    size_t Index;
-    EBML_MASTER_ITERATOR TrkItr, Itr;
+  size_t Index;
+  EBML_MASTER_ITERATOR TrkItr, Itr;
 
   // update the Timecode of the Cluster before writing
   KaxClusterTimecode * Timecode = static_cast<KaxClusterTimecode *>(this->FindElt(EBML_INFO(KaxClusterTimecode)));
@@ -165,17 +164,13 @@ filepos_t KaxCluster::Render(IOCallback & output, KaxCues & CueToUpdate, bool bS
 
     // SilentTracks handling
     // check the parent cluster for existing tracks and see if they are contained in this cluster or not
-    if (bSilentTracksUsed)
-    {
+    if (bSilentTracksUsed) {
       KaxTracks & MyTracks = *static_cast<KaxTracks *>(ParentSegment->FindElt(EBML_INFO(KaxTracks)));
-          for (TrkItr = MyTracks.begin(); TrkItr != MyTracks.end(); ++TrkItr)
-            {
-        if (EbmlId(*(*TrkItr)) == EBML_ID(KaxTrackEntry))
-        {
+      for (TrkItr = MyTracks.begin(); TrkItr != MyTracks.end(); ++TrkItr) {
+        if (EbmlId(*(*TrkItr)) == EBML_ID(KaxTrackEntry)) {
           KaxTrackEntry & entry = *static_cast<KaxTrackEntry *>(*TrkItr);
           uint32 tracknum = entry.TrackNumber();
-                  for (Itr = begin(); Itr != end(); ++Itr)
-                    {
+          for (Itr = begin(); Itr != end(); ++Itr) {
             if (EbmlId(*(*Itr)) == EBML_ID(KaxBlockGroup)) {
               KaxBlockGroup & group = *static_cast<KaxBlockGroup *>(*Itr);
               if (group.TrackNumber() == tracknum)
@@ -183,8 +178,7 @@ filepos_t KaxCluster::Render(IOCallback & output, KaxCues & CueToUpdate, bool bS
             }
           }
           // the track wasn't found in this cluster
-          if (Itr == end())
-          {
+          if (Itr == end()) {
             KaxClusterSilentTracks * SilentTracks = static_cast<KaxClusterSilentTracks *>(this->FindFirstElt(EBML_INFO(KaxClusterSilentTracks)));
             assert(SilentTracks != NULL); // the flag bSilentTracksUsed should be set when creating the Cluster
             KaxClusterSilentTrackNumber * trackelt = static_cast<KaxClusterSilentTrackNumber *>(SilentTracks->AddNewElt(EBML_INFO(KaxClusterSilentTrackNumber)));
@@ -197,16 +191,14 @@ filepos_t KaxCluster::Render(IOCallback & output, KaxCues & CueToUpdate, bool bS
     Result = EbmlMaster::Render(output, bSaveDefault);
     // For all Blocks add their position on the CueEntry
 
-        for (Itr = begin(); Itr != end(); ++Itr)
-        {
+    for (Itr = begin(); Itr != end(); ++Itr) {
       if (EbmlId(*(*Itr)) == EBML_ID(KaxBlockGroup)) {
         CueToUpdate.PositionSet(*static_cast<const KaxBlockGroup *>(*Itr));
       }
     }
   } else {
     // new school, using KaxBlockBlob
-    for (Index = 0; Index<Blobs.size(); Index++)
-    {
+    for (Index = 0; Index<Blobs.size(); Index++) {
 #if MATROSKA_VERSION >= 2
       if (Blobs[Index]->IsSimpleBlock())
         PushElement( (KaxSimpleBlock&) *Blobs[Index] );
@@ -217,22 +209,18 @@ filepos_t KaxCluster::Render(IOCallback & output, KaxCues & CueToUpdate, bool bS
 
     // SilentTracks handling
     // check the parent cluster for existing tracks and see if they are contained in this cluster or not
-    if (bSilentTracksUsed)
-    {
+    if (bSilentTracksUsed) {
       KaxTracks & MyTracks = *static_cast<KaxTracks *>(ParentSegment->FindElt(EBML_INFO(KaxTracks)));
-          for (TrkItr = MyTracks.begin(); TrkItr != MyTracks.end(); ++TrkItr)
-            {
-        if (EbmlId(*(*TrkItr)) == EBML_ID(KaxTrackEntry))
-        {
+      for (TrkItr = MyTracks.begin(); TrkItr != MyTracks.end(); ++TrkItr) {
+        if (EbmlId(*(*TrkItr)) == EBML_ID(KaxTrackEntry)) {
           KaxTrackEntry & entry = *static_cast<KaxTrackEntry *>(*TrkItr);
           uint32 tracknum = entry.TrackNumber();
           for (Index = 0; Index<Blobs.size(); Index++) {
             if (((KaxInternalBlock&)*Blobs[Index]).TrackNum() == tracknum)
-                break; // this track is used
+              break; // this track is used
           }
           // the track wasn't found in this cluster
-          if (Index == ListSize())
-          {
+          if (Index == ListSize()) {
             KaxClusterSilentTracks * SilentTracks = static_cast<KaxClusterSilentTracks *>(this->FindFirstElt(EBML_INFO(KaxClusterSilentTracks)));
             assert(SilentTracks != NULL); // the flag bSilentTracksUsed should be set when creating the Cluster
             KaxClusterSilentTrackNumber * trackelt = static_cast<KaxClusterSilentTrackNumber *>(SilentTracks->AddNewElt(EBML_INFO(KaxClusterSilentTrackNumber)));
@@ -301,9 +289,8 @@ KaxBlockGroup & KaxCluster::GetNewBlock()
 
 void KaxCluster::ReleaseFrames()
 {
-    EBML_MASTER_ITERATOR Itr;
-    for (Itr = begin(); Itr != end(); ++Itr)
-    {
+  EBML_MASTER_ITERATOR Itr;
+  for (Itr = begin(); Itr != end(); ++Itr) {
     if (EbmlId(*(*Itr)) == EBML_ID(KaxBlockGroup)) {
       static_cast<KaxBlockGroup*>(*Itr)->ReleaseFrames();
     }

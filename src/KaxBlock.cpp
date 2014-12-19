@@ -537,7 +537,8 @@ filepos_t KaxInternalBlock::ReadData(IOCallback & input, ScopeMode ReadFully)
           cursor += SizeRead;
           LastBufferSize -= FrameSize + SizeRead;
         }
-        SizeList[Index] = LastBufferSize;
+        if (Index <= FrameNum) // Safety check if FrameNum == 0
+          SizeList[Index] = LastBufferSize;
         break;
       case LACING_FIXED:
         for (Index=0; Index<=FrameNum; Index++) {

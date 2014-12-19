@@ -1,3 +1,8 @@
+2014-12-19  Moritz Bunkus  <moritz@bunkus.org>
+
+        * KaxBlock::ReadInternalHead(): fixed a off-by-one buffer overflow
+        if with EBML lacing and exactly one frame in the lace.
+
 2013-09-17 mosu
 New 1.4.1 version:
     - Added new elements/classes DiscardPadding, CodecDelay and

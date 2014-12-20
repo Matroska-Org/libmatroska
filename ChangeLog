@@ -1,3 +1,9 @@
+2014-12-20  Moritz Bunkus  <moritz@bunkus.org>
+
+        * KaxBlock::ReadData(): fixed several instances of unchecked
+        memory access leading to invalid memory access/segmentation faults
+        with invalid or broken data inside block groups/simple blocks.
+
 2014-12-19  Moritz Bunkus  <moritz@bunkus.org>
 
         * KaxBlock::ReadInternalHead(): fixed a off-by-one buffer overflow

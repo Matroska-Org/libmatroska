@@ -4,7 +4,7 @@
 # source files.
 
 echo 'Duplicate IDs:'
-grep -h '^EbmlId.*_TheId' ../../src/*cpp | \
+grep -h '^EbmlId.*_TheId' src/*cpp | \
   sed -e 's/TheId/TheId /' | \
   awk '{ print $3 }' | \
   sed -e 's/(//' -e 's/,//' | \
@@ -13,6 +13,6 @@ grep -h '^EbmlId.*_TheId' ../../src/*cpp | \
 ( while read id ; do
     echo ''
     echo ${id}:
-    grep -i $id ../../src/*cpp
+    grep -i $id src/*cpp
   done )
 

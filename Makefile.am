@@ -26,7 +26,7 @@ libmatroska_la_SOURCES = \
 	src/KaxSemantic.cpp \
 	src/KaxTracks.cpp \
 	src/KaxVersion.cpp
-libmatroska_la_LDFLAGS = -version-info 6:0:0 -no-undefined
+libmatroska_la_LDFLAGS = $(EBML_LIBS) -version-info 6:0:0 -no-undefined
 
 nobase_include_HEADERS = \
 	matroska/c/libmatroska.h \

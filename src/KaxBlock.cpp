@@ -89,7 +89,7 @@ KaxInternalBlock::KaxInternalBlock(const KaxInternalBlock & ElementToClone)
   std::vector<DataBuffer *>::iterator myItr = myBuffers.begin();
   while (Itr != ElementToClone.myBuffers.end()) {
     *myItr = (*Itr)->Clone();
-    Itr++; myItr++;
+    ++Itr; ++myItr;
   }
 }
 

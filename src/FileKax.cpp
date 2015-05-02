@@ -280,7 +280,7 @@ inline bool FileMatroska::IsMyTrack(const Track * aTrack) const
   if (aTrack == 0)
     throw 0;
 
-  for (std::vector<Track*>::const_iterator i = myTracks.begin(); i != myTracks.end(); i ++) {
+  for (std::vector<Track*>::const_iterator i = myTracks.begin(); i != myTracks.end(); ++i) {
     if (*i == aTrack)
       break;
   }
@@ -296,7 +296,7 @@ void FileMatroska::SelectReadingTrack(Track * aTrack, bool select)
   if (IsMyTrack(aTrack)) {
     // here we have the right track
     // check if it's not already selected
-    for (std::vector<uint8>::iterator j = mySelectedTracks.begin(); j != mySelectedTracks.end(); j ++) {
+    for (std::vector<uint8>::iterator j = mySelectedTracks.begin(); j != mySelectedTracks.end(); ++j) {
       if (*j == aTrack->TrackNumber())
         break;
     }
@@ -314,7 +314,7 @@ inline bool FileMatroska::IsReadingTrack(const uint8 aTrackNumber) const
 {
   for (std::vector<uint8>::const_iterator trackIdx = mySelectedTracks.begin();
        trackIdx != mySelectedTracks.end() && *trackIdx < aTrackNumber;
-       trackIdx++) {}
+       ++trackIdx) {}
 
   if (trackIdx == mySelectedTracks.end())
     return false;

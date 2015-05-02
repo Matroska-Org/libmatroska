@@ -822,6 +822,7 @@ int main(int argc, char **argv)
       }
       else cout << "received a frame from an unwanted track" << endl;
   }
+  delete[] Tracks;
 #endif // OLD
     }
     catch (exception & Ex)

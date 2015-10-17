@@ -1,4 +1,4 @@
-AC_INIT([libmatroska], [1.4.2])
+AC_INIT([libmatroska], [1.4.3])
 AC_CONFIG_AUX_DIR([build-aux])
 AC_CONFIG_HEADERS([config.h])
 AC_CONFIG_MACRO_DIR([m4])

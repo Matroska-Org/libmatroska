@@ -1,3 +1,16 @@
+2015-10-17  Moritz Bunkus  <moritz@bunkus.org>
+
+        * Released v1.4.3.
+
+2015-05-02  Daniel Winzen  <d@winzen4.de>
+
+        * all: a couple of optimizations in the main library and a memory
+        leak fix in the tests
+
+2015-02-01  Jan Engelhardt  <jengelh@inai.de>
+
+        * build system: fix linking against libEBML
+
 2015-01-04  Moritz Bunkus  <moritz@bunkus.org>
 
         * Released v1.4.2.

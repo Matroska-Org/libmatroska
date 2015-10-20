@@ -1,5 +1,7 @@
 2015-10-20  Moritz Bunkus  <moritz@bunkus.org>
 
+        * Released v1.4.4.
+
         * KaxInternalBlock::ReadData(): Fixed an invalid memory
         access. When reading a block group or a simple block that uses
         EBML lacing the frame sizes indicated in the lacing weren't

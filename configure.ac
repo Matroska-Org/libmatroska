@@ -9,6 +9,6 @@ AC_ARG_ENABLE([debug],
 	AS_HELP_STRING([--enable-debug], [Add -g -DDEBUG to compile flags]),
 	[enable_debug="$withval"], [enable_debug=no])
 AM_CONDITIONAL([ENABLE_DEBUG], [test "$enable_debug" = yes])
-PKG_CHECK_MODULES([EBML],[libebml >= 1.3.1])
+PKG_CHECK_MODULES([EBML],[libebml >= 1.3.3])
 AC_CONFIG_FILES([Makefile libmatroska.pc])
 AC_OUTPUT

@@ -529,6 +529,8 @@ filepos_t KaxInternalBlock::ReadData(IOCallback & input, ScopeMode ReadFully)
           case LACING_EBML:
             SizeRead = LastBufferSize;
             FrameSize = ReadCodedSizeValue(BufferStart + Mem.GetPosition(), SizeRead, SizeUnknown);
+            if (!FrameSize || (static_cast<uint32>(FrameSize + SizeRead) > LastBufferSize))
+              throw SafeReadIOCallback::EndOfStreamX(SizeRead);
             SizeList[0] = FrameSize;
             Mem.Skip(SizeRead);
             LastBufferSize -= FrameSize + SizeRead;
@@ -537,6 +539,8 @@ filepos_t KaxInternalBlock::ReadData(IOCallback & input, ScopeMode ReadFully)
               // get the size of the frame
               SizeRead = LastBufferSize;
               FrameSize += ReadCodedSizeSignedValue(BufferStart + Mem.GetPosition(), SizeRead, SizeUnknown);
+              if (!FrameSize || (static_cast<uint32>(FrameSize + SizeRead) > LastBufferSize))
+                throw SafeReadIOCallback::EndOfStreamX(SizeRead);
               SizeList[Index] = FrameSize;
               Mem.Skip(SizeRead);
               LastBufferSize -= FrameSize + SizeRead;

@@ -1,3 +1,13 @@
+2015-10-20  Moritz Bunkus  <moritz@bunkus.org>
+
+        * KaxInternalBlock::ReadData(): Fixed an invalid memory
+        access. When reading a block group or a simple block that uses
+        EBML lacing the frame sizes indicated in the lacing weren't
+        checked against the available number of bytes. If the indicated
+        frame size was bigger than the whole block's size the parser would
+        read beyond the end of the buffer resulting in a heap information
+        leak.
+
 2015-10-17  Moritz Bunkus  <moritz@bunkus.org>
 
         * Released v1.4.3.

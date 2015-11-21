@@ -1,3 +1,9 @@
+2015-11-21  Moritz Bunkus  <moritz@bunkus.org>
+
+        * KaxVersion.cpp: in order to enable deterministic builds the
+        KaxCodeDate variable has been set to "Unknown" instead of the date
+        and time of compilation. Patch by Ed Schouten <ed@nuxi.nl>.
+
 2015-10-20  Moritz Bunkus  <moritz@bunkus.org>
 
         * Released v1.4.4.

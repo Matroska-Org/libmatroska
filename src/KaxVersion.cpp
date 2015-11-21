@@ -38,6 +38,10 @@
 START_LIBMATROSKA_NAMESPACE
 
 const std::string KaxCodeVersion = "1.4.4";
-const std::string KaxCodeDate    = __TIMESTAMP__;
+
+// Up to version 1.4.4 this library exported a build date string. As
+// this made the build non-reproducible, replace it by a placeholder to
+// remain binary compatible.
+const std::string KaxCodeDate = "Unknown";
 
 END_LIBMATROSKA_NAMESPACE

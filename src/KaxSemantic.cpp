@@ -336,6 +336,7 @@ DEFINE_MKX_BINARY (KaxTrackTranslateTrackID, 0x66A5, 2, KaxTrackTranslate, "Trac
 DEFINE_START_SEMANTIC(KaxTrackVideo)
 #if MATROSKA_VERSION >= 2
 DEFINE_SEMANTIC_ITEM(true, true, KaxVideoFlagInterlaced)
+DEFINE_SEMANTIC_ITEM(true, true, KaxVideoFieldOrder)
 DEFINE_SEMANTIC_ITEM(false, true, KaxVideoStereoMode)
 DEFINE_SEMANTIC_ITEM(false, true, KaxVideoAlphaMode)
 DEFINE_SEMANTIC_ITEM(false, true, KaxOldStereoMode) // not supported
@@ -360,6 +361,7 @@ DEFINE_END_SEMANTIC(KaxTrackVideo)
 DEFINE_MKX_MASTER(KaxTrackVideo, 0xE0, 1, KaxTrackEntry, "TrackVideo");
 #if MATROSKA_VERSION >= 2
 DEFINE_MKX_UINTEGER_DEF(KaxVideoFlagInterlaced, 0x9A, 1, KaxTrackVideo, "VideoFlagInterlaced", 0);
+DEFINE_MKX_UINTEGER_DEF(KaxVideoFieldOrder, 0x9D, 1, KaxTrackVideo, "VideoFieldOrder", 2);
 DEFINE_MKX_UINTEGER_DEF(KaxVideoStereoMode, 0x53B8, 2, KaxTrackVideo, "VideoStereoMode", 0);
 DEFINE_MKX_UINTEGER_DEF(KaxVideoAlphaMode, 0x53C0, 2, KaxTrackVideo, "VideoAlphaMode", 0);
 DEFINE_MKX_UINTEGER(KaxOldStereoMode, 0x53B9, 2, KaxTrackVideo, "OldStereoMode");

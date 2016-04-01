@@ -336,6 +336,9 @@ DECLARE_MKX_MASTER(KaxTrackVideo)
 DECLARE_MKX_UINTEGER(KaxVideoFlagInterlaced)
 };
 
+DECLARE_MKX_UINTEGER(KaxVideoFieldOrder)
+};
+
 DECLARE_MKX_UINTEGER(KaxVideoStereoMode)
 };
 

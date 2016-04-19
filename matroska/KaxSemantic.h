@@ -408,10 +408,10 @@ DECLARE_MKX_UINTEGER(KaxVideoColourMatrixCoeffs)
 DECLARE_MKX_UINTEGER(KaxVideoColourBitsPerChannel)
 };
 
-DECLARE_MKX_UINTEGER(KaxVideoColourChromeSubsamplingHorz)
+DECLARE_MKX_UINTEGER(KaxVideoColourChromaSubsamplingHorz)
 };
 
-DECLARE_MKX_UINTEGER(KaxVideoColourChromeSubsamplingVert)
+DECLARE_MKX_UINTEGER(KaxVideoColourChromaSubsamplingVert)
 };
 
 DECLARE_MKX_UINTEGER(KaxVideoColourCbSubsamplingHorz)
@@ -441,37 +441,37 @@ DECLARE_MKX_UINTEGER(KaxVideoColourMaxCLL)
 DECLARE_MKX_UINTEGER(KaxVideoColourMaxFALL)
 };
 
-DECLARE_MKX_MASTER(KaxVideoMasteringMetadata)
+DECLARE_MKX_MASTER(KaxVideoColourMasteringMetadata)
 };
 
-DECLARE_MKX_FLOAT(KaxVideoColorPrimaryRChromaticityX)
+DECLARE_MKX_FLOAT(KaxVideoColourPrimaryRChromaticityX)
 };
 
-DECLARE_MKX_FLOAT(KaxVideoColorPrimaryRChromaticityY)
+DECLARE_MKX_FLOAT(KaxVideoColourPrimaryRChromaticityY)
 };
 
-DECLARE_MKX_FLOAT(KaxVideoColorPrimaryGChromaticityX)
+DECLARE_MKX_FLOAT(KaxVideoColourPrimaryGChromaticityX)
 };
 
-DECLARE_MKX_FLOAT(KaxVideoColorPrimaryGChromaticityY)
+DECLARE_MKX_FLOAT(KaxVideoColourPrimaryGChromaticityY)
 };
 
-DECLARE_MKX_FLOAT(KaxVideoColorPrimaryBChromaticityX)
+DECLARE_MKX_FLOAT(KaxVideoColourPrimaryBChromaticityX)
 };
 
-DECLARE_MKX_FLOAT(KaxVideoColorPrimaryBChromaticityY)
+DECLARE_MKX_FLOAT(KaxVideoColourPrimaryBChromaticityY)
 };
 
-DECLARE_MKX_FLOAT(KaxVideoColorWhitePointChromaticityX)
+DECLARE_MKX_FLOAT(KaxVideoColourWhitePointChromaticityX)
 };
 
-DECLARE_MKX_FLOAT(KaxVideoColorWhitePointChromaticityY)
+DECLARE_MKX_FLOAT(KaxVideoColourWhitePointChromaticityY)
 };
 
-DECLARE_MKX_FLOAT(KaxVideoColorLuminanceMax)
+DECLARE_MKX_FLOAT(KaxVideoColourLuminanceMax)
 };
 
-DECLARE_MKX_FLOAT(KaxVideoColorLuminanceMin)
+DECLARE_MKX_FLOAT(KaxVideoColourLuminanceMin)
 };
 
 #endif

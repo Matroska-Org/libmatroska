@@ -816,6 +816,25 @@ DECLARE_MKX_UNISTRING(KaxTagString)
 DECLARE_MKX_BINARY (KaxTagBinary)
 };
 
+
+DECLARE_MKX_MASTER(KaxVideoProjection)
+};
+
+DECLARE_MKX_UINTEGER(KaxVideoProjectionType)
+};
+
+DECLARE_MKX_BINARY(KaxVideoProjectionPrivate)
+};
+
+DECLARE_MKX_FLOAT(KaxVideoProjectionPoseYaw)
+};
+
+DECLARE_MKX_FLOAT(KaxVideoProjectionPosePitch)
+};
+
+DECLARE_MKX_FLOAT(KaxVideoProjectionPoseRoll)
+};
+
 END_LIBMATROSKA_NAMESPACE
 
 #endif // LIBMATROSKA_SEMANTIC_H

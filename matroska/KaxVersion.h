@@ -40,7 +40,7 @@
 
 START_LIBMATROSKA_NAMESPACE
 
-#define LIBMATROSKA_VERSION 0x010405
+#define LIBMATROSKA_VERSION 0x010406
 
 extern const std::string KaxCodeVersion;
 extern const std::string KaxCodeDate;

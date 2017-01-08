@@ -53,19 +53,19 @@ DECLARE_MKX_MASTER_CONS(KaxCluster)
     /*!
       \brief Addition of a frame without references
 
-      \param the timecode is expressed in nanoseconds, relative to the beggining of the Segment
+      \param timecode the timecode is expressed in nanoseconds, relative to the beggining of the Segment
     */
     bool AddFrame(const KaxTrackEntry & track, uint64 timecode, DataBuffer & buffer, KaxBlockGroup * & MyNewBlock, LacingType lacing = LACING_AUTO);
     /*!
       \brief Addition of a frame with a backward reference (P frame)
-      \param the timecode is expressed in nanoseconds, relative to the beggining of the Segment
+      \param timecode the timecode is expressed in nanoseconds, relative to the beggining of the Segment
 
     */
     bool AddFrame(const KaxTrackEntry & track, uint64 timecode, DataBuffer & buffer, KaxBlockGroup * & MyNewBlock, const KaxBlockGroup & PastBlock, LacingType lacing = LACING_AUTO);
 
     /*!
       \brief Addition of a frame with a backward+forward reference (B frame)
-      \param the timecode is expressed in nanoseconds, relative to the beggining of the Segment
+      \param timecode the timecode is expressed in nanoseconds, relative to the beggining of the Segment
 
     */
     bool AddFrame(const KaxTrackEntry & track, uint64 timecode, DataBuffer & buffer, KaxBlockGroup * & MyNewBlock, const KaxBlockGroup & PastBlock, const KaxBlockGroup & ForwBlock, LacingType lacing = LACING_AUTO);

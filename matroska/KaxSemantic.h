@@ -1,9 +1,10 @@
 /**********************************************************************
 **  DO NOT EDIT, GENERATED WITH DATA2LIB
+**  https://github.com/Matroska-Org/foundation-source/tree/master/spectool
 **
 **  libmatroska : parse Matroska files, see http://www.matroska.org/
 **
-**  Copyright (c) 2002-2010, Matroska (non-profit organisation)
+**  Copyright (c) 2002-2017, Matroska (non-profit organisation)
 **  All rights reserved.
 **
 ** This file is part of libmatroska.
@@ -208,6 +209,7 @@ DECLARE_MKX_BINARY (KaxEncryptedBlock)
 public:
   filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault);
 };
+
 #endif
 
 DECLARE_MKX_MASTER(KaxTracks)
@@ -473,6 +475,26 @@ DECLARE_MKX_FLOAT(KaxVideoLuminanceMax)
 
 DECLARE_MKX_FLOAT(KaxVideoLuminanceMin)
 };
+
+DECLARE_MKX_MASTER(KaxVideoProjection)
+};
+
+
+DECLARE_MKX_UINTEGER(KaxVideoProjectionType)
+};
+
+DECLARE_MKX_BINARY (KaxVideoProjectionPrivate)
+};
+
+DECLARE_MKX_FLOAT(KaxVideoProjectionPoseYaw)
+};
+
+DECLARE_MKX_FLOAT(KaxVideoProjectionPosePitch)
+};
+
+DECLARE_MKX_FLOAT(KaxVideoProjectionPoseRoll)
+};
+
 #endif
 
 DECLARE_MKX_MASTER(KaxTrackAudio)
@@ -634,6 +656,7 @@ DECLARE_MKX_UINTEGER(KaxCueRefCodecState)
 public:
   filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault);
 };
+
 #endif
 
 DECLARE_MKX_MASTER(KaxAttachments)
@@ -670,6 +693,7 @@ DECLARE_MKX_UINTEGER(KaxFileUsedStartTime)
 
 DECLARE_MKX_UINTEGER(KaxFileUsedEndTime)
 };
+
 #endif
 
 DECLARE_MKX_MASTER(KaxChapters)
@@ -814,25 +838,6 @@ DECLARE_MKX_UNISTRING(KaxTagString)
 };
 
 DECLARE_MKX_BINARY (KaxTagBinary)
-};
-
-
-DECLARE_MKX_MASTER(KaxVideoProjection)
-};
-
-DECLARE_MKX_UINTEGER(KaxVideoProjectionType)
-};
-
-DECLARE_MKX_BINARY(KaxVideoProjectionPrivate)
-};
-
-DECLARE_MKX_FLOAT(KaxVideoProjectionPoseYaw)
-};
-
-DECLARE_MKX_FLOAT(KaxVideoProjectionPosePitch)
-};
-
-DECLARE_MKX_FLOAT(KaxVideoProjectionPoseRoll)
 };
 
 END_LIBMATROSKA_NAMESPACE

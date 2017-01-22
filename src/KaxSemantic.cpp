@@ -1,9 +1,10 @@
 /**********************************************************************
 **  DO NOT EDIT, GENERATED WITH DATA2LIB
+**  https://github.com/Matroska-Org/foundation-source/tree/master/spectool
 **
 **  libmatroska : parse Matroska files, see http://www.matroska.org/
 **
-**  Copyright (c) 2002-2010, Matroska (non-profit organisation)
+**  Copyright (c) 2002-2017, Matroska (non-profit organisation)
 **  All rights reserved.
 **
 ** This file is part of libmatroska.
@@ -356,7 +357,6 @@ DEFINE_SEMANTIC_ITEM(false, true, KaxVideoColourSpace)
 DEFINE_SEMANTIC_ITEM(false, true, KaxVideoGamma) // not supported
 DEFINE_SEMANTIC_ITEM(false, true, KaxVideoFrameRate) // not supported
 DEFINE_SEMANTIC_ITEM(false, true, KaxVideoColour)
-
 DEFINE_SEMANTIC_ITEM(false, true, KaxVideoProjection)
 #endif // MATROSKA_VERSION
 DEFINE_END_SEMANTIC(KaxTrackVideo)
@@ -449,12 +449,12 @@ DEFINE_SEMANTIC_ITEM(true, true, KaxVideoProjectionPosePitch)
 DEFINE_SEMANTIC_ITEM(true, true, KaxVideoProjectionPoseRoll)
 DEFINE_END_SEMANTIC(KaxVideoProjection)
 
-DEFINE_MKX_MASTER(KaxVideoProjection, 0x7670, 2, KaxTrackVideo, "Projection");
-DEFINE_MKX_UINTEGER_DEF(KaxVideoProjectionType, 0x7671, 2, KaxVideoProjection, "ProjectionType", 0);
-DEFINE_MKX_BINARY(KaxVideoProjectionPrivate, 0x7672, 2, KaxVideoProjection, "ProjectionPrivate");
-DEFINE_MKX_FLOAT_DEF(KaxVideoProjectionPoseYaw, 0x7673, 2, KaxVideoProjection, "ProjectionPoseYaw", 0);
-DEFINE_MKX_FLOAT_DEF(KaxVideoProjectionPosePitch, 0x7674, 2, KaxVideoProjection, "ProjectionPosePitch", 0);
-DEFINE_MKX_FLOAT_DEF(KaxVideoProjectionPoseRoll, 0x7675, 2, KaxVideoProjection, "ProjectionPoseRoll", 0);
+DEFINE_MKX_MASTER(KaxVideoProjection, 0x7670, 2, KaxTrackVideo, "VideoProjection");
+DEFINE_MKX_UINTEGER_DEF(KaxVideoProjectionType, 0x7671, 2, KaxVideoProjection, "VideoProjectionType", 0);
+DEFINE_MKX_BINARY (KaxVideoProjectionPrivate, 0x7672, 2, KaxVideoProjection, "VideoProjectionPrivate");
+DEFINE_MKX_FLOAT_DEF(KaxVideoProjectionPoseYaw, 0x7673, 2, KaxVideoProjection, "VideoProjectionPoseYaw", 0);
+DEFINE_MKX_FLOAT_DEF(KaxVideoProjectionPosePitch, 0x7674, 2, KaxVideoProjection, "VideoProjectionPosePitch", 0);
+DEFINE_MKX_FLOAT_DEF(KaxVideoProjectionPoseRoll, 0x7675, 2, KaxVideoProjection, "VideoProjectionPoseRoll", 0);
 #endif
 
 DEFINE_START_SEMANTIC(KaxTrackAudio)

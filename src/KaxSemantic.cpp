@@ -255,6 +255,9 @@ DEFINE_SEMANTIC_ITEM(false, true, KaxTrackOffset) // not supported
 DEFINE_SEMANTIC_ITEM(true, true, KaxMaxBlockAdditionID)
 DEFINE_SEMANTIC_ITEM(false, true, KaxTrackName)
 DEFINE_SEMANTIC_ITEM(false, true, KaxTrackLanguage)
+#if MATROSKA_VERSION >= 2
+DEFINE_SEMANTIC_ITEM(false, true, KaxLanguageIETF)
+#endif // MATROSKA_VERSION
 DEFINE_SEMANTIC_ITEM(true, true, KaxCodecID)
 DEFINE_SEMANTIC_ITEM(false, true, KaxCodecPrivate)
 DEFINE_SEMANTIC_ITEM(false, true, KaxCodecName)
@@ -307,6 +310,9 @@ DEFINE_MKX_SINTEGER_DEF(KaxTrackOffset, 0x537F, 2, KaxTrackEntry, "TrackOffset",
 DEFINE_MKX_UINTEGER_DEF(KaxMaxBlockAdditionID, 0x55EE, 2, KaxTrackEntry, "MaxBlockAdditionID", 0);
 DEFINE_MKX_UNISTRING(KaxTrackName, 0x536E, 2, KaxTrackEntry, "TrackName");
 DEFINE_MKX_STRING_DEF(KaxTrackLanguage, 0x22B59C, 3, KaxTrackEntry, "TrackLanguage", "eng");
+#if MATROSKA_VERSION >= 2
+DEFINE_MKX_STRING(KaxLanguageIETF, 0x22B59D, 3, KaxTrackEntry, "LanguageIETF");
+#endif
 DEFINE_MKX_STRING(KaxCodecID, 0x86, 1, KaxTrackEntry, "CodecID");
 DEFINE_MKX_BINARY (KaxCodecPrivate, 0x63A2, 2, KaxTrackEntry, "CodecPrivate");
 DEFINE_MKX_UNISTRING(KaxCodecName, 0x258688, 3, KaxTrackEntry, "CodecName");
@@ -702,12 +708,18 @@ DEFINE_MKX_UINTEGER(KaxChapterTrackNumber, 0x89, 1, KaxChapterTrack, "ChapterTra
 DEFINE_START_SEMANTIC(KaxChapterDisplay)
 DEFINE_SEMANTIC_ITEM(true, true, KaxChapterString)
 DEFINE_SEMANTIC_ITEM(true, false, KaxChapterLanguage)
+#if MATROSKA_VERSION >= 2
+DEFINE_SEMANTIC_ITEM(false, true, KaxChapLanguageIETF)
+#endif // MATROSKA_VERSION
 DEFINE_SEMANTIC_ITEM(false, false, KaxChapterCountry)
 DEFINE_END_SEMANTIC(KaxChapterDisplay)
 
 DEFINE_MKX_MASTER(KaxChapterDisplay, 0x80, 1, KaxChapterAtom, "ChapterDisplay");
 DEFINE_MKX_UNISTRING(KaxChapterString, 0x85, 1, KaxChapterDisplay, "ChapterString");
 DEFINE_MKX_STRING_DEF(KaxChapterLanguage, 0x437C, 2, KaxChapterDisplay, "ChapterLanguage", "eng");
+#if MATROSKA_VERSION >= 2
+DEFINE_MKX_STRING(KaxChapLanguageIETF, 0x437D, 2, KaxChapterDisplay, "ChapLanguageIETF");
+#endif
 DEFINE_MKX_STRING(KaxChapterCountry, 0x437E, 2, KaxChapterDisplay, "ChapterCountry");
 
 DEFINE_START_SEMANTIC(KaxChapterProcess)
@@ -763,6 +775,9 @@ DEFINE_START_SEMANTIC(KaxTagSimple)
 DEFINE_SEMANTIC_ITEM(false, false, KaxTagSimple) // recursive
 DEFINE_SEMANTIC_ITEM(true, true, KaxTagName)
 DEFINE_SEMANTIC_ITEM(true, true, KaxTagLangue)
+#if MATROSKA_VERSION >= 2
+DEFINE_SEMANTIC_ITEM(false, true, KaxTagLanguageIETF)
+#endif // MATROSKA_VERSION
 DEFINE_SEMANTIC_ITEM(true, true, KaxTagDefault)
 DEFINE_SEMANTIC_ITEM(false, true, KaxTagString)
 DEFINE_SEMANTIC_ITEM(false, true, KaxTagBinary)
@@ -771,6 +786,9 @@ DEFINE_END_SEMANTIC(KaxTagSimple)
 DEFINE_MKX_MASTER(KaxTagSimple, 0x67C8, 2, KaxTag, "TagSimple");
 DEFINE_MKX_UNISTRING(KaxTagName, 0x45A3, 2, KaxTagSimple, "TagName");
 DEFINE_MKX_STRING_DEF(KaxTagLangue, 0x447A, 2, KaxTagSimple, "TagLanguage", "und");
+#if MATROSKA_VERSION >= 2
+DEFINE_MKX_STRING(KaxTagLanguageIETF, 0x447B, 2, KaxTagSimple, "TagLanguageIETF");
+#endif
 DEFINE_MKX_UINTEGER_DEF(KaxTagDefault, 0x4484, 2, KaxTagSimple, "TagDefault", 1);
 DEFINE_MKX_UNISTRING(KaxTagString, 0x4487, 2, KaxTagSimple, "TagString");
 DEFINE_MKX_BINARY (KaxTagBinary, 0x4485, 2, KaxTagSimple, "TagBinary");

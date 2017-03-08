@@ -274,6 +274,11 @@ DECLARE_MKX_UNISTRING(KaxTrackName)
 DECLARE_MKX_STRING(KaxTrackLanguage)
 };
 
+#if MATROSKA_VERSION >= 2
+DECLARE_MKX_STRING(KaxLanguageIETF)
+};
+#endif
+
 DECLARE_MKX_STRING(KaxCodecID)
 };
 
@@ -768,6 +773,11 @@ DECLARE_MKX_UNISTRING(KaxChapterString)
 DECLARE_MKX_STRING(KaxChapterLanguage)
 };
 
+#if MATROSKA_VERSION >= 2
+DECLARE_MKX_STRING(KaxChapLanguageIETF)
+};
+#endif
+
 DECLARE_MKX_STRING(KaxChapterCountry)
 };
 
@@ -830,6 +840,11 @@ DECLARE_MKX_UNISTRING(KaxTagName)
 
 DECLARE_MKX_STRING(KaxTagLangue)
 };
+
+#if MATROSKA_VERSION >= 2
+DECLARE_MKX_STRING(KaxTagLanguageIETF)
+};
+#endif
 
 DECLARE_MKX_UINTEGER(KaxTagDefault)
 };

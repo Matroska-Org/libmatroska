@@ -1,5 +1,8 @@
 2017-03-10  Moritz Bunkus  <moritz@bunkus.org>
 
+        * Released v1.4.7 with the single change of setting the version
+        number in the "KaxCodeVersion" variable correctly.
+
         * Released v1.4.6.
 
         * KaxSemantic: add new elements dealing with 360°/VR content and

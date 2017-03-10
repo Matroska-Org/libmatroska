@@ -1,3 +1,10 @@
+2017-03-10  Moritz Bunkus  <moritz@bunkus.org>
+
+        * Released v1.4.6.
+
+        * KaxSemantic: add new elements dealing with 360°/VR content and
+        for language descriptors based on IETF BPC 47.
+
 2016-07-02  Moritz Bunkus  <moritz@bunkus.org>
 
         * Released v1.4.5.

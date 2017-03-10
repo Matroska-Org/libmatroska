@@ -13,7 +13,7 @@ GROUP libmatroska_coremake_automake
 
 LIB matroska
 {
-  PROJECT_VERSION 1.4.6
+  PROJECT_VERSION 1.4.7
   USE libmatroska_coremake_automake
 
   INCLUDE .

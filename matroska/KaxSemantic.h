@@ -168,14 +168,10 @@ DECLARE_MKX_MASTER(KaxSlices)
 
 
 DECLARE_MKX_MASTER(KaxTimeSlice)
-public:
-  filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault);
 };
 
 
 DECLARE_MKX_UINTEGER(KaxSliceLaceNumber)
-public:
-  filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault);
 };
 
 #if MATROSKA_VERSION >= 2

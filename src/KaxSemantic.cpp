@@ -365,6 +365,9 @@ DEFINE_SEMANTIC_ITEM(false, true, KaxVideoFrameRate) // not supported
 DEFINE_SEMANTIC_ITEM(false, true, KaxVideoColour)
 DEFINE_SEMANTIC_ITEM(false, true, KaxVideoProjection)
 #endif // MATROSKA_VERSION
+#if MATROSKA_VERSION >= 4
+DEFINE_SEMANTIC_ITEM(false, true, KaxVideoColour)
+#endif // MATROSKA_VERSION
 DEFINE_END_SEMANTIC(KaxTrackVideo)
 
 DEFINE_MKX_MASTER(KaxTrackVideo, 0xE0, 1, KaxTrackEntry, "TrackVideo");
@@ -461,6 +464,73 @@ DEFINE_MKX_BINARY (KaxVideoProjectionPrivate, 0x7672, 2, KaxVideoProjection, "Vi
 DEFINE_MKX_FLOAT_DEF(KaxVideoProjectionPoseYaw, 0x7673, 2, KaxVideoProjection, "VideoProjectionPoseYaw", 0);
 DEFINE_MKX_FLOAT_DEF(KaxVideoProjectionPosePitch, 0x7674, 2, KaxVideoProjection, "VideoProjectionPosePitch", 0);
 DEFINE_MKX_FLOAT_DEF(KaxVideoProjectionPoseRoll, 0x7675, 2, KaxVideoProjection, "VideoProjectionPoseRoll", 0);
+#endif
+
+#if MATROSKA_VERSION >= 4
+DEFINE_START_SEMANTIC(KaxVideoColour)
+DEFINE_SEMANTIC_ITEM(false, false, KaxVideoColourMatrixCoeffs)
+DEFINE_SEMANTIC_ITEM(false, false, KaxVideoColourBitsPerChannel)
+DEFINE_SEMANTIC_ITEM(false, false, KaxVideoColourChromaSubsamplingHorz)
+DEFINE_SEMANTIC_ITEM(false, false, KaxVideoColourChromaSubsamplingVert)
+DEFINE_SEMANTIC_ITEM(false, false, KaxVideoColourCbSubsamplingHorz)
+DEFINE_SEMANTIC_ITEM(false, false, KaxVideoColourCbSubsamplingVert)
+DEFINE_SEMANTIC_ITEM(false, false, KaxVideoColourChromaSitingHorz)
+DEFINE_SEMANTIC_ITEM(false, false, KaxVideoColourChromaSitingVert)
+DEFINE_SEMANTIC_ITEM(false, false, KaxVideoColourRange)
+DEFINE_SEMANTIC_ITEM(false, false, KaxVideoColourTransferCharacteristics)
+DEFINE_SEMANTIC_ITEM(false, false, KaxVideoColourPrimaries)
+DEFINE_SEMANTIC_ITEM(false, false, KaxVideoColourMaxCLL)
+DEFINE_SEMANTIC_ITEM(false, false, KaxVideoColourMaxFALL)
+DEFINE_SEMANTIC_ITEM(false, false, KaxVideoColourMasteringMetadata)
+DEFINE_END_SEMANTIC(KaxVideoColour)
+#endif
+
+
+#if MATROSKA_VERSION >= 4
+DEFINE_MKX_MASTER(KaxVideoColour, 0x55B0, 2, KaxTrackVideo, "VideoColour");
+DEFINE_MKX_UINTEGER(KaxVideoColourMatrixCoeffs, 0x55B1, 2, KaxVideoColour, "VideoColourMatrixCoeffs")
+DEFINE_MKX_UINTEGER(KaxVideoColourBitsPerChannel, 0x55B2, 2, KaxVideoColour, "VideoColourBitsPerChannel")
+DEFINE_MKX_UINTEGER(KaxVideoColourChromaSubsamplingHorz, 0x55B3, 2, KaxVideoColour, "VideoColourChromaSubsamplingHorz")
+DEFINE_MKX_UINTEGER(KaxVideoColourChromaSubsamplingVert, 0x55B4, 2, KaxVideoColour, "VideoColourChromaSubsamplingVert")
+DEFINE_MKX_UINTEGER(KaxVideoColourCbSubsamplingHorz, 0x55B5, 2, KaxVideoColour, "VideoColourCbSubsamplingHorz")
+DEFINE_MKX_UINTEGER(KaxVideoColourCbSubsamplingVert, 0x55B6, 2, KaxVideoColour, "VideoColourCbSubsamplingVert")
+DEFINE_MKX_UINTEGER(KaxVideoColourChromaSitingHorz, 0x55B7, 2, KaxVideoColour, "VideoColourChromaSitingHorz")
+DEFINE_MKX_UINTEGER(KaxVideoColourChromaSitingVert, 0x55B8, 2, KaxVideoColour, "VideoColourChromaSitingVert")
+DEFINE_MKX_UINTEGER(KaxVideoColourRange, 0x55B9, 2, KaxVideoColour, "VideoColourRange")
+DEFINE_MKX_UINTEGER(KaxVideoColourTransferCharacteristics, 0x55BA, 2, KaxVideoColour, "VideoColourTransferCharacteristics")
+DEFINE_MKX_UINTEGER(KaxVideoColourPrimaries, 0x55BB, 2, KaxVideoColour, "VideoColourPrimaries")
+DEFINE_MKX_UINTEGER(KaxVideoColourMaxCLL, 0x55BC, 2, KaxVideoColour, "VideoColourMaxCLL")
+DEFINE_MKX_UINTEGER(KaxVideoColourMaxFALL, 0x55BD, 2, KaxVideoColour, "VideoColourMaxFALL")
+#endif
+
+#if MATROSKA_VERSION >= 4
+DEFINE_START_SEMANTIC(KaxVideoColourMasteringMetadata)
+DEFINE_SEMANTIC_ITEM(false, false, KaxVideoColourPrimaryRChromaticityX)
+DEFINE_SEMANTIC_ITEM(false, false, KaxVideoColourPrimaryRChromaticityY)
+DEFINE_SEMANTIC_ITEM(false, false, KaxVideoColourPrimaryGChromaticityX)
+DEFINE_SEMANTIC_ITEM(false, false, KaxVideoColourPrimaryGChromaticityY)
+DEFINE_SEMANTIC_ITEM(false, false, KaxVideoColourPrimaryBChromaticityX)
+DEFINE_SEMANTIC_ITEM(false, false, KaxVideoColourPrimaryBChromaticityY)
+DEFINE_SEMANTIC_ITEM(false, false, KaxVideoColourWhitePointChromaticityX)
+DEFINE_SEMANTIC_ITEM(false, false, KaxVideoColourWhitePointChromaticityY)
+DEFINE_SEMANTIC_ITEM(false, false, KaxVideoColourLuminanceMax)
+DEFINE_SEMANTIC_ITEM(false, false, KaxVideoColourLuminanceMin)
+DEFINE_END_SEMANTIC(KaxVideoColourMasteringMetadata)
+#endif
+
+
+#if MATROSKA_VERSION >= 4
+DEFINE_MKX_MASTER(KaxVideoColourMasteringMetadata, 0x55D0, 2, KaxVideoColour, "VideoColourMasteringMetadata")
+DEFINE_MKX_UINTEGER(KaxVideoColourPrimaryRChromaticityX, 0x55D1, 2, KaxVideoColourMasteringMetadata, "VideoColourPrimaryRChromaticityX")
+DEFINE_MKX_UINTEGER(KaxVideoColourPrimaryRChromaticityY, 0x55D2, 2, KaxVideoColourMasteringMetadata, "VideoColourPrimaryRChromaticityY")
+DEFINE_MKX_UINTEGER(KaxVideoColourPrimaryGChromaticityX, 0x55D3, 2, KaxVideoColourMasteringMetadata, "VideoColourPrimaryGChromaticityX")
+DEFINE_MKX_UINTEGER(KaxVideoColourPrimaryGChromaticityY, 0x55D4, 2, KaxVideoColourMasteringMetadata, "VideoColourPrimaryGChromaticityY")
+DEFINE_MKX_UINTEGER(KaxVideoColourPrimaryBChromaticityX, 0x55D5, 2, KaxVideoColourMasteringMetadata, "VideoColourPrimaryBChromaticityX")
+DEFINE_MKX_UINTEGER(KaxVideoColourPrimaryBChromaticityY, 0x55D6, 2, KaxVideoColourMasteringMetadata, "VideoColourPrimaryBChromaticityY")
+DEFINE_MKX_UINTEGER(KaxVideoColourWhitePointChromaticityX, 0x55D7, 2, KaxVideoColourMasteringMetadata, "VideoColourWhitePointChromaticityX")
+DEFINE_MKX_UINTEGER(KaxVideoColourWhitePointChromaticityY, 0x55D8, 2, KaxVideoColourMasteringMetadata, "VideoColourWhitePointChromaticityY")
+DEFINE_MKX_UINTEGER(KaxVideoColourLuminanceMax, 0x55D9, 2, KaxVideoColourMasteringMetadata, "VideoColourLuminanceMax")
+DEFINE_MKX_UINTEGER(KaxVideoColourLuminanceMin, 0x55DA, 2, KaxVideoColourMasteringMetadata, "VideoColourLuminanceMin")
 #endif
 
 DEFINE_START_SEMANTIC(KaxTrackAudio)

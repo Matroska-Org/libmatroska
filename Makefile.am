@@ -64,3 +64,5 @@ pkgconfigdir = ${libdir}/pkgconfig
 pkgconfig_DATA = libmatroska.pc
 
 ${pkgconfig_DATA}: config.status
+
+EXTRA_DIST = CMakeLists.txt cmake\MatroskaConfig.cmake

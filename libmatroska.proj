@@ -5,7 +5,7 @@ CONFIG_FILE config.h { NO_INCLUDE . }
 GROUP libmatroska_coremake_automake
 {
   // from automake
-  DEFINE HAVE_CONFIG_H // from CONFIG_HEADERS 
+  DEFINE HAVE_CONFIG_H // from CONFIG_HEADERS
   NO_STDAFX .
   NO_PROJECT .
   HEADER config.h
@@ -13,7 +13,7 @@ GROUP libmatroska_coremake_automake
 
 LIB matroska
 {
-  PROJECT_VERSION 1.4.7
+  PROJECT_VERSION 1.4.8
   USE libmatroska_coremake_automake
 
   INCLUDE .

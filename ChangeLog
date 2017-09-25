@@ -1,3 +1,8 @@
+2017-09-25  Moritz Bunkus  <moritz@bunkus.org>
+
+        * KaxBlockGroup, KaxSimpleBlock: fixed writing the block header
+        if the track number is 128.
+
 2017-03-10  Moritz Bunkus  <moritz@bunkus.org>
 
         * Released v1.4.7 with the single change of setting the version

@@ -1,4 +1,4 @@
-# Contributor Covenant Code of Conduct
+# Contributor Covenant Code of Conduct (+added language)
 
 ## Our Pledge
 
@@ -30,6 +30,11 @@ Examples of unacceptable behavior by participants include:
   address, without explicit permission
 * Other conduct which could reasonably be considered inappropriate in a
   professional setting
+
+## External Behavior (added text)
+
+Violations of this code outside these spaces may affect a person's ability to
+participate within them.
 
 ## Our Responsibilities
 

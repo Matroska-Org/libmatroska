@@ -3,6 +3,10 @@
         * Converted the build system from autoconf/automake to
         cmake. Patches by Github user "evpobr" with fixes by myself.
 
+2017-11-18  Steve Lhomme <slhomme@matroska.org>
+
+        * Added a code of conduct to the project.
+
 2017-09-25  Moritz Bunkus  <moritz@bunkus.org>
 
         * Released v1.4.8.

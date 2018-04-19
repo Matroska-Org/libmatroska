@@ -6,7 +6,7 @@ option(DISABLE_PKGCONFIG "Disable PkgConfig module generation" OFF)
 option(DISABLE_CMAKE_CONFIG "Disable CMake package config module generation" OFF)
 
 set(CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake/")
-find_package(ebml 1.3.5 REQUIRED)
+find_package(Ebml 1.3.5 REQUIRED)
 
 include(GNUInstallDirs)
 

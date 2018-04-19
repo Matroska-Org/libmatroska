@@ -9,17 +9,7 @@
 *.o
 *.obj
 *.pc
-Makefile
-Makefile.in
 .dirstamp
-
-/aclocal.m4
-/autom4te.cache/
-/build-aux/
-/config.*
-/configure
-/libtool
-/stamp-h1
 
 [Dd]ebug/
 [Dd]ebugPublic/

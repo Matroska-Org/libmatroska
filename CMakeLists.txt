@@ -105,7 +105,7 @@ if(NOT DISABLE_CMAKE_CONFIG)
   write_basic_package_version_file(MatroskaConfigVersion.cmake COMPATIBILITY SameMajorVersion)
   install(EXPORT MatroskaTargets DESTINATION ${CMAKE_INSTALL_PACKAGEDIR})
   install(FILES
-    ${CMAKE_CURRENT_SOURCE_DIR}/cmake/MatroskaConfig.cmake
+    ${CMAKE_CURRENT_SOURCE_DIR}/MatroskaConfig.cmake
     ${CMAKE_CURRENT_BINARY_DIR}/MatroskaConfigVersion.cmake
     DESTINATION ${CMAKE_INSTALL_PACKAGEDIR})
 endif()

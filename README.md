@@ -3,28 +3,35 @@ a C++ libary to parse and create Matroska files
 
 # Building and installing
 
-## Building a released version
+## Building and installing the library
 
-libmatroska is based on autoconf and automake. It requires a C++
-compiler as well as [libebml](https://github.com/Matroska-Org/libebml)
-and `pkg-config`. Being an autoconf-based project means that the
-normal build process consists of the usual three steps:
+libmatroska is based on `cmake`. It requires a C++ compiler as well as
+[libebml](https://github.com/Matroska-Org/libebml). This means that
+the normal build process consists of the usual steps:
 
-1. Configuration: `./configure`
-2. Building: `make`
-3. Installation (run this as root): `make install`
+1. Create a build directory: `mkdir build ; cd build`
+2. Generate the make file: `cmake ..`
+3. Compilation: `make`
+4. Installation (run this as root): `make install`
 
-## Building from git
+## Customizing what's build with options
 
-If you're building from git you must have the GNU autotools
-(`autoconf`, `automake`, `libtoolize`) installed. Then run the
-following two commands:
+By default only a static library is built.
 
-1. `libtoolize`
-2. `autoreconf -vi`
+This library supports the usual `cmake` options for specifying
+installation paths (e.g. `-DCMAKE_INSTALL_PREFIX=/opt/libmatroska`). The
+following additional `cmake` options are supported:
 
-Afterwards continue with the steps listed for building a released
-version.
+* `-Debml_DIR=/path/to/libebml` — if `libebml` was installed in a
+  non-default location, you have to tell `cmake` where to find
+  it. Point this variable to the directory containing the
+  `EbmlConfig.cmake` file.
+* `-DDISABLE_PKGCONFIG=YES` — don't generate and install the
+  `libebml.pc` package configuration module for `pkg-config`
+* `-DDISABLE_CMAKE_CONFIG=YES` — don't generate and install the
+  package configuration module for `cmake`
+* `-DBUILD_SHARED_LIBS=YES` — build the shared library instead of the
+  static one (default: no)
 
 ## Code of conduct
 

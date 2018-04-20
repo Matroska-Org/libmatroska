@@ -1,3 +1,7 @@
+2018-04-20  Moritz Bunkus  <moritz@bunkus.org>
+
+        * Released v1.4.9.
+
 2018-04-19  Moritz Bunkus  <moritz@bunkus.org>
 
         * Converted the build system from autoconf/automake to

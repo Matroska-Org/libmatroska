@@ -597,10 +597,10 @@ filepos_t KaxInternalBlock::ReadData(IOCallback & input, ScopeMode ReadFully)
           // We don't support track numbers that large !
           return Result;
         }
+		Result += input.read(cursor, 1);
         TrackNumber = (TrackNumber & 0x3F) << 8;
-		TrackNumber += (uint8)input.read(cursor++, 1);
+		TrackNumber += *cursor++;
         BlockHeadSize++;
-		Result++;
       } else {
         TrackNumber &= 0x7F;
       }

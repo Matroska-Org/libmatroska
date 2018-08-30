@@ -582,13 +582,12 @@ filepos_t KaxInternalBlock::ReadData(IOCallback & input, ScopeMode ReadFully)
 
       SetValueIsSet();
     } else if (ReadFully == SCOPE_PARTIAL_DATA) {
-      binary _TempHead[5];
-      Result = input.read(_TempHead, 5);
-      if (Result != 5)
+	  uint8 BlockHeadSize = 4;
+      binary Head[6];
+      Result = input.read(Head, BlockHeadSize);
+      if (Result != BlockHeadSize)
         throw SafeReadIOCallback::EndOfStreamX(0);
-      binary *cursor = _TempHead;
-      binary *_tmpBuf;
-      uint8 BlockHeadSize = 4;
+      binary *cursor = Head;
 
       // update internal values
       TrackNumber = *cursor++;
@@ -599,8 +598,9 @@ filepos_t KaxInternalBlock::ReadData(IOCallback & input, ScopeMode ReadFully)
           return Result;
         }
         TrackNumber = (TrackNumber & 0x3F) << 8;
-        TrackNumber += *cursor++;
+		TrackNumber += (uint8)input.read(cursor++, 1);
         BlockHeadSize++;
+		Result++;
       } else {
         TrackNumber &= 0x7F;
       }
@@ -611,30 +611,33 @@ filepos_t KaxInternalBlock::ReadData(IOCallback & input, ScopeMode ReadFully)
       bLocalTimecodeUsed = true;
       cursor += 2;
 
+	  uint8 Flags = *cursor++;
       if (EbmlId(*this) == EBML_ID(KaxSimpleBlock)) {
-        bIsKeyframe = (*cursor & 0x80) != 0;
-        bIsDiscardable = (*cursor & 0x01) != 0;
+        bIsKeyframe = (Flags & 0x80) != 0;
+        bIsDiscardable = (Flags & 0x01) != 0;
       }
-      mInvisible = (*cursor & 0x08) >> 3;
-      mLacing = LacingType((*cursor++ & 0x06) >> 1);
-      if (cursor == &_TempHead[4]) {
-        _TempHead[0] = _TempHead[4];
-      } else {
-        Result += input.read(_TempHead, 1);
-      }
+      mInvisible = (Flags & 0x08) >> 3;
+      mLacing = LacingType((Flags & 0x06) >> 1);
 
-      FirstFrameLocation += cursor - _TempHead;
-
-      // put all Frames in the list
-      if (mLacing != LACING_NONE) {
+	  // put all Frames in the list
+	  if (mLacing == LACING_NONE) {
+		  SizeList.resize(1);
+		  SizeList[0] = GetSize() - BlockHeadSize;
+		  FirstFrameLocation += cursor - Head;
+	  }
+	  else {
         // read the number of frames in the lace
         uint32 LastBufferSize = GetSize() - BlockHeadSize - 1; // 1 for number of frame
-        uint8 FrameNum = _TempHead[0]; // number of frames in the lace - 1
+		Result += input.read(cursor, 1);
+        uint8 FrameNum = *cursor++; // number of frames in the lace - 1
+		FirstFrameLocation += cursor - Head;
+
         // read the list of frame sizes
         uint8 Index;
         int32 FrameSize;
         uint32 SizeRead;
         uint64 SizeUnknown;
+		uint8 Temp[8];
 
         SizeList.resize(FrameNum + 1);
 
@@ -644,41 +647,38 @@ filepos_t KaxInternalBlock::ReadData(IOCallback & input, ScopeMode ReadFully)
               // get the size of the frame
               FrameSize = 0;
               do {
-                Result += input.read(_TempHead, 1);
-                FrameSize += uint8(_TempHead[0]);
+                Result += input.read(&Temp[0], 1);
+				FrameSize += Temp[0];
                 LastBufferSize--;
 
                 FirstFrameLocation++;
-              } while (_TempHead[0] == 0xFF);
+              } while (Temp[0] == 0xFF);
 
-              FirstFrameLocation++;
               SizeList[Index] = FrameSize;
               LastBufferSize -= FrameSize;
             }
             SizeList[Index] = LastBufferSize;
             break;
           case LACING_EBML:
-            SizeRead = LastBufferSize;
-            cursor = _tmpBuf = new binary[FrameNum*4]; /// \warning assume the mean size will be coded in less than 4 bytes
-            Result += input.read(cursor, FrameNum*4);
-            FrameSize = ReadCodedSizeValue(cursor, SizeRead, SizeUnknown);
-            SizeList[0] = FrameSize;
-            cursor += SizeRead;
-            LastBufferSize -= FrameSize + SizeRead;
+			  Result += input.read(&Temp[0], 1);
+			  SizeRead = (8 - (uint8)log2(Temp[0] + 1));
+			  Result += input.read(&Temp[1], SizeRead - 1);
+			  FrameSize = ReadCodedSizeValue(&Temp[0], SizeRead, SizeUnknown);
+			  SizeList[0] = FrameSize;
+			  FirstFrameLocation += SizeRead;
+			  LastBufferSize -= FrameSize + SizeRead;
 
             for (Index=1; Index<FrameNum; Index++) {
-              // get the size of the frame
-              SizeRead = LastBufferSize;
-              FrameSize += ReadCodedSizeSignedValue(cursor, SizeRead, SizeUnknown);
-              SizeList[Index] = FrameSize;
-              cursor += SizeRead;
-              LastBufferSize -= FrameSize + SizeRead;
+                // get the size of the frame
+				Result += input.read(&Temp[0], 1);
+				SizeRead = (8 - (uint8)log2(Temp[0] + 1));
+				Result += input.read(&Temp[1], SizeRead-1);
+				FrameSize += ReadCodedSizeSignedValue(&Temp[0], SizeRead, SizeUnknown);
+				SizeList[Index] = FrameSize;
+				FirstFrameLocation += SizeRead;
+				LastBufferSize -= FrameSize + SizeRead;
             }
-
-            FirstFrameLocation += cursor - _tmpBuf;
-
             SizeList[Index] = LastBufferSize;
-            delete [] _tmpBuf;
             break;
           case LACING_FIXED:
             for (Index=0; Index<=FrameNum; Index++) {
@@ -689,10 +689,8 @@ filepos_t KaxInternalBlock::ReadData(IOCallback & input, ScopeMode ReadFully)
           default: // other lacing not supported
             assert(0);
         }
-      } else {
-        SizeList.resize(1);
-        SizeList[0] = GetSize() - BlockHeadSize;
       }
+
       SetValueIsSet(false);
       Result = GetSize();
     } else {
@@ -912,7 +910,7 @@ int64 KaxInternalBlock::GetDataPosition(size_t FrameNumber)
 {
   int64 _Result = -1;
 
-  if (ValueIsSet() && FrameNumber < SizeList.size()) {
+  if (/*ValueIsSet() &&*/ FrameNumber < SizeList.size()) {
     _Result = FirstFrameLocation;
 
     size_t _Idx = 0;

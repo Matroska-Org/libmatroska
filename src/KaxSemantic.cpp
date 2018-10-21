@@ -803,6 +803,16 @@ filepos_t KaxReferenceVirtual::RenderData(IOCallback & /* output */, bool /* bFo
   return 0;
 }
 
+filepos_t KaxTimeSlice::RenderData(IOCallback & /* output */, bool /* bForceRender */, bool /* bSaveDefault */) {
+  assert(false); // no you are not allowed to use this element !
+  return 0;
+}
+
+filepos_t KaxSliceLaceNumber::RenderData(IOCallback & /* output */, bool /* bForceRender */, bool /* bSaveDefault */) {
+  assert(false); // no you are not allowed to use this element !
+  return 0;
+}
+
 filepos_t KaxSliceFrameNumber::RenderData(IOCallback & /* output */, bool /* bForceRender */, bool /* bSaveDefault */) {
   assert(false); // no you are not allowed to use this element !
   return 0;
@@ -834,6 +844,11 @@ filepos_t KaxTrackTimecodeScale::RenderData(IOCallback & /* output */, bool /* b
 }
 
 filepos_t KaxTrackOffset::RenderData(IOCallback & /* output */, bool /* bForceRender */, bool /* bSaveDefault */) {
+  assert(false); // no you are not allowed to use this element !
+  return 0;
+}
+
+filepos_t KaxTrackAttachmentLink::RenderData(IOCallback & /* output */, bool /* bForceRender */, bool /* bSaveDefault */) {
   assert(false); // no you are not allowed to use this element !
   return 0;
 }

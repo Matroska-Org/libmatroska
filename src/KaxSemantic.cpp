@@ -529,7 +529,7 @@ DEFINE_SEMANTIC_ITEM(true, true, KaxContentEncodingOrder)
 DEFINE_SEMANTIC_ITEM(true, true, KaxContentEncodingScope)
 DEFINE_SEMANTIC_ITEM(true, true, KaxContentEncodingType)
 DEFINE_SEMANTIC_ITEM(false, true, KaxContentCompression)
-DEFINE_SEMANTIC_ITEM(false, true, KaxContentEncryption)
+DEFINE_SEMANTIC_ITEM(true, true, KaxContentEncryption)
 DEFINE_END_SEMANTIC(KaxContentEncoding)
 
 DEFINE_MKX_MASTER(KaxContentEncoding, 0x6240, 2, KaxContentEncodings, "ContentEncoding");

@@ -661,7 +661,7 @@ filepos_t KaxInternalBlock::ReadData(IOCallback & input, ScopeMode ReadFully)
             break;
           case LACING_EBML:
 			  Result += input.read(&Temp[0], 1);
-			  SizeRead = (8 - (uint8)log2(Temp[0] + 1));
+			  SizeRead = (8 - (uint8)log2((float)(Temp[0] + 1)));
 			  Result += input.read(&Temp[1], SizeRead - 1);
 			  FrameSize = ReadCodedSizeValue(&Temp[0], SizeRead, SizeUnknown);
 			  SizeList[0] = FrameSize;
@@ -671,7 +671,7 @@ filepos_t KaxInternalBlock::ReadData(IOCallback & input, ScopeMode ReadFully)
             for (Index=1; Index<FrameNum; Index++) {
                 // get the size of the frame
 				Result += input.read(&Temp[0], 1);
-				SizeRead = (8 - (uint8)log2(Temp[0] + 1));
+				SizeRead = (8 - (uint8)log2((float)(Temp[0] + 1)));
 				Result += input.read(&Temp[1], SizeRead-1);
 				FrameSize += ReadCodedSizeSignedValue(&Temp[0], SizeRead, SizeUnknown);
 				SizeList[Index] = FrameSize;

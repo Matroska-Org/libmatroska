@@ -33,7 +33,7 @@
   \author Moritz Bunkus <moritz@bunkus.org>
 */
 #include <cassert>
-
+#include <math.h>
 //#include <streams.h>
 
 #include "ebml/MemReadIOCallback.h"

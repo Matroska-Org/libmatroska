@@ -703,7 +703,6 @@ filepos_t KaxInternalBlock::ReadData(IOCallback & input, ScopeMode ReadFully)
   } catch (SafeReadIOCallback::EndOfStreamX &) {
     SetValueIsSet(false);
 
-    std::memset(EbmlBinary::GetBuffer(), 0, GetSize());
     myBuffers.clear();
     SizeList.clear();
     Timecode           = 0;

@@ -1,3 +1,14 @@
+2019-03-12  Moritz Bunkus  <moritz@bunkus.org>
+
+        * Released v1.5.0.
+
+        * Build system: libEBML 1.3.7 is now required.
+
+2019-10-19  Matt Schulte  <maschu@microsoft.com>
+
+        * Build system: fixed a problem that prevented libMatroska from
+        being embedded in other builds.
+
 2018-04-20  Moritz Bunkus  <moritz@bunkus.org>
 
         * Released v1.4.9.

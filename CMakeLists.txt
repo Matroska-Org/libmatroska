@@ -1,12 +1,11 @@
 cmake_minimum_required(VERSION 3.1.2)
 
-project(matroska VERSION 1.4.9)
+project(matroska VERSION 1.5.0)
 
 option(DISABLE_PKGCONFIG "Disable PkgConfig module generation" OFF)
 option(DISABLE_CMAKE_CONFIG "Disable CMake package config module generation" OFF)
 
-set(CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake/")
-find_package(Ebml 1.3.5 REQUIRED)
+find_package(Ebml 1.3.7 REQUIRED)
 
 include(GNUInstallDirs)
 

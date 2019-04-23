@@ -41,7 +41,7 @@
 # define END_LIBMATROSKA_NAMESPACE
 #else // NO_NAMESPACE
 # define START_LIBMATROSKA_NAMESPACE namespace LIBMATROSKA_NAMESPACE {
-# define END_LIBMATROSKA_NAMESPACE   };
+# define END_LIBMATROSKA_NAMESPACE   }
 #endif // NO_NAMESPACE
 
 // There are special implementations for certain platforms. For example on Windows

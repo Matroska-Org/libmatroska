@@ -22,7 +22,7 @@ This library supports the usual `cmake` options for specifying
 installation paths (e.g. `-DCMAKE_INSTALL_PREFIX=/opt/libmatroska`). The
 following additional `cmake` options are supported:
 
-* `-Debml_DIR=/path/to/libebml` — if `libebml` was installed in a
+* `-DEbml_DIR=/path/to/libebml` — if `libebml` was installed in a
   non-default location, you have to tell `cmake` where to find
   it. Point this variable to the directory containing the
   `EbmlConfig.cmake` file.

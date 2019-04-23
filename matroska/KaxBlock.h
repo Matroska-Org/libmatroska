@@ -286,7 +286,7 @@ class KaxInternalBlock : public EbmlBinary {
     bool       bIsDiscardable;
 };
 
-DECLARE_MKX_CONTEXT(KaxBlock);
+DECLARE_MKX_CONTEXT(KaxBlock)
 class MATROSKA_DLL_API KaxBlock : public KaxInternalBlock {
   public:
     KaxBlock(EBML_EXTRA_PARAM) :KaxInternalBlock(EBML_DEF_BINARY_CTX(KaxBlock)EBML_DEF_SEP false EBML_DEF_SEP EBML_EXTRA_CALL) {}
@@ -294,7 +294,7 @@ class MATROSKA_DLL_API KaxBlock : public KaxInternalBlock {
 };
 
 #if MATROSKA_VERSION >= 2
-DECLARE_MKX_CONTEXT(KaxSimpleBlock);
+DECLARE_MKX_CONTEXT(KaxSimpleBlock)
 class MATROSKA_DLL_API KaxSimpleBlock : public KaxInternalBlock {
   public:
     KaxSimpleBlock(EBML_EXTRA_PARAM) :KaxInternalBlock(EBML_DEF_BINARY_CTX(KaxSimpleBlock)EBML_DEF_SEP true EBML_DEF_SEP EBML_EXTRA_CALL) {}

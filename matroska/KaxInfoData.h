@@ -51,7 +51,7 @@ using namespace LIBEBML_NAMESPACE;
 
 START_LIBMATROSKA_NAMESPACE
 
-DECLARE_MKX_CONTEXT(KaxPrevUID);
+DECLARE_MKX_CONTEXT(KaxPrevUID)
 class MATROSKA_DLL_API KaxPrevUID : public KaxSegmentUID {
   public:
     KaxPrevUID(EBML_EXTRA_PARAM);
@@ -61,7 +61,7 @@ class MATROSKA_DLL_API KaxPrevUID : public KaxSegmentUID {
         EBML_CONCRETE_CLASS(KaxPrevUID)
 };
 
-DECLARE_MKX_CONTEXT(KaxNextUID);
+DECLARE_MKX_CONTEXT(KaxNextUID)
 class MATROSKA_DLL_API KaxNextUID : public KaxSegmentUID {
   public:
     KaxNextUID(EBML_EXTRA_PARAM);

@@ -1,0 +1,8 @@
+@PACKAGE_INIT@
+
+include(CMakeFindDependencyMacro)
+find_dependency(EBML REQUIRED)
+
+include(${CMAKE_CURRENT_LIST_DIR}/MatroskaTargets.cmake)
+
+check_required_components(Matroska)

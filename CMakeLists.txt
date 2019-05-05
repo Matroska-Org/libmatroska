@@ -5,7 +5,7 @@ project(matroska VERSION 1.5.0)
 option(DISABLE_PKGCONFIG "Disable PkgConfig module generation" OFF)
 option(DISABLE_CMAKE_CONFIG "Disable CMake package config module generation" OFF)
 
-find_package(Ebml 1.3.7 REQUIRED)
+find_package(EBML 1.3.7 REQUIRED)
 
 include(GNUInstallDirs)
 
@@ -60,7 +60,7 @@ set (libmatroska_C_PUBLIC_HEADERS
   matroska/c/libmatroska_t.h)
 
 add_library(matroska ${libmatroska_SOURCES} ${limatroska_PUBLIC_HEADERS} ${libmatroska_C_PUBLIC_HEADERS})
-target_link_libraries(matroska PUBLIC ebml)
+target_link_libraries(matroska PUBLIC EBML::ebml)
 set_target_properties(matroska PROPERTIES
   VERSION 6.0.0
   SOVERSION 6)
@@ -72,7 +72,10 @@ if(MSVC)
 endif()
 if(BUILD_SHARED_LIBS)
   target_compile_definitions(matroska PUBLIC MATROSKA_DLL)
-  set_target_properties(matroska PROPERTIES DEFINE_SYMBOL "MATROSKA_DLL_EXPORT")
+  set_target_properties(matroska PROPERTIES
+    DEFINE_SYMBOL "MATROSKA_DLL_EXPORT"
+    C_VISIBILITY_PRESET hidden
+    VISIBILITY_INLINES_HIDDEN 1)
 endif()
 
 install(TARGETS matroska
@@ -95,16 +98,14 @@ if(NOT DISABLE_PKGCONFIG)
 endif()
 
 if(NOT DISABLE_CMAKE_CONFIG)
-  if(WIN32)
-    set(CMAKE_INSTALL_PACKAGEDIR cmake)
-  else()
-    set(CMAKE_INSTALL_PACKAGEDIR ${CMAKE_INSTALL_LIBDIR}/cmake/${PROJECT_NAME})
-  endif()
+  set(CMAKE_INSTALL_PACKAGEDIR ${CMAKE_INSTALL_LIBDIR}/cmake/Matroska)
   include(CMakePackageConfigHelpers)
+  configure_package_config_file(MatroskaConfig.cmake.in ${CMAKE_CURRENT_BINARY_DIR}/MatroskaConfig.cmake
+    INSTALL_DESTINATION ${CMAKE_INSTALL_PACKAGEDIR})
   write_basic_package_version_file(MatroskaConfigVersion.cmake COMPATIBILITY SameMajorVersion)
-  install(EXPORT MatroskaTargets DESTINATION ${CMAKE_INSTALL_PACKAGEDIR})
+  install(EXPORT MatroskaTargets NAMESPACE Matroska:: DESTINATION ${CMAKE_INSTALL_PACKAGEDIR})
   install(FILES
-    ${CMAKE_CURRENT_SOURCE_DIR}/MatroskaConfig.cmake
+    ${CMAKE_CURRENT_BINARY_DIR}/MatroskaConfig.cmake
     ${CMAKE_CURRENT_BINARY_DIR}/MatroskaConfigVersion.cmake
     DESTINATION ${CMAKE_INSTALL_PACKAGEDIR})
 endif()

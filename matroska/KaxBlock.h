@@ -205,7 +205,7 @@ DECLARE_MKX_MASTER(KaxBlockGroup)
     const KaxTrackEntry * ParentTrack;
 };
 
-class KaxInternalBlock : public EbmlBinary {
+class MATROSKA_DLL_API KaxInternalBlock : public EbmlBinary {
   public:
     KaxInternalBlock(EBML_DEF_CONS EBML_DEF_SEP bool bSimple EBML_DEF_SEP EBML_EXTRA_PARAM) :EBML_DEF_BINARY_INIT EBML_DEF_SEP bLocalTimecodeUsed(false), mLacing(LACING_AUTO), mInvisible(false)
       ,ParentCluster(NULL), bIsSimple(bSimple), bIsKeyframe(true), bIsDiscardable(false)

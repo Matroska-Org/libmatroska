@@ -74,7 +74,7 @@ if(BUILD_SHARED_LIBS)
   target_compile_definitions(matroska PUBLIC MATROSKA_DLL)
   set_target_properties(matroska PROPERTIES
     DEFINE_SYMBOL "MATROSKA_DLL_EXPORT"
-    C_VISIBILITY_PRESET hidden
+    CXX_VISIBILITY_PRESET hidden
     VISIBILITY_INLINES_HIDDEN 1)
 endif()
 

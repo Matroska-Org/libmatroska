@@ -72,7 +72,9 @@ if(MSVC)
 endif()
 if(BUILD_SHARED_LIBS)
   target_compile_definitions(matroska PUBLIC MATROSKA_DLL)
-  set_target_properties(matroska PROPERTIES DEFINE_SYMBOL "MATROSKA_DLL_EXPORT")
+  set_target_properties(matroska PROPERTIES DEFINE_SYMBOL "MATROSKA_DLL_EXPORT"
+                                            CXX_VISIBILITY_PRESET hidden
+                                            VISIBILITY_INLINES_HIDDEN 1)
 endif()
 
 install(TARGETS matroska

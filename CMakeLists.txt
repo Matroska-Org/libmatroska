@@ -59,7 +59,7 @@ set (libmatroska_C_PUBLIC_HEADERS
   matroska/c/libmatroska.h
   matroska/c/libmatroska_t.h)
 
-add_library(matroska ${libmatroska_SOURCES} ${limatroska_PUBLIC_HEADERS} ${libmatroska_C_PUBLIC_HEADERS})
+add_library(matroska ${libmatroska_SOURCES} ${libmatroska_PUBLIC_HEADERS} ${libmatroska_C_PUBLIC_HEADERS})
 target_link_libraries(matroska PUBLIC EBML::ebml)
 set_target_properties(matroska PROPERTIES
   VERSION 6.0.0

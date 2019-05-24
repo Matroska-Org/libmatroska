@@ -46,7 +46,7 @@ START_LIBMATROSKA_NAMESPACE
 /*!
   \todo verify that the element is not already in the list
 */
-void KaxSeekHead::IndexThis(const EbmlElement & aElt, const KaxSegment & ParentSegment)
+KaxSeek * KaxSeekHead::IndexThis(const EbmlElement & aElt, const KaxSegment & ParentSegment)
 {
   // create a new point
   KaxSeek & aNewPoint = AddNewChild<KaxSeek>(*this);
@@ -59,6 +59,7 @@ void KaxSeekHead::IndexThis(const EbmlElement & aElt, const KaxSegment & ParentS
   binary ID[4];
   ((const EbmlId&)aElt).Fill(ID);
   aNewID.CopyBuffer(ID, EBML_ID_LENGTH((const EbmlId&)aElt));
+  return &aNewPoint;
 }
 
 KaxSeek * KaxSeekHead::FindFirstOf(const EbmlCallbacks & Callbacks) const

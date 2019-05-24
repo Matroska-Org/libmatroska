@@ -60,7 +60,7 @@ DECLARE_MKX_MASTER(KaxSeekHead)
       \brief add an element to index in the Meta Seek data
       \note the element should already be written in the file
     */
-    void IndexThis(const EbmlElement & aElt, const KaxSegment & ParentSegment);
+    KaxSeek * IndexThis(const EbmlElement & aElt, const KaxSegment & ParentSegment);
 
     KaxSeek * FindFirstOf(const EbmlCallbacks & Callbacks) const;
     KaxSeek * FindNextOf(const KaxSeek &aPrev) const;

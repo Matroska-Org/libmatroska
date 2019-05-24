@@ -122,8 +122,7 @@ bool KaxInternalBlock::AddFrame(const KaxTrackEntry & track, uint64 timecode, Da
   }
   myBuffers.push_back(&buffer);
 
-  // we don't allow more than 8 frames in a Block because the overhead improvement is minimal
-  if (myBuffers.size() >= 8 || lacing == LACING_NONE)
+  if (lacing == LACING_NONE)
     return false;
 
   if (lacing == LACING_XIPH)

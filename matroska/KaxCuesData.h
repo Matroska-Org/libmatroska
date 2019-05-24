@@ -46,11 +46,14 @@ class KaxBlockGroup;
 class KaxBlockBlob;
 class KaxCueTrackPositions;
 class KaxInternalBlock;
+class KaxSimpleBlock;
 
 DECLARE_MKX_MASTER(KaxCuePoint)
   public:
     void PositionSet(const KaxBlockGroup & BlockReference, uint64 GlobalTimecodeScale);
     void PositionSet(const KaxBlockBlob & BlobReference, uint64 GlobalTimecodeScale);
+    void PositionSet(const KaxSimpleBlock & BlockReference, uint64 GlobalTimecodeScale);
+    void PositionSet(const KaxInternalBlock & BlockReference, const KaxBlockGroup* BlockGroup, uint64 GlobalTimecodeScale);
 
     virtual bool IsSmallerThan(const EbmlElement *Cmp) const;
 

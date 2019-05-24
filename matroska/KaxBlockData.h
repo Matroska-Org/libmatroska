@@ -59,11 +59,11 @@ DECLARE_MKX_SINTEGER_CONS(KaxReferenceBlock)
     void SetReferencedBlock(const KaxBlockBlob * aRefdBlock);
     void SetReferencedBlock(const KaxBlockGroup & aRefdBlock);
     void SetParentBlock(const KaxBlockGroup & aParentBlock) {ParentBlock = &aParentBlock;}
+    void SetReferencedTimecode(int64 refTimecode) {*static_cast<EbmlSInteger*>(this) = refTimecode; bTimecodeSet = true;};
 
   protected:
     const KaxBlockBlob * RefdBlock;
     const KaxBlockGroup * ParentBlock;
-    void SetReferencedTimecode(int64 refTimecode) {*static_cast<EbmlSInteger*>(this) = refTimecode; bTimecodeSet = true;};
     bool bTimecodeSet;
         bool bOurBlob;
         void FreeBlob();

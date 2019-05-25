@@ -1,3 +1,22 @@
+2019-05-25  Moritz Bunkus  <moritz@bunkus.org>
+
+        * Released v1.5.1.
+
+        * Build system: libEBML 1.3.8 is now required.
+
+2019-05-19  evpobr  <evpobr@gmail.com>
+
+        * Build system: various fixes to the cmake rules regarding
+        visibility, naming and building DLLs on Windows.
+
+2019-05-19  Steve Lhomme <robux4@ycbcr.xyz>
+
+        * KaxBlock: fixed a potential access to invalid memory due to
+        invalid lace sizes read from invalid data.
+
+        * KaxBlock: fixed a potential null pointer dereference triggerable
+        by reading invalid data.
+
 2019-03-12  Moritz Bunkus  <moritz@bunkus.org>
 
         * Released v1.5.0.

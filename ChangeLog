@@ -1,3 +1,12 @@
+2019-05-27  Moritz Bunkus  <moritz@bunkus.org>
+
+        * Released v1.5.2.
+
+2019-05-27  evpobr  <evpobr@gmail.com>
+
+        * Build system: fixed symbol visibility issue causing linker
+        failures since 1.5.1.
+
 2019-05-25  Moritz Bunkus  <moritz@bunkus.org>
 
         * Released v1.5.1.

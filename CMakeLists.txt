@@ -73,9 +73,7 @@ endif()
 if(BUILD_SHARED_LIBS)
   target_compile_definitions(matroska PUBLIC MATROSKA_DLL)
   set_target_properties(matroska PROPERTIES
-    DEFINE_SYMBOL "MATROSKA_DLL_EXPORT"
-    CXX_VISIBILITY_PRESET hidden
-    VISIBILITY_INLINES_HIDDEN 1)
+    DEFINE_SYMBOL MATROSKA_DLL_EXPORT)
 endif()
 
 install(TARGETS matroska

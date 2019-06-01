@@ -654,7 +654,7 @@ DEFINE_MKX_UINTEGER(KaxChapterTrackNumber, 0x89, 1, KaxChapterTrack, "ChapterTra
 DEFINE_START_SEMANTIC(KaxChapterDisplay)
 DEFINE_SEMANTIC_ITEM(true, true, KaxChapterString)
 DEFINE_SEMANTIC_ITEM(true, false, KaxChapterLanguage)
-DEFINE_SEMANTIC_ITEM(false, true, KaxChapLanguageIETF)
+DEFINE_SEMANTIC_ITEM(false, false, KaxChapLanguageIETF)
 DEFINE_SEMANTIC_ITEM(false, false, KaxChapterCountry)
 DEFINE_END_SEMANTIC(KaxChapterDisplay)
 

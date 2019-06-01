@@ -709,7 +709,7 @@ DEFINE_START_SEMANTIC(KaxChapterDisplay)
 DEFINE_SEMANTIC_ITEM(true, true, KaxChapterString)
 DEFINE_SEMANTIC_ITEM(true, false, KaxChapterLanguage)
 #if MATROSKA_VERSION >= 2
-DEFINE_SEMANTIC_ITEM(false, true, KaxChapLanguageIETF)
+DEFINE_SEMANTIC_ITEM(false, false, KaxChapLanguageIETF)
 #endif // MATROSKA_VERSION
 DEFINE_SEMANTIC_ITEM(false, false, KaxChapterCountry)
 DEFINE_END_SEMANTIC(KaxChapterDisplay)

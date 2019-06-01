@@ -150,7 +150,6 @@ DECLARE_MKX_UINTEGER(KaxBlockDuration)
 DECLARE_MKX_UINTEGER(KaxReferencePriority)
 };
 
-#if MATROSKA_VERSION >= 2
 DECLARE_MKX_SINTEGER(KaxReferenceVirtual)
 public:
   filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault);
@@ -161,7 +160,6 @@ DECLARE_MKX_BINARY (KaxCodecState)
 
 DECLARE_MKX_SINTEGER(KaxDiscardPadding)
 };
-#endif
 
 DECLARE_MKX_MASTER(KaxSlices)
 };
@@ -174,7 +172,6 @@ DECLARE_MKX_MASTER(KaxTimeSlice)
 DECLARE_MKX_UINTEGER(KaxSliceLaceNumber)
 };
 
-#if MATROSKA_VERSION >= 2
 DECLARE_MKX_UINTEGER(KaxSliceFrameNumber)
 public:
   filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault);
@@ -210,7 +207,6 @@ public:
   filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault);
 };
 
-#endif
 
 DECLARE_MKX_MASTER(KaxTracks)
 };
@@ -225,10 +221,8 @@ DECLARE_MKX_UINTEGER(KaxTrackUID)
 DECLARE_MKX_UINTEGER(KaxTrackType)
 };
 
-#if MATROSKA_VERSION >= 2
 DECLARE_MKX_UINTEGER(KaxTrackFlagEnabled)
 };
-#endif
 
 DECLARE_MKX_UINTEGER(KaxTrackFlagDefault)
 };
@@ -248,22 +242,18 @@ DECLARE_MKX_UINTEGER(KaxTrackMaxCache)
 DECLARE_MKX_UINTEGER(KaxTrackDefaultDuration)
 };
 
-#if MATROSKA_VERSION >= 2
 DECLARE_MKX_UINTEGER(KaxTrackDefaultDecodedFieldDuration)
 };
-#endif
 
 DECLARE_MKX_FLOAT(KaxTrackTimecodeScale)
 public:
   filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault);
 };
 
-#if MATROSKA_VERSION >= 2
 DECLARE_MKX_SINTEGER(KaxTrackOffset)
 public:
   filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault);
 };
-#endif
 
 DECLARE_MKX_UINTEGER(KaxMaxBlockAdditionID)
 };
@@ -274,10 +264,8 @@ DECLARE_MKX_UNISTRING(KaxTrackName)
 DECLARE_MKX_STRING(KaxTrackLanguage)
 };
 
-#if MATROSKA_VERSION >= 2
 DECLARE_MKX_STRING(KaxLanguageIETF)
 };
-#endif
 
 DECLARE_MKX_STRING(KaxCodecID)
 };
@@ -291,7 +279,6 @@ DECLARE_MKX_UNISTRING(KaxCodecName)
 DECLARE_MKX_UINTEGER(KaxTrackAttachmentLink)
 };
 
-#if MATROSKA_VERSION >= 2
 DECLARE_MKX_UNISTRING(KaxCodecSettings)
 public:
   filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault);
@@ -309,18 +296,15 @@ public:
 
 DECLARE_MKX_UINTEGER(KaxCodecDecodeAll)
 };
-#endif
 
 DECLARE_MKX_UINTEGER(KaxTrackOverlay)
 };
 
-#if MATROSKA_VERSION >= 2
 DECLARE_MKX_UINTEGER(KaxCodecDelay)
 };
 
 DECLARE_MKX_UINTEGER(KaxSeekPreRoll)
 };
-#endif
 
 DECLARE_MKX_MASTER(KaxTrackTranslate)
 };
@@ -339,7 +323,6 @@ DECLARE_MKX_MASTER(KaxTrackVideo)
 };
 
 
-#if MATROSKA_VERSION >= 2
 DECLARE_MKX_UINTEGER(KaxVideoFlagInterlaced)
 };
 
@@ -356,7 +339,6 @@ DECLARE_MKX_UINTEGER(KaxOldStereoMode)
 public:
   filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault);
 };
-#endif
 
 DECLARE_MKX_UINTEGER(KaxVideoPixelWidth)
 };
@@ -393,7 +375,6 @@ public:
   virtual bool ValidateSize() const {return IsFiniteSize() && GetSize() == 4;}
 };
 
-#if MATROSKA_VERSION >= 2
 DECLARE_MKX_FLOAT(KaxVideoGamma)
 public:
   filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault);
@@ -500,7 +481,6 @@ DECLARE_MKX_FLOAT(KaxVideoProjectionPosePitch)
 DECLARE_MKX_FLOAT(KaxVideoProjectionPoseRoll)
 };
 
-#endif
 
 DECLARE_MKX_MASTER(KaxTrackAudio)
 };
@@ -515,17 +495,14 @@ DECLARE_MKX_FLOAT(KaxAudioOutputSamplingFreq)
 DECLARE_MKX_UINTEGER(KaxAudioChannels)
 };
 
-#if MATROSKA_VERSION >= 2
 DECLARE_MKX_BINARY (KaxAudioPosition)
 public:
   filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault);
 };
-#endif
 
 DECLARE_MKX_UINTEGER(KaxAudioBitDepth)
 };
 
-#if MATROSKA_VERSION >= 2
 DECLARE_MKX_MASTER(KaxTrackOperation)
 };
 
@@ -569,7 +546,6 @@ DECLARE_MKX_BINARY (KaxTrickMasterTrackSegmentUID)
 public:
   virtual bool ValidateSize() const {return IsFiniteSize() && GetSize() == 16;}
 };
-#endif
 
 DECLARE_MKX_MASTER(KaxContentEncodings)
 };
@@ -629,18 +605,15 @@ DECLARE_MKX_UINTEGER(KaxCueTrack)
 DECLARE_MKX_UINTEGER(KaxCueClusterPosition)
 };
 
-#if MATROSKA_VERSION >= 2
 DECLARE_MKX_UINTEGER(KaxCueRelativePosition)
 };
 
 DECLARE_MKX_UINTEGER(KaxCueDuration)
 };
-#endif
 
 DECLARE_MKX_UINTEGER(KaxCueBlockNumber)
 };
 
-#if MATROSKA_VERSION >= 2
 DECLARE_MKX_UINTEGER(KaxCueCodecState)
 };
 
@@ -662,7 +635,6 @@ public:
   filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault);
 };
 
-#endif
 
 DECLARE_MKX_MASTER(KaxAttachments)
 };
@@ -687,7 +659,6 @@ DECLARE_MKX_BINARY (KaxFileData)
 DECLARE_MKX_UINTEGER(KaxFileUID)
 };
 
-#if MATROSKA_VERSION >= 2
 DECLARE_MKX_BINARY (KaxFileReferral)
 public:
   filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault);
@@ -699,7 +670,6 @@ DECLARE_MKX_UINTEGER(KaxFileUsedStartTime)
 DECLARE_MKX_UINTEGER(KaxFileUsedEndTime)
 };
 
-#endif
 
 DECLARE_MKX_MASTER(KaxChapters)
 };
@@ -728,10 +698,8 @@ DECLARE_MKX_MASTER(KaxChapterAtom)
 DECLARE_MKX_UINTEGER(KaxChapterUID)
 };
 
-#if MATROSKA_VERSION >= 2
 DECLARE_MKX_UNISTRING(KaxChapterStringUID)
 };
-#endif
 
 DECLARE_MKX_UINTEGER(KaxChapterTimeStart)
 };
@@ -773,10 +741,8 @@ DECLARE_MKX_UNISTRING(KaxChapterString)
 DECLARE_MKX_STRING(KaxChapterLanguage)
 };
 
-#if MATROSKA_VERSION >= 2
 DECLARE_MKX_STRING(KaxChapLanguageIETF)
 };
-#endif
 
 DECLARE_MKX_STRING(KaxChapterCountry)
 };
@@ -841,10 +807,8 @@ DECLARE_MKX_UNISTRING(KaxTagName)
 DECLARE_MKX_STRING(KaxTagLangue)
 };
 
-#if MATROSKA_VERSION >= 2
 DECLARE_MKX_STRING(KaxTagLanguageIETF)
 };
-#endif
 
 DECLARE_MKX_UINTEGER(KaxTagDefault)
 };

@@ -64,13 +64,11 @@ DECLARE_MKX_MASTER(KaxCueTrackPositions)
     uint16 TrackNumber() const;
 };
 
-#if MATROSKA_VERSION >= 2
 DECLARE_MKX_MASTER(KaxCueReference)
   public:
     void AddReference(const KaxBlockGroup & BlockReferenced, uint64 GlobalTimecodeScale);
     void AddReference(const KaxBlockBlob & BlockReferenced, uint64 GlobalTimecodeScale);
 };
-#endif // MATROSKA_VERSION
 
 END_LIBMATROSKA_NAMESPACE
 

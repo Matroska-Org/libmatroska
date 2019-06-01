@@ -547,7 +547,7 @@ DEFINE_MKX_UINTEGER_DEF(KaxContentCompAlgo, 0x4254, 2, KaxContentCompression, "C
 DEFINE_MKX_BINARY (KaxContentCompSettings, 0x4255, 2, KaxContentCompression, "ContentCompSettings")
 
 DEFINE_START_SEMANTIC(KaxContentEncryption)
-DEFINE_SEMANTIC_ITEM(false, true, KaxContentEncAlgo)
+DEFINE_SEMANTIC_ITEM(true, true, KaxContentEncAlgo)
 DEFINE_SEMANTIC_ITEM(false, true, KaxContentEncKeyID)
 DEFINE_SEMANTIC_ITEM(false, true, KaxContentSignature)
 DEFINE_SEMANTIC_ITEM(false, true, KaxContentSigKeyID)

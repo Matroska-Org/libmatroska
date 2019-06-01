@@ -608,6 +608,12 @@ DECLARE_MKX_UINTEGER(KaxContentEncAlgo)
 DECLARE_MKX_BINARY (KaxContentEncKeyID)
 };
 
+DECLARE_MKX_MASTER(KaxContentEncAESSettings)
+};
+
+DECLARE_MKX_UINTEGER(KaxAESSettingsCipherMode)
+};
+
 DECLARE_MKX_BINARY (KaxContentSignature)
 };
 

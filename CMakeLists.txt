@@ -64,16 +64,25 @@ target_link_libraries(matroska PUBLIC EBML::ebml)
 set_target_properties(matroska PROPERTIES
   VERSION 6.0.0
   SOVERSION 6)
-target_include_directories(matroska PUBLIC
-  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
-  $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>)
+target_include_directories(matroska
+  PRIVATE
+    $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}>
+	PUBLIC
+    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
+    $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>)
 if(MSVC)
   target_compile_definitions(matroska PRIVATE _CRT_SECURE_NO_WARNINGS)
 endif()
-if(BUILD_SHARED_LIBS)
-  target_compile_definitions(matroska PUBLIC MATROSKA_DLL)
-  set_target_properties(matroska PROPERTIES
-    DEFINE_SYMBOL MATROSKA_DLL_EXPORT)
+
+include(GenerateExportHeader)
+generate_export_header(matroska EXPORT_MACRO_NAME MATROSKA_DLL_API)
+target_sources(matroska
+  PRIVATE
+    ${CMAKE_CURRENT_BINARY_DIR}/matroska_export.h
+)
+
+if(NOT BUILD_SHARED_LIBS)
+  target_compile_definitions(matroska PUBLIC MATROSKA_STATIC_DEFINE)
 endif()
 
 install(TARGETS matroska
@@ -84,6 +93,7 @@ install(TARGETS matroska
 
 install(FILES ${libmatroska_PUBLIC_HEADERS} DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/matroska)
 install(FILES ${libmatroska_C_PUBLIC_HEADERS} DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/matroska/c)
+install(FILES ${CMAKE_CURRENT_BINARY_DIR}/matroska_export.h DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/matroska)
 
 if(NOT DISABLE_PKGCONFIG)
   set(prefix ${CMAKE_INSTALL_PREFIX})

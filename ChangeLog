@@ -1,3 +1,8 @@
+2020-03-16  Lars Benner  <benner@simi.com>
+
+        * Build system: more fixes for building libMatroska as a DLL on
+        Windows wrt. symbol visibility.
+
 2019-05-27  Moritz Bunkus  <moritz@bunkus.org>
 
         * Released v1.5.2.

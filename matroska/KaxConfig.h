@@ -44,23 +44,7 @@
 # define END_LIBMATROSKA_NAMESPACE   }
 #endif // NO_NAMESPACE
 
-// There are special implementations for certain platforms. For example on Windows
-// we use the Win32 file API. here we set the appropriate macros.
-#if defined(_WIN32)||defined(WIN32)
-
-# if defined(MATROSKA_DLL)
-#  if defined(MATROSKA_DLL_EXPORT)
-#   define MATROSKA_DLL_API __declspec(dllexport)
-#  else // MATROSKA_DLL_EXPORT
-#   define MATROSKA_DLL_API __declspec(dllimport)
-#  endif // MATROSKA_DLL_EXPORT
-# else // MATROSKA_DLL
-#  define MATROSKA_DLL_API
-# endif // MATROSKA_DLL
-
-#else
-# define MATROSKA_DLL_API
-#endif
+#include "matroska_export.h"
 
 #if !defined(MATROSKA_VERSION)
 #define MATROSKA_VERSION  2

@@ -42,8 +42,8 @@ START_LIBMATROSKA_NAMESPACE
 
 #define LIBMATROSKA_VERSION 0x010502
 
-extern const std::string KaxCodeVersion;
-extern const std::string KaxCodeDate;
+extern const MATROSKA_DLL_API std::string KaxCodeVersion;
+extern const MATROSKA_DLL_API std::string KaxCodeDate;
 
 /*!
   \todo Improve the CRC/ECC system (backward and forward possible ?) to fit streaming/live writing/simple reading

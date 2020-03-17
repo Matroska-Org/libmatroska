@@ -5,6 +5,9 @@ project(matroska VERSION 1.5.2)
 option(DISABLE_PKGCONFIG "Disable PkgConfig module generation" OFF)
 option(DISABLE_CMAKE_CONFIG "Disable CMake package config module generation" OFF)
 
+set(CMAKE_CXX_VISIBILITY_PRESET hidden)
+set(CMAKE_VISIBILITY_INLINES_HIDDEN 1)
+
 find_package(EBML 1.3.9 REQUIRED)
 
 include(GNUInstallDirs)

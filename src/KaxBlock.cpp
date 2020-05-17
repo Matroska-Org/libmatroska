@@ -131,8 +131,8 @@ bool KaxInternalBlock::AddFrame(const KaxTrackEntry & track, uint64 timecode, Da
     // a frame in a lace is not efficient when the place necessary to code it in a lace is bigger
     // than the size of a simple Block. That means more than 6 bytes (4 in struct + 2 for EBML) to code the size
     return (buffer.Size() < 6*0xFF);
-  else
-    return true;
+
+  return true;
 }
 
 /*!
@@ -157,10 +157,10 @@ LacingType KaxInternalBlock::GetBestLacingType() const {
     EbmlLacingSize += CodedSizeLengthSigned(int64(myBuffers[i]->Size()) - int64(myBuffers[i - 1]->Size()), 0);
   if (SameSize)
     return LACING_FIXED;
-  else if (XiphLacingSize < EbmlLacingSize)
+  if (XiphLacingSize < EbmlLacingSize)
     return LACING_XIPH;
-  else
-    return LACING_EBML;
+
+  return LACING_EBML;
 }
 
 filepos_t KaxInternalBlock::UpdateSize(bool /* bSaveDefault */, bool /* bForceRender */)
@@ -958,8 +958,7 @@ KaxBlockBlob::operator KaxInternalBlock &()
   assert(Block.group);
   if (bUseSimpleBlock)
     return *Block.simpleblock;
-  else
-    return *Block.group;
+  return *Block.group;
 }
 
 KaxBlockBlob::operator const KaxInternalBlock &() const
@@ -967,8 +966,7 @@ KaxBlockBlob::operator const KaxInternalBlock &() const
   assert(Block.group);
   if (bUseSimpleBlock)
     return *Block.simpleblock;
-  else
-    return *Block.group;
+  return *Block.group;
 }
 
 KaxBlockBlob::operator KaxSimpleBlock &()

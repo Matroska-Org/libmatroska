@@ -102,28 +102,26 @@ bool KaxCluster::AddFrameInternal(const KaxTrackEntry & track, uint64 timecode, 
       if (currentNewBlock->AddFrame(track, timecode, buffer, *PastBlock, *ForwBlock, lacing)) {
         // more data are allowed in this Block
         return true;
-      } else {
-        currentNewBlock = NULL;
-        return false;
       }
-    } else {
-      if (currentNewBlock->AddFrame(track, timecode, buffer, *PastBlock, lacing)) {
-        // more data are allowed in this Block
-        return true;
-      } else {
-        currentNewBlock = NULL;
-        return false;
-      }
-    }
-  } else {
-    if (currentNewBlock->AddFrame(track, timecode, buffer, lacing)) {
-      // more data are allowed in this Block
-      return true;
-    } else {
+
       currentNewBlock = NULL;
       return false;
     }
+    if (currentNewBlock->AddFrame(track, timecode, buffer, *PastBlock, lacing)) {
+        // more data are allowed in this Block
+        return true;
+      }
+    currentNewBlock = NULL;
+    return false;
   }
+
+  if (currentNewBlock->AddFrame(track, timecode, buffer, lacing)) {
+    // more data are allowed in this Block
+    return true;
+  }
+
+  currentNewBlock = NULL;
+  return false;
 }
 
 bool KaxCluster::AddFrame(const KaxTrackEntry & track, uint64 timecode, DataBuffer & buffer, KaxBlockGroup * & MyNewBlock, LacingType lacing)

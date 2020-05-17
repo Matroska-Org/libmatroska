@@ -128,19 +128,19 @@ bool KaxCluster::AddFrameInternal(const KaxTrackEntry & track, uint64 timecode, 
 
 bool KaxCluster::AddFrame(const KaxTrackEntry & track, uint64 timecode, DataBuffer & buffer, KaxBlockGroup * & MyNewBlock, LacingType lacing)
 {
-  assert(Blobs.size() == 0); // mutually exclusive for the moment
+  assert(Blobs.empty()); // mutually exclusive for the moment
   return AddFrameInternal(track, timecode, buffer, MyNewBlock, NULL, NULL, lacing);
 }
 
 bool KaxCluster::AddFrame(const KaxTrackEntry & track, uint64 timecode, DataBuffer & buffer, KaxBlockGroup * & MyNewBlock, const KaxBlockGroup & PastBlock, LacingType lacing)
 {
-  assert(Blobs.size() == 0); // mutually exclusive for the moment
+  assert(Blobs.empty()); // mutually exclusive for the moment
   return AddFrameInternal(track, timecode, buffer, MyNewBlock, &PastBlock, NULL, lacing);
 }
 
 bool KaxCluster::AddFrame(const KaxTrackEntry & track, uint64 timecode, DataBuffer & buffer, KaxBlockGroup * & MyNewBlock, const KaxBlockGroup & PastBlock, const KaxBlockGroup & ForwBlock, LacingType lacing)
 {
-  assert(Blobs.size() == 0); // mutually exclusive for the moment
+  assert(Blobs.empty()); // mutually exclusive for the moment
   return AddFrameInternal(track, timecode, buffer, MyNewBlock, &PastBlock, &ForwBlock, lacing);
 }
 
@@ -157,7 +157,7 @@ filepos_t KaxCluster::Render(IOCallback & output, KaxCues & CueToUpdate, bool bS
   KaxClusterTimecode * Timecode = static_cast<KaxClusterTimecode *>(this->FindElt(EBML_INFO(KaxClusterTimecode)));
   *static_cast<EbmlUInteger *>(Timecode) = GlobalTimecode() / GlobalTimecodeScale();
 
-  if (Blobs.size() == 0) {
+  if (Blobs.empty()) {
     // old-school direct KaxBlockGroup
 
     // SilentTracks handling

@@ -44,7 +44,7 @@ START_LIBMATROSKA_NAMESPACE
 
 KaxCues::~KaxCues()
 {
-  assert(myTempReferences.size() == 0); // otherwise that means you have added references and forgot to set the position
+  assert(myTempReferences.empty()); // otherwise that means you have added references and forgot to set the position
 }
 /* deprecated and wrong
 bool KaxCues::AddBlockGroup(const KaxBlockGroup & BlockRef)

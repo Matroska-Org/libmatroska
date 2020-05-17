@@ -113,7 +113,7 @@ DECLARE_MKX_MASTER_CONS(KaxCluster)
 
     int16 GetBlockLocalTimecode(uint64 GlobalTimecode) const;
 
-    uint64 GetBlockGlobalTimecode(int16 LocalTimecode);
+    uint64 GetBlockGlobalTimecode(int16 GlobalSavedTimecode);
 
     void SetGlobalTimecodeScale(uint64 aGlobalTimecodeScale) {
       TimecodeScale = aGlobalTimecodeScale;

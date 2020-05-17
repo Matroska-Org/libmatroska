@@ -340,7 +340,7 @@ public:
 
   void SetBlockDuration(uint64 TimeLength);
 
-  void SetParent(KaxCluster & aParentCluster);
+  void SetParent(KaxCluster & parent_clust);
   bool AddFrameAuto(const KaxTrackEntry & track, uint64 timecode, DataBuffer & buffer, LacingType lacing = LACING_AUTO, const KaxBlockBlob * PastBlock = NULL, const KaxBlockBlob * ForwBlock = NULL);
 
   bool IsSimpleBlock() const {return bUseSimpleBlock;}

@@ -113,7 +113,7 @@ KaxBlockGroup::KaxBlockGroup(EBML_EXTRA_DEF)
 bool KaxInternalBlock::AddFrame(const KaxTrackEntry & track, uint64 timecode, DataBuffer & buffer, LacingType lacing, bool invisible)
 {
   SetValueIsSet();
-  if (myBuffers.size() == 0) {
+  if (myBuffers.empty()) {
     // first frame
     Timecode = timecode;
     TrackNumber = track.TrackNumber();
@@ -272,7 +272,7 @@ filepos_t KaxBlockVirtual::UpdateSize(bool /* bSaveDefault */, bool /* bForceRen
 */
 filepos_t KaxInternalBlock::RenderData(IOCallback & output, bool /* bForceRender */, bool /* bSaveDefault */)
 {
-  if (myBuffers.size() == 0) {
+  if (myBuffers.empty()) {
     return 0;
   } else {
     assert(TrackNumber < 0x4000);

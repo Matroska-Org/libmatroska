@@ -44,14 +44,14 @@ START_LIBMATROSKA_NAMESPACE
 
 const KaxBlockBlob & KaxReferenceBlock::RefBlock() const
 {
-  assert(RefdBlock != NULL);
+  assert(RefdBlock != nullptr);
   return *RefdBlock;
 }
 
 KaxReferenceBlock::KaxReferenceBlock(EBML_EXTRA_DEF)
   :EBML_DEF_SINTEGER(KaxReferenceBlock)EBML_DEF_SEP
-  RefdBlock(NULL)
-  ,ParentBlock(NULL)
+  RefdBlock(nullptr)
+  ,ParentBlock(nullptr)
   ,bTimecodeSet(false)
   ,bOurBlob(false)
 {
@@ -60,8 +60,8 @@ KaxReferenceBlock::KaxReferenceBlock(EBML_EXTRA_DEF)
 
 KaxReferenceBlock::KaxReferenceBlock(const KaxReferenceBlock & ElementToClone)
   :EbmlSInteger(ElementToClone)
-  ,RefdBlock(NULL)
-  ,ParentBlock(NULL)
+  ,RefdBlock(nullptr)
+  ,ParentBlock(nullptr)
   ,bTimecodeSet(ElementToClone.bTimecodeSet)
   ,bOurBlob(false)
 {
@@ -74,16 +74,16 @@ KaxReferenceBlock::~KaxReferenceBlock()
 
 void KaxReferenceBlock::FreeBlob()
 {
-  if (bOurBlob && RefdBlock!=NULL)
+  if (bOurBlob && RefdBlock!=nullptr)
     delete RefdBlock;
-  RefdBlock = NULL;
+  RefdBlock = nullptr;
 }
 
 filepos_t KaxReferenceBlock::UpdateSize(bool bSaveDefault, bool bForceRender)
 {
   if (!bTimecodeSet) {
-    assert(RefdBlock != NULL);
-    assert(ParentBlock != NULL);
+    assert(RefdBlock != nullptr);
+    assert(ParentBlock != nullptr);
 
     const KaxInternalBlock &block = *RefdBlock;
     *static_cast<EbmlSInteger*>(this) = (int64(block.GlobalTimecode()) - int64(ParentBlock->GlobalTimecode())) / int64(ParentBlock->GlobalTimecodeScale());
@@ -93,8 +93,8 @@ filepos_t KaxReferenceBlock::UpdateSize(bool bSaveDefault, bool bForceRender)
 
 void KaxReferenceBlock::SetReferencedBlock(const KaxBlockBlob * aRefdBlock)
 {
-  assert(RefdBlock == NULL);
-  assert(aRefdBlock != NULL);
+  assert(RefdBlock == nullptr);
+  assert(aRefdBlock != nullptr);
   FreeBlob();
   RefdBlock = aRefdBlock;
   bOurBlob = true;

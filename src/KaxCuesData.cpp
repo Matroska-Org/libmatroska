@@ -70,7 +70,7 @@ void KaxCuePoint::PositionSet(const KaxBlockGroup & BlockReference, uint64 Globa
   }
 
   KaxCodecState *CodecState = static_cast<KaxCodecState *>(BlockReference.FindFirstElt(EBML_INFO(KaxCodecState)));
-  if (CodecState != NULL) {
+  if (CodecState != nullptr) {
     KaxCueCodecState &CueCodecState = AddNewChild<KaxCueCodecState>(NewPositions);
     *static_cast<EbmlUInteger*>(&CueCodecState) = BlockReference.GetParentCluster()->GetParentSegment()->GetRelativePosition(CodecState->GetElementPosition());
   }
@@ -107,7 +107,7 @@ void KaxCuePoint::PositionSet(const KaxBlockBlob & BlobReference, uint64 GlobalT
   if (!BlobReference.IsSimpleBlock()) {
     const KaxBlockGroup &BlockGroup = BlobReference;
     const KaxCodecState *CodecState = static_cast<KaxCodecState *>(BlockGroup.FindFirstElt(EBML_INFO(KaxCodecState)));
-    if (CodecState != NULL) {
+    if (CodecState != nullptr) {
       KaxCueCodecState &CueCodecState = AddNewChild<KaxCueCodecState>(NewPositions);
       *static_cast<EbmlUInteger*>(&CueCodecState) = BlockGroup.GetParentCluster()->GetParentSegment()->GetRelativePosition(CodecState->GetElementPosition());
     }
@@ -148,11 +148,11 @@ bool KaxCuePoint::IsSmallerThan(const EbmlElement * Cmp) const
 
   // compare timecode
   const KaxCueTime * TimeCodeA = static_cast<const KaxCueTime *>(FindElt(EBML_INFO(KaxCueTime)));
-  if (TimeCodeA == NULL)
+  if (TimeCodeA == nullptr)
     return false;
 
   const KaxCueTime * TimeCodeB = static_cast<const KaxCueTime *>(theCmp.FindElt(EBML_INFO(KaxCueTime)));
-  if (TimeCodeB == NULL)
+  if (TimeCodeB == nullptr)
     return false;
 
   if (TimeCodeA->IsSmallerThan(TimeCodeB))
@@ -163,11 +163,11 @@ bool KaxCuePoint::IsSmallerThan(const EbmlElement * Cmp) const
 
   // compare tracks (timecodes are equal)
   const KaxCueTrack * TrackA = static_cast<const KaxCueTrack *>(FindElt(EBML_INFO(KaxCueTrack)));
-  if (TrackA == NULL)
+  if (TrackA == nullptr)
     return false;
 
   const KaxCueTrack * TrackB = static_cast<const KaxCueTrack *>(theCmp.FindElt(EBML_INFO(KaxCueTrack)));
-  if (TrackB == NULL)
+  if (TrackB == nullptr)
     return false;
 
   if (TrackA->IsSmallerThan(TrackB))
@@ -182,7 +182,7 @@ bool KaxCuePoint::IsSmallerThan(const EbmlElement * Cmp) const
 bool KaxCuePoint::Timecode(uint64 & aTimecode, uint64 GlobalTimecodeScale) const
 {
   const KaxCueTime *aTime = static_cast<const KaxCueTime *>(FindFirstElt(EBML_INFO(KaxCueTime)));
-  if (aTime == NULL)
+  if (aTime == nullptr)
     return false;
   aTimecode = uint64(*aTime) * GlobalTimecodeScale;
   return true;
@@ -193,13 +193,13 @@ bool KaxCuePoint::Timecode(uint64 & aTimecode, uint64 GlobalTimecodeScale) const
 */
 const KaxCueTrackPositions * KaxCuePoint::GetSeekPosition() const
 {
-  const KaxCueTrackPositions * result = NULL;
+  const KaxCueTrackPositions * result = nullptr;
   uint64 aPosition = EBML_PRETTYLONGINT(0xFFFFFFFFFFFFFFF);
   // find the position of the "earlier" Cluster
   const KaxCueTrackPositions *aPoss = static_cast<const KaxCueTrackPositions *>(FindFirstElt(EBML_INFO(KaxCueTrackPositions)));
-  while (aPoss != NULL) {
+  while (aPoss != nullptr) {
     const KaxCueClusterPosition *aPos = static_cast<const KaxCueClusterPosition *>(aPoss->FindFirstElt(EBML_INFO(KaxCueClusterPosition)));
-    if (aPos != NULL && uint64(*aPos) < aPosition) {
+    if (aPos != nullptr && uint64(*aPos) < aPosition) {
       aPosition = uint64(*aPos);
       result = aPoss;
     }
@@ -212,7 +212,7 @@ const KaxCueTrackPositions * KaxCuePoint::GetSeekPosition() const
 uint64 KaxCueTrackPositions::ClusterPosition() const
 {
   const KaxCueClusterPosition *aPos = static_cast<const KaxCueClusterPosition *>(FindFirstElt(EBML_INFO(KaxCueClusterPosition)));
-  if (aPos == NULL)
+  if (aPos == nullptr)
     return 0;
 
   return uint64(*aPos);
@@ -221,7 +221,7 @@ uint64 KaxCueTrackPositions::ClusterPosition() const
 uint16 KaxCueTrackPositions::TrackNumber() const
 {
   const KaxCueTrack *aTrack = static_cast<const KaxCueTrack *>(FindFirstElt(EBML_INFO(KaxCueTrack)));
-  if (aTrack == NULL)
+  if (aTrack == nullptr)
     return 0;
 
   return uint16(*aTrack);

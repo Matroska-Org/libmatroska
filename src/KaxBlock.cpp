@@ -49,7 +49,7 @@ START_LIBMATROSKA_NAMESPACE
 DataBuffer * DataBuffer::Clone()
 {
   binary *ClonedData = (binary *)malloc(mySize * sizeof(binary));
-  assert(ClonedData != NULL);
+  assert(ClonedData != nullptr);
   memcpy(ClonedData, myBuffer ,mySize );
 
   SimpleDataBuffer * result = new SimpleDataBuffer(ClonedData, mySize, 0);
@@ -60,7 +60,7 @@ DataBuffer * DataBuffer::Clone()
 SimpleDataBuffer::SimpleDataBuffer(const SimpleDataBuffer & ToClone)
   :DataBuffer((binary *)malloc(ToClone.mySize * sizeof(binary)), ToClone.mySize, myFreeBuffer)
 {
-  assert(myBuffer != NULL);
+  assert(myBuffer != nullptr);
   memcpy(myBuffer, ToClone.myBuffer ,mySize );
   bValidValue = ToClone.bValidValue;
 }
@@ -101,8 +101,8 @@ KaxBlockGroup::~KaxBlockGroup()
 
 KaxBlockGroup::KaxBlockGroup(EBML_EXTRA_DEF)
   :EbmlMaster(EBML_CLASS_SEMCONTEXT(KaxBlockGroup) EBML_DEF_SEP EBML_EXTRA_CALL)
-  ,ParentCluster(NULL)
-  ,ParentTrack(NULL)
+  ,ParentCluster(nullptr)
+  ,ParentTrack(nullptr)
 {}
 
 /*!
@@ -166,7 +166,7 @@ LacingType KaxInternalBlock::GetBestLacingType() const {
 filepos_t KaxInternalBlock::UpdateSize(bool /* bSaveDefault */, bool /* bForceRender */)
 {
   LacingType LacingHere;
-  assert(EbmlBinary::GetBuffer() == NULL); // Data is not used for KaxInternalBlock
+  assert(EbmlBinary::GetBuffer() == nullptr); // Data is not used for KaxInternalBlock
   assert(TrackNumber < 0x4000); // no more allowed for the moment
   unsigned int i;
 
@@ -227,7 +227,7 @@ KaxBlockVirtual::KaxBlockVirtual(const KaxBlockVirtual & ElementToClone)
 }
 
 KaxBlockVirtual::KaxBlockVirtual(EBML_EXTRA_DEF)
-  :EBML_DEF_BINARY(KaxBlockVirtual)EBML_DEF_SEP ParentCluster(NULL)
+  :EBML_DEF_BINARY(KaxBlockVirtual)EBML_DEF_SEP ParentCluster(nullptr)
 {
   SetBuffer(DataBlock,sizeof(DataBlock));
   SetValueIsSet(false);
@@ -236,7 +236,7 @@ KaxBlockVirtual::KaxBlockVirtual(EBML_EXTRA_DEF)
 KaxBlockVirtual::~KaxBlockVirtual()
 {
   if(GetBuffer() == DataBlock)
-    SetBuffer( NULL, 0 );
+    SetBuffer( nullptr, 0 );
 }
 
 filepos_t KaxBlockVirtual::UpdateSize(bool /* bSaveDefault */, bool /* bForceRender */)
@@ -253,7 +253,7 @@ filepos_t KaxBlockVirtual::UpdateSize(bool /* bSaveDefault */, bool /* bForceRen
     *cursor++ = TrackNumber & 0xFF;
   }
 
-  assert(ParentCluster != NULL);
+  assert(ParentCluster != nullptr);
   int16 ActualTimecode = ParentCluster->GetBlockLocalTimecode(Timecode);
   big_int16 b16(ActualTimecode);
   b16.Fill(cursor);
@@ -296,7 +296,7 @@ filepos_t KaxInternalBlock::RenderData(IOCallback & output, bool /* bForceRender
       *cursor++ = TrackNumber & 0xFF;
     }
 
-    assert(ParentCluster != NULL);
+    assert(ParentCluster != nullptr);
     int16 ActualTimecode = ParentCluster->GetBlockLocalTimecode(Timecode);
     big_int16 b16(ActualTimecode);
     b16.Fill(cursor);
@@ -433,7 +433,7 @@ uint64 KaxInternalBlock::ReadInternalHead(IOCallback & input)
 
   big_int16 b16;
   b16.Eval(cursor);
-  assert(ParentCluster != NULL);
+  assert(ParentCluster != nullptr);
   Timecode = ParentCluster->GetBlockGlobalTimecode(int16(b16));
   bLocalTimecodeUsed = false;
   cursor += 2;
@@ -725,7 +725,7 @@ filepos_t KaxInternalBlock::ReadData(IOCallback & input, ScopeMode ReadFully)
 bool KaxBlockGroup::AddFrame(const KaxTrackEntry & track, uint64 timecode, DataBuffer & buffer, LacingType lacing)
 {
   KaxBlock & theBlock = GetChild<KaxBlock>(*this);
-  assert(ParentCluster != NULL);
+  assert(ParentCluster != nullptr);
   theBlock.SetParent(*ParentCluster);
   ParentTrack = &track;
   return theBlock.AddFrame(track, timecode, buffer, lacing);
@@ -736,7 +736,7 @@ bool KaxBlockGroup::AddFrame(const KaxTrackEntry & track, uint64 timecode, DataB
   //  assert(past_timecode < 0);
 
   KaxBlock & theBlock = GetChild<KaxBlock>(*this);
-  assert(ParentCluster != NULL);
+  assert(ParentCluster != nullptr);
   theBlock.SetParent(*ParentCluster);
   ParentTrack = &track;
   bool bRes = theBlock.AddFrame(track, timecode, buffer, lacing);
@@ -755,7 +755,7 @@ bool KaxBlockGroup::AddFrame(const KaxTrackEntry & track, uint64 timecode, DataB
   //  assert(forw_timecode > 0);
 
   KaxBlock & theBlock = GetChild<KaxBlock>(*this);
-  assert(ParentCluster != NULL);
+  assert(ParentCluster != nullptr);
   theBlock.SetParent(*ParentCluster);
   ParentTrack = &track;
   bool bRes = theBlock.AddFrame(track, timecode, buffer, lacing);
@@ -774,18 +774,18 @@ bool KaxBlockGroup::AddFrame(const KaxTrackEntry & track, uint64 timecode, DataB
 bool KaxBlockGroup::AddFrame(const KaxTrackEntry & track, uint64 timecode, DataBuffer & buffer, const KaxBlockBlob * PastBlock, const KaxBlockBlob * ForwBlock, LacingType lacing)
 {
   KaxBlock & theBlock = GetChild<KaxBlock>(*this);
-  assert(ParentCluster != NULL);
+  assert(ParentCluster != nullptr);
   theBlock.SetParent(*ParentCluster);
   ParentTrack = &track;
   bool bRes = theBlock.AddFrame(track, timecode, buffer, lacing);
 
-  if (PastBlock != NULL) {
+  if (PastBlock != nullptr) {
     KaxReferenceBlock & thePastRef = GetChild<KaxReferenceBlock>(*this);
     thePastRef.SetReferencedBlock(PastBlock);
     thePastRef.SetParentBlock(*this);
   }
 
-  if (ForwBlock != NULL) {
+  if (ForwBlock != nullptr) {
     KaxReferenceBlock & theFutureRef = AddNewChild<KaxReferenceBlock>(*this);
     theFutureRef.SetReferencedBlock(ForwBlock);
     theFutureRef.SetParentBlock(*this);
@@ -799,7 +799,7 @@ bool KaxBlockGroup::AddFrame(const KaxTrackEntry & track, uint64 timecode, DataB
 */
 uint64 KaxBlockGroup::GlobalTimecode() const
 {
-  assert(ParentCluster != NULL); // impossible otherwise
+  assert(ParentCluster != nullptr); // impossible otherwise
   KaxInternalBlock & MyBlock = *static_cast<KaxBlock *>(this->FindElt(EBML_INFO(KaxBlock)));
   return MyBlock.GlobalTimecode();
 
@@ -813,13 +813,13 @@ uint16 KaxBlockGroup::TrackNumber() const
 
 uint64 KaxBlockGroup::ClusterPosition() const
 {
-  assert(ParentCluster != NULL); // impossible otherwise
+  assert(ParentCluster != nullptr); // impossible otherwise
   return ParentCluster->GetPosition();
 }
 
 uint64 KaxInternalBlock::ClusterPosition() const
 {
-  assert(ParentCluster != NULL); // impossible otherwise
+  assert(ParentCluster != nullptr); // impossible otherwise
   return ParentCluster->GetPosition();
 }
 
@@ -827,9 +827,9 @@ unsigned int KaxBlockGroup::ReferenceCount() const
 {
   unsigned int Result = 0;
   KaxReferenceBlock * MyBlockAdds = static_cast<KaxReferenceBlock *>(FindFirstElt(EBML_INFO(KaxReferenceBlock)));
-  if (MyBlockAdds != NULL) {
+  if (MyBlockAdds != nullptr) {
     Result++;
-    while ((MyBlockAdds = static_cast<KaxReferenceBlock *>(FindNextElt(*MyBlockAdds))) != NULL) {
+    while ((MyBlockAdds = static_cast<KaxReferenceBlock *>(FindNextElt(*MyBlockAdds))) != nullptr) {
       Result++;
     }
   }
@@ -839,11 +839,11 @@ unsigned int KaxBlockGroup::ReferenceCount() const
 const KaxReferenceBlock & KaxBlockGroup::Reference(unsigned int Index) const
 {
   KaxReferenceBlock * MyBlockAdds = static_cast<KaxReferenceBlock *>(FindFirstElt(EBML_INFO(KaxReferenceBlock)));
-  assert(MyBlockAdds != NULL); // call of a non existing reference
+  assert(MyBlockAdds != nullptr); // call of a non existing reference
 
   while (Index != 0) {
     MyBlockAdds = static_cast<KaxReferenceBlock *>(FindNextElt(*MyBlockAdds));
-    assert(MyBlockAdds != NULL);
+    assert(MyBlockAdds != nullptr);
     Index--;
   }
   return *MyBlockAdds;
@@ -860,17 +860,17 @@ void KaxInternalBlock::ReleaseFrames()
   // free the allocated Frames
   int i;
   for (i=myBuffers.size()-1; i>=0; i--) {
-    if (myBuffers[i] != NULL) {
+    if (myBuffers[i] != nullptr) {
       myBuffers[i]->FreeBuffer(*myBuffers[i]);
       delete myBuffers[i];
-      myBuffers[i] = NULL;
+      myBuffers[i] = nullptr;
     }
   }
 }
 
 void KaxBlockGroup::SetBlockDuration(uint64 TimeLength)
 {
-  assert(ParentTrack != NULL);
+  assert(ParentTrack != nullptr);
   int64 scale = ParentTrack->GlobalTimecodeScale();
   KaxBlockDuration & myDuration = *static_cast<KaxBlockDuration *>(FindFirstElt(EBML_INFO(KaxBlockDuration), true));
   *(static_cast<EbmlUInteger *>(&myDuration)) = TimeLength / uint64(scale);
@@ -879,11 +879,11 @@ void KaxBlockGroup::SetBlockDuration(uint64 TimeLength)
 bool KaxBlockGroup::GetBlockDuration(uint64 &TheTimecode) const
 {
   KaxBlockDuration * myDuration = static_cast<KaxBlockDuration *>(FindElt(EBML_INFO(KaxBlockDuration)));
-  if (myDuration == NULL) {
+  if (myDuration == nullptr) {
     return false;
   }
 
-  assert(ParentTrack != NULL);
+  assert(ParentTrack != nullptr);
   TheTimecode = uint64(*myDuration) * ParentTrack->GlobalTimecodeScale();
   return true;
 }
@@ -979,21 +979,21 @@ KaxBlockBlob::operator KaxSimpleBlock &()
 bool KaxBlockBlob::AddFrameAuto(const KaxTrackEntry & track, uint64 timecode, DataBuffer & buffer, LacingType lacing, const KaxBlockBlob * PastBlock, const KaxBlockBlob * ForwBlock)
 {
   bool bResult = false;
-  if ((SimpleBlockMode == BLOCK_BLOB_ALWAYS_SIMPLE) || (SimpleBlockMode == BLOCK_BLOB_SIMPLE_AUTO && PastBlock == NULL && ForwBlock == NULL)) {
+  if ((SimpleBlockMode == BLOCK_BLOB_ALWAYS_SIMPLE) || (SimpleBlockMode == BLOCK_BLOB_SIMPLE_AUTO && PastBlock == nullptr && ForwBlock == nullptr)) {
     assert(bUseSimpleBlock == true);
-    if (Block.simpleblock == NULL) {
+    if (Block.simpleblock == nullptr) {
       Block.simpleblock = new KaxSimpleBlock();
       Block.simpleblock->SetParent(*ParentCluster);
     }
 
     bResult = Block.simpleblock->AddFrame(track, timecode, buffer, lacing);
-    if (PastBlock == NULL && ForwBlock == NULL) {
+    if (PastBlock == nullptr && ForwBlock == nullptr) {
       Block.simpleblock->SetKeyframe(true);
       Block.simpleblock->SetDiscardable(false);
     } else {
       Block.simpleblock->SetKeyframe(false);
-      if ((ForwBlock == NULL || ((const KaxInternalBlock &)*ForwBlock).GlobalTimecode() <= timecode) &&
-          (PastBlock == NULL || ((const KaxInternalBlock &)*PastBlock).GlobalTimecode() <= timecode))
+      if ((ForwBlock == nullptr || ((const KaxInternalBlock &)*ForwBlock).GlobalTimecode() <= timecode) &&
+          (PastBlock == nullptr || ((const KaxInternalBlock &)*PastBlock).GlobalTimecode() <= timecode))
         Block.simpleblock->SetDiscardable(false);
       else
         Block.simpleblock->SetDiscardable(true);
@@ -1023,13 +1023,13 @@ bool KaxBlockBlob::ReplaceSimpleByGroup()
     return false;
 
   if (!bUseSimpleBlock) {
-    if (Block.group == NULL) {
+    if (Block.group == nullptr) {
       Block.group = new KaxBlockGroup();
     }
   }
   else {
 
-    if (Block.simpleblock != NULL) {
+    if (Block.simpleblock != nullptr) {
       KaxSimpleBlock *old_simpleblock = Block.simpleblock;
       Block.group = new KaxBlockGroup();
       // _TODO_ : move all the data to the blockgroup
@@ -1040,7 +1040,7 @@ bool KaxBlockBlob::ReplaceSimpleByGroup()
       Block.group = new KaxBlockGroup();
     }
   }
-  if (ParentCluster != NULL)
+  if (ParentCluster != nullptr)
     Block.group->SetParent(*ParentCluster);
 
   bUseSimpleBlock = false;

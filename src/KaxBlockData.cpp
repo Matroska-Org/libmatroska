@@ -104,7 +104,7 @@ void KaxReferenceBlock::SetReferencedBlock(const KaxBlockBlob * aRefdBlock)
 void KaxReferenceBlock::SetReferencedBlock(const KaxBlockGroup & aRefdBlock)
 {
   FreeBlob();
-  KaxBlockBlob *block_blob = new KaxBlockBlob(BLOCK_BLOB_NO_SIMPLE);
+  auto block_blob = new KaxBlockBlob(BLOCK_BLOB_NO_SIMPLE);
   block_blob->SetBlockGroup(*const_cast<KaxBlockGroup*>(&aRefdBlock));
   RefdBlock = block_blob;
   bOurBlob = true;

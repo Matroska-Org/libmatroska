@@ -56,7 +56,7 @@ KaxSegment::KaxSegment(const KaxSegment & ElementToClone)
   :EbmlMaster(ElementToClone)
 {
   // update the parent of each children
-  EBML_MASTER_ITERATOR Itr = begin();
+  auto Itr = begin();
   while (Itr != end()) {
     if (EbmlId(**Itr) == EBML_ID(KaxCluster)) {
       static_cast<KaxCluster *>(*Itr)->SetParent(*this);

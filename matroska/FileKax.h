@@ -61,7 +61,7 @@ START_LIBMATROSKA_NAMESPACE
 class MATROSKA_DLL_API FileMatroska {
     public:
     FileMatroska(IOCallback & output);
-    ~FileMatroska();
+    ~FileMatroska() = default;
 #ifdef OLD
   filepos_t RenderHead(const std::string & aEncoderApp);
   uint32 ReadHead();

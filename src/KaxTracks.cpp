@@ -47,7 +47,7 @@ KaxTrackEntry::KaxTrackEntry(EBML_EXTRA_DEF)
 
 void KaxTrackEntry::EnableLacing(bool bEnable)
 {
-  KaxTrackFlagLacing & myLacing = GetChild<KaxTrackFlagLacing>(*this);
+  auto & myLacing = GetChild<KaxTrackFlagLacing>(*this);
   *(static_cast<EbmlUInteger *>(&myLacing)) = bEnable ? 1 : 0;
 }
 

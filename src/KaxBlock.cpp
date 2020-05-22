@@ -48,11 +48,11 @@ START_LIBMATROSKA_NAMESPACE
 
 DataBuffer * DataBuffer::Clone()
 {
-  binary *ClonedData = (binary *)malloc(mySize * sizeof(binary));
+  auto ClonedData = (binary *)malloc(mySize * sizeof(binary));
   assert(ClonedData != nullptr);
   memcpy(ClonedData, myBuffer ,mySize );
 
-  SimpleDataBuffer * result = new SimpleDataBuffer(ClonedData, mySize, 0);
+  auto result = new SimpleDataBuffer(ClonedData, mySize, 0);
   result->bValidValue = bValidValue;
   return result;
 }
@@ -85,8 +85,8 @@ KaxInternalBlock::KaxInternalBlock(const KaxInternalBlock & ElementToClone)
   ,ParentCluster(ElementToClone.ParentCluster) ///< \todo not exactly
 {
   // add a clone of the list
-  std::vector<DataBuffer *>::const_iterator Itr = ElementToClone.myBuffers.begin();
-  std::vector<DataBuffer *>::iterator myItr = myBuffers.begin();
+  auto Itr = ElementToClone.myBuffers.begin();
+  auto myItr = myBuffers.begin();
   while (Itr != ElementToClone.myBuffers.end()) {
     *myItr = (*Itr)->Clone();
     ++Itr; ++myItr;
@@ -492,7 +492,7 @@ filepos_t KaxInternalBlock::ReadData(IOCallback & input, ScopeMode ReadFully)
       // put all Frames in the list
       if (mLacing == LACING_NONE) {
         FirstFrameLocation += Mem.GetPosition();
-        DataBuffer * soloFrame = new DataBuffer(BufferStart + Mem.GetPosition(), GetSize() - BlockHeadSize);
+        auto soloFrame = new DataBuffer(BufferStart + Mem.GetPosition(), GetSize() - BlockHeadSize);
         myBuffers.push_back(soloFrame);
         SizeList.resize(1);
         SizeList[0] = GetSize() - BlockHeadSize;
@@ -559,7 +559,7 @@ filepos_t KaxInternalBlock::ReadData(IOCallback & input, ScopeMode ReadFully)
         FirstFrameLocation += Mem.GetPosition();
 
         for (Index=0; Index<=FrameNum; Index++) {
-          DataBuffer * lacedFrame = new DataBuffer(BufferStart + Mem.GetPosition(), SizeList[Index]);
+          auto lacedFrame = new DataBuffer(BufferStart + Mem.GetPosition(), SizeList[Index]);
           myBuffers.push_back(lacedFrame);
           Mem.Skip(SizeList[Index]);
         }
@@ -724,7 +724,7 @@ filepos_t KaxInternalBlock::ReadData(IOCallback & input, ScopeMode ReadFully)
 
 bool KaxBlockGroup::AddFrame(const KaxTrackEntry & track, uint64 timecode, DataBuffer & buffer, LacingType lacing)
 {
-  KaxBlock & theBlock = GetChild<KaxBlock>(*this);
+  auto & theBlock = GetChild<KaxBlock>(*this);
   assert(ParentCluster != nullptr);
   theBlock.SetParent(*ParentCluster);
   ParentTrack = &track;
@@ -735,13 +735,13 @@ bool KaxBlockGroup::AddFrame(const KaxTrackEntry & track, uint64 timecode, DataB
 {
   //  assert(past_timecode < 0);
 
-  KaxBlock & theBlock = GetChild<KaxBlock>(*this);
+  auto & theBlock = GetChild<KaxBlock>(*this);
   assert(ParentCluster != nullptr);
   theBlock.SetParent(*ParentCluster);
   ParentTrack = &track;
   bool bRes = theBlock.AddFrame(track, timecode, buffer, lacing);
 
-  KaxReferenceBlock & thePastRef = GetChild<KaxReferenceBlock>(*this);
+  auto & thePastRef = GetChild<KaxReferenceBlock>(*this);
   thePastRef.SetReferencedBlock(PastBlock);
   thePastRef.SetParentBlock(*this);
 
@@ -754,17 +754,17 @@ bool KaxBlockGroup::AddFrame(const KaxTrackEntry & track, uint64 timecode, DataB
 
   //  assert(forw_timecode > 0);
 
-  KaxBlock & theBlock = GetChild<KaxBlock>(*this);
+  auto & theBlock = GetChild<KaxBlock>(*this);
   assert(ParentCluster != nullptr);
   theBlock.SetParent(*ParentCluster);
   ParentTrack = &track;
   bool bRes = theBlock.AddFrame(track, timecode, buffer, lacing);
 
-  KaxReferenceBlock & thePastRef = GetChild<KaxReferenceBlock>(*this);
+  auto & thePastRef = GetChild<KaxReferenceBlock>(*this);
   thePastRef.SetReferencedBlock(PastBlock);
   thePastRef.SetParentBlock(*this);
 
-  KaxReferenceBlock & theFutureRef = AddNewChild<KaxReferenceBlock>(*this);
+  auto & theFutureRef = AddNewChild<KaxReferenceBlock>(*this);
   theFutureRef.SetReferencedBlock(ForwBlock);
   theFutureRef.SetParentBlock(*this);
 
@@ -773,20 +773,20 @@ bool KaxBlockGroup::AddFrame(const KaxTrackEntry & track, uint64 timecode, DataB
 
 bool KaxBlockGroup::AddFrame(const KaxTrackEntry & track, uint64 timecode, DataBuffer & buffer, const KaxBlockBlob * PastBlock, const KaxBlockBlob * ForwBlock, LacingType lacing)
 {
-  KaxBlock & theBlock = GetChild<KaxBlock>(*this);
+  auto & theBlock = GetChild<KaxBlock>(*this);
   assert(ParentCluster != nullptr);
   theBlock.SetParent(*ParentCluster);
   ParentTrack = &track;
   bool bRes = theBlock.AddFrame(track, timecode, buffer, lacing);
 
   if (PastBlock != nullptr) {
-    KaxReferenceBlock & thePastRef = GetChild<KaxReferenceBlock>(*this);
+    auto & thePastRef = GetChild<KaxReferenceBlock>(*this);
     thePastRef.SetReferencedBlock(PastBlock);
     thePastRef.SetParentBlock(*this);
   }
 
   if (ForwBlock != nullptr) {
-    KaxReferenceBlock & theFutureRef = AddNewChild<KaxReferenceBlock>(*this);
+    auto & theFutureRef = AddNewChild<KaxReferenceBlock>(*this);
     theFutureRef.SetReferencedBlock(ForwBlock);
     theFutureRef.SetParentBlock(*this);
   }
@@ -826,7 +826,7 @@ uint64 KaxInternalBlock::ClusterPosition() const
 unsigned int KaxBlockGroup::ReferenceCount() const
 {
   unsigned int Result = 0;
-  KaxReferenceBlock * MyBlockAdds = static_cast<KaxReferenceBlock *>(FindFirstElt(EBML_INFO(KaxReferenceBlock)));
+  auto MyBlockAdds = static_cast<KaxReferenceBlock *>(FindFirstElt(EBML_INFO(KaxReferenceBlock)));
   if (MyBlockAdds != nullptr) {
     Result++;
     while ((MyBlockAdds = static_cast<KaxReferenceBlock *>(FindNextElt(*MyBlockAdds))) != nullptr) {
@@ -838,7 +838,7 @@ unsigned int KaxBlockGroup::ReferenceCount() const
 
 const KaxReferenceBlock & KaxBlockGroup::Reference(unsigned int Index) const
 {
-  KaxReferenceBlock * MyBlockAdds = static_cast<KaxReferenceBlock *>(FindFirstElt(EBML_INFO(KaxReferenceBlock)));
+  auto MyBlockAdds = static_cast<KaxReferenceBlock *>(FindFirstElt(EBML_INFO(KaxReferenceBlock)));
   assert(MyBlockAdds != nullptr); // call of a non existing reference
 
   while (Index != 0) {
@@ -878,7 +878,7 @@ void KaxBlockGroup::SetBlockDuration(uint64 TimeLength)
 
 bool KaxBlockGroup::GetBlockDuration(uint64 &TheTimecode) const
 {
-  KaxBlockDuration * myDuration = static_cast<KaxBlockDuration *>(FindElt(EBML_INFO(KaxBlockDuration)));
+  auto myDuration = static_cast<KaxBlockDuration *>(FindElt(EBML_INFO(KaxBlockDuration)));
   if (myDuration == nullptr) {
     return false;
   }
@@ -889,13 +889,13 @@ bool KaxBlockGroup::GetBlockDuration(uint64 &TheTimecode) const
 }
 
 KaxBlockGroup::operator KaxInternalBlock &() {
-  KaxBlock & theBlock = GetChild<KaxBlock>(*this);
+  auto & theBlock = GetChild<KaxBlock>(*this);
   return theBlock;
 }
 
 void KaxBlockGroup::SetParent(KaxCluster & aParentCluster) {
   ParentCluster = &aParentCluster;
-  KaxBlock & theBlock = GetChild<KaxBlock>(*this);
+  auto & theBlock = GetChild<KaxBlock>(*this);
   theBlock.SetParent( aParentCluster );
 }
 

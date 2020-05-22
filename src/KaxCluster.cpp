@@ -54,7 +54,7 @@ KaxCluster::KaxCluster(const KaxCluster & ElementToClone)
   ,bSilentTracksUsed(ElementToClone.bSilentTracksUsed)
 {
   // update the parent of each children
-  EBML_MASTER_ITERATOR Itr = begin();
+  auto Itr = begin();
   while (Itr != end()) {
     if (EbmlId(**Itr) == EBML_ID(KaxBlockGroup)) {
       static_cast<KaxBlockGroup   *>(*Itr)->SetParent(*this);
@@ -152,7 +152,7 @@ filepos_t KaxCluster::Render(IOCallback & output, KaxCues & CueToUpdate, bool bS
   EBML_MASTER_ITERATOR TrkItr, Itr;
 
   // update the Timecode of the Cluster before writing
-  KaxClusterTimecode * Timecode = static_cast<KaxClusterTimecode *>(this->FindElt(EBML_INFO(KaxClusterTimecode)));
+  auto Timecode = static_cast<KaxClusterTimecode *>(this->FindElt(EBML_INFO(KaxClusterTimecode)));
   *static_cast<EbmlUInteger *>(Timecode) = GlobalTimecode() / GlobalTimecodeScale();
 
   if (Blobs.empty()) {
@@ -175,9 +175,9 @@ filepos_t KaxCluster::Render(IOCallback & output, KaxCues & CueToUpdate, bool bS
           }
           // the track wasn't found in this cluster
           if (Itr == end()) {
-            KaxClusterSilentTracks * SilentTracks = static_cast<KaxClusterSilentTracks *>(this->FindFirstElt(EBML_INFO(KaxClusterSilentTracks)));
+            auto SilentTracks = static_cast<KaxClusterSilentTracks *>(this->FindFirstElt(EBML_INFO(KaxClusterSilentTracks)));
             assert(SilentTracks != nullptr); // the flag bSilentTracksUsed should be set when creating the Cluster
-            KaxClusterSilentTrackNumber * trackelt = static_cast<KaxClusterSilentTrackNumber *>(SilentTracks->AddNewElt(EBML_INFO(KaxClusterSilentTrackNumber)));
+            auto trackelt = static_cast<KaxClusterSilentTrackNumber *>(SilentTracks->AddNewElt(EBML_INFO(KaxClusterSilentTrackNumber)));
             *static_cast<EbmlUInteger *>(trackelt) = tracknum;
           }
         }
@@ -215,9 +215,9 @@ filepos_t KaxCluster::Render(IOCallback & output, KaxCues & CueToUpdate, bool bS
           }
           // the track wasn't found in this cluster
           if (Index == ListSize()) {
-            KaxClusterSilentTracks * SilentTracks = static_cast<KaxClusterSilentTracks *>(this->FindFirstElt(EBML_INFO(KaxClusterSilentTracks)));
+            auto SilentTracks = static_cast<KaxClusterSilentTracks *>(this->FindFirstElt(EBML_INFO(KaxClusterSilentTracks)));
             assert(SilentTracks != nullptr); // the flag bSilentTracksUsed should be set when creating the Cluster
-            KaxClusterSilentTrackNumber * trackelt = static_cast<KaxClusterSilentTrackNumber *>(SilentTracks->AddNewElt(EBML_INFO(KaxClusterSilentTrackNumber)));
+            auto trackelt = static_cast<KaxClusterSilentTrackNumber *>(SilentTracks->AddNewElt(EBML_INFO(KaxClusterSilentTrackNumber)));
             *static_cast<EbmlUInteger *>(trackelt) = tracknum;
           }
         }
@@ -265,7 +265,7 @@ int16 KaxCluster::GetBlockLocalTimecode(uint64 aGlobalTimecode) const
 uint64 KaxCluster::GetBlockGlobalTimecode(int16 LocalTimecode)
 {
   if (!bFirstFrameInside) {
-    KaxClusterTimecode * Timecode = static_cast<KaxClusterTimecode *>(this->FindElt(EBML_INFO(KaxClusterTimecode)));
+    auto Timecode = static_cast<KaxClusterTimecode *>(this->FindElt(EBML_INFO(KaxClusterTimecode)));
     assert (bFirstFrameInside); // use the InitTimecode() hack for now
     MinTimecode = MaxTimecode = PreviousTimecode = *static_cast<EbmlUInteger *>(Timecode);
     bFirstFrameInside = true;
@@ -276,7 +276,7 @@ uint64 KaxCluster::GetBlockGlobalTimecode(int16 LocalTimecode)
 
 KaxBlockGroup & KaxCluster::GetNewBlock()
 {
-  KaxBlockGroup & MyBlock = AddNewChild<KaxBlockGroup>(*this);
+  auto & MyBlock = AddNewChild<KaxBlockGroup>(*this);
   MyBlock.SetParent(*this);
   return MyBlock;
 }

@@ -70,13 +70,13 @@ FileMatroska::FileMatroska(IOCallback & output)
 #endif // OLD
 }
 
-FileMatroska::~FileMatroska()
+/* FileMatroska::~FileMatroska()
 {
   //  if (myCurrCluster != NULL)
   //    throw 0; // there are some data left to write
   //  if (myCurrReadCluster != NULL || myCurrReadBlock != NULL)
   //    throw 0; // there are some data left to write
-}
+} */
 
 #ifdef OLD
 void FileMatroska::SetMaxClusterSize(const uint32 value)

@@ -54,7 +54,7 @@ START_LIBMATROSKA_NAMESPACE
 DECLARE_MKX_CONTEXT(KaxPrevUID)
 class MATROSKA_DLL_API KaxPrevUID : public KaxSegmentUID {
   public:
-    KaxPrevUID(EBML_EXTRA_PARAM);
+    KaxPrevUID(EBML_EXTRA_PARAM) = default;
     KaxPrevUID(const KaxPrevUID & ElementToClone) :KaxSegmentUID(ElementToClone){}
     virtual bool ValidateSize() const { return IsFiniteSize() && (GetSize() == 16);}
 
@@ -64,7 +64,7 @@ class MATROSKA_DLL_API KaxPrevUID : public KaxSegmentUID {
 DECLARE_MKX_CONTEXT(KaxNextUID)
 class MATROSKA_DLL_API KaxNextUID : public KaxSegmentUID {
   public:
-    KaxNextUID(EBML_EXTRA_PARAM);
+    KaxNextUID(EBML_EXTRA_PARAM) = default;
     KaxNextUID(const KaxNextUID & ElementToClone) :KaxSegmentUID(ElementToClone){}
     virtual bool ValidateSize() const { return IsFiniteSize() && (GetSize() == 16);}
 

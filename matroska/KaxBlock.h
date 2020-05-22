@@ -143,7 +143,7 @@ class MATROSKA_DLL_API NotSoSimpleDataBuffer : public SimpleDataBuffer {
 
 DECLARE_MKX_MASTER(KaxBlockGroup)
   public:
-    ~KaxBlockGroup();
+    ~KaxBlockGroup() = default;
 
     /*!
       \brief Addition of a frame without references

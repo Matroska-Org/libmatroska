@@ -48,7 +48,7 @@ START_LIBMATROSKA_NAMESPACE
 
 DataBuffer * DataBuffer::Clone()
 {
-  auto ClonedData = (binary *)malloc(mySize * sizeof(binary));
+  auto ClonedData = static_cast<binary *>(malloc(mySize * sizeof(binary)));
   assert(ClonedData != nullptr);
   memcpy(ClonedData, myBuffer ,mySize );
 
@@ -58,7 +58,7 @@ DataBuffer * DataBuffer::Clone()
 }
 
 SimpleDataBuffer::SimpleDataBuffer(const SimpleDataBuffer & ToClone)
-  :DataBuffer((binary *)malloc(ToClone.mySize * sizeof(binary)), ToClone.mySize, myFreeBuffer)
+  :DataBuffer(static_cast<binary *>(malloc(ToClone.mySize * sizeof(binary))), ToClone.mySize, myFreeBuffer)
 {
   assert(myBuffer != nullptr);
   memcpy(myBuffer, ToClone.myBuffer ,mySize );
@@ -147,13 +147,13 @@ LacingType KaxInternalBlock::GetBestLacingType() const {
 
   XiphLacingSize = 1; // Number of laces is stored in 1 byte.
   EbmlLacingSize = 1;
-  for (i = 0; i < (int)myBuffers.size() - 1; i++) {
+  for (i = 0; i < static_cast<int>(myBuffers.size()) - 1; i++) {
     if (myBuffers[i]->Size() != myBuffers[i + 1]->Size())
       SameSize = false;
     XiphLacingSize += myBuffers[i]->Size() / 255 + 1;
   }
   EbmlLacingSize += CodedSizeLength(myBuffers[0]->Size(), 0, IsFiniteSize());
-  for (i = 1; i < (int)myBuffers.size() - 1; i++)
+  for (i = 1; i < static_cast<int>(myBuffers.size()) - 1; i++)
     EbmlLacingSize += CodedSizeLengthSigned(int64(myBuffers[i]->Size()) - int64(myBuffers[i - 1]->Size()), 0);
   if (SameSize)
     return LACING_FIXED;

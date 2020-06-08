@@ -67,11 +67,11 @@ bool KaxCues::AddBlockGroup(const KaxBlockGroup & BlockRef)
 bool KaxCues::AddBlockBlob(const KaxBlockBlob & BlockReference)
 {
   // Do not add the element if it's already present.
-  std::vector<const KaxBlockBlob *>::iterator ListIdx;
-
-  for (ListIdx = myTempReferences.begin(); ListIdx != myTempReferences.end(); ++ListIdx)
-    if (*ListIdx == &BlockReference)
-      return true;
+  bool present = std::any_of(myTempReferences.begin(), myTempReferences.end(), [&]
+    (const KaxBlockBlob *myTempReference) { return myTempReference == &BlockReference; });
+  if (present) {
+    return true;
+  }
 
   myTempReferences.push_back(&BlockReference);
   return true;
@@ -80,34 +80,31 @@ bool KaxCues::AddBlockBlob(const KaxBlockBlob & BlockReference)
 void KaxCues::PositionSet(const KaxBlockBlob & BlockReference)
 {
   // look for the element in the temporary references
-  std::vector<const KaxBlockBlob *>::iterator ListIdx;
+  auto it = std::find_if(myTempReferences.begin(), myTempReferences.end(), [&]
+    (const KaxBlockBlob *myTempReference){ return myTempReference == &BlockReference; });
 
-  for (ListIdx = myTempReferences.begin(); ListIdx != myTempReferences.end(); ++ListIdx) {
-    if (*ListIdx == &BlockReference) {
-      // found, now add the element to the entry list
-      auto & NewPoint = AddNewChild<KaxCuePoint>(*this);
-      NewPoint.PositionSet(BlockReference, GlobalTimecodeScale());
-      myTempReferences.erase(ListIdx);
-      break;
-    }
+  if (it != myTempReferences.end()) {
+    // found, now add the element to the entry list
+    auto & NewPoint = AddNewChild<KaxCuePoint>(*this);
+    NewPoint.PositionSet(BlockReference, GlobalTimecodeScale());
+    myTempReferences.erase(it);
   }
 }
 
 void KaxCues::PositionSet(const KaxBlockGroup & BlockRef)
 {
   // look for the element in the temporary references
-  std::vector<const KaxBlockBlob *>::iterator ListIdx;
+  auto it = std::find_if(myTempReferences.begin(), myTempReferences.end(), [&]
+    (const KaxBlockBlob *myTempReference)
+      { const KaxInternalBlock &refTmp = *myTempReference;
+        return refTmp.GlobalTimecode() == BlockRef.GlobalTimecode()
+            && refTmp.TrackNum() == BlockRef.TrackNumber(); });
 
-  for (ListIdx = myTempReferences.begin(); ListIdx != myTempReferences.end(); ++ListIdx) {
-    const KaxInternalBlock &refTmp = **ListIdx;
-    if (refTmp.GlobalTimecode() == BlockRef.GlobalTimecode() &&
-        refTmp.TrackNum() == BlockRef.TrackNumber()) {
-      // found, now add the element to the entry list
-      auto & NewPoint = AddNewChild<KaxCuePoint>(*this);
-      NewPoint.PositionSet(**ListIdx, GlobalTimecodeScale());
-      myTempReferences.erase(ListIdx);
-      break;
-    }
+  if(it != myTempReferences.end()) {
+    // found, now add the element to the entry list
+    auto & NewPoint = AddNewChild<KaxCuePoint>(*this);
+    NewPoint.PositionSet(**it, GlobalTimecodeScale());
+    myTempReferences.erase(it);
   }
 }
 

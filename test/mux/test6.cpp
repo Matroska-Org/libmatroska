@@ -83,7 +83,7 @@ int main(int argc, char **argv)
     *static_cast<EbmlString *>(&MyDocType) = "matroska";
 
     EDocTypeVersion & MyDocTypeVer = GetChild<EDocTypeVersion>(FileHead);
-    *(static_cast<EbmlUInteger *>(&MyDocTypeVer)) = MATROSKA_VERSION;
+    *(static_cast<EbmlUInteger *>(&MyDocTypeVer)) = 2;
 
     EDocTypeReadVersion & MyDocTypeReadVer = GetChild<EDocTypeReadVersion>(FileHead);
     *(static_cast<EbmlUInteger *>(&MyDocTypeReadVer)) = 1;
@@ -162,7 +162,6 @@ int main(int argc, char **argv)
     *(static_cast<EbmlFloat *>(&MyTrack1Freq)) = 44100.0;
     MyTrack1Freq.ValidateSize();
 
-#if MATROSKA_VERSION >= 2
     KaxAudioPosition & MyTrack1Pos = GetChild<KaxAudioPosition>(MyTrack1Audio);
     binary *_Pos = new binary[5];
     _Pos[0] = '0';
@@ -171,7 +170,6 @@ int main(int argc, char **argv)
     _Pos[3] = '3';
     _Pos[4] = '\0';
     MyTrack1Pos.SetBuffer(_Pos, 5);
-#endif // MATROSKA_VERSION
 
     KaxAudioChannels & MyTrack1Channels = GetChild<KaxAudioChannels>(MyTrack1Audio);
     *(static_cast<EbmlUInteger *>(&MyTrack1Channels)) = 2;

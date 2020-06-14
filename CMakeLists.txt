@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.1.2)
 
-project(matroska VERSION 1.5.2)
+project(matroska VERSION 1.6.0)
 
 option(DISABLE_PKGCONFIG "Disable PkgConfig module generation" OFF)
 option(DISABLE_CMAKE_CONFIG "Disable CMake package config module generation" OFF)
@@ -62,8 +62,8 @@ set (libmatroska_C_PUBLIC_HEADERS
 add_library(matroska ${libmatroska_SOURCES} ${libmatroska_PUBLIC_HEADERS} ${libmatroska_C_PUBLIC_HEADERS})
 target_link_libraries(matroska PUBLIC EBML::ebml)
 set_target_properties(matroska PROPERTIES
-  VERSION 6.0.0
-  SOVERSION 6)
+  VERSION 7.0.0
+  SOVERSION 7)
 target_include_directories(matroska
   PRIVATE
     $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}>

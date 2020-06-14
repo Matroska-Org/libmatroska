@@ -46,8 +46,8 @@
 
 #include "matroska_export.h"
 
-#if !defined(MATROSKA_VERSION)
-#define MATROSKA_VERSION  2
+#if defined(MATROSKA_VERSION) && MATROSKA_VERSION < 2
+#error MATROSKA_VERSION <= 2 no longer supported, update your code accordingly
 #endif // MATROSKA_VERSION
 
 

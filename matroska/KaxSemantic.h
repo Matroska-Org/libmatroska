@@ -608,6 +608,14 @@ DECLARE_MKX_UINTEGER(KaxContentEncAlgo)
 DECLARE_MKX_BINARY (KaxContentEncKeyID)
 };
 
+#if MATROSKA_VERSION >= 2
+DECLARE_MKX_MASTER(KaxContentEncAESSettings)
+};
+
+DECLARE_MKX_UINTEGER(KaxAESSettingsCipherMode)
+};
+#endif
+
 DECLARE_MKX_BINARY (KaxContentSignature)
 };
 

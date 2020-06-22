@@ -66,7 +66,10 @@ add_library(matroska ${libmatroska_SOURCES} ${libmatroska_PUBLIC_HEADERS} ${libm
 target_link_libraries(matroska PUBLIC EBML::ebml)
 set_target_properties(matroska PROPERTIES
   VERSION 7.0.0
-  SOVERSION 7)
+  SOVERSION 7
+  CXX_VISIBILITY_PRESET hidden
+  VISIBILITY_INLINES_HIDDEN ON
+)
 target_include_directories(matroska
   PRIVATE
     $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}>

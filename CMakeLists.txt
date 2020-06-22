@@ -9,6 +9,9 @@ find_package(EBML 1.3.9 REQUIRED)
 
 include(GNUInstallDirs)
 
+set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
 set(libmatroska_SOURCES
   src/FileKax.cpp
   src/KaxAttached.cpp

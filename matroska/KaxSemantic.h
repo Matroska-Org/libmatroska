@@ -263,6 +263,21 @@ public:
 DECLARE_MKX_UINTEGER(KaxMaxBlockAdditionID)
 };
 
+DECLARE_MKX_MASTER(KaxBlockAdditionMapping)
+};
+
+DECLARE_MKX_UINTEGER(KaxBlockAddIDValue)
+};
+
+DECLARE_MKX_STRING(KaxBlockAddIDName)
+};
+
+DECLARE_MKX_UINTEGER(KaxBlockAddIDType)
+};
+
+DECLARE_MKX_BINARY (KaxBlockAddIDExtraData)
+};
+
 DECLARE_MKX_UNISTRING(KaxTrackName)
 };
 

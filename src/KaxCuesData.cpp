@@ -139,19 +139,19 @@ void KaxCueReference::AddReference(const KaxBlockBlob & BlockReference, uint64 G
 #endif /* OLD */
 }
 
-bool KaxCuePoint::IsSmallerThan(const EbmlElement * EltB) const
+bool KaxCuePoint::IsSmallerThan(const EbmlElement * Cmp) const
 {
   assert(EbmlId(*this) == EBML_ID(KaxCuePoint));
-  assert(EbmlId(*EltB) == EBML_ID(KaxCuePoint));
+  assert(EbmlId(*Cmp)  == EBML_ID(KaxCuePoint));
 
-  const KaxCuePoint & theEltB = *static_cast<const KaxCuePoint *>(EltB);
+  const KaxCuePoint & theCmp = *static_cast<const KaxCuePoint *>(Cmp);
 
   // compare timecode
   const KaxCueTime * TimeCodeA = static_cast<const KaxCueTime *>(FindElt(EBML_INFO(KaxCueTime)));
   if (TimeCodeA == NULL)
     return false;
 
-  const KaxCueTime * TimeCodeB = static_cast<const KaxCueTime *>(theEltB.FindElt(EBML_INFO(KaxCueTime)));
+  const KaxCueTime * TimeCodeB = static_cast<const KaxCueTime *>(theCmp.FindElt(EBML_INFO(KaxCueTime)));
   if (TimeCodeB == NULL)
     return false;
 
@@ -166,7 +166,7 @@ bool KaxCuePoint::IsSmallerThan(const EbmlElement * EltB) const
   if (TrackA == NULL)
     return false;
 
-  const KaxCueTrack * TrackB = static_cast<const KaxCueTrack *>(theEltB.FindElt(EBML_INFO(KaxCueTrack)));
+  const KaxCueTrack * TrackB = static_cast<const KaxCueTrack *>(theCmp.FindElt(EBML_INFO(KaxCueTrack)));
   if (TrackB == NULL)
     return false;
 

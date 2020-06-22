@@ -1008,9 +1008,9 @@ bool KaxBlockBlob::AddFrameAuto(const KaxTrackEntry & track, uint64 timecode, Da
   return bResult;
 }
 
-void KaxBlockBlob::SetParent(KaxCluster & parent_clust)
+void KaxBlockBlob::SetParent(KaxCluster & aParentCluster)
 {
-  ParentCluster = &parent_clust;
+  ParentCluster = &aParentCluster;
 }
 
 void KaxBlockBlob::SetBlockDuration(uint64 TimeLength)

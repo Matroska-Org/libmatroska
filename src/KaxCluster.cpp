@@ -264,7 +264,7 @@ int16 KaxCluster::GetBlockLocalTimecode(uint64 aGlobalTimecode) const
   return int16(TimecodeDelay);
 }
 
-uint64 KaxCluster::GetBlockGlobalTimecode(int16 GlobalSavedTimecode)
+uint64 KaxCluster::GetBlockGlobalTimecode(int16 LocalTimecode)
 {
   if (!bFirstFrameInside) {
     KaxClusterTimecode * Timecode = static_cast<KaxClusterTimecode *>(this->FindElt(EBML_INFO(KaxClusterTimecode)));
@@ -273,7 +273,7 @@ uint64 KaxCluster::GetBlockGlobalTimecode(int16 GlobalSavedTimecode)
     bFirstFrameInside = true;
     bPreviousTimecodeIsSet = true;
   }
-  return int64(GlobalSavedTimecode * GlobalTimecodeScale()) + GlobalTimecode();
+  return int64(LocalTimecode * GlobalTimecodeScale()) + GlobalTimecode();
 }
 
 KaxBlockGroup & KaxCluster::GetNewBlock()

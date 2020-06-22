@@ -60,10 +60,8 @@ KaxCluster::KaxCluster(const KaxCluster & ElementToClone)
       static_cast<KaxBlockGroup   *>(*Itr)->SetParent(*this);
     } else if (EbmlId(**Itr) == EBML_ID(KaxBlock)) {
       static_cast<KaxBlock        *>(*Itr)->SetParent(*this);
-#if MATROSKA_VERSION >= 2
     } else if (EbmlId(**Itr) == EBML_ID(KaxBlockVirtual)) {
       static_cast<KaxBlockVirtual *>(*Itr)->SetParent(*this);
-#endif // MATROSKA_VERSION
     }
     ++Itr;
   }
@@ -199,11 +197,9 @@ filepos_t KaxCluster::Render(IOCallback & output, KaxCues & CueToUpdate, bool bS
   } else {
     // new school, using KaxBlockBlob
     for (Index = 0; Index<Blobs.size(); Index++) {
-#if MATROSKA_VERSION >= 2
       if (Blobs[Index]->IsSimpleBlock())
         PushElement( (KaxSimpleBlock&) *Blobs[Index] );
       else
-#endif
         PushElement( (KaxBlockGroup&) *Blobs[Index] );
     }
 

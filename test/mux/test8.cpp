@@ -387,12 +387,10 @@ int main(int argc, char **argv)
                   }
 #endif // NO_DISPLAY_DATA
 //                  printf("Codec ID   : %s\n", &binary(CodecID)); // strings for the moment (example)
-#if MATROSKA_VERSION >= 2
                 } else if (EbmlId(*ElementLevel3) == KaxBlockVirtual::ClassInfos.GlobalId) {
                   printf(" Virtual Block\n");
                 } else if (EbmlId(*ElementLevel3) == KaxReferenceVirtual::ClassInfos.GlobalId) {
                   printf("  virtual Reference\n");
-#endif // MATROSKA_VERSION
                 } else if (EbmlId(*ElementLevel3) == KaxReferencePriority::ClassInfos.GlobalId) {
                   printf("  Reference priority\n");
                 } else if (EbmlId(*ElementLevel3) == KaxReferenceBlock::ClassInfos.GlobalId) {
@@ -496,7 +494,6 @@ int main(int argc, char **argv)
                     } else if (CuePos[Index2]->Generic().GlobalId == KaxCueClusterPosition::ClassInfos.GlobalId) {
                       KaxCueClusterPosition & CuePoss = *static_cast<KaxCueClusterPosition *>(CuePos[Index2]);
                       printf("   Cluster position %d\n", uint64(CuePoss));
-#if MATROSKA_VERSION >= 2
                     } else if (CuePos[Index2]->Generic().GlobalId == KaxCueReference::ClassInfos.GlobalId) {
                       KaxCueReference & CueRefs = *static_cast<KaxCueReference *>(CuePos[Index2]);
                       printf("   Reference\n");
@@ -513,7 +510,6 @@ int main(int argc, char **argv)
                           printf("    - found %s\n", CueRefs[Index3]->Generic().DebugName);
                         }
                       }
-#endif // MATROSKA_VERSION
                     } else {
                       printf("   - found %s\n", CuePos[Index2]->Generic().DebugName);
                     }

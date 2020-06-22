@@ -118,13 +118,9 @@ DEFINE_SEMANTIC_ITEM(true, true, KaxClusterTimecode)
 DEFINE_SEMANTIC_ITEM(false, true, KaxClusterSilentTracks)
 DEFINE_SEMANTIC_ITEM(false, true, KaxClusterPosition)
 DEFINE_SEMANTIC_ITEM(false, true, KaxClusterPrevSize)
-#if MATROSKA_VERSION >= 2
 DEFINE_SEMANTIC_ITEM(false, false, KaxSimpleBlock)
-#endif // MATROSKA_VERSION
 DEFINE_SEMANTIC_ITEM(false, false, KaxBlockGroup)
-#if MATROSKA_VERSION >= 2
 DEFINE_SEMANTIC_ITEM(false, false, KaxEncryptedBlock) // not supported
-#endif // MATROSKA_VERSION
 DEFINE_END_SEMANTIC(KaxCluster)
 
 DEFINE_MKX_MASTER_CONS(KaxCluster, 0x1F43B675, 4, KaxSegment, "Cluster")
@@ -138,35 +134,25 @@ DEFINE_MKX_MASTER(KaxClusterSilentTracks, 0x5854, 2, KaxCluster, "ClusterSilentT
 DEFINE_MKX_UINTEGER(KaxClusterSilentTrackNumber, 0x58D7, 2, KaxClusterSilentTracks, "ClusterSilentTrackNumber")
 DEFINE_MKX_UINTEGER(KaxClusterPosition, 0xA7, 1, KaxCluster, "ClusterPosition")
 DEFINE_MKX_UINTEGER(KaxClusterPrevSize, 0xAB, 1, KaxCluster, "ClusterPrevSize")
-#if MATROSKA_VERSION >= 2
 DEFINE_MKX_BINARY_CONS(KaxSimpleBlock, 0xA3, 1, KaxCluster, "SimpleBlock")
-#endif
 
 DEFINE_START_SEMANTIC(KaxBlockGroup)
 DEFINE_SEMANTIC_ITEM(true, true, KaxBlock)
-#if MATROSKA_VERSION >= 2
 DEFINE_SEMANTIC_ITEM(false, true, KaxBlockVirtual) // not supported
-#endif // MATROSKA_VERSION
 DEFINE_SEMANTIC_ITEM(false, true, KaxBlockAdditions)
 DEFINE_SEMANTIC_ITEM(false, true, KaxBlockDuration)
 DEFINE_SEMANTIC_ITEM(true, true, KaxReferencePriority)
 DEFINE_SEMANTIC_ITEM(false, false, KaxReferenceBlock)
-#if MATROSKA_VERSION >= 2
 DEFINE_SEMANTIC_ITEM(false, true, KaxReferenceVirtual) // not supported
 DEFINE_SEMANTIC_ITEM(false, true, KaxCodecState)
 DEFINE_SEMANTIC_ITEM(false, true, KaxDiscardPadding)
-#endif // MATROSKA_VERSION
 DEFINE_SEMANTIC_ITEM(false, true, KaxSlices)
-#if MATROSKA_VERSION >= 2
 DEFINE_SEMANTIC_ITEM(false, true, KaxReferenceFrame) // DivX specific
-#endif // MATROSKA_VERSION
 DEFINE_END_SEMANTIC(KaxBlockGroup)
 
 DEFINE_MKX_MASTER_CONS(KaxBlockGroup, 0xA0, 1, KaxCluster, "BlockGroup")
 DEFINE_MKX_BINARY_CONS(KaxBlock, 0xA1, 1, KaxBlockGroup, "Block")
-#if MATROSKA_VERSION >= 2
 DEFINE_MKX_BINARY_CONS(KaxBlockVirtual, 0xA2, 1, KaxBlockGroup, "BlockVirtual")
-#endif
 
 DEFINE_START_SEMANTIC(KaxBlockAdditions)
 DEFINE_SEMANTIC_ITEM(true, false, KaxBlockMore)
@@ -185,11 +171,9 @@ DEFINE_MKX_BINARY (KaxBlockAdditional, 0xA5, 1, KaxBlockMore, "BlockAdditional")
 DEFINE_MKX_UINTEGER(KaxBlockDuration, 0x9B, 1, KaxBlockGroup, "BlockDuration")
 DEFINE_MKX_UINTEGER_DEF(KaxReferencePriority, 0xFA, 1, KaxBlockGroup, "FlagReferenced", 0)
 DEFINE_MKX_SINTEGER_CONS(KaxReferenceBlock, 0xFB, 1, KaxBlockGroup, "ReferenceBlock")
-#if MATROSKA_VERSION >= 2
 DEFINE_MKX_SINTEGER(KaxReferenceVirtual, 0xFD, 1, KaxBlockGroup, "ReferenceVirtual")
 DEFINE_MKX_BINARY (KaxCodecState, 0xA4, 1, KaxBlockGroup, "CodecState")
 DEFINE_MKX_SINTEGER(KaxDiscardPadding, 0x75A2, 2, KaxBlockGroup, "DiscardPadding")
-#endif
 
 DEFINE_START_SEMANTIC(KaxSlices)
 DEFINE_SEMANTIC_ITEM(false, false, KaxTimeSlice)
@@ -199,17 +183,14 @@ DEFINE_MKX_MASTER(KaxSlices, 0x8E, 1, KaxBlockGroup, "Slices")
 
 DEFINE_START_SEMANTIC(KaxTimeSlice)
 DEFINE_SEMANTIC_ITEM(false, true, KaxSliceLaceNumber)
-#if MATROSKA_VERSION >= 2
 DEFINE_SEMANTIC_ITEM(false, true, KaxSliceFrameNumber) // not supported
 DEFINE_SEMANTIC_ITEM(false, true, KaxSliceBlockAddID) // not supported
 DEFINE_SEMANTIC_ITEM(false, true, KaxSliceDelay) // not supported
 DEFINE_SEMANTIC_ITEM(false, true, KaxSliceDuration) // not supported
-#endif // MATROSKA_VERSION
 DEFINE_END_SEMANTIC(KaxTimeSlice)
 
 DEFINE_MKX_MASTER(KaxTimeSlice, 0xE8, 1, KaxSlices, "TimeSlice")
 DEFINE_MKX_UINTEGER_DEF(KaxSliceLaceNumber, 0xCC, 1, KaxTimeSlice, "SliceLaceNumber", 0)
-#if MATROSKA_VERSION >= 2
 DEFINE_MKX_UINTEGER_DEF(KaxSliceFrameNumber, 0xCD, 1, KaxTimeSlice, "SliceFrameNumber", 0)
 DEFINE_MKX_UINTEGER_DEF(KaxSliceBlockAddID, 0xCB, 1, KaxTimeSlice, "SliceBlockAddID", 0)
 DEFINE_MKX_UINTEGER_DEF(KaxSliceDelay, 0xCE, 1, KaxTimeSlice, "SliceDelay", 0)
@@ -224,7 +205,6 @@ DEFINE_MKX_MASTER(KaxReferenceFrame, 0xC8, 1, KaxBlockGroup, "ReferenceFrame")
 DEFINE_MKX_UINTEGER(KaxReferenceOffset, 0xC9, 1, KaxReferenceFrame, "ReferenceOffset")
 DEFINE_MKX_UINTEGER(KaxReferenceTimeCode, 0xCA, 1, KaxReferenceFrame, "ReferenceTimeCode")
 DEFINE_MKX_BINARY (KaxEncryptedBlock, 0xAF, 1, KaxCluster, "EncryptedBlock")
-#endif
 
 DEFINE_START_SEMANTIC(KaxTracks)
 DEFINE_SEMANTIC_ITEM(true, false, KaxTrackEntry)
@@ -236,54 +216,40 @@ DEFINE_START_SEMANTIC(KaxTrackEntry)
 DEFINE_SEMANTIC_ITEM(true, true, KaxTrackNumber)
 DEFINE_SEMANTIC_ITEM(true, true, KaxTrackUID)
 DEFINE_SEMANTIC_ITEM(true, true, KaxTrackType)
-#if MATROSKA_VERSION >= 2
 DEFINE_SEMANTIC_ITEM(true, true, KaxTrackFlagEnabled)
-#endif // MATROSKA_VERSION
 DEFINE_SEMANTIC_ITEM(true, true, KaxTrackFlagDefault)
 DEFINE_SEMANTIC_ITEM(true, true, KaxTrackFlagForced)
 DEFINE_SEMANTIC_ITEM(true, true, KaxTrackFlagLacing)
 DEFINE_SEMANTIC_ITEM(true, true, KaxTrackMinCache)
 DEFINE_SEMANTIC_ITEM(false, true, KaxTrackMaxCache)
 DEFINE_SEMANTIC_ITEM(false, true, KaxTrackDefaultDuration)
-#if MATROSKA_VERSION >= 2
 DEFINE_SEMANTIC_ITEM(false, true, KaxTrackDefaultDecodedFieldDuration)
-#endif // MATROSKA_VERSION
 DEFINE_SEMANTIC_ITEM(true, true, KaxTrackTimecodeScale)
-#if MATROSKA_VERSION >= 2
 DEFINE_SEMANTIC_ITEM(false, true, KaxTrackOffset) // not supported
-#endif // MATROSKA_VERSION
 DEFINE_SEMANTIC_ITEM(true, true, KaxMaxBlockAdditionID)
 DEFINE_SEMANTIC_ITEM(false, true, KaxTrackName)
 DEFINE_SEMANTIC_ITEM(false, true, KaxTrackLanguage)
-#if MATROSKA_VERSION >= 2
 DEFINE_SEMANTIC_ITEM(false, true, KaxLanguageIETF)
-#endif // MATROSKA_VERSION
 DEFINE_SEMANTIC_ITEM(true, true, KaxCodecID)
 DEFINE_SEMANTIC_ITEM(false, true, KaxCodecPrivate)
 DEFINE_SEMANTIC_ITEM(false, true, KaxCodecName)
 DEFINE_SEMANTIC_ITEM(false, true, KaxTrackAttachmentLink)
-#if MATROSKA_VERSION >= 2
 DEFINE_SEMANTIC_ITEM(false, true, KaxCodecSettings) // not supported
 DEFINE_SEMANTIC_ITEM(false, false, KaxCodecInfoURL) // not supported
 DEFINE_SEMANTIC_ITEM(false, false, KaxCodecDownloadURL) // not supported
 DEFINE_SEMANTIC_ITEM(true, true, KaxCodecDecodeAll)
-#endif // MATROSKA_VERSION
 DEFINE_SEMANTIC_ITEM(false, false, KaxTrackOverlay)
-#if MATROSKA_VERSION >= 2
 DEFINE_SEMANTIC_ITEM(false, true, KaxCodecDelay)
 DEFINE_SEMANTIC_ITEM(true, true, KaxSeekPreRoll)
-#endif // MATROSKA_VERSION
 DEFINE_SEMANTIC_ITEM(false, false, KaxTrackTranslate)
 DEFINE_SEMANTIC_ITEM(false, true, KaxTrackVideo)
 DEFINE_SEMANTIC_ITEM(false, true, KaxTrackAudio)
-#if MATROSKA_VERSION >= 2
 DEFINE_SEMANTIC_ITEM(false, true, KaxTrackOperation)
 DEFINE_SEMANTIC_ITEM(false, true, KaxTrickTrackUID) // DivX specific
 DEFINE_SEMANTIC_ITEM(false, true, KaxTrickTrackSegmentUID) // DivX specific
 DEFINE_SEMANTIC_ITEM(false, true, KaxTrickTrackFlag) // DivX specific
 DEFINE_SEMANTIC_ITEM(false, true, KaxTrickMasterTrackUID) // DivX specific
 DEFINE_SEMANTIC_ITEM(false, true, KaxTrickMasterTrackSegmentUID) // DivX specific
-#endif // MATROSKA_VERSION
 DEFINE_SEMANTIC_ITEM(false, true, KaxContentEncodings)
 DEFINE_END_SEMANTIC(KaxTrackEntry)
 
@@ -291,43 +257,31 @@ DEFINE_MKX_MASTER_CONS(KaxTrackEntry, 0xAE, 1, KaxTracks, "TrackEntry")
 DEFINE_MKX_UINTEGER(KaxTrackNumber, 0xD7, 1, KaxTrackEntry, "TrackNumber")
 DEFINE_MKX_UINTEGER(KaxTrackUID, 0x73C5, 2, KaxTrackEntry, "TrackUID")
 DEFINE_MKX_UINTEGER(KaxTrackType, 0x83, 1, KaxTrackEntry, "TrackType")
-#if MATROSKA_VERSION >= 2
 DEFINE_MKX_UINTEGER_DEF(KaxTrackFlagEnabled, 0xB9, 1, KaxTrackEntry, "TrackFlagEnabled", 1)
-#endif
 DEFINE_MKX_UINTEGER_DEF(KaxTrackFlagDefault, 0x88, 1, KaxTrackEntry, "TrackFlagDefault", 1)
 DEFINE_MKX_UINTEGER_DEF(KaxTrackFlagForced, 0x55AA, 2, KaxTrackEntry, "TrackFlagForced", 0)
 DEFINE_MKX_UINTEGER_DEF(KaxTrackFlagLacing, 0x9C, 1, KaxTrackEntry, "TrackFlagLacing", 1)
 DEFINE_MKX_UINTEGER_DEF(KaxTrackMinCache, 0x6DE7, 2, KaxTrackEntry, "TrackMinCache", 0)
 DEFINE_MKX_UINTEGER(KaxTrackMaxCache, 0x6DF8, 2, KaxTrackEntry, "TrackMaxCache")
 DEFINE_MKX_UINTEGER(KaxTrackDefaultDuration, 0x23E383, 3, KaxTrackEntry, "TrackDefaultDuration")
-#if MATROSKA_VERSION >= 2
 DEFINE_MKX_UINTEGER(KaxTrackDefaultDecodedFieldDuration, 0x234E7A, 3, KaxTrackEntry, "TrackDefaultDecodedFieldDuration")
-#endif
 DEFINE_MKX_FLOAT_DEF(KaxTrackTimecodeScale, 0x23314F, 3, KaxTrackEntry, "TrackTimecodeScale", 1)
-#if MATROSKA_VERSION >= 2
 DEFINE_MKX_SINTEGER_DEF(KaxTrackOffset, 0x537F, 2, KaxTrackEntry, "TrackOffset", 0)
-#endif
 DEFINE_MKX_UINTEGER_DEF(KaxMaxBlockAdditionID, 0x55EE, 2, KaxTrackEntry, "MaxBlockAdditionID", 0)
 DEFINE_MKX_UNISTRING(KaxTrackName, 0x536E, 2, KaxTrackEntry, "TrackName")
 DEFINE_MKX_STRING_DEF(KaxTrackLanguage, 0x22B59C, 3, KaxTrackEntry, "TrackLanguage", "eng")
-#if MATROSKA_VERSION >= 2
 DEFINE_MKX_STRING(KaxLanguageIETF, 0x22B59D, 3, KaxTrackEntry, "LanguageIETF")
-#endif
 DEFINE_MKX_STRING(KaxCodecID, 0x86, 1, KaxTrackEntry, "CodecID")
 DEFINE_MKX_BINARY (KaxCodecPrivate, 0x63A2, 2, KaxTrackEntry, "CodecPrivate")
 DEFINE_MKX_UNISTRING(KaxCodecName, 0x258688, 3, KaxTrackEntry, "CodecName")
 DEFINE_MKX_UINTEGER(KaxTrackAttachmentLink, 0x7446, 2, KaxTrackEntry, "TrackAttachmentLink")
-#if MATROSKA_VERSION >= 2
 DEFINE_MKX_UNISTRING(KaxCodecSettings, 0x3A9697, 3, KaxTrackEntry, "CodecSettings")
 DEFINE_MKX_STRING(KaxCodecInfoURL, 0x3B4040, 3, KaxTrackEntry, "CodecInfoURL")
 DEFINE_MKX_STRING(KaxCodecDownloadURL, 0x26B240, 3, KaxTrackEntry, "CodecDownloadURL")
 DEFINE_MKX_UINTEGER_DEF(KaxCodecDecodeAll, 0xAA, 1, KaxTrackEntry, "CodecDecodeAll", 1)
-#endif
 DEFINE_MKX_UINTEGER(KaxTrackOverlay, 0x6FAB, 2, KaxTrackEntry, "TrackOverlay")
-#if MATROSKA_VERSION >= 2
 DEFINE_MKX_UINTEGER_DEF(KaxCodecDelay, 0x56AA, 2, KaxTrackEntry, "CodecDelay", 0)
 DEFINE_MKX_UINTEGER_DEF(KaxSeekPreRoll, 0x56BB, 2, KaxTrackEntry, "SeekPreRoll", 0)
-#endif
 
 DEFINE_START_SEMANTIC(KaxTrackTranslate)
 DEFINE_SEMANTIC_ITEM(false, false, KaxTrackTranslateEditionUID)
@@ -341,13 +295,11 @@ DEFINE_MKX_UINTEGER(KaxTrackTranslateCodec, 0x66BF, 2, KaxTrackTranslate, "Track
 DEFINE_MKX_BINARY (KaxTrackTranslateTrackID, 0x66A5, 2, KaxTrackTranslate, "TrackTranslateTrackID")
 
 DEFINE_START_SEMANTIC(KaxTrackVideo)
-#if MATROSKA_VERSION >= 2
 DEFINE_SEMANTIC_ITEM(true, true, KaxVideoFlagInterlaced)
 DEFINE_SEMANTIC_ITEM(true, true, KaxVideoFieldOrder)
 DEFINE_SEMANTIC_ITEM(false, true, KaxVideoStereoMode)
 DEFINE_SEMANTIC_ITEM(false, true, KaxVideoAlphaMode)
 DEFINE_SEMANTIC_ITEM(false, true, KaxOldStereoMode) // not supported
-#endif // MATROSKA_VERSION
 DEFINE_SEMANTIC_ITEM(true, true, KaxVideoPixelWidth)
 DEFINE_SEMANTIC_ITEM(true, true, KaxVideoPixelHeight)
 DEFINE_SEMANTIC_ITEM(false, true, KaxVideoPixelCropBottom)
@@ -359,22 +311,18 @@ DEFINE_SEMANTIC_ITEM(false, true, KaxVideoDisplayHeight)
 DEFINE_SEMANTIC_ITEM(false, true, KaxVideoDisplayUnit)
 DEFINE_SEMANTIC_ITEM(false, true, KaxVideoAspectRatio)
 DEFINE_SEMANTIC_ITEM(false, true, KaxVideoColourSpace)
-#if MATROSKA_VERSION >= 2
 DEFINE_SEMANTIC_ITEM(false, true, KaxVideoGamma) // not supported
 DEFINE_SEMANTIC_ITEM(false, true, KaxVideoFrameRate) // not supported
 DEFINE_SEMANTIC_ITEM(false, true, KaxVideoColour)
 DEFINE_SEMANTIC_ITEM(false, true, KaxVideoProjection)
-#endif // MATROSKA_VERSION
 DEFINE_END_SEMANTIC(KaxTrackVideo)
 
 DEFINE_MKX_MASTER(KaxTrackVideo, 0xE0, 1, KaxTrackEntry, "TrackVideo")
-#if MATROSKA_VERSION >= 2
 DEFINE_MKX_UINTEGER_DEF(KaxVideoFlagInterlaced, 0x9A, 1, KaxTrackVideo, "VideoFlagInterlaced", 0)
 DEFINE_MKX_UINTEGER_DEF(KaxVideoFieldOrder, 0x9D, 1, KaxTrackVideo, "VideoFieldOrder", 2)
 DEFINE_MKX_UINTEGER_DEF(KaxVideoStereoMode, 0x53B8, 2, KaxTrackVideo, "VideoStereoMode", 0)
 DEFINE_MKX_UINTEGER_DEF(KaxVideoAlphaMode, 0x53C0, 2, KaxTrackVideo, "VideoAlphaMode", 0)
 DEFINE_MKX_UINTEGER(KaxOldStereoMode, 0x53B9, 2, KaxTrackVideo, "OldStereoMode")
-#endif
 DEFINE_MKX_UINTEGER(KaxVideoPixelWidth, 0xB0, 1, KaxTrackVideo, "VideoPixelWidth")
 DEFINE_MKX_UINTEGER(KaxVideoPixelHeight, 0xBA, 1, KaxTrackVideo, "VideoPixelHeight")
 DEFINE_MKX_UINTEGER_DEF(KaxVideoPixelCropBottom, 0x54AA, 2, KaxTrackVideo, "VideoPixelCropBottom", 0)
@@ -386,7 +334,6 @@ DEFINE_MKX_UINTEGER(KaxVideoDisplayHeight, 0x54BA, 2, KaxTrackVideo, "VideoDispl
 DEFINE_MKX_UINTEGER_DEF(KaxVideoDisplayUnit, 0x54B2, 2, KaxTrackVideo, "VideoDisplayUnit", 0)
 DEFINE_MKX_UINTEGER_DEF(KaxVideoAspectRatio, 0x54B3, 2, KaxTrackVideo, "VideoAspectRatio", 0)
 DEFINE_MKX_BINARY (KaxVideoColourSpace, 0x2EB524, 3, KaxTrackVideo, "VideoColourSpace")
-#if MATROSKA_VERSION >= 2
 DEFINE_MKX_FLOAT(KaxVideoGamma, 0x2FB523, 3, KaxTrackVideo, "VideoGamma")
 DEFINE_MKX_FLOAT(KaxVideoFrameRate, 0x2383E3, 3, KaxTrackVideo, "VideoFrameRate")
 
@@ -461,15 +408,12 @@ DEFINE_MKX_BINARY (KaxVideoProjectionPrivate, 0x7672, 2, KaxVideoProjection, "Vi
 DEFINE_MKX_FLOAT_DEF(KaxVideoProjectionPoseYaw, 0x7673, 2, KaxVideoProjection, "VideoProjectionPoseYaw", 0)
 DEFINE_MKX_FLOAT_DEF(KaxVideoProjectionPosePitch, 0x7674, 2, KaxVideoProjection, "VideoProjectionPosePitch", 0)
 DEFINE_MKX_FLOAT_DEF(KaxVideoProjectionPoseRoll, 0x7675, 2, KaxVideoProjection, "VideoProjectionPoseRoll", 0)
-#endif
 
 DEFINE_START_SEMANTIC(KaxTrackAudio)
 DEFINE_SEMANTIC_ITEM(true, true, KaxAudioSamplingFreq)
 DEFINE_SEMANTIC_ITEM(false, true, KaxAudioOutputSamplingFreq)
 DEFINE_SEMANTIC_ITEM(true, true, KaxAudioChannels)
-#if MATROSKA_VERSION >= 2
 DEFINE_SEMANTIC_ITEM(false, true, KaxAudioPosition) // not supported
-#endif // MATROSKA_VERSION
 DEFINE_SEMANTIC_ITEM(false, true, KaxAudioBitDepth)
 DEFINE_END_SEMANTIC(KaxTrackAudio)
 
@@ -477,11 +421,8 @@ DEFINE_MKX_MASTER(KaxTrackAudio, 0xE1, 1, KaxTrackEntry, "TrackAudio")
 DEFINE_MKX_FLOAT_DEF(KaxAudioSamplingFreq, 0xB5, 1, KaxTrackAudio, "AudioSamplingFreq", 8000)
 DEFINE_MKX_FLOAT(KaxAudioOutputSamplingFreq, 0x78B5, 2, KaxTrackAudio, "AudioOutputSamplingFreq")
 DEFINE_MKX_UINTEGER_DEF(KaxAudioChannels, 0x9F, 1, KaxTrackAudio, "AudioChannels", 1)
-#if MATROSKA_VERSION >= 2
 DEFINE_MKX_BINARY (KaxAudioPosition, 0x7D7B, 2, KaxTrackAudio, "AudioPosition")
-#endif
 DEFINE_MKX_UINTEGER(KaxAudioBitDepth, 0x6264, 2, KaxTrackAudio, "AudioBitDepth")
-#if MATROSKA_VERSION >= 2
 
 DEFINE_START_SEMANTIC(KaxTrackOperation)
 DEFINE_SEMANTIC_ITEM(false, true, KaxTrackCombinePlanes)
@@ -516,7 +457,6 @@ DEFINE_MKX_BINARY (KaxTrickTrackSegmentUID, 0xC1, 1, KaxTrackEntry, "TrickTrackS
 DEFINE_MKX_UINTEGER_DEF(KaxTrickTrackFlag, 0xC6, 1, KaxTrackEntry, "TrickTrackFlag", 0)
 DEFINE_MKX_UINTEGER(KaxTrickMasterTrackUID, 0xC7, 1, KaxTrackEntry, "TrickMasterTrackUID")
 DEFINE_MKX_BINARY (KaxTrickMasterTrackSegmentUID, 0xC4, 1, KaxTrackEntry, "TrickMasterTrackSegmentUID")
-#endif
 
 DEFINE_START_SEMANTIC(KaxContentEncodings)
 DEFINE_SEMANTIC_ITEM(true, false, KaxContentEncoding)
@@ -580,26 +520,19 @@ DEFINE_MKX_UINTEGER(KaxCueTime, 0xB3, 1, KaxCuePoint, "CueTime")
 DEFINE_START_SEMANTIC(KaxCueTrackPositions)
 DEFINE_SEMANTIC_ITEM(true, true, KaxCueTrack)
 DEFINE_SEMANTIC_ITEM(true, true, KaxCueClusterPosition)
-#if MATROSKA_VERSION >= 2
 DEFINE_SEMANTIC_ITEM(false, true, KaxCueRelativePosition)
 DEFINE_SEMANTIC_ITEM(false, true, KaxCueDuration)
-#endif // MATROSKA_VERSION
 DEFINE_SEMANTIC_ITEM(false, true, KaxCueBlockNumber)
-#if MATROSKA_VERSION >= 2
 DEFINE_SEMANTIC_ITEM(false, true, KaxCueCodecState)
 DEFINE_SEMANTIC_ITEM(false, false, KaxCueReference)
-#endif // MATROSKA_VERSION
 DEFINE_END_SEMANTIC(KaxCueTrackPositions)
 
 DEFINE_MKX_MASTER(KaxCueTrackPositions, 0xB7, 1, KaxCuePoint, "CueTrackPositions")
 DEFINE_MKX_UINTEGER(KaxCueTrack, 0xF7, 1, KaxCueTrackPositions, "CueTrack")
 DEFINE_MKX_UINTEGER(KaxCueClusterPosition, 0xF1, 1, KaxCueTrackPositions, "CueClusterPosition")
-#if MATROSKA_VERSION >= 2
 DEFINE_MKX_UINTEGER(KaxCueRelativePosition, 0xF0, 1, KaxCueTrackPositions, "CueRelativePosition")
 DEFINE_MKX_UINTEGER(KaxCueDuration, 0xB2, 1, KaxCueTrackPositions, "CueDuration")
-#endif
 DEFINE_MKX_UINTEGER_DEF(KaxCueBlockNumber, 0x5378, 2, KaxCueTrackPositions, "CueBlockNumber", 1)
-#if MATROSKA_VERSION >= 2
 DEFINE_MKX_UINTEGER_DEF(KaxCueCodecState, 0xEA, 1, KaxCueTrackPositions, "CueCodecState", 0)
 
 DEFINE_START_SEMANTIC(KaxCueReference)
@@ -614,7 +547,6 @@ DEFINE_MKX_UINTEGER(KaxCueRefTime, 0x96, 1, KaxCueReference, "CueRefTime")
 DEFINE_MKX_UINTEGER(KaxCueRefCluster, 0x97, 1, KaxCueReference, "CueRefCluster")
 DEFINE_MKX_UINTEGER_DEF(KaxCueRefNumber, 0x535F, 2, KaxCueReference, "CueRefNumber", 1)
 DEFINE_MKX_UINTEGER_DEF(KaxCueRefCodecState, 0xEB, 1, KaxCueReference, "CueRefCodecState", 0)
-#endif
 
 DEFINE_START_SEMANTIC(KaxAttachments)
 DEFINE_SEMANTIC_ITEM(true, false, KaxAttached)
@@ -628,11 +560,9 @@ DEFINE_SEMANTIC_ITEM(true, true, KaxFileName)
 DEFINE_SEMANTIC_ITEM(true, true, KaxMimeType)
 DEFINE_SEMANTIC_ITEM(true, true, KaxFileData)
 DEFINE_SEMANTIC_ITEM(true, true, KaxFileUID)
-#if MATROSKA_VERSION >= 2
 DEFINE_SEMANTIC_ITEM(false, true, KaxFileReferral) // not supported
 DEFINE_SEMANTIC_ITEM(false, true, KaxFileUsedStartTime) // DivX specific
 DEFINE_SEMANTIC_ITEM(false, true, KaxFileUsedEndTime) // DivX specific
-#endif // MATROSKA_VERSION
 DEFINE_END_SEMANTIC(KaxAttached)
 
 DEFINE_MKX_MASTER_CONS(KaxAttached, 0x61A7, 2, KaxAttachments, "AttachedFile")
@@ -641,11 +571,9 @@ DEFINE_MKX_UNISTRING(KaxFileName, 0x466E, 2, KaxAttached, "FileName")
 DEFINE_MKX_STRING(KaxMimeType, 0x4660, 2, KaxAttached, "FileMimeType")
 DEFINE_MKX_BINARY (KaxFileData, 0x465C, 2, KaxAttached, "FileData")
 DEFINE_MKX_UINTEGER(KaxFileUID, 0x46AE, 2, KaxAttached, "FileUID")
-#if MATROSKA_VERSION >= 2
 DEFINE_MKX_BINARY (KaxFileReferral, 0x4675, 2, KaxAttached, "FileReferral")
 DEFINE_MKX_UINTEGER(KaxFileUsedStartTime, 0x4661, 2, KaxAttached, "FileUsedStartTime")
 DEFINE_MKX_UINTEGER(KaxFileUsedEndTime, 0x4662, 2, KaxAttached, "FileUsedEndTime")
-#endif
 
 DEFINE_START_SEMANTIC(KaxChapters)
 DEFINE_SEMANTIC_ITEM(true, false, KaxEditionEntry)
@@ -670,9 +598,7 @@ DEFINE_MKX_UINTEGER_DEF(KaxEditionFlagOrdered, 0x45DD, 2, KaxEditionEntry, "Edit
 DEFINE_START_SEMANTIC(KaxChapterAtom)
 DEFINE_SEMANTIC_ITEM(false, false, KaxChapterAtom) // recursive
 DEFINE_SEMANTIC_ITEM(true, true, KaxChapterUID)
-#if MATROSKA_VERSION >= 2
 DEFINE_SEMANTIC_ITEM(false, true, KaxChapterStringUID)
-#endif // MATROSKA_VERSION
 DEFINE_SEMANTIC_ITEM(true, true, KaxChapterTimeStart)
 DEFINE_SEMANTIC_ITEM(false, true, KaxChapterTimeEnd)
 DEFINE_SEMANTIC_ITEM(true, true, KaxChapterFlagHidden)
@@ -687,9 +613,7 @@ DEFINE_END_SEMANTIC(KaxChapterAtom)
 
 DEFINE_MKX_MASTER(KaxChapterAtom, 0xB6, 1, KaxEditionEntry, "ChapterAtom")
 DEFINE_MKX_UINTEGER(KaxChapterUID, 0x73C4, 2, KaxChapterAtom, "ChapterUID")
-#if MATROSKA_VERSION >= 2
 DEFINE_MKX_UNISTRING(KaxChapterStringUID, 0x5654, 2, KaxChapterAtom, "ChapterStringUID")
-#endif
 DEFINE_MKX_UINTEGER(KaxChapterTimeStart, 0x91, 1, KaxChapterAtom, "ChapterTimeStart")
 DEFINE_MKX_UINTEGER(KaxChapterTimeEnd, 0x92, 1, KaxChapterAtom, "ChapterTimeEnd")
 DEFINE_MKX_UINTEGER_DEF(KaxChapterFlagHidden, 0x98, 1, KaxChapterAtom, "ChapterFlagHidden", 0)
@@ -708,18 +632,14 @@ DEFINE_MKX_UINTEGER(KaxChapterTrackNumber, 0x89, 1, KaxChapterTrack, "ChapterTra
 DEFINE_START_SEMANTIC(KaxChapterDisplay)
 DEFINE_SEMANTIC_ITEM(true, true, KaxChapterString)
 DEFINE_SEMANTIC_ITEM(true, false, KaxChapterLanguage)
-#if MATROSKA_VERSION >= 2
 DEFINE_SEMANTIC_ITEM(false, true, KaxChapLanguageIETF)
-#endif // MATROSKA_VERSION
 DEFINE_SEMANTIC_ITEM(false, false, KaxChapterCountry)
 DEFINE_END_SEMANTIC(KaxChapterDisplay)
 
 DEFINE_MKX_MASTER(KaxChapterDisplay, 0x80, 1, KaxChapterAtom, "ChapterDisplay")
 DEFINE_MKX_UNISTRING(KaxChapterString, 0x85, 1, KaxChapterDisplay, "ChapterString")
 DEFINE_MKX_STRING_DEF(KaxChapterLanguage, 0x437C, 2, KaxChapterDisplay, "ChapterLanguage", "eng")
-#if MATROSKA_VERSION >= 2
 DEFINE_MKX_STRING(KaxChapLanguageIETF, 0x437D, 2, KaxChapterDisplay, "ChapLanguageIETF")
-#endif
 DEFINE_MKX_STRING(KaxChapterCountry, 0x437E, 2, KaxChapterDisplay, "ChapterCountry")
 
 DEFINE_START_SEMANTIC(KaxChapterProcess)
@@ -775,9 +695,7 @@ DEFINE_START_SEMANTIC(KaxTagSimple)
 DEFINE_SEMANTIC_ITEM(false, false, KaxTagSimple) // recursive
 DEFINE_SEMANTIC_ITEM(true, true, KaxTagName)
 DEFINE_SEMANTIC_ITEM(true, true, KaxTagLangue)
-#if MATROSKA_VERSION >= 2
 DEFINE_SEMANTIC_ITEM(false, true, KaxTagLanguageIETF)
-#endif // MATROSKA_VERSION
 DEFINE_SEMANTIC_ITEM(true, true, KaxTagDefault)
 DEFINE_SEMANTIC_ITEM(false, true, KaxTagString)
 DEFINE_SEMANTIC_ITEM(false, true, KaxTagBinary)
@@ -786,9 +704,7 @@ DEFINE_END_SEMANTIC(KaxTagSimple)
 DEFINE_MKX_MASTER(KaxTagSimple, 0x67C8, 2, KaxTag, "TagSimple")
 DEFINE_MKX_UNISTRING(KaxTagName, 0x45A3, 2, KaxTagSimple, "TagName")
 DEFINE_MKX_STRING_DEF(KaxTagLangue, 0x447A, 2, KaxTagSimple, "TagLanguage", "und")
-#if MATROSKA_VERSION >= 2
 DEFINE_MKX_STRING(KaxTagLanguageIETF, 0x447B, 2, KaxTagSimple, "TagLanguageIETF")
-#endif
 DEFINE_MKX_UINTEGER_DEF(KaxTagDefault, 0x4484, 2, KaxTagSimple, "TagDefault", 1)
 DEFINE_MKX_UNISTRING(KaxTagString, 0x4487, 2, KaxTagSimple, "TagString")
 DEFINE_MKX_BINARY (KaxTagBinary, 0x4485, 2, KaxTagSimple, "TagBinary")

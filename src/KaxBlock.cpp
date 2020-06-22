@@ -216,7 +216,6 @@ filepos_t KaxInternalBlock::UpdateSize(bool /* bSaveDefault */, bool /* bForceRe
   return GetSize();
 }
 
-#if MATROSKA_VERSION >= 2
 KaxBlockVirtual::KaxBlockVirtual(const KaxBlockVirtual & ElementToClone)
   :EbmlBinary(ElementToClone)
   ,Timecode(ElementToClone.Timecode)
@@ -264,7 +263,6 @@ filepos_t KaxBlockVirtual::UpdateSize(bool /* bSaveDefault */, bool /* bForceRen
 
   return GetSize();
 }
-#endif // MATROSKA_VERSION
 
 /*!
   \todo more optimisation is possible (render the Block head and don't copy the buffer in memory, care should be taken with the allocation of Data)
@@ -958,38 +956,31 @@ KaxBlockBlob::operator const KaxBlockGroup &() const
 KaxBlockBlob::operator KaxInternalBlock &()
 {
   assert(Block.group);
-#if MATROSKA_VERSION >= 2
   if (bUseSimpleBlock)
     return *Block.simpleblock;
   else
-#endif
     return *Block.group;
 }
 
 KaxBlockBlob::operator const KaxInternalBlock &() const
 {
   assert(Block.group);
-#if MATROSKA_VERSION >= 2
   if (bUseSimpleBlock)
     return *Block.simpleblock;
   else
-#endif
     return *Block.group;
 }
 
-#if MATROSKA_VERSION >= 2
 KaxBlockBlob::operator KaxSimpleBlock &()
 {
   assert(bUseSimpleBlock);
   assert(Block.simpleblock);
   return *Block.simpleblock;
 }
-#endif
 
 bool KaxBlockBlob::AddFrameAuto(const KaxTrackEntry & track, uint64 timecode, DataBuffer & buffer, LacingType lacing, const KaxBlockBlob * PastBlock, const KaxBlockBlob * ForwBlock)
 {
   bool bResult = false;
-#if MATROSKA_VERSION >= 2
   if ((SimpleBlockMode == BLOCK_BLOB_ALWAYS_SIMPLE) || (SimpleBlockMode == BLOCK_BLOB_SIMPLE_AUTO && PastBlock == NULL && ForwBlock == NULL)) {
     assert(bUseSimpleBlock == true);
     if (Block.simpleblock == NULL) {
@@ -1011,7 +1002,6 @@ bool KaxBlockBlob::AddFrameAuto(const KaxTrackEntry & track, uint64 timecode, Da
     }
   }
   else
-#endif
     if (ReplaceSimpleByGroup())
       bResult = Block.group->AddFrame(track, timecode, buffer, PastBlock, ForwBlock, lacing);
 
@@ -1039,7 +1029,6 @@ bool KaxBlockBlob::ReplaceSimpleByGroup()
       Block.group = new KaxBlockGroup();
     }
   }
-#if MATROSKA_VERSION >= 2
   else {
 
     if (Block.simpleblock != NULL) {
@@ -1053,7 +1042,6 @@ bool KaxBlockBlob::ReplaceSimpleByGroup()
       Block.group = new KaxBlockGroup();
     }
   }
-#endif
   if (ParentCluster != NULL)
     Block.group->SetParent(*ParentCluster);
 

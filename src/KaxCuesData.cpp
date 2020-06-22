@@ -60,7 +60,6 @@ void KaxCuePoint::PositionSet(const KaxBlockGroup & BlockReference, uint64 Globa
   KaxCueClusterPosition & TheClustPos = GetChild<KaxCueClusterPosition>(NewPositions);
   *static_cast<EbmlUInteger*>(&TheClustPos) = BlockReference.ClusterPosition();
 
-#if MATROSKA_VERSION >= 2
   // handle reference use
   if (BlockReference.ReferenceCount() != 0) {
     unsigned int i;
@@ -75,7 +74,6 @@ void KaxCuePoint::PositionSet(const KaxBlockGroup & BlockReference, uint64 Globa
     KaxCueCodecState &CueCodecState = AddNewChild<KaxCueCodecState>(NewPositions);
     *static_cast<EbmlUInteger*>(&CueCodecState) = BlockReference.GetParentCluster()->GetParentSegment()->GetRelativePosition(CodecState->GetElementPosition());
   }
-#endif // MATROSKA_VERSION
 
   SetValueIsSet();
 }
@@ -106,7 +104,6 @@ void KaxCuePoint::PositionSet(const KaxBlockBlob & BlobReference, uint64 GlobalT
   }
 #endif // MATROSKA_VERSION
 
-#if MATROSKA_VERSION >= 2
   if (!BlobReference.IsSimpleBlock()) {
     const KaxBlockGroup &BlockGroup = BlobReference;
     const KaxCodecState *CodecState = static_cast<KaxCodecState *>(BlockGroup.FindFirstElt(EBML_INFO(KaxCodecState)));
@@ -115,12 +112,10 @@ void KaxCuePoint::PositionSet(const KaxBlockBlob & BlobReference, uint64 GlobalT
       *static_cast<EbmlUInteger*>(&CueCodecState) = BlockGroup.GetParentCluster()->GetParentSegment()->GetRelativePosition(CodecState->GetElementPosition());
     }
   }
-#endif // MATROSKA_VERSION
 
   SetValueIsSet();
 }
 
-#if MATROSKA_VERSION >= 2
 /*!
   \todo handle codec state checking
 */
@@ -143,7 +138,6 @@ void KaxCueReference::AddReference(const KaxBlockBlob & BlockReference, uint64 G
   }
 #endif /* OLD */
 }
-#endif
 
 bool KaxCuePoint::IsSmallerThan(const EbmlElement * EltB) const
 {

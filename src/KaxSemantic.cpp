@@ -841,4 +841,14 @@ filepos_t KaxFileReferral::RenderData(IOCallback & /* output */, bool /* bForceR
   return 0;
 }
 
+filepos_t KaxFileUsedStartTime::RenderData(IOCallback & /* output */, bool /* bForceRender */, bool /* bSaveDefault */) {
+  assert(false); // no you are not allowed to use this element !
+  return 0;
+}
+
+filepos_t KaxFileUsedEndTime::RenderData(IOCallback & /* output */, bool /* bForceRender */, bool /* bSaveDefault */) {
+  assert(false); // no you are not allowed to use this element !
+  return 0;
+}
+
 END_LIBMATROSKA_NAMESPACE

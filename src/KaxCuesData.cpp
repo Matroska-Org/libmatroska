@@ -81,7 +81,22 @@ void KaxCuePoint::PositionSet(const KaxBlockGroup & BlockReference, uint64 Globa
 void KaxCuePoint::PositionSet(const KaxBlockBlob & BlobReference, uint64 GlobalTimecodeScale)
 {
   const KaxInternalBlock &BlockReference = BlobReference;
+  const KaxBlockGroup *BlockGroupPointer = nullptr;
 
+  if (!BlobReference.IsSimpleBlock()) {
+    const KaxBlockGroup &BlockGroup = BlobReference;
+    BlockGroupPointer = & BlockGroup;
+  }
+  PositionSet(BlockReference, BlockGroupPointer, GlobalTimecodeScale);
+}
+
+void KaxCuePoint::PositionSet(const KaxSimpleBlock & BlockReference, uint64 GlobalTimecodeScale)
+{
+  PositionSet(BlockReference, nullptr, GlobalTimecodeScale);
+}
+
+void KaxCuePoint::PositionSet(const KaxInternalBlock & BlockReference, const KaxBlockGroup *BlockGroup, uint64 GlobalTimecodeScale)
+{
   // fill me
   auto & NewTime = GetChild<KaxCueTime>(*this);
   *static_cast<EbmlUInteger*>(&NewTime) = BlockReference.GlobalTimecode() / GlobalTimecodeScale;
@@ -104,12 +119,11 @@ void KaxCuePoint::PositionSet(const KaxBlockBlob & BlobReference, uint64 GlobalT
   }
 #endif // MATROSKA_VERSION
 
-  if (!BlobReference.IsSimpleBlock()) {
-    const KaxBlockGroup &BlockGroup = BlobReference;
-    const KaxCodecState *CodecState = static_cast<KaxCodecState *>(BlockGroup.FindFirstElt(EBML_INFO(KaxCodecState)));
+  if (BlockGroup != nullptr) {
+    const KaxCodecState *CodecState = static_cast<KaxCodecState *>(BlockGroup->FindFirstElt(EBML_INFO(KaxCodecState)));
     if (CodecState != nullptr) {
       auto &CueCodecState = AddNewChild<KaxCueCodecState>(NewPositions);
-      *static_cast<EbmlUInteger*>(&CueCodecState) = BlockGroup.GetParentCluster()->GetParentSegment()->GetRelativePosition(CodecState->GetElementPosition());
+      *static_cast<EbmlUInteger*>(&CueCodecState) = BlockGroup->GetParentCluster()->GetParentSegment()->GetRelativePosition(CodecState->GetElementPosition());
     }
   }
 

@@ -766,11 +766,6 @@ filepos_t KaxEncryptedBlock::RenderData(IOCallback & /* output */, bool /* bForc
   return 0;
 }
 
-filepos_t KaxTrackTimecodeScale::RenderData(IOCallback & /* output */, bool /* bForceRender */, bool /* bSaveDefault */) {
-  assert(false); // no you are not allowed to use this element !
-  return 0;
-}
-
 filepos_t KaxTrackOffset::RenderData(IOCallback & /* output */, bool /* bForceRender */, bool /* bSaveDefault */) {
   assert(false); // no you are not allowed to use this element !
   return 0;

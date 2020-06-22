@@ -167,10 +167,14 @@ DECLARE_MKX_MASTER(KaxSlices)
 
 
 DECLARE_MKX_MASTER(KaxTimeSlice)
+public:
+  filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault);
 };
 
 
 DECLARE_MKX_UINTEGER(KaxSliceLaceNumber)
+public:
+  filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault);
 };
 
 DECLARE_MKX_UINTEGER(KaxSliceFrameNumber)
@@ -296,6 +300,8 @@ DECLARE_MKX_UNISTRING(KaxCodecName)
 };
 
 DECLARE_MKX_UINTEGER(KaxTrackAttachmentLink)
+public:
+  filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault);
 };
 
 DECLARE_MKX_UNISTRING(KaxCodecSettings)

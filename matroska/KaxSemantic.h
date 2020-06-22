@@ -693,9 +693,13 @@ public:
 };
 
 DECLARE_MKX_UINTEGER(KaxFileUsedStartTime)
+public:
+  filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault);
 };
 
 DECLARE_MKX_UINTEGER(KaxFileUsedEndTime)
+public:
+  filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault);
 };
 
 

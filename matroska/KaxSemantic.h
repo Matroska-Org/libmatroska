@@ -268,7 +268,6 @@ public:
 DECLARE_MKX_UINTEGER(KaxMaxBlockAdditionID)
 };
 
-#if MATROSKA_VERSION >= 2
 DECLARE_MKX_MASTER(KaxBlockAdditionMapping)
 };
 
@@ -283,7 +282,6 @@ DECLARE_MKX_UINTEGER(KaxBlockAddIDType)
 
 DECLARE_MKX_BINARY (KaxBlockAddIDExtraData)
 };
-#endif
 
 DECLARE_MKX_UNISTRING(KaxTrackName)
 };

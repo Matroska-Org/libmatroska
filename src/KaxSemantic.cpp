@@ -253,9 +253,7 @@ DEFINE_SEMANTIC_ITEM(true, true, KaxTrackTimecodeScale)
 DEFINE_SEMANTIC_ITEM(false, true, KaxTrackOffset) // not supported
 #endif // MATROSKA_VERSION
 DEFINE_SEMANTIC_ITEM(true, true, KaxMaxBlockAdditionID)
-#if MATROSKA_VERSION >= 2
 DEFINE_SEMANTIC_ITEM(false, false, KaxBlockAdditionMapping)
-#endif // MATROSKA_VERSION
 DEFINE_SEMANTIC_ITEM(false, true, KaxTrackName)
 DEFINE_SEMANTIC_ITEM(false, true, KaxTrackLanguage)
 #if MATROSKA_VERSION >= 2
@@ -311,7 +309,6 @@ DEFINE_MKX_FLOAT_DEF(KaxTrackTimecodeScale, 0x23314F, 3, KaxTrackEntry, "TrackTi
 DEFINE_MKX_SINTEGER_DEF(KaxTrackOffset, 0x537F, 2, KaxTrackEntry, "TrackOffset", 0)
 #endif
 DEFINE_MKX_UINTEGER_DEF(KaxMaxBlockAdditionID, 0x55EE, 2, KaxTrackEntry, "MaxBlockAdditionID", 0)
-#if MATROSKA_VERSION >= 2
 
 DEFINE_START_SEMANTIC(KaxBlockAdditionMapping)
 DEFINE_SEMANTIC_ITEM(true, true, KaxBlockAddIDValue)
@@ -325,7 +322,6 @@ DEFINE_MKX_UINTEGER(KaxBlockAddIDValue, 0x41F0, 2, KaxBlockAdditionMapping, "Blo
 DEFINE_MKX_STRING(KaxBlockAddIDName, 0x41A4, 2, KaxBlockAdditionMapping, "BlockAddIDName")
 DEFINE_MKX_UINTEGER_DEF(KaxBlockAddIDType, 0x41E7, 2, KaxBlockAdditionMapping, "BlockAddIDType", 0)
 DEFINE_MKX_BINARY (KaxBlockAddIDExtraData, 0x41ED, 2, KaxBlockAdditionMapping, "BlockAddIDExtraData")
-#endif
 DEFINE_MKX_UNISTRING(KaxTrackName, 0x536E, 2, KaxTrackEntry, "TrackName")
 DEFINE_MKX_STRING_DEF(KaxTrackLanguage, 0x22B59C, 3, KaxTrackEntry, "TrackLanguage", "eng")
 #if MATROSKA_VERSION >= 2

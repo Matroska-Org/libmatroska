@@ -851,14 +851,4 @@ filepos_t KaxFileUsedEndTime::RenderData(IOCallback & /* output */, bool /* bFor
   return 0;
 }
 
-filepos_t KaxChapterTranslateEditionUID::RenderData(IOCallback & /* output */, bool /* bForceRender */, bool /* bSaveDefault */) {
-  assert(false); // no you are not allowed to use this element !
-  return 0;
-}
-
-filepos_t KaxChapterTranslateCodec::RenderData(IOCallback & /* output */, bool /* bForceRender */, bool /* bSaveDefault */) {
-  assert(false); // no you are not allowed to use this element !
-  return 0;
-}
-
 END_LIBMATROSKA_NAMESPACE

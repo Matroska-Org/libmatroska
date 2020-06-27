@@ -88,13 +88,9 @@ DECLARE_MKX_MASTER(KaxChapterTranslate)
 
 
 DECLARE_MKX_UINTEGER(KaxChapterTranslateEditionUID)
-public:
-  filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault);
 };
 
 DECLARE_MKX_UINTEGER(KaxChapterTranslateCodec)
-public:
-  filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault);
 };
 
 DECLARE_MKX_BINARY (KaxChapterTranslateID)

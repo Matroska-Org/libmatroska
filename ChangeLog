@@ -1,5 +1,7 @@
 2020-06-27  Moritz Bunkus  <mo@bunkus.online>
 
+        * Released v1.6.0.
+
         * libEBML v1.4.0 is now required.
 
         * Due to breaking ABI the soname version has been bumped to 7.0.0.

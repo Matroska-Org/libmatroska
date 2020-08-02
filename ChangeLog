@@ -1,5 +1,11 @@
 2020-08-02  Moritz Bunkus  <mo@bunkus.online>
 
+        * Released v1.6.2.
+
+        * In release 1.6.1 the version number in CMakeLists.txt wasn't
+        updated, affecting the installed cmake and pkgconfig files. The
+        version number has been bumped to 1.6.2 in all relevant files now.
+
         * Released v1.6.1.
 
         * "KaxBlockAddIDValue" class: this class is no longer marked as

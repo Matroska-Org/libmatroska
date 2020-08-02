@@ -1,3 +1,8 @@
+2020-08-02  Moritz Bunkus  <mo@bunkus.online>
+
+        * "KaxBlockAddIDValue" class: this class is no longer marked as
+        "mandatory" in order to coincide with the latest specification.
+
 2020-06-27  Moritz Bunkus  <mo@bunkus.online>
 
         * Released v1.6.0.

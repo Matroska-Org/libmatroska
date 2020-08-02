@@ -1,10 +1,10 @@
 /**********************************************************************
-**  DO NOT EDIT, GENERATED WITH DATA2LIB
+**  DO NOT EDIT, GENERATED WITH schema_2_kaxsemantic_cpp.xsl
 **  https://github.com/Matroska-Org/foundation-source/tree/master/spectool
 **
 **  libmatroska : parse Matroska files, see http://www.matroska.org/
 **
-**  Copyright (c) 2002-2017, Matroska (non-profit organisation)
+**  Copyright (c) 2002-2020, Matroska (non-profit organisation)
 **  All rights reserved.
 **
 ** This file is part of libmatroska.
@@ -271,7 +271,7 @@ DEFINE_MKX_SINTEGER_DEF(KaxTrackOffset, 0x537F, 2, KaxTrackEntry, "TrackOffset",
 DEFINE_MKX_UINTEGER_DEF(KaxMaxBlockAdditionID, 0x55EE, 2, KaxTrackEntry, "MaxBlockAdditionID", 0)
 
 DEFINE_START_SEMANTIC(KaxBlockAdditionMapping)
-DEFINE_SEMANTIC_ITEM(true, true, KaxBlockAddIDValue)
+DEFINE_SEMANTIC_ITEM(false, true, KaxBlockAddIDValue)
 DEFINE_SEMANTIC_ITEM(false, true, KaxBlockAddIDName)
 DEFINE_SEMANTIC_ITEM(true, true, KaxBlockAddIDType)
 DEFINE_SEMANTIC_ITEM(false, true, KaxBlockAddIDExtraData)

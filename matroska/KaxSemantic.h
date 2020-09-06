@@ -249,6 +249,8 @@ DECLARE_MKX_UINTEGER(KaxTrackDefaultDecodedFieldDuration)
 };
 
 DECLARE_MKX_FLOAT(KaxTrackTimecodeScale)
+public:
+  filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault);
 };
 
 DECLARE_MKX_SINTEGER(KaxTrackOffset)

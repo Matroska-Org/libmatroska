@@ -2,9 +2,9 @@
 **  DO NOT EDIT, GENERATED WITH DATA2LIB
 **  https://github.com/Matroska-Org/foundation-source/tree/master/spectool
 **
-**  libmatroska : parse Matroska files, see http://www.matroska.org/
+**  libmatroska : parse Matroska files, see https://www.matroska.org/
 **
-**  Copyright (c) 2002-2017, Matroska (non-profit organisation)
+**  Copyright (c) 2002-2020, Matroska (non-profit organisation)
 **  All rights reserved.
 **
 ** This file is part of libmatroska.
@@ -47,7 +47,6 @@
 using namespace LIBEBML_NAMESPACE;
 
 START_LIBMATROSKA_NAMESPACE
-
 DECLARE_MKX_BINARY (KaxSeekID)
 public:
   virtual bool ValidateSize() const {return IsFiniteSize() && GetSize() <= 4;}
@@ -58,7 +57,6 @@ DECLARE_MKX_UINTEGER(KaxSeekPosition)
 
 DECLARE_MKX_MASTER(KaxInfo)
 };
-
 
 DECLARE_MKX_BINARY (KaxSegmentUID)
 #if defined(HAVE_EBML2) || defined(HAS_EBML2)
@@ -85,7 +83,6 @@ public:
 
 DECLARE_MKX_MASTER(KaxChapterTranslate)
 };
-
 
 DECLARE_MKX_UINTEGER(KaxChapterTranslateEditionUID)
 };
@@ -120,7 +117,6 @@ DECLARE_MKX_UINTEGER(KaxClusterTimecode)
 DECLARE_MKX_MASTER(KaxClusterSilentTracks)
 };
 
-
 DECLARE_MKX_UINTEGER(KaxClusterSilentTrackNumber)
 };
 
@@ -133,10 +129,8 @@ DECLARE_MKX_UINTEGER(KaxClusterPrevSize)
 DECLARE_MKX_MASTER(KaxBlockAdditions)
 };
 
-
 DECLARE_MKX_MASTER(KaxBlockMore)
 };
-
 
 DECLARE_MKX_UINTEGER(KaxBlockAddID)
 };
@@ -164,12 +158,10 @@ DECLARE_MKX_SINTEGER(KaxDiscardPadding)
 DECLARE_MKX_MASTER(KaxSlices)
 };
 
-
 DECLARE_MKX_MASTER(KaxTimeSlice)
 public:
   filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault);
 };
-
 
 DECLARE_MKX_UINTEGER(KaxSliceLaceNumber)
 public:
@@ -199,7 +191,6 @@ public:
 DECLARE_MKX_MASTER(KaxReferenceFrame)
 };
 
-
 DECLARE_MKX_UINTEGER(KaxReferenceOffset)
 };
 
@@ -213,7 +204,6 @@ public:
 
 DECLARE_MKX_MASTER(KaxTracks)
 };
-
 
 DECLARE_MKX_UINTEGER(KaxTrackNumber)
 };
@@ -327,7 +317,6 @@ DECLARE_MKX_UINTEGER(KaxSeekPreRoll)
 DECLARE_MKX_MASTER(KaxTrackTranslate)
 };
 
-
 DECLARE_MKX_UINTEGER(KaxTrackTranslateEditionUID)
 };
 
@@ -339,7 +328,6 @@ DECLARE_MKX_BINARY (KaxTrackTranslateTrackID)
 
 DECLARE_MKX_MASTER(KaxTrackVideo)
 };
-
 
 DECLARE_MKX_UINTEGER(KaxVideoFlagInterlaced)
 };
@@ -406,7 +394,6 @@ public:
 DECLARE_MKX_MASTER(KaxVideoColour)
 };
 
-
 DECLARE_MKX_UINTEGER(KaxVideoColourMatrix)
 };
 
@@ -449,7 +436,6 @@ DECLARE_MKX_UINTEGER(KaxVideoColourMaxFALL)
 DECLARE_MKX_MASTER(KaxVideoColourMasterMeta)
 };
 
-
 DECLARE_MKX_FLOAT(KaxVideoRChromaX)
 };
 
@@ -483,7 +469,6 @@ DECLARE_MKX_FLOAT(KaxVideoLuminanceMin)
 DECLARE_MKX_MASTER(KaxVideoProjection)
 };
 
-
 DECLARE_MKX_UINTEGER(KaxVideoProjectionType)
 };
 
@@ -499,10 +484,8 @@ DECLARE_MKX_FLOAT(KaxVideoProjectionPosePitch)
 DECLARE_MKX_FLOAT(KaxVideoProjectionPoseRoll)
 };
 
-
 DECLARE_MKX_MASTER(KaxTrackAudio)
 };
-
 
 DECLARE_MKX_FLOAT(KaxAudioSamplingFreq)
 };
@@ -524,14 +507,11 @@ DECLARE_MKX_UINTEGER(KaxAudioBitDepth)
 DECLARE_MKX_MASTER(KaxTrackOperation)
 };
 
-
 DECLARE_MKX_MASTER(KaxTrackCombinePlanes)
 };
 
-
 DECLARE_MKX_MASTER(KaxTrackPlane)
 };
-
 
 DECLARE_MKX_UINTEGER(KaxTrackPlaneUID)
 };
@@ -541,7 +521,6 @@ DECLARE_MKX_UINTEGER(KaxTrackPlaneType)
 
 DECLARE_MKX_MASTER(KaxTrackJoinBlocks)
 };
-
 
 DECLARE_MKX_UINTEGER(KaxTrackJoinUID)
 };
@@ -568,10 +547,8 @@ public:
 DECLARE_MKX_MASTER(KaxContentEncodings)
 };
 
-
 DECLARE_MKX_MASTER(KaxContentEncoding)
 };
-
 
 DECLARE_MKX_UINTEGER(KaxContentEncodingOrder)
 };
@@ -585,7 +562,6 @@ DECLARE_MKX_UINTEGER(KaxContentEncodingType)
 DECLARE_MKX_MASTER(KaxContentCompression)
 };
 
-
 DECLARE_MKX_UINTEGER(KaxContentCompAlgo)
 };
 
@@ -594,7 +570,6 @@ DECLARE_MKX_BINARY (KaxContentCompSettings)
 
 DECLARE_MKX_MASTER(KaxContentEncryption)
 };
-
 
 DECLARE_MKX_UINTEGER(KaxContentEncAlgo)
 };
@@ -659,14 +634,11 @@ public:
   filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault);
 };
 
-
 DECLARE_MKX_MASTER(KaxAttachments)
 };
 
-
 DECLARE_MKX_MASTER(KaxAttached)
 };
-
 
 DECLARE_MKX_UNISTRING(KaxFileDescription)
 };
@@ -698,14 +670,11 @@ public:
   filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault);
 };
 
-
 DECLARE_MKX_MASTER(KaxChapters)
 };
 
-
 DECLARE_MKX_MASTER(KaxEditionEntry)
 };
-
 
 DECLARE_MKX_UINTEGER(KaxEditionUID)
 };
@@ -721,7 +690,6 @@ DECLARE_MKX_UINTEGER(KaxEditionFlagOrdered)
 
 DECLARE_MKX_MASTER(KaxChapterAtom)
 };
-
 
 DECLARE_MKX_UINTEGER(KaxChapterUID)
 };
@@ -755,13 +723,11 @@ DECLARE_MKX_UINTEGER(KaxChapterPhysicalEquiv)
 DECLARE_MKX_MASTER(KaxChapterTrack)
 };
 
-
 DECLARE_MKX_UINTEGER(KaxChapterTrackNumber)
 };
 
 DECLARE_MKX_MASTER(KaxChapterDisplay)
 };
-
 
 DECLARE_MKX_UNISTRING(KaxChapterString)
 };
@@ -778,7 +744,6 @@ DECLARE_MKX_STRING(KaxChapterCountry)
 DECLARE_MKX_MASTER(KaxChapterProcess)
 };
 
-
 DECLARE_MKX_UINTEGER(KaxChapterProcessCodecID)
 };
 
@@ -787,7 +752,6 @@ DECLARE_MKX_BINARY (KaxChapterProcessPrivate)
 
 DECLARE_MKX_MASTER(KaxChapterProcessCommand)
 };
-
 
 DECLARE_MKX_UINTEGER(KaxChapterProcessTime)
 };
@@ -798,14 +762,11 @@ DECLARE_MKX_BINARY (KaxChapterProcessData)
 DECLARE_MKX_MASTER(KaxTags)
 };
 
-
 DECLARE_MKX_MASTER(KaxTag)
 };
 
-
 DECLARE_MKX_MASTER(KaxTagTargets)
 };
-
 
 DECLARE_MKX_UINTEGER(KaxTagTargetTypeValue)
 };
@@ -828,7 +789,6 @@ DECLARE_MKX_UINTEGER(KaxTagAttachmentUID)
 DECLARE_MKX_MASTER(KaxTagSimple)
 };
 
-
 DECLARE_MKX_UNISTRING(KaxTagName)
 };
 
@@ -846,6 +806,7 @@ DECLARE_MKX_UNISTRING(KaxTagString)
 
 DECLARE_MKX_BINARY (KaxTagBinary)
 };
+
 
 END_LIBMATROSKA_NAMESPACE
 

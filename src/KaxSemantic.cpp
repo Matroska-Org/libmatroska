@@ -2,7 +2,7 @@
 **  DO NOT EDIT, GENERATED WITH schema_2_kaxsemantic_cpp.xsl
 **  https://github.com/Matroska-Org/foundation-source/tree/master/spectool
 **
-**  libmatroska : parse Matroska files, see http://www.matroska.org/
+**  libmatroska : parse Matroska files, see https://www.matroska.org/
 **
 **  Copyright (c) 2002-2020, Matroska (non-profit organisation)
 **  All rights reserved.

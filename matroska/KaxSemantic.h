@@ -223,6 +223,21 @@ DECLARE_MKX_UINTEGER(KaxTrackFlagDefault)
 DECLARE_MKX_UINTEGER(KaxTrackFlagForced)
 };
 
+DECLARE_MKX_UINTEGER(KaxFlagHearingImpaired)
+};
+
+DECLARE_MKX_UINTEGER(KaxFlagVisualImpaired)
+};
+
+DECLARE_MKX_UINTEGER(KaxFlagTextDescriptions)
+};
+
+DECLARE_MKX_UINTEGER(KaxFlagOriginal)
+};
+
+DECLARE_MKX_UINTEGER(KaxFlagCommentary)
+};
+
 DECLARE_MKX_UINTEGER(KaxTrackFlagLacing)
 };
 

@@ -1,3 +1,10 @@
+2021-02-18  Moritz Bunkus  <mo@bunkus.online>
+
+        * Added classes for new track header elements:
+        "KaxFlagHearingImpaired", "KaxFlagVisualImpaired",
+        "KaxFlagTextDescriptions", "KaxFlagOriginal" and
+        "KaxFlagCommentary".
+
 2020-08-02  Moritz Bunkus  <mo@bunkus.online>
 
         * Released v1.6.2.

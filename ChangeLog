@@ -1,5 +1,7 @@
 2021-02-18  Moritz Bunkus  <mo@bunkus.online>
 
+        * Release v1.6.3.
+
         * libEBML v1.4.2 is now required.
 
         * Added classes for new track header elements:

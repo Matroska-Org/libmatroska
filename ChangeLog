@@ -1,5 +1,7 @@
 2021-02-18  Moritz Bunkus  <mo@bunkus.online>
 
+        * libEBML v1.4.2 is now required.
+
         * Added classes for new track header elements:
         "KaxFlagHearingImpaired", "KaxFlagVisualImpaired",
         "KaxFlagTextDescriptions", "KaxFlagOriginal" and

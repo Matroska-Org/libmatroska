@@ -2,6 +2,8 @@
 
         * Remove Coremake project files
 
+        * Add GetRelativeTimestamp() to access unscaled Block timestamps.
+
 2021-02-18  Moritz Bunkus  <mo@bunkus.online>
 
         * Release v1.6.3.

@@ -1,3 +1,7 @@
+2021-02-21 Steve Lhomme <slhomme@matroska.org>
+
+        * Remove Coremake project files
+
 2021-02-18  Moritz Bunkus  <mo@bunkus.online>
 
         * Release v1.6.3.

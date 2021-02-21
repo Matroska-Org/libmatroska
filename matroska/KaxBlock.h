@@ -267,6 +267,12 @@ class MATROSKA_DLL_API KaxInternalBlock : public EbmlBinary {
 
     uint64 ClusterPosition() const;
 
+    /*!
+     * \return Get the timestamp as written in the Block (not scaled).
+     * \since LIBMATROSKA_VERSION >= 0x010604
+     */
+    int16 GetRelativeTimestamp() const { return LocalTimecode; }
+
   protected:
     std::vector<DataBuffer *> myBuffers;
     std::vector<int32>        SizeList;

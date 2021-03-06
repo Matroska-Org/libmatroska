@@ -1,5 +1,5 @@
 # libmatroska
-a C++ libary to parse and create Matroska files
+a C++ library to parse and create Matroska files
 
 # Building and installing
 

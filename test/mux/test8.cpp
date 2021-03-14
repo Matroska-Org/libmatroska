@@ -35,10 +35,6 @@
 #include <iostream>
 #include <cassert>
 
-#if __GNUC__ == 2
-#include <wchar.h>
-#endif
-
 #include "ebml/EbmlHead.h"
 #include "ebml/EbmlSubHead.h"
 #include "ebml/EbmlStream.h"

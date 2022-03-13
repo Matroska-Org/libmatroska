@@ -617,7 +617,7 @@ DEFINE_START_SEMANTIC(KaxEditionEntry)
 DEFINE_SEMANTIC_ITEM(false, true, KaxEditionUID)
 DEFINE_SEMANTIC_ITEM(true, true, KaxEditionFlagHidden)
 DEFINE_SEMANTIC_ITEM(true, true, KaxEditionFlagDefault)
-DEFINE_SEMANTIC_ITEM(false, true, KaxEditionFlagOrdered)
+DEFINE_SEMANTIC_ITEM(true, true, KaxEditionFlagOrdered)
 DEFINE_SEMANTIC_ITEM(true, false, KaxChapterAtom)
 DEFINE_END_SEMANTIC(KaxEditionEntry)
 

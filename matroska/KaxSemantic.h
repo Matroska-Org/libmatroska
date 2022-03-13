@@ -852,6 +852,11 @@ DECLARE_MKX_STRING(KaxTagLanguageIETF)
 DECLARE_MKX_UINTEGER(KaxTagDefault)
 };
 
+DECLARE_MKX_UINTEGER(KaxTagDefaultBogus)
+public:
+  filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault);
+};
+
 DECLARE_MKX_UNISTRING(KaxTagString)
 };
 

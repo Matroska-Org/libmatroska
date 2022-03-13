@@ -739,6 +739,7 @@ DEFINE_MKX_UNISTRING(KaxTagName, 0x45A3, 2, KaxTagSimple, "TagName")
 DEFINE_MKX_STRING_DEF(KaxTagLangue, 0x447A, 2, KaxTagSimple, "TagLanguage", "und")
 DEFINE_MKX_STRING(KaxTagLanguageIETF, 0x447B, 2, KaxTagSimple, "TagLanguageIETF")
 DEFINE_MKX_UINTEGER_DEF(KaxTagDefault, 0x4484, 2, KaxTagSimple, "TagDefault", 1)
+DEFINE_MKX_UINTEGER_DEF(KaxTagDefaultBogus, 0x44B4, 2, KaxTagSimple, "TagDefaultBogus", 1)
 DEFINE_MKX_UNISTRING(KaxTagString, 0x4487, 2, KaxTagSimple, "TagString")
 DEFINE_MKX_BINARY (KaxTagBinary, 0x4485, 2, KaxTagSimple, "TagBinary")
 
@@ -953,6 +954,11 @@ filepos_t KaxFileUsedStartTime::RenderData(IOCallback & /* output */, bool /* bF
 }
 
 filepos_t KaxFileUsedEndTime::RenderData(IOCallback & /* output */, bool /* bForceRender */, bool /* bSaveDefault */) {
+  assert(false); // no you are not allowed to use this element !
+  return 0;
+}
+
+filepos_t KaxTagDefaultBogus::RenderData(IOCallback & /* output */, bool /* bForceRender */, bool /* bSaveDefault */) {
   assert(false); // no you are not allowed to use this element !
   return 0;
 }

@@ -332,7 +332,7 @@ DEFINE_SEMANTIC_ITEM(true, true, KaxVideoPixelCropLeft)
 DEFINE_SEMANTIC_ITEM(true, true, KaxVideoPixelCropRight)
 DEFINE_SEMANTIC_ITEM(false, true, KaxVideoDisplayWidth)
 DEFINE_SEMANTIC_ITEM(false, true, KaxVideoDisplayHeight)
-DEFINE_SEMANTIC_ITEM(false, true, KaxVideoDisplayUnit)
+DEFINE_SEMANTIC_ITEM(true, true, KaxVideoDisplayUnit)
 DEFINE_SEMANTIC_ITEM(false, true, KaxVideoAspectRatio) // not supported
 DEFINE_SEMANTIC_ITEM(false, true, KaxVideoColourSpace)
 DEFINE_SEMANTIC_ITEM(false, true, KaxVideoGamma) // not supported

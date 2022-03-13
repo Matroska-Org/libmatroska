@@ -234,7 +234,7 @@ DEFINE_SEMANTIC_ITEM(false, true, KaxTrackOffset) // not supported
 DEFINE_SEMANTIC_ITEM(true, true, KaxMaxBlockAdditionID)
 DEFINE_SEMANTIC_ITEM(false, false, KaxBlockAdditionMapping)
 DEFINE_SEMANTIC_ITEM(false, true, KaxTrackName)
-DEFINE_SEMANTIC_ITEM(false, true, KaxTrackLanguage)
+DEFINE_SEMANTIC_ITEM(true, true, KaxTrackLanguage)
 DEFINE_SEMANTIC_ITEM(false, true, KaxLanguageIETF)
 DEFINE_SEMANTIC_ITEM(true, true, KaxCodecID)
 DEFINE_SEMANTIC_ITEM(false, true, KaxCodecPrivate)

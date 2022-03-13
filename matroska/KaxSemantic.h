@@ -115,12 +115,18 @@ DECLARE_MKX_UINTEGER(KaxClusterTimecode)
 };
 
 DECLARE_MKX_MASTER(KaxClusterSilentTracks)
+public:
+  filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault);
 };
 
 DECLARE_MKX_UINTEGER(KaxClusterSilentTrackNumber)
+public:
+  filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault);
 };
 
 DECLARE_MKX_UINTEGER(KaxClusterPosition)
+public:
+  filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault);
 };
 
 DECLARE_MKX_UINTEGER(KaxClusterPrevSize)
@@ -156,6 +162,8 @@ DECLARE_MKX_SINTEGER(KaxDiscardPadding)
 };
 
 DECLARE_MKX_MASTER(KaxSlices)
+public:
+  filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault);
 };
 
 DECLARE_MKX_MASTER(KaxTimeSlice)
@@ -189,12 +197,18 @@ public:
 };
 
 DECLARE_MKX_MASTER(KaxReferenceFrame)
+public:
+  filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault);
 };
 
 DECLARE_MKX_UINTEGER(KaxReferenceOffset)
+public:
+  filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault);
 };
 
 DECLARE_MKX_UINTEGER(KaxReferenceTimeCode)
+public:
+  filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault);
 };
 
 DECLARE_MKX_BINARY (KaxEncryptedBlock)
@@ -254,6 +268,8 @@ DECLARE_MKX_UINTEGER(KaxTrackDefaultDecodedFieldDuration)
 };
 
 DECLARE_MKX_FLOAT(KaxTrackTimecodeScale)
+public:
+  filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault);
 };
 
 DECLARE_MKX_SINTEGER(KaxTrackOffset)
@@ -318,6 +334,8 @@ public:
 };
 
 DECLARE_MKX_UINTEGER(KaxCodecDecodeAll)
+public:
+  filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault);
 };
 
 DECLARE_MKX_UINTEGER(KaxTrackOverlay)
@@ -389,6 +407,8 @@ DECLARE_MKX_UINTEGER(KaxVideoDisplayUnit)
 };
 
 DECLARE_MKX_UINTEGER(KaxVideoAspectRatio)
+public:
+  filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault);
 };
 
 DECLARE_MKX_BINARY (KaxVideoColourSpace)
@@ -541,21 +561,29 @@ DECLARE_MKX_UINTEGER(KaxTrackJoinUID)
 };
 
 DECLARE_MKX_UINTEGER(KaxTrickTrackUID)
+public:
+  filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault);
 };
 
 DECLARE_MKX_BINARY (KaxTrickTrackSegmentUID)
 public:
+  filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault);
   virtual bool ValidateSize() const {return IsFiniteSize() && GetSize() == 16;}
 };
 
 DECLARE_MKX_UINTEGER(KaxTrickTrackFlag)
+public:
+  filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault);
 };
 
 DECLARE_MKX_UINTEGER(KaxTrickMasterTrackUID)
+public:
+  filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault);
 };
 
 DECLARE_MKX_BINARY (KaxTrickMasterTrackSegmentUID)
 public:
+  filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault);
   virtual bool ValidateSize() const {return IsFiniteSize() && GetSize() == 16;}
 };
 
@@ -599,15 +627,23 @@ DECLARE_MKX_UINTEGER(KaxAESSettingsCipherMode)
 };
 
 DECLARE_MKX_BINARY (KaxContentSignature)
+public:
+  filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault);
 };
 
 DECLARE_MKX_BINARY (KaxContentSigKeyID)
+public:
+  filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault);
 };
 
 DECLARE_MKX_UINTEGER(KaxContentSigAlgo)
+public:
+  filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault);
 };
 
 DECLARE_MKX_UINTEGER(KaxContentSigHashAlgo)
+public:
+  filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault);
 };
 
 DECLARE_MKX_UINTEGER(KaxCueTime)

@@ -321,7 +321,7 @@ DEFINE_MKX_BINARY (KaxTrackTranslateTrackID, 0x66A5, 2, KaxTrackTranslate, "Trac
 DEFINE_START_SEMANTIC(KaxTrackVideo)
 DEFINE_SEMANTIC_ITEM(true, true, KaxVideoFlagInterlaced)
 DEFINE_SEMANTIC_ITEM(true, true, KaxVideoFieldOrder)
-DEFINE_SEMANTIC_ITEM(false, true, KaxVideoStereoMode)
+DEFINE_SEMANTIC_ITEM(true, true, KaxVideoStereoMode)
 DEFINE_SEMANTIC_ITEM(false, true, KaxVideoAlphaMode)
 DEFINE_SEMANTIC_ITEM(false, true, KaxOldStereoMode) // not supported
 DEFINE_SEMANTIC_ITEM(true, true, KaxVideoPixelWidth)

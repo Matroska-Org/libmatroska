@@ -564,7 +564,7 @@ DEFINE_MKX_UINTEGER(KaxCueTrack, 0xF7, 1, KaxCueTrackPositions, "CueTrack")
 DEFINE_MKX_UINTEGER(KaxCueClusterPosition, 0xF1, 1, KaxCueTrackPositions, "CueClusterPosition")
 DEFINE_MKX_UINTEGER(KaxCueRelativePosition, 0xF0, 1, KaxCueTrackPositions, "CueRelativePosition")
 DEFINE_MKX_UINTEGER(KaxCueDuration, 0xB2, 1, KaxCueTrackPositions, "CueDuration")
-DEFINE_MKX_UINTEGER_DEF(KaxCueBlockNumber, 0x5378, 2, KaxCueTrackPositions, "CueBlockNumber", 1)
+DEFINE_MKX_UINTEGER(KaxCueBlockNumber, 0x5378, 2, KaxCueTrackPositions, "CueBlockNumber")
 DEFINE_MKX_UINTEGER_DEF(KaxCueCodecState, 0xEA, 1, KaxCueTrackPositions, "CueCodecState", 0)
 
 DEFINE_START_SEMANTIC(KaxCueReference)

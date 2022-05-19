@@ -109,9 +109,9 @@ class MATROSKA_DLL_API SimpleDataBuffer : public DataBuffer {
       ,Offset(aOffset)
       ,BaseBuffer(aBuffer)
     {}
-    virtual ~SimpleDataBuffer() {}
+    ~SimpleDataBuffer() override {}
 
-    DataBuffer * Clone() {return new SimpleDataBuffer(*this);}
+    DataBuffer * Clone() override {return new SimpleDataBuffer(*this);}
 
   protected:
     uint32 Offset;
@@ -143,7 +143,7 @@ class MATROSKA_DLL_API NotSoSimpleDataBuffer : public SimpleDataBuffer {
 
 DECLARE_MKX_MASTER(KaxBlockGroup)
   public:
-    ~KaxBlockGroup() = default;
+    ~KaxBlockGroup() override = default;
 
     /*!
       \brief Addition of a frame without references
@@ -211,8 +211,8 @@ class MATROSKA_DLL_API KaxInternalBlock : public EbmlBinary {
       ,ParentCluster(NULL), bIsSimple(bSimple), bIsKeyframe(true), bIsDiscardable(false)
     {}
     KaxInternalBlock(const KaxInternalBlock & ElementToClone);
-    ~KaxInternalBlock();
-    virtual bool ValidateSize() const;
+    ~KaxInternalBlock() override;
+    bool ValidateSize() const override;
 
     uint16 TrackNum() const {return TrackNumber;}
     /*!
@@ -223,8 +223,8 @@ class MATROSKA_DLL_API KaxInternalBlock : public EbmlBinary {
     /*!
       \note override this function to generate the Data/Size on the fly, unlike the usual binary elements
     */
-    filepos_t UpdateSize(bool bSaveDefault = false, bool bForceRender = false);
-    filepos_t ReadData(IOCallback & input, ScopeMode ReadFully = SCOPE_ALL_DATA);
+    filepos_t UpdateSize(bool bSaveDefault = false, bool bForceRender = false) override;
+    filepos_t ReadData(IOCallback & input, ScopeMode ReadFully = SCOPE_ALL_DATA) override;
 
     /*!
       \brief Only read the head of the Block (not internal data)
@@ -284,7 +284,7 @@ class MATROSKA_DLL_API KaxInternalBlock : public EbmlBinary {
     bool       mInvisible;
     uint64     FirstFrameLocation;
 
-    filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault = false);
+    filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault = false) override;
 
     KaxCluster * ParentCluster;
     bool       bIsSimple;
@@ -358,18 +358,18 @@ protected:
 
 DECLARE_MKX_BINARY_CONS(KaxBlockVirtual)
   public:
-    ~KaxBlockVirtual();
+    ~KaxBlockVirtual() override;
 
     /*!
       \note override this function to generate the Data/Size on the fly, unlike the usual binary elements
     */
-    filepos_t UpdateSize(bool bSaveDefault = false, bool bForceRender = false);
+    filepos_t UpdateSize(bool bSaveDefault = false, bool bForceRender = false) override;
 
     void SetParent(const KaxCluster & aParentCluster) {ParentCluster = &aParentCluster;}
 
-        filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault);
+        filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault) override;
 
-        filepos_t ReadData(IOCallback & input, ScopeMode ReadFully = SCOPE_ALL_DATA);
+        filepos_t ReadData(IOCallback & input, ScopeMode ReadFully = SCOPE_ALL_DATA) override;
 
   protected:
     uint64 Timecode; // temporary timecode of the first frame if there are more than one

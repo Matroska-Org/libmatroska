@@ -49,11 +49,11 @@ START_LIBMATROSKA_NAMESPACE
 */
 DECLARE_MKX_SINTEGER_CONS(KaxReferenceBlock)
   public:
-        ~KaxReferenceBlock();
+        ~KaxReferenceBlock() override;
     /*!
       \brief override this method to compute the timecode value
     */
-    virtual filepos_t UpdateSize(bool bSaveDefault = false, bool bForceRender = false);
+    filepos_t UpdateSize(bool bSaveDefault = false, bool bForceRender = false) override;
 
     const KaxBlockBlob & RefBlock() const;
     void SetReferencedBlock(const KaxBlockBlob * aRefdBlock);

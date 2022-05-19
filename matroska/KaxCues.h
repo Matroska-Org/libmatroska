@@ -49,7 +49,7 @@ class KaxCuePoint;
 
 DECLARE_MKX_MASTER(KaxCues)
   public:
-    ~KaxCues();
+    ~KaxCues() override;
 
     //bool AddBlockGroup(const KaxBlockGroup & BlockReference); // deprecated
     bool AddBlockBlob(const KaxBlockBlob & BlockReference);

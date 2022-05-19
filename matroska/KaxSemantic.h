@@ -49,7 +49,7 @@ using namespace LIBEBML_NAMESPACE;
 START_LIBMATROSKA_NAMESPACE
 DECLARE_MKX_BINARY (KaxSeekID)
 public:
-  virtual bool ValidateSize() const {return IsFiniteSize() && GetSize() <= 4;}
+  bool ValidateSize() const override {return IsFiniteSize() && GetSize() <= 4;}
 };
 
 DECLARE_MKX_UINTEGER(KaxSeekPosition)
@@ -64,7 +64,7 @@ public:
   KaxSegmentUID(EBML_DEF_CONS EBML_DEF_SEP EBML_EXTRA_PARAM);
 #endif
 public:
-  virtual bool ValidateSize() const {return IsFiniteSize() && GetSize() == 16;}
+  bool ValidateSize() const override {return IsFiniteSize() && GetSize() == 16;}
 };
 
 DECLARE_MKX_UNISTRING(KaxSegmentFilename)
@@ -78,7 +78,7 @@ DECLARE_MKX_UNISTRING(KaxNextFilename)
 
 DECLARE_MKX_BINARY (KaxSegmentFamily)
 public:
-  virtual bool ValidateSize() const {return IsFiniteSize() && GetSize() == 16;}
+  bool ValidateSize() const override {return IsFiniteSize() && GetSize() == 16;}
 };
 
 DECLARE_MKX_MASTER(KaxChapterTranslate)
@@ -146,7 +146,7 @@ DECLARE_MKX_UINTEGER(KaxReferencePriority)
 
 DECLARE_MKX_SINTEGER(KaxReferenceVirtual)
 public:
-  filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault);
+  filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault) override;
 };
 
 DECLARE_MKX_BINARY (KaxCodecState)
@@ -160,32 +160,32 @@ DECLARE_MKX_MASTER(KaxSlices)
 
 DECLARE_MKX_MASTER(KaxTimeSlice)
 public:
-  filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault);
+  filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault) override;
 };
 
 DECLARE_MKX_UINTEGER(KaxSliceLaceNumber)
 public:
-  filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault);
+  filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault) override;
 };
 
 DECLARE_MKX_UINTEGER(KaxSliceFrameNumber)
 public:
-  filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault);
+  filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault) override;
 };
 
 DECLARE_MKX_UINTEGER(KaxSliceBlockAddID)
 public:
-  filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault);
+  filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault) override;
 };
 
 DECLARE_MKX_UINTEGER(KaxSliceDelay)
 public:
-  filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault);
+  filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault) override;
 };
 
 DECLARE_MKX_UINTEGER(KaxSliceDuration)
 public:
-  filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault);
+  filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault) override;
 };
 
 DECLARE_MKX_MASTER(KaxReferenceFrame)
@@ -199,7 +199,7 @@ DECLARE_MKX_UINTEGER(KaxReferenceTimeCode)
 
 DECLARE_MKX_BINARY (KaxEncryptedBlock)
 public:
-  filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault);
+  filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault) override;
 };
 
 DECLARE_MKX_MASTER(KaxTracks)
@@ -258,7 +258,7 @@ DECLARE_MKX_FLOAT(KaxTrackTimecodeScale)
 
 DECLARE_MKX_SINTEGER(KaxTrackOffset)
 public:
-  filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault);
+  filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault) override;
 };
 
 DECLARE_MKX_UINTEGER(KaxMaxBlockAdditionID)
@@ -299,22 +299,22 @@ DECLARE_MKX_UNISTRING(KaxCodecName)
 
 DECLARE_MKX_UINTEGER(KaxTrackAttachmentLink)
 public:
-  filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault);
+  filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault) override;
 };
 
 DECLARE_MKX_UNISTRING(KaxCodecSettings)
 public:
-  filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault);
+  filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault) override;
 };
 
 DECLARE_MKX_STRING(KaxCodecInfoURL)
 public:
-  filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault);
+  filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault) override;
 };
 
 DECLARE_MKX_STRING(KaxCodecDownloadURL)
 public:
-  filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault);
+  filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault) override;
 };
 
 DECLARE_MKX_UINTEGER(KaxCodecDecodeAll)
@@ -358,7 +358,7 @@ DECLARE_MKX_UINTEGER(KaxVideoAlphaMode)
 
 DECLARE_MKX_UINTEGER(KaxOldStereoMode)
 public:
-  filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault);
+  filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault) override;
 };
 
 DECLARE_MKX_UINTEGER(KaxVideoPixelWidth)
@@ -393,17 +393,17 @@ DECLARE_MKX_UINTEGER(KaxVideoAspectRatio)
 
 DECLARE_MKX_BINARY (KaxVideoColourSpace)
 public:
-  virtual bool ValidateSize() const {return IsFiniteSize() && GetSize() == 4;}
+  bool ValidateSize() const override {return IsFiniteSize() && GetSize() == 4;}
 };
 
 DECLARE_MKX_FLOAT(KaxVideoGamma)
 public:
-  filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault);
+  filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault) override;
 };
 
 DECLARE_MKX_FLOAT(KaxVideoFrameRate)
 public:
-  filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault);
+  filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault) override;
 };
 
 DECLARE_MKX_MASTER(KaxVideoColour)
@@ -513,7 +513,7 @@ DECLARE_MKX_UINTEGER(KaxAudioChannels)
 
 DECLARE_MKX_BINARY (KaxAudioPosition)
 public:
-  filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault);
+  filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault) override;
 };
 
 DECLARE_MKX_UINTEGER(KaxAudioBitDepth)
@@ -545,7 +545,7 @@ DECLARE_MKX_UINTEGER(KaxTrickTrackUID)
 
 DECLARE_MKX_BINARY (KaxTrickTrackSegmentUID)
 public:
-  virtual bool ValidateSize() const {return IsFiniteSize() && GetSize() == 16;}
+  bool ValidateSize() const override {return IsFiniteSize() && GetSize() == 16;}
 };
 
 DECLARE_MKX_UINTEGER(KaxTrickTrackFlag)
@@ -556,7 +556,7 @@ DECLARE_MKX_UINTEGER(KaxTrickMasterTrackUID)
 
 DECLARE_MKX_BINARY (KaxTrickMasterTrackSegmentUID)
 public:
-  virtual bool ValidateSize() const {return IsFiniteSize() && GetSize() == 16;}
+  bool ValidateSize() const override {return IsFiniteSize() && GetSize() == 16;}
 };
 
 DECLARE_MKX_MASTER(KaxContentEncodings)
@@ -636,17 +636,17 @@ DECLARE_MKX_UINTEGER(KaxCueRefTime)
 
 DECLARE_MKX_UINTEGER(KaxCueRefCluster)
 public:
-  filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault);
+  filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault) override;
 };
 
 DECLARE_MKX_UINTEGER(KaxCueRefNumber)
 public:
-  filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault);
+  filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault) override;
 };
 
 DECLARE_MKX_UINTEGER(KaxCueRefCodecState)
 public:
-  filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault);
+  filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault) override;
 };
 
 DECLARE_MKX_MASTER(KaxAttachments)
@@ -672,17 +672,17 @@ DECLARE_MKX_UINTEGER(KaxFileUID)
 
 DECLARE_MKX_BINARY (KaxFileReferral)
 public:
-  filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault);
+  filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault) override;
 };
 
 DECLARE_MKX_UINTEGER(KaxFileUsedStartTime)
 public:
-  filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault);
+  filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault) override;
 };
 
 DECLARE_MKX_UINTEGER(KaxFileUsedEndTime)
 public:
-  filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault);
+  filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault) override;
 };
 
 DECLARE_MKX_MASTER(KaxChapters)
@@ -726,7 +726,7 @@ DECLARE_MKX_UINTEGER(KaxChapterFlagEnabled)
 
 DECLARE_MKX_BINARY (KaxChapterSegmentUID)
 public:
-  virtual bool ValidateSize() const {return IsFiniteSize() && GetSize() == 16;}
+  bool ValidateSize() const override {return IsFiniteSize() && GetSize() == 16;}
 };
 
 DECLARE_MKX_UINTEGER(KaxChapterSegmentEditionUID)

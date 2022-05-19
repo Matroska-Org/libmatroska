@@ -56,7 +56,7 @@ class MATROSKA_DLL_API KaxPrevUID : public KaxSegmentUID {
   public:
     KaxPrevUID(EBML_EXTRA_PARAM) = default;
     KaxPrevUID(const KaxPrevUID & ElementToClone) :KaxSegmentUID(ElementToClone){}
-    virtual bool ValidateSize() const { return IsFiniteSize() && (GetSize() == 16);}
+    bool ValidateSize() const override { return IsFiniteSize() && (GetSize() == 16);}
 
         EBML_CONCRETE_CLASS(KaxPrevUID)
 };
@@ -66,7 +66,7 @@ class MATROSKA_DLL_API KaxNextUID : public KaxSegmentUID {
   public:
     KaxNextUID(EBML_EXTRA_PARAM) = default;
     KaxNextUID(const KaxNextUID & ElementToClone) :KaxSegmentUID(ElementToClone){}
-    virtual bool ValidateSize() const { return IsFiniteSize() && (GetSize() == 16);}
+    bool ValidateSize() const override { return IsFiniteSize() && (GetSize() == 16);}
 
         EBML_CONCRETE_CLASS(KaxNextUID)
 };

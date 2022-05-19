@@ -114,7 +114,7 @@ bool KaxInternalBlock::AddFrame(const KaxTrackEntry & track, uint64 timecode, Da
   if (myBuffers.empty()) {
     // first frame
     Timecode = timecode;
-    TrackNumber = track.TrackNumber();
+    TrackNumber = static_cast<uint64>(track.TrackNumber());
     mInvisible = invisible;
     mLacing = lacing;
   }
@@ -152,7 +152,7 @@ LacingType KaxInternalBlock::GetBestLacingType() const {
   }
   EbmlLacingSize += CodedSizeLength(myBuffers[0]->Size(), 0, IsFiniteSize());
   for (i = 1; i < static_cast<int>(myBuffers.size()) - 1; i++)
-    EbmlLacingSize += CodedSizeLengthSigned(int64(myBuffers[i]->Size()) - int64(myBuffers[i - 1]->Size()), 0);
+    EbmlLacingSize += CodedSizeLengthSigned(static_cast<int64>(myBuffers[i]->Size()) - static_cast<int64>(myBuffers[i - 1]->Size()), 0);
   if (SameSize)
     return LACING_FIXED;
   if (XiphLacingSize < EbmlLacingSize)
@@ -191,7 +191,7 @@ filepos_t KaxInternalBlock::UpdateSize(bool /* bSaveDefault */, bool /* bForceRe
         case LACING_EBML:
           SetSize_(GetSize() + myBuffers[0]->Size() + CodedSizeLength(myBuffers[0]->Size(), 0, IsFiniteSize()));
           for (i=1; i<myBuffers.size()-1; i++) {
-            SetSize_(GetSize() + myBuffers[i]->Size() + CodedSizeLengthSigned(int64(myBuffers[i]->Size()) - int64(myBuffers[i-1]->Size()), 0));
+            SetSize_(GetSize() + myBuffers[i]->Size() + CodedSizeLengthSigned(static_cast<int64>(myBuffers[i]->Size()) - static_cast<int64>(myBuffers[i-1]->Size()), 0));
           }
           break;
         case LACING_FIXED:
@@ -352,7 +352,7 @@ filepos_t KaxInternalBlock::RenderData(IOCallback & output, bool /* bForceRender
             SetSize_(GetSize() + 1);
             tmpSize -= 0xFF;
           }
-          tmpValue = binary(tmpSize);
+          tmpValue = static_cast<binary>(tmpSize);
           output.writeFully(&tmpValue, 1);
           SetSize_(GetSize() + 1);
         }
@@ -377,7 +377,7 @@ filepos_t KaxInternalBlock::RenderData(IOCallback & output, bool /* bForceRender
 
           // set the size of each member in the lace
           for (i=1; i<myBuffers.size()-1; i++) {
-            _Size = int64(myBuffers[i]->Size()) - int64(myBuffers[i-1]->Size());
+            _Size = static_cast<int64>(myBuffers[i]->Size()) - static_cast<int64>(myBuffers[i-1]->Size());
             _CodedSize = CodedSizeLengthSigned(_Size, 0);
             CodedValueLengthSigned(_Size, _CodedSize, _FinalHead);
             output.writeFully(_FinalHead, _CodedSize);
@@ -432,7 +432,7 @@ uint64 KaxInternalBlock::ReadInternalHead(IOCallback & input)
   big_int16 b16;
   b16.Eval(cursor);
   assert(ParentCluster != nullptr);
-  Timecode = ParentCluster->GetBlockGlobalTimecode(int16(b16));
+  Timecode = ParentCluster->GetBlockGlobalTimecode(static_cast<int16>(b16));
   bLocalTimecodeUsed = false;
   cursor += 2;
 
@@ -476,7 +476,7 @@ filepos_t KaxInternalBlock::ReadData(IOCallback & input, ScopeMode ReadFully)
         TrackNumber &= 0x7F;
       }
 
-      LocalTimecode = int16(Mem.GetUInt16BE());
+      LocalTimecode = static_cast<int16>(Mem.GetUInt16BE());
       bLocalTimecodeUsed = true;
 
       uint8 Flags = Mem.GetUInt8();
@@ -485,7 +485,7 @@ filepos_t KaxInternalBlock::ReadData(IOCallback & input, ScopeMode ReadFully)
         bIsDiscardable = (Flags & 0x01) != 0;
       }
       mInvisible = (Flags & 0x08) >> 3;
-      mLacing = LacingType((Flags & 0x06) >> 1);
+      mLacing = static_cast<LacingType>((Flags & 0x06) >> 1);
 
       // put all Frames in the list
       if (mLacing == LACING_NONE) {
@@ -603,7 +603,7 @@ filepos_t KaxInternalBlock::ReadData(IOCallback & input, ScopeMode ReadFully)
 
       big_int16 b16;
       b16.Eval(cursor);
-      LocalTimecode = int16(b16);
+      LocalTimecode = static_cast<int16>(b16);
       bLocalTimecodeUsed = true;
       cursor += 2;
 
@@ -612,7 +612,7 @@ filepos_t KaxInternalBlock::ReadData(IOCallback & input, ScopeMode ReadFully)
         bIsDiscardable = (*cursor & 0x01) != 0;
       }
       mInvisible = (*cursor & 0x08) >> 3;
-      mLacing = LacingType((*cursor++ & 0x06) >> 1);
+      mLacing = static_cast<LacingType>((*cursor++ & 0x06) >> 1);
       if (cursor == &_TempHead[4]) {
         _TempHead[0] = _TempHead[4];
       } else {
@@ -642,7 +642,7 @@ filepos_t KaxInternalBlock::ReadData(IOCallback & input, ScopeMode ReadFully)
               FrameSize = 0;
               do {
                 Result += input.read(_TempHead, 1);
-                FrameSize += uint8(_TempHead[0]);
+                FrameSize += static_cast<uint8>(_TempHead[0]);
                 if (FrameSize > TotalLacedSize)
                   throw SafeReadIOCallback::EndOfStreamX(0);
                 LastBufferSize--;
@@ -871,7 +871,7 @@ void KaxBlockGroup::SetBlockDuration(uint64 TimeLength)
   assert(ParentTrack != nullptr);
   int64 scale = ParentTrack->GlobalTimecodeScale();
   KaxBlockDuration & myDuration = *static_cast<KaxBlockDuration *>(FindFirstElt(EBML_INFO(KaxBlockDuration), true));
-  *(static_cast<EbmlUInteger *>(&myDuration)) = TimeLength / uint64(scale);
+  *(static_cast<EbmlUInteger *>(&myDuration)) = TimeLength / static_cast<uint64>(scale);
 }
 
 bool KaxBlockGroup::GetBlockDuration(uint64 &TheTimecode) const
@@ -882,7 +882,7 @@ bool KaxBlockGroup::GetBlockDuration(uint64 &TheTimecode) const
   }
 
   assert(ParentTrack != nullptr);
-  TheTimecode = uint64(*myDuration) * ParentTrack->GlobalTimecodeScale();
+  TheTimecode = static_cast<uint64>(*myDuration) * ParentTrack->GlobalTimecodeScale();
   return true;
 }
 
@@ -990,8 +990,8 @@ bool KaxBlockBlob::AddFrameAuto(const KaxTrackEntry & track, uint64 timecode, Da
       Block.simpleblock->SetDiscardable(false);
     } else {
       Block.simpleblock->SetKeyframe(false);
-      if ((ForwBlock == nullptr || ((const KaxInternalBlock &)*ForwBlock).GlobalTimecode() <= timecode) &&
-          (PastBlock == nullptr || ((const KaxInternalBlock &)*PastBlock).GlobalTimecode() <= timecode))
+      if ((ForwBlock == nullptr || static_cast<const KaxInternalBlock &>(*ForwBlock).GlobalTimecode() <= timecode) &&
+          (PastBlock == nullptr || static_cast<const KaxInternalBlock &>(*PastBlock).GlobalTimecode() <= timecode))
         Block.simpleblock->SetDiscardable(false);
       else
         Block.simpleblock->SetDiscardable(true);

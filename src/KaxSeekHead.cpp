@@ -57,7 +57,7 @@ KaxSeek * KaxSeekHead::IndexThis(const EbmlElement & aElt, const KaxSegment & Pa
 
   auto & aNewID = GetChild<KaxSeekID>(aNewPoint);
   binary ID[4];
-  ((const EbmlId&)aElt).Fill(ID);
+  static_cast<const EbmlId&>(aElt).Fill(ID);
   aNewID.CopyBuffer(ID, EBML_ID_LENGTH((const EbmlId&)aElt));
 
   return &aNewPoint;
@@ -99,7 +99,7 @@ KaxSeek * KaxSeekHead::FindNextOf(const KaxSeek &aPrev) const
     ++Itr;
     for (; Itr != end(); ++Itr) {
       if (EbmlId(*(*Itr)) == EBML_ID(KaxSeek)) {
-        tmp = (KaxSeek *)(*Itr);
+        tmp = static_cast<KaxSeek *>(*Itr);
         if (tmp->IsEbmlId(aPrev))
           return tmp;
       }
@@ -114,7 +114,7 @@ int64 KaxSeek::Location() const
   auto aPos = static_cast<KaxSeekPosition*>(FindFirstElt(EBML_INFO(KaxSeekPosition)));
   if (aPos == nullptr)
     return 0;
-  return uint64(*aPos);
+  return static_cast<uint64>(*aPos);
 }
 
 bool KaxSeek::IsEbmlId(const EbmlId & aId) const

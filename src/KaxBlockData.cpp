@@ -80,7 +80,7 @@ filepos_t KaxReferenceBlock::UpdateSize(bool bSaveDefault, bool bForceRender)
     assert(ParentBlock != nullptr);
 
     const KaxInternalBlock &block = *RefdBlock;
-    *static_cast<EbmlSInteger*>(this) = (int64(block.GlobalTimecode()) - int64(ParentBlock->GlobalTimecode())) / int64(ParentBlock->GlobalTimecodeScale());
+    *static_cast<EbmlSInteger*>(this) = (static_cast<int64>(block.GlobalTimecode()) - static_cast<int64>(ParentBlock->GlobalTimecode())) / static_cast<int64>(ParentBlock->GlobalTimecodeScale());
   }
   return EbmlSInteger::UpdateSize(bSaveDefault, bForceRender);
 }

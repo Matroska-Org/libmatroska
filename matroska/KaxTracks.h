@@ -56,7 +56,7 @@ DECLARE_MKX_MASTER(KaxTrackEntry)
     */
     inline bool LacingEnabled() const {
       auto myLacing = static_cast<KaxTrackFlagLacing *>(FindFirstElt(EBML_INFO(KaxTrackFlagLacing)));
-      return((myLacing == nullptr) || (uint8(*myLacing) != 0));
+      return((myLacing == nullptr) || (static_cast<uint8>(*myLacing) != 0));
     }
 
     void SetGlobalTimecodeScale(uint64 aGlobalTimecodeScale) {

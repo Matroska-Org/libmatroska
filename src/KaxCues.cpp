@@ -125,7 +125,7 @@ const KaxCuePoint * KaxCues::GetTimecodePoint(uint64 aTimecode) const
       // check the tile
       auto aTime = static_cast<const KaxCueTime *>(tmp->FindFirstElt(EBML_INFO(KaxCueTime)));
       if (aTime != nullptr) {
-        auto _Time = uint64(*aTime);
+        auto _Time = static_cast<uint64>(*aTime);
         if (_Time > aPrevTime && _Time < TimecodeToLocate) {
           aPrevTime = _Time;
           aPointPrev = tmp;

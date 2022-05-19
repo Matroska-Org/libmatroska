@@ -86,7 +86,7 @@ bool KaxCluster::AddFrameInternal(const KaxTrackEntry & track, uint64 timecode, 
   }
 
   // force creation of a new block
-  if (currentNewBlock == nullptr || uint32(track.TrackNumber()) != uint32(currentNewBlock->TrackNumber()) || PastBlock != nullptr || ForwBlock != nullptr) {
+  if (currentNewBlock == nullptr || static_cast<uint32>(track.TrackNumber()) != static_cast<uint32>(currentNewBlock->TrackNumber()) || PastBlock != nullptr || ForwBlock != nullptr) {
     KaxBlockGroup & aNewBlock = GetNewBlock();
     MyNewBlock = currentNewBlock = &aNewBlock;
   }
@@ -184,9 +184,9 @@ filepos_t KaxCluster::Render(IOCallback & output, KaxCues & CueToUpdate, bool bS
     // new school, using KaxBlockBlob
     for (Index = 0; Index<Blobs.size(); Index++) {
       if (Blobs[Index]->IsSimpleBlock())
-        PushElement( (KaxSimpleBlock&) *Blobs[Index] );
+        PushElement( static_cast<KaxSimpleBlock&>(*Blobs[Index]));
       else
-        PushElement( (KaxBlockGroup&) *Blobs[Index] );
+        PushElement( static_cast<KaxBlockGroup&>(*Blobs[Index]));
     }
 
     // SilentTracks handling
@@ -198,7 +198,7 @@ filepos_t KaxCluster::Render(IOCallback & output, KaxCues & CueToUpdate, bool bS
           KaxTrackEntry & entry = *static_cast<KaxTrackEntry *>(Trk);
           auto tracknum = static_cast<uint32>(entry.TrackNumber());
           for (Index = 0; Index<Blobs.size(); Index++) {
-            if (((KaxInternalBlock&)*Blobs[Index]).TrackNum() == tracknum)
+            if (static_cast<KaxInternalBlock&>(*Blobs[Index]).TrackNum() == tracknum)
               break; // this track is used
           }
           // the track wasn't found in this cluster
@@ -245,9 +245,9 @@ uint64 KaxCluster::GlobalTimecode() const
 */
 int16 KaxCluster::GetBlockLocalTimecode(uint64 aGlobalTimecode) const
 {
-  int64 TimecodeDelay = (int64(aGlobalTimecode) - int64(GlobalTimecode())) / int64(GlobalTimecodeScale());
+  int64 TimecodeDelay = (static_cast<int64>(aGlobalTimecode) - static_cast<int64>(GlobalTimecode())) / static_cast<int64>(GlobalTimecodeScale());
   assert(TimecodeDelay >= int16(0x8000) && TimecodeDelay <= int16(0x7FFF));
-  return int16(TimecodeDelay);
+  return static_cast<int16>(TimecodeDelay);
 }
 
 uint64 KaxCluster::GetBlockGlobalTimecode(int16 LocalTimecode)
@@ -255,11 +255,11 @@ uint64 KaxCluster::GetBlockGlobalTimecode(int16 LocalTimecode)
   if (!bFirstFrameInside) {
     auto Timecode = static_cast<KaxClusterTimecode *>(this->FindElt(EBML_INFO(KaxClusterTimecode)));
     assert (bFirstFrameInside); // use the InitTimecode() hack for now
-    MinTimecode = MaxTimecode = PreviousTimecode = *static_cast<EbmlUInteger *>(Timecode);
+    MinTimecode = MaxTimecode = PreviousTimecode = static_cast<uint64>(*static_cast<EbmlUInteger *>(Timecode));
     bFirstFrameInside = true;
     bPreviousTimecodeIsSet = true;
   }
-  return int64(LocalTimecode * GlobalTimecodeScale()) + GlobalTimecode();
+  return static_cast<int64>(LocalTimecode * GlobalTimecodeScale()) + GlobalTimecode();
 }
 
 KaxBlockGroup & KaxCluster::GetNewBlock()

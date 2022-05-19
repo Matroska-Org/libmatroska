@@ -80,7 +80,7 @@ class MATROSKA_DLL_API DataBuffer {
         myBuffer = aBuffer;
     }
 
-    virtual ~DataBuffer() {}
+    virtual ~DataBuffer() = default;
     virtual binary * Buffer() {assert(bValidValue); return myBuffer;}
     virtual uint32   & Size() {return mySize;};
     virtual const binary * Buffer() const {assert(bValidValue); return myBuffer;}
@@ -109,7 +109,7 @@ class MATROSKA_DLL_API SimpleDataBuffer : public DataBuffer {
       ,Offset(aOffset)
       ,BaseBuffer(aBuffer)
     {}
-    ~SimpleDataBuffer() override {}
+    ~SimpleDataBuffer() override = default;
 
     DataBuffer * Clone() override {return new SimpleDataBuffer(*this);}
 

@@ -127,7 +127,7 @@ DECLARE_MKX_MASTER_CONS(KaxCluster)
     bool SetSilentTrackUsed()
     {
       bSilentTracksUsed = true;
-      return FindFirstElt(EBML_INFO(KaxClusterSilentTracks), true) != NULL;
+      return FindFirstElt(EBML_INFO(KaxClusterSilentTracks), true) != nullptr;
     }
 
     bool AddBlockBlob(KaxBlockBlob * NewBlob);

@@ -61,8 +61,8 @@ class MATROSKA_DLL_API DataBuffer {
     bool     bInternalBuffer;
 
   public:
-    DataBuffer(binary * aBuffer, uint32 aSize, bool (*aFreeBuffer)(const DataBuffer & aBuffer) = NULL, bool _bInternalBuffer = false)
-      :myBuffer(NULL)
+    DataBuffer(binary * aBuffer, uint32 aSize, bool (*aFreeBuffer)(const DataBuffer & aBuffer) = nullptr, bool _bInternalBuffer = false)
+      :myBuffer(nullptr)
       ,mySize(aSize)
       ,bValidValue(true)
       ,myFreeBuffer(aFreeBuffer)
@@ -71,7 +71,7 @@ class MATROSKA_DLL_API DataBuffer {
       if (bInternalBuffer)
       {
         myBuffer = new (std::nothrow) binary[mySize];
-        if (myBuffer == NULL)
+        if (myBuffer == nullptr)
           bValidValue = false;
         else
           memcpy(myBuffer, aBuffer, mySize);
@@ -87,12 +87,12 @@ class MATROSKA_DLL_API DataBuffer {
     virtual uint32   Size()   const {return mySize;};
     bool    FreeBuffer(const DataBuffer & aBuffer) {
       bool bResult = true;
-      if (myBuffer != NULL && bValidValue) {
-        if (myFreeBuffer != NULL)
+      if (myBuffer != nullptr && bValidValue) {
+        if (myFreeBuffer != nullptr)
           bResult = myFreeBuffer(aBuffer);
         if (bInternalBuffer)
           delete [] myBuffer;
-        myBuffer = NULL;
+        myBuffer = nullptr;
         mySize = 0;
         bValidValue = false;
       }
@@ -120,7 +120,7 @@ class MATROSKA_DLL_API SimpleDataBuffer : public DataBuffer {
     static bool myFreeBuffer(const DataBuffer & aBuffer)
     {
       binary *_Buffer = static_cast<const SimpleDataBuffer*>(&aBuffer)->BaseBuffer;
-      if (_Buffer != NULL)
+      if (_Buffer != nullptr)
         free(_Buffer);
       return true;
     }
@@ -177,7 +177,7 @@ DECLARE_MKX_MASTER(KaxBlockGroup)
     */
     uint64 GlobalTimecode() const;
     uint64 GlobalTimecodeScale() const {
-      assert(ParentTrack != NULL);
+      assert(ParentTrack != nullptr);
       return ParentTrack->GlobalTimecodeScale();
     }
 
@@ -208,7 +208,7 @@ DECLARE_MKX_MASTER(KaxBlockGroup)
 class MATROSKA_DLL_API KaxInternalBlock : public EbmlBinary {
   public:
     KaxInternalBlock(EBML_DEF_CONS EBML_DEF_SEP bool bSimple EBML_DEF_SEP EBML_EXTRA_PARAM) :EBML_DEF_BINARY_INIT EBML_DEF_SEP bLocalTimecodeUsed(false), mLacing(LACING_AUTO), mInvisible(false)
-      ,ParentCluster(NULL), bIsSimple(bSimple), bIsKeyframe(true), bIsDiscardable(false)
+      ,ParentCluster(nullptr), bIsSimple(bSimple), bIsKeyframe(true), bIsDiscardable(false)
     {}
     KaxInternalBlock(const KaxInternalBlock & ElementToClone);
     ~KaxInternalBlock() override;
@@ -318,9 +318,9 @@ class MATROSKA_DLL_API KaxSimpleBlock : public KaxInternalBlock {
 /// Placeholder class for either a BlockGroup or a SimpleBlock
 class MATROSKA_DLL_API KaxBlockBlob {
 public:
-  KaxBlockBlob(BlockBlobType sblock_mode) :ParentCluster(NULL), SimpleBlockMode(sblock_mode) {
+  KaxBlockBlob(BlockBlobType sblock_mode) :ParentCluster(nullptr), SimpleBlockMode(sblock_mode) {
     bUseSimpleBlock = (sblock_mode != BLOCK_BLOB_NO_SIMPLE);
-    Block.group = NULL;
+    Block.group = nullptr;
   }
 
   ~KaxBlockBlob() {
@@ -341,7 +341,7 @@ public:
   void SetBlockDuration(uint64 TimeLength);
 
   void SetParent(KaxCluster & aParentCluster);
-  bool AddFrameAuto(const KaxTrackEntry & track, uint64 timecode, DataBuffer & buffer, LacingType lacing = LACING_AUTO, const KaxBlockBlob * PastBlock = NULL, const KaxBlockBlob * ForwBlock = NULL);
+  bool AddFrameAuto(const KaxTrackEntry & track, uint64 timecode, DataBuffer & buffer, LacingType lacing = LACING_AUTO, const KaxBlockBlob * PastBlock = nullptr, const KaxBlockBlob * ForwBlock = nullptr);
 
   bool IsSimpleBlock() const {return bUseSimpleBlock;}
 

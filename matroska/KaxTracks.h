@@ -55,7 +55,7 @@ DECLARE_MKX_MASTER(KaxTrackEntry)
       \note lacing set by default
     */
     inline bool LacingEnabled() const {
-      KaxTrackFlagLacing * myLacing = static_cast<KaxTrackFlagLacing *>(FindFirstElt(EBML_INFO(KaxTrackFlagLacing)));
+      auto myLacing = static_cast<KaxTrackFlagLacing *>(FindFirstElt(EBML_INFO(KaxTrackFlagLacing)));
       return((myLacing == nullptr) || (uint8(*myLacing) != 0));
     }
 

@@ -41,12 +41,6 @@ START_LIBMATROSKA_NAMESPACE
 
 KaxCluster::KaxCluster(EBML_EXTRA_DEF)
   :EbmlMaster(EBML_CLASS_SEMCONTEXT(KaxCluster) EBML_DEF_SEP EBML_EXTRA_CALL)
-  ,currentNewBlock(nullptr)
-  ,ParentSegment(nullptr)
-  ,bFirstFrameInside(false)
-  ,bPreviousTimecodeIsSet(false)
-  ,bTimecodeScaleIsSet(false)
-  ,bSilentTracksUsed(false)
 {}
 
 KaxCluster::KaxCluster(const KaxCluster & ElementToClone)

@@ -201,8 +201,8 @@ DECLARE_MKX_MASTER(KaxBlockGroup)
     const KaxCluster *GetParentCluster() const { return ParentCluster; }
 
   protected:
-    KaxCluster * ParentCluster;
-    const KaxTrackEntry * ParentTrack;
+    KaxCluster * ParentCluster{nullptr};
+    const KaxTrackEntry * ParentTrack{nullptr};
 };
 
 class MATROSKA_DLL_API KaxInternalBlock : public EbmlBinary {
@@ -376,7 +376,7 @@ DECLARE_MKX_BINARY_CONS(KaxBlockVirtual)
     uint16 TrackNumber;
     binary DataBlock[5];
 
-    const KaxCluster * ParentCluster;
+    const KaxCluster * ParentCluster{nullptr};
 };
 
 END_LIBMATROSKA_NAMESPACE

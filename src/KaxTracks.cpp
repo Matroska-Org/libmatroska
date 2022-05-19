@@ -42,7 +42,6 @@ START_LIBMATROSKA_NAMESPACE
 
 KaxTrackEntry::KaxTrackEntry(EBML_EXTRA_DEF)
   :EbmlMaster(EBML_CLASS_SEMCONTEXT(KaxTrackEntry) EBML_DEF_SEP EBML_EXTRA_CALL)
-  ,bGlobalTimecodeScaleIsSet(false)
 {}
 
 void KaxTrackEntry::EnableLacing(bool bEnable)

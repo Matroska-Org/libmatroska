@@ -51,19 +51,13 @@ const KaxBlockBlob & KaxReferenceBlock::RefBlock() const
 KaxReferenceBlock::KaxReferenceBlock(EBML_EXTRA_DEF)
   :EBML_DEF_SINTEGER(KaxReferenceBlock)EBML_DEF_SEP
   RefdBlock(nullptr)
-  ,ParentBlock(nullptr)
-  ,bTimecodeSet(false)
-  ,bOurBlob(false)
 {
   bTimecodeSet = false;
 }
 
 KaxReferenceBlock::KaxReferenceBlock(const KaxReferenceBlock & ElementToClone)
   :EbmlSInteger(ElementToClone)
-  ,RefdBlock(nullptr)
-  ,ParentBlock(nullptr)
   ,bTimecodeSet(ElementToClone.bTimecodeSet)
-  ,bOurBlob(false)
 {
 }
 

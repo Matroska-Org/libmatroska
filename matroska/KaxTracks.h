@@ -69,7 +69,7 @@ DECLARE_MKX_MASTER(KaxTrackEntry)
     }
 
   protected:
-    bool   bGlobalTimecodeScaleIsSet;
+    bool   bGlobalTimecodeScaleIsSet{false};
     uint64 mGlobalTimecodeScale;
 };
 

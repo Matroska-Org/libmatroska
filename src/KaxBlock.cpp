@@ -768,7 +768,7 @@ bool KaxBlockGroup::AddFrame(const KaxTrackEntry & track, uint64 timecode, DataB
   return bRes;
 }
 
-bool KaxBlockGroup::AddFrame(const KaxTrackEntry & track, uint64 timecode, DataBuffer & buffer, const KaxBlockBlob * PastBlock, const KaxBlockBlob * ForwBlock, LacingType lacing)
+bool KaxBlockGroup::AddFrame(const KaxTrackEntry & track, uint64 timecode, DataBuffer & buffer, std::unique_ptr<const KaxBlockBlob> PastBlock, std::unique_ptr<const KaxBlockBlob> ForwBlock, LacingType lacing)
 {
   auto & theBlock = GetChild<KaxBlock>(*this);
   assert(ParentCluster != nullptr);
@@ -778,13 +778,13 @@ bool KaxBlockGroup::AddFrame(const KaxTrackEntry & track, uint64 timecode, DataB
 
   if (PastBlock != nullptr) {
     auto & thePastRef = GetChild<KaxReferenceBlock>(*this);
-    thePastRef.SetReferencedBlock(PastBlock);
+    thePastRef.SetReferencedBlock(std::move(PastBlock));
     thePastRef.SetParentBlock(*this);
   }
 
   if (ForwBlock != nullptr) {
     auto & theFutureRef = AddNewChild<KaxReferenceBlock>(*this);
-    theFutureRef.SetReferencedBlock(ForwBlock);
+    theFutureRef.SetReferencedBlock(std::move(ForwBlock));
     theFutureRef.SetParentBlock(*this);
   }
 
@@ -972,7 +972,7 @@ KaxBlockBlob::operator KaxSimpleBlock &()
   return *Block.simpleblock;
 }
 
-bool KaxBlockBlob::AddFrameAuto(const KaxTrackEntry & track, uint64 timecode, DataBuffer & buffer, LacingType lacing, const KaxBlockBlob * PastBlock, const KaxBlockBlob * ForwBlock)
+bool KaxBlockBlob::AddFrameAuto(const KaxTrackEntry & track, uint64 timecode, DataBuffer & buffer, LacingType lacing, std::unique_ptr<const KaxBlockBlob> PastBlock, std::unique_ptr<const KaxBlockBlob> ForwBlock)
 {
   bool bResult = false;
   if ((SimpleBlockMode == BLOCK_BLOB_ALWAYS_SIMPLE) || (SimpleBlockMode == BLOCK_BLOB_SIMPLE_AUTO && PastBlock == nullptr && ForwBlock == nullptr)) {
@@ -997,7 +997,7 @@ bool KaxBlockBlob::AddFrameAuto(const KaxTrackEntry & track, uint64 timecode, Da
   }
   else
     if (ReplaceSimpleByGroup())
-      bResult = Block.group->AddFrame(track, timecode, buffer, PastBlock, ForwBlock, lacing);
+      bResult = Block.group->AddFrame(track, timecode, buffer, std::move(PastBlock), std::move(ForwBlock), lacing);
 
   return bResult;
 }

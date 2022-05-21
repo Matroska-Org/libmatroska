@@ -35,6 +35,7 @@
 #ifndef LIBMATROSKA_BLOCK_H
 #define LIBMATROSKA_BLOCK_H
 
+#include <memory>
 #include <vector>
 
 #include "matroska/KaxTypes.h"
@@ -156,7 +157,7 @@ DECLARE_MKX_MASTER(KaxBlockGroup)
       \brief Addition of a frame with a backward+forward reference (B frame)
     */
     bool AddFrame(const KaxTrackEntry & track, uint64 timecode, DataBuffer & buffer, const KaxBlockGroup & PastBlock, const KaxBlockGroup & ForwBlock, LacingType lacing = LACING_AUTO);
-    bool AddFrame(const KaxTrackEntry & track, uint64 timecode, DataBuffer & buffer, const KaxBlockBlob * PastBlock, const KaxBlockBlob * ForwBlock, LacingType lacing = LACING_AUTO);
+    bool AddFrame(const KaxTrackEntry & track, uint64 timecode, DataBuffer & buffer, std::unique_ptr<const KaxBlockBlob> PastBlock, std::unique_ptr<const KaxBlockBlob> ForwBlock, LacingType lacing = LACING_AUTO);
 
     void SetParent(KaxCluster & aParentCluster);
 
@@ -338,7 +339,7 @@ public:
   void SetBlockDuration(uint64 TimeLength);
 
   void SetParent(KaxCluster & aParentCluster);
-  bool AddFrameAuto(const KaxTrackEntry & track, uint64 timecode, DataBuffer & buffer, LacingType lacing = LACING_AUTO, const KaxBlockBlob * PastBlock = nullptr, const KaxBlockBlob * ForwBlock = nullptr);
+  bool AddFrameAuto(const KaxTrackEntry & track, uint64 timecode, DataBuffer & buffer, LacingType lacing = LACING_AUTO, std::unique_ptr<const KaxBlockBlob> PastBlock = nullptr, std::unique_ptr<const KaxBlockBlob> ForwBlock = nullptr);
 
   bool IsSimpleBlock() const {return bUseSimpleBlock;}
 

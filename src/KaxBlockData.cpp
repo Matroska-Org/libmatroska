@@ -59,15 +59,8 @@ KaxReferenceBlock::KaxReferenceBlock(const KaxReferenceBlock & ElementToClone)
 {
 }
 
-KaxReferenceBlock::~KaxReferenceBlock()
-{
-  FreeBlob();
-}
-
 void KaxReferenceBlock::FreeBlob()
 {
-  if (bOurBlob && RefdBlock!=nullptr)
-    delete RefdBlock;
   RefdBlock = nullptr;
 }
 
@@ -83,12 +76,12 @@ filepos_t KaxReferenceBlock::UpdateSize(bool bSaveDefault, bool bForceRender)
   return EbmlSInteger::UpdateSize(bSaveDefault, bForceRender);
 }
 
-void KaxReferenceBlock::SetReferencedBlock(const KaxBlockBlob * aRefdBlock)
+void KaxReferenceBlock::SetReferencedBlock(std::unique_ptr<const KaxBlockBlob> aRefdBlock)
 {
   assert(RefdBlock == nullptr);
   assert(aRefdBlock != nullptr);
   FreeBlob();
-  RefdBlock = aRefdBlock;
+  RefdBlock = std::move(aRefdBlock);
   bOurBlob = true;
   SetValueIsSet();
 }
@@ -96,9 +89,9 @@ void KaxReferenceBlock::SetReferencedBlock(const KaxBlockBlob * aRefdBlock)
 void KaxReferenceBlock::SetReferencedBlock(const KaxBlockGroup & aRefdBlock)
 {
   FreeBlob();
-  auto block_blob = new KaxBlockBlob(BLOCK_BLOB_NO_SIMPLE);
+  auto block_blob = std::make_unique<KaxBlockBlob>(BLOCK_BLOB_NO_SIMPLE);
   block_blob->SetBlockGroup(*const_cast<KaxBlockGroup*>(&aRefdBlock));
-  RefdBlock = block_blob;
+  RefdBlock = std::move(block_blob);
   bOurBlob = true;
   SetValueIsSet();
 }

@@ -33,6 +33,8 @@
 #ifndef LIBMATROSKA_BLOCK_ADDITIONAL_H
 #define LIBMATROSKA_BLOCK_ADDITIONAL_H
 
+#include <memory>
+
 #include "matroska/KaxTypes.h"
 #include "ebml/EbmlMaster.h"
 #include "ebml/EbmlUInteger.h"
@@ -49,20 +51,20 @@ namespace libmatroska {
 */
 DECLARE_MKX_SINTEGER_CONS(KaxReferenceBlock)
   public:
-        ~KaxReferenceBlock() override;
+    ~KaxReferenceBlock() override = default;
     /*!
       \brief override this method to compute the timecode value
     */
     filepos_t UpdateSize(bool bSaveDefault = false, bool bForceRender = false) override;
 
     const KaxBlockBlob & RefBlock() const;
-    void SetReferencedBlock(const KaxBlockBlob * aRefdBlock);
+    void SetReferencedBlock(std::unique_ptr<const KaxBlockBlob> aRefdBlock);
     void SetReferencedBlock(const KaxBlockGroup & aRefdBlock);
     void SetParentBlock(const KaxBlockGroup & aParentBlock) {ParentBlock = &aParentBlock;}
     void SetReferencedTimecode(int64 refTimecode) {*static_cast<EbmlSInteger*>(this) = refTimecode; bTimecodeSet = true;};
 
   protected:
-    const KaxBlockBlob * RefdBlock{nullptr};
+    std::unique_ptr<const KaxBlockBlob> RefdBlock;
     const KaxBlockGroup * ParentBlock{nullptr};
     bool bTimecodeSet{false};
         bool bOurBlob{false};

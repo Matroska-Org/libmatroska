@@ -54,17 +54,15 @@ class KaxBlockBlob;
 
 class MATROSKA_DLL_API DataBuffer {
   protected:
-    binary * myBuffer;
+    binary *myBuffer{nullptr};
     uint32   mySize;
-    bool     bValidValue;
+    bool bValidValue{true};
     bool     (*myFreeBuffer)(const DataBuffer & aBuffer); // method to free the internal buffer
     bool     bInternalBuffer;
 
   public:
     DataBuffer(binary * aBuffer, uint32 aSize, bool (*aFreeBuffer)(const DataBuffer & aBuffer) = nullptr, bool _bInternalBuffer = false)
-      :myBuffer(nullptr)
-      ,mySize(aSize)
-      ,bValidValue(true)
+      :mySize(aSize)
       ,myFreeBuffer(aFreeBuffer)
       ,bInternalBuffer(_bInternalBuffer)
     {
@@ -207,8 +205,7 @@ DECLARE_MKX_MASTER(KaxBlockGroup)
 
 class MATROSKA_DLL_API KaxInternalBlock : public EbmlBinary {
   public:
-    KaxInternalBlock(EBML_DEF_CONS EBML_DEF_SEP bool bSimple EBML_DEF_SEP EBML_EXTRA_PARAM) :EBML_DEF_BINARY_INIT EBML_DEF_SEP bLocalTimecodeUsed(false), mLacing(LACING_AUTO), mInvisible(false)
-      ,ParentCluster(nullptr), bIsSimple(bSimple), bIsKeyframe(true), bIsDiscardable(false)
+    KaxInternalBlock(EBML_DEF_CONS EBML_DEF_SEP bool bSimple EBML_DEF_SEP EBML_EXTRA_PARAM) :EBML_DEF_BINARY_INIT EBML_DEF_SEP bIsSimple(bSimple)
     {}
     KaxInternalBlock(const KaxInternalBlock & ElementToClone);
     ~KaxInternalBlock() override;
@@ -278,18 +275,18 @@ class MATROSKA_DLL_API KaxInternalBlock : public EbmlBinary {
     std::vector<int32>        SizeList;
     uint64     Timecode; // temporary timecode of the first frame, non scaled
     int16      LocalTimecode;
-    bool       bLocalTimecodeUsed;
+    bool bLocalTimecodeUsed{false};
     uint16     TrackNumber;
-    LacingType mLacing;
-    bool       mInvisible;
+    LacingType mLacing{LACING_AUTO};
+    bool mInvisible{false};
     uint64     FirstFrameLocation;
 
     filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault = false) override;
 
-    KaxCluster * ParentCluster;
+    KaxCluster *ParentCluster{nullptr};
     bool       bIsSimple;
-    bool       bIsKeyframe;
-    bool       bIsDiscardable;
+    bool bIsKeyframe{true};
+    bool bIsDiscardable{false};
 };
 
 DECLARE_MKX_CONTEXT(KaxBlock)
@@ -318,7 +315,7 @@ class MATROSKA_DLL_API KaxSimpleBlock : public KaxInternalBlock {
 /// Placeholder class for either a BlockGroup or a SimpleBlock
 class MATROSKA_DLL_API KaxBlockBlob {
 public:
-  KaxBlockBlob(BlockBlobType sblock_mode) :ParentCluster(nullptr), SimpleBlockMode(sblock_mode) {
+  KaxBlockBlob(BlockBlobType sblock_mode) : SimpleBlockMode(sblock_mode) {
     bUseSimpleBlock = (sblock_mode != BLOCK_BLOB_NO_SIMPLE);
     Block.group = nullptr;
   }
@@ -347,7 +344,7 @@ public:
 
   bool ReplaceSimpleByGroup();
 protected:
-  KaxCluster * ParentCluster;
+  KaxCluster *ParentCluster{nullptr};
   union {
     KaxBlockGroup *group;
     KaxSimpleBlock *simpleblock;

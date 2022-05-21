@@ -162,7 +162,7 @@ filepos_t FileMatroska::RenderHead(const std::string & aEncoderApp)
 */
 Track * FileMatroska::CreateTrack(const track_type aType)
 {
-  myTracks.push_back(new Track(aType));
+  myTracks.emplace_back(aType);
   return myTracks.back();
 }
 

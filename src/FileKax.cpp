@@ -98,16 +98,16 @@ void FileMatroska::Close(const uint32 aTimeLength)
 
   // get the Track-entry size
   uint32 track_entries_size = 0;
-  for (size_t i=0; i<myTracks.size(); i++) {
-    track_entries_size += myTracks[i]->default_size();
+  for (auto&& myTrack : myTracks) {
+    track_entries_size += myTrack->default_size();
   }
 
   myStreamInfo.TrackEntriesSize = track_entries_size;
   myStreamInfo.TimeLength = aTimeLength;
   myMainHeader.Render(myFile, myStreamInfo);
 
-  for (i=0; i<myTracks.size(); i++) {
-    delete myTracks[i];
+  for (auto&& track : myTracks) {
+    delete track;
   }
 }
 
@@ -118,8 +118,8 @@ filepos_t FileMatroska::RenderHead(const std::string & aEncoderApp)
 {
   try {
     uint32 track_entries_size = 0;
-    for (size_t i=0; i<myTracks.size(); i++) {
-      track_entries_size += myTracks[i]->default_size();
+    for (auto&& myTrack : myTracks) {
+      track_entries_size += myTrack->default_size();
     }
 
     std::string aStr = LIB_NAME;
@@ -134,8 +134,8 @@ filepos_t FileMatroska::RenderHead(const std::string & aEncoderApp)
 
     myStreamInfo.CodecEntryPosition = myStreamInfo.MainHeaderSize + myStreamInfo.TrackEntriesSize;
     myStreamInfo.CodecEntrySize = 4;
-    for (i=0; i<myTracks.size(); i++) {
-      myStreamInfo.CodecEntrySize += myTracks[i]->CodecSize();
+    for (auto&& myTrack : myTracks) {
+      myStreamInfo.CodecEntrySize += myTrack->CodecSize();
     }
 
     // Main Header
@@ -280,12 +280,7 @@ inline bool FileMatroska::IsMyTrack(const Track * aTrack) const
   if (aTrack == 0)
     throw 0;
 
-  for (std::vector<Track*>::const_iterator i = myTracks.begin(); i != myTracks.end(); ++i) {
-    if (*i == aTrack)
-      break;
-  }
-
-  return i != myTracks.end();
+  return std::any_of(myTracks.begin(), myTracks.end(), aTrack);
 }
 
 void FileMatroska::SelectReadingTrack(Track * aTrack, bool select)
@@ -293,8 +288,8 @@ void FileMatroska::SelectReadingTrack(Track * aTrack, bool select)
   if (IsMyTrack(aTrack)) {
     // here we have the right track
     // check if it's not already selected
-    for (std::vector<uint8>::iterator j = mySelectedTracks.begin(); j != mySelectedTracks.end(); ++j) {
-      if (*j == aTrack->TrackNumber())
+    for (auto&& num : mySelectedTracks) {
+      if (num == aTrack->TrackNumber())
         break;
     }
 
@@ -309,11 +304,7 @@ void FileMatroska::SelectReadingTrack(Track * aTrack, bool select)
 
 inline bool FileMatroska::IsReadingTrack(const uint8 aTrackNumber) const
 {
-  for (std::vector<uint8>::const_iterator trackIdx = mySelectedTracks.begin();
-       trackIdx != mySelectedTracks.end() && *trackIdx < aTrackNumber;
-       ++trackIdx) {}
-
-  return trackIdx != mySelectedTracks.end();
+  return std::any_of(mySelectedTracks.begin(), mySelectedTracks.end(), [=](int track){ return track >= aTrackNumber; })
 }
 
 //

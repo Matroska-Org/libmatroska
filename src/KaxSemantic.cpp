@@ -323,7 +323,7 @@ DEFINE_SEMANTIC_ITEM(true, true, KaxVideoFlagInterlaced)
 DEFINE_SEMANTIC_ITEM(true, true, KaxVideoFieldOrder)
 DEFINE_SEMANTIC_ITEM(true, true, KaxVideoStereoMode)
 DEFINE_SEMANTIC_ITEM(true, true, KaxVideoAlphaMode)
-DEFINE_SEMANTIC_ITEM(false, true, KaxOldStereoMode) // not supported
+DEFINE_SEMANTIC_ITEM(false, true, KaxOldStereoMode)
 DEFINE_SEMANTIC_ITEM(true, true, KaxVideoPixelWidth)
 DEFINE_SEMANTIC_ITEM(true, true, KaxVideoPixelHeight)
 DEFINE_SEMANTIC_ITEM(true, true, KaxVideoPixelCropBottom)

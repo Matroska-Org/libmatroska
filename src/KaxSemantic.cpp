@@ -620,6 +620,7 @@ DEFINE_SEMANTIC_ITEM(false, true, KaxEditionUID)
 DEFINE_SEMANTIC_ITEM(true, true, KaxEditionFlagHidden)
 DEFINE_SEMANTIC_ITEM(true, true, KaxEditionFlagDefault)
 DEFINE_SEMANTIC_ITEM(true, true, KaxEditionFlagOrdered)
+DEFINE_SEMANTIC_ITEM(false, false, KaxEditionDisplay)
 DEFINE_SEMANTIC_ITEM(true, false, KaxChapterAtom)
 DEFINE_END_SEMANTIC(KaxEditionEntry)
 
@@ -628,6 +629,15 @@ DEFINE_MKX_UINTEGER(KaxEditionUID, 0x45BC, 2, KaxEditionEntry, "EditionUID")
 DEFINE_MKX_UINTEGER_DEF(KaxEditionFlagHidden, 0x45BD, 2, KaxEditionEntry, "EditionFlagHidden", 0)
 DEFINE_MKX_UINTEGER_DEF(KaxEditionFlagDefault, 0x45DB, 2, KaxEditionEntry, "EditionFlagDefault", 0)
 DEFINE_MKX_UINTEGER_DEF(KaxEditionFlagOrdered, 0x45DD, 2, KaxEditionEntry, "EditionFlagOrdered", 0)
+
+DEFINE_START_SEMANTIC(KaxEditionDisplay)
+DEFINE_SEMANTIC_ITEM(true, true, KaxEditionString)
+DEFINE_SEMANTIC_ITEM(false, false, KaxEditionLanguageIETF)
+DEFINE_END_SEMANTIC(KaxEditionDisplay)
+
+DEFINE_MKX_MASTER(KaxEditionDisplay, 0x4520, 2, KaxEditionEntry, "EditionDisplay")
+DEFINE_MKX_UNISTRING(KaxEditionString, 0x4521, 2, KaxEditionDisplay, "EditionString")
+DEFINE_MKX_STRING(KaxEditionLanguageIETF, 0x45E4, 2, KaxEditionDisplay, "EditionLanguageIETF")
 
 DEFINE_START_SEMANTIC(KaxChapterAtom)
 DEFINE_SEMANTIC_ITEM(false, false, KaxChapterAtom) // recursive

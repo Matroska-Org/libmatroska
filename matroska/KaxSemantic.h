@@ -539,6 +539,9 @@ public:
 DECLARE_MKX_UINTEGER(KaxAudioBitDepth)
 };
 
+DECLARE_MKX_UINTEGER(KaxEmphasis)
+};
+
 DECLARE_MKX_MASTER(KaxTrackOperation)
 };
 
@@ -1092,6 +1095,25 @@ typedef enum {
   MATROSKA_VIDEO_PROJECTIONTYPE_CUBEMAP          = 2,
   MATROSKA_VIDEO_PROJECTIONTYPE_MESH             = 3,
 } MatroskaVideoProjectionType;
+
+/**
+ *Audio emphasis applied on audio samples. The player **MUST** apply the inverse emphasis to get the proper audio samples.
+ */
+typedef enum {
+  MATROSKA_EMPHASIS_NO_EMPHASIS      = 0,
+  MATROSKA_EMPHASIS_CD_AUDIO         = 1, // First order filter with zero point at 50 microseconds and a pole at 15 microseconds. Also found on DVD Audio and MPEG audio.
+  MATROSKA_EMPHASIS_RESERVED         = 2,
+  MATROSKA_EMPHASIS_CCIT_J_17        = 3, // Defined in [@!ITU-J.17].
+  MATROSKA_EMPHASIS_FM_50            = 4, // FM Radio in Europe. RC Filter with a time constant of 50 microseconds.
+  MATROSKA_EMPHASIS_FM_75            = 5, // FM Radio in the USA. RC Filter with a time constant of 75 microseconds.
+  MATROSKA_EMPHASIS_PHONO_RIAA       = 10, // Phono filter with time constants of t1=3180, t2=318 and t3=75 microseconds. [@!NAB1964]
+  MATROSKA_EMPHASIS_PHONO_IEC_N78    = 11, // Phono filter with time constants of t1=3180, t2=450 and t3=50 microseconds.
+  MATROSKA_EMPHASIS_PHONO_TELDEC     = 12, // Phono filter with time constants of t1=3180, t2=318 and t3=50 microseconds.
+  MATROSKA_EMPHASIS_PHONO_EMI        = 13, // Phono filter with time constants of t1=2500, t2=500 and t3=70 microseconds.
+  MATROSKA_EMPHASIS_PHONO_COLUMBIA_LP = 14, // Phono filter with time constants of t1=1590, t2=318 and t3=100 microseconds.
+  MATROSKA_EMPHASIS_PHONO_LONDON     = 15, // Phono filter with time constants of t1=1590, t2=318 and t3=50 microseconds.
+  MATROSKA_EMPHASIS_PHONO_NARTB      = 16, // Phono filter with time constants of t1=3180, t2=318 and t3=100 microseconds.
+} MatroskaAudioEmphasis;
 
 /**
  *The kind of plane this track corresponds to.

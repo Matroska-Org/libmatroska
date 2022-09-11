@@ -4,7 +4,7 @@
 **
 **  libmatroska : parse Matroska files, see https://www.matroska.org/
 **
-**  Copyright (c) 2002-2020, Matroska (non-profit organisation)
+**  Copyright (c) 2002-2022, Matroska (non-profit organisation)
 **  All rights reserved.
 **
 ** This file is part of libmatroska.
@@ -821,6 +821,322 @@ DECLARE_MKX_UNISTRING(KaxTagString)
 
 DECLARE_MKX_BINARY (KaxTagBinary)
 };
+
+/**
+ *The `TrackType` defines the type of each frame found in the Track.
+The value **SHOULD** be stored on 1 octet.
+ */
+typedef enum {
+  MATROSKA_TRACK_TYPE_VIDEO            = 0x1, // An image.
+  MATROSKA_TRACK_TYPE_AUDIO            = 0x2, // Audio samples.
+  MATROSKA_TRACK_TYPE_COMPLEX          = 0x3, // A mix of different other TrackType. The codec needs to define how the `Matroska Player` should interpret such data.
+  MATROSKA_TRACK_TYPE_LOGO             = 0x10, // An image to be rendered over the video track(s).
+  MATROSKA_TRACK_TYPE_SUBTITLE         = 0x11, // Subtitle or closed caption data to be rendered over the video track(s).
+  MATROSKA_TRACK_TYPE_BUTTONS          = 0x12, // Interactive button(s) to be rendered over the video track(s).
+  MATROSKA_TRACK_TYPE_CONTROL          = 0x20, // Metadata used to control the player of the `Matroska Player`.
+  MATROSKA_TRACK_TYPE_METADATA         = 0x21, // Timed metadata that can be passed on to the `Matroska Player`.
+} MatroskaTrackType;
+
+/**
+ *The compression algorithm used.
+ */
+typedef enum {
+  MATROSKA_TRACK_ENCODING_COMP_NONE             = -1,
+  MATROSKA_TRACK_ENCODING_COMP_ZLIB             = 0, // zlib compression [@!RFC1950].
+  MATROSKA_TRACK_ENCODING_COMP_BZLIB            = 1, // bzip2 compression [@!BZIP2], **SHOULD NOT** be used; see usage notes.
+  MATROSKA_TRACK_ENCODING_COMP_LZO1X            = 2, // Lempel-Ziv-Oberhumer compression [@!LZO], **SHOULD NOT** be used; see usage notes.
+  MATROSKA_TRACK_ENCODING_COMP_HEADERSTRIP      = 3, // Octets in `ContentCompSettings` ((#contentcompsettings-element)) have been stripped from each frame.
+} MatroskaTrackEncodingCompAlgo;
+
+/**
+ *This `ChapterTranslate` applies to this chapter codec of the given chapter edition(s); see (#chapprocesscodecid-element).
+ */
+typedef enum {
+  MATROSKA_CHAPTERTRANSLATECODEC_MATROSKA_SCRIPT  = 0, // Chapter commands using the Matroska Script codec.
+  MATROSKA_CHAPTERTRANSLATECODEC_DVD_MENU         = 1, // Chapter commands using the DVD-like codec.
+} MatroskaChapterTranslateCodec;
+
+/**
+ *This `TrackTranslate` applies to this chapter codec of the given chapter edition(s); see (#chapprocesscodecid-element).
+ */
+typedef enum {
+  MATROSKA_TRACKTRANSLATECODEC_MATROSKA_SCRIPT  = 0, // Chapter commands using the Matroska Script codec.
+  MATROSKA_TRACKTRANSLATECODEC_DVD_MENU         = 1, // Chapter commands using the DVD-like codec.
+} MatroskaTrackTranslateCodec;
+
+/**
+ *Specify whether the video frames in this track are interlaced or not.
+ */
+typedef enum {
+  MATROSKA_VIDEO_FLAGINTERLACED_UNDETERMINED     = 0, // Unknown status.
+  MATROSKA_VIDEO_FLAGINTERLACED_INTERLACED       = 1, // Interlaced frames.
+  MATROSKA_VIDEO_FLAGINTERLACED_PROGRESSIVE      = 2, // No interlacing.
+} MatroskaVideoFlagInterlaced;
+
+/**
+ *Specify the field ordering of video frames in this track.
+ */
+typedef enum {
+  MATROSKA_VIDEO_FIELDORDER_PROGRESSIVE      = 0, // Interlaced frames.
+  MATROSKA_VIDEO_FIELDORDER_TOPFIELDFIRST    = 1, // Top field displayed first. Top field stored first.
+  MATROSKA_VIDEO_FIELDORDER_UNDETERMINED     = 2, // Unknown field order.
+  MATROSKA_VIDEO_FIELDORDER_BOTTOMFIELDFIRST = 6, // Bottom field displayed first. Bottom field stored first.
+  MATROSKA_VIDEO_FIELDORDER_BOTTOMFIELDSWAPPED = 9, // Top field displayed first. Fields are interleaved in storage with the top line of the top field stored first.
+  MATROSKA_VIDEO_FIELDORDER_TOPFIELDSWAPPED  = 14, // Bottom field displayed first. Fields are interleaved in storage with the top line of the top field stored first.
+} MatroskaVideoFieldOrder;
+
+/**
+ *Stereo-3D video mode. There are some more details in (#multi-planar-and-3d-videos).
+ */
+typedef enum {
+  MATROSKA_VIDEO_STEREO_MONO             = 0,
+  MATROSKA_VIDEO_STEREO_LEFT_RIGHT       = 1,
+  MATROSKA_VIDEO_STEREO_BOTTOM_TOP       = 2,
+  MATROSKA_VIDEO_STEREO_TOP_BOTTOM       = 3,
+  MATROSKA_VIDEO_STEREO_CHECKBOARD_RL    = 4,
+  MATROSKA_VIDEO_STEREO_CHECKBOARD_LR    = 5,
+  MATROSKA_VIDEO_STEREO_ROW_INTERLEAVED_RL = 6,
+  MATROSKA_VIDEO_STEREO_ROW_INTERLEAVED_LR = 7,
+  MATROSKA_VIDEO_STEREO_COL_INTERLEAVED_RL = 8,
+  MATROSKA_VIDEO_STEREO_COL_INTERLEAVED_LR = 9,
+  MATROSKA_VIDEO_STEREO_ANAGLYPH_CYAN_RED = 10,
+  MATROSKA_VIDEO_STEREO_RIGHT_LEFT       = 11,
+  MATROSKA_VIDEO_STEREO_ANAGLYPH_GREEN_MAG = 12,
+  MATROSKA_VIDEO_STEREO_BOTH_EYES_BLOCK_LR = 13,
+  MATROSKA_VIDEO_STEREO_BOTH_EYES_BLOCK_RL = 14,
+} MatroskaVideoStereoMode;
+
+/**
+ *Indicate whether the BlockAdditional Element with BlockAddID of "1" contains Alpha data, as defined by to the Codec Mapping for the `CodecID`.
+Undefined values **SHOULD NOT** be used as the behavior of known implementations is different (considered either as 0 or 1).
+ */
+typedef enum {
+  MATROSKA_VIDEO_ALPHAMODE_NONE             = 0, // The BlockAdditional Element with BlockAddID of "1" does not exist or **SHOULD NOT** be considered as containing such data.
+  MATROSKA_VIDEO_ALPHAMODE_PRESENT          = 1, // The BlockAdditional Element with BlockAddID of "1" contains alpha channel data.
+} MatroskaVideoAlphaMode;
+
+/**
+ *Bogus StereoMode value used in old versions of libmatroska.
+ */
+typedef enum {
+  MATROSKA_VIDEO_OLDSTEREOMODE_MONO             = 0,
+  MATROSKA_VIDEO_OLDSTEREOMODE_RIGHT_EYE        = 1,
+  MATROSKA_VIDEO_OLDSTEREOMODE_LEFT_EYE         = 2,
+  MATROSKA_VIDEO_OLDSTEREOMODE_BOTH_EYES        = 3,
+} MatroskaVideoOldStereoMode;
+
+/**
+ *How DisplayWidth & DisplayHeight are interpreted.
+ */
+typedef enum {
+  MATROSKA_DISPLAY_UNIT_PIXELS           = 0,
+  MATROSKA_DISPLAY_UNIT_CENTIMETERS      = 1,
+  MATROSKA_DISPLAY_UNIT_INCHES           = 2,
+  MATROSKA_DISPLAY_UNIT_DISPLAYASPECTRATIO = 3,
+  MATROSKA_DISPLAY_UNIT_UNKNOWN          = 4,
+} MatroskaVideoDisplayUnit;
+
+/**
+ *Specify the possible modifications to the aspect ratio.
+ */
+typedef enum {
+  MATROSKA_VIDEO_ASPECTRATIOTYPE_FREE_RESIZING    = 0,
+  MATROSKA_VIDEO_ASPECTRATIOTYPE_KEEP_ASPECT_RATIO = 1,
+  MATROSKA_VIDEO_ASPECTRATIOTYPE_FIXED            = 2,
+} MatroskaVideoAspectRatioType;
+
+/**
+ *The Matrix Coefficients of the video used to derive luma and chroma values from red, green, and blue color primaries.
+For clarity, the value and meanings for MatrixCoefficients are adopted from Table 4 of ISO/IEC 23001-8:2016 or ITU-T H.273.
+ */
+typedef enum {
+  MATROSKA_VIDEO_MATRIXCOEFFICIENTS_IDENTITY         = 0,
+  MATROSKA_VIDEO_MATRIXCOEFFICIENTS_BT709            = 1,
+  MATROSKA_VIDEO_MATRIXCOEFFICIENTS_UNSPECIFIED      = 2,
+  MATROSKA_VIDEO_MATRIXCOEFFICIENTS_RESERVED         = 3,
+  MATROSKA_VIDEO_MATRIXCOEFFICIENTS_US_FCC_73_682    = 4,
+  MATROSKA_VIDEO_MATRIXCOEFFICIENTS_BT470BG          = 5,
+  MATROSKA_VIDEO_MATRIXCOEFFICIENTS_SMPTE_170M       = 6,
+  MATROSKA_VIDEO_MATRIXCOEFFICIENTS_SMPTE_240M       = 7,
+  MATROSKA_VIDEO_MATRIXCOEFFICIENTS_YCOCG            = 8,
+  MATROSKA_VIDEO_MATRIXCOEFFICIENTS_BT2020_NCL       = 9,
+  MATROSKA_VIDEO_MATRIXCOEFFICIENTS_BT2020_CL        = 10,
+  MATROSKA_VIDEO_MATRIXCOEFFICIENTS_SMPTE_2085       = 11,
+  MATROSKA_VIDEO_MATRIXCOEFFICIENTS_CHROMA_DERIVED_NCL = 12,
+  MATROSKA_VIDEO_MATRIXCOEFFICIENTS_CHROMA_DERIVED_CL = 13,
+  MATROSKA_VIDEO_MATRIXCOEFFICIENTS_ITU_R_BT_2100_0  = 14,
+} MatroskaVideoMatrixCoefficients;
+
+/**
+ *How chroma is subsampled horizontally.
+ */
+typedef enum {
+  MATROSKA_VIDEO_CHROMASITINGHORZ_UNSPECIFIED      = 0,
+  MATROSKA_VIDEO_CHROMASITINGHORZ_LEFT             = 1,
+  MATROSKA_VIDEO_CHROMASITINGHORZ_HALF             = 2,
+} MatroskaColourChromaSitingHorz;
+
+/**
+ *How chroma is subsampled vertically.
+ */
+typedef enum {
+  MATROSKA_VIDEO_CHROMASITINGVERT_UNSPECIFIED      = 0,
+  MATROSKA_VIDEO_CHROMASITINGVERT_TOP              = 1,
+  MATROSKA_VIDEO_CHROMASITINGVERT_HALF             = 2,
+} MatroskaColourChromaSitingVert;
+
+/**
+ *Clipping of the color ranges.
+ */
+typedef enum {
+  MATROSKA_VIDEO_RANGE_UNSPECIFIED      = 0,
+  MATROSKA_VIDEO_RANGE_BROADCAST_RANGE  = 1,
+  MATROSKA_VIDEO_RANGE_FULL_RANGE       = 2,
+  MATROSKA_VIDEO_RANGE_DEFINED_BY_MATRIXCOEFFICIENTS = 3,
+} MatroskaVideoRange;
+
+/**
+ *The transfer characteristics of the video. For clarity,
+the value and meanings for TransferCharacteristics are adopted from Table 3 of ISO/IEC 23091-4 or ITU-T H.273.
+ */
+typedef enum {
+  MATROSKA_TRANSFER_RESERVED         = 0,
+  MATROSKA_TRANSFER_BT709            = 1,
+  MATROSKA_TRANSFER_UNSPECIFIED      = 2,
+  MATROSKA_TRANSFER_RESERVED2        = 3,
+  MATROSKA_TRANSFER_GAMMA22          = 4,
+  MATROSKA_TRANSFER_GAMMA28          = 5,
+  MATROSKA_TRANSFER_SMPTE_170M       = 6,
+  MATROSKA_TRANSFER_SMPTE_240M       = 7,
+  MATROSKA_TRANSFER_LINEAR           = 8,
+  MATROSKA_TRANSFER_LOG              = 9,
+  MATROSKA_TRANSFER_LOG_SQRT         = 10,
+  MATROSKA_TRANSFER_IEC_61966_2_4    = 11,
+  MATROSKA_TRANSFER_BT1361_ECG       = 12,
+  MATROSKA_TRANSFER_IEC_61966_2_1    = 13,
+  MATROSKA_TRANSFER_BT2020_10_BIT    = 14,
+  MATROSKA_TRANSFER_BT2020_12_BIT    = 15,
+  MATROSKA_TRANSFER_BT2100_PQ        = 16,
+  MATROSKA_TRANSFER_SMPTE_428_1      = 17,
+  MATROSKA_TRANSFER_ARIB_STD_B67     = 18,
+} MatroskaVideoTransferCharacteristics;
+
+/**
+ *The colour primaries of the video. For clarity,
+the value and meanings for Primaries are adopted from Table 2 of ISO/IEC 23091-4 or ITU-T H.273.
+ */
+typedef enum {
+  MATROSKA_VIDEO_PRIMARIES_RESERVED         = 0,
+  MATROSKA_VIDEO_PRIMARIES_BT709            = 1,
+  MATROSKA_VIDEO_PRIMARIES_UNSPECIFIED      = 2,
+  MATROSKA_VIDEO_PRIMARIES_RESERVED2        = 3,
+  MATROSKA_VIDEO_PRIMARIES_BT470M           = 4,
+  MATROSKA_VIDEO_PRIMARIES_BT470BG          = 5,
+  MATROSKA_VIDEO_PRIMARIES_BT601_525        = 6,
+  MATROSKA_VIDEO_PRIMARIES_SMPTE_240M       = 7,
+  MATROSKA_VIDEO_PRIMARIES_FILM             = 8,
+  MATROSKA_VIDEO_PRIMARIES_BT2020           = 9,
+  MATROSKA_VIDEO_PRIMARIES_SMPTE_428_1      = 10,
+  MATROSKA_VIDEO_PRIMARIES_SMPTE_RP_432_2   = 11,
+  MATROSKA_VIDEO_PRIMARIES_SMPTE_EG_432_2   = 12,
+  MATROSKA_VIDEO_PRIMARIES_JEDEC_P22        = 22,
+} MatroskaVideoPrimaries;
+
+/**
+ *Describes the projection used for this video track.
+ */
+typedef enum {
+  MATROSKA_VIDEO_PROJECTIONTYPE_RECTANGULAR      = 0,
+  MATROSKA_VIDEO_PROJECTIONTYPE_EQUIRECTANGULAR  = 1,
+  MATROSKA_VIDEO_PROJECTIONTYPE_CUBEMAP          = 2,
+  MATROSKA_VIDEO_PROJECTIONTYPE_MESH             = 3,
+} MatroskaVideoProjectionType;
+
+/**
+ *The kind of plane this track corresponds to.
+ */
+typedef enum {
+  MATROSKA_TRACKPLANETYPE_LEFT_EYE         = 0,
+  MATROSKA_TRACKPLANETYPE_RIGHT_EYE        = 1,
+  MATROSKA_TRACKPLANETYPE_BACKGROUND       = 2,
+} MatroskaTrackPlaneType;
+
+/**
+ *A bit field that describes which Elements have been modified in this way.
+Values (big-endian) can be OR'ed.
+ */
+typedef enum {
+  MATROSKA_CONTENTENCODINGSCOPE_BLOCK            = 1, // All frame contents, excluding lacing data.
+  MATROSKA_CONTENTENCODINGSCOPE_PRIVATE          = 2, // The track's private data.
+  MATROSKA_CONTENTENCODINGSCOPE_NEXT             = 4, // The next ContentEncoding (next `ContentEncodingOrder`. Either the data inside `ContentCompression` and/or `ContentEncryption`).
+} MatroskaContentEncodingScope;
+
+/**
+ *A value describing what kind of transformation is applied.
+ */
+typedef enum {
+  MATROSKA_CONTENTENCODINGTYPE_COMPRESSION      = 0,
+  MATROSKA_CONTENTENCODINGTYPE_ENCRYPTION       = 1,
+} MatroskaContentEncodingType;
+
+/**
+ *The encryption algorithm used.
+ */
+typedef enum {
+  MATROSKA_CONTENTENCALGO_NOT_ENCRYPTED    = 0, // The data are not encrypted.
+  MATROSKA_CONTENTENCALGO_DES              = 1, // Data Encryption Standard (DES) [@!FIPS.46-3].
+  MATROSKA_CONTENTENCALGO_3DES             = 2, // Triple Data Encryption Algorithm [@!SP.800-67].
+  MATROSKA_CONTENTENCALGO_TWOFISH          = 3, // Twofish Encryption Algorithm [@!Twofish].
+  MATROSKA_CONTENTENCALGO_BLOWFISH         = 4, // Blowfish Encryption Algorithm [@!Blowfish].
+  MATROSKA_CONTENTENCALGO_AES              = 5, // Advanced Encryption Standard (AES) [@!FIPS.197].
+} MatroskaContentEncodingAlgo;
+
+/**
+ *The AES cipher mode used in the encryption.
+ */
+typedef enum {
+  MATROSKA_AESSETTINGSCIPHERMODE_AES_CTR          = 1, // Counter [@!SP.800-38A].
+  MATROSKA_AESSETTINGSCIPHERMODE_AES_CBC          = 2, // Cipher Block Chaining [@!SP.800-38A].
+} MatroskaAESSettingsCipherMode;
+
+/**
+ *The algorithm used for the signature.
+ */
+typedef enum {
+  MATROSKA_CONTENTSIGALGO_NOT_SIGNED       = 0,
+  MATROSKA_CONTENTSIGALGO_RSA              = 1,
+} MatroskaContentSignatureAlgo;
+
+/**
+ *The hash algorithm used for the signature.
+ */
+typedef enum {
+  MATROSKA_CONTENTSIGHASHALGO_NOT_SIGNED       = 0,
+  MATROSKA_CONTENTSIGHASHALGO_SHA1_160         = 1,
+  MATROSKA_CONTENTSIGHASHALGO_MD5              = 2,
+} MatroskaContentSigHashAlgo;
+
+/**
+ *Defines when the process command **SHOULD** be handled
+ */
+typedef enum {
+  MATROSKA_CHAPPROCESSTIME_DURING           = 0,
+  MATROSKA_CHAPPROCESSTIME_BEFORE           = 1,
+  MATROSKA_CHAPPROCESSTIME_AFTER            = 2,
+} MatroskaChapterProcessTime;
+
+/**
+ *A number to indicate the logical level of the target.
+ */
+typedef enum {
+  MATROSKA_TARGET_TYPE_COLLECTION       = 70, // The highest hierarchical level that tags can describe.
+  MATROSKA_TARGET_TYPE_EDITION          = 60, // A list of lower levels grouped together.
+  MATROSKA_TARGET_TYPE_ALBUM            = 50, // The most common grouping level of music and video (equals to an episode for TV series).
+  MATROSKA_TARGET_TYPE_PART             = 40, // When an album or episode has different logical parts.
+  MATROSKA_TARGET_TYPE_TRACK            = 30, // The common parts of an album or movie.
+  MATROSKA_TARGET_TYPE_SUBTRACK         = 20, // Corresponds to parts of a track for audio (like a movement).
+  MATROSKA_TARGET_TYPE_SHOT             = 10, // The lowest hierarchy found in music or movies.
+} MatroskaTargetTypeValue;
 
 
 } // namespace libmatroska

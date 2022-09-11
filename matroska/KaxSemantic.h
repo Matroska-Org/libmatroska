@@ -84,13 +84,13 @@ public:
 DECLARE_MKX_MASTER(KaxChapterTranslate)
 };
 
-DECLARE_MKX_UINTEGER(KaxChapterTranslateEditionUID)
+DECLARE_MKX_BINARY (KaxChapterTranslateID)
 };
 
 DECLARE_MKX_UINTEGER(KaxChapterTranslateCodec)
 };
 
-DECLARE_MKX_BINARY (KaxChapterTranslateID)
+DECLARE_MKX_UINTEGER(KaxChapterTranslateEditionUID)
 };
 
 DECLARE_MKX_UINTEGER(KaxTimecodeScale)
@@ -138,10 +138,10 @@ DECLARE_MKX_MASTER(KaxBlockAdditions)
 DECLARE_MKX_MASTER(KaxBlockMore)
 };
 
-DECLARE_MKX_UINTEGER(KaxBlockAddID)
+DECLARE_MKX_BINARY (KaxBlockAdditional)
 };
 
-DECLARE_MKX_BINARY (KaxBlockAdditional)
+DECLARE_MKX_UINTEGER(KaxBlockAddID)
 };
 
 DECLARE_MKX_UINTEGER(KaxBlockDuration)
@@ -350,13 +350,13 @@ DECLARE_MKX_UINTEGER(KaxSeekPreRoll)
 DECLARE_MKX_MASTER(KaxTrackTranslate)
 };
 
-DECLARE_MKX_UINTEGER(KaxTrackTranslateEditionUID)
+DECLARE_MKX_BINARY (KaxTrackTranslateTrackID)
 };
 
 DECLARE_MKX_UINTEGER(KaxTrackTranslateCodec)
 };
 
-DECLARE_MKX_BINARY (KaxTrackTranslateTrackID)
+DECLARE_MKX_UINTEGER(KaxTrackTranslateEditionUID)
 };
 
 DECLARE_MKX_MASTER(KaxTrackVideo)

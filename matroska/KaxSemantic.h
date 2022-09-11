@@ -742,6 +742,15 @@ DECLARE_MKX_UINTEGER(KaxEditionFlagDefault)
 DECLARE_MKX_UINTEGER(KaxEditionFlagOrdered)
 };
 
+DECLARE_MKX_MASTER(KaxEditionDisplay)
+};
+
+DECLARE_MKX_UNISTRING(KaxEditionString)
+};
+
+DECLARE_MKX_STRING(KaxEditionLanguageIETF)
+};
+
 DECLARE_MKX_MASTER(KaxChapterAtom)
 };
 

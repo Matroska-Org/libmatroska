@@ -38,7 +38,7 @@
 #include "matroska/KaxCues.h"
 #include "matroska/KaxDefines.h"
 
-using namespace LIBEBML_NAMESPACE;
+using namespace libebml;
 
 // sub elements
 namespace libmatroska {

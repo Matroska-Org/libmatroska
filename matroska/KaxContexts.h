@@ -38,7 +38,7 @@
 #include "matroska/KaxTypes.h"
 #include "ebml/EbmlElement.h"
 
-using namespace LIBEBML_NAMESPACE;
+using namespace libebml;
 
 namespace libmatroska {
 

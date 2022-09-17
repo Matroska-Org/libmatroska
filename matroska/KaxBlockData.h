@@ -40,7 +40,7 @@
 #include "matroska/KaxDefines.h"
 #include "matroska/KaxBlock.h"
 
-using namespace LIBEBML_NAMESPACE;
+using namespace libebml;
 
 namespace libmatroska {
 

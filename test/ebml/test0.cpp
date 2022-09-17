@@ -50,7 +50,7 @@
 #include "ebml/EbmlStream.h"
 #include "ebml/StdIOCallback.h"
 
-using namespace LIBEBML_NAMESPACE;
+using namespace libebml;
 
 const char RW_FILENAME[] = "test.kax";
 
@@ -149,7 +149,7 @@ int main(void)
   ///////////////////////////////
   //   Unicode String data
   ///////////////////////////////
-  UTFstring bString = L"Stève Lhomm€";
+  UTFstring bString = L"Stï¿½ve Lhommï¿½";
   EbmlUnicodeString testUStr(200);
 
   testUStr.SetID(SemanticList[4].Id, SemanticList[4].IdLength);

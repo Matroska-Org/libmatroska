@@ -40,7 +40,7 @@
 #include "matroska/KaxSegment.h"
 #include "matroska/KaxTracks.h"
 
-using namespace LIBEBML_NAMESPACE;
+using namespace libebml;
 
 namespace libmatroska {
 

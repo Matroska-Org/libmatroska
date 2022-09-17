@@ -38,7 +38,7 @@
 
 // sub elements
 
-using namespace LIBEBML_NAMESPACE;
+using namespace libebml;
 
 namespace libmatroska {
 

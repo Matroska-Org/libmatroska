@@ -38,7 +38,7 @@
 #include "ebml/EbmlTypes.h"
 #include "matroska/c/libmatroska_t.h"
 
-START_LIBMATROSKA_NAMESPACE
+namespace libmatroska {
 
 enum LacingType {
   LACING_NONE = 0,
@@ -54,6 +54,6 @@ enum BlockBlobType {
   BLOCK_BLOB_ALWAYS_SIMPLE,
 };
 
-END_LIBMATROSKA_NAMESPACE
+} // namespace libmatroska
 
 #endif // LIBMATROSKA_TYPES_H

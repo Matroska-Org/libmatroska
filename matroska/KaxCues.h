@@ -43,7 +43,7 @@
 
 using namespace LIBEBML_NAMESPACE;
 
-START_LIBMATROSKA_NAMESPACE
+namespace libmatroska {
 
 class KaxCuePoint;
 
@@ -86,6 +86,6 @@ DECLARE_MKX_MASTER(KaxCues)
     uint64 mGlobalTimecodeScale;
 };
 
-END_LIBMATROSKA_NAMESPACE
+} // namespace libmatroska
 
 #endif // LIBMATROSKA_CUES_H

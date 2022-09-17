@@ -41,7 +41,7 @@
 using namespace LIBEBML_NAMESPACE;
 
 // sub elements
-START_LIBMATROSKA_NAMESPACE
+namespace libmatroska {
 
 /*!
   \todo verify that the element is not already in the list
@@ -139,4 +139,4 @@ bool KaxSeek::IsEbmlId(const KaxSeek & aPoint) const
   return (aEbmlIdA == aEbmlIdB);
 }
 
-END_LIBMATROSKA_NAMESPACE
+} // namespace libmatroska

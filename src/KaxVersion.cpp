@@ -35,7 +35,7 @@
 
 #include "matroska/KaxVersion.h"
 
-START_LIBMATROSKA_NAMESPACE
+namespace libmatroska {
 
 const std::string KaxCodeVersion = "1.6.4";
 
@@ -44,4 +44,4 @@ const std::string KaxCodeVersion = "1.6.4";
 // remain binary compatible.
 const std::string KaxCodeDate = "Unknown";
 
-END_LIBMATROSKA_NAMESPACE
+} // namespace libmatroska

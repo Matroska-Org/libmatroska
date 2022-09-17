@@ -38,7 +38,7 @@
 #include "matroska/KaxDefines.h"
 #include "matroska/KaxSemantic.h"
 
-START_LIBMATROSKA_NAMESPACE
+namespace libmatroska {
 
 #if defined(HAVE_EBML2) || defined(HAS_EBML2)
 KaxSegmentUID::KaxSegmentUID(EBML_DEF_CONS EBML_DEF_SEP EBML_EXTRA_DEF)
@@ -47,4 +47,4 @@ KaxSegmentUID::KaxSegmentUID(EBML_DEF_CONS EBML_DEF_SEP EBML_EXTRA_DEF)
 }
 #endif
 
-END_LIBMATROSKA_NAMESPACE
+} // namespace libmatroska

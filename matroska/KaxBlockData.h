@@ -42,7 +42,7 @@
 
 using namespace LIBEBML_NAMESPACE;
 
-START_LIBMATROSKA_NAMESPACE
+namespace libmatroska {
 
 /*!
   \brief element used for B frame-likes
@@ -69,6 +69,6 @@ DECLARE_MKX_SINTEGER_CONS(KaxReferenceBlock)
         void FreeBlob();
 };
 
-END_LIBMATROSKA_NAMESPACE
+} // namespace libmatroska
 
 #endif // LIBMATROSKA_BLOCK_ADDITIONAL_H

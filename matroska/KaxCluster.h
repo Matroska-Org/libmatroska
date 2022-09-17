@@ -44,7 +44,7 @@
 
 using namespace LIBEBML_NAMESPACE;
 
-START_LIBMATROSKA_NAMESPACE
+namespace libmatroska {
 
 class KaxSegment;
 
@@ -154,6 +154,6 @@ DECLARE_MKX_MASTER_CONS(KaxCluster)
     bool AddFrameInternal(const KaxTrackEntry & track, uint64 timecode, DataBuffer & buffer, KaxBlockGroup * & MyNewBlock, const KaxBlockGroup * PastBlock, const KaxBlockGroup * ForwBlock, LacingType lacing);
 };
 
-END_LIBMATROSKA_NAMESPACE
+} // namespace libmatroska
 
 #endif // LIBMATROSKA_CLUSTER_H

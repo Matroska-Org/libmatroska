@@ -51,7 +51,7 @@
 #include "ebml/EbmlVersion.h"
 #include "matroska/KaxVersion.h"
 
-using namespace LIBMATROSKA_NAMESPACE;
+using namespace libmatroska;
 
 const char RW_FILENAME[] = "test.kax";
 

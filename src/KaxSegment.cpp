@@ -43,7 +43,7 @@
 #include "matroska/KaxContexts.h"
 #include "matroska/KaxDefines.h"
 
-START_LIBMATROSKA_NAMESPACE
+namespace libmatroska {
 
 KaxSegment::KaxSegment(EBML_EXTRA_DEF)
   :EbmlMaster(EBML_CLASS_SEMCONTEXT(KaxSegment) EBML_DEF_SEP EBML_EXTRA_CALL)
@@ -81,4 +81,4 @@ uint64 KaxSegment::GetGlobalPosition(uint64 aRelativePosition) const
   return aRelativePosition + GetElementPosition() + HeadSize();
 }
 
-END_LIBMATROSKA_NAMESPACE
+} // namespace libmatroska

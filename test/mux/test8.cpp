@@ -52,7 +52,7 @@
 #include "matroska/KaxCuesData.h"
 #include "ebml/StdIOCallback.h"
 
-using namespace LIBMATROSKA_NAMESPACE;
+using namespace libmatroska;
 using namespace std;
 
 #define NO_DISPLAY_DATA
@@ -272,9 +272,9 @@ int main(int argc, char **argv)
               KaxWritingApp *pApp = static_cast<KaxWritingApp*>(ElementLevel2);
               pApp->ReadData(aStream.I_O());
 #if !defined(__CYGWIN__) && !defined(__APPLE__) && !defined(__BEOS__) && !defined(__NetBSD__)
-              wprintf(L"Writing App : %ls (éàôï)\n", UTFstring(*pApp).c_str());
+              wprintf(L"Writing App : %ls (ï¿½ï¿½ï¿½ï¿½)\n", UTFstring(*pApp).c_str());
 #else
-              printf("Writing App : %s (éàôï)\n", UTFstring(*pApp).c_str());
+              printf("Writing App : %s (ï¿½ï¿½ï¿½ï¿½)\n", UTFstring(*pApp).c_str());
 #endif
             }
 

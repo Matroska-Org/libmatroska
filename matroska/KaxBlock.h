@@ -45,7 +45,7 @@
 
 using namespace LIBEBML_NAMESPACE;
 
-START_LIBMATROSKA_NAMESPACE
+namespace libmatroska {
 
 class KaxCluster;
 class KaxReferenceBlock;
@@ -379,6 +379,6 @@ DECLARE_MKX_BINARY_CONS(KaxBlockVirtual)
     const KaxCluster * ParentCluster;
 };
 
-END_LIBMATROSKA_NAMESPACE
+} // namespace libmatroska
 
 #endif // LIBMATROSKA_BLOCK_H

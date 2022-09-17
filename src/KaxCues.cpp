@@ -40,7 +40,7 @@
 #include "matroska/KaxSemantic.h"
 
 // sub elements
-START_LIBMATROSKA_NAMESPACE
+namespace libmatroska {
 
 KaxCues::~KaxCues()
 {
@@ -153,4 +153,4 @@ uint64 KaxCues::GetTimecodePosition(uint64 aTimecode) const
   return aTrack->ClusterPosition();
 }
 
-END_LIBMATROSKA_NAMESPACE
+} // namespace libmatroska

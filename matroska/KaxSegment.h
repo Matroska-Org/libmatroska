@@ -41,7 +41,7 @@
 
 using namespace LIBEBML_NAMESPACE;
 
-START_LIBMATROSKA_NAMESPACE
+namespace libmatroska {
 
 DECLARE_MKX_MASTER_CONS(KaxSegment)
   public:
@@ -57,6 +57,6 @@ DECLARE_MKX_MASTER_CONS(KaxSegment)
     uint64 GetGlobalPosition(uint64 aRelativePosition) const;
 };
 
-END_LIBMATROSKA_NAMESPACE
+} // namespace libmatroska
 
 #endif // LIBMATROSKA_SEGMENT_H

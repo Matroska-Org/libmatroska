@@ -40,7 +40,7 @@
 
 using namespace LIBEBML_NAMESPACE;
 
-START_LIBMATROSKA_NAMESPACE
+namespace libmatroska {
 
 class KaxBlockGroup;
 class KaxBlockBlob;
@@ -73,6 +73,6 @@ DECLARE_MKX_MASTER(KaxCueReference)
     void AddReference(const KaxBlockBlob & BlockReferenced, uint64 GlobalTimecodeScale);
 };
 
-END_LIBMATROSKA_NAMESPACE
+} // namespace libmatroska
 
 #endif // LIBMATROSKA_CUES_DATA_H

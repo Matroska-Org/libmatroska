@@ -53,7 +53,7 @@
 #include "matroska/KaxCues.h"
 #include "matroska/KaxInfoData.h"
 
-using namespace LIBMATROSKA_NAMESPACE;
+using namespace libmatroska;
 using namespace std;
 
 unsigned int BIN_FILE_SIZE = 15000;
@@ -113,7 +113,7 @@ int main(int argc, char **argv)
     *(static_cast<EbmlFloat *>(&SegDuration)) = 0.0;
 
     *((EbmlUnicodeString *)&GetChild<KaxMuxingApp>(MyInfos))  = L"libmatroska 0.5.0";
-    *((EbmlUnicodeString *)&GetChild<KaxWritingApp>(MyInfos)) = L"éàôï";
+    *((EbmlUnicodeString *)&GetChild<KaxWritingApp>(MyInfos)) = L"ï¿½ï¿½ï¿½ï¿½";
     GetChild<KaxWritingApp>(MyInfos).SetDefaultSize(25);
 
     filepos_t InfoSize = MyInfos.Render(out_file);
@@ -317,7 +317,7 @@ int main(int argc, char **argv)
 
     KaxChapterDisplay & aDisplay = GetChild<KaxChapterDisplay>(aAtom);
     KaxChapterString & aChapString = GetChild<KaxChapterString>(aDisplay);
-    *static_cast<EbmlUnicodeString *>(&aChapString) = L"Le film réduit à un chapitre";
+    *static_cast<EbmlUnicodeString *>(&aChapString) = L"Le film rï¿½duit ï¿½ un chapitre";
 
     KaxChapterLanguage & aChapLang = GetChild<KaxChapterLanguage>(aDisplay);
     *static_cast<EbmlString *>(&aChapLang) = "fra";
@@ -349,7 +349,7 @@ int main(int argc, char **argv)
         *static_cast<EbmlUnicodeString *>(&aTagName) = L"NAME";
 
         KaxTagString & aTagtring = GetChild<KaxTagString>(TagSimple);
-        *static_cast<EbmlUnicodeString *>(&aTagtring) = L"Testé123";
+        *static_cast<EbmlUnicodeString *>(&aTagtring) = L"Testï¿½123";
 
     filepos_t TagsSize = AllTags.Render(out_file, bWriteDefaultValues);
     MetaSeek.IndexThis(AllTags, FileSegment);

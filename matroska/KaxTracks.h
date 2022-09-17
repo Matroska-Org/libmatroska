@@ -43,7 +43,7 @@
 
 using namespace LIBEBML_NAMESPACE;
 
-START_LIBMATROSKA_NAMESPACE
+namespace libmatroska {
 
 DECLARE_MKX_MASTER(KaxTrackEntry)
   public:
@@ -73,6 +73,6 @@ DECLARE_MKX_MASTER(KaxTrackEntry)
     uint64 mGlobalTimecodeScale;
 };
 
-END_LIBMATROSKA_NAMESPACE
+} // namespace libmatroska
 
 #endif // LIBMATROSKA_TRACKS_H

@@ -40,7 +40,7 @@
 
 using namespace LIBEBML_NAMESPACE;
 
-START_LIBMATROSKA_NAMESPACE
+namespace libmatroska {
 
 const KaxBlockBlob & KaxReferenceBlock::RefBlock() const
 {
@@ -111,4 +111,4 @@ void KaxReferenceBlock::SetReferencedBlock(const KaxBlockGroup & aRefdBlock)
   SetValueIsSet();
 }
 
-END_LIBMATROSKA_NAMESPACE
+} // namespace libmatroska

@@ -46,7 +46,7 @@
 
 using namespace LIBEBML_NAMESPACE;
 
-START_LIBMATROSKA_NAMESPACE
+namespace libmatroska {
 DECLARE_MKX_BINARY (KaxSeekID)
 public:
   virtual bool ValidateSize() const {return IsFiniteSize() && GetSize() <= 4;}
@@ -823,6 +823,6 @@ DECLARE_MKX_BINARY (KaxTagBinary)
 };
 
 
-END_LIBMATROSKA_NAMESPACE
+} // namespace libmatroska
 
 #endif // LIBMATROSKA_SEMANTIC_H

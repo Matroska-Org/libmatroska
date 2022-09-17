@@ -43,7 +43,7 @@
 
 using namespace LIBEBML_NAMESPACE;
 
-START_LIBMATROSKA_NAMESPACE
+namespace libmatroska {
 
 class KaxSegment;
 
@@ -66,6 +66,6 @@ DECLARE_MKX_MASTER(KaxSeekHead)
     KaxSeek * FindNextOf(const KaxSeek &aPrev) const;
 };
 
-END_LIBMATROSKA_NAMESPACE
+} // namespace libmatroska
 
 #endif // LIBMATROSKA_SEEK_HEAD_H

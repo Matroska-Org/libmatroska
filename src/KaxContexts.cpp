@@ -42,7 +42,7 @@
 
 using namespace LIBEBML_NAMESPACE;
 
-START_LIBMATROSKA_NAMESPACE
+namespace libmatroska {
 
 DEFINE_START_SEMANTIC(KaxMatroska)
 DEFINE_SEMANTIC_ITEM(true, true, EbmlHead)
@@ -64,4 +64,4 @@ const EbmlSemanticContext & GetKaxGlobal_Context()
   return GetEbmlGlobal_Context();
 }
 
-END_LIBMATROSKA_NAMESPACE
+} // namespace libmatroska

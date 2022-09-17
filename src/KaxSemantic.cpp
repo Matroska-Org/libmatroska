@@ -40,7 +40,7 @@
 #include "matroska/KaxBlockData.h"
 #include "matroska/KaxCuesData.h"
 
-START_LIBMATROSKA_NAMESPACE
+namespace libmatroska {
 
 DEFINE_START_SEMANTIC(KaxSegment)
 DEFINE_SEMANTIC_ITEM(false, false, KaxSeekHead)
@@ -861,4 +861,4 @@ filepos_t KaxFileUsedEndTime::RenderData(IOCallback & /* output */, bool /* bFor
   return 0;
 }
 
-END_LIBMATROSKA_NAMESPACE
+} // namespace libmatroska

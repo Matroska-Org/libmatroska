@@ -41,7 +41,7 @@
 #include "FileName.hpp"
 #include "StdIOCallback.hpp"
 
-using namespace LIBMATROSKA_NAMESPACE;
+using namespace libmatroska;
 using namespace std;
 
 /*!
@@ -53,7 +53,7 @@ using namespace std;
 int main(void)
 {
     string test1 = "lhomme";
-    string test2 = "Stève"; // Supposed to be a UTF8 string
+    string test2 = "Stï¿½ve"; // Supposed to be a UTF8 string
 //    test2[2] = 0x0152; // oe mixed in one, upper case
 
 //    const wchar_t *toto = test2.c_str();
@@ -73,7 +73,7 @@ int main(void)
     // in UTF8 0xE8=1110-1000 should become 110.00110-10.001000=0xC6 0x88
 
     FileName test01(64);
-    std::string str="..toto..txt  éhé";
+    std::string str="..toto..txt  ï¿½hï¿½";
     test01 = str;
     FileName::name_level bType = test01.Test();
     test01.MakeRelaxed();

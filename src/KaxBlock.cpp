@@ -44,7 +44,7 @@
 #include "matroska/KaxCluster.h"
 #include "matroska/KaxDefines.h"
 
-START_LIBMATROSKA_NAMESPACE
+namespace libmatroska {
 
 DataBuffer * DataBuffer::Clone()
 {
@@ -1059,4 +1059,4 @@ filepos_t KaxBlockVirtual::ReadData(IOCallback & input, ScopeMode /* ReadFully *
   return GetSize();
 }
 
-END_LIBMATROSKA_NAMESPACE
+} // namespace libmatroska

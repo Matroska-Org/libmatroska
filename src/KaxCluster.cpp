@@ -37,7 +37,7 @@
 #include "matroska/KaxDefines.h"
 
 // sub elements
-START_LIBMATROSKA_NAMESPACE
+namespace libmatroska {
 
 KaxCluster::KaxCluster(EBML_EXTRA_DEF)
   :EbmlMaster(EBML_CLASS_SEMCONTEXT(KaxCluster) EBML_DEF_SEP EBML_EXTRA_CALL)
@@ -290,4 +290,4 @@ uint64 KaxCluster::GetPosition() const
   return ParentSegment->GetRelativePosition(*this);
 }
 
-END_LIBMATROSKA_NAMESPACE
+} // namespace libmatroska

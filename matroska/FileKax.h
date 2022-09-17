@@ -47,7 +47,7 @@
 
 using namespace LIBEBML_NAMESPACE;
 
-START_LIBMATROSKA_NAMESPACE
+namespace libmatroska {
 
 //class Track;
 //class Frame;
@@ -147,7 +147,7 @@ class MATROSKA_DLL_API FileMatroska {
 
 };
 
-END_LIBMATROSKA_NAMESPACE
+} // namespace libmatroska
 
 #ifdef __cplusplus
 extern "C" {

@@ -42,7 +42,7 @@
 //#include "Frame.h"
 //#include "Version.h"
 
-START_LIBMATROSKA_NAMESPACE
+namespace libmatroska {
 
 //typedef Track *TrackID;
 
@@ -399,7 +399,7 @@ bool FileMatroska::ReadFrame(Track * & aTrack, uint32 & aTimecode, const binary 
 }
 #endif // OLD
 
-END_LIBMATROSKA_NAMESPACE
+} // namespace libmatroska
 
 void matroska_init()
 {

@@ -38,7 +38,7 @@
 #include "matroska/KaxContexts.h"
 #include "matroska/KaxDefines.h"
 
-START_LIBMATROSKA_NAMESPACE
+namespace libmatroska {
 
 KaxTrackEntry::KaxTrackEntry(EBML_EXTRA_DEF)
   :EbmlMaster(EBML_CLASS_SEMCONTEXT(KaxTrackEntry) EBML_DEF_SEP EBML_EXTRA_CALL)
@@ -51,4 +51,4 @@ void KaxTrackEntry::EnableLacing(bool bEnable)
   *(static_cast<EbmlUInteger *>(&myLacing)) = bEnable ? 1 : 0;
 }
 
-END_LIBMATROSKA_NAMESPACE
+} // namespace libmatroska

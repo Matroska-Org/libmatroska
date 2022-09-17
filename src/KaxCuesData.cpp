@@ -41,7 +41,7 @@
 #include "matroska/KaxDefines.h"
 #include "matroska/KaxSemantic.h"
 
-START_LIBMATROSKA_NAMESPACE
+namespace libmatroska {
 
 /*!
   \todo handle codec state checking
@@ -242,4 +242,4 @@ uint16 KaxCueTrackPositions::TrackNumber() const
 }
 
 
-END_LIBMATROSKA_NAMESPACE
+} // namespace libmatroska

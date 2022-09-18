@@ -9,7 +9,7 @@ find_package(EBML 1.4.2 REQUIRED)
 
 include(GNUInstallDirs)
 
-set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 set(libmatroska_SOURCES

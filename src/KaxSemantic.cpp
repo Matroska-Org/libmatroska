@@ -116,7 +116,7 @@ DEFINE_MKX_UNISTRING(KaxWritingApp, 0x5741, 2, KaxInfo, "WritingApp")
 DEFINE_START_SEMANTIC(KaxCluster)
 DEFINE_SEMANTIC_ITEM(true, true, KaxClusterTimecode)
 DEFINE_SEMANTIC_ITEM(false, true, KaxClusterSilentTracks) // not supported
-DEFINE_SEMANTIC_ITEM(false, true, KaxClusterPosition) // not supported
+DEFINE_SEMANTIC_ITEM(false, true, KaxClusterPosition)
 DEFINE_SEMANTIC_ITEM(false, true, KaxClusterPrevSize)
 DEFINE_SEMANTIC_ITEM(false, false, KaxSimpleBlock)
 DEFINE_SEMANTIC_ITEM(false, false, KaxBlockGroup)
@@ -763,11 +763,6 @@ filepos_t KaxClusterSilentTracks::RenderData(IOCallback & /* output */, bool /* 
 }
 
 filepos_t KaxClusterSilentTrackNumber::RenderData(IOCallback & /* output */, bool /* bForceRender */, bool /* bSaveDefault */) {
-  assert(false); // no you are not allowed to use this element !
-  return 0;
-}
-
-filepos_t KaxClusterPosition::RenderData(IOCallback & /* output */, bool /* bForceRender */, bool /* bSaveDefault */) {
   assert(false); // no you are not allowed to use this element !
   return 0;
 }

@@ -125,8 +125,6 @@ public:
 };
 
 DECLARE_MKX_UINTEGER(KaxClusterPosition)
-public:
-  filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault);
 };
 
 DECLARE_MKX_UINTEGER(KaxClusterPrevSize)

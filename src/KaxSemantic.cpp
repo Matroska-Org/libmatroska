@@ -448,7 +448,7 @@ DEFINE_MKX_FLOAT(KaxAudioOutputSamplingFreq, 0x78B5, 2, KaxTrackAudio, "AudioOut
 DEFINE_MKX_UINTEGER_DEF(KaxAudioChannels, 0x9F, 1, KaxTrackAudio, "AudioChannels", 1)
 DEFINE_MKX_BINARY (KaxAudioPosition, 0x7D7B, 2, KaxTrackAudio, "AudioPosition")
 DEFINE_MKX_UINTEGER(KaxAudioBitDepth, 0x6264, 2, KaxTrackAudio, "AudioBitDepth")
-DEFINE_MKX_UINTEGER_DEF(KaxEmphasis, 0x92F1, 2, KaxTrackAudio, "Emphasis", 0)
+DEFINE_MKX_UINTEGER_DEF(KaxEmphasis, 0x52F1, 2, KaxTrackAudio, "Emphasis", 0)
 
 DEFINE_START_SEMANTIC(KaxTrackOperation)
 DEFINE_SEMANTIC_ITEM(false, true, KaxTrackCombinePlanes)

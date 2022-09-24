@@ -455,7 +455,7 @@ filepos_t KaxInternalBlock::ReadData(IOCallback & input, ScopeMode ReadFully)
       if (Result != GetSize())
         throw SafeReadIOCallback::EndOfStreamX(GetSize() - Result);
 
-      binary *BufferStart = EbmlBinary::GetBuffer();
+      binary *const BufferStart = EbmlBinary::GetBuffer();
 
       SafeReadIOCallback Mem(*this);
       uint8 BlockHeadSize = 4;
@@ -562,14 +562,14 @@ filepos_t KaxInternalBlock::ReadData(IOCallback & input, ScopeMode ReadFully)
         }
       }
 
-      binary *BufferEnd = BufferStart + GetSize();
+      binary *const BufferEnd = BufferStart + GetSize();
       const size_t NumFrames  = myBuffers.size();
 
       // Sanity checks for frame pointers and boundaries.
       for (size_t Index = 0; Index < NumFrames; ++Index) {
-        binary *FrameStart  = myBuffers[Index]->Buffer();
-        binary *FrameEnd    = FrameStart + myBuffers[Index]->Size();
-        binary *ExpectedEnd = (Index + 1) < NumFrames ? myBuffers[Index + 1]->Buffer() : BufferEnd;
+        binary *const FrameStart  = myBuffers[Index]->Buffer();
+        binary *const FrameEnd    = FrameStart + myBuffers[Index]->Size();
+        binary *const ExpectedEnd = (Index + 1) < NumFrames ? myBuffers[Index + 1]->Buffer() : BufferEnd;
 
         if ((FrameStart < BufferStart) || (FrameEnd > BufferEnd) || (FrameEnd != ExpectedEnd))
           throw SafeReadIOCallback::EndOfStreamX(0);
@@ -1027,7 +1027,7 @@ bool KaxBlockBlob::ReplaceSimpleByGroup()
   else {
 
     if (Block.simpleblock != nullptr) {
-      KaxSimpleBlock *old_simpleblock = Block.simpleblock;
+      KaxSimpleBlock *const old_simpleblock = Block.simpleblock;
       Block.group = new KaxBlockGroup();
       // _TODO_ : move all the data to the blockgroup
       assert(false);

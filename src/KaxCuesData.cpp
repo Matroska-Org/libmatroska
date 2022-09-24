@@ -120,7 +120,7 @@ void KaxCuePoint::PositionSet(const KaxInternalBlock & BlockReference, const Kax
 #endif // MATROSKA_VERSION
 
   if (BlockGroup != nullptr) {
-    const KaxCodecState *CodecState = static_cast<KaxCodecState *>(BlockGroup->FindFirstElt(EBML_INFO(KaxCodecState)));
+    const auto CodecState = static_cast<const KaxCodecState *>(BlockGroup->FindFirstElt(EBML_INFO(KaxCodecState)));
     if (CodecState != nullptr) {
       auto &CueCodecState = AddNewChild<KaxCueCodecState>(NewPositions);
       *static_cast<EbmlUInteger*>(&CueCodecState) = BlockGroup->GetParentCluster()->GetParentSegment()->GetRelativePosition(CodecState->GetElementPosition());

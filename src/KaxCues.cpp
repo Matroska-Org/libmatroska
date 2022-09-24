@@ -142,11 +142,11 @@ const KaxCuePoint * KaxCues::GetTimecodePoint(uint64 aTimecode) const
 
 uint64 KaxCues::GetTimecodePosition(uint64 aTimecode) const
 {
-  const KaxCuePoint * aPoint = GetTimecodePoint(aTimecode);
+  const KaxCuePoint * const aPoint = GetTimecodePoint(aTimecode);
   if (aPoint == nullptr)
     return 0;
 
-  const KaxCueTrackPositions * aTrack = aPoint->GetSeekPosition();
+  const KaxCueTrackPositions * const aTrack = aPoint->GetSeekPosition();
   if (aTrack == nullptr)
     return 0;
 

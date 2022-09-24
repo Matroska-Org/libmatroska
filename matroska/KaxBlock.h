@@ -117,7 +117,7 @@ class MATROSKA_DLL_API SimpleDataBuffer : public DataBuffer {
 
     static bool myFreeBuffer(const DataBuffer & aBuffer)
     {
-      binary *_Buffer = static_cast<const SimpleDataBuffer*>(&aBuffer)->BaseBuffer;
+      auto _Buffer = static_cast<const SimpleDataBuffer*>(&aBuffer)->BaseBuffer;
       if (_Buffer != nullptr)
         free(_Buffer);
       return true;

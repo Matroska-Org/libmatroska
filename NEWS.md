@@ -1,8 +1,59 @@
-# Version ? 2021-??-??
+# Version ? 2022-??-??
 
+* A C++14 compliant C++ compiler is now required.
 * libEBML v1.4.3 is now required.
 * Remove Coremake project files
-* Add `GetRelativeTimestamp()` to access unscaled block timestamps.
+* Add `KaxInternalBlock::GetRelativeTimestamp()` to access unscaled
+  block timestamps.
+* Fixed problems with the generated `pkg-config` files if any of the
+  installation paths are absolute.
+* Added several enums in `namespace libmatroska` for the various
+  elements that are constrained to a set of options:
+  `MatroskaTrackType`, `MatroskaTrackEncodingCompAlgo`,
+  `MatroskaChapterTranslateCodec`, `MatroskaTrackTranslateCodec`,
+  `MatroskaVideoFlagInterlaced`, `MatroskaVideoFieldOrder`,
+  `MatroskaVideoStereoMode`, `MatroskaVideoAlphaMode`,
+  `MatroskaVideoOldStereoMode`, `MatroskaVideoDisplayUnit`,
+  `MatroskaVideoAspectRatioType`, `MatroskaVideoMatrixCoefficients`,
+  `MatroskaColourChromaSitingHorz`, `MatroskaColourChromaSitingVert`,
+  `MatroskaVideoRange`, `MatroskaVideoTransferCharacteristics`,
+  `MatroskaVideoPrimaries`, `MatroskaVideoProjectionType`,
+  `MatroskaAudioEmphasis`, `MatroskaTrackPlaneType`,
+  `MatroskaContentEncodingScope`, `MatroskaContentEncodingType`,
+  `MatroskaContentEncodingAlgo`, `MatroskaAESSettingsCipherMode`,
+  `MatroskaContentSignatureAlgo`, `MatroskaContentSigHashAlgo`,
+  `MatroskaChapterSkipType`, `MatroskaChapterProcessTime` and
+  `MatroskaTargetTypeValue`.
+* Updated the semantics to the latest specifications, deprecating the
+  following elements by preventing code to write them:
+  `KaxClusterSilentTracks`, `KaxClusterSilentTrackNumber`,
+  `KaxSlices`, `KaxReferenceFrame`, `KaxReferenceOffset`,
+  `KaxReferenceTimeCode`, `KaxTrackTimecodeScale`,
+  `KaxCodecDecodeAll`, `KaxVideoAspectRatio`, `KaxTrickTrackUID`,
+  `KaxTrickTrackSegmentUID`, `KaxTrickTrackFlag`,
+  `KaxTrickMasterTrackUID`, `KaxTrickMasterTrackSegmentUID`,
+  `KaxContentSignature`, `KaxContentSigKeyID`, `KaxContentSigAlgo` and
+  `KaxContentSigHashAlgo`.
+* Updated the semantics to the latest specifications, making the
+  following elements mandatory (but having default values):
+  `KaxCodecDelay`, `KaxVideoPixelCropBottom`, `KaxVideoPixelCropTop`,
+  `KaxVideoPixelCropLeft`, `KaxVideoPixelCropRight`,
+  `KaxVideoBitsPerChannel`, `KaxCueCodecState`,
+  `KaxTagTargetTypeValue`, `KaxTrackLanguage`, `KaxVideoStereoMode`,
+  `KaxVideoAlphaMode`, `KaxEditionFlagOrdered`,
+  `KaxVideoChromaSitHorz`, `KaxVideoChromaSitVert`,
+  `KaxVideoColourRange`, `KaxVideoColourMatrix`,
+  `KaxVideoColourTransferCharacter`, `KaxVideoColourPrimaries` and
+  `KaxVideoDisplayUnit`.
+* Updated the semantics to the latest specifications, removing the
+  default values from the following elements: `KaxCueBlockNumber`,
+  `KaxFlagHearingImpaired`, `KaxFlagVisualImpaired`,
+  `KaxFlagTextDescriptions`, and `KaxFlagOriginal`.
+* Updated the semantics to the latest specifications, adding the
+  following new elements: `TagDefaultBogus` (as a placeholder for
+  accidentally used but wrong EBML ID 0x44b4), `KaxEmphasis`,
+  `KaxChapterSkipType`, `KaxEditionDisplay`, `KaxEditionString` and
+  `KaxEditionLanguageIETF`.
 
 # Version 1.6.3 2021-02-18
 

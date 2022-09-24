@@ -198,7 +198,7 @@ bool KaxCuePoint::Timecode(uint64 & aTimecode, uint64 GlobalTimecodeScale) const
   auto aTime = static_cast<const KaxCueTime *>(FindFirstElt(EBML_INFO(KaxCueTime)));
   if (aTime == nullptr)
     return false;
-  aTimecode = uint64(*aTime) * GlobalTimecodeScale;
+  aTimecode = static_cast<uint64>(*aTime) * GlobalTimecodeScale;
   return true;
 }
 
@@ -213,8 +213,8 @@ const KaxCueTrackPositions * KaxCuePoint::GetSeekPosition() const
   auto aPoss = static_cast<const KaxCueTrackPositions *>(FindFirstElt(EBML_INFO(KaxCueTrackPositions)));
   while (aPoss != nullptr) {
     auto aPos = static_cast<const KaxCueClusterPosition *>(aPoss->FindFirstElt(EBML_INFO(KaxCueClusterPosition)));
-    if (aPos != nullptr && uint64(*aPos) < aPosition) {
-      aPosition = uint64(*aPos);
+    if (aPos != nullptr && static_cast<uint64>(*aPos) < aPosition) {
+      aPosition = static_cast<uint64>(*aPos);
       result = aPoss;
     }
 
@@ -229,7 +229,7 @@ uint64 KaxCueTrackPositions::ClusterPosition() const
   if (aPos == nullptr)
     return 0;
 
-  return uint64(*aPos);
+  return static_cast<uint64>(*aPos);
 }
 
 uint16 KaxCueTrackPositions::TrackNumber() const
@@ -238,7 +238,7 @@ uint16 KaxCueTrackPositions::TrackNumber() const
   if (aTrack == nullptr)
     return 0;
 
-  return uint16(*aTrack);
+  return static_cast<uint16>(*aTrack);
 }
 
 

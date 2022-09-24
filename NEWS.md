@@ -1,5 +1,6 @@
 # Version ? 2021-??-??
 
+* libEBML v1.4.3 is now required.
 * Remove Coremake project files
 * Add `GetRelativeTimestamp()` to access unscaled block timestamps.
 

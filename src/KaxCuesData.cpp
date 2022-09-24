@@ -158,7 +158,7 @@ bool KaxCuePoint::IsSmallerThan(const EbmlElement * Cmp) const
   assert(EbmlId(*this) == EBML_ID(KaxCuePoint));
   assert(EbmlId(*Cmp)  == EBML_ID(KaxCuePoint));
 
-  const KaxCuePoint & theCmp = *static_cast<const KaxCuePoint *>(Cmp);
+  const auto& theCmp = *static_cast<const KaxCuePoint *>(Cmp);
 
   // compare timecode
   auto TimeCodeA = static_cast<const KaxCueTime *>(FindElt(EBML_INFO(KaxCueTime)));

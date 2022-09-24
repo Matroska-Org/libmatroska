@@ -67,8 +67,8 @@ bool KaxCues::AddBlockGroup(const KaxBlockGroup & BlockRef)
 bool KaxCues::AddBlockBlob(const KaxBlockBlob & BlockReference)
 {
   // Do not add the element if it's already present.
-  bool present = std::any_of(myTempReferences.begin(), myTempReferences.end(),
-    [&](const KaxBlockBlob *myTempReference) { return myTempReference == &BlockReference; });
+  const auto& pr = myTempReferences;
+  const bool present = std::find(pr.begin(), pr.end(), &BlockReference) != pr.end();
   if (present) {
     return true;
   }
@@ -80,10 +80,10 @@ bool KaxCues::AddBlockBlob(const KaxBlockBlob & BlockReference)
 void KaxCues::PositionSet(const KaxBlockBlob & BlockReference)
 {
   // look for the element in the temporary references
-  auto it = std::find_if(myTempReferences.begin(), myTempReferences.end(),
-    [&](const KaxBlockBlob *myTempReference){ return myTempReference == &BlockReference; });
+  const auto& pr = myTempReferences;
+  auto it = std::find(pr.begin(), pr.end(), &BlockReference);
 
-  if (it != myTempReferences.end()) {
+  if (it != pr.end()) {
     // found, now add the element to the entry list
     auto & NewPoint = AddNewChild<KaxCuePoint>(*this);
     NewPoint.PositionSet(BlockReference, GlobalTimecodeScale());
@@ -113,7 +113,7 @@ void KaxCues::PositionSet(const KaxBlockGroup & BlockRef)
 */
 const KaxCuePoint * KaxCues::GetTimecodePoint(uint64 aTimecode) const
 {
-  uint64 TimecodeToLocate = aTimecode / GlobalTimecodeScale();
+  const uint64 TimecodeToLocate = aTimecode / GlobalTimecodeScale();
   const KaxCuePoint * aPointPrev = nullptr;
   uint64 aPrevTime = 0;
   uint64 aNextTime = EBML_PRETTYLONGINT(0xFFFFFFFFFFFF);

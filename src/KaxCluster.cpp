@@ -154,10 +154,10 @@ filepos_t KaxCluster::Render(IOCallback & output, KaxCues & CueToUpdate, bool bS
     // SilentTracks handling
     // check the parent cluster for existing tracks and see if they are contained in this cluster or not
     if (bSilentTracksUsed) {
-      KaxTracks & MyTracks = *static_cast<KaxTracks *>(ParentSegment->FindElt(EBML_INFO(KaxTracks)));
+      const auto& MyTracks = *static_cast<KaxTracks *>(ParentSegment->FindElt(EBML_INFO(KaxTracks)));
       for (auto&& Trk : MyTracks) {
         if (EbmlId(*Trk) == EBML_ID(KaxTrackEntry)) {
-          KaxTrackEntry & entry = *static_cast<KaxTrackEntry *>(Trk);
+          const auto& entry = *static_cast<KaxTrackEntry *>(Trk);
           auto tracknum = static_cast<uint32>(entry.TrackNumber());
           auto track = std::find_if(ElementList.begin(), ElementList.end(), [=](EbmlElement *element)
               { return EbmlId(*element) == EBML_ID(KaxBlockGroup) && static_cast<KaxBlockGroup *>(element)->TrackNumber() == tracknum;  });
@@ -192,10 +192,10 @@ filepos_t KaxCluster::Render(IOCallback & output, KaxCues & CueToUpdate, bool bS
     // SilentTracks handling
     // check the parent cluster for existing tracks and see if they are contained in this cluster or not
     if (bSilentTracksUsed) {
-      KaxTracks & MyTracks = *static_cast<KaxTracks *>(ParentSegment->FindElt(EBML_INFO(KaxTracks)));
+      const auto& MyTracks = *static_cast<KaxTracks *>(ParentSegment->FindElt(EBML_INFO(KaxTracks)));
       for (auto&& Trk : MyTracks) {
         if (EbmlId(*Trk) == EBML_ID(KaxTrackEntry)) {
-          KaxTrackEntry & entry = *static_cast<KaxTrackEntry *>(Trk);
+          const auto& entry = *static_cast<KaxTrackEntry *>(Trk);
           auto tracknum = static_cast<uint32>(entry.TrackNumber());
           for (Index = 0; Index<Blobs.size(); Index++) {
             if (static_cast<KaxInternalBlock&>(*Blobs[Index]).TrackNum() == tracknum)
@@ -245,7 +245,7 @@ uint64 KaxCluster::GlobalTimecode() const
 */
 int16 KaxCluster::GetBlockLocalTimecode(uint64 aGlobalTimecode) const
 {
-  int64 TimecodeDelay = (static_cast<int64>(aGlobalTimecode) - static_cast<int64>(GlobalTimecode())) / static_cast<int64>(GlobalTimecodeScale());
+  const int64 TimecodeDelay = (static_cast<int64>(aGlobalTimecode) - static_cast<int64>(GlobalTimecode())) / static_cast<int64>(GlobalTimecodeScale());
   assert(TimecodeDelay >= int16(0x8000) && TimecodeDelay <= int16(0x7FFF));
   return static_cast<int16>(TimecodeDelay);
 }

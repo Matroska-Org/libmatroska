@@ -49,8 +49,6 @@ const KaxBlockBlob & KaxReferenceBlock::RefBlock() const
 }
 
 KaxReferenceBlock::KaxReferenceBlock(EBML_EXTRA_DEF)
-  :EBML_DEF_SINTEGER(KaxReferenceBlock)EBML_DEF_SEP
-  RefdBlock(nullptr)
 {
   bTimecodeSet = false;
 }

@@ -266,7 +266,7 @@ class MATROSKA_DLL_API KaxInternalBlock : public EbmlBinary {
 
     /*!
      * \return Get the timestamp as written in the Block (not scaled).
-     * \since LIBMATROSKA_VERSION >= 0x010604
+     * \since LIBMATROSKA_VERSION >= 0x010700
      */
     int16 GetRelativeTimestamp() const { return LocalTimecode; }
 

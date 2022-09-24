@@ -54,9 +54,9 @@ class KaxBlockBlob;
 
 class MATROSKA_DLL_API DataBuffer {
   protected:
-    binary *myBuffer{nullptr};
+    binary  *myBuffer{nullptr};
     uint32   mySize;
-    bool bValidValue{true};
+    bool     bValidValue{true};
     bool     (*myFreeBuffer)(const DataBuffer & aBuffer); // method to free the internal buffer
     bool     bInternalBuffer;
 
@@ -273,20 +273,20 @@ class MATROSKA_DLL_API KaxInternalBlock : public EbmlBinary {
   protected:
     std::vector<DataBuffer *> myBuffers;
     std::vector<int32>        SizeList;
-    uint64     Timecode; // temporary timecode of the first frame, non scaled
-    int16      LocalTimecode;
-    bool bLocalTimecodeUsed{false};
-    uint16     TrackNumber;
-    LacingType mLacing{LACING_AUTO};
-    bool mInvisible{false};
-    uint64     FirstFrameLocation;
+    uint64                    Timecode; // temporary timecode of the first frame, non scaled
+    int16                     LocalTimecode;
+    bool                      bLocalTimecodeUsed{false};
+    uint16                    TrackNumber;
+    LacingType                mLacing{LACING_AUTO};
+    bool                      mInvisible{false};
+    uint64                    FirstFrameLocation;
+
+    KaxCluster               *ParentCluster{nullptr};
+    bool                      bIsSimple;
+    bool                      bIsKeyframe{true};
+    bool                      bIsDiscardable{false};
 
     filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault = false) override;
-
-    KaxCluster *ParentCluster{nullptr};
-    bool       bIsSimple;
-    bool bIsKeyframe{true};
-    bool bIsDiscardable{false};
 };
 
 DECLARE_MKX_CONTEXT(KaxBlock)
@@ -364,9 +364,9 @@ DECLARE_MKX_BINARY_CONS(KaxBlockVirtual)
 
     void SetParent(const KaxCluster & aParentCluster) {ParentCluster = &aParentCluster;}
 
-        filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault) override;
+    filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault) override;
 
-        filepos_t ReadData(IOCallback & input, ScopeMode ReadFully = SCOPE_ALL_DATA) override;
+    filepos_t ReadData(IOCallback & input, ScopeMode ReadFully = SCOPE_ALL_DATA) override;
 
   protected:
     uint64 Timecode; // temporary timecode of the first frame if there are more than one

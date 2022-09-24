@@ -143,10 +143,10 @@ DECLARE_MKX_MASTER_CONS(KaxCluster)
     uint64 MinTimecode, MaxTimecode, PreviousTimecode;
     int64  TimecodeScale;
 
-    bool bFirstFrameInside{false}; // used to speed research
-    bool bPreviousTimecodeIsSet{false};
-    bool bTimecodeScaleIsSet{false};
-    bool bSilentTracksUsed{false};
+    bool   bFirstFrameInside{false}; // used to speed research
+    bool   bPreviousTimecodeIsSet{false};
+    bool   bTimecodeScaleIsSet{false};
+    bool   bSilentTracksUsed{false};
 
     /*!
       \note method used internally

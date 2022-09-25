@@ -797,15 +797,14 @@ bool KaxBlockGroup::AddFrame(const KaxTrackEntry & track, uint64 timecode, DataB
 uint64 KaxBlockGroup::GlobalTimecode() const
 {
   assert(ParentCluster != nullptr); // impossible otherwise
-  const auto& MyBlock = *static_cast<KaxBlock *>(this->FindElt(EBML_INFO(KaxBlock)));
-  return MyBlock.GlobalTimecode();
-
+  auto MyBlock = static_cast<KaxBlock *>(this->FindElt(EBML_INFO(KaxBlock)));
+  return MyBlock->GlobalTimecode();
 }
 
 uint16 KaxBlockGroup::TrackNumber() const
 {
-  const auto& MyBlock = *static_cast<KaxBlock *>(this->FindElt(EBML_INFO(KaxBlock)));
-  return MyBlock.TrackNum();
+  auto MyBlock = static_cast<KaxBlock *>(this->FindElt(EBML_INFO(KaxBlock)));
+  return MyBlock->TrackNum();
 }
 
 uint64 KaxBlockGroup::ClusterPosition() const
@@ -848,8 +847,8 @@ const KaxReferenceBlock & KaxBlockGroup::Reference(unsigned int Index) const
 
 void KaxBlockGroup::ReleaseFrames()
 {
-  auto& MyBlock = *static_cast<KaxBlock *>(this->FindElt(EBML_INFO(KaxBlock)));
-  MyBlock.ReleaseFrames();
+  auto MyBlock = static_cast<KaxBlock *>(this->FindElt(EBML_INFO(KaxBlock)));
+  MyBlock->ReleaseFrames();
 }
 
 void KaxInternalBlock::ReleaseFrames()
@@ -869,8 +868,8 @@ void KaxBlockGroup::SetBlockDuration(uint64 TimeLength)
 {
   assert(ParentTrack != nullptr);
   const int64 scale = ParentTrack->GlobalTimecodeScale();
-  auto& myDuration = *static_cast<KaxBlockDuration *>(FindFirstElt(EBML_INFO(KaxBlockDuration), true));
-  *(static_cast<EbmlUInteger *>(&myDuration)) = TimeLength / static_cast<uint64>(scale);
+  const auto& myDuration = static_cast<KaxBlockDuration *>(FindFirstElt(EBML_INFO(KaxBlockDuration), true));
+  *(static_cast<EbmlUInteger *>(myDuration)) = TimeLength / static_cast<uint64>(scale);
 }
 
 bool KaxBlockGroup::GetBlockDuration(uint64 &TheTimecode) const

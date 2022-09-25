@@ -154,11 +154,11 @@ filepos_t KaxCluster::Render(IOCallback & output, KaxCues & CueToUpdate, bool bS
     // SilentTracks handling
     // check the parent cluster for existing tracks and see if they are contained in this cluster or not
     if (bSilentTracksUsed) {
-      const auto& MyTracks = *static_cast<KaxTracks *>(ParentSegment->FindElt(EBML_INFO(KaxTracks)));
-      for (auto&& Trk : MyTracks) {
+      auto MyTracks = static_cast<KaxTracks *>(ParentSegment->FindElt(EBML_INFO(KaxTracks)));
+      for (auto&& Trk : *MyTracks) {
         if (EbmlId(*Trk) == EBML_ID(KaxTrackEntry)) {
-          const auto& entry = *static_cast<KaxTrackEntry *>(Trk);
-          auto tracknum = static_cast<uint32>(entry.TrackNumber());
+          auto entry = static_cast<KaxTrackEntry *>(Trk);
+          auto tracknum = static_cast<uint32>(entry->TrackNumber());
           auto track = std::find_if(ElementList.begin(), ElementList.end(), [=](EbmlElement *element)
               { return EbmlId(*element) == EBML_ID(KaxBlockGroup) && static_cast<KaxBlockGroup *>(element)->TrackNumber() == tracknum;  });
           // the track wasn't found in this cluster
@@ -192,11 +192,11 @@ filepos_t KaxCluster::Render(IOCallback & output, KaxCues & CueToUpdate, bool bS
     // SilentTracks handling
     // check the parent cluster for existing tracks and see if they are contained in this cluster or not
     if (bSilentTracksUsed) {
-      const auto& MyTracks = *static_cast<KaxTracks *>(ParentSegment->FindElt(EBML_INFO(KaxTracks)));
-      for (auto&& Trk : MyTracks) {
+      auto MyTracks = static_cast<KaxTracks *>(ParentSegment->FindElt(EBML_INFO(KaxTracks)));
+      for (auto&& Trk : *MyTracks) {
         if (EbmlId(*Trk) == EBML_ID(KaxTrackEntry)) {
-          const auto& entry = *static_cast<KaxTrackEntry *>(Trk);
-          auto tracknum = static_cast<uint32>(entry.TrackNumber());
+          auto entry = static_cast<KaxTrackEntry *>(Trk);
+          auto tracknum = static_cast<uint32>(entry->TrackNumber());
           for (Index = 0; Index<Blobs.size(); Index++) {
             if (static_cast<KaxInternalBlock&>(*Blobs[Index]).TrackNum() == tracknum)
               break; // this track is used

@@ -1,0 +1,41 @@
+name: "macOS Build"
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    # branches: [ master ]
+
+jobs:
+  build_libmatroska:
+    name: libmatroska for macOS
+    runs-on: macos-latest
+    steps:
+      - uses: lukka/get-cmake@latest
+
+      - name: Get pushed code
+        uses: actions/checkout@v3
+      
+      - name: Checkout libebml
+        uses: actions/checkout@v3
+        with: 
+          repository: Matroska-Org/libebml
+          path: libebml
+          # minimum version we support ref: 'release-1.4.3'
+
+      - name: Configure libebml
+        run: cmake -S libebml -B libebml/_build
+
+      - name: Build libebml
+        run: cmake --build libebml/_build --parallel
+
+      - name: Install libebml
+        run: cmake --install libebml/_build --prefix ${GITHUB_WORKSPACE}/_built
+
+      - name: Configure CMake 
+        run: cmake -S . -B _build -DEBML_DIR="${GITHUB_WORKSPACE}/_built/lib/cmake/EBML"
+
+      - name: Build with CMake
+        run: cmake --build _build --parallel
+
+      - name: Test installation
+        run: cmake --install _build --prefix ${GITHUB_WORKSPACE}/_built

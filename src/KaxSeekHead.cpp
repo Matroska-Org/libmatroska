@@ -85,23 +85,17 @@ KaxSeek * KaxSeekHead::FindFirstOf(const EbmlCallbacks & Callbacks) const
 
 KaxSeek * KaxSeekHead::FindNextOf(const KaxSeek &aPrev) const
 {
-  EBML_MASTER_CONST_ITERATOR Itr;
-  KaxSeek *tmp;
-
   // look for the previous in the list
-  auto it = std::find_if(this->begin(), this->end(), [&](auto e){ return e == static_cast<const EbmlElement*>(&aPrev); });
-  if (it != end()) {
-    ++it;
-    for (; it != end(); ++it) {
-      if (EbmlId(*(*it)) == EBML_ID(KaxSeek)) {
-        tmp = static_cast<KaxSeek *>(*it);
-        if (tmp->IsEbmlId(aPrev))
-          return tmp;
-      }
-    }
-  }
+  auto it = std::find(this->begin(), this->end(), static_cast<const EbmlElement*>(&aPrev));
+  if (it == this->end())
+    return nullptr;
 
-  return nullptr;
+  auto it2 = std::find_if(it + 1, this->end(), [&](auto e)
+      { return (EbmlId(*(*it)) == EBML_ID(KaxSeek)) && static_cast<KaxSeek *>(e)->IsEbmlId(aPrev); });
+  if (it2 == this->end())
+    return nullptr;
+
+  return static_cast<KaxSeek*>(*it2);
 }
 
 int64 KaxSeek::Location() const

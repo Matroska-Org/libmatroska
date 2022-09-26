@@ -89,16 +89,12 @@ KaxSeek * KaxSeekHead::FindNextOf(const KaxSeek &aPrev) const
   KaxSeek *tmp;
 
   // look for the previous in the list
-  for (Itr = begin(); Itr != end(); ++Itr) {
-    if (*Itr == static_cast<const EbmlElement*>(&aPrev))
-      break;
-  }
-
-  if (Itr != end()) {
-    ++Itr;
-    for (; Itr != end(); ++Itr) {
-      if (EbmlId(*(*Itr)) == EBML_ID(KaxSeek)) {
-        tmp = static_cast<KaxSeek *>(*Itr);
+  auto it = std::find_if(this->begin(), this->end(), [&](auto e){ return e == static_cast<const EbmlElement*>(&aPrev); });
+  if (it != end()) {
+    ++it;
+    for (; it != end(); ++it) {
+      if (EbmlId(*(*it)) == EBML_ID(KaxSeek)) {
+        tmp = static_cast<KaxSeek *>(*it);
         if (tmp->IsEbmlId(aPrev))
           return tmp;
       }

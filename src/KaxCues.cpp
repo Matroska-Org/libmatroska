@@ -96,7 +96,7 @@ void KaxCues::PositionSet(const KaxBlockGroup & BlockRef)
   // look for the element in the temporary references
   auto it = std::find_if(myTempReferences.begin(), myTempReferences.end(),
     [&](const KaxBlockBlob *myTempReference)
-      { const KaxInternalBlock &refTmp = *myTempReference;
+      { const auto &refTmp = static_cast<const KaxInternalBlock &>(*myTempReference);
         return refTmp.GlobalTimecode() == BlockRef.GlobalTimecode()
             && refTmp.TrackNum() == BlockRef.TrackNumber(); });
 

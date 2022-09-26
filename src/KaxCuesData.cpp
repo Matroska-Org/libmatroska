@@ -62,8 +62,7 @@ void KaxCuePoint::PositionSet(const KaxBlockGroup & BlockReference, uint64 Globa
 
   // handle reference use
   if (BlockReference.ReferenceCount() != 0) {
-    unsigned int i;
-    for (i=0; i<BlockReference.ReferenceCount(); i++) {
+    for (unsigned int i=0; i<BlockReference.ReferenceCount(); i++) {
       auto & NewRefs = AddNewChild<KaxCueReference>(NewPositions);
       NewRefs.AddReference(BlockReference.Reference(i).RefBlock(), GlobalTimecodeScale);
     }

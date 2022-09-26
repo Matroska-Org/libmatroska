@@ -48,16 +48,14 @@ KaxCluster::KaxCluster(const KaxCluster & ElementToClone)
   ,bSilentTracksUsed(ElementToClone.bSilentTracksUsed)
 {
   // update the parent of each children
-  auto Itr = begin();
-  while (Itr != end()) {
-    if (EbmlId(**Itr) == EBML_ID(KaxBlockGroup)) {
-      static_cast<KaxBlockGroup   *>(*Itr)->SetParent(*this);
-    } else if (EbmlId(**Itr) == EBML_ID(KaxBlock)) {
-      static_cast<KaxBlock        *>(*Itr)->SetParent(*this);
-    } else if (EbmlId(**Itr) == EBML_ID(KaxBlockVirtual)) {
-      static_cast<KaxBlockVirtual *>(*Itr)->SetParent(*this);
+  for (const auto& child : *this) {
+    if (EbmlId(*child) == EBML_ID(KaxBlockGroup)) {
+      static_cast<KaxBlockGroup   *>(child)->SetParent(*this);
+    } else if (EbmlId(*child) == EBML_ID(KaxBlock)) {
+      static_cast<KaxBlock        *>(child)->SetParent(*this);
+    } else if (EbmlId(*child) == EBML_ID(KaxBlockVirtual)) {
+      static_cast<KaxBlockVirtual *>(child)->SetParent(*this);
     }
-    ++Itr;
   }
 }
 

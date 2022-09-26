@@ -118,10 +118,9 @@ const KaxCuePoint * KaxCues::GetTimecodePoint(uint64 aTimecode) const
   uint64 aPrevTime = 0;
   uint64 aNextTime = EBML_PRETTYLONGINT(0xFFFFFFFFFFFF);
 
-  EBML_MASTER_CONST_ITERATOR Itr;
-  for (Itr = begin(); Itr != end(); ++Itr) {
-    if (EbmlId(*(*Itr)) == EBML_ID(KaxCuePoint)) {
-      auto tmp = static_cast<const KaxCuePoint *>(*Itr);
+  for (const auto& e : *this) {
+    if (EbmlId(*e) == EBML_ID(KaxCuePoint)) {
+      auto tmp = static_cast<const KaxCuePoint *>(e);
       // check the tile
       auto aTime = static_cast<const KaxCueTime *>(tmp->FindFirstElt(EBML_INFO(KaxCueTime)));
       if (aTime != nullptr) {

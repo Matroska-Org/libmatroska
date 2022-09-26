@@ -85,11 +85,10 @@ KaxInternalBlock::KaxInternalBlock(const KaxInternalBlock & ElementToClone)
   ,ParentCluster(ElementToClone.ParentCluster) ///< \todo not exactly
 {
   // add a clone of the list
-  auto Itr = ElementToClone.myBuffers.begin();
   auto myItr = myBuffers.begin();
-  while (Itr != ElementToClone.myBuffers.end()) {
-    *myItr = (*Itr)->Clone();
-    ++Itr; ++myItr;
+  for (const auto& buffer : ElementToClone.myBuffers) {
+    *myItr = buffer->Clone();
+    ++myItr;
   }
 }
 
@@ -271,7 +270,8 @@ filepos_t KaxInternalBlock::RenderData(IOCallback & output, bool /* bForceRender
     return 0;
   } else {
     assert(TrackNumber < 0x4000);
-    binary BlockHead[5], *cursor = BlockHead;
+    binary BlockHead[5];
+    auto cursor = BlockHead;
     unsigned int i;
 
     if (myBuffers.size() == 1) {
@@ -562,14 +562,14 @@ filepos_t KaxInternalBlock::ReadData(IOCallback & input, ScopeMode ReadFully)
         }
       }
 
-      binary *const BufferEnd = BufferStart + GetSize();
+      const auto BufferEnd = BufferStart + GetSize();
       const size_t NumFrames  = myBuffers.size();
 
       // Sanity checks for frame pointers and boundaries.
       for (size_t Index = 0; Index < NumFrames; ++Index) {
-        binary *const FrameStart  = myBuffers[Index]->Buffer();
-        binary *const FrameEnd    = FrameStart + myBuffers[Index]->Size();
-        binary *const ExpectedEnd = (Index + 1) < NumFrames ? myBuffers[Index + 1]->Buffer() : BufferEnd;
+        const auto FrameStart  = myBuffers[Index]->Buffer();
+        const auto FrameEnd    = FrameStart + myBuffers[Index]->Size();
+        const auto ExpectedEnd = (Index + 1) < NumFrames ? myBuffers[Index + 1]->Buffer() : BufferEnd;
 
         if ((FrameStart < BufferStart) || (FrameEnd > BufferEnd) || (FrameEnd != ExpectedEnd))
           throw SafeReadIOCallback::EndOfStreamX(0);
@@ -702,7 +702,7 @@ filepos_t KaxInternalBlock::ReadData(IOCallback & input, ScopeMode ReadFully)
       Result = GetSize();
     }
 
-  } catch (SafeReadIOCallback::EndOfStreamX &) {
+  } catch (const SafeReadIOCallback::EndOfStreamX&) {
     SetValueIsSet(false);
 
     myBuffers.clear();
@@ -854,8 +854,7 @@ void KaxBlockGroup::ReleaseFrames()
 void KaxInternalBlock::ReleaseFrames()
 {
   // free the allocated Frames
-  int i;
-  for (i=myBuffers.size()-1; i>=0; i--) {
+  for (int i=myBuffers.size()-1; i>=0; i--) {
     if (myBuffers[i] != nullptr) {
       myBuffers[i]->FreeBuffer(*myBuffers[i]);
       delete myBuffers[i];

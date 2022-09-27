@@ -180,11 +180,11 @@ filepos_t KaxCluster::Render(IOCallback & output, KaxCues & CueToUpdate, bool bS
     }
   } else {
     // new school, using KaxBlockBlob
-    for (Index = 0; Index<Blobs.size(); Index++) {
-      if (Blobs[Index]->IsSimpleBlock())
-        PushElement( static_cast<KaxSimpleBlock&>(*Blobs[Index]));
+    for (const auto& blob : Blobs) {
+      if (blob->IsSimpleBlock())
+        PushElement( static_cast<KaxSimpleBlock&>(*blob));
       else
-        PushElement( static_cast<KaxBlockGroup&>(*Blobs[Index]));
+        PushElement( static_cast<KaxBlockGroup&>(*blob));
     }
 
     // SilentTracks handling
@@ -213,9 +213,8 @@ filepos_t KaxCluster::Render(IOCallback & output, KaxCues & CueToUpdate, bool bS
     Result = EbmlMaster::Render(output, bSaveDefault);
 
     // For all Blocks add their position on the CueEntry
-    for (Index = 0; Index<Blobs.size(); Index++) {
-      CueToUpdate.PositionSet(*Blobs[Index]);
-    }
+    for (const auto& blob : Blobs)
+      CueToUpdate.PositionSet(*blob);
 
     Blobs.clear();
   }

@@ -1,4 +1,4 @@
-# Version ? 2022-??-??
+# Version 1.7.0 2022-09-30
 
 * A C++14 compliant C++ compiler is now required.
 * libEBML v1.4.3 is now required.

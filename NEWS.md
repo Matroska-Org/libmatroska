@@ -1,3 +1,8 @@
+# Version 1.8.0 2022-??-??
+
+* Bumped the library's soname to 8 due to ABI breaking changes that
+  already happened in 1.7.0.
+
 # Version 1.7.0 2022-09-30
 
 * A C++14 compliant C++ compiler is now required.

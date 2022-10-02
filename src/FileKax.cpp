@@ -98,7 +98,7 @@ void FileMatroska::Close(const uint32 aTimeLength)
 
   // get the Track-entry size
   uint32 track_entries_size = 0;
-  for (auto&& myTrack : myTracks) {
+  for (const auto& myTrack : myTracks) {
     track_entries_size += myTrack->default_size();
   }
 
@@ -106,7 +106,7 @@ void FileMatroska::Close(const uint32 aTimeLength)
   myStreamInfo.TimeLength = aTimeLength;
   myMainHeader.Render(myFile, myStreamInfo);
 
-  for (auto&& track : myTracks) {
+  for (auto& track : myTracks) {
     delete track;
   }
 }
@@ -118,7 +118,7 @@ filepos_t FileMatroska::RenderHead(const std::string & aEncoderApp)
 {
   try {
     uint32 track_entries_size = 0;
-    for (auto&& myTrack : myTracks) {
+    for (const auto& myTrack : myTracks) {
       track_entries_size += myTrack->default_size();
     }
 
@@ -134,7 +134,7 @@ filepos_t FileMatroska::RenderHead(const std::string & aEncoderApp)
 
     myStreamInfo.CodecEntryPosition = myStreamInfo.MainHeaderSize + myStreamInfo.TrackEntriesSize;
     myStreamInfo.CodecEntrySize = 4;
-    for (auto&& myTrack : myTracks) {
+    for (const auto& myTrack : myTracks) {
       myStreamInfo.CodecEntrySize += myTrack->CodecSize();
     }
 
@@ -288,7 +288,7 @@ void FileMatroska::SelectReadingTrack(Track * aTrack, bool select)
   if (IsMyTrack(aTrack)) {
     // here we have the right track
     // check if it's not already selected
-    for (auto&& num : mySelectedTracks) {
+    for (const auto& num : mySelectedTracks) {
       if (num == aTrack->TrackNumber())
         break;
     }

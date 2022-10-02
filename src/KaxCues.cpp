@@ -31,6 +31,7 @@
   \author Steve Lhomme     <robux4 @ users.sf.net>
 */
 #include <cassert>
+#include <cstdint>
 
 #include "matroska/KaxCues.h"
 #include "matroska/KaxCuesData.h"
@@ -116,7 +117,7 @@ const KaxCuePoint * KaxCues::GetTimecodePoint(uint64 aTimecode) const
   const uint64 TimecodeToLocate = aTimecode / GlobalTimecodeScale();
   const KaxCuePoint * aPointPrev = nullptr;
   uint64 aPrevTime = 0;
-  uint64 aNextTime = EBML_PRETTYLONGINT(0xFFFFFFFFFFFF);
+  uint64 aNextTime = UINT64_C(0xFFFFFFFFFFFF);
 
   EBML_MASTER_CONST_ITERATOR Itr;
   for (Itr = begin(); Itr != end(); ++Itr) {

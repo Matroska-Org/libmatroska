@@ -31,6 +31,7 @@
   \author Steve Lhomme     <robux4 @ users.sf.net>
 */
 #include <cassert>
+#include <cstdint>
 
 #include "matroska/KaxCuesData.h"
 #include "matroska/KaxContexts.h"
@@ -208,7 +209,7 @@ bool KaxCuePoint::Timecode(uint64 & aTimecode, uint64 GlobalTimecodeScale) const
 const KaxCueTrackPositions * KaxCuePoint::GetSeekPosition() const
 {
   const KaxCueTrackPositions * result = nullptr;
-  uint64 aPosition = EBML_PRETTYLONGINT(0xFFFFFFFFFFFFFFF);
+  uint64 aPosition = UINT64_C(0xFFFFFFFFFFFFFFF);
   // find the position of the "earlier" Cluster
   auto aPoss = static_cast<const KaxCueTrackPositions *>(FindFirstElt(EBML_INFO(KaxCueTrackPositions)));
   while (aPoss != nullptr) {

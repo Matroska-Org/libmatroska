@@ -209,7 +209,7 @@ bool KaxCuePoint::Timecode(uint64 & aTimecode, uint64 GlobalTimecodeScale) const
 const KaxCueTrackPositions * KaxCuePoint::GetSeekPosition() const
 {
   const KaxCueTrackPositions * result = nullptr;
-  uint64 aPosition = UINT64_C(0xFFFFFFFFFFFFFFF);
+  uint64 aPosition = UINT64_MAX;
   // find the position of the "earlier" Cluster
   auto aPoss = static_cast<const KaxCueTrackPositions *>(FindFirstElt(EBML_INFO(KaxCueTrackPositions)));
   while (aPoss != nullptr) {

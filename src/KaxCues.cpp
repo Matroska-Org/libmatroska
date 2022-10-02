@@ -117,7 +117,7 @@ const KaxCuePoint * KaxCues::GetTimecodePoint(uint64 aTimecode) const
   const uint64 TimecodeToLocate = aTimecode / GlobalTimecodeScale();
   const KaxCuePoint * aPointPrev = nullptr;
   uint64 aPrevTime = 0;
-  uint64 aNextTime = UINT64_C(0xFFFFFFFFFFFF);
+  uint64 aNextTime = UINT64_MAX;
 
   EBML_MASTER_CONST_ITERATOR Itr;
   for (Itr = begin(); Itr != end(); ++Itr) {

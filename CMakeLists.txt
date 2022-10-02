@@ -4,6 +4,7 @@ project(matroska VERSION 1.7.1)
 
 option(DISABLE_PKGCONFIG "Disable PkgConfig module generation" OFF)
 option(DISABLE_CMAKE_CONFIG "Disable CMake package config module generation" OFF)
+option(BUILD_SHARED_LIBS "Build libmatroska as a shared library" OFF)
 option(BUILD_EXAMPLES "Build example code" OFF)
 
 find_package(EBML 1.4.3 REQUIRED)

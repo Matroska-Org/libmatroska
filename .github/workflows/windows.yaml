@@ -7,12 +7,13 @@ on:
 
 jobs:
   build_libmatroska:
-    name: ${{ matrix.config }} libmatroska for Windows
+    name: ${{ matrix.config }} libmatroska shared:${{ matrix.BUILD_SHARED_LIBS }} for Windows
     runs-on: windows-latest
     strategy:
       fail-fast: false
       matrix:
         config: [Debug, Release]
+        BUILD_SHARED_LIBS: [off, on]
     steps:
       - uses: lukka/get-cmake@latest
 
@@ -27,7 +28,7 @@ jobs:
           # minimum version we support ref: 'release-1.4.3'
 
       - name: Configure libebml
-        run: cmake -S libebml -B libebml/_build
+        run: cmake -S libebml -B libebml/_build -DBUILD_SHARED_LIBS=${{ matrix.BUILD_SHARED_LIBS }}
 
       - name: Build libebml
         run: cmake --build libebml/_build --config ${{ matrix.config }} --parallel
@@ -35,10 +36,10 @@ jobs:
       - name: Install libebml
         run: cmake --install libebml/_build --config ${{ matrix.config }} --prefix ${GITHUB_WORKSPACE}/_built
 
-      - name: Configure CMake 
-        run: cmake -S . -B _build -DEBML_DIR="${GITHUB_WORKSPACE}/_built/lib/cmake/EBML"
+      - name: Configure 
+        run: cmake -S . -B _build -DEBML_DIR="${GITHUB_WORKSPACE}/_built/lib/cmake/EBML" -DBUILD_SHARED_LIBS=${{ matrix.BUILD_SHARED_LIBS }}
 
-      - name: Build with CMake
+      - name: Build
         run: cmake --build _build --config ${{ matrix.config }} --parallel
 
       - name: Test installation

@@ -7,7 +7,7 @@ on:
 
 jobs:
   build_libmatroska:
-    name: libmatroska for Linux gcc10
+    name: libmatroska with gcc10
     runs-on: ubuntu-latest
     steps:
       - uses: lukka/get-cmake@latest

@@ -7,7 +7,7 @@ on:
 
 jobs:
   build_libmatroska:
-    name: libmatroska for macOS
+    name: libmatroska
     runs-on: macos-latest
     steps:
       - uses: lukka/get-cmake@latest

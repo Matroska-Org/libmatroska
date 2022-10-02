@@ -69,11 +69,9 @@ bool KaxCues::AddBlockBlob(const KaxBlockBlob & BlockReference)
   // Do not add the element if it's already present.
   const auto& pr = myTempReferences;
   const bool present = std::find(pr.begin(), pr.end(), &BlockReference) != pr.end();
-  if (present) {
-    return true;
-  }
+  if (!present)
+    myTempReferences.push_back(&BlockReference);
 
-  myTempReferences.push_back(&BlockReference);
   return true;
 }
 

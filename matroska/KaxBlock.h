@@ -69,7 +69,7 @@ class MATROSKA_DLL_API DataBuffer {
       if (bInternalBuffer)
       {
         myBuffer = new (std::nothrow) binary[mySize];
-        if (myBuffer == nullptr)
+        if (!myBuffer)
           bValidValue = false;
         else
           memcpy(myBuffer, aBuffer, mySize);
@@ -85,8 +85,8 @@ class MATROSKA_DLL_API DataBuffer {
     virtual uint32   Size()   const {return mySize;};
     bool    FreeBuffer(const DataBuffer & aBuffer) {
       bool bResult = true;
-      if (myBuffer != nullptr && bValidValue) {
-        if (myFreeBuffer != nullptr)
+      if (myBuffer && bValidValue) {
+        if (myFreeBuffer)
           bResult = myFreeBuffer(aBuffer);
         if (bInternalBuffer)
           delete [] myBuffer;
@@ -118,7 +118,7 @@ class MATROSKA_DLL_API SimpleDataBuffer : public DataBuffer {
     static bool myFreeBuffer(const DataBuffer & aBuffer)
     {
       auto _Buffer = static_cast<const SimpleDataBuffer*>(&aBuffer)->BaseBuffer;
-      if (_Buffer != nullptr)
+      if (_Buffer)
         free(_Buffer);
       return true;
     }
@@ -175,7 +175,7 @@ DECLARE_MKX_MASTER(KaxBlockGroup)
     */
     uint64 GlobalTimecode() const;
     uint64 GlobalTimecodeScale() const {
-      assert(ParentTrack != nullptr);
+      assert(ParentTrack);
       return ParentTrack->GlobalTimecodeScale();
     }
 

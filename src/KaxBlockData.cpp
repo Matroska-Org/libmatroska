@@ -44,7 +44,7 @@ namespace libmatroska {
 
 const KaxBlockBlob & KaxReferenceBlock::RefBlock() const
 {
-  assert(RefdBlock != nullptr);
+  assert(RefdBlock);
   return *RefdBlock;
 }
 
@@ -66,7 +66,7 @@ KaxReferenceBlock::~KaxReferenceBlock()
 
 void KaxReferenceBlock::FreeBlob()
 {
-  if (bOurBlob && RefdBlock!=nullptr)
+  if (bOurBlob && RefdBlock)
     delete RefdBlock;
   RefdBlock = nullptr;
 }
@@ -74,8 +74,8 @@ void KaxReferenceBlock::FreeBlob()
 filepos_t KaxReferenceBlock::UpdateSize(bool bSaveDefault, bool bForceRender)
 {
   if (!bTimecodeSet) {
-    assert(RefdBlock != nullptr);
-    assert(ParentBlock != nullptr);
+    assert(RefdBlock);
+    assert(ParentBlock);
 
     const auto &block = static_cast<const KaxInternalBlock&>(*RefdBlock);
     SetValue(static_cast<int64>(block.GlobalTimecode()) - static_cast<int64>(ParentBlock->GlobalTimecode()) / static_cast<int64>(ParentBlock->GlobalTimecodeScale()));
@@ -85,8 +85,8 @@ filepos_t KaxReferenceBlock::UpdateSize(bool bSaveDefault, bool bForceRender)
 
 void KaxReferenceBlock::SetReferencedBlock(const KaxBlockBlob * aRefdBlock)
 {
-  assert(RefdBlock == nullptr);
-  assert(aRefdBlock != nullptr);
+  assert(!RefdBlock);
+  assert(aRefdBlock);
   FreeBlob();
   RefdBlock = aRefdBlock;
   bOurBlob = true;

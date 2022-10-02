@@ -121,7 +121,7 @@ const KaxCuePoint * KaxCues::GetTimecodePoint(uint64 aTimecode) const
       auto tmp = static_cast<const KaxCuePoint *>(e);
       // check the tile
       auto aTime = static_cast<const KaxCueTime *>(tmp->FindFirstElt(EBML_INFO(KaxCueTime)));
-      if (aTime != nullptr) {
+      if (aTime) {
         auto _Time = static_cast<uint64>(*aTime);
         if (_Time > aPrevTime && _Time < TimecodeToLocate) {
           aPrevTime = _Time;
@@ -139,12 +139,12 @@ const KaxCuePoint * KaxCues::GetTimecodePoint(uint64 aTimecode) const
 
 uint64 KaxCues::GetTimecodePosition(uint64 aTimecode) const
 {
-  const KaxCuePoint * const aPoint = GetTimecodePoint(aTimecode);
-  if (aPoint == nullptr)
+  const auto aPoint = GetTimecodePoint(aTimecode);
+  if (!aPoint)
     return 0;
 
-  const KaxCueTrackPositions * const aTrack = aPoint->GetSeekPosition();
-  if (aTrack == nullptr)
+  const auto aTrack = aPoint->GetSeekPosition();
+  if (!aTrack)
     return 0;
 
   return aTrack->ClusterPosition();

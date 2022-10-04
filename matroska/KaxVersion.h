@@ -40,7 +40,7 @@
 
 namespace libmatroska {
 
-#define LIBMATROSKA_VERSION 0x010700
+#define LIBMATROSKA_VERSION 0x010701
 
 extern const MATROSKA_DLL_API std::string KaxCodeVersion;
 extern const MATROSKA_DLL_API std::string KaxCodeDate;

@@ -76,7 +76,6 @@ KaxInternalBlock::~KaxInternalBlock()
 
 KaxInternalBlock::KaxInternalBlock(const KaxInternalBlock & ElementToClone)
   :EbmlBinary(ElementToClone)
-  ,myBuffers(ElementToClone.myBuffers.size())
   ,Timecode(ElementToClone.Timecode)
   ,LocalTimecode(ElementToClone.LocalTimecode)
   ,bLocalTimecodeUsed(ElementToClone.bLocalTimecodeUsed)
@@ -84,11 +83,9 @@ KaxInternalBlock::KaxInternalBlock(const KaxInternalBlock & ElementToClone)
   ,ParentCluster(ElementToClone.ParentCluster) ///< \todo not exactly
 {
   // add a clone of the list
-  auto myItr = myBuffers.begin();
-  for (const auto& buffer : ElementToClone.myBuffers) {
-    *myItr = buffer->Clone();
-    ++myItr;
-  }
+  myBuffers.reserve(ElementToClone.myBuffers.size());
+  for (const auto& buffer : ElementToClone.myBuffers)
+    myBuffers.push_back(buffer->Clone());
 }
 
 

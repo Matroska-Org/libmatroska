@@ -62,4 +62,4 @@ jobs:
           sudo apt install abigail-tools
 
       - name: Check ABI differences
-        run: abidiff --no-added-syms ${GITHUB_WORKSPACE}/_built/lib/libmatroska.so.7.0.0 ${GITHUB_WORKSPACE}/_built_1/lib/libmatroska.so.7.0.0
+        run: abidiff --no-added-syms ${GITHUB_WORKSPACE}/_built_1/lib/libmatroska.so${GITHUB_WORKSPACE}/_built/lib/libmatroska.so

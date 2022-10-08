@@ -177,7 +177,7 @@ class MATROSKA_DLL_API x : public EbmlMaster { \
     EBML_CONCRETE_CLASS(x)
 
 #define DECLARE_MKX_STRING(x)     DECLARE_MKX_CONTEXT(x) \
-  class MATROSKA_DLL_API x : public EbmlString { \
+  class MATROSKA_DLL_API x : public EbmlUnicodeString { \
     public: x(); \
     x(const x & ElementToClone) :EbmlString(ElementToClone) {} \
     EBML_CONCRETE_CLASS(x)

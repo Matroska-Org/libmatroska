@@ -103,7 +103,7 @@ class MATROSKA_DLL_API DataBuffer {
 
 class MATROSKA_DLL_API SimpleDataBuffer : public DataBuffer {
   public:
-    SimpleDataBuffer(binary * aBuffer, uint32 aSize, uint32 aOffset, bool (*aFreeBuffer)(const DataBuffer & aBuffer) = FreemyBuffer)
+    SimpleDataBuffer(binary * aBuffer, uint32 aSize, uint32 aOffset, bool (*aFreeBuffer)(const DataBuffer & aBuffer) = FreemyBuffer, void *unused = nullptr)
       :DataBuffer(aBuffer + aOffset, aSize, aFreeBuffer)
       ,Offset(aOffset)
       ,BaseBuffer(aBuffer)

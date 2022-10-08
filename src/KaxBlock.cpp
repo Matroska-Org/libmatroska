@@ -46,6 +46,10 @@
 
 namespace libmatroska {
 
+const KaxCluster *KaxBlockGroup::GetParentCluster2() const {
+  return ParentCluster;
+}
+
 DataBuffer * DataBuffer::Clone()
 {
   auto ClonedData = static_cast<binary *>(malloc(mySize * sizeof(binary)));
@@ -58,7 +62,7 @@ DataBuffer * DataBuffer::Clone()
 }
 
 SimpleDataBuffer::SimpleDataBuffer(const SimpleDataBuffer & ToClone)
-  :DataBuffer(static_cast<binary *>(malloc(ToClone.mySize * sizeof(binary))), ToClone.mySize, myFreeBuffer)
+  :DataBuffer(static_cast<binary *>(malloc(ToClone.mySize * sizeof(binary))), ToClone.mySize, FreemyBuffer)
 {
   assert(myBuffer != nullptr);
   memcpy(myBuffer, ToClone.myBuffer ,mySize );
@@ -101,6 +105,7 @@ KaxInternalBlock::KaxInternalBlock(const KaxInternalBlock & ElementToClone)
 
 KaxBlockGroup::KaxBlockGroup(EBML_EXTRA_DEF)
   :EbmlMaster(EBML_CLASS_SEMCONTEXT(KaxBlockGroup) EBML_DEF_SEP EBML_EXTRA_CALL)
+  ,ParentCluster(nullptr), ParentTrack(nullptr)
 {}
 
 /*!

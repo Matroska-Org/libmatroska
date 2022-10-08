@@ -33,13 +33,13 @@ jobs:
           path: libmatroska-new
       
       - name: Configure CMake 
-        run: cmake -S libmatroska-new -B _build -DBUILD_SHARED_LIBS=ON -DEBML_DIR="${GITHUB_WORKSPACE}/_built/lib/cmake/EBML"
+        run: cmake -S libmatroska-new -B _build -DBUILD_SHARED_LIBS=ON -DEBML_DIR="${GITHUB_WORKSPACE}/_built/lib/cmake/EBML" --config Debug
 
       - name: Build
         run: cmake --build _build --parallel
 
       - name: Install
-        run: cmake --install _build --prefix ${GITHUB_WORKSPACE}/_built
+        run: cmake --install _build --prefix ${GITHUB_WORKSPACE}/dir1
 
       - name: Get v1.x code
         uses: actions/checkout@v3
@@ -48,13 +48,13 @@ jobs:
           ref: v1.x
       
       - name: Configure v1.x
-        run: cmake -S libmatroska-1 -B _build_1 -DBUILD_SHARED_LIBS=ON -DEBML_DIR="${GITHUB_WORKSPACE}/_built/lib/cmake/EBML"
+        run: cmake -S libmatroska-1 -B _build_1 -DBUILD_SHARED_LIBS=ON -DEBML_DIR="${GITHUB_WORKSPACE}/_built/lib/cmake/EBML" --config Debug
 
       - name: Build v1.x
         run: cmake --build _build_1 --parallel
 
       - name: Install v1.x
-        run: cmake --install _build_1 --prefix ${GITHUB_WORKSPACE}/_built_1
+        run: cmake --install _build_1 --prefix ${GITHUB_WORKSPACE}/dir2
 
       - name: Get abidiff
         run: |
@@ -62,4 +62,8 @@ jobs:
           sudo apt install abigail-tools
 
       - name: Check ABI differences
-        run: abidiff --no-added-syms ${GITHUB_WORKSPACE}/_built_1/lib/libmatroska.so${GITHUB_WORKSPACE}/_built/lib/libmatroska.so
+        run: abidiff --no-added-syms \
+                     --headers-dir1 ${GITHUB_WORKSPACE}/dir1/include/matroska 
+                     --headers-dir2 ${GITHUB_WORKSPACE}/dir2/include/matroska 
+                     ${GITHUB_WORKSPACE}/dir1/lib/libmatroska.so 
+                     ${GITHUB_WORKSPACE}/dir2/lib/libmatroska.so

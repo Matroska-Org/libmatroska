@@ -1,7 +1,7 @@
 name: "Linux gcc10 Build"
 on:
   push:
-    branches: [ master ]
+    branches: [ v1.x ]
   pull_request:
     # branches: [ master ]
 

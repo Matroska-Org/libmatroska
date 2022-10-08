@@ -1,0 +1,71 @@
+name: "ABI Breakage"
+on:
+  push:
+    branches: [ v1.x ]
+  pull_request:
+
+jobs:
+  test_abidiff:
+    name: abidiff
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout libebml 1.x
+        uses: actions/checkout@v4
+        with:
+          repository: Matroska-Org/libebml
+          path: libebml
+          ref: v1.x
+
+      - name: Configure libebml 1.x
+        run: cmake -S libebml -B libebml/_build -DBUILD_SHARED_LIBS=ON -G Ninja
+
+      - name: Build libebml 1.x
+        run: cmake --build libebml/_build --parallel
+
+      - name: Install libebml 1.x
+        run: cmake --install libebml/_build --prefix ${GITHUB_WORKSPACE}/_built
+
+
+      - name: Get libmatroska 1.x
+        uses: actions/checkout@v4
+        with:
+          path: libmatroska-1
+          ref: v1.x
+
+      - name: Configure v1.x
+        run: cmake -S libmatroska-1 -B _build_origin -DBUILD_SHARED_LIBS=ON -DEBML_DIR="${GITHUB_WORKSPACE}/_built/lib/cmake/EBML" -DCMAKE_BUILD_TYPE=RelWithDebInfo -G Ninja
+
+      - name: Build v1.x
+        run: cmake --build _build_origin --parallel
+
+      - name: Install v1.x
+        run: cmake --install _build_origin --prefix ${GITHUB_WORKSPACE}/dir-old
+
+
+      - name: Get libmatroska 1.x from Pull Request
+        uses: actions/checkout@v4
+        with:
+          path: libmatroska-new
+
+      - name: Configure CMake
+        run: cmake -S libmatroska-new -B _build_pr -DBUILD_SHARED_LIBS=ON -DEBML_DIR="${GITHUB_WORKSPACE}/_built/lib/cmake/EBML" -DCMAKE_BUILD_TYPE=RelWithDebInfo -G Ninja
+
+      - name: Build
+        run: cmake --build _build_pr --parallel
+
+      - name: Install
+        run: cmake --install _build_pr --prefix ${GITHUB_WORKSPACE}/dir-new
+
+
+      - name: Get abidiff
+        run: |
+          sudo apt update
+          sudo apt install abigail-tools
+
+      - name: Check ABI differences
+        run: |
+          abidiff --no-added-syms \
+                     --headers-dir1 ${GITHUB_WORKSPACE}/dir-new/include/matroska \
+                     --headers-dir2 ${GITHUB_WORKSPACE}/dir-old/include/matroska \
+                     ${GITHUB_WORKSPACE}/dir-new/lib/libmatroska.so \
+                     ${GITHUB_WORKSPACE}/dir-old/lib/libmatroska.so

@@ -24,7 +24,7 @@ jobs:
         with: 
           repository: Matroska-Org/libebml
           path: libebml
-          # minimum version we support ref: 'release-1.4.3'
+          ref: v1.x
 
       - name: Configure libebml
         run: cmake -S libebml -B libebml/_build

@@ -57,13 +57,13 @@ class MATROSKA_DLL_API DataBuffer {
     binary  *myBuffer{nullptr};
     uint32   mySize;
     bool     bValidValue{true};
-    bool     (*myFreeBuffer)(const DataBuffer & aBuffer); // method to free the internal buffer
+    bool     (*FreemyBuffer)(const DataBuffer & aBuffer); // method to free the internal buffer
     bool     bInternalBuffer;
 
   public:
     DataBuffer(binary * aBuffer, uint32 aSize, bool (*aFreeBuffer)(const DataBuffer & aBuffer) = nullptr, bool _bInternalBuffer = false)
       :mySize(aSize)
-      ,myFreeBuffer(aFreeBuffer)
+      ,FreemyBuffer(aFreeBuffer)
       ,bInternalBuffer(_bInternalBuffer)
     {
       if (bInternalBuffer)
@@ -87,8 +87,8 @@ class MATROSKA_DLL_API DataBuffer {
     bool    FreeBuffer(const DataBuffer & aBuffer) {
       bool bResult = true;
       if (myBuffer != nullptr && bValidValue) {
-        if (myFreeBuffer != nullptr)
-          bResult = myFreeBuffer(aBuffer);
+        if (FreemyBuffer != nullptr)
+          bResult = FreemyBuffer(aBuffer);
         if (bInternalBuffer)
           delete [] myBuffer;
         myBuffer = nullptr;
@@ -103,7 +103,7 @@ class MATROSKA_DLL_API DataBuffer {
 
 class MATROSKA_DLL_API SimpleDataBuffer : public DataBuffer {
   public:
-    SimpleDataBuffer(binary * aBuffer, uint32 aSize, uint32 aOffset, bool (*aFreeBuffer)(const DataBuffer & aBuffer) = myFreeBuffer)
+    SimpleDataBuffer(binary * aBuffer, uint32 aSize, uint32 aOffset, bool (*aFreeBuffer)(const DataBuffer & aBuffer) = FreemyBuffer)
       :DataBuffer(aBuffer + aOffset, aSize, aFreeBuffer)
       ,Offset(aOffset)
       ,BaseBuffer(aBuffer)
@@ -116,7 +116,7 @@ class MATROSKA_DLL_API SimpleDataBuffer : public DataBuffer {
     uint32 Offset;
     binary * BaseBuffer;
 
-    static bool myFreeBuffer(const DataBuffer & aBuffer)
+    static bool FreemyBuffer(const DataBuffer & aBuffer)
     {
       auto _Buffer = static_cast<const SimpleDataBuffer*>(&aBuffer)->BaseBuffer;
       if (_Buffer != nullptr)

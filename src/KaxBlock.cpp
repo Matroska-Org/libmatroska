@@ -58,7 +58,7 @@ DataBuffer * DataBuffer::Clone()
 }
 
 SimpleDataBuffer::SimpleDataBuffer(const SimpleDataBuffer & ToClone)
-  :DataBuffer(static_cast<binary *>(malloc(ToClone.mySize * sizeof(binary))), ToClone.mySize, myFreeBuffer)
+  :DataBuffer(static_cast<binary *>(malloc(ToClone.mySize * sizeof(binary))), ToClone.mySize, FreemyBuffer)
 {
   assert(myBuffer != nullptr);
   memcpy(myBuffer, ToClone.myBuffer ,mySize );

@@ -1,0 +1,65 @@
+name: "ABI Breakage"
+on:
+  push:
+    branches: [ v1.x ]
+  pull_request:
+
+jobs:
+  test_abidiff:
+    name: abidiff
+    runs-on: ubuntu-latest
+    steps:
+      - uses: lukka/get-cmake@latest
+
+      - name: Checkout libebml
+        uses: actions/checkout@v3
+        with: 
+          repository: Matroska-Org/libebml
+          path: libebml
+          ref: v1.x
+
+      - name: Configure libebml
+        run: cmake -S libebml -B libebml/_build -DBUILD_SHARED_LIBS=ON
+
+      - name: Build libebml
+        run: cmake --build libebml/_build --parallel
+
+      - name: Install libebml
+        run: cmake --install libebml/_build --prefix ${GITHUB_WORKSPACE}/_built
+
+      - name: Get pushed code
+        uses: actions/checkout@v3
+        with: 
+          path: libmatroska-new
+      
+      - name: Configure CMake 
+        run: cmake -S libmatroska-new -B _build -DBUILD_SHARED_LIBS=ON -DEBML_DIR="${GITHUB_WORKSPACE}/_built/lib/cmake/EBML"
+
+      - name: Build
+        run: cmake --build _build --parallel
+
+      - name: Install
+        run: cmake --install _build --prefix ${GITHUB_WORKSPACE}/_built
+
+      - name: Get v1.x code
+        uses: actions/checkout@v3
+        with: 
+          path: libmatroska-1
+          ref: v1.x
+      
+      - name: Configure v1.x
+        run: cmake -S libmatroska-1 -B _build_1 -DBUILD_SHARED_LIBS=ON -DEBML_DIR="${GITHUB_WORKSPACE}/_built/lib/cmake/EBML"
+
+      - name: Build v1.x
+        run: cmake --build _build_1 --parallel
+
+      - name: Install v1.x
+        run: cmake --install _build_1 --prefix ${GITHUB_WORKSPACE}/_built_1
+
+      - name: Get abidiff
+        run: |
+          sudo apt update
+          sudo apt install abigail-tools
+
+      - name: Check ABI differences
+        run: abidiff --no-added-syms ${GITHUB_WORKSPACE}/_built/lib/libmatroska.so ${GITHUB_WORKSPACE}/_built_1/lib/libmatroska.so

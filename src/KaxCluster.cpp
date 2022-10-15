@@ -139,7 +139,6 @@ bool KaxCluster::AddFrame(const KaxTrackEntry & track, std::uint64_t timecode, D
 filepos_t KaxCluster::Render(IOCallback & output, KaxCues & CueToUpdate, bool bSaveDefault)
 {
   filepos_t Result = 0;
-  std::size_t Index;
 
   // update the Timecode of the Cluster before writing
   auto Timecode = static_cast<KaxClusterTimecode *>(this->FindElt(EBML_INFO(KaxClusterTimecode)));
@@ -194,12 +193,10 @@ filepos_t KaxCluster::Render(IOCallback & output, KaxCues & CueToUpdate, bool bS
         if (EbmlId(*Trk) == EBML_ID(KaxTrackEntry)) {
           auto entry = static_cast<KaxTrackEntry *>(Trk);
           auto tracknum = static_cast<std::uint32_t>(entry->TrackNumber());
-          for (Index = 0; Index<Blobs.size(); Index++) {
-            if (static_cast<KaxInternalBlock&>(*Blobs[Index]).TrackNum() == tracknum)
-              break; // this track is used
-          }
+          auto it = std::find_if(Blobs.begin(), Blobs.end(), [tracknum](auto b){ return static_cast<KaxInternalBlock&>(*b).TrackNum() == tracknum; });
+
           // the track wasn't found in this cluster
-          if (Index == ListSize()) {
+          if (it == Blobs.end()) {
             auto SilentTracks = static_cast<KaxClusterSilentTracks *>(this->FindFirstElt(EBML_INFO(KaxClusterSilentTracks)));
             assert(SilentTracks); // the flag bSilentTracksUsed should be set when creating the Cluster
             auto trackelt = static_cast<KaxClusterSilentTrackNumber *>(SilentTracks->AddNewElt(EBML_INFO(KaxClusterSilentTrackNumber)));

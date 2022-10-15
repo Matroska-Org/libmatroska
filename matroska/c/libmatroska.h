@@ -92,16 +92,16 @@ matroska_id matroska_open_url(c_string string);
 */
 void MATROSKA_EXPORT matroska_close(matroska_id id);
 
-void MATROSKA_EXPORT matroska_end(matroska_id id, uint32 totaltime);
+void MATROSKA_EXPORT matroska_end(matroska_id id, std::uint32_t totaltime);
 
 matroska_track MATROSKA_EXPORT matroska_create_track(matroska_id id, enum track_type type);
 
 void MATROSKA_EXPORT matroska_read_head(matroska_id id);
 void MATROSKA_EXPORT matroska_read_tracks(matroska_id id);
 
-uint8 MATROSKA_EXPORT matroska_get_number_track(matroska_id id);
+std::uint8_t MATROSKA_EXPORT matroska_get_number_track(matroska_id id);
 
-matroska_track MATROSKA_EXPORT matroska_get_track(matroska_id id, uint8 track_index);
+matroska_track MATROSKA_EXPORT matroska_get_track(matroska_id id, std::uint8_t track_index);
 
 void MATROSKA_EXPORT matroska_get_track_info(matroska_id id, matroska_track track, track_info * infos);
 

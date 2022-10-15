@@ -79,13 +79,13 @@ FileMatroska::FileMatroska(IOCallback & output)
 } */
 
 #ifdef OLD
-void FileMatroska::SetMaxClusterSize(const uint32 value)
+void FileMatroska::SetMaxClusterSize(const std::uint32_t value)
 {
   myMaxClusterSize = value;
   myCurrWriteCluster.setMaxSize(value);
 }
 
-void FileMatroska::Close(const uint32 aTimeLength)
+void FileMatroska::Close(const std::uint32_t aTimeLength)
 {
   Flush();
 
@@ -97,7 +97,7 @@ void FileMatroska::Close(const uint32 aTimeLength)
   myFile.setFilePointer(0,seek_beginning);
 
   // get the Track-entry size
-  uint32 track_entries_size = 0;
+  std::uint32_t track_entries_size = 0;
   for (const auto& myTrack : myTracks) {
     track_entries_size += myTrack->default_size();
   }
@@ -117,7 +117,7 @@ void FileMatroska::Close(const uint32 aTimeLength)
 filepos_t FileMatroska::RenderHead(const std::string & aEncoderApp)
 {
   try {
-    uint32 track_entries_size = 0;
+    std::uint32_t track_entries_size = 0;
     for (const auto& myTrack : myTracks) {
       track_entries_size += myTrack->default_size();
     }
@@ -189,7 +189,7 @@ void FileMatroska::track_SetLaced(Track * aTrack, bool bLaced)
   }
 }
 
-bool FileMatroska::AddFrame(Track * aTrack, const uint32 aTimecode, const binary *aFrame, const uint32 aFrameSize,
+bool FileMatroska::AddFrame(Track * aTrack, const std::uint32_t aTimecode, const binary *aFrame, const std::uint32_t aFrameSize,
                             bool aKeyFrame, bool aBFrame)
 {
   try {
@@ -200,7 +200,7 @@ bool FileMatroska::AddFrame(Track * aTrack, const uint32 aTimecode, const binary
       if (aTrack->AddFrame(aTimecode, aFrame, aFrameSize, aKeyFrame, aBFrame)) {
         while (!aTrack->SerialiseBlock(myCurrWriteCluster)) {
           /// \todo handle errors
-          uint32 aNbBlock;
+          std::uint32_t aNbBlock;
           myStreamInfo.ClusterSize += myCurrWriteCluster.Render(myFile, aNbBlock);
           myStreamInfo.NumberBlock += aNbBlock;
           myCurrWriteCluster.Flush();
@@ -217,15 +217,15 @@ bool FileMatroska::AddFrame(Track * aTrack, const uint32 aTimecode, const binary
 
 void FileMatroska::Flush()
 {
-  uint32 aNbBlock;
+  std::uint32_t aNbBlock;
   myStreamInfo.ClusterSize += myCurrWriteCluster.Render(myFile,aNbBlock);
   myStreamInfo.NumberBlock += aNbBlock;
 }
 
-uint32 FileMatroska::ReadHead()
+std::uint32_t FileMatroska::ReadHead()
 {
   try {
-    uint32 result = myMainHeader.Read(myFile, myStreamInfo);
+    std::uint32_t result = myMainHeader.Read(myFile, myStreamInfo);
 
     return result;
   }
@@ -234,18 +234,18 @@ uint32 FileMatroska::ReadHead()
   }
 }
 
-uint32 FileMatroska::ReadTracks()
+std::uint32_t FileMatroska::ReadTracks()
 {
   try {
-    uint32 result = 0;
+    std::uint32_t result = 0;
 
     // seek to the start of the Track Entries
     myFile.setFilePointer(myStreamInfo.TrackEntryPosition);
     // get the number of Track Entries
-    uint8 TrackNumber = myStreamInfo.TrackEntriesSize / myStreamInfo.TrackEntrySize;
+    std::uint8_t TrackNumber = myStreamInfo.TrackEntriesSize / myStreamInfo.TrackEntrySize;
     // read all the Track Entries
     myTracks.clear();
-    for (uint8 TrackIdx = 0; TrackIdx<TrackNumber; TrackIdx ++) {
+    for (std::uint8_t TrackIdx = 0; TrackIdx<TrackNumber; TrackIdx ++) {
       Track * tmpTrack = Track::ReadEntry(myFile, TrackIdx+1, myStreamInfo);
       if (tmpTrack == NULL)
         throw 0;
@@ -260,13 +260,13 @@ uint32 FileMatroska::ReadTracks()
   }
 }
 
-uint32 FileMatroska::ReadCodec()
+std::uint32_t FileMatroska::ReadCodec()
 {
   try {
     // seek to the start of the Track Entries
     myFile.setFilePointer(myStreamInfo.CodecEntryPosition);
 
-    uint32 result = CodecHeader::Read(myFile, myTracks);
+    std::uint32_t result = CodecHeader::Read(myFile, myTracks);
 
     return result;
   }
@@ -302,7 +302,7 @@ void FileMatroska::SelectReadingTrack(Track * aTrack, bool select)
   }
 }
 
-inline bool FileMatroska::IsReadingTrack(const uint8 aTrackNumber) const
+inline bool FileMatroska::IsReadingTrack(const std::uint8_t aTrackNumber) const
 {
   return std::any_of(mySelectedTracks.begin(), mySelectedTracks.end(), [=](int track){ return track >= aTrackNumber; })
 }
@@ -351,7 +351,7 @@ void FileMatroska::Track_SetInfo_Video(Track * aTrack, const TrackInfoVideo & aT
 /*!
   \todo exit when there is no Block left
 */
-bool FileMatroska::ReadFrame(Track * & aTrack, uint32 & aTimecode, const binary * & aFrame, uint32 & aFrameSize,
+bool FileMatroska::ReadFrame(Track * & aTrack, std::uint32_t & aTimecode, const binary * & aFrame, std::uint32_t & aFrameSize,
                              bool & aKeyFrame, bool & aBFrame)
 {
   if (myCurrReadBlockTrack == 0) {

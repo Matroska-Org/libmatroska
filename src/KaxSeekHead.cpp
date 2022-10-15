@@ -98,12 +98,12 @@ KaxSeek * KaxSeekHead::FindNextOf(const KaxSeek &aPrev) const
   return static_cast<KaxSeek*>(*it2);
 }
 
-int64 KaxSeek::Location() const
+std::int64_t KaxSeek::Location() const
 {
   auto aPos = static_cast<KaxSeekPosition*>(FindFirstElt(EBML_INFO(KaxSeekPosition)));
   if (!aPos)
     return 0;
-  return static_cast<uint64>(*aPos);
+  return static_cast<std::uint64_t>(*aPos);
 }
 
 bool KaxSeek::IsEbmlId(const EbmlId & aId) const

@@ -47,7 +47,7 @@ namespace libmatroska {
   \todo handle codec state checking
   \todo remove duplicate references (reference to 2 frames that each reference the same frame)
 */
-void KaxCuePoint::PositionSet(const KaxBlockGroup & BlockReference, uint64 GlobalTimecodeScale)
+void KaxCuePoint::PositionSet(const KaxBlockGroup & BlockReference, std::uint64_t GlobalTimecodeScale)
 {
   // fill me
   auto & NewTime = GetChild<KaxCueTime>(*this);
@@ -77,7 +77,7 @@ void KaxCuePoint::PositionSet(const KaxBlockGroup & BlockReference, uint64 Globa
   SetValueIsSet();
 }
 
-void KaxCuePoint::PositionSet(const KaxBlockBlob & BlobReference, uint64 GlobalTimecodeScale)
+void KaxCuePoint::PositionSet(const KaxBlockBlob & BlobReference, std::uint64_t GlobalTimecodeScale)
 {
   const auto &BlockReference = static_cast<const KaxInternalBlock&>(BlobReference);
   const KaxBlockGroup *BlockGroupPointer = nullptr;
@@ -89,12 +89,12 @@ void KaxCuePoint::PositionSet(const KaxBlockBlob & BlobReference, uint64 GlobalT
   PositionSet(BlockReference, BlockGroupPointer, GlobalTimecodeScale);
 }
 
-void KaxCuePoint::PositionSet(const KaxSimpleBlock & BlockReference, uint64 GlobalTimecodeScale)
+void KaxCuePoint::PositionSet(const KaxSimpleBlock & BlockReference, std::uint64_t GlobalTimecodeScale)
 {
   PositionSet(BlockReference, nullptr, GlobalTimecodeScale);
 }
 
-void KaxCuePoint::PositionSet(const KaxInternalBlock & BlockReference, const KaxBlockGroup *BlockGroup, uint64 GlobalTimecodeScale)
+void KaxCuePoint::PositionSet(const KaxInternalBlock & BlockReference, const KaxBlockGroup *BlockGroup, std::uint64_t GlobalTimecodeScale)
 {
   // fill me
   auto & NewTime = GetChild<KaxCueTime>(*this);
@@ -132,7 +132,7 @@ void KaxCuePoint::PositionSet(const KaxInternalBlock & BlockReference, const Kax
 /*!
   \todo handle codec state checking
 */
-void KaxCueReference::AddReference(const KaxBlockBlob & BlockReference, uint64 GlobalTimecodeScale)
+void KaxCueReference::AddReference(const KaxBlockBlob & BlockReference, std::uint64_t GlobalTimecodeScale)
 {
   const auto& theBlock = static_cast<const KaxInternalBlock&>(BlockReference);
   auto & NewTime = GetChild<KaxCueRefTime>(*this);
@@ -192,12 +192,12 @@ bool KaxCuePoint::IsSmallerThan(const EbmlElement * Cmp) const
   return false;
 }
 
-bool KaxCuePoint::Timecode(uint64 & aTimecode, uint64 GlobalTimecodeScale) const
+bool KaxCuePoint::Timecode(std::uint64_t & aTimecode, std::uint64_t GlobalTimecodeScale) const
 {
   const auto aTime = static_cast<const KaxCueTime *>(FindFirstElt(EBML_INFO(KaxCueTime)));
   if (!aTime)
     return false;
-  aTimecode = static_cast<uint64>(*aTime) * GlobalTimecodeScale;
+  aTimecode = static_cast<std::uint64_t>(*aTime) * GlobalTimecodeScale;
   return true;
 }
 
@@ -207,13 +207,13 @@ bool KaxCuePoint::Timecode(uint64 & aTimecode, uint64 GlobalTimecodeScale) const
 const KaxCueTrackPositions * KaxCuePoint::GetSeekPosition() const
 {
   const KaxCueTrackPositions * result = nullptr;
-  uint64 aPosition = EBML_PRETTYLONGINT(0xFFFFFFFFFFFFFFF);
+  std::uint64_t aPosition = EBML_PRETTYLONGINT(0xFFFFFFFFFFFFFFF);
   // find the position of the "earlier" Cluster
   auto aPoss = static_cast<const KaxCueTrackPositions *>(FindFirstElt(EBML_INFO(KaxCueTrackPositions)));
   while (aPoss) {
     auto aPos = static_cast<const KaxCueClusterPosition *>(aPoss->FindFirstElt(EBML_INFO(KaxCueClusterPosition)));
-    if (aPos && static_cast<uint64>(*aPos) < aPosition) {
-      aPosition = static_cast<uint64>(*aPos);
+    if (aPos && static_cast<std::uint64_t>(*aPos) < aPosition) {
+      aPosition = static_cast<std::uint64_t>(*aPos);
       result = aPoss;
     }
 
@@ -222,22 +222,22 @@ const KaxCueTrackPositions * KaxCuePoint::GetSeekPosition() const
   return result;
 }
 
-uint64 KaxCueTrackPositions::ClusterPosition() const
+std::uint64_t KaxCueTrackPositions::ClusterPosition() const
 {
   const auto aPos = static_cast<const KaxCueClusterPosition *>(FindFirstElt(EBML_INFO(KaxCueClusterPosition)));
   if (!aPos)
     return 0;
 
-  return static_cast<uint64>(*aPos);
+  return static_cast<std::uint64_t>(*aPos);
 }
 
-uint16 KaxCueTrackPositions::TrackNumber() const
+std::uint16_t KaxCueTrackPositions::TrackNumber() const
 {
   const auto aTrack = static_cast<const KaxCueTrack *>(FindFirstElt(EBML_INFO(KaxCueTrack)));
   if (!aTrack)
     return 0;
 
-  return static_cast<uint16>(*aTrack);
+  return static_cast<std::uint16_t>(*aTrack);
 }
 
 

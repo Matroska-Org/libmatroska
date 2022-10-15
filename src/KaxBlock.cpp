@@ -107,13 +107,13 @@ KaxBlockGroup::KaxBlockGroup(EBML_EXTRA_DEF)
   \todo hardcoded limit of the number of frames in a lace should be a parameter
   \return true if more frames can be added to this Block
 */
-bool KaxInternalBlock::AddFrame(const KaxTrackEntry & track, uint64 timecode, DataBuffer & buffer, LacingType lacing, bool invisible)
+bool KaxInternalBlock::AddFrame(const KaxTrackEntry & track, std::uint64_t timecode, DataBuffer & buffer, LacingType lacing, bool invisible)
 {
   SetValueIsSet();
   if (myBuffers.empty()) {
     // first frame
     Timecode = timecode;
-    TrackNumber = static_cast<uint64>(track.TrackNumber());
+    TrackNumber = static_cast<std::uint64_t>(track.TrackNumber());
     mInvisible = invisible;
     mLacing = lacing;
   }
@@ -151,7 +151,7 @@ LacingType KaxInternalBlock::GetBestLacingType() const {
   }
   EbmlLacingSize += CodedSizeLength(myBuffers[0]->Size(), 0, IsFiniteSize());
   for (i = 1; i < static_cast<int>(myBuffers.size()) - 1; i++)
-    EbmlLacingSize += CodedSizeLengthSigned(static_cast<int64>(myBuffers[i]->Size()) - static_cast<int64>(myBuffers[i - 1]->Size()), 0);
+    EbmlLacingSize += CodedSizeLengthSigned(static_cast<std::int64_t>(myBuffers[i]->Size()) - static_cast<std::int64_t>(myBuffers[i - 1]->Size()), 0);
   if (SameSize)
     return LACING_FIXED;
   if (XiphLacingSize < EbmlLacingSize)
@@ -190,7 +190,7 @@ filepos_t KaxInternalBlock::UpdateSize(bool /* bSaveDefault */, bool /* bForceRe
         case LACING_EBML:
           SetSize_(GetSize() + myBuffers[0]->Size() + CodedSizeLength(myBuffers[0]->Size(), 0, IsFiniteSize()));
           for (i=1; i<myBuffers.size()-1; i++) {
-            SetSize_(GetSize() + myBuffers[i]->Size() + CodedSizeLengthSigned(static_cast<int64>(myBuffers[i]->Size()) - static_cast<int64>(myBuffers[i-1]->Size()), 0));
+            SetSize_(GetSize() + myBuffers[i]->Size() + CodedSizeLengthSigned(static_cast<std::int64_t>(myBuffers[i]->Size()) - static_cast<std::int64_t>(myBuffers[i-1]->Size()), 0));
           }
           break;
         case LACING_FIXED:
@@ -250,7 +250,7 @@ filepos_t KaxBlockVirtual::UpdateSize(bool /* bSaveDefault */, bool /* bForceRen
   }
 
   assert(ParentCluster);
-  const int16 ActualTimecode = ParentCluster->GetBlockLocalTimecode(Timecode);
+  const std::int16_t ActualTimecode = ParentCluster->GetBlockLocalTimecode(Timecode);
   const auto b16 = big_int16(ActualTimecode);
   b16.Fill(cursor);
   cursor += 2;
@@ -294,7 +294,7 @@ filepos_t KaxInternalBlock::RenderData(IOCallback & output, bool /* bForceRender
   }
 
   assert(ParentCluster);
-  const int16 ActualTimecode = ParentCluster->GetBlockLocalTimecode(Timecode);
+  const std::int16_t ActualTimecode = ParentCluster->GetBlockLocalTimecode(Timecode);
   const auto b16 = big_int16(ActualTimecode);
   b16.Fill(cursor);
   cursor += 2;
@@ -345,7 +345,7 @@ filepos_t KaxInternalBlock::RenderData(IOCallback & output, bool /* bForceRender
       // set the size of each member in the lace
       for (i=0; i<myBuffers.size()-1; i++) {
         tmpValue = 0xFF;
-        uint16 tmpSize = myBuffers[i]->Size();
+        std::uint16_t tmpSize = myBuffers[i]->Size();
         while (tmpSize >= 0xFF) {
           output.writeFully(&tmpValue, 1);
           SetSize_(GetSize() + 1);
@@ -361,7 +361,7 @@ filepos_t KaxInternalBlock::RenderData(IOCallback & output, bool /* bForceRender
       tmpValue = myBuffers.size()-1;
       output.writeFully(&tmpValue, 1);
       {
-        int64 _Size;
+        std::int64_t _Size;
         int _CodedSize;
         binary _FinalHead[8]; // 64 bits max coded size
 
@@ -376,7 +376,7 @@ filepos_t KaxInternalBlock::RenderData(IOCallback & output, bool /* bForceRender
 
         // set the size of each member in the lace
         for (i=1; i<myBuffers.size()-1; i++) {
-          _Size = static_cast<int64>(myBuffers[i]->Size()) - static_cast<int64>(myBuffers[i-1]->Size());
+          _Size = static_cast<std::int64_t>(myBuffers[i]->Size()) - static_cast<std::int64_t>(myBuffers[i-1]->Size());
           _CodedSize = CodedSizeLengthSigned(_Size, 0);
           CodedValueLengthSigned(_Size, _CodedSize, _FinalHead);
           output.writeFully(_FinalHead, _CodedSize);
@@ -404,10 +404,10 @@ filepos_t KaxInternalBlock::RenderData(IOCallback & output, bool /* bForceRender
   return GetSize();
 }
 
-uint64 KaxInternalBlock::ReadInternalHead(IOCallback & input)
+std::uint64_t KaxInternalBlock::ReadInternalHead(IOCallback & input)
 {
   binary Buffer[5], *cursor = Buffer;
-  uint64 Result = input.read(cursor, 4);
+  std::uint64_t Result = input.read(cursor, 4);
   if (Result != 4)
     return Result;
 
@@ -430,7 +430,7 @@ uint64 KaxInternalBlock::ReadInternalHead(IOCallback & input)
   big_int16 b16;
   b16.Eval(cursor);
   assert(ParentCluster);
-  Timecode = ParentCluster->GetBlockGlobalTimecode(static_cast<int16>(b16));
+  Timecode = ParentCluster->GetBlockGlobalTimecode(static_cast<std::int16_t>(b16));
   bLocalTimecodeUsed = false;
   cursor += 2;
 
@@ -457,7 +457,7 @@ filepos_t KaxInternalBlock::ReadData(IOCallback & input, ScopeMode ReadFully)
       binary *const BufferStart = EbmlBinary::GetBuffer();
 
       SafeReadIOCallback Mem(*this);
-      uint8 BlockHeadSize = 4;
+      std::uint8_t BlockHeadSize = 4;
 
       // update internal values
       TrackNumber = Mem.GetUInt8();
@@ -474,10 +474,10 @@ filepos_t KaxInternalBlock::ReadData(IOCallback & input, ScopeMode ReadFully)
         TrackNumber &= 0x7F;
       }
 
-      LocalTimecode = static_cast<int16>(Mem.GetUInt16BE());
+      LocalTimecode = static_cast<std::int16_t>(Mem.GetUInt16BE());
       bLocalTimecodeUsed = true;
 
-      const uint8 Flags = Mem.GetUInt8();
+      const std::uint8_t Flags = Mem.GetUInt8();
       if (EbmlId(*this) == EBML_ID(KaxSimpleBlock)) {
         bIsKeyframe = (Flags & 0x80) != 0;
         bIsDiscardable = (Flags & 0x01) != 0;
@@ -494,13 +494,13 @@ filepos_t KaxInternalBlock::ReadData(IOCallback & input, ScopeMode ReadFully)
         SizeList[0] = GetSize() - BlockHeadSize;
       } else {
         // read the number of frames in the lace
-        uint32 LastBufferSize = GetSize() - BlockHeadSize - 1; // 1 for number of frame
-        const uint8 FrameNum = Mem.GetUInt8(); // number of frames in the lace - 1
+        std::uint32_t LastBufferSize = GetSize() - BlockHeadSize - 1; // 1 for number of frame
+        const std::uint8_t FrameNum = Mem.GetUInt8(); // number of frames in the lace - 1
         // read the list of frame sizes
-        uint8 Index;
-        int32 FrameSize;
-        uint32 SizeRead;
-        uint64 SizeUnknown;
+        std::uint8_t Index;
+        std::int32_t FrameSize;
+        std::uint32_t SizeRead;
+        std::uint64_t SizeUnknown;
 
         SizeList.resize(FrameNum + 1);
 
@@ -509,7 +509,7 @@ filepos_t KaxInternalBlock::ReadData(IOCallback & input, ScopeMode ReadFully)
             for (Index=0; Index<FrameNum; Index++) {
               // get the size of the frame
               FrameSize = 0;
-              uint8 Value;
+              std::uint8_t Value;
               do {
                 Value = Mem.GetUInt8();
                 FrameSize += Value;
@@ -523,7 +523,7 @@ filepos_t KaxInternalBlock::ReadData(IOCallback & input, ScopeMode ReadFully)
           case LACING_EBML:
             SizeRead = LastBufferSize;
             FrameSize = ReadCodedSizeValue(BufferStart + Mem.GetPosition(), SizeRead, SizeUnknown);
-            if (!FrameSize || (static_cast<uint32>(FrameSize + SizeRead) > LastBufferSize))
+            if (!FrameSize || (static_cast<std::uint32_t>(FrameSize + SizeRead) > LastBufferSize))
               throw SafeReadIOCallback::EndOfStreamX(SizeRead);
             SizeList[0] = FrameSize;
             Mem.Skip(SizeRead);
@@ -533,7 +533,7 @@ filepos_t KaxInternalBlock::ReadData(IOCallback & input, ScopeMode ReadFully)
               // get the size of the frame
               SizeRead = LastBufferSize;
               FrameSize += ReadCodedSizeSignedValue(BufferStart + Mem.GetPosition(), SizeRead, SizeUnknown);
-              if (!FrameSize || (static_cast<uint32>(FrameSize + SizeRead) > LastBufferSize))
+              if (!FrameSize || (static_cast<std::uint32_t>(FrameSize + SizeRead) > LastBufferSize))
                 throw SafeReadIOCallback::EndOfStreamX(SizeRead);
               SizeList[Index] = FrameSize;
               Mem.Skip(SizeRead);
@@ -582,7 +582,7 @@ filepos_t KaxInternalBlock::ReadData(IOCallback & input, ScopeMode ReadFully)
         throw SafeReadIOCallback::EndOfStreamX(0);
       binary *cursor = _TempHead;
       binary *_tmpBuf;
-      uint8 BlockHeadSize = 4;
+      std::uint8_t BlockHeadSize = 4;
 
       // update internal values
       TrackNumber = *cursor++;
@@ -601,7 +601,7 @@ filepos_t KaxInternalBlock::ReadData(IOCallback & input, ScopeMode ReadFully)
 
       big_int16 b16;
       b16.Eval(cursor);
-      LocalTimecode = static_cast<int16>(b16);
+      LocalTimecode = static_cast<std::int16_t>(b16);
       bLocalTimecodeUsed = true;
       cursor += 2;
 
@@ -622,14 +622,14 @@ filepos_t KaxInternalBlock::ReadData(IOCallback & input, ScopeMode ReadFully)
       // put all Frames in the list
       if (mLacing != LACING_NONE) {
         // read the number of frames in the lace
-        const uint32 TotalLacedSize = GetSize() - BlockHeadSize - 1; // 1 for number of frame
-        uint32 LastBufferSize = TotalLacedSize;
-        const uint8 FrameNum = _TempHead[0]; // number of frames in the lace - 1
+        const std::uint32_t TotalLacedSize = GetSize() - BlockHeadSize - 1; // 1 for number of frame
+        std::uint32_t LastBufferSize = TotalLacedSize;
+        const std::uint8_t FrameNum = _TempHead[0]; // number of frames in the lace - 1
         // read the list of frame sizes
-        uint8 Index;
-        uint32 FrameSize;
-        uint32 SizeRead;
-        uint64 SizeUnknown;
+        std::uint8_t Index;
+        std::uint32_t FrameSize;
+        std::uint32_t SizeRead;
+        std::uint64_t SizeUnknown;
 
         SizeList.resize(FrameNum + 1);
 
@@ -640,7 +640,7 @@ filepos_t KaxInternalBlock::ReadData(IOCallback & input, ScopeMode ReadFully)
               FrameSize = 0;
               do {
                 Result += input.read(_TempHead, 1);
-                FrameSize += static_cast<uint8>(_TempHead[0]);
+                FrameSize += static_cast<std::uint8_t>(_TempHead[0]);
                 if (FrameSize > TotalLacedSize)
                   throw SafeReadIOCallback::EndOfStreamX(0);
                 LastBufferSize--;
@@ -718,7 +718,7 @@ filepos_t KaxInternalBlock::ReadData(IOCallback & input, ScopeMode ReadFully)
   return Result;
 }
 
-bool KaxBlockGroup::AddFrame(const KaxTrackEntry & track, uint64 timecode, DataBuffer & buffer, LacingType lacing)
+bool KaxBlockGroup::AddFrame(const KaxTrackEntry & track, std::uint64_t timecode, DataBuffer & buffer, LacingType lacing)
 {
   auto & theBlock = GetChild<KaxBlock>(*this);
   assert(ParentCluster);
@@ -727,7 +727,7 @@ bool KaxBlockGroup::AddFrame(const KaxTrackEntry & track, uint64 timecode, DataB
   return theBlock.AddFrame(track, timecode, buffer, lacing);
 }
 
-bool KaxBlockGroup::AddFrame(const KaxTrackEntry & track, uint64 timecode, DataBuffer & buffer, const KaxBlockGroup & PastBlock, LacingType lacing)
+bool KaxBlockGroup::AddFrame(const KaxTrackEntry & track, std::uint64_t timecode, DataBuffer & buffer, const KaxBlockGroup & PastBlock, LacingType lacing)
 {
   //  assert(past_timecode < 0);
 
@@ -744,7 +744,7 @@ bool KaxBlockGroup::AddFrame(const KaxTrackEntry & track, uint64 timecode, DataB
   return bRes;
 }
 
-bool KaxBlockGroup::AddFrame(const KaxTrackEntry & track, uint64 timecode, DataBuffer & buffer, const KaxBlockGroup & PastBlock, const KaxBlockGroup & ForwBlock, LacingType lacing)
+bool KaxBlockGroup::AddFrame(const KaxTrackEntry & track, std::uint64_t timecode, DataBuffer & buffer, const KaxBlockGroup & PastBlock, const KaxBlockGroup & ForwBlock, LacingType lacing)
 {
   //  assert(past_timecode < 0);
 
@@ -767,7 +767,7 @@ bool KaxBlockGroup::AddFrame(const KaxTrackEntry & track, uint64 timecode, DataB
   return bRes;
 }
 
-bool KaxBlockGroup::AddFrame(const KaxTrackEntry & track, uint64 timecode, DataBuffer & buffer, const KaxBlockBlob * PastBlock, const KaxBlockBlob * ForwBlock, LacingType lacing)
+bool KaxBlockGroup::AddFrame(const KaxTrackEntry & track, std::uint64_t timecode, DataBuffer & buffer, const KaxBlockBlob * PastBlock, const KaxBlockBlob * ForwBlock, LacingType lacing)
 {
   auto & theBlock = GetChild<KaxBlock>(*this);
   assert(ParentCluster);
@@ -793,26 +793,26 @@ bool KaxBlockGroup::AddFrame(const KaxTrackEntry & track, uint64 timecode, DataB
 /*!
   \todo we may cache the reference to the timecode block
 */
-uint64 KaxBlockGroup::GlobalTimecode() const
+std::uint64_t KaxBlockGroup::GlobalTimecode() const
 {
   assert(ParentCluster); // impossible otherwise
   auto MyBlock = static_cast<KaxBlock *>(this->FindElt(EBML_INFO(KaxBlock)));
   return MyBlock->GlobalTimecode();
 }
 
-uint16 KaxBlockGroup::TrackNumber() const
+std::uint16_t KaxBlockGroup::TrackNumber() const
 {
   auto MyBlock = static_cast<KaxBlock *>(this->FindElt(EBML_INFO(KaxBlock)));
   return MyBlock->TrackNum();
 }
 
-uint64 KaxBlockGroup::ClusterPosition() const
+std::uint64_t KaxBlockGroup::ClusterPosition() const
 {
   assert(ParentCluster); // impossible otherwise
   return ParentCluster->GetPosition();
 }
 
-uint64 KaxInternalBlock::ClusterPosition() const
+std::uint64_t KaxInternalBlock::ClusterPosition() const
 {
   assert(ParentCluster); // impossible otherwise
   return ParentCluster->GetPosition();
@@ -862,15 +862,15 @@ void KaxInternalBlock::ReleaseFrames()
   }
 }
 
-void KaxBlockGroup::SetBlockDuration(uint64 TimeLength)
+void KaxBlockGroup::SetBlockDuration(std::uint64_t TimeLength)
 {
   assert(ParentTrack);
-  const int64 scale = ParentTrack->GlobalTimecodeScale();
+  const std::int64_t scale = ParentTrack->GlobalTimecodeScale();
   const auto myDuration = static_cast<KaxBlockDuration *>(FindFirstElt(EBML_INFO(KaxBlockDuration), true));
-  *(static_cast<EbmlUInteger *>(myDuration)) = TimeLength / static_cast<uint64>(scale);
+  *(static_cast<EbmlUInteger *>(myDuration)) = TimeLength / static_cast<std::uint64_t>(scale);
 }
 
-bool KaxBlockGroup::GetBlockDuration(uint64 &TheTimecode) const
+bool KaxBlockGroup::GetBlockDuration(std::uint64_t &TheTimecode) const
 {
   const auto myDuration = static_cast<KaxBlockDuration *>(FindElt(EBML_INFO(KaxBlockDuration)));
   if (!myDuration) {
@@ -878,7 +878,7 @@ bool KaxBlockGroup::GetBlockDuration(uint64 &TheTimecode) const
   }
 
   assert(ParentTrack);
-  TheTimecode = static_cast<uint64>(*myDuration) * ParentTrack->GlobalTimecodeScale();
+  TheTimecode = static_cast<std::uint64_t>(*myDuration) * ParentTrack->GlobalTimecodeScale();
   return true;
 }
 
@@ -906,9 +906,9 @@ void KaxInternalBlock::SetParent(KaxCluster & aParentCluster)
   }
 }
 
-int64 KaxInternalBlock::GetDataPosition(size_t FrameNumber)
+std::int64_t KaxInternalBlock::GetDataPosition(size_t FrameNumber)
 {
-  int64 _Result = -1;
+  std::int64_t _Result = -1;
 
   if (ValueIsSet() && FrameNumber < SizeList.size()) {
     _Result = FirstFrameLocation;
@@ -922,9 +922,9 @@ int64 KaxInternalBlock::GetDataPosition(size_t FrameNumber)
   return _Result;
 }
 
-int64 KaxInternalBlock::GetFrameSize(size_t FrameNumber)
+std::int64_t KaxInternalBlock::GetFrameSize(size_t FrameNumber)
 {
-  int64 _Result = -1;
+  std::int64_t _Result = -1;
 
   if (/*bValueIsSet &&*/ FrameNumber < SizeList.size()) {
     _Result = SizeList[FrameNumber];
@@ -970,7 +970,7 @@ KaxBlockBlob::operator KaxSimpleBlock &()
   return *Block.simpleblock;
 }
 
-bool KaxBlockBlob::AddFrameAuto(const KaxTrackEntry & track, uint64 timecode, DataBuffer & buffer, LacingType lacing, const KaxBlockBlob * PastBlock, const KaxBlockBlob * ForwBlock)
+bool KaxBlockBlob::AddFrameAuto(const KaxTrackEntry & track, std::uint64_t timecode, DataBuffer & buffer, LacingType lacing, const KaxBlockBlob * PastBlock, const KaxBlockBlob * ForwBlock)
 {
   bool bResult = false;
   if ((SimpleBlockMode == BLOCK_BLOB_ALWAYS_SIMPLE) || (SimpleBlockMode == BLOCK_BLOB_SIMPLE_AUTO && !PastBlock && !ForwBlock)) {
@@ -1005,7 +1005,7 @@ void KaxBlockBlob::SetParent(KaxCluster & aParentCluster)
   ParentCluster = &aParentCluster;
 }
 
-void KaxBlockBlob::SetBlockDuration(uint64 TimeLength)
+void KaxBlockBlob::SetBlockDuration(std::uint64_t TimeLength)
 {
   if (ReplaceSimpleByGroup())
     Block.group->SetBlockDuration(TimeLength);

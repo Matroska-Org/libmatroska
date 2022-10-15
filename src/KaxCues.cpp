@@ -109,12 +109,12 @@ void KaxCues::PositionSet(const KaxBlockGroup & BlockRef)
 /*!
   \warning Assume that the list has been sorted (Sort())
 */
-const KaxCuePoint * KaxCues::GetTimecodePoint(uint64 aTimecode) const
+const KaxCuePoint * KaxCues::GetTimecodePoint(std::uint64_t aTimecode) const
 {
-  const uint64 TimecodeToLocate = aTimecode / GlobalTimecodeScale();
+  const std::uint64_t TimecodeToLocate = aTimecode / GlobalTimecodeScale();
   const KaxCuePoint * aPointPrev = nullptr;
-  uint64 aPrevTime = 0;
-  uint64 aNextTime = EBML_PRETTYLONGINT(0xFFFFFFFFFFFF);
+  std::uint64_t aPrevTime = 0;
+  std::uint64_t aNextTime = EBML_PRETTYLONGINT(0xFFFFFFFFFFFF);
 
   for (const auto& e : *this) {
     if (EbmlId(*e) == EBML_ID(KaxCuePoint)) {
@@ -122,7 +122,7 @@ const KaxCuePoint * KaxCues::GetTimecodePoint(uint64 aTimecode) const
       // check the tile
       auto aTime = static_cast<const KaxCueTime *>(tmp->FindFirstElt(EBML_INFO(KaxCueTime)));
       if (aTime) {
-        auto _Time = static_cast<uint64>(*aTime);
+        auto _Time = static_cast<std::uint64_t>(*aTime);
         if (_Time > aPrevTime && _Time < TimecodeToLocate) {
           aPrevTime = _Time;
           aPointPrev = tmp;
@@ -137,7 +137,7 @@ const KaxCuePoint * KaxCues::GetTimecodePoint(uint64 aTimecode) const
   return aPointPrev;
 }
 
-uint64 KaxCues::GetTimecodePosition(uint64 aTimecode) const
+std::uint64_t KaxCues::GetTimecodePosition(std::uint64_t aTimecode) const
 {
   const auto aPoint = GetTimecodePoint(aTimecode);
   if (!aPoint)

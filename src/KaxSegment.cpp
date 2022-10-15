@@ -62,17 +62,17 @@ KaxSegment::KaxSegment(const KaxSegment & ElementToClone)
 }
 
 
-uint64 KaxSegment::GetRelativePosition(uint64 aGlobalPosition) const
+std::uint64_t KaxSegment::GetRelativePosition(std::uint64_t aGlobalPosition) const
 {
   return aGlobalPosition - GetElementPosition() - HeadSize();
 }
 
-uint64 KaxSegment::GetRelativePosition(const EbmlElement & Elt) const
+std::uint64_t KaxSegment::GetRelativePosition(const EbmlElement & Elt) const
 {
   return GetRelativePosition(Elt.GetElementPosition());
 }
 
-uint64 KaxSegment::GetGlobalPosition(uint64 aRelativePosition) const
+std::uint64_t KaxSegment::GetGlobalPosition(std::uint64_t aRelativePosition) const
 {
   return aRelativePosition + GetElementPosition() + HeadSize();
 }

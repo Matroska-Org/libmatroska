@@ -68,14 +68,14 @@ DECLARE_MKX_MASTER(KaxCues)
       return EbmlMaster::Render(output, bSaveDefault);
     }
 
-    uint64 GetTimecodePosition(uint64 aTimecode) const;
-    const KaxCuePoint * GetTimecodePoint(uint64 aTimecode) const;
+    std::uint64_t GetTimecodePosition(std::uint64_t aTimecode) const;
+    const KaxCuePoint * GetTimecodePoint(std::uint64_t aTimecode) const;
 
-    void SetGlobalTimecodeScale(uint64 aGlobalTimecodeScale) {
+    void SetGlobalTimecodeScale(std::uint64_t aGlobalTimecodeScale) {
       mGlobalTimecodeScale = aGlobalTimecodeScale;
       bGlobalTimecodeScaleIsSet = true;
     }
-    uint64 GlobalTimecodeScale() const {
+    std::uint64_t GlobalTimecodeScale() const {
       assert(bGlobalTimecodeScaleIsSet);
       return mGlobalTimecodeScale;
     }
@@ -83,7 +83,7 @@ DECLARE_MKX_MASTER(KaxCues)
   protected:
     std::vector<const KaxBlockBlob *> myTempReferences;
     bool   bGlobalTimecodeScaleIsSet;
-    uint64 mGlobalTimecodeScale;
+    std::uint64_t mGlobalTimecodeScale;
 };
 
 } // namespace libmatroska

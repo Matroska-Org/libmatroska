@@ -55,20 +55,20 @@ DECLARE_MKX_MASTER_CONS(KaxCluster)
 
       \param timecode the timecode is expressed in nanoseconds, relative to the beggining of the Segment
     */
-    bool AddFrame(const KaxTrackEntry & track, uint64 timecode, DataBuffer & buffer, KaxBlockGroup * & MyNewBlock, LacingType lacing = LACING_AUTO);
+    bool AddFrame(const KaxTrackEntry & track, std::uint64_t timecode, DataBuffer & buffer, KaxBlockGroup * & MyNewBlock, LacingType lacing = LACING_AUTO);
     /*!
       \brief Addition of a frame with a backward reference (P frame)
       \param timecode the timecode is expressed in nanoseconds, relative to the beggining of the Segment
 
     */
-    bool AddFrame(const KaxTrackEntry & track, uint64 timecode, DataBuffer & buffer, KaxBlockGroup * & MyNewBlock, const KaxBlockGroup & PastBlock, LacingType lacing = LACING_AUTO);
+    bool AddFrame(const KaxTrackEntry & track, std::uint64_t timecode, DataBuffer & buffer, KaxBlockGroup * & MyNewBlock, const KaxBlockGroup & PastBlock, LacingType lacing = LACING_AUTO);
 
     /*!
       \brief Addition of a frame with a backward+forward reference (B frame)
       \param timecode the timecode is expressed in nanoseconds, relative to the beggining of the Segment
 
     */
-    bool AddFrame(const KaxTrackEntry & track, uint64 timecode, DataBuffer & buffer, KaxBlockGroup * & MyNewBlock, const KaxBlockGroup & PastBlock, const KaxBlockGroup & ForwBlock, LacingType lacing = LACING_AUTO);
+    bool AddFrame(const KaxTrackEntry & track, std::uint64_t timecode, DataBuffer & buffer, KaxBlockGroup * & MyNewBlock, const KaxBlockGroup & PastBlock, const KaxBlockGroup & ForwBlock, LacingType lacing = LACING_AUTO);
 
     /*!
       \brief Render the data to the stream and retrieve the position of BlockGroups for later cue entries
@@ -78,7 +78,7 @@ DECLARE_MKX_MASTER_CONS(KaxCluster)
     /*!
       \return the global timecode of this Cluster
     */
-    uint64 GlobalTimecode() const;
+    std::uint64_t GlobalTimecode() const;
 
     KaxBlockGroup & GetNewBlock();
 
@@ -91,11 +91,11 @@ DECLARE_MKX_MASTER_CONS(KaxCluster)
     /*!
       \brief return the position offset compared to the beggining of the Segment
     */
-    uint64 GetPosition() const;
+    std::uint64_t GetPosition() const;
 
     void SetParent(const KaxSegment & aParentSegment) {ParentSegment = &aParentSegment;}
 
-    void SetPreviousTimecode(uint64 aPreviousTimecode, int64 aTimecodeScale) {
+    void SetPreviousTimecode(std::uint64_t aPreviousTimecode, std::int64_t aTimecodeScale) {
       bPreviousTimecodeIsSet = true;
       PreviousTimecode = aPreviousTimecode;
       SetGlobalTimecodeScale(aTimecodeScale);
@@ -105,21 +105,21 @@ DECLARE_MKX_MASTER_CONS(KaxCluster)
       \note dirty hack to get the mandatory data back after reading
       \todo there should be a better way to get mandatory data
     */
-    void InitTimecode(uint64 aTimecode, int64 aTimecodeScale) {
+    void InitTimecode(std::uint64_t aTimecode, std::int64_t aTimecodeScale) {
       SetGlobalTimecodeScale(aTimecodeScale);
       MinTimecode = MaxTimecode = PreviousTimecode = aTimecode * TimecodeScale;
       bFirstFrameInside = bPreviousTimecodeIsSet = true;
     }
 
-    int16 GetBlockLocalTimecode(uint64 GlobalTimecode) const;
+    std::int16_t GetBlockLocalTimecode(std::uint64_t GlobalTimecode) const;
 
-    uint64 GetBlockGlobalTimecode(int16 LocalTimecode);
+    std::uint64_t GetBlockGlobalTimecode(std::int16_t LocalTimecode);
 
-    void SetGlobalTimecodeScale(uint64 aGlobalTimecodeScale) {
+    void SetGlobalTimecodeScale(std::uint64_t aGlobalTimecodeScale) {
       TimecodeScale = aGlobalTimecodeScale;
       bTimecodeScaleIsSet = true;
     }
-    uint64 GlobalTimecodeScale() const {
+    std::uint64_t GlobalTimecodeScale() const {
       assert(bTimecodeScaleIsSet);
       return TimecodeScale;
     }
@@ -140,8 +140,8 @@ DECLARE_MKX_MASTER_CONS(KaxCluster)
     KaxBlockGroup    * currentNewBlock{nullptr};
     const KaxSegment * ParentSegment{nullptr};
 
-    uint64 MinTimecode, MaxTimecode, PreviousTimecode;
-    int64  TimecodeScale;
+    std::uint64_t MinTimecode, MaxTimecode, PreviousTimecode;
+    std::int64_t  TimecodeScale;
 
     bool   bFirstFrameInside{false}; // used to speed research
     bool   bPreviousTimecodeIsSet{false};
@@ -151,7 +151,7 @@ DECLARE_MKX_MASTER_CONS(KaxCluster)
     /*!
       \note method used internally
     */
-    bool AddFrameInternal(const KaxTrackEntry & track, uint64 timecode, DataBuffer & buffer, KaxBlockGroup * & MyNewBlock, const KaxBlockGroup * PastBlock, const KaxBlockGroup * ForwBlock, LacingType lacing);
+    bool AddFrameInternal(const KaxTrackEntry & track, std::uint64_t timecode, DataBuffer & buffer, KaxBlockGroup * & MyNewBlock, const KaxBlockGroup * PastBlock, const KaxBlockGroup * ForwBlock, LacingType lacing);
 };
 
 } // namespace libmatroska

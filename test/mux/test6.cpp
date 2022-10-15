@@ -60,7 +60,7 @@ unsigned int BIN_FILE_SIZE = 15000;
 unsigned int TXT_FILE_SIZE = 3000;
 const unsigned int BIN_FRAME_SIZE = 1500;
 const unsigned int TXT_FRAME_SIZE = 200;
-const uint64  TIMECODE_SCALE = 1000000;
+const std::uint64_t  TIMECODE_SCALE = 1000000;
 
 const bool bWriteDefaultValues = false;
 
@@ -93,7 +93,7 @@ int main(int argc, char **argv)
     KaxSegment FileSegment;
 
     // size is unknown and will always be, we can render it right away
-    uint64 SegmentSize = FileSegment.WriteHead(out_file, 5, bWriteDefaultValues);
+    std::uint64_t SegmentSize = FileSegment.WriteHead(out_file, 5, bWriteDefaultValues);
 
     KaxTracks & MyTracks = GetChild<KaxTracks>(FileSegment);
 
@@ -200,7 +200,7 @@ int main(int argc, char **argv)
     KaxVideoPixelWidth & MyTrack2PWidth = GetChild<KaxVideoPixelWidth>(MyTrack2Video);
     *(static_cast<EbmlUInteger *>(&MyTrack2PWidth)) = 320;
 
-    uint64 TrackSize = MyTracks.Render(out_file, bWriteDefaultValues);
+    std::uint64_t TrackSize = MyTracks.Render(out_file, bWriteDefaultValues);
 
     KaxTracks * pMyTracks2 = static_cast<KaxTracks *>(MyTracks.Clone());
 //    KaxTracks * pMyTracks2 = new KaxTracks(MyTracks);
@@ -278,7 +278,7 @@ int main(int argc, char **argv)
     // - write the cluster(s)
     // - seek back in the file and write the cue entry over the empty element
 
-    uint64 ClusterSize = Clust1.Render(out_file, AllCues, bWriteDefaultValues);
+    std::uint64_t ClusterSize = Clust1.Render(out_file, AllCues, bWriteDefaultValues);
     Clust1.ReleaseFrames();
     MetaSeek.IndexThis(Clust1, FileSegment);
 

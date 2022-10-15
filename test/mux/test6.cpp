@@ -376,9 +376,6 @@ int main(int argc, char **argv)
     delete[] buf_txt;
 #endif // 0
 
-#ifdef OLD
-    MuxedFile.Close(1000); // 1000 ms
-#endif // OLD
     out_file.close();
 
         delete Blob1;

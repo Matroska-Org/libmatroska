@@ -140,16 +140,6 @@ void KaxCueReference::AddReference(const KaxBlockBlob & BlockReference, std::uin
 
   auto & TheClustPos = GetChild<KaxCueRefCluster>(*this);
   *static_cast<EbmlUInteger*>(&TheClustPos) = theBlock.ClusterPosition();
-
-#ifdef OLD
-  // handle recursive reference use
-  if (BlockReference.ReferenceCount() != 0) {
-    unsigned int i;
-    for (i=0; i<BlockReference.ReferenceCount(); i++) {
-      AddReference(BlockReference.Reference(i).RefBlock());
-    }
-  }
-#endif /* OLD */
 }
 
 bool KaxCuePoint::IsSmallerThan(const EbmlElement * Cmp) const

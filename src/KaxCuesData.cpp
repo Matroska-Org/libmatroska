@@ -78,11 +78,11 @@ void KaxCuePoint::PositionSet(const KaxBlockGroup & BlockReference, std::uint64_
 
 void KaxCuePoint::PositionSet(const KaxBlockBlob & BlobReference, std::uint64_t GlobalTimecodeScale)
 {
-  const auto &BlockReference = static_cast<const KaxInternalBlock&>(BlobReference);
+  auto &BlockReference = static_cast<KaxInternalBlock&>(BlobReference);
   const KaxBlockGroup *BlockGroupPointer = nullptr;
 
   if (!BlobReference.IsSimpleBlock()) {
-    const auto &BlockGroup = static_cast<const KaxBlockGroup&>(BlobReference);
+    auto &BlockGroup = static_cast<KaxBlockGroup&>(BlobReference);
     BlockGroupPointer = &BlockGroup;
   }
   PositionSet(BlockReference, BlockGroupPointer, GlobalTimecodeScale);
@@ -133,8 +133,8 @@ void KaxCuePoint::PositionSet(const KaxInternalBlock & BlockReference, const Kax
 */
 void KaxCueReference::AddReference(const KaxBlockBlob & BlockReference, std::uint64_t GlobalTimecodeScale)
 {
-  const auto& theBlock = static_cast<const KaxInternalBlock&>(BlockReference);
-  auto & NewTime = GetChild<KaxCueRefTime>(*this);
+  auto& theBlock = static_cast<KaxInternalBlock&>(BlockReference);
+  auto& NewTime = GetChild<KaxCueRefTime>(*this);
   *static_cast<EbmlUInteger*>(&NewTime) = theBlock.GlobalTimecode() / GlobalTimecodeScale;
 
   auto & TheClustPos = GetChild<KaxCueRefCluster>(*this);

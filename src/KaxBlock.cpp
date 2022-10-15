@@ -932,7 +932,7 @@ std::int64_t KaxInternalBlock::GetFrameSize(std::size_t FrameNumber)
   return _Result;
 }
 
-KaxBlockBlob::operator KaxBlockGroup &()
+KaxBlockBlob::operator KaxBlockGroup &() const
 {
   assert(!bUseSimpleBlock);
   assert(Block.group);
@@ -946,7 +946,7 @@ KaxBlockBlob::operator const KaxBlockGroup &() const
   return *Block.group;
 }
 
-KaxBlockBlob::operator KaxInternalBlock &()
+KaxBlockBlob::operator KaxInternalBlock &() const
 {
   assert(Block.group);
   if (bUseSimpleBlock)
@@ -962,7 +962,7 @@ KaxBlockBlob::operator const KaxInternalBlock &() const
   return *Block.group;
 }
 
-KaxBlockBlob::operator KaxSimpleBlock &()
+KaxBlockBlob::operator KaxSimpleBlock &() const
 {
   assert(bUseSimpleBlock);
   assert(Block.simpleblock);
@@ -985,8 +985,8 @@ bool KaxBlockBlob::AddFrameAuto(const KaxTrackEntry & track, std::uint64_t timec
       Block.simpleblock->SetDiscardable(false);
     } else {
       Block.simpleblock->SetKeyframe(false);
-      if ((!ForwBlock || static_cast<const KaxInternalBlock &>(*ForwBlock).GlobalTimecode() <= timecode) &&
-          (!PastBlock || static_cast<const KaxInternalBlock &>(*PastBlock).GlobalTimecode() <= timecode))
+      if ((!ForwBlock || static_cast<KaxInternalBlock &>(*ForwBlock).GlobalTimecode() <= timecode) &&
+          (!PastBlock || static_cast<KaxInternalBlock &>(*PastBlock).GlobalTimecode() <= timecode))
         Block.simpleblock->SetDiscardable(false);
       else
         Block.simpleblock->SetDiscardable(true);

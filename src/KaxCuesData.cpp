@@ -197,7 +197,7 @@ bool KaxCuePoint::Timecode(std::uint64_t & aTimecode, std::uint64_t GlobalTimeco
 const KaxCueTrackPositions * KaxCuePoint::GetSeekPosition() const
 {
   const KaxCueTrackPositions * result = nullptr;
-  std::uint64_t aPosition = EBML_PRETTYLONGINT(0xFFFFFFFFFFFFFFF);
+  std::uint64_t aPosition = 0xFFFFFFFFFFFFFFFLL;
   // find the position of the "earlier" Cluster
   auto aPoss = static_cast<const KaxCueTrackPositions *>(FindFirstElt(EBML_INFO(KaxCueTrackPositions)));
   while (aPoss) {

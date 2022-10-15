@@ -34,8 +34,8 @@
 #define LIBMATROSKA_CUES_DATA_H
 
 #include "matroska/KaxTypes.h"
-#include "ebml/EbmlUInteger.h"
-#include "ebml/EbmlMaster.h"
+#include <ebml/EbmlUInteger.h>
+#include <ebml/EbmlMaster.h>
 #include "matroska/KaxDefines.h"
 
 using namespace libebml;

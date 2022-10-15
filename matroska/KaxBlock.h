@@ -328,10 +328,8 @@ public:
   }
 
   operator KaxBlockGroup &() const;
-  operator const KaxBlockGroup &() const;
   operator KaxSimpleBlock &() const;
   operator KaxInternalBlock &() const;
-  operator const KaxInternalBlock &() const;
 
   void SetBlockGroup( KaxBlockGroup &BlockRef );
 

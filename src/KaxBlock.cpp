@@ -939,22 +939,7 @@ KaxBlockBlob::operator KaxBlockGroup &() const
   return *Block.group;
 }
 
-KaxBlockBlob::operator const KaxBlockGroup &() const
-{
-  assert(!bUseSimpleBlock);
-  assert(Block.group);
-  return *Block.group;
-}
-
 KaxBlockBlob::operator KaxInternalBlock &() const
-{
-  assert(Block.group);
-  if (bUseSimpleBlock)
-    return *Block.simpleblock;
-  return *Block.group;
-}
-
-KaxBlockBlob::operator const KaxInternalBlock &() const
 {
   assert(Block.group);
   if (bUseSimpleBlock)

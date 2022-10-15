@@ -35,7 +35,7 @@
 #define LIBMATROSKA_TYPES_H
 
 #include "matroska/KaxConfig.h"
-#include "ebml/EbmlTypes.h"
+#include <ebml/EbmlTypes.h>
 #include "matroska/c/libmatroska_t.h"
 
 namespace libmatroska {

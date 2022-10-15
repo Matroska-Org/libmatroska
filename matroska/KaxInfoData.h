@@ -38,12 +38,12 @@
 #define LIBMATROSKA_INFO_DATA_H
 
 #include "matroska/KaxTypes.h"
-#include "ebml/EbmlUInteger.h"
-#include "ebml/EbmlFloat.h"
-#include "ebml/EbmlUnicodeString.h"
-#include "ebml/EbmlBinary.h"
-#include "ebml/EbmlDate.h"
-#include "ebml/EbmlMaster.h"
+#include <ebml/EbmlUInteger.h>
+#include <ebml/EbmlFloat.h>
+#include <ebml/EbmlUnicodeString.h>
+#include <ebml/EbmlBinary.h>
+#include <ebml/EbmlDate.h>
+#include <ebml/EbmlMaster.h>
 #include "matroska/KaxDefines.h"
 #include "matroska/KaxSemantic.h"
 

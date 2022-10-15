@@ -38,7 +38,7 @@
 #include <vector>
 
 #include "matroska/KaxTypes.h"
-#include "ebml/EbmlMaster.h"
+#include <ebml/EbmlMaster.h>
 #include "matroska/KaxBlock.h"
 
 using namespace libebml;

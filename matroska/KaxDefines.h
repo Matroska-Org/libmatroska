@@ -33,8 +33,8 @@
 #ifndef LIBMATROSKA_DEFINES_H
 #define LIBMATROSKA_DEFINES_H
 
-#include "ebml/EbmlVersion.h"
-#include "ebml/EbmlElement.h"
+#include <ebml/EbmlVersion.h>
+#include <ebml/EbmlElement.h>
 
 #if defined(HAVE_EBML2) || defined(HAS_EBML2)
 #define DEFINE_MKX_CONTEXT(a)                DEFINE_xxx_CONTEXT(a,EBML_SemanticGlobal)

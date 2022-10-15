@@ -36,7 +36,6 @@
 
 #include "matroska/KaxConfig.h"
 #include <ebml/EbmlTypes.h>
-#include "matroska/c/libmatroska_t.h"
 
 /*!
     \enum track_type

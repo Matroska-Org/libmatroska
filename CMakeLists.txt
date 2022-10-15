@@ -59,11 +59,7 @@ set(libmatroska_PUBLIC_HEADERS
   matroska/KaxTypes.h
   matroska/KaxVersion.h)
 
-set (libmatroska_C_PUBLIC_HEADERS
-  matroska/c/libmatroska.h
-  matroska/c/libmatroska_t.h)
-
-add_library(matroska ${libmatroska_SOURCES} ${libmatroska_PUBLIC_HEADERS} ${libmatroska_C_PUBLIC_HEADERS})
+add_library(matroska ${libmatroska_SOURCES} ${libmatroska_PUBLIC_HEADERS})
 target_link_libraries(matroska PUBLIC EBML::ebml)
 set_target_properties(matroska PROPERTIES
   VERSION 8.0.0
@@ -99,7 +95,6 @@ install(TARGETS matroska
   LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR})
 
 install(FILES ${libmatroska_PUBLIC_HEADERS} DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/matroska)
-install(FILES ${libmatroska_C_PUBLIC_HEADERS} DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/matroska/c)
 install(FILES ${CMAKE_CURRENT_BINARY_DIR}/matroska_export.h DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/matroska)
 
 if(NOT DISABLE_PKGCONFIG)

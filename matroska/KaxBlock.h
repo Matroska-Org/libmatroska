@@ -251,14 +251,14 @@ class MATROSKA_DLL_API KaxInternalBlock : public EbmlBinary {
       \return the position in the stream for a given frame
       \note return -1 if the position doesn't exist
     */
-    std::int64_t GetDataPosition(size_t FrameNumber = 0);
+    std::int64_t GetDataPosition(std::size_t FrameNumber = 0);
 
     /*!
       \param FrameNumber 0 for the first frame
       \return the size of a given frame
       \note return -1 if the position doesn't exist
     */
-    std::int64_t GetFrameSize(size_t FrameNumber = 0);
+    std::int64_t GetFrameSize(std::size_t FrameNumber = 0);
 
     bool IsInvisible() const { return mInvisible; }
 

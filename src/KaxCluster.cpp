@@ -140,7 +140,7 @@ bool KaxCluster::AddFrame(const KaxTrackEntry & track, std::uint64_t timecode, D
 filepos_t KaxCluster::Render(IOCallback & output, KaxCues & CueToUpdate, bool bSaveDefault)
 {
   filepos_t Result = 0;
-  size_t Index;
+  std::size_t Index;
 
   // update the Timecode of the Cluster before writing
   auto Timecode = static_cast<KaxClusterTimecode *>(this->FindElt(EBML_INFO(KaxClusterTimecode)));

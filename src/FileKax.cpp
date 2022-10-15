@@ -167,7 +167,7 @@ Track * FileMatroska::CreateTrack(const track_type aType)
 }
 
 /*Track *FileMatroska::findTrack(Track * aTrack) const {
-  for (size_t i=0; i<myTracks.size(); i++) {
+  for (std::size_t i=0; i<myTracks.size(); i++) {
   if (myTracks[i] == aTrack)
   return myTracks[i];
   }

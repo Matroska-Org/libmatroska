@@ -562,10 +562,10 @@ filepos_t KaxInternalBlock::ReadData(IOCallback & input, ScopeMode ReadFully)
       }
 
       const auto BufferEnd = BufferStart + GetSize();
-      const size_t NumFrames  = myBuffers.size();
+      const std::size_t NumFrames  = myBuffers.size();
 
       // Sanity checks for frame pointers and boundaries.
-      for (size_t Index = 0; Index < NumFrames; ++Index) {
+      for (std::size_t Index = 0; Index < NumFrames; ++Index) {
         const auto FrameStart  = myBuffers[Index]->Buffer();
         const auto FrameEnd    = FrameStart + myBuffers[Index]->Size();
         const auto ExpectedEnd = (Index + 1) < NumFrames ? myBuffers[Index + 1]->Buffer() : BufferEnd;
@@ -906,14 +906,14 @@ void KaxInternalBlock::SetParent(KaxCluster & aParentCluster)
   }
 }
 
-std::int64_t KaxInternalBlock::GetDataPosition(size_t FrameNumber)
+std::int64_t KaxInternalBlock::GetDataPosition(std::size_t FrameNumber)
 {
   std::int64_t _Result = -1;
 
   if (ValueIsSet() && FrameNumber < SizeList.size()) {
     _Result = FirstFrameLocation;
 
-    size_t _Idx = 0;
+    std::size_t _Idx = 0;
     while(FrameNumber--) {
       _Result += SizeList[_Idx++];
     }
@@ -922,7 +922,7 @@ std::int64_t KaxInternalBlock::GetDataPosition(size_t FrameNumber)
   return _Result;
 }
 
-std::int64_t KaxInternalBlock::GetFrameSize(size_t FrameNumber)
+std::int64_t KaxInternalBlock::GetFrameSize(std::size_t FrameNumber)
 {
   std::int64_t _Result = -1;
 

@@ -64,23 +64,23 @@ class MATROSKA_DLL_API FileMatroska {
     ~FileMatroska() = default;
 #ifdef OLD
   filepos_t RenderHead(const std::string & aEncoderApp);
-  uint32 ReadHead();
-  uint32 ReadTracks();
-  uint32 ReadCodec();
-  void Close(const uint32 aTimeLength);
+  std::uint32_t ReadHead();
+  std::uint32_t ReadTracks();
+  std::uint32_t ReadCodec();
+  void Close(const std::uint32_t aTimeLength);
 
   inline void type_SetInfo(const std::string & aStr) {myMainHeader.type_SetInfo(aStr);}
   inline void type_SetAds(const std::string & aStr) {myMainHeader.type_SetAds(aStr);}
   inline void type_SetSize(const std::string & aStr) {myMainHeader.type_SetSize(aStr);}
-  inline void type_SetSize(uint64 aSize) {myMainHeader.type_SetSize(aSize);}
+  inline void type_SetSize(std::uint64_t aSize) {myMainHeader.type_SetSize(aSize);}
 
-  inline uint8 GetTrackNumber() const { return myTracks.size(); }
+  inline std::uint8_t GetTrackNumber() const { return myTracks.size(); }
 
   void track_SetName(Track * aTrack, const std::string & aName);
   void track_SetLaced(Track * aTrack, bool bLaced = true);
 
   Track * CreateTrack(const track_type aType);
-  inline Track * GetTrack(const uint8 aTrackNb) const
+  inline Track * GetTrack(const std::uint8_t aTrackNb) const
   {
       if (aTrackNb > myTracks.size())
     return NULL;
@@ -101,13 +101,13 @@ class MATROSKA_DLL_API FileMatroska {
   /*!
       \return wether the frame has been added or not
   */
-  bool AddFrame(Track * aTrack, const uint32 aTimecode, const binary *aFrame, const uint32 aFrameSize,
+  bool AddFrame(Track * aTrack, const std::uint32_t aTimecode, const binary *aFrame, const std::uint32_t aFrameSize,
          bool aKeyFrame = true, bool aBFrame = false);
 
   /*!
       \return wether the frame has been read or not
   */
-  bool ReadFrame(Track * & aTrack, uint32 & aTimecode, const binary * & aFrame, uint32 & aFrameSize,
+  bool ReadFrame(Track * & aTrack, std::uint32_t & aTimecode, const binary * & aFrame, std::uint32_t & aFrameSize,
          bool & aKeyFrame, bool & aBFrame);
 
   /*
@@ -115,33 +115,33 @@ class MATROSKA_DLL_API FileMatroska {
   */
   void Flush();
 
-  void SetMaxClusterSize(const uint32 value);
-  void SetMinClusterSize(const uint32 value) {myMinClusterSize = value;}
+  void SetMaxClusterSize(const std::uint32_t value);
+  void SetMinClusterSize(const std::uint32_t value) {myMinClusterSize = value;}
 
     protected:
   MainHeader myMainHeader;
 
   std::vector<Track *> myTracks;
-  std::vector<uint8> mySelectedTracks;
+  std::vector<std::uint8_t> mySelectedTracks;
 
 //  Track *findTrack(Track * aTrack) const;
 
   Cluster  myCurrWriteCluster; /// \todo merge with the write one ?
-  uint32   myReadBlockNumber;
+  std::uint32_t myReadBlockNumber;
   Cluster  myCurrReadCluster;
   binary * myCurrReadBlock;      ///< The buffer containing the current read block
-  uint32   myCurrReadBlockSize;  ///< The size of the buffer containing the current read block
-  uint8    myCurrReadBlockTrack; ///< The track number of the current track to read
+  std::uint32_t myCurrReadBlockSize;  ///< The size of the buffer containing the current read block
+  std::uint8_t    myCurrReadBlockTrack; ///< The track number of the current track to read
 
-  uint32 myMaxClusterSize;
-  uint32 myMinClusterSize;
+  std::uint32_t myMaxClusterSize;
+  std::uint32_t myMinClusterSize;
 
   StreamInfo myStreamInfo;
 
   CodecHeader myCodecHeader;
 
   inline bool IsMyTrack(const Track * aTrack) const;
-  inline bool IsReadingTrack(const uint8 aTrackNum) const;
+  inline bool IsReadingTrack(const std::uint8_t aTrackNum) const;
 #endif // OLD
   IOCallback & myFile;
 

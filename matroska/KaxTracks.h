@@ -56,21 +56,21 @@ DECLARE_MKX_MASTER(KaxTrackEntry)
     */
     inline bool LacingEnabled() const {
       auto myLacing = static_cast<KaxTrackFlagLacing *>(FindFirstElt(EBML_INFO(KaxTrackFlagLacing)));
-      return(!myLacing || (static_cast<uint8>(*myLacing) != 0));
+      return(!myLacing || (static_cast<std::uint8_t>(*myLacing) != 0));
     }
 
-    void SetGlobalTimecodeScale(uint64 aGlobalTimecodeScale) {
+    void SetGlobalTimecodeScale(std::uint64_t aGlobalTimecodeScale) {
       mGlobalTimecodeScale = aGlobalTimecodeScale;
       bGlobalTimecodeScaleIsSet = true;
     }
-    uint64 GlobalTimecodeScale() const {
+    std::uint64_t GlobalTimecodeScale() const {
       assert(bGlobalTimecodeScaleIsSet);
       return mGlobalTimecodeScale;
     }
 
   protected:
     bool   bGlobalTimecodeScaleIsSet{false};
-    uint64 mGlobalTimecodeScale;
+    std::uint64_t mGlobalTimecodeScale;
 };
 
 } // namespace libmatroska

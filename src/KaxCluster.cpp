@@ -65,7 +65,7 @@ bool KaxCluster::AddBlockBlob(KaxBlockBlob * NewBlob)
   return true;
 }
 
-bool KaxCluster::AddFrameInternal(const KaxTrackEntry & track, uint64 timecode, DataBuffer & buffer, KaxBlockGroup * & MyNewBlock, const KaxBlockGroup * PastBlock, const KaxBlockGroup * ForwBlock, LacingType lacing)
+bool KaxCluster::AddFrameInternal(const KaxTrackEntry & track, std::uint64_t timecode, DataBuffer & buffer, KaxBlockGroup * & MyNewBlock, const KaxBlockGroup * PastBlock, const KaxBlockGroup * ForwBlock, LacingType lacing)
 {
   if (!bFirstFrameInside) {
     bFirstFrameInside = true;
@@ -84,7 +84,7 @@ bool KaxCluster::AddFrameInternal(const KaxTrackEntry & track, uint64 timecode, 
   }
 
   // force creation of a new block
-  if (!currentNewBlock || static_cast<uint32>(track.TrackNumber()) != static_cast<uint32>(currentNewBlock->TrackNumber()) || PastBlock || ForwBlock) {
+  if (!currentNewBlock || static_cast<std::uint32_t>(track.TrackNumber()) != static_cast<std::uint32_t>(currentNewBlock->TrackNumber()) || PastBlock || ForwBlock) {
     KaxBlockGroup & aNewBlock = GetNewBlock();
     MyNewBlock = currentNewBlock = &aNewBlock;
   }
@@ -116,19 +116,19 @@ bool KaxCluster::AddFrameInternal(const KaxTrackEntry & track, uint64 timecode, 
   return false;
 }
 
-bool KaxCluster::AddFrame(const KaxTrackEntry & track, uint64 timecode, DataBuffer & buffer, KaxBlockGroup * & MyNewBlock, LacingType lacing)
+bool KaxCluster::AddFrame(const KaxTrackEntry & track, std::uint64_t timecode, DataBuffer & buffer, KaxBlockGroup * & MyNewBlock, LacingType lacing)
 {
   assert(Blobs.empty()); // mutually exclusive for the moment
   return AddFrameInternal(track, timecode, buffer, MyNewBlock, nullptr, nullptr, lacing);
 }
 
-bool KaxCluster::AddFrame(const KaxTrackEntry & track, uint64 timecode, DataBuffer & buffer, KaxBlockGroup * & MyNewBlock, const KaxBlockGroup & PastBlock, LacingType lacing)
+bool KaxCluster::AddFrame(const KaxTrackEntry & track, std::uint64_t timecode, DataBuffer & buffer, KaxBlockGroup * & MyNewBlock, const KaxBlockGroup & PastBlock, LacingType lacing)
 {
   assert(Blobs.empty()); // mutually exclusive for the moment
   return AddFrameInternal(track, timecode, buffer, MyNewBlock, &PastBlock, nullptr, lacing);
 }
 
-bool KaxCluster::AddFrame(const KaxTrackEntry & track, uint64 timecode, DataBuffer & buffer, KaxBlockGroup * & MyNewBlock, const KaxBlockGroup & PastBlock, const KaxBlockGroup & ForwBlock, LacingType lacing)
+bool KaxCluster::AddFrame(const KaxTrackEntry & track, std::uint64_t timecode, DataBuffer & buffer, KaxBlockGroup * & MyNewBlock, const KaxBlockGroup & PastBlock, const KaxBlockGroup & ForwBlock, LacingType lacing)
 {
   assert(Blobs.empty()); // mutually exclusive for the moment
   return AddFrameInternal(track, timecode, buffer, MyNewBlock, &PastBlock, &ForwBlock, lacing);
@@ -156,7 +156,7 @@ filepos_t KaxCluster::Render(IOCallback & output, KaxCues & CueToUpdate, bool bS
       for (const auto& Trk : *MyTracks) {
         if (EbmlId(*Trk) == EBML_ID(KaxTrackEntry)) {
           auto entry = static_cast<KaxTrackEntry *>(Trk);
-          auto tracknum = static_cast<uint32>(entry->TrackNumber());
+          auto tracknum = static_cast<std::uint32_t>(entry->TrackNumber());
           auto track = std::find_if(ElementList.begin(), ElementList.end(), [=](EbmlElement *element)
               { return EbmlId(*element) == EBML_ID(KaxBlockGroup) && static_cast<KaxBlockGroup *>(element)->TrackNumber() == tracknum;  });
           // the track wasn't found in this cluster
@@ -194,7 +194,7 @@ filepos_t KaxCluster::Render(IOCallback & output, KaxCues & CueToUpdate, bool bS
       for (const auto& Trk : *MyTracks) {
         if (EbmlId(*Trk) == EBML_ID(KaxTrackEntry)) {
           auto entry = static_cast<KaxTrackEntry *>(Trk);
-          auto tracknum = static_cast<uint32>(entry->TrackNumber());
+          auto tracknum = static_cast<std::uint32_t>(entry->TrackNumber());
           for (Index = 0; Index<Blobs.size(); Index++) {
             if (static_cast<KaxInternalBlock&>(*Blobs[Index]).TrackNum() == tracknum)
               break; // this track is used
@@ -225,10 +225,10 @@ filepos_t KaxCluster::Render(IOCallback & output, KaxCues & CueToUpdate, bool bS
 /*!
   \todo automatically choose valid timecode for the Cluster based on the previous cluster timecode (must be incremental)
 */
-uint64 KaxCluster::GlobalTimecode() const
+std::uint64_t KaxCluster::GlobalTimecode() const
 {
   assert(bPreviousTimecodeIsSet);
-  uint64 result = MinTimecode;
+  std::uint64_t result = MinTimecode;
 
   if (result < PreviousTimecode)
     result = PreviousTimecode + 1;
@@ -240,23 +240,23 @@ uint64 KaxCluster::GlobalTimecode() const
   \brief retrieve the relative
   \todo !!! We need a way to know the TimecodeScale
 */
-int16 KaxCluster::GetBlockLocalTimecode(uint64 aGlobalTimecode) const
+std::int16_t KaxCluster::GetBlockLocalTimecode(std::uint64_t aGlobalTimecode) const
 {
-  const int64 TimecodeDelay = (static_cast<int64>(aGlobalTimecode) - static_cast<int64>(GlobalTimecode())) / static_cast<int64>(GlobalTimecodeScale());
-  assert(TimecodeDelay >= int16(0x8000) && TimecodeDelay <= int16(0x7FFF));
-  return static_cast<int16>(TimecodeDelay);
+  const std::int64_t TimecodeDelay = (static_cast<std::int64_t>(aGlobalTimecode) - static_cast<std::int64_t>(GlobalTimecode())) / static_cast<std::int64_t>(GlobalTimecodeScale());
+  assert(TimecodeDelay >= std::int16_t(0x8000) && TimecodeDelay <= std::int16_t(0x7FFF));
+  return static_cast<std::int16_t>(TimecodeDelay);
 }
 
-uint64 KaxCluster::GetBlockGlobalTimecode(int16 LocalTimecode)
+std::uint64_t KaxCluster::GetBlockGlobalTimecode(std::int16_t LocalTimecode)
 {
   if (!bFirstFrameInside) {
     auto Timecode = static_cast<KaxClusterTimecode *>(this->FindElt(EBML_INFO(KaxClusterTimecode)));
     assert (bFirstFrameInside); // use the InitTimecode() hack for now
-    MinTimecode = MaxTimecode = PreviousTimecode = static_cast<uint64>(*static_cast<EbmlUInteger *>(Timecode));
+    MinTimecode = MaxTimecode = PreviousTimecode = static_cast<std::uint64_t>(*static_cast<EbmlUInteger *>(Timecode));
     bFirstFrameInside = true;
     bPreviousTimecodeIsSet = true;
   }
-  return static_cast<int64>(LocalTimecode * GlobalTimecodeScale()) + GlobalTimecode();
+  return static_cast<std::int64_t>(LocalTimecode * GlobalTimecodeScale()) + GlobalTimecode();
 }
 
 KaxBlockGroup & KaxCluster::GetNewBlock()
@@ -275,7 +275,7 @@ void KaxCluster::ReleaseFrames()
   }
 }
 
-uint64 KaxCluster::GetPosition() const
+std::uint64_t KaxCluster::GetPosition() const
 {
   assert(ParentSegment);
   return ParentSegment->GetRelativePosition(*this);

@@ -49,7 +49,7 @@ class KaxSegment;
 
 DECLARE_MKX_MASTER(KaxSeek)
   public:
-    int64 Location() const;
+    std::int64_t Location() const;
     bool IsEbmlId(const EbmlId & aId) const;
     bool IsEbmlId(const KaxSeek & aPoint) const;
 };

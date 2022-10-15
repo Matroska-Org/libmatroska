@@ -36,7 +36,7 @@
     \brief Misc type definitions for the C API of libmatroska
 
     \note These types should be compiler/language independant (just platform dependant)
-    \todo recover the sized types (uint16, int32, etc) here too (or maybe here only)
+    \todo recover the sized types (std::uint16_t, std::int32_t, etc) here too (or maybe here only)
 */
 
 #ifndef _LIBMATROSKA_T_H_INCLUDED_

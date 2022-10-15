@@ -107,7 +107,7 @@ int main(int argc, char **argv)
   KaxSeekHead *MetaSeek;
   KaxChapters *Chapters;
   KaxTags *AllTags;
-  uint64 TimecodeScale = 1000000;
+  std::uint64_t TimecodeScale = 1000000;
 
   // find the segment to read
   ElementLevel0 = aStream.FindNextID(KaxSegment::ClassInfos, 0xFFFFFFFFL);
@@ -162,7 +162,7 @@ int main(int argc, char **argv)
                 if (EbmlId(*ElementLevel3) == KaxTrackNumber::ClassInfos.GlobalId) {
                   KaxTrackNumber & TrackNum = *static_cast<KaxTrackNumber*>(ElementLevel3);
                   TrackNum.ReadData(aStream.I_O());
-                  printf("Track # %d\n", uint8(TrackNum));
+                  printf("Track # %d\n", std::uint8_t(TrackNum));
                 }
 
                 // Track type
@@ -170,7 +170,7 @@ int main(int argc, char **argv)
                   KaxTrackType & TrackType = *static_cast<KaxTrackType*>(ElementLevel3);
                   TrackType.ReadData(aStream.I_O());
                   printf("Track type : ");
-                  switch(uint8(TrackType))
+                  switch(std::uint8_t(TrackType))
                   {
                   case track_audio:
                     printf("Audio");
@@ -252,8 +252,8 @@ int main(int argc, char **argv)
             if (EbmlId(*ElementLevel2) == KaxTimecodeScale::ClassInfos.GlobalId) {
               KaxTimecodeScale *TimeScale = static_cast<KaxTimecodeScale*>(ElementLevel2);
               TimeScale->ReadData(aStream.I_O());
-              printf("Timecode Scale %d\n", uint32(*TimeScale));
-              TimecodeScale = uint64(*TimeScale);
+              printf("Timecode Scale %d\n", std::uint32_t(*TimeScale));
+              TimecodeScale = std::uint64_t(*TimeScale);
             } else if (EbmlId(*ElementLevel2) == KaxDuration::ClassInfos.GlobalId) {
               printf("Segment duration\n");
             } else if (EbmlId(*ElementLevel2) == KaxDateUTC::ClassInfos.GlobalId) {
@@ -298,10 +298,10 @@ int main(int argc, char **argv)
           printf("\n- Segment Clusters found\n");
           SegmentCluster = static_cast<KaxCluster *>(ElementLevel1);
 //          SegmentCluster->ClearElement();
-          uint32 ClusterTimecode;
+          std::uint32_t ClusterTimecode;
           EbmlCrc32 *pChecksum = NULL;
-          uint32 SizeInCrc;
-          uint64 CrcPositionStart = 0;
+          std::uint32_t SizeInCrc;
+          std::uint64_t CrcPositionStart = 0;
 
 #ifdef MEMORY_READ // read the Cluster in memory and then extract elements from memory
           SegmentCluster->Read(aStream, KaxCluster::ClassInfos.Context, UpperElementLevel, ElementLevel2, bAllowDummy);
@@ -330,7 +330,7 @@ int main(int argc, char **argv)
               printf("Cluster timecode found\n");
               KaxClusterTimecode & ClusterTime = *static_cast<KaxClusterTimecode*>(ElementLevel2);
               ClusterTime.ReadData(aStream.I_O());
-              ClusterTimecode = uint32(ClusterTime);
+              ClusterTimecode = std::uint32_t(ClusterTime);
               SegmentCluster->InitTimecode(ClusterTimecode, TimecodeScale);
             } else  if (EbmlId(*ElementLevel2) == KaxBlockGroup::ClassInfos.GlobalId) {
               printf("Block Group found\n");
@@ -350,11 +350,11 @@ int main(int argc, char **argv)
               }
               KaxBlockDuration * BlockDuration = static_cast<KaxBlockDuration *>(aBlockGroup.FindElt(KaxBlockDuration::ClassInfos));
               if (BlockDuration != NULL) {
-                printf("  Block Duration %d scaled ticks : %ld ns\n", uint32(*BlockDuration), uint32(*BlockDuration) * TimecodeScale);
+                printf("  Block Duration %d scaled ticks : %ld ns\n", std::uint32_t(*BlockDuration), std::uint32_t(*BlockDuration) * TimecodeScale);
               }
               KaxReferenceBlock * RefTime = static_cast<KaxReferenceBlock *>(aBlockGroup.FindElt(KaxReferenceBlock::ClassInfos));
               if (RefTime != NULL) {
-                printf("  Reference frame at scaled (%d) timecode %ld\n", int32(*RefTime), int32(int64(*RefTime) * TimecodeScale));
+                printf("  Reference frame at scaled (%d) timecode %ld\n", std::int32_t(*RefTime), std::int32_t(std::int64_t(*RefTime) * TimecodeScale));
               }
 #else // TEST_BLOCKGROUP_READ
               // read the data we care about in matroska
@@ -392,11 +392,11 @@ int main(int argc, char **argv)
                 } else if (EbmlId(*ElementLevel3) == KaxReferenceBlock::ClassInfos.GlobalId) {
                   KaxReferenceBlock & RefTime = *static_cast<KaxReferenceBlock*>(ElementLevel3);
                   RefTime.ReadData(aStream.I_O());
-                  printf("  Reference frame at scaled (%d) timecode %ld\n", int32(RefTime), int32(int64(RefTime) * TimecodeScale));
+                  printf("  Reference frame at scaled (%d) timecode %ld\n", std::int32_t(RefTime), std::int32_t(std::int64_t(RefTime) * TimecodeScale));
                 } else if (EbmlId(*ElementLevel3) == KaxBlockDuration::ClassInfos.GlobalId) {
                   KaxBlockDuration & BlockDuration = *static_cast<KaxBlockDuration*>(ElementLevel3);
                   BlockDuration.ReadData(aStream.I_O());
-                  printf("  Block Duration %d scaled ticks : %ld ns\n", uint32(BlockDuration), uint32(BlockDuration) * TimecodeScale);
+                  printf("  Block Duration %d scaled ticks : %ld ns\n", std::uint32_t(BlockDuration), std::uint32_t(BlockDuration) * TimecodeScale);
                 }
                 if (UpperElementLevel > 0) {
                   UpperElementLevel--;
@@ -437,8 +437,8 @@ int main(int argc, char **argv)
 #endif // not MEMORY_READ
           if (pChecksum != NULL) {
             EbmlCrc32 ComputedChecksum;
-            uint64 CurrPosition = aStream.I_O().getFilePointer();
-            uint64 CrcPositionEnd = ElementLevel2->GetElementPosition();
+            std::uint64_t CurrPosition = aStream.I_O().getFilePointer();
+            std::uint64_t CrcPositionEnd = ElementLevel2->GetElementPosition();
             binary *SupposedBufferInCrc = new binary [CrcPositionEnd - CrcPositionStart];
             aStream.I_O().setFilePointer(CrcPositionStart);
             aStream.I_O().readFully(SupposedBufferInCrc, CrcPositionEnd - CrcPositionStart);
@@ -477,7 +477,7 @@ int main(int argc, char **argv)
               for (Index1 = 0; Index1<CuePoint.ListSize() ;Index1++) {
                 if (CuePoint[Index1]->Generic().GlobalId == KaxCueTime::ClassInfos.GlobalId) {
                   KaxCueTime & CueTime = *static_cast<KaxCueTime *>(CuePoint[Index1]);
-                  printf("  Time %ld\n", uint64(CueTime) * TimecodeScale);
+                  printf("  Time %ld\n", std::uint64_t(CueTime) * TimecodeScale);
                 } else if (CuePoint[Index1]->Generic().GlobalId == KaxCueTrackPositions::ClassInfos.GlobalId) {
                   KaxCueTrackPositions & CuePos = *static_cast<KaxCueTrackPositions *>(CuePoint[Index1]);
                   printf("  Positions\n");
@@ -486,10 +486,10 @@ int main(int argc, char **argv)
                   for (Index2 = 0; Index2<CuePos.ListSize() ;Index2++) {
                     if (CuePos[Index2]->Generic().GlobalId == KaxCueTrack::ClassInfos.GlobalId) {
                       KaxCueTrack & CueTrack = *static_cast<KaxCueTrack *>(CuePos[Index2]);
-                      printf("   Track %d\n", uint16(CueTrack));
+                      printf("   Track %d\n", std::uint16_t(CueTrack));
                     } else if (CuePos[Index2]->Generic().GlobalId == KaxCueClusterPosition::ClassInfos.GlobalId) {
                       KaxCueClusterPosition & CuePoss = *static_cast<KaxCueClusterPosition *>(CuePos[Index2]);
-                      printf("   Cluster position %d\n", uint64(CuePoss));
+                      printf("   Cluster position %d\n", std::uint64_t(CuePoss));
                     } else if (CuePos[Index2]->Generic().GlobalId == KaxCueReference::ClassInfos.GlobalId) {
                       KaxCueReference & CueRefs = *static_cast<KaxCueReference *>(CuePos[Index2]);
                       printf("   Reference\n");
@@ -498,10 +498,10 @@ int main(int argc, char **argv)
                       for (Index3 = 0; Index3<CueRefs.ListSize() ;Index3++) {
                         if (CueRefs[Index3]->Generic().GlobalId == KaxCueRefTime::ClassInfos.GlobalId) {
                           KaxCueRefTime & CueTime = *static_cast<KaxCueRefTime *>(CueRefs[Index3]);
-                          printf("    Time %d\n", uint32(CueTime));
+                          printf("    Time %d\n", std::uint32_t(CueTime));
                         } else if (CueRefs[Index3]->Generic().GlobalId == KaxCueRefCluster::ClassInfos.GlobalId) {
                           KaxCueRefCluster & CueClust = *static_cast<KaxCueRefCluster *>(CueRefs[Index3]);
-                          printf("    Cluster position %d\n", uint64(CueClust));
+                          printf("    Cluster position %d\n", std::uint64_t(CueClust));
                         } else {
                           printf("    - found %s\n", CueRefs[Index3]->Generic().DebugName);
                         }
@@ -545,7 +545,7 @@ int main(int argc, char **argv)
                   printf("\n");
                 } else if (SeekPoint[Index1]->Generic().GlobalId == KaxSeekPosition::ClassInfos.GlobalId) {
                   KaxSeekPosition * SeekPos = static_cast<KaxSeekPosition *>(SeekPoint[Index1]);
-                  printf("    Seek position %d\n", uint32(*SeekPos));
+                  printf("    Seek position %d\n", std::uint32_t(*SeekPos));
                 }
               }
             }
@@ -573,11 +573,11 @@ int main(int argc, char **argv)
                   unsigned int Index3;
                   for (Index3 = 0; Index3<aChapterAtom.ListSize() ;Index3++) {
                     if (aChapterAtom[Index3]->Generic().GlobalId == KaxChapterUID::ClassInfos.GlobalId) {
-                      printf("      Chapter UID 0x%08x\n", uint32(*static_cast<EbmlUInteger *>(aChapterAtom[Index3])) );
+                      printf("      Chapter UID 0x%08x\n", std::uint32_t(*static_cast<EbmlUInteger *>(aChapterAtom[Index3])) );
                     } else if (aChapterAtom[Index3]->Generic().GlobalId == KaxChapterTimeStart::ClassInfos.GlobalId) {
-                      printf("      Time Start %d\n", uint32(*static_cast<EbmlUInteger *>(aChapterAtom[Index3])) );
+                      printf("      Time Start %d\n", std::uint32_t(*static_cast<EbmlUInteger *>(aChapterAtom[Index3])) );
                     } else if (aChapterAtom[Index3]->Generic().GlobalId == KaxChapterTimeEnd::ClassInfos.GlobalId) {
-                      printf("      Time End %d ns\n", uint32(*static_cast<EbmlUInteger *>(aChapterAtom[Index3])) );
+                      printf("      Time End %d ns\n", std::uint32_t(*static_cast<EbmlUInteger *>(aChapterAtom[Index3])) );
                     } else if (aChapterAtom[Index3]->Generic().GlobalId == KaxChapterTrack::ClassInfos.GlobalId) {
                       printf("      Track list\n");
                     } else if (aChapterAtom[Index3]->Generic().GlobalId == KaxChapterDisplay::ClassInfos.GlobalId) {
@@ -749,7 +749,7 @@ int main(int argc, char **argv)
   }
 
 #ifdef OLD
-  uint8 TrackNumber = MuxedFile.GetTrackNumber();
+  std::uint8_t TrackNumber = MuxedFile.GetTrackNumber();
 
   TrackInfo *Tracks = new TrackInfo[TrackNumber];
   TrackInfoAudio aAudioTrack;
@@ -795,9 +795,9 @@ int main(int argc, char **argv)
   StdIOCallback Output_file3("out-vide.bin", MODE_CREATE);
 
   Track * TrackRead;
-  uint32 timecode; // not used yet
+  std::uint32_t timecode; // not used yet
   binary *aFrame;
-  uint32 aFrameSize;
+  std::uint32_t aFrameSize;
   while (MuxedFile.ReadFrame(TrackRead, timecode, aFrame, aFrameSize))
   {
       if (TrackRead == track1)

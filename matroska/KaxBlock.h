@@ -55,13 +55,13 @@ class KaxBlockBlob;
 class MATROSKA_DLL_API DataBuffer {
   protected:
     binary  *myBuffer{nullptr};
-    uint32   mySize;
+    std::uint32_t mySize;
     bool     bValidValue{true};
     bool     (*myFreeBuffer)(const DataBuffer & aBuffer); // method to free the internal buffer
     bool     bInternalBuffer;
 
   public:
-    DataBuffer(binary * aBuffer, uint32 aSize, bool (*aFreeBuffer)(const DataBuffer & aBuffer) = nullptr, bool _bInternalBuffer = false)
+    DataBuffer(binary * aBuffer, std::uint32_t aSize, bool (*aFreeBuffer)(const DataBuffer & aBuffer) = nullptr, bool _bInternalBuffer = false)
       :mySize(aSize)
       ,myFreeBuffer(aFreeBuffer)
       ,bInternalBuffer(_bInternalBuffer)
@@ -80,9 +80,9 @@ class MATROSKA_DLL_API DataBuffer {
 
     virtual ~DataBuffer() = default;
     virtual binary * Buffer() {assert(bValidValue); return myBuffer;}
-    virtual uint32   & Size() {return mySize;};
+    virtual std::uint32_t & Size() {return mySize;};
     virtual const binary * Buffer() const {assert(bValidValue); return myBuffer;}
-    virtual uint32   Size()   const {return mySize;};
+    virtual std::uint32_t Size()   const {return mySize;};
     bool    FreeBuffer(const DataBuffer & aBuffer) {
       bool bResult = true;
       if (myBuffer && bValidValue) {
@@ -102,7 +102,7 @@ class MATROSKA_DLL_API DataBuffer {
 
 class MATROSKA_DLL_API SimpleDataBuffer : public DataBuffer {
   public:
-    SimpleDataBuffer(binary * aBuffer, uint32 aSize, uint32 aOffset, bool (*aFreeBuffer)(const DataBuffer & aBuffer) = myFreeBuffer)
+    SimpleDataBuffer(binary * aBuffer, std::uint32_t aSize, std::uint32_t aOffset, bool (*aFreeBuffer)(const DataBuffer & aBuffer) = myFreeBuffer)
       :DataBuffer(aBuffer + aOffset, aSize, aFreeBuffer)
       ,Offset(aOffset)
       ,BaseBuffer(aBuffer)
@@ -112,7 +112,7 @@ class MATROSKA_DLL_API SimpleDataBuffer : public DataBuffer {
     DataBuffer * Clone() override {return new SimpleDataBuffer(*this);}
 
   protected:
-    uint32 Offset;
+    std::uint32_t Offset;
     binary * BaseBuffer;
 
     static bool myFreeBuffer(const DataBuffer & aBuffer)
@@ -131,7 +131,7 @@ class MATROSKA_DLL_API SimpleDataBuffer : public DataBuffer {
 * /
 class MATROSKA_DLL_API NotSoSimpleDataBuffer : public SimpleDataBuffer {
   public:
-    NotSoSimpleDataBuffer(binary * aBuffer, uint32 aSize, uint32 aOffset)
+    NotSoSimpleDataBuffer(binary * aBuffer, std::uint32_t aSize, std::uint32_t aOffset)
       :SimpleDataBuffer(new binary[aSize - aOffset], aSize, 0)
     {
       memcpy(BaseBuffer, aBuffer + aOffset, aSize - aOffset);
@@ -146,17 +146,17 @@ DECLARE_MKX_MASTER(KaxBlockGroup)
     /*!
       \brief Addition of a frame without references
     */
-    bool AddFrame(const KaxTrackEntry & track, uint64 timecode, DataBuffer & buffer, LacingType lacing = LACING_AUTO);
+    bool AddFrame(const KaxTrackEntry & track, std::uint64_t timecode, DataBuffer & buffer, LacingType lacing = LACING_AUTO);
     /*!
       \brief Addition of a frame with a backward reference (P frame)
     */
-    bool AddFrame(const KaxTrackEntry & track, uint64 timecode, DataBuffer & buffer, const KaxBlockGroup & PastBlock, LacingType lacing = LACING_AUTO);
+    bool AddFrame(const KaxTrackEntry & track, std::uint64_t timecode, DataBuffer & buffer, const KaxBlockGroup & PastBlock, LacingType lacing = LACING_AUTO);
 
     /*!
       \brief Addition of a frame with a backward+forward reference (B frame)
     */
-    bool AddFrame(const KaxTrackEntry & track, uint64 timecode, DataBuffer & buffer, const KaxBlockGroup & PastBlock, const KaxBlockGroup & ForwBlock, LacingType lacing = LACING_AUTO);
-    bool AddFrame(const KaxTrackEntry & track, uint64 timecode, DataBuffer & buffer, const KaxBlockBlob * PastBlock, const KaxBlockBlob * ForwBlock, LacingType lacing = LACING_AUTO);
+    bool AddFrame(const KaxTrackEntry & track, std::uint64_t timecode, DataBuffer & buffer, const KaxBlockGroup & PastBlock, const KaxBlockGroup & ForwBlock, LacingType lacing = LACING_AUTO);
+    bool AddFrame(const KaxTrackEntry & track, std::uint64_t timecode, DataBuffer & buffer, const KaxBlockBlob * PastBlock, const KaxBlockBlob * ForwBlock, LacingType lacing = LACING_AUTO);
 
     void SetParent(KaxCluster & aParentCluster);
 
@@ -167,21 +167,21 @@ DECLARE_MKX_MASTER(KaxBlockGroup)
     /*!
       \brief Set the duration of the contained frame(s) (for the total number of frames)
     */
-    void SetBlockDuration(uint64 TimeLength);
-    bool GetBlockDuration(uint64 &TheTimecode) const;
+    void SetBlockDuration(std::uint64_t TimeLength);
+    bool GetBlockDuration(std::uint64_t &TheTimecode) const;
 
     /*!
       \return the global timecode of this Block (not just the delta to the Cluster)
     */
-    uint64 GlobalTimecode() const;
-    uint64 GlobalTimecodeScale() const {
+    std::uint64_t GlobalTimecode() const;
+    std::uint64_t GlobalTimecodeScale() const {
       assert(ParentTrack);
       return ParentTrack->GlobalTimecodeScale();
     }
 
-    uint16 TrackNumber() const;
+    std::uint16_t TrackNumber() const;
 
-    uint64 ClusterPosition() const;
+    std::uint64_t ClusterPosition() const;
 
     /*!
       \return the number of references to other frames
@@ -211,11 +211,11 @@ class MATROSKA_DLL_API KaxInternalBlock : public EbmlBinary {
     ~KaxInternalBlock() override;
     bool ValidateSize() const override;
 
-    uint16 TrackNum() const {return TrackNumber;}
+    std::uint16_t TrackNum() const {return TrackNumber;}
     /*!
       \todo !!!! This method needs to be changes !
     */
-    uint64 GlobalTimecode() const {return Timecode;}
+    std::uint64_t GlobalTimecode() const {return Timecode;}
 
     /*!
       \note override this function to generate the Data/Size on the fly, unlike the usual binary elements
@@ -227,12 +227,12 @@ class MATROSKA_DLL_API KaxInternalBlock : public EbmlBinary {
       \brief Only read the head of the Block (not internal data)
       \note convenient when you are parsing the file quickly
     */
-    uint64 ReadInternalHead(IOCallback & input);
+    std::uint64_t ReadInternalHead(IOCallback & input);
 
     unsigned int NumberFrames() const { return SizeList.size();}
     DataBuffer & GetBuffer(unsigned int iIndex) {return *myBuffers[iIndex];}
 
-    bool AddFrame(const KaxTrackEntry & track, uint64 timecode, DataBuffer & buffer, LacingType lacing = LACING_AUTO, bool invisible = false);
+    bool AddFrame(const KaxTrackEntry & track, std::uint64_t timecode, DataBuffer & buffer, LacingType lacing = LACING_AUTO, bool invisible = false);
 
     /*!
       \brief release all the frames of all Blocks
@@ -251,35 +251,35 @@ class MATROSKA_DLL_API KaxInternalBlock : public EbmlBinary {
       \return the position in the stream for a given frame
       \note return -1 if the position doesn't exist
     */
-    int64 GetDataPosition(size_t FrameNumber = 0);
+    std::int64_t GetDataPosition(size_t FrameNumber = 0);
 
     /*!
       \param FrameNumber 0 for the first frame
       \return the size of a given frame
       \note return -1 if the position doesn't exist
     */
-    int64 GetFrameSize(size_t FrameNumber = 0);
+    std::int64_t GetFrameSize(size_t FrameNumber = 0);
 
     bool IsInvisible() const { return mInvisible; }
 
-    uint64 ClusterPosition() const;
+    std::uint64_t ClusterPosition() const;
 
     /*!
      * \return Get the timestamp as written in the Block (not scaled).
      * \since LIBMATROSKA_VERSION >= 0x010700
      */
-    int16 GetRelativeTimestamp() const { return LocalTimecode; }
+    std::int16_t GetRelativeTimestamp() const { return LocalTimecode; }
 
   protected:
     std::vector<DataBuffer *> myBuffers;
-    std::vector<int32>        SizeList;
-    uint64                    Timecode; // temporary timecode of the first frame, non scaled
-    int16                     LocalTimecode;
+    std::vector<std::int32_t> SizeList;
+    std::uint64_t             Timecode; // temporary timecode of the first frame, non scaled
+    std::int16_t              LocalTimecode;
     bool                      bLocalTimecodeUsed{false};
-    uint16                    TrackNumber;
+    std::uint16_t               TrackNumber;
     LacingType                mLacing{LACING_AUTO};
     bool                      mInvisible{false};
-    uint64                    FirstFrameLocation;
+    std::uint64_t             FirstFrameLocation;
 
     KaxCluster               *ParentCluster{nullptr};
     bool                      bIsSimple;
@@ -335,10 +335,10 @@ public:
 
   void SetBlockGroup( KaxBlockGroup &BlockRef );
 
-  void SetBlockDuration(uint64 TimeLength);
+  void SetBlockDuration(std::uint64_t TimeLength);
 
   void SetParent(KaxCluster & aParentCluster);
-  bool AddFrameAuto(const KaxTrackEntry & track, uint64 timecode, DataBuffer & buffer, LacingType lacing = LACING_AUTO, const KaxBlockBlob * PastBlock = nullptr, const KaxBlockBlob * ForwBlock = nullptr);
+  bool AddFrameAuto(const KaxTrackEntry & track, std::uint64_t timecode, DataBuffer & buffer, LacingType lacing = LACING_AUTO, const KaxBlockBlob * PastBlock = nullptr, const KaxBlockBlob * ForwBlock = nullptr);
 
   bool IsSimpleBlock() const {return bUseSimpleBlock;}
 
@@ -369,8 +369,8 @@ DECLARE_MKX_BINARY_CONS(KaxBlockVirtual)
     filepos_t ReadData(IOCallback & input, ScopeMode ReadFully = SCOPE_ALL_DATA) override;
 
   protected:
-    uint64 Timecode; // temporary timecode of the first frame if there are more than one
-    uint16 TrackNumber;
+    std::uint64_t Timecode; // temporary timecode of the first frame if there are more than one
+    std::uint16_t TrackNumber;
     binary DataBlock[5];
 
     const KaxCluster * ParentCluster{nullptr};

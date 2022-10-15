@@ -50,27 +50,27 @@ class KaxSimpleBlock;
 
 DECLARE_MKX_MASTER(KaxCuePoint)
   public:
-    void PositionSet(const KaxBlockGroup & BlockReference, uint64 GlobalTimecodeScale);
-    void PositionSet(const KaxBlockBlob & BlobReference, uint64 GlobalTimecodeScale);
-    void PositionSet(const KaxSimpleBlock & BlockReference, uint64 GlobalTimecodeScale);
-    void PositionSet(const KaxInternalBlock & BlockReference, const KaxBlockGroup *BlockGroup, uint64 GlobalTimecodeScale);
+    void PositionSet(const KaxBlockGroup & BlockReference, std::uint64_t GlobalTimecodeScale);
+    void PositionSet(const KaxBlockBlob & BlobReference, std::uint64_t GlobalTimecodeScale);
+    void PositionSet(const KaxSimpleBlock & BlockReference, std::uint64_t GlobalTimecodeScale);
+    void PositionSet(const KaxInternalBlock & BlockReference, const KaxBlockGroup *BlockGroup, std::uint64_t GlobalTimecodeScale);
 
     bool IsSmallerThan(const EbmlElement *Cmp) const override;
 
     const KaxCueTrackPositions * GetSeekPosition() const;
-    bool Timecode(uint64 & aTimecode, uint64 GlobalTimecodeScale) const;
+    bool Timecode(std::uint64_t & aTimecode, std::uint64_t GlobalTimecodeScale) const;
 };
 
 DECLARE_MKX_MASTER(KaxCueTrackPositions)
   public:
-    uint64 ClusterPosition() const;
-    uint16 TrackNumber() const;
+    std::uint64_t ClusterPosition() const;
+    std::uint16_t TrackNumber() const;
 };
 
 DECLARE_MKX_MASTER(KaxCueReference)
   public:
-    void AddReference(const KaxBlockGroup & BlockReferenced, uint64 GlobalTimecodeScale);
-    void AddReference(const KaxBlockBlob & BlockReferenced, uint64 GlobalTimecodeScale);
+    void AddReference(const KaxBlockGroup & BlockReferenced, std::uint64_t GlobalTimecodeScale);
+    void AddReference(const KaxBlockBlob & BlockReferenced, std::uint64_t GlobalTimecodeScale);
 };
 
 } // namespace libmatroska

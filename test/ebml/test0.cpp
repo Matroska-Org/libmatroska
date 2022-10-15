@@ -261,10 +261,10 @@ int main(void)
       switch (SemanticList[i].Type)
       {
         case EBML_U_INTEGER:
-          printf(" : %d", uint32(*(EbmlUInteger*)EvaledElementLevel0));
+          printf(" : %d", std::uint32_t(*(EbmlUInteger*)EvaledElementLevel0));
           break;
         case EBML_S_INTEGER:
-          printf(" : %d", int32(*(EbmlSInteger*)EvaledElementLevel0));
+          printf(" : %d", std::int32_t(*(EbmlSInteger*)EvaledElementLevel0));
           break;
         case EBML_BINARY:
           printf(" : binary data, size = %ld", (*(EbmlBinary*)EvaledElementLevel0).GetSize());

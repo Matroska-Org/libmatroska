@@ -48,13 +48,13 @@ DECLARE_MKX_MASTER_CONS(KaxSegment)
     /*!
       \brief give the position of the element in the segment
     */
-    uint64 GetRelativePosition(const EbmlElement & Elt) const;
-    uint64 GetRelativePosition(uint64 aGlobalPosition) const;
+    std::uint64_t GetRelativePosition(const EbmlElement & Elt) const;
+    std::uint64_t GetRelativePosition(std::uint64_t aGlobalPosition) const;
 
     /*!
       \brief give the position of the element in the file
     */
-    uint64 GetGlobalPosition(uint64 aRelativePosition) const;
+    std::uint64_t GetGlobalPosition(std::uint64_t aRelativePosition) const;
 };
 
 } // namespace libmatroska

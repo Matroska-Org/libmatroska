@@ -38,17 +38,17 @@
 
 #include <stdio.h>
 
-#include "ebml/StdIOCallback.h"
+#include <ebml/StdIOCallback.h>
 
-#include "ebml/EbmlUInteger.h"
-#include "ebml/EbmlSInteger.h"
-#include "ebml/EbmlBinary.h"
-#include "ebml/EbmlString.h"
-#include "ebml/EbmlUnicodeString.h"
-#include "ebml/EbmlMaster.h"
-#include "ebml/EbmlFloat.h"
-#include "ebml/EbmlStream.h"
-#include "ebml/StdIOCallback.h"
+#include <ebml/EbmlUInteger.h>
+#include <ebml/EbmlSInteger.h>
+#include <ebml/EbmlBinary.h>
+#include <ebml/EbmlString.h>
+#include <ebml/EbmlUnicodeString.h>
+#include <ebml/EbmlMaster.h>
+#include <ebml/EbmlFloat.h>
+#include <ebml/EbmlStream.h>
+#include <ebml/StdIOCallback.h>
 
 using namespace libebml;
 

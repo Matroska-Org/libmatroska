@@ -32,8 +32,8 @@
   \version \$Id: KaxContexts.cpp 640 2004-07-09 21:05:36Z mosu $
   \author Steve Lhomme     <robux4 @ users.sf.net>
 */
-#include "ebml/EbmlContexts.h"
-#include "ebml/EbmlHead.h"
+#include <ebml/EbmlContexts.h>
+#include <ebml/EbmlHead.h>
 #include "matroska/KaxContexts.h"
 #include "matroska/KaxBlock.h"
 #include "matroska/KaxCluster.h"

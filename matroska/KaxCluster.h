@@ -36,7 +36,7 @@
 #define LIBMATROSKA_CLUSTER_H
 
 #include "matroska/KaxTypes.h"
-#include "ebml/EbmlMaster.h"
+#include <ebml/EbmlMaster.h>
 #include "matroska/KaxTracks.h"
 #include "matroska/KaxBlock.h"
 #include "matroska/KaxCues.h"

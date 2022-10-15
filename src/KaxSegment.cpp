@@ -33,7 +33,7 @@
   \author Steve Lhomme     <robux4 @ users.sf.net>
 */
 #include "matroska/KaxSegment.h"
-#include "ebml/EbmlHead.h"
+#include <ebml/EbmlHead.h>
 
 // sub elements
 #include "matroska/KaxCluster.h"

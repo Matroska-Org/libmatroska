@@ -36,9 +36,9 @@
 #define LIBMATROSKA_SEEK_HEAD_H
 
 #include "matroska/KaxTypes.h"
-#include "ebml/EbmlMaster.h"
-#include "ebml/EbmlBinary.h"
-#include "ebml/EbmlUInteger.h"
+#include <ebml/EbmlMaster.h>
+#include <ebml/EbmlBinary.h>
+#include <ebml/EbmlUInteger.h>
 #include "matroska/KaxDefines.h"
 
 using namespace libebml;

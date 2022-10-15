@@ -36,7 +36,7 @@
 #define LIBMATROSKA_SEGMENT_H
 
 #include "matroska/KaxTypes.h"
-#include "ebml/EbmlMaster.h"
+#include <ebml/EbmlMaster.h>
 #include "matroska/KaxDefines.h"
 
 using namespace libebml;

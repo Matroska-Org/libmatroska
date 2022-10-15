@@ -29,7 +29,6 @@
 
 /*!
   \file
-  \version \$Id: KaxVersion.cpp 640 2004-07-09 21:05:36Z mosu $
   \author Steve Lhomme     <robux4 @ users.sf.net>
 */
 

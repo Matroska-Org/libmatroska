@@ -27,7 +27,6 @@
 
 /*!
   \file
-  \version \$Id: KaxBlockData.cpp 1226 2005-10-13 21:16:43Z robux4 $
   \author Steve Lhomme     <robux4 @ users.sf.net>
 */
 #include <cassert>

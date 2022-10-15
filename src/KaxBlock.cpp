@@ -27,7 +27,6 @@
 
 /*!
   \file
-  \version \$Id: KaxBlock.cpp 1265 2007-01-14 17:20:35Z mosu $
   \author Steve Lhomme     <robux4 @ users.sf.net>
   \author Julien Coloos    <suiryc @ users.sf.net>
   \author Moritz Bunkus <moritz@bunkus.org>

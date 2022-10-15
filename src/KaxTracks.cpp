@@ -29,7 +29,6 @@
 
 /*!
   \file
-  \version \$Id: KaxTracks.cpp 1202 2005-08-30 14:39:01Z robux4 $
   \author Steve Lhomme     <robux4 @ users.sf.net>
 */
 #include "matroska/KaxTracks.h"

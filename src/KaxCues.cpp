@@ -27,7 +27,6 @@
 
 /*!
   \file
-  \version \$Id: KaxCues.cpp 1265 2007-01-14 17:20:35Z mosu $
   \author Steve Lhomme     <robux4 @ users.sf.net>
 */
 #include <cassert>

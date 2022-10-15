@@ -29,7 +29,6 @@
 
 /*!
     \file
-    \version \$Id: test5.cpp 1078 2005-03-03 13:13:04Z robux4 $
     \brief Test encoding and decoding UTF8 characters
     \author Steve Lhomme     <robux4 @ users.sf.net>
 */

@@ -29,7 +29,6 @@
 
 /*!
     \file
-    \version \$Id$
     \brief Test muxing two tracks into valid clusters/blocks/frames
     \author Steve Lhomme     <robux4 @ users.sf.net>
 */

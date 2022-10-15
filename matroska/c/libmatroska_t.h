@@ -42,7 +42,7 @@
 #ifndef _LIBMATROSKA_T_H_INCLUDED_
 #define _LIBMATROSKA_T_H_INCLUDED_
 
-#include "ebml/c/libebml_t.h"
+#include <ebml/EbmlTypes.h>
 
 #ifdef __cplusplus
 extern "C" {

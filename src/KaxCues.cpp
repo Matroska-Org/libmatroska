@@ -113,7 +113,7 @@ const KaxCuePoint * KaxCues::GetTimecodePoint(std::uint64_t aTimecode) const
   const std::uint64_t TimecodeToLocate = aTimecode / GlobalTimecodeScale();
   const KaxCuePoint * aPointPrev = nullptr;
   std::uint64_t aPrevTime = 0;
-  std::uint64_t aNextTime = EBML_PRETTYLONGINT(0xFFFFFFFFFFFF);
+  std::uint64_t aNextTime = 0xFFFFFFFFFFFFLL;
 
   for (const auto& e : *this) {
     if (EbmlId(*e) == EBML_ID(KaxCuePoint)) {

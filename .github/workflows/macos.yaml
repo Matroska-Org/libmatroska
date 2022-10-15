@@ -7,8 +7,12 @@ on:
 
 jobs:
   build_libmatroska:
-    name: libmatroska
+    name: libmatroska ${{ matrix.arch }}
     runs-on: macos-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        arch:   [x86_64, arm64]
     env:
       CMAKE_OPTIONS: -DCMAKE_CXX_EXTENSIONS=OFF
       CMAKE_MATROSKA_OPTIONS: ${{ env.CMAKE_OPTIONS }} -DBUILD_EXAMPLES=ON
@@ -26,7 +30,7 @@ jobs:
           # minimum version we support ref: 'release-1.4.3'
 
       - name: Configure libebml
-        run: cmake -S libebml -B libebml/_build ${{ env.CMAKE_OPTIONS }}
+        run: cmake -S libebml -B libebml/_build ${{ env.CMAKE_OPTIONS }} -DCMAKE_OSX_ARCHITECTURES="${{ matrix.arch }}"
 
       - name: Build libebml
         run: cmake --build libebml/_build --parallel
@@ -35,7 +39,7 @@ jobs:
         run: cmake --install libebml/_build --prefix ${GITHUB_WORKSPACE}/_built
 
       - name: Configure CMake 
-        run: cmake -S . -B _build ${{ env.CMAKE_MATROSKA_OPTIONS }} -DEBML_DIR="${GITHUB_WORKSPACE}/_built/lib/cmake/EBML"
+        run: cmake -S . -B _build ${{ env.CMAKE_MATROSKA_OPTIONS }} -DCMAKE_OSX_ARCHITECTURES="${{ matrix.arch }}" -DEBML_DIR="${GITHUB_WORKSPACE}/_built/lib/cmake/EBML"
 
       - name: Build with CMake
         run: cmake --build _build --parallel

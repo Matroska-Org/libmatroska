@@ -29,7 +29,6 @@
 
 /*!
     \file
-    \version \$Id$
     \author Steve Lhomme     <robux4 @ users.sf.net>
     Test the EBML write possibilities
     \see http://www.cl.cam.ac.uk/~mgk25/unicode.html

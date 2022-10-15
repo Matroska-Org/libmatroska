@@ -29,7 +29,6 @@
 
 /*!
   \file
-  \version \$Id$
   \author Steve Lhomme     <robux4 @ users.sf.net>
   \author John Cannon      <spyder2555 @ users.sf.net>
 */

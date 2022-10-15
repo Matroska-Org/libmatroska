@@ -27,7 +27,6 @@
 
 /*!
   \file
-  \version \$Id: KaxCluster.cpp 1228 2005-10-14 19:36:51Z robux4 $
   \author Steve Lhomme     <robux4 @ users.sf.net>
 */
 #include "matroska/KaxCluster.h"

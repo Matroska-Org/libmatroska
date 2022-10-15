@@ -27,7 +27,6 @@
 
 /*!
     \file
-    \version \$Id$
     \brief Test reading of the Header
     \author Steve Lhomme     <robux4 @ users.sf.net>
 */

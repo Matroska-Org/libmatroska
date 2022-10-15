@@ -29,7 +29,6 @@
 
 /*!
     \file
-    \version \$Id: test9.cpp 640 2004-07-09 21:05:36Z mosu $
     \brief Test writing tags
     \author Moritz Bunkus     <mosu @ users.sf.net>
 */

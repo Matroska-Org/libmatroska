@@ -17,6 +17,9 @@ jobs:
           { "name": "Dynamic", "option": "ON"},
           { "name": "Static",  "option": "OFF"}
         ]
+    env:
+      CMAKE_OPTIONS: -DCMAKE_CXX_EXTENSIONS=OFF
+      CMAKE_MATROSKA_OPTIONS: ${{ env.CMAKE_OPTIONS }} -DBUILD_EXAMPLES=ON
     steps:
       - uses: lukka/get-cmake@latest
 
@@ -31,7 +34,7 @@ jobs:
           # minimum version we support ref: 'release-1.4.3'
 
       - name: Configure ${{ matrix.shared.name }} libebml
-        run: cmake -S libebml -B libebml/_build -DBUILD_SHARED_LIBS=${{ matrix.shared.option }}
+        run: cmake -S libebml -B libebml/_build ${{ env.CMAKE_OPTIONS }} -DBUILD_SHARED_LIBS=${{ matrix.shared.option }}
 
       - name: Build libebml
         run: cmake --build libebml/_build --config ${{ matrix.config }} --parallel
@@ -40,7 +43,7 @@ jobs:
         run: cmake --install libebml/_build --config ${{ matrix.config }} --prefix ${GITHUB_WORKSPACE}/_built
 
       - name: Configure ${{ matrix.shared.name }} library
-        run: cmake -S . -B _build -DEBML_DIR="${GITHUB_WORKSPACE}/_built/lib/cmake/EBML" -DBUILD_EXAMPLES=ON -DBUILD_SHARED_LIBS=${{ matrix.shared.option }}
+        run: cmake -S . -B _build ${{ env.CMAKE_MATROSKA_OPTIONS }} -DEBML_DIR="${GITHUB_WORKSPACE}/_built/lib/cmake/EBML" -DBUILD_SHARED_LIBS=${{ matrix.shared.option }}
 
       - name: Build
         run: cmake --build _build --config ${{ matrix.config }} --parallel

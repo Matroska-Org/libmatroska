@@ -9,6 +9,9 @@ jobs:
   build_libmatroska:
     name: libmatroska
     runs-on: macos-latest
+    env:
+      CMAKE_OPTIONS: -DCMAKE_CXX_EXTENSIONS=OFF
+      CMAKE_MATROSKA_OPTIONS: ${{ env.CMAKE_OPTIONS }} -DBUILD_EXAMPLES=ON
     steps:
       - uses: lukka/get-cmake@latest
 
@@ -23,7 +26,7 @@ jobs:
           # minimum version we support ref: 'release-1.4.3'
 
       - name: Configure libebml
-        run: cmake -S libebml -B libebml/_build
+        run: cmake -S libebml -B libebml/_build ${{ env.CMAKE_OPTIONS }}
 
       - name: Build libebml
         run: cmake --build libebml/_build --parallel
@@ -32,7 +35,7 @@ jobs:
         run: cmake --install libebml/_build --prefix ${GITHUB_WORKSPACE}/_built
 
       - name: Configure CMake 
-        run: cmake -S . -B _build -DBUILD_EXAMPLES=ON -DEBML_DIR="${GITHUB_WORKSPACE}/_built/lib/cmake/EBML"
+        run: cmake -S . -B _build ${{ env.CMAKE_MATROSKA_OPTIONS }} -DEBML_DIR="${GITHUB_WORKSPACE}/_built/lib/cmake/EBML"
 
       - name: Build with CMake
         run: cmake --build _build --parallel

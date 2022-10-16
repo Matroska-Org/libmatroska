@@ -101,6 +101,10 @@ if(BUILD_EXAMPLES)
   add_executable(test8 test/mux/test8.cpp)
   target_link_libraries(test8 matroska)
   target_include_directories(test8 PRIVATE $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}>)
+
+  add_executable(test9 test/tags/test9.cpp)
+  target_link_libraries(test9 matroska)
+  target_include_directories(test9 PRIVATE $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}>)
 endif()
 
 install(TARGETS matroska

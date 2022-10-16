@@ -1,4 +1,4 @@
-name: "Linux gcc10 Build"
+name: "Linux+gcc10"
 on:
   push:
     branches: [ master ]

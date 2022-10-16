@@ -327,11 +327,9 @@ public:
       delete Block.group;
   }
 
-  operator KaxBlockGroup &();
-  operator const KaxBlockGroup &() const;
-  operator KaxSimpleBlock &();
-  operator KaxInternalBlock &();
-  operator const KaxInternalBlock &() const;
+  operator KaxBlockGroup &() const;
+  operator KaxSimpleBlock &() const;
+  operator KaxInternalBlock &() const;
 
   void SetBlockGroup( KaxBlockGroup &BlockRef );
 

@@ -73,11 +73,11 @@ int main(int argc, char **argv)
 
   // read the EBML head
   EbmlStream aStream(Cluster_file);
-  EbmlElement * ElementLevel0;
-  EbmlElement * ElementLevel1;
-  EbmlElement * ElementLevel2;
-  EbmlElement * ElementLevel3 = NULL;
-  EbmlElement * ElementLevel4 = NULL;
+  EbmlElement * ElementLevel0 = nullptr;
+  EbmlElement * ElementLevel1 = nullptr;
+  EbmlElement * ElementLevel2 = nullptr;
+  EbmlElement * ElementLevel3 = nullptr;
+  EbmlElement * ElementLevel4 = nullptr;
 
 ///  MuxedFile.ReadHead();
   // find the EBML head in the file

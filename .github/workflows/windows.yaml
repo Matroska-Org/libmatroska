@@ -13,7 +13,10 @@ jobs:
       fail-fast: false
       matrix:
         config: [Debug, Release]
-        shared: [Dynamic, Static]
+        shared: [
+          { "name": "Dynamic", "option": "ON"},
+          { "name": "Static",  "option": "OFF"}
+        ]
     steps:
       - uses: lukka/get-cmake@latest
 
@@ -27,12 +30,8 @@ jobs:
           path: libebml
           # minimum version we support ref: 'release-1.4.3'
 
-      - name: Configure static libebml
-        if: ${{ matrix.shared == 'Static' }}
-        run: cmake -S libebml -B libebml/_build -DBUILD_SHARED_LIBS=OFF
-      - name: Configure dynamic libebml
-        if: ${{ matrix.shared == 'Dynamic' }}
-        run: cmake -S libebml -B libebml/_build -DBUILD_SHARED_LIBS=ON
+      - name: Configure ${{ matrix.shared.name }} libebml
+        run: cmake -S libebml -B libebml/_build -DBUILD_SHARED_LIBS=${{ matrix.shared.option }}
 
       - name: Build libebml
         run: cmake --build libebml/_build --config ${{ matrix.config }} --parallel
@@ -40,12 +39,8 @@ jobs:
       - name: Install libebml
         run: cmake --install libebml/_build --config ${{ matrix.config }} --prefix ${GITHUB_WORKSPACE}/_built
 
-      - name: Configure static library
-        if: ${{ matrix.shared == 'Static' }}
-        run: cmake -S . -B _build -DEBML_DIR="${GITHUB_WORKSPACE}/_built/lib/cmake/EBML" -DBUILD_EXAMPLES=ON -DBUILD_SHARED_LIBS=OFF
-      - name: Configure dynamic library
-        if: ${{ matrix.shared == 'Dynamic' }}
-        run: cmake -S . -B _build -DEBML_DIR="${GITHUB_WORKSPACE}/_built/lib/cmake/EBML" -DBUILD_EXAMPLES=ON -DBUILD_SHARED_LIBS=ON
+      - name: Configure ${{ matrix.shared.name }} library
+        run: cmake -S . -B _build -DEBML_DIR="${GITHUB_WORKSPACE}/_built/lib/cmake/EBML" -DBUILD_EXAMPLES=ON -DBUILD_SHARED_LIBS=${{ matrix.shared.option }}
 
       - name: Build
         run: cmake --build _build --config ${{ matrix.config }} --parallel

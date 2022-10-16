@@ -247,8 +247,7 @@ filepos_t KaxBlockVirtual::UpdateSize(bool /* bSaveDefault */, bool /* bForceRen
 
   assert(ParentCluster);
   const std::int16_t ActualTimecode = ParentCluster->GetBlockLocalTimecode(Timecode);
-  const auto b16 = big_int16(ActualTimecode);
-  b16.Fill(cursor);
+  endian::to_big16(ActualTimecode, cursor);
   cursor += 2;
 
   *cursor++ = 0; // flags
@@ -291,8 +290,7 @@ filepos_t KaxInternalBlock::RenderData(IOCallback & output, bool /* bForceRender
 
   assert(ParentCluster);
   const std::int16_t ActualTimecode = ParentCluster->GetBlockLocalTimecode(Timecode);
-  const auto b16 = big_int16(ActualTimecode);
-  b16.Fill(cursor);
+  endian::to_big16(ActualTimecode, cursor);
   cursor += 2;
 
   *cursor = 0; // flags
@@ -422,11 +420,9 @@ std::uint64_t KaxInternalBlock::ReadInternalHead(IOCallback & input)
     TrackNumber &= 0x7F;
   }
 
-
-  big_int16 b16;
-  b16.Eval(cursor);
   assert(ParentCluster);
-  Timecode = ParentCluster->GetBlockGlobalTimecode(static_cast<std::int16_t>(b16));
+  std::int16_t stamp = endian::from_big16(cursor);
+  Timecode = ParentCluster->GetBlockGlobalTimecode(stamp);
   bLocalTimecodeUsed = false;
   cursor += 2;
 
@@ -595,9 +591,7 @@ filepos_t KaxInternalBlock::ReadData(IOCallback & input, ScopeMode ReadFully)
         TrackNumber &= 0x7F;
       }
 
-      big_int16 b16;
-      b16.Eval(cursor);
-      LocalTimecode = static_cast<std::int16_t>(b16);
+      LocalTimecode = endian::from_big16(cursor);
       bLocalTimecodeUsed = true;
       cursor += 2;
 

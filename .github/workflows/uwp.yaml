@@ -19,7 +19,7 @@ jobs:
         ]
     env:
       CMAKE_OPTIONS: -DCMAKE_CXX_EXTENSIONS=OFF -DCMAKE_SYSTEM_NAME="WindowsStore" -DCMAKE_SYSTEM_VERSION="10.0" -DCMAKE_CXX_FLAGS_INIT="-DWINVER=0x0A00 -DWINAPI_FAMILY=WINAPI_FAMILY_PC_APP"
-      CMAKE_MATROSKA_OPTIONS: ${{ env.CMAKE_OPTIONS }} -DBUILD_EXAMPLES=ON
+      CMAKE_MATROSKA_OPTIONS: -DBUILD_EXAMPLES=ON
     steps:
       - uses: lukka/get-cmake@latest
 
@@ -43,7 +43,7 @@ jobs:
         run: cmake --install libebml/_build --config ${{ matrix.config }} --prefix ${GITHUB_WORKSPACE}/_built
 
       - name: Configure library
-        run: cmake -S . -B _build ${{ env.CMAKE_MATROSKA_OPTIONS }} -A ${{ matrix.arch.option }} -DEBML_DIR="${GITHUB_WORKSPACE}/_built/lib/cmake/EBML" -DBUILD_SHARED_LIBS=OFF
+        run: cmake -S . -B _build ${{ env.CMAKE_OPTIONS }} ${{ env.CMAKE_MATROSKA_OPTIONS }} -A ${{ matrix.arch.option }} -DEBML_DIR="${GITHUB_WORKSPACE}/_built/lib/cmake/EBML" -DBUILD_SHARED_LIBS=OFF
 
       - name: Build
         run: cmake --build _build --config ${{ matrix.config }} --parallel

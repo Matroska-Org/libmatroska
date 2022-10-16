@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       CMAKE_OPTIONS: -DCMAKE_CXX_EXTENSIONS=OFF
-      CMAKE_MATROSKA_OPTIONS: ${{ env.CMAKE_OPTIONS }} -DBUILD_EXAMPLES=ON
+      CMAKE_MATROSKA_OPTIONS: -DBUILD_EXAMPLES=ON
     steps:
       - uses: lukka/get-cmake@latest
 
@@ -38,7 +38,7 @@ jobs:
         run: cmake --install libebml/_build --prefix ${GITHUB_WORKSPACE}/_built
 
       - name: Configure CMake
-        run: cmake -S . -B _build  ${{ env.CMAKE_MATROSKA_OPTIONS }} -DEBML_DIR="${GITHUB_WORKSPACE}/_built/lib/cmake/EBML"
+        run: cmake -S . -B _build  ${{ env.CMAKE_OPTIONS }} ${{ env.CMAKE_MATROSKA_OPTIONS }} -DEBML_DIR="${GITHUB_WORKSPACE}/_built/lib/cmake/EBML"
         env:
           CC:  gcc-10
           CXX: g++-10

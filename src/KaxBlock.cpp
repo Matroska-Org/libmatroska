@@ -1030,7 +1030,7 @@ void KaxBlockBlob::SetBlockGroup( KaxBlockGroup &BlockRef )
 
 filepos_t KaxBlockVirtual::ReadData(IOCallback & input, ScopeMode /* ReadFully */)
 {
-  input.setFilePointer(SizePosition + CodedSizeLength(Size, SizeLength, bSizeIsFinite) + Size, seek_beginning);
+  input.setFilePointer(GetEndPosition(), seek_beginning);
   return GetSize();
 }
 

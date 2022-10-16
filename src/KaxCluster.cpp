@@ -155,10 +155,10 @@ filepos_t KaxCluster::Render(IOCallback & output, KaxCues & CueToUpdate, bool bS
         if (EbmlId(*Trk) == EBML_ID(KaxTrackEntry)) {
           auto entry = static_cast<KaxTrackEntry *>(Trk);
           auto tracknum = static_cast<std::uint32_t>(entry->TrackNumber());
-          auto track = std::find_if(ElementList.begin(), ElementList.end(), [=](EbmlElement *element)
+          auto track = std::find_if(GetElementList().begin(), GetElementList().end(), [=](EbmlElement *element)
               { return EbmlId(*element) == EBML_ID(KaxBlockGroup) && static_cast<KaxBlockGroup *>(element)->TrackNumber() == tracknum;  });
           // the track wasn't found in this cluster
-          if (track == ElementList.end()) {
+          if (track == GetElementList().end()) {
             auto SilentTracks = static_cast<KaxClusterSilentTracks *>(this->FindFirstElt(EBML_INFO(KaxClusterSilentTracks)));
             assert(SilentTracks); // the flag bSilentTracksUsed should be set when creating the Cluster
             auto trackelt = static_cast<KaxClusterSilentTrackNumber *>(SilentTracks->AddNewElt(EBML_INFO(KaxClusterSilentTrackNumber)));
@@ -171,7 +171,7 @@ filepos_t KaxCluster::Render(IOCallback & output, KaxCues & CueToUpdate, bool bS
     Result = EbmlMaster::Render(output, bSaveDefault);
     // For all Blocks add their position on the CueEntry
 
-    for (const auto& element : ElementList) {
+    for (const auto& element : GetElementList()) {
       if (EbmlId(*element) == EBML_ID(KaxBlockGroup)) {
         CueToUpdate.PositionSet(*static_cast<const KaxBlockGroup *>(element));
       }
@@ -264,7 +264,7 @@ KaxBlockGroup & KaxCluster::GetNewBlock()
 
 void KaxCluster::ReleaseFrames()
 {
-  for (const auto& element : ElementList) {
+  for (const auto& element : GetElementList()) {
     if (EbmlId(*element) == EBML_ID(KaxBlockGroup)) {
       static_cast<KaxBlockGroup *>(element)->ReleaseFrames();
     }

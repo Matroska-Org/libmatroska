@@ -4,6 +4,7 @@ project(matroska VERSION 1.7.1)
 
 option(DISABLE_PKGCONFIG "Disable PkgConfig module generation" OFF)
 option(DISABLE_CMAKE_CONFIG "Disable CMake package config module generation" OFF)
+option(BUILD_EXAMPLES "Build example code" OFF)
 
 find_package(EBML 1.4.3 REQUIRED)
 
@@ -89,6 +90,20 @@ target_sources(matroska
 
 if(NOT BUILD_SHARED_LIBS)
   target_compile_definitions(matroska PUBLIC MATROSKA_STATIC_DEFINE)
+endif()
+
+if(BUILD_EXAMPLES)
+  add_executable(test00 test/ebml/test00.cpp)
+  target_link_libraries(test00 matroska)
+  target_include_directories(test00 PRIVATE $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}>)
+
+  add_executable(test6 test/mux/test6.cpp)
+  target_link_libraries(test6 matroska)
+  target_include_directories(test6 PRIVATE $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}>)
+
+  add_executable(test8 test/mux/test8.cpp)
+  target_link_libraries(test8 matroska)
+  target_include_directories(test8 PRIVATE $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}>)
 endif()
 
 install(TARGETS matroska

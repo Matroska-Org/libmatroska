@@ -32,7 +32,7 @@ jobs:
         run: cmake --install libebml/_build --prefix ${GITHUB_WORKSPACE}/_built
 
       - name: Configure CMake 
-        run: cmake -S . -B _build -DEBML_DIR="${GITHUB_WORKSPACE}/_built/lib/cmake/EBML"
+        run: cmake -S . -B _build -DBUILD_EXAMPLES=ON -DEBML_DIR="${GITHUB_WORKSPACE}/_built/lib/cmake/EBML"
 
       - name: Build with CMake
         run: cmake --build _build --parallel

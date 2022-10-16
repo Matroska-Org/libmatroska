@@ -29,6 +29,7 @@
 
 /*!
     \file
+    \version \$Id$
     \author Steve Lhomme     <robux4 @ users.sf.net>
     Test the writing a basic EBML file
 */
@@ -86,21 +87,21 @@ int main(void)
   // size is unknown and will always be, we can render it right away
   FirstSegment.Render(Ebml_file);
 
-  KaxAttachments * pAllAttachments = static_cast<KaxAttachments *>(FirstSegment.FindFirstElt(KaxAttachments::ClassInfos, true));
+  KaxAttachments * pAllAttachments = static_cast<KaxAttachments *>(FirstSegment.FindFirstElt(EBML_INFO(KaxAttachments), true));
   if (pAllAttachments == NULL)
     return -1;
   pAllAttachments->SetSizeInfinite();
   // size is unknown and will always be, we can render it right away
   pAllAttachments->Render(Ebml_file);
 
-  KaxAttached * pAttachment1 = static_cast<KaxAttached *>(pAllAttachments->FindFirstElt(KaxAttached::ClassInfos, true));
+  KaxAttached * pAttachment1 = static_cast<KaxAttached *>(pAllAttachments->FindFirstElt(EBML_INFO(KaxAttached), true));
   if (pAttachment1 == NULL)
     return -1;
-  KaxFileName * pFileName1 = static_cast<KaxFileName *>(pAttachment1->FindFirstElt(KaxFileName::ClassInfos, true));
+  KaxFileName * pFileName1 = static_cast<KaxFileName *>(pAttachment1->FindFirstElt(EBML_INFO(KaxFileName), true));
   if (pFileName1 == NULL)
     return -1;
-  *static_cast<EbmlUnicodeString *>(pFileName1) = "file1.txt";
-  KaxFileData * pFileData1 = static_cast<KaxFileData *>(pAttachment1->FindFirstElt(KaxFileData::ClassInfos, true));
+  *static_cast<EbmlUnicodeString *>(pFileName1) = L"file1.txt";
+  KaxFileData * pFileData1 = static_cast<KaxFileData *>(pAttachment1->FindFirstElt(EBML_INFO(KaxFileData), true));
   if (pFileData1 == NULL)
     return -1;
   char Buffer1[] = "Ah ah ah !";
@@ -108,15 +109,15 @@ int main(void)
   // should produce an error if the size is not infinite and the data has been rendered
   pAttachment1->Render(Ebml_file);
 
-  KaxAttached * pAttachment2 = static_cast<KaxAttached *>(pAllAttachments->AddNewElt(KaxAttached::ClassInfos));
+  KaxAttached * pAttachment2 = static_cast<KaxAttached *>(pAllAttachments->AddNewElt(EBML_INFO(KaxAttached)));
   if (pAttachment2 == NULL)
     return -1;
-  KaxFileName * pFileName2 = static_cast<KaxFileName *>(pAttachment2->FindFirstElt(KaxFileName::ClassInfos, true));
+  KaxFileName * pFileName2 = static_cast<KaxFileName *>(pAttachment2->FindFirstElt(EBML_INFO(KaxFileName), true));
   if (pFileName2 == NULL)
     return -1;
-  *static_cast<EbmlUnicodeString *>(pFileName2) = "file2.txt";
+  *static_cast<EbmlUnicodeString *>(pFileName2) = L"file2.txt";
   // Add a void element (data is discarded)
-  EbmlVoid * pVoid = static_cast<EbmlVoid *>(pAttachment2->FindFirstElt(EbmlVoid::ClassInfos, true));
+  EbmlVoid * pVoid = static_cast<EbmlVoid *>(pAttachment2->FindFirstElt(EBML_INFO(EbmlVoid), true));
   if (pVoid == NULL)
     return -1;
   static_cast<EbmlBinary *>(pVoid)->SetBuffer((const binary*) Buffer1, countof(Buffer1));
@@ -143,13 +144,13 @@ int main(void)
   // read the data until a possible element is found (valid ID + size combination)
   printf("Read EBML elements & skip data\n");
   // find the EBML head in the file
-  ElementLevel0 = aStream.FindNextID(EbmlHead::ClassInfos, 0xFFFFFFFFL, false);
+  ElementLevel0 = aStream.FindNextID(EBML_INFO(EbmlHead), 0xFFFFFFFFL);
   if (ElementLevel0 != NULL)
   {
     printf("ID : ");
-    for (unsigned int i=0; i<EbmlId(*ElementLevel0).Length; i++)
+    for (unsigned int i=EbmlId(*ElementLevel0).GetLength(); i; i++)
     {
-      printf("[%02X]", EbmlId(*ElementLevel0).Value[i]);
+      printf("[%02X]", (EbmlId(*ElementLevel0).GetValue() >> ((i-1)*8)) & 0xFF);
     }
     printf("\n");
 
@@ -159,29 +160,29 @@ int main(void)
   }
 
   // example to read attachements in the file
-  ElementLevel0 = aStream.FindNextID(KaxSegment::ClassInfos, 0xFFFFFFFFL, false);
+  ElementLevel0 = aStream.FindNextID(EBML_INFO(KaxSegment), 0xFFFFFFFFL);
   while (ElementLevel0 != NULL)
   {
     printf("ID : ");
-    for (unsigned int i=0; i<EbmlId(*ElementLevel0).Length; i++)
+    for (unsigned int i=EbmlId(*ElementLevel0).GetLength(); i; i++)
     {
-      printf("[%02X]", EbmlId(*ElementLevel0).Value[i]);
+      printf("[%02X]", (EbmlId(*ElementLevel0).GetValue() >> ((i-1)*8)) & 0xFF);
     }
     printf("\n");
 
     int bUpperElement = 0;
 
-    ElementLevel1 = aStream.FindNextID(KaxSegment_Context, bUpperElement, 0xFFFFFFFFL, true);
+    ElementLevel1 = aStream.FindNextElement(KaxSegment_Context, bUpperElement, 0xFFFFFFFFL, true);
 
     while (ElementLevel1 != NULL) {
       /// \todo switch the type of the element to check if it's one we want to handle, like attachements
-      if (EbmlId(*ElementLevel1) == KaxAttachments::ClassInfos.GlobalId) {
+      if (EbmlId(*ElementLevel1) == EBML_ID(KaxAttachments)) {
         printf("Attachments detected\n");
 
-        ElementLevel2 = aStream.FindNextID(KaxAttachments_Context, bUpperElement, 0xFFFFFFFFL, true);
+        ElementLevel2 = aStream.FindNextElement(KaxAttachments_Context, bUpperElement, 0xFFFFFFFFL, true);
         while (ElementLevel2 != NULL) {
           /// \todo switch the type of the element to check if it's one we want to handle, like attachements
-          if (EbmlId(*ElementLevel2) == KaxAttached::ClassInfos.GlobalId) {
+          if (EbmlId(*ElementLevel2) == EBML_ID(KaxAttached)) {
             printf("Attached file detected\n");
           }
 #ifdef SKIP_ATTACHED
@@ -198,10 +199,10 @@ int main(void)
           }
 #else // SKIP_ATTACHED
           // Display the filename (if it exists)
-          ElementLevel3 = aStream.FindNextID(KaxAttached_Context, bUpperElement, 0xFFFFFFFFL, false);
+          ElementLevel3 = aStream.FindNextElement(KaxAttached_Context, bUpperElement, 0xFFFFFFFFL, false);
           while (ElementLevel3 != NULL) {
             /// \todo switch the type of the element to check if it's one we want to handle, like attachements
-            if (EbmlId(*ElementLevel3) == KaxFileName::ClassInfos.GlobalId) {
+            if (EbmlId(*ElementLevel3) == EBML_ID(KaxFileName)) {
               KaxFileName & tmp = *static_cast<KaxFileName*>(ElementLevel3);
               tmp.ReadData(aStream.I_O());
               printf("File Name = %ls\n", UTFstring(tmp).c_str());
@@ -209,7 +210,7 @@ int main(void)
               ElementLevel3->SkipData(aStream, KaxAttached_Context);
             }
             delete ElementLevel3;
-            ElementLevel3 = aStream.FindNextID(KaxAttached_Context, bUpperElement, 0xFFFFFFFFL, false);
+            ElementLevel3 = aStream.FindNextElement(KaxAttached_Context, bUpperElement, 0xFFFFFFFFL, false);
             if (bUpperElement)
               break;
           }
@@ -221,7 +222,7 @@ int main(void)
             ElementLevel2->SkipData(aStream, KaxAttached_Context);
             delete ElementLevel2;
 
-            ElementLevel2 = aStream.FindNextID(KaxAttachments_Context, bUpperElement, 0xFFFFFFFFL, true);
+            ElementLevel2 = aStream.FindNextElement(KaxAttachments_Context, bUpperElement, 0xFFFFFFFFL, true);
           }
 #endif // SKIP_ATTACHED
         }
@@ -229,14 +230,14 @@ int main(void)
       ElementLevel1->SkipData(aStream, KaxAttachments_Context);
       delete ElementLevel1;
 
-      ElementLevel1 = aStream.FindNextID(KaxSegment_Context, bUpperElement, 0xFFFFFFFFL, true);
+      ElementLevel1 = aStream.FindNextElement(KaxSegment_Context, bUpperElement, 0xFFFFFFFFL, true);
     }
 
     ElementLevel0->SkipData(aStream, KaxSegment_Context);
     if (ElementLevel0 != NULL)
       delete ElementLevel0;
 
-    ElementLevel0 = aStream.FindNextID(KaxSegment_Context, bUpperElement, 0xFFFFFFFFL, true);
+    ElementLevel0 = aStream.FindNextElement(KaxSegment_Context, bUpperElement, 0xFFFFFFFFL, true);
   }
 
   Ebml_Wfile.close();

@@ -1,0 +1,52 @@
+name: "Windows UWP"
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    # branches: [ master ]
+
+jobs:
+  build_libmatroska:
+    name: libmatroska ${{ matrix.arch.name }} ${{ matrix.config }}
+    runs-on: windows-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        config: [Debug, Release]
+        arch: [
+          { "name": "x64",   "option": "x64"},
+          { "name": "arm64", "option": "arm64"},
+        ]
+    env:
+      CMAKE_OPTIONS: -DCMAKE_CXX_EXTENSIONS=OFF -DCMAKE_SYSTEM_NAME="WindowsStore" -DCMAKE_SYSTEM_VERSION="10.0" -DCMAKE_CXX_FLAGS_INIT="-DWINVER=0x0A00 -DWINAPI_FAMILY=WINAPI_FAMILY_PC_APP"
+      CMAKE_MATROSKA_OPTIONS: ${{ env.CMAKE_OPTIONS }} -DBUILD_EXAMPLES=ON
+    steps:
+      - uses: lukka/get-cmake@latest
+
+      - name: Get pushed code
+        uses: actions/checkout@v3
+      
+      - name: Checkout libebml
+        uses: actions/checkout@v3
+        with: 
+          repository: Matroska-Org/libebml
+          path: libebml
+          # minimum version we support ref: 'release-1.4.3'
+
+      - name: Configure libebml
+        run: cmake -S libebml -B libebml/_build ${{ env.CMAKE_OPTIONS }} -A ${{ matrix.arch.option }} -DBUILD_SHARED_LIBS=OFF
+
+      - name: Build libebml
+        run: cmake --build libebml/_build --config ${{ matrix.config }} --parallel
+
+      - name: Install libebml
+        run: cmake --install libebml/_build --config ${{ matrix.config }} --prefix ${GITHUB_WORKSPACE}/_built
+
+      - name: Configure library
+        run: cmake -S . -B _build ${{ env.CMAKE_MATROSKA_OPTIONS }} -A ${{ matrix.arch.option }} -DEBML_DIR="${GITHUB_WORKSPACE}/_built/lib/cmake/EBML" -DBUILD_SHARED_LIBS=OFF
+
+      - name: Build
+        run: cmake --build _build --config ${{ matrix.config }} --parallel
+
+      - name: Test installation
+        run: cmake --install _build --config ${{ matrix.config }} --prefix ${GITHUB_WORKSPACE}/_built

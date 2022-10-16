@@ -73,7 +73,7 @@ target_include_directories(matroska
 	PUBLIC
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
     $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>)
-if(MSVC)
+if(WIN32)
   target_compile_definitions(matroska PRIVATE _CRT_SECURE_NO_WARNINGS)
 endif()
 

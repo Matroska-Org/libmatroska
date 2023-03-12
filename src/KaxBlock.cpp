@@ -111,7 +111,7 @@ static constexpr std::int64_t SignedVINT_Shift4 = (1 << ((7*4) - 1)) - 1;
   \param Value value to encode as EBML integer
   \todo handle more than CodedSize of 5
 */
-static int SignedVINTLength(std::int64_t Value, unsigned int SizeLength)
+static int SignedVINTLength(std::int64_t Value)
 {
   unsigned int CodedSize;
   // prepare the head of the size (000...01xxxxxx)
@@ -125,11 +125,6 @@ static int SignedVINTLength(std::int64_t Value, unsigned int SizeLength)
   else if (Value > SignedVINT_MIN(4) && Value < SignedVINT_MAX(4)) // 2^27
     CodedSize = 4;
   else CodedSize = 5;
-
-  if (SizeLength > 0 && CodedSize < SizeLength) {
-    // defined size
-    CodedSize = SizeLength;
-  }
 
   return static_cast<int>(CodedSize);
 }
@@ -232,7 +227,7 @@ LacingType KaxInternalBlock::GetBestLacingType() const {
   }
   EbmlLacingSize += CodedSizeLength(myBuffers[0]->Size(), 0, IsFiniteSize());
   for (i = 1; i < static_cast<int>(myBuffers.size()) - 1; i++)
-    EbmlLacingSize += SignedVINTLength(static_cast<std::int64_t>(myBuffers[i]->Size()) - static_cast<std::int64_t>(myBuffers[i - 1]->Size()), 0);
+    EbmlLacingSize += SignedVINTLength(static_cast<std::int64_t>(myBuffers[i]->Size()) - static_cast<std::int64_t>(myBuffers[i - 1]->Size()));
   if (SameSize)
     return LACING_FIXED;
   if (XiphLacingSize < EbmlLacingSize)
@@ -271,7 +266,7 @@ filepos_t KaxInternalBlock::UpdateSize(bool /* bSaveDefault */, bool /* bForceRe
         case LACING_EBML:
           SetSize_(GetSize() + myBuffers[0]->Size() + CodedSizeLength(myBuffers[0]->Size(), 0, IsFiniteSize()));
           for (i=1; i<myBuffers.size()-1; i++) {
-            SetSize_(GetSize() + myBuffers[i]->Size() + SignedVINTLength(static_cast<std::int64_t>(myBuffers[i]->Size()) - static_cast<std::int64_t>(myBuffers[i-1]->Size()), 0));
+            SetSize_(GetSize() + myBuffers[i]->Size() + SignedVINTLength(static_cast<std::int64_t>(myBuffers[i]->Size()) - static_cast<std::int64_t>(myBuffers[i-1]->Size())));
           }
           break;
         case LACING_FIXED:
@@ -458,7 +453,7 @@ filepos_t KaxInternalBlock::RenderData(IOCallback & output, bool /* bForceRender
         // set the size of each member in the lace
         for (i=1; i<myBuffers.size()-1; i++) {
           _Size = static_cast<std::int64_t>(myBuffers[i]->Size()) - static_cast<std::int64_t>(myBuffers[i-1]->Size());
-          _CodedSize = SignedVINTLength(_Size, 0);
+          _CodedSize = SignedVINTLength(_Size);
           SignedVINTValue(_Size, _CodedSize, _FinalHead);
           output.writeFully(_FinalHead, _CodedSize);
           SetSize_(GetSize() + _CodedSize);

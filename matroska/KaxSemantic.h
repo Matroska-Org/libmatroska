@@ -919,7 +919,7 @@ typedef enum {
 } MatroskaTrackTranslateCodec;
 
 /**
- *Specify whether the video frames in this track are interlaced or not.
+ *Specify whether the video frames in this track are interlaced.
  */
 typedef enum {
   MATROSKA_VIDEO_FLAGINTERLACED_UNDETERMINED     = 0, // Unknown status.

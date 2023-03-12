@@ -106,6 +106,22 @@ static constexpr std::int64_t SignedVINT_Shift4 = (1 << ((7*4) - 1)) - 1;
 #define SignedVINT_MAX(n) ((SignedVINT_Shift ##n) + 1)
 #define SignedVINT_MIN(n) (-(SignedVINT_Shift ##n) - 1)
 
+static std::int64_t SignedVINTSizeToShift(int CodedSize)
+{
+  switch (CodedSize) {
+    case 1:
+      return SignedVINT_Shift1;
+    case 2:
+      return SignedVINT_Shift2;
+    case 3:
+      return SignedVINT_Shift3;
+    case 4:
+      return SignedVINT_Shift4;
+    default:
+      return 0; // should never happen
+  }
+}
+
 /*!
   \brief The size of the EBML-coded signed integer
   \param Value value to encode as EBML integer
@@ -135,14 +151,7 @@ static int SignedVINTLength(std::int64_t Value)
 */
 static int SignedVINTValue(std::int64_t Value, int CodedSize, binary * OutBuffer)
 {
-  if (Value > SignedVINT_MIN(1) && Value < SignedVINT_MAX(1)) // 2^6
-    Value += SignedVINT_Shift1;
-  else if (Value > SignedVINT_MIN(2) && Value < SignedVINT_MAX(2)) // 2^13
-    Value += SignedVINT_Shift2;
-  else if (Value > SignedVINT_MIN(3) && Value < SignedVINT_MAX(3)) // 2^20
-    Value += SignedVINT_Shift3;
-  else if (Value > SignedVINT_MIN(4) && Value < SignedVINT_MAX(4)) // 2^27
-    Value += SignedVINT_Shift4;
+  Value += SignedVINTSizeToShift(SignedVINTLength(Value));
 
   return CodedValueLength(Value, CodedSize, OutBuffer);
 }
@@ -158,24 +167,7 @@ static std::int64_t ReadSignedVINT(const binary * InBuffer, std::uint32_t & Buff
   std::int64_t Result = ReadCodedSizeValue(InBuffer, BufferSize, SizeUnknown);
   assert(BufferSize != 0);
 
-  if (BufferSize != 0) {
-    switch (BufferSize) {
-      case 1:
-        Result -= SignedVINT_Shift1;
-        break;
-      case 2:
-        Result -= SignedVINT_Shift2;
-        break;
-      case 3:
-        Result -= SignedVINT_Shift3;
-        break;
-      case 4:
-        Result -= SignedVINT_Shift4;
-        break;
-    }
-  }
-
-  return Result;
+  return Result - SignedVINTSizeToShift(BufferSize);
 }
 
 /*!

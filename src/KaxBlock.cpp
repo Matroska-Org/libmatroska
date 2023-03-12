@@ -113,20 +113,17 @@ static constexpr std::int64_t SignedVINT_Shift4 = (1 << ((7*4) - 1)) - 1;
 */
 static int SignedVINTLength(std::int64_t Value)
 {
-  unsigned int CodedSize;
   // prepare the head of the size (000...01xxxxxx)
   // optimal size
   if (Value > SignedVINT_MIN(1) && Value < SignedVINT_MAX(1)) // 2^6
-    CodedSize = 1;
-  else if (Value > SignedVINT_MIN(2) && Value < SignedVINT_MAX(2)) // 2^13
-    CodedSize = 2;
-  else if (Value > SignedVINT_MIN(3) && Value < SignedVINT_MAX(3)) // 2^20
-    CodedSize = 3;
-  else if (Value > SignedVINT_MIN(4) && Value < SignedVINT_MAX(4)) // 2^27
-    CodedSize = 4;
-  else CodedSize = 5;
-
-  return static_cast<int>(CodedSize);
+    return 1;
+  if (Value > SignedVINT_MIN(2) && Value < SignedVINT_MAX(2)) // 2^13
+    return 2;
+  if (Value > SignedVINT_MIN(3) && Value < SignedVINT_MAX(3)) // 2^20
+    return 3;
+  if (Value > SignedVINT_MIN(4) && Value < SignedVINT_MAX(4)) // 2^27
+    return 4;
+  return 5; // not really handled
 }
 
 /*!

@@ -151,8 +151,9 @@ static int SignedVINTValue(std::int64_t Value, int CodedSize, binary * OutBuffer
   \brief Read a signed EBML-coded value from a buffer
   \return the value read
 */
-static std::int64_t ReadSignedVINT(const binary * InBuffer, std::uint32_t & BufferSize, std::uint64_t & SizeUnknown)
+static std::int64_t ReadSignedVINT(const binary * InBuffer, std::uint32_t & BufferSize)
 {
+  std::uint64_t SizeUnknown = 0;
   assert(BufferSize != 0);
   std::int64_t Result = ReadCodedSizeValue(InBuffer, BufferSize, SizeUnknown);
   assert(BufferSize != 0);
@@ -607,7 +608,7 @@ filepos_t KaxInternalBlock::ReadData(IOCallback & input, ScopeMode ReadFully)
             for (Index=1; Index<FrameNum; Index++) {
               // get the size of the frame
               SizeRead = LastBufferSize;
-              FrameSize += ReadSignedVINT(BufferStart + Mem.GetPosition(), SizeRead, SizeUnknown);
+              FrameSize += ReadSignedVINT(BufferStart + Mem.GetPosition(), SizeRead);
               if (!FrameSize || (static_cast<std::uint32_t>(FrameSize + SizeRead) > LastBufferSize))
                 throw SafeReadIOCallback::EndOfStreamX(SizeRead);
               SizeList[Index] = FrameSize;
@@ -743,7 +744,7 @@ filepos_t KaxInternalBlock::ReadData(IOCallback & input, ScopeMode ReadFully)
             for (Index=1; Index<FrameNum; Index++) {
               // get the size of the frame
               SizeRead = LastBufferSize;
-              FrameSize += ReadSignedVINT(cursor, SizeRead, SizeUnknown);
+              FrameSize += ReadSignedVINT(cursor, SizeRead);
               if (FrameSize > TotalLacedSize)
                 throw SafeReadIOCallback::EndOfStreamX(0);
               SizeList[Index] = FrameSize;

@@ -99,6 +99,83 @@ KaxBlockGroup::KaxBlockGroup(EBML_EXTRA_DEF)
 {}
 
 /*!
+  \brief The size of the EBML-coded signed integer
+  \param Value value to encode as EBML integer
+  \todo handle more than CodedSize of 5
+*/
+static int SignedVINTLength(std::int64_t Value, unsigned int SizeLength)
+{
+  unsigned int CodedSize;
+  // prepare the head of the size (000...01xxxxxx)
+  // optimal size
+  if (Value > -64 && Value < 64) // 2^6
+    CodedSize = 1;
+  else if (Value > -8192 && Value < 8192) // 2^13
+    CodedSize = 2;
+  else if (Value > -1048576L && Value < 1048576L) // 2^20
+    CodedSize = 3;
+  else if (Value > -134217728L && Value < 134217728L) // 2^27
+    CodedSize = 4;
+  else CodedSize = 5;
+
+  if (SizeLength > 0 && CodedSize < SizeLength) {
+    // defined size
+    CodedSize = SizeLength;
+  }
+
+  return static_cast<int>(CodedSize);
+}
+
+/*!
+  \brief The coded value of the EBML-coded signed integer
+  \param Value value to encode as EBML signed integer
+  \param CodedSize amount of octets to use to write the integer
+  \param OutBuffer buffer to write the EBML-coded signed integer
+  \note The size of OutBuffer must be at least CodedSize octets big
+*/
+static int SignedVINTValue(std::int64_t Value, int CodedSize, binary * OutBuffer)
+{
+  if (Value > -64 && Value < 64) // 2^6
+    Value += 63;
+  else if (Value > -8192 && Value < 8192) // 2^13
+    Value += 8191;
+  else if (Value > -1048576L && Value < 1048576L) // 2^20
+    Value += 1048575L;
+  else if (Value > -134217728L && Value < 134217728L) // 2^27
+    Value += 134217727L;
+
+  return CodedValueLength(Value, CodedSize, OutBuffer);
+}
+
+/*!
+  \brief Read a signed EBML-coded value from a buffer
+  \return the value read
+*/
+static std::int64_t ReadSignedVINT(const binary * InBuffer, std::uint32_t & BufferSize, std::uint64_t & SizeUnknown)
+{
+  std::int64_t Result = ReadCodedSizeValue(InBuffer, BufferSize, SizeUnknown);
+
+  if (BufferSize != 0) {
+    switch (BufferSize) {
+      case 1:
+        Result -= 63;
+        break;
+      case 2:
+        Result -= 8191;
+        break;
+      case 3:
+        Result -= 1048575L;
+        break;
+      case 4:
+        Result -= 134217727L;
+        break;
+    }
+  }
+
+  return Result;
+}
+
+/*!
   \todo handle flags
   \todo hardcoded limit of the number of frames in a lace should be a parameter
   \return true if more frames can be added to this Block
@@ -147,7 +224,7 @@ LacingType KaxInternalBlock::GetBestLacingType() const {
   }
   EbmlLacingSize += CodedSizeLength(myBuffers[0]->Size(), 0, IsFiniteSize());
   for (i = 1; i < static_cast<int>(myBuffers.size()) - 1; i++)
-    EbmlLacingSize += CodedSizeLengthSigned(static_cast<std::int64_t>(myBuffers[i]->Size()) - static_cast<std::int64_t>(myBuffers[i - 1]->Size()), 0);
+    EbmlLacingSize += SignedVINTLength(static_cast<std::int64_t>(myBuffers[i]->Size()) - static_cast<std::int64_t>(myBuffers[i - 1]->Size()), 0);
   if (SameSize)
     return LACING_FIXED;
   if (XiphLacingSize < EbmlLacingSize)
@@ -186,7 +263,7 @@ filepos_t KaxInternalBlock::UpdateSize(bool /* bSaveDefault */, bool /* bForceRe
         case LACING_EBML:
           SetSize_(GetSize() + myBuffers[0]->Size() + CodedSizeLength(myBuffers[0]->Size(), 0, IsFiniteSize()));
           for (i=1; i<myBuffers.size()-1; i++) {
-            SetSize_(GetSize() + myBuffers[i]->Size() + CodedSizeLengthSigned(static_cast<std::int64_t>(myBuffers[i]->Size()) - static_cast<std::int64_t>(myBuffers[i-1]->Size()), 0));
+            SetSize_(GetSize() + myBuffers[i]->Size() + SignedVINTLength(static_cast<std::int64_t>(myBuffers[i]->Size()) - static_cast<std::int64_t>(myBuffers[i-1]->Size()), 0));
           }
           break;
         case LACING_FIXED:
@@ -373,8 +450,8 @@ filepos_t KaxInternalBlock::RenderData(IOCallback & output, bool /* bForceRender
         // set the size of each member in the lace
         for (i=1; i<myBuffers.size()-1; i++) {
           _Size = static_cast<std::int64_t>(myBuffers[i]->Size()) - static_cast<std::int64_t>(myBuffers[i-1]->Size());
-          _CodedSize = CodedSizeLengthSigned(_Size, 0);
-          CodedValueLengthSigned(_Size, _CodedSize, _FinalHead);
+          _CodedSize = SignedVINTLength(_Size, 0);
+          SignedVINTValue(_Size, _CodedSize, _FinalHead);
           output.writeFully(_FinalHead, _CodedSize);
           SetSize_(GetSize() + _CodedSize);
         }
@@ -528,7 +605,7 @@ filepos_t KaxInternalBlock::ReadData(IOCallback & input, ScopeMode ReadFully)
             for (Index=1; Index<FrameNum; Index++) {
               // get the size of the frame
               SizeRead = LastBufferSize;
-              FrameSize += ReadCodedSizeSignedValue(BufferStart + Mem.GetPosition(), SizeRead, SizeUnknown);
+              FrameSize += ReadSignedVINT(BufferStart + Mem.GetPosition(), SizeRead, SizeUnknown);
               if (!FrameSize || (static_cast<std::uint32_t>(FrameSize + SizeRead) > LastBufferSize))
                 throw SafeReadIOCallback::EndOfStreamX(SizeRead);
               SizeList[Index] = FrameSize;
@@ -664,7 +741,7 @@ filepos_t KaxInternalBlock::ReadData(IOCallback & input, ScopeMode ReadFully)
             for (Index=1; Index<FrameNum; Index++) {
               // get the size of the frame
               SizeRead = LastBufferSize;
-              FrameSize += ReadCodedSizeSignedValue(cursor, SizeRead, SizeUnknown);
+              FrameSize += ReadSignedVINT(cursor, SizeRead, SizeUnknown);
               if (FrameSize > TotalLacedSize)
                 throw SafeReadIOCallback::EndOfStreamX(0);
               SizeList[Index] = FrameSize;

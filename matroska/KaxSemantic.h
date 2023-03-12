@@ -49,7 +49,7 @@ using namespace libebml;
 namespace libmatroska {
 DECLARE_MKX_BINARY (KaxSeekID)
 public:
-  bool ValidateSize() const override {return IsFiniteSize() && GetSize() <= 4;}
+  bool ValidateSize() const override {return IsFiniteSize() && GetSize() == 4;}
 };
 
 DECLARE_MKX_UINTEGER(KaxSeekPosition)

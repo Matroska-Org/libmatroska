@@ -131,13 +131,13 @@ static int SignedVINTLength(std::int64_t Value)
 {
   // prepare the head of the size (000...01xxxxxx)
   // optimal size
-  if (Value > SignedVINT_MIN(1) && Value < SignedVINT_MAX(1)) // 2^6
+  if (Value > SignedVINT_MIN(1) && Value <= SignedVINT_MAX(1)) // 2^6
     return 1;
-  if (Value > SignedVINT_MIN(2) && Value < SignedVINT_MAX(2)) // 2^13
+  if (Value > SignedVINT_MIN(2) && Value <= SignedVINT_MAX(2)) // 2^13
     return 2;
-  if (Value > SignedVINT_MIN(3) && Value < SignedVINT_MAX(3)) // 2^20
+  if (Value > SignedVINT_MIN(3) && Value <= SignedVINT_MAX(3)) // 2^20
     return 3;
-  if (Value > SignedVINT_MIN(4) && Value < SignedVINT_MAX(4)) // 2^27
+  if (Value > SignedVINT_MIN(4) && Value <= SignedVINT_MAX(4)) // 2^27
     return 4;
   return 5; // not really handled
 }

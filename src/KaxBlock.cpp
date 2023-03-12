@@ -153,7 +153,9 @@ static int SignedVINTValue(std::int64_t Value, int CodedSize, binary * OutBuffer
 */
 static std::int64_t ReadSignedVINT(const binary * InBuffer, std::uint32_t & BufferSize, std::uint64_t & SizeUnknown)
 {
+  assert(BufferSize != 0);
   std::int64_t Result = ReadCodedSizeValue(InBuffer, BufferSize, SizeUnknown);
+  assert(BufferSize != 0);
 
   if (BufferSize != 0) {
     switch (BufferSize) {

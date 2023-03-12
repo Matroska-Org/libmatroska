@@ -254,9 +254,13 @@ DECLARE_MKX_UINTEGER(KaxTrackFlagLacing)
 };
 
 DECLARE_MKX_UINTEGER(KaxTrackMinCache)
+public:
+  filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault) override;
 };
 
 DECLARE_MKX_UINTEGER(KaxTrackMaxCache)
+public:
+  filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault) override;
 };
 
 DECLARE_MKX_UINTEGER(KaxTrackDefaultDuration)

@@ -98,6 +98,11 @@ KaxBlockGroup::KaxBlockGroup(EBML_EXTRA_DEF)
   :EbmlMaster(EBML_CLASS_SEMCONTEXT(KaxBlockGroup) EBML_DEF_SEP EBML_EXTRA_CALL)
 {}
 
+static constexpr std::int64_t SignedVINT_Shift1 = (1 << ((7*1) - 1)) - 1;
+static constexpr std::int64_t SignedVINT_Shift2 = (1 << ((7*2) - 1)) - 1;
+static constexpr std::int64_t SignedVINT_Shift3 = (1 << ((7*3) - 1)) - 1;
+static constexpr std::int64_t SignedVINT_Shift4 = (1 << ((7*4) - 1)) - 1;
+
 /*!
   \brief The size of the EBML-coded signed integer
   \param Value value to encode as EBML integer
@@ -136,13 +141,13 @@ static int SignedVINTLength(std::int64_t Value, unsigned int SizeLength)
 static int SignedVINTValue(std::int64_t Value, int CodedSize, binary * OutBuffer)
 {
   if (Value > -64 && Value < 64) // 2^6
-    Value += 63;
+    Value += SignedVINT_Shift1;
   else if (Value > -8192 && Value < 8192) // 2^13
-    Value += 8191;
+    Value += SignedVINT_Shift2;
   else if (Value > -1048576L && Value < 1048576L) // 2^20
-    Value += 1048575L;
+    Value += SignedVINT_Shift3;
   else if (Value > -134217728L && Value < 134217728L) // 2^27
-    Value += 134217727L;
+    Value += SignedVINT_Shift4;
 
   return CodedValueLength(Value, CodedSize, OutBuffer);
 }
@@ -158,16 +163,16 @@ static std::int64_t ReadSignedVINT(const binary * InBuffer, std::uint32_t & Buff
   if (BufferSize != 0) {
     switch (BufferSize) {
       case 1:
-        Result -= 63;
+        Result -= SignedVINT_Shift1;
         break;
       case 2:
-        Result -= 8191;
+        Result -= SignedVINT_Shift2;
         break;
       case 3:
-        Result -= 1048575L;
+        Result -= SignedVINT_Shift3;
         break;
       case 4:
-        Result -= 134217727L;
+        Result -= SignedVINT_Shift4;
         break;
     }
   }

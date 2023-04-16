@@ -68,11 +68,12 @@ class MATROSKA_DLL_API DataBuffer {
     {
       if (bInternalBuffer)
       {
-        myBuffer = new (std::nothrow) binary[mySize];
-        if (!myBuffer)
-          bValidValue = false;
-        else
+        try {
+          myBuffer = new binary[mySize];
           memcpy(myBuffer, aBuffer, mySize);
+        } catch (const std::bad_alloc &) {
+          bValidValue = false;
+        }
       }
       else
         myBuffer = aBuffer;

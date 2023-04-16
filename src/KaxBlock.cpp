@@ -45,6 +45,23 @@
 
 namespace libmatroska {
 
+DataBuffer::DataBuffer(binary * aBuffer, std::uint32_t aSize, bool (*aFreeBuffer)(const DataBuffer & aBuffer), bool _bInternalBuffer)
+  :mySize(aSize)
+  ,myFreeBuffer(aFreeBuffer)
+  ,bInternalBuffer(_bInternalBuffer)
+{
+  if (bInternalBuffer)
+  {
+    myBuffer = new (std::nothrow) binary[mySize];
+    if (!myBuffer)
+      bValidValue = false;
+    else
+      memcpy(myBuffer, aBuffer, mySize);
+  }
+  else
+    myBuffer = aBuffer;
+}
+
 DataBuffer * DataBuffer::Clone()
 {
   auto ClonedData = static_cast<binary *>(malloc(mySize * sizeof(binary)));

@@ -61,22 +61,7 @@ class MATROSKA_DLL_API DataBuffer {
     bool     bInternalBuffer;
 
   public:
-    DataBuffer(binary * aBuffer, std::uint32_t aSize, bool (*aFreeBuffer)(const DataBuffer & aBuffer) = nullptr, bool _bInternalBuffer = false)
-      :mySize(aSize)
-      ,myFreeBuffer(aFreeBuffer)
-      ,bInternalBuffer(_bInternalBuffer)
-    {
-      if (bInternalBuffer)
-      {
-        myBuffer = new (std::nothrow) binary[mySize];
-        if (!myBuffer)
-          bValidValue = false;
-        else
-          memcpy(myBuffer, aBuffer, mySize);
-      }
-      else
-        myBuffer = aBuffer;
-    }
+    DataBuffer(binary * aBuffer, std::uint32_t aSize, bool (*aFreeBuffer)(const DataBuffer & aBuffer) = nullptr, bool _bInternalBuffer = false);
 
     virtual ~DataBuffer() = default;
     virtual binary * Buffer() {assert(bValidValue); return myBuffer;}

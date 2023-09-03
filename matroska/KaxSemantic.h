@@ -312,6 +312,8 @@ public:
 };
 
 DECLARE_MKX_UINTEGER(KaxTrackOverlay)
+public:
+  libebml::filepos_t RenderData(libebml::IOCallback & output, bool bForceRender, ShouldWrite writeFilter) override;
 };
 
 DECLARE_MKX_UINTEGER_DEF(KaxCodecDelay)

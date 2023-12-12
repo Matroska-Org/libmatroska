@@ -1,7 +1,17 @@
-# Version 1.8.0 2022-??-??
+# Version 2.0.0 2023-??-??
 
-* Bumped the library's soname to 8 due to ABI breaking changes that
-  already happened in 1.7.0.
+* API break: the headers `c/libmatroska.h` & `c/libmatroska_t.h` were
+  removed. Their remaining content was moved to `KaxTypes.h`.
+* API break: the `KaxSeedID` class can only be used to write EBML IDs
+  that are exactly four bytes long (previously: at most four bytes).
+* Updated the semantics to the latest specifications, deprecating the
+  following elements by preventing code to write them:
+  `KaxTrackMaxCache`, `KaxTrackMinCache`.
+* libebml 2.0.0 or newer is now required.
+* Bumped the library's soname to 8 due to several API & ABI breaking
+  changes.
+* Enabled building shared libraries via the usual CMake definition
+  `BUILD_SHARES_LIBS` (default: off).
 
 # Version 1.7.0 2022-09-30
 

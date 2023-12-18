@@ -17,6 +17,15 @@
 #include "matroska/KaxBlockData.h"
 #include "matroska/KaxCuesData.h"
 
+#ifndef DEFINE_SEMANTIC_ITEM_UINT
+#define DEFINE_SEMANTIC_ITEM_UINT(m,u,d,c)      DEFINE_SEMANTIC_ITEM(m,u,c)
+#define DEFINE_SEMANTIC_ITEM_SINT(m,u,d,c)      DEFINE_SEMANTIC_ITEM(m,u,c)
+#define DEFINE_SEMANTIC_ITEM_DATE(m,u,d,c)      DEFINE_SEMANTIC_ITEM(m,u,c)
+#define DEFINE_SEMANTIC_ITEM_FLOAT(m,u,d,c)     DEFINE_SEMANTIC_ITEM(m,u,c)
+#define DEFINE_SEMANTIC_ITEM_STRING(m,u,d,c)    DEFINE_SEMANTIC_ITEM(m,u,c)
+#define DEFINE_SEMANTIC_ITEM_UTF8(m,u,d,c)      DEFINE_SEMANTIC_ITEM(m,u,c)
+#endif
+
 namespace libmatroska {
 
 DEFINE_START_SEMANTIC(KaxSegment)

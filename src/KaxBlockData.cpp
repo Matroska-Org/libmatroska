@@ -47,7 +47,7 @@ const KaxBlockBlob & KaxReferenceBlock::RefBlock() const
   return *RefdBlock;
 }
 
-KaxReferenceBlock::KaxReferenceBlock(EBML_EXTRA_DEF)
+KaxReferenceBlock::KaxReferenceBlock()
 {
   bTimecodeSet = false;
 }

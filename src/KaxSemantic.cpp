@@ -215,7 +215,7 @@ DEFINE_SEMANTIC_ITEM_UINT(true, true, 0, KaxTrackMinCache) // not supported
 DEFINE_SEMANTIC_ITEM(false, true, KaxTrackMaxCache) // not supported
 DEFINE_SEMANTIC_ITEM(false, true, KaxTrackDefaultDuration)
 DEFINE_SEMANTIC_ITEM(false, true, KaxTrackDefaultDecodedFieldDuration)
-DEFINE_SEMANTIC_ITEM(true, true, KaxTrackTimecodeScale)
+DEFINE_SEMANTIC_ITEM_FLOAT(true, true, 0x1p+0, KaxTrackTimecodeScale)
 DEFINE_SEMANTIC_ITEM_SINT(false, true, 0, KaxTrackOffset) // not supported
 DEFINE_SEMANTIC_ITEM_UINT(true, true, 0, KaxMaxBlockAdditionID)
 DEFINE_SEMANTIC_ITEM(false, false, KaxBlockAdditionMapping)
@@ -407,9 +407,9 @@ DEFINE_MKX_FLOAT(KaxVideoLuminanceMin, 0x55DA, 2, KaxVideoColourMasterMeta, "Vid
 DEFINE_START_SEMANTIC(KaxVideoProjection)
 DEFINE_SEMANTIC_ITEM_UINT(true, true, 0, KaxVideoProjectionType)
 DEFINE_SEMANTIC_ITEM(false, true, KaxVideoProjectionPrivate)
-DEFINE_SEMANTIC_ITEM(true, true, KaxVideoProjectionPoseYaw)
-DEFINE_SEMANTIC_ITEM(true, true, KaxVideoProjectionPosePitch)
-DEFINE_SEMANTIC_ITEM(true, true, KaxVideoProjectionPoseRoll)
+DEFINE_SEMANTIC_ITEM_FLOAT(true, true, 0x0p+0, KaxVideoProjectionPoseYaw)
+DEFINE_SEMANTIC_ITEM_FLOAT(true, true, 0x0p+0, KaxVideoProjectionPosePitch)
+DEFINE_SEMANTIC_ITEM_FLOAT(true, true, 0x0p+0, KaxVideoProjectionPoseRoll)
 DEFINE_END_SEMANTIC(KaxVideoProjection)
 
 DEFINE_MKX_MASTER(KaxVideoProjection, 0x7670, 2, KaxTrackVideo, "VideoProjection")
@@ -420,7 +420,7 @@ DEFINE_MKX_FLOAT_DEF(KaxVideoProjectionPosePitch, 0x7674, 2, KaxVideoProjection,
 DEFINE_MKX_FLOAT_DEF(KaxVideoProjectionPoseRoll, 0x7675, 2, KaxVideoProjection, "VideoProjectionPoseRoll", 0)
 
 DEFINE_START_SEMANTIC(KaxTrackAudio)
-DEFINE_SEMANTIC_ITEM(true, true, KaxAudioSamplingFreq)
+DEFINE_SEMANTIC_ITEM_FLOAT(true, true, 0x1.f4p+12, KaxAudioSamplingFreq)
 DEFINE_SEMANTIC_ITEM(false, true, KaxAudioOutputSamplingFreq)
 DEFINE_SEMANTIC_ITEM_UINT(true, true, 1, KaxAudioChannels)
 DEFINE_SEMANTIC_ITEM(false, true, KaxAudioPosition) // not supported

@@ -216,7 +216,7 @@ DEFINE_SEMANTIC_ITEM(false, true, KaxTrackMaxCache) // not supported
 DEFINE_SEMANTIC_ITEM(false, true, KaxTrackDefaultDuration)
 DEFINE_SEMANTIC_ITEM(false, true, KaxTrackDefaultDecodedFieldDuration)
 DEFINE_SEMANTIC_ITEM(true, true, KaxTrackTimecodeScale)
-DEFINE_SEMANTIC_ITEM(false, true, KaxTrackOffset) // not supported
+DEFINE_SEMANTIC_ITEM_SINT(false, true, 0, KaxTrackOffset) // not supported
 DEFINE_SEMANTIC_ITEM_UINT(true, true, 0, KaxMaxBlockAdditionID)
 DEFINE_SEMANTIC_ITEM(false, false, KaxBlockAdditionMapping)
 DEFINE_SEMANTIC_ITEM(false, true, KaxTrackName)

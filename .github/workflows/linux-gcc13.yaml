@@ -1,4 +1,4 @@
-name: "Linux+gcc10"
+name: "Linux+gcc13"
 on:
   push:
     branches: [ master ]
@@ -7,7 +7,7 @@ on:
 
 jobs:
   build_libmatroska:
-    name: libmatroska with gcc10
+    name: libmatroska with gcc13
     runs-on: ubuntu-latest
     env:
       CMAKE_OPTIONS: -DCMAKE_CXX_EXTENSIONS=OFF
@@ -17,10 +17,10 @@ jobs:
 
       - name: Get pushed code
         uses: actions/checkout@v3
-      
+
       - name: Checkout libebml
         uses: actions/checkout@v3
-        with: 
+        with:
           repository: Matroska-Org/libebml
           path: libebml
           # minimum version we support ref: 'release-1.4.3'
@@ -28,8 +28,8 @@ jobs:
       - name: Configure libebml
         run: cmake -S libebml -B libebml/_build ${{ env.CMAKE_OPTIONS }}
         env:
-          CC:  gcc-10
-          CXX: g++-10
+          CC:  gcc-13
+          CXX: g++-13
 
       - name: Build libebml
         run: cmake --build libebml/_build --parallel
@@ -40,8 +40,8 @@ jobs:
       - name: Configure CMake
         run: cmake -S . -B _build  ${{ env.CMAKE_OPTIONS }} ${{ env.CMAKE_MATROSKA_OPTIONS }} -DEBML_DIR="${GITHUB_WORKSPACE}/_built/lib/cmake/EBML"
         env:
-          CC:  gcc-10
-          CXX: g++-10
+          CC:  gcc-13
+          CXX: g++-13
 
       - name: Build
         run: cmake --build _build --parallel

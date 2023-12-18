@@ -220,7 +220,7 @@ DEFINE_SEMANTIC_ITEM_SINT(false, true, 0, KaxTrackOffset) // not supported
 DEFINE_SEMANTIC_ITEM_UINT(true, true, 0, KaxMaxBlockAdditionID)
 DEFINE_SEMANTIC_ITEM(false, false, KaxBlockAdditionMapping)
 DEFINE_SEMANTIC_ITEM(false, true, KaxTrackName)
-DEFINE_SEMANTIC_ITEM(true, true, KaxTrackLanguage)
+DEFINE_SEMANTIC_ITEM_STRING(true, true, "eng", KaxTrackLanguage)
 DEFINE_SEMANTIC_ITEM(false, true, KaxLanguageIETF)
 DEFINE_SEMANTIC_ITEM(true, true, KaxCodecID)
 DEFINE_SEMANTIC_ITEM(false, true, KaxCodecPrivate)
@@ -663,7 +663,7 @@ DEFINE_MKX_UINTEGER(KaxChapterTrackNumber, 0x89, 1, KaxChapterTrack, "ChapterTra
 
 DEFINE_START_SEMANTIC(KaxChapterDisplay)
 DEFINE_SEMANTIC_ITEM(true, true, KaxChapterString)
-DEFINE_SEMANTIC_ITEM(true, false, KaxChapterLanguage)
+DEFINE_SEMANTIC_ITEM_STRING(true, false, "eng", KaxChapterLanguage)
 DEFINE_SEMANTIC_ITEM(false, false, KaxChapLanguageIETF)
 DEFINE_SEMANTIC_ITEM(false, false, KaxChapterCountry)
 DEFINE_END_SEMANTIC(KaxChapterDisplay)
@@ -726,7 +726,7 @@ DEFINE_MKX_UINTEGER_DEF(KaxTagAttachmentUID, 0x63C6, 2, KaxTagTargets, "TagAttac
 DEFINE_START_SEMANTIC(KaxTagSimple)
 DEFINE_SEMANTIC_ITEM(false, false, KaxTagSimple) // recursive
 DEFINE_SEMANTIC_ITEM(true, true, KaxTagName)
-DEFINE_SEMANTIC_ITEM(true, true, KaxTagLangue)
+DEFINE_SEMANTIC_ITEM_STRING(true, true, "und", KaxTagLangue)
 DEFINE_SEMANTIC_ITEM(false, true, KaxTagLanguageIETF)
 DEFINE_SEMANTIC_ITEM_UINT(true, true, 1, KaxTagDefault)
 DEFINE_SEMANTIC_ITEM_UINT(true, true, 1, KaxTagDefaultBogus) // not supported

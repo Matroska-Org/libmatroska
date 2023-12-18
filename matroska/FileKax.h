@@ -41,15 +41,4 @@ class MATROSKA_DLL_API FileMatroska {
 
 } // namespace libmatroska
 
-#ifdef __cplusplus
-extern "C" {
-#endif
-
-MATROSKA_DLL_API void matroska_init();
-MATROSKA_DLL_API void matroska_done();
-
-#ifdef __cplusplus
-}
-#endif
-
 #endif // FILE_KAX_HPP

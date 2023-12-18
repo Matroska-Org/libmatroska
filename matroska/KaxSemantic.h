@@ -36,10 +36,6 @@ DECLARE_MKX_MASTER(KaxInfo)
 };
 
 DECLARE_MKX_BINARY (KaxSegmentUID)
-#if defined(HAVE_EBML2) || defined(HAS_EBML2)
-public:
-  KaxSegmentUID(EBML_DEF_CONS EBML_DEF_SEP EBML_EXTRA_PARAM);
-#endif
 public:
   bool ValidateSize() const override {return IsFiniteSize() && GetSize() == 16;}
 };

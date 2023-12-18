@@ -24,7 +24,6 @@ set(libmatroska_SOURCES
   src/KaxContexts.cpp
   src/KaxCues.cpp
   src/KaxCuesData.cpp
-  src/KaxInfoData.cpp
   src/KaxSeekHead.cpp
   src/KaxSegment.cpp
   src/KaxSemantic.cpp

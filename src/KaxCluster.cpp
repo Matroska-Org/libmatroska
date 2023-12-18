@@ -38,8 +38,8 @@
 // sub elements
 namespace libmatroska {
 
-KaxCluster::KaxCluster(EBML_EXTRA_DEF)
-  :EbmlMaster(EBML_CLASS_SEMCONTEXT(KaxCluster) EBML_DEF_SEP EBML_EXTRA_CALL)
+KaxCluster::KaxCluster()
+  :EbmlMaster(EBML_CLASS_SEMCONTEXT(KaxCluster))
 {}
 
 KaxCluster::KaxCluster(const KaxCluster & ElementToClone)

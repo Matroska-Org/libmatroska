@@ -94,8 +94,8 @@ KaxInternalBlock::KaxInternalBlock(const KaxInternalBlock & ElementToClone)
   //NOTE("KaxBlockGroup::~KaxBlockGroup");
 } */
 
-KaxBlockGroup::KaxBlockGroup(EBML_EXTRA_DEF)
-  :EbmlMaster(EBML_CLASS_SEMCONTEXT(KaxBlockGroup) EBML_DEF_SEP EBML_EXTRA_CALL)
+KaxBlockGroup::KaxBlockGroup()
+  :EbmlMaster(EBML_CLASS_SEMCONTEXT(KaxBlockGroup))
 {}
 
 static constexpr std::int64_t SignedVINT_Shift1 = (1 << ((7*1) - 1)) - 1;
@@ -291,7 +291,7 @@ KaxBlockVirtual::KaxBlockVirtual(const KaxBlockVirtual & ElementToClone)
   SetValueIsSet(false);
 }
 
-KaxBlockVirtual::KaxBlockVirtual(EBML_EXTRA_DEF)
+KaxBlockVirtual::KaxBlockVirtual()
 {
   SetBuffer(DataBlock,sizeof(DataBlock));
   SetValueIsSet(false);

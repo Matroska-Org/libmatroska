@@ -44,8 +44,8 @@
 
 namespace libmatroska {
 
-KaxSegment::KaxSegment(EBML_EXTRA_DEF)
-  :EbmlMaster(EBML_CLASS_SEMCONTEXT(KaxSegment) EBML_DEF_SEP EBML_EXTRA_CALL)
+KaxSegment::KaxSegment()
+  :EbmlMaster(EBML_CLASS_SEMCONTEXT(KaxSegment))
 {
   SetSizeLength(5); // mandatory min size support (for easier updating) (2^(7*5)-2 = 32Go)
   SetSizeInfinite(); // by default a segment is big and the size is unknown in advance

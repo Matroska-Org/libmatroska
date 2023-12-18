@@ -41,8 +41,8 @@ using namespace libebml;
 
 namespace libmatroska {
 
-KaxAttached::KaxAttached(EBML_EXTRA_DEF)
-  :EbmlMaster(EBML_CLASS_SEMCONTEXT(KaxAttached) EBML_DEF_SEP EBML_EXTRA_CALL)
+KaxAttached::KaxAttached()
+  :EbmlMaster(EBML_CLASS_SEMCONTEXT(KaxAttached))
 {
   SetSizeLength(2); // mandatory min size support (for easier updating) (2^(7*2)-2 = 16Ko)
 }

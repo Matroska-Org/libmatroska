@@ -33,30 +33,19 @@ set(libmatroska_SOURCES
 
 set(libmatroska_PUBLIC_HEADERS
   matroska/FileKax.h
-  matroska/KaxAttached.h
-  matroska/KaxAttachments.h
   matroska/KaxBlockData.h
   matroska/KaxBlock.h
-  matroska/KaxChapters.h
-  matroska/KaxClusterData.h
   matroska/KaxCluster.h
   matroska/KaxConfig.h
-  matroska/KaxContentEncoding.h
   matroska/KaxContexts.h
   matroska/KaxCuesData.h
   matroska/KaxCues.h
   matroska/KaxDefines.h
   matroska/KaxInfoData.h
-  matroska/KaxInfo.h
   matroska/KaxSeekHead.h
   matroska/KaxSegment.h
   matroska/KaxSemantic.h
-  matroska/KaxTag.h
-  matroska/KaxTags.h
-  matroska/KaxTrackAudio.h
-  matroska/KaxTrackEntryData.h
   matroska/KaxTracks.h
-  matroska/KaxTrackVideo.h
   matroska/KaxTypes.h
   matroska/KaxVersion.h)
 

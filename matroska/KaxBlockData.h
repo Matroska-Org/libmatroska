@@ -27,7 +27,6 @@
 
 /*!
   \file
-  \version \$Id: KaxBlockData.h,v 1.10 2004/04/14 23:26:17 robux4 Exp $
   \author Steve Lhomme     <robux4 @ users.sf.net>
 */
 #ifndef LIBMATROSKA_BLOCK_ADDITIONAL_H

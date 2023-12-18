@@ -29,7 +29,6 @@
 
 /*!
   \file
-  \version \$Id: KaxClusterData.h,v 1.9 2004/04/21 19:50:10 mosu Exp $
   \author Steve Lhomme     <robux4 @ users.sf.net>
 */
 #ifndef LIBMATROSKA_CLUSTER_DATA_H

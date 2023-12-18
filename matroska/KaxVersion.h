@@ -27,7 +27,6 @@
 
 /*!
   \file
-  \version \$Id: KaxVersion.h,v 1.13 2004/04/23 16:46:07 mosu Exp $
   \author Steve Lhomme     <robux4 @ users.sf.net>
 */
 #ifndef LIBMATROSKA_VERSION_H

@@ -29,7 +29,6 @@
 
 /*!
   \file
-  \version \$Id: KaxTrackEntryData.h,v 1.9 2004/04/14 23:26:17 robux4 Exp $
   \author Steve Lhomme     <robux4 @ users.sf.net>
 */
 #ifndef LIBMATROSKA_TRACK_ENTRY_DATA_H

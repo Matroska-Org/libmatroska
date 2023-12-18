@@ -29,7 +29,6 @@
 
 /*!
   \file
-  \version \$Id: KaxTypes.h,v 1.4 2004/04/14 23:26:17 robux4 Exp $
 */
 #ifndef LIBMATROSKA_TYPES_H
 #define LIBMATROSKA_TYPES_H

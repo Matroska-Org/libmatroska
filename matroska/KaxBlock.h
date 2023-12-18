@@ -28,7 +28,6 @@
 /*!
   \file
   \todo add a PureBlock class to group functionalities between Block and BlockVirtual
-  \version \$Id: KaxBlock.h,v 1.24 2004/04/14 23:26:17 robux4 Exp $
   \author Steve Lhomme     <robux4 @ users.sf.net>
   \author Julien Coloos    <suiryc @ users.sf.net>
 */

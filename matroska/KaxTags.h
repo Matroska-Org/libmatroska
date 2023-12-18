@@ -29,7 +29,6 @@
 
 /*!
   \file
-  \version \$Id: KaxTags.h,v 1.7 2004/04/14 23:26:17 robux4 Exp $
   \author Steve Lhomme     <robux4 @ users.sf.net>
 */
 #ifndef LIBMATROSKA_TAGS_H

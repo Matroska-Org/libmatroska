@@ -24,13 +24,11 @@ using namespace libebml;
 
 namespace libmatroska {
 
-DECLARE_MKX_CONTEXT(KaxPrevUID)
 DECLARE_MKX_BINARY (KaxPrevUID)
   public:
     bool ValidateSize() const override { return IsFiniteSize() && (GetSize() == 16);}
 };
 
-DECLARE_MKX_CONTEXT(KaxNextUID)
 DECLARE_MKX_BINARY (KaxNextUID)
   public:
     bool ValidateSize() const override { return IsFiniteSize() && (GetSize() == 16);}

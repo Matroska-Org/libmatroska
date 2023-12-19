@@ -99,12 +99,12 @@ DECLARE_MKX_UINTEGER(KaxClusterTimecode)
 
 DECLARE_MKX_MASTER(KaxClusterSilentTracks)
 public:
-  filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault) override;
+  filepos_t RenderData(IOCallback & output, bool bForceRender, ShouldWrite writeFilter) override;
 };
 
 DECLARE_MKX_UINTEGER(KaxClusterSilentTrackNumber)
 public:
-  filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault) override;
+  filepos_t RenderData(IOCallback & output, bool bForceRender, ShouldWrite writeFilter) override;
 };
 
 DECLARE_MKX_UINTEGER(KaxClusterPosition)
@@ -133,7 +133,7 @@ DECLARE_MKX_UINTEGER(KaxReferencePriority)
 
 DECLARE_MKX_SINTEGER(KaxReferenceVirtual)
 public:
-  filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault) override;
+  filepos_t RenderData(IOCallback & output, bool bForceRender, ShouldWrite writeFilter) override;
 };
 
 DECLARE_MKX_BINARY (KaxCodecState)
@@ -144,57 +144,57 @@ DECLARE_MKX_SINTEGER(KaxDiscardPadding)
 
 DECLARE_MKX_MASTER(KaxSlices)
 public:
-  filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault) override;
+  filepos_t RenderData(IOCallback & output, bool bForceRender, ShouldWrite writeFilter) override;
 };
 
 DECLARE_MKX_MASTER(KaxTimeSlice)
 public:
-  filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault) override;
+  filepos_t RenderData(IOCallback & output, bool bForceRender, ShouldWrite writeFilter) override;
 };
 
 DECLARE_MKX_UINTEGER(KaxSliceLaceNumber)
 public:
-  filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault) override;
+  filepos_t RenderData(IOCallback & output, bool bForceRender, ShouldWrite writeFilter) override;
 };
 
 DECLARE_MKX_UINTEGER(KaxSliceFrameNumber)
 public:
-  filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault) override;
+  filepos_t RenderData(IOCallback & output, bool bForceRender, ShouldWrite writeFilter) override;
 };
 
 DECLARE_MKX_UINTEGER(KaxSliceBlockAddID)
 public:
-  filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault) override;
+  filepos_t RenderData(IOCallback & output, bool bForceRender, ShouldWrite writeFilter) override;
 };
 
 DECLARE_MKX_UINTEGER(KaxSliceDelay)
 public:
-  filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault) override;
+  filepos_t RenderData(IOCallback & output, bool bForceRender, ShouldWrite writeFilter) override;
 };
 
 DECLARE_MKX_UINTEGER(KaxSliceDuration)
 public:
-  filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault) override;
+  filepos_t RenderData(IOCallback & output, bool bForceRender, ShouldWrite writeFilter) override;
 };
 
 DECLARE_MKX_MASTER(KaxReferenceFrame)
 public:
-  filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault) override;
+  filepos_t RenderData(IOCallback & output, bool bForceRender, ShouldWrite writeFilter) override;
 };
 
 DECLARE_MKX_UINTEGER(KaxReferenceOffset)
 public:
-  filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault) override;
+  filepos_t RenderData(IOCallback & output, bool bForceRender, ShouldWrite writeFilter) override;
 };
 
 DECLARE_MKX_UINTEGER(KaxReferenceTimeCode)
 public:
-  filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault) override;
+  filepos_t RenderData(IOCallback & output, bool bForceRender, ShouldWrite writeFilter) override;
 };
 
 DECLARE_MKX_BINARY (KaxEncryptedBlock)
 public:
-  filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault) override;
+  filepos_t RenderData(IOCallback & output, bool bForceRender, ShouldWrite writeFilter) override;
 };
 
 DECLARE_MKX_MASTER(KaxTracks)
@@ -238,12 +238,12 @@ DECLARE_MKX_UINTEGER(KaxTrackFlagLacing)
 
 DECLARE_MKX_UINTEGER(KaxTrackMinCache)
 public:
-  filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault) override;
+  filepos_t RenderData(IOCallback & output, bool bForceRender, ShouldWrite writeFilter) override;
 };
 
 DECLARE_MKX_UINTEGER(KaxTrackMaxCache)
 public:
-  filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault) override;
+  filepos_t RenderData(IOCallback & output, bool bForceRender, ShouldWrite writeFilter) override;
 };
 
 DECLARE_MKX_UINTEGER(KaxTrackDefaultDuration)
@@ -254,12 +254,12 @@ DECLARE_MKX_UINTEGER(KaxTrackDefaultDecodedFieldDuration)
 
 DECLARE_MKX_FLOAT(KaxTrackTimecodeScale)
 public:
-  filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault) override;
+  filepos_t RenderData(IOCallback & output, bool bForceRender, ShouldWrite writeFilter) override;
 };
 
 DECLARE_MKX_SINTEGER(KaxTrackOffset)
 public:
-  filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault) override;
+  filepos_t RenderData(IOCallback & output, bool bForceRender, ShouldWrite writeFilter) override;
 };
 
 DECLARE_MKX_UINTEGER(KaxMaxBlockAdditionID)
@@ -300,27 +300,27 @@ DECLARE_MKX_UNISTRING(KaxCodecName)
 
 DECLARE_MKX_UINTEGER(KaxTrackAttachmentLink)
 public:
-  filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault) override;
+  filepos_t RenderData(IOCallback & output, bool bForceRender, ShouldWrite writeFilter) override;
 };
 
 DECLARE_MKX_UNISTRING(KaxCodecSettings)
 public:
-  filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault) override;
+  filepos_t RenderData(IOCallback & output, bool bForceRender, ShouldWrite writeFilter) override;
 };
 
 DECLARE_MKX_STRING(KaxCodecInfoURL)
 public:
-  filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault) override;
+  filepos_t RenderData(IOCallback & output, bool bForceRender, ShouldWrite writeFilter) override;
 };
 
 DECLARE_MKX_STRING(KaxCodecDownloadURL)
 public:
-  filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault) override;
+  filepos_t RenderData(IOCallback & output, bool bForceRender, ShouldWrite writeFilter) override;
 };
 
 DECLARE_MKX_UINTEGER(KaxCodecDecodeAll)
 public:
-  filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault) override;
+  filepos_t RenderData(IOCallback & output, bool bForceRender, ShouldWrite writeFilter) override;
 };
 
 DECLARE_MKX_UINTEGER(KaxTrackOverlay)
@@ -361,7 +361,7 @@ DECLARE_MKX_UINTEGER(KaxVideoAlphaMode)
 
 DECLARE_MKX_UINTEGER(KaxOldStereoMode)
 public:
-  filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault) override;
+  filepos_t RenderData(IOCallback & output, bool bForceRender, ShouldWrite writeFilter) override;
 };
 
 DECLARE_MKX_UINTEGER(KaxVideoPixelWidth)
@@ -393,7 +393,7 @@ DECLARE_MKX_UINTEGER(KaxVideoDisplayUnit)
 
 DECLARE_MKX_UINTEGER(KaxVideoAspectRatio)
 public:
-  filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault) override;
+  filepos_t RenderData(IOCallback & output, bool bForceRender, ShouldWrite writeFilter) override;
 };
 
 DECLARE_MKX_BINARY (KaxVideoColourSpace)
@@ -403,12 +403,12 @@ public:
 
 DECLARE_MKX_FLOAT(KaxVideoGamma)
 public:
-  filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault) override;
+  filepos_t RenderData(IOCallback & output, bool bForceRender, ShouldWrite writeFilter) override;
 };
 
 DECLARE_MKX_FLOAT(KaxVideoFrameRate)
 public:
-  filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault) override;
+  filepos_t RenderData(IOCallback & output, bool bForceRender, ShouldWrite writeFilter) override;
 };
 
 DECLARE_MKX_MASTER(KaxVideoColour)
@@ -518,7 +518,7 @@ DECLARE_MKX_UINTEGER(KaxAudioChannels)
 
 DECLARE_MKX_BINARY (KaxAudioPosition)
 public:
-  filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault) override;
+  filepos_t RenderData(IOCallback & output, bool bForceRender, ShouldWrite writeFilter) override;
 };
 
 DECLARE_MKX_UINTEGER(KaxAudioBitDepth)
@@ -550,28 +550,28 @@ DECLARE_MKX_UINTEGER(KaxTrackJoinUID)
 
 DECLARE_MKX_UINTEGER(KaxTrickTrackUID)
 public:
-  filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault) override;
+  filepos_t RenderData(IOCallback & output, bool bForceRender, ShouldWrite writeFilter) override;
 };
 
 DECLARE_MKX_BINARY (KaxTrickTrackSegmentUID)
 public:
-  filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault) override;
+  filepos_t RenderData(IOCallback & output, bool bForceRender, ShouldWrite writeFilter) override;
   bool ValidateSize() const override {return IsFiniteSize() && GetSize() == 16;}
 };
 
 DECLARE_MKX_UINTEGER(KaxTrickTrackFlag)
 public:
-  filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault) override;
+  filepos_t RenderData(IOCallback & output, bool bForceRender, ShouldWrite writeFilter) override;
 };
 
 DECLARE_MKX_UINTEGER(KaxTrickMasterTrackUID)
 public:
-  filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault) override;
+  filepos_t RenderData(IOCallback & output, bool bForceRender, ShouldWrite writeFilter) override;
 };
 
 DECLARE_MKX_BINARY (KaxTrickMasterTrackSegmentUID)
 public:
-  filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault) override;
+  filepos_t RenderData(IOCallback & output, bool bForceRender, ShouldWrite writeFilter) override;
   bool ValidateSize() const override {return IsFiniteSize() && GetSize() == 16;}
 };
 
@@ -616,22 +616,22 @@ DECLARE_MKX_UINTEGER(KaxAESSettingsCipherMode)
 
 DECLARE_MKX_BINARY (KaxContentSignature)
 public:
-  filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault) override;
+  filepos_t RenderData(IOCallback & output, bool bForceRender, ShouldWrite writeFilter) override;
 };
 
 DECLARE_MKX_BINARY (KaxContentSigKeyID)
 public:
-  filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault) override;
+  filepos_t RenderData(IOCallback & output, bool bForceRender, ShouldWrite writeFilter) override;
 };
 
 DECLARE_MKX_UINTEGER(KaxContentSigAlgo)
 public:
-  filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault) override;
+  filepos_t RenderData(IOCallback & output, bool bForceRender, ShouldWrite writeFilter) override;
 };
 
 DECLARE_MKX_UINTEGER(KaxContentSigHashAlgo)
 public:
-  filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault) override;
+  filepos_t RenderData(IOCallback & output, bool bForceRender, ShouldWrite writeFilter) override;
 };
 
 DECLARE_MKX_UINTEGER(KaxCueTime)
@@ -660,17 +660,17 @@ DECLARE_MKX_UINTEGER(KaxCueRefTime)
 
 DECLARE_MKX_UINTEGER(KaxCueRefCluster)
 public:
-  filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault) override;
+  filepos_t RenderData(IOCallback & output, bool bForceRender, ShouldWrite writeFilter) override;
 };
 
 DECLARE_MKX_UINTEGER(KaxCueRefNumber)
 public:
-  filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault) override;
+  filepos_t RenderData(IOCallback & output, bool bForceRender, ShouldWrite writeFilter) override;
 };
 
 DECLARE_MKX_UINTEGER(KaxCueRefCodecState)
 public:
-  filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault) override;
+  filepos_t RenderData(IOCallback & output, bool bForceRender, ShouldWrite writeFilter) override;
 };
 
 DECLARE_MKX_MASTER(KaxAttachments)
@@ -696,17 +696,17 @@ DECLARE_MKX_UINTEGER(KaxFileUID)
 
 DECLARE_MKX_BINARY (KaxFileReferral)
 public:
-  filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault) override;
+  filepos_t RenderData(IOCallback & output, bool bForceRender, ShouldWrite writeFilter) override;
 };
 
 DECLARE_MKX_UINTEGER(KaxFileUsedStartTime)
 public:
-  filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault) override;
+  filepos_t RenderData(IOCallback & output, bool bForceRender, ShouldWrite writeFilter) override;
 };
 
 DECLARE_MKX_UINTEGER(KaxFileUsedEndTime)
 public:
-  filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault) override;
+  filepos_t RenderData(IOCallback & output, bool bForceRender, ShouldWrite writeFilter) override;
 };
 
 DECLARE_MKX_MASTER(KaxChapters)
@@ -854,7 +854,7 @@ DECLARE_MKX_UINTEGER(KaxTagDefault)
 
 DECLARE_MKX_UINTEGER(KaxTagDefaultBogus)
 public:
-  filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault) override;
+  filepos_t RenderData(IOCallback & output, bool bForceRender, ShouldWrite writeFilter) override;
 };
 
 DECLARE_MKX_UNISTRING(KaxTagString)
@@ -1180,7 +1180,7 @@ typedef enum {
  *Indicate what type of content the ChapterAtom contains and might be skipped. It can be used to automatically skip content based on the type.
 If a `ChapterAtom` is inside a `ChapterAtom` that has a `ChapterSkipType` set, it **MUST NOT** have a `ChapterSkipType` or have a `ChapterSkipType` with the same value as it's parent `ChapterAtom`.
 If the `ChapterAtom` doesn't contain a `ChapterTimeEnd`, the value of the `ChapterSkipType` is only valid until the next `ChapterAtom` with a `ChapterSkipType` value or the end of the file.
-    
+
  */
 typedef enum {
   MATROSKA_CHAPTERSKIPTYPE_NO_SKIPPING      = 0, // Content which should not be skipped.

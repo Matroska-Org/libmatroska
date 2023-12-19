@@ -112,7 +112,7 @@ bool KaxCluster::AddFrame(const KaxTrackEntry & track, std::uint64_t timecode, D
 /*!
   \todo only put the Blocks written in the cue entries
 */
-filepos_t KaxCluster::Render(IOCallback & output, KaxCues & CueToUpdate, bool bSaveDefault)
+filepos_t KaxCluster::Render(IOCallback & output, KaxCues & CueToUpdate, ShouldWrite writeFilter)
 {
   filepos_t Result = 0;
 
@@ -144,7 +144,7 @@ filepos_t KaxCluster::Render(IOCallback & output, KaxCues & CueToUpdate, bool bS
       }
     }
 
-    Result = EbmlMaster::Render(output, bSaveDefault);
+    Result = EbmlMaster::Render(output, writeFilter);
     // For all Blocks add their position on the CueEntry
 
     for (const auto& element : GetElementList()) {
@@ -182,7 +182,7 @@ filepos_t KaxCluster::Render(IOCallback & output, KaxCues & CueToUpdate, bool bS
       }
     }
 
-    Result = EbmlMaster::Render(output, bSaveDefault);
+    Result = EbmlMaster::Render(output, writeFilter);
 
     // For all Blocks add their position on the CueEntry
     for (const auto& blob : Blobs)

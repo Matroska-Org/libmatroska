@@ -36,9 +36,9 @@ DECLARE_MKX_MASTER(KaxCues)
     /*!
       \brief override to sort by timecode/track
     */
-    filepos_t Render(IOCallback & output, bool bSaveDefault = false) {
+    filepos_t Render(IOCallback & output, ShouldWrite writeFilter = WriteSkipDefault) {
       Sort();
-      return EbmlMaster::Render(output, bSaveDefault);
+      return EbmlMaster::Render(output, writeFilter);
     }
 
     std::uint64_t GetTimecodePosition(std::uint64_t aTimecode) const;

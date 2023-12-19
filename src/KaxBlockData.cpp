@@ -47,7 +47,7 @@ void KaxReferenceBlock::FreeBlob()
   RefdBlock = nullptr;
 }
 
-filepos_t KaxReferenceBlock::UpdateSize(bool bSaveDefault, bool bForceRender)
+filepos_t KaxReferenceBlock::UpdateSize(ShouldWrite writeFilter, bool bForceRender)
 {
   if (!bTimecodeSet) {
     assert(RefdBlock);
@@ -56,7 +56,7 @@ filepos_t KaxReferenceBlock::UpdateSize(bool bSaveDefault, bool bForceRender)
     auto &block = static_cast<KaxInternalBlock&>(*RefdBlock);
     SetValue(static_cast<std::int64_t>(block.GlobalTimecode()) - static_cast<std::int64_t>(ParentBlock->GlobalTimecode()) / static_cast<std::int64_t>(ParentBlock->GlobalTimecodeScale()));
   }
-  return EbmlSInteger::UpdateSize(bSaveDefault, bForceRender);
+  return EbmlSInteger::UpdateSize(writeFilter, bForceRender);
 }
 
 void KaxReferenceBlock::SetReferencedBlock(const KaxBlockBlob * aRefdBlock)

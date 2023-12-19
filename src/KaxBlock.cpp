@@ -204,7 +204,7 @@ LacingType KaxInternalBlock::GetBestLacingType() const {
   return LACING_EBML;
 }
 
-filepos_t KaxInternalBlock::UpdateSize(bool /* bSaveDefault */, bool /* bForceRender */)
+filepos_t KaxInternalBlock::UpdateSize(ShouldWrite, bool /* bForceRender */)
 {
   LacingType LacingHere;
   assert(!EbmlBinary::GetBuffer()); // Data is not used for KaxInternalBlock
@@ -280,7 +280,7 @@ KaxBlockVirtual::~KaxBlockVirtual()
     SetBuffer( nullptr, 0 );
 }
 
-filepos_t KaxBlockVirtual::UpdateSize(bool /* bSaveDefault */, bool /* bForceRender */)
+filepos_t KaxBlockVirtual::UpdateSize(ShouldWrite, bool /* bForceRender */)
 {
   assert(TrackNumber < 0x4000);
   binary *cursor = EbmlBinary::GetBuffer();
@@ -308,7 +308,7 @@ filepos_t KaxBlockVirtual::UpdateSize(bool /* bSaveDefault */, bool /* bForceRen
   \todo more optimisation is possible (render the Block head and don't copy the buffer in memory, care should be taken with the allocation of Data)
   \todo the actual timecode to write should be retrieved from the Cluster from here
 */
-filepos_t KaxInternalBlock::RenderData(IOCallback & output, bool /* bForceRender */, bool /* bSaveDefault */)
+filepos_t KaxInternalBlock::RenderData(IOCallback & output, bool /* bForceRender */, ShouldWrite)
 {
   if (myBuffers.empty())
     return 0;

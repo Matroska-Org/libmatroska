@@ -24,6 +24,7 @@ const KaxBlockBlob & KaxReferenceBlock::RefBlock() const
 }
 
 KaxReferenceBlock::KaxReferenceBlock()
+  :EbmlSInteger(KaxReferenceBlock::ClassInfos)
 {
   bTimecodeSet = false;
 }

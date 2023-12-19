@@ -181,7 +181,9 @@ DECLARE_MKX_MASTER(KaxBlockGroup)
 
 class MATROSKA_DLL_API KaxInternalBlock : public EbmlBinary {
   public:
-    KaxInternalBlock(bool bSimple) :bIsSimple(bSimple)
+    KaxInternalBlock(const EbmlCallbacks & classInfo, bool bSimple)
+      :EbmlBinary(classInfo),
+      bIsSimple(bSimple)
     {}
     KaxInternalBlock(const KaxInternalBlock & ElementToClone);
     ~KaxInternalBlock() override;
@@ -267,13 +269,13 @@ class MATROSKA_DLL_API KaxInternalBlock : public EbmlBinary {
 
 class MATROSKA_DLL_API KaxBlock : public KaxInternalBlock {
   public:
-    KaxBlock() :KaxInternalBlock(false) {}
+    KaxBlock() :KaxInternalBlock(KaxBlock::ClassInfos, false) {}
         EBML_CONCRETE_CLASS(KaxBlock)
 };
 
 class MATROSKA_DLL_API KaxSimpleBlock : public KaxInternalBlock {
   public:
-    KaxSimpleBlock() :KaxInternalBlock(true) {}
+    KaxSimpleBlock() :KaxInternalBlock(KaxSimpleBlock::ClassInfos, true) {}
 
     void SetKeyframe(bool b_keyframe) { bIsKeyframe = b_keyframe; }
     void SetDiscardable(bool b_discard) { bIsDiscardable = b_discard; }

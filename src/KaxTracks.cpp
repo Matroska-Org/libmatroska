@@ -14,7 +14,7 @@
 namespace libmatroska {
 
 KaxTrackEntry::KaxTrackEntry()
-  :EbmlMaster(EBML_CLASS_SEMCONTEXT(KaxTrackEntry))
+  :EbmlMaster(KaxTrackEntry::ClassInfos, EBML_CLASS_SEMCONTEXT(KaxTrackEntry))
 {}
 
 void KaxTrackEntry::EnableLacing(bool bEnable)

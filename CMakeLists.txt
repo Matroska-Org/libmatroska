@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.1.2)
 
-project(matroska VERSION 1.8.0)
+project(matroska VERSION 2.0.0)
 
 option(DISABLE_PKGCONFIG "Disable PkgConfig module generation" OFF)
 option(DISABLE_CMAKE_CONFIG "Disable CMake package config module generation" OFF)

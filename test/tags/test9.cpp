@@ -21,7 +21,6 @@
 #include <matroska/KaxBlock.h>
 #include <matroska/KaxCluster.h>
 #include <matroska/KaxCues.h>
-#include <matroska/KaxInfoData.h>
 #include <matroska/KaxSeekHead.h>
 #include <matroska/KaxSegment.h>
 #include <matroska/KaxTracks.h>

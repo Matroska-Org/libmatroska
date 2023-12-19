@@ -43,7 +43,17 @@ public:
 DECLARE_MKX_UNISTRING(KaxSegmentFilename)
 };
 
+DECLARE_MKX_BINARY (KaxPrevUID)
+public:
+  bool ValidateSize() const override {return IsFiniteSize() && GetSize() == 16;}
+};
+
 DECLARE_MKX_UNISTRING(KaxPrevFilename)
+};
+
+DECLARE_MKX_BINARY (KaxNextUID)
+public:
+  bool ValidateSize() const override {return IsFiniteSize() && GetSize() == 16;}
 };
 
 DECLARE_MKX_UNISTRING(KaxNextFilename)

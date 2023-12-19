@@ -265,14 +265,12 @@ class MATROSKA_DLL_API KaxInternalBlock : public EbmlBinary {
     filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault = false) override;
 };
 
-DECLARE_MKX_CONTEXT(KaxBlock)
 class MATROSKA_DLL_API KaxBlock : public KaxInternalBlock {
   public:
     KaxBlock() :KaxInternalBlock(false) {}
         EBML_CONCRETE_CLASS(KaxBlock)
 };
 
-DECLARE_MKX_CONTEXT(KaxSimpleBlock)
 class MATROSKA_DLL_API KaxSimpleBlock : public KaxInternalBlock {
   public:
     KaxSimpleBlock() :KaxInternalBlock(true) {}

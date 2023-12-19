@@ -12,9 +12,9 @@
 #include <ebml/EbmlElement.h>
 
 #define DEFINE_MKX_CONTEXT(a)                DEFINE_xxx_CONTEXT(a,GetKaxGlobal_Context)
-#define DEFINE_MKX_MASTER_CONS(a,b,c,d,e)    DEFINE_xxx_MASTER_CONS(a,b,c,d,e,GetKaxGlobal_Context)
-#define DEFINE_MKX_MASTER(a,b,c,d,e)         DEFINE_xxx_MASTER(a,b,c,d,e,GetKaxGlobal_Context)
-#define DEFINE_MKX_MASTER_ORPHAN(a,b,c,d)    DEFINE_xxx_MASTER_ORPHAN(a,b,c,d,GetKaxGlobal_Context)
+#define DEFINE_MKX_MASTER_CONS(a,b,c,d,i,e)  DEFINE_xxx_MASTER_CONS(a,b,c,d,i,e,GetKaxGlobal_Context)
+#define DEFINE_MKX_MASTER(a,b,c,d,i,e)       DEFINE_xxx_MASTER(a,b,c,d,i,e,GetKaxGlobal_Context)
+#define DEFINE_MKX_MASTER_ORPHAN(a,b,c,i,d)  DEFINE_xxx_MASTER_ORPHAN(a,b,c,i,d,GetKaxGlobal_Context)
 #define DEFINE_MKX_UINTEGER_DEF(a,b,c,d,e,v) DEFINE_xxx_UINTEGER_DEF(a,b,c,d,e,GetKaxGlobal_Context,v)
 #define DEFINE_MKX_SINTEGER_DEF(a,b,c,d,e,v) DEFINE_xxx_SINTEGER_DEF(a,b,c,d,e,GetKaxGlobal_Context,v)
 #define DEFINE_MKX_UINTEGER(a,b,c,d,e)       DEFINE_xxx_CLASS_CONS(a,b,c,d,e,GetKaxGlobal_Context) \

@@ -24,7 +24,6 @@
 #include "matroska/KaxCluster.h"
 #include "matroska/KaxSeekHead.h"
 #include "matroska/KaxCues.h"
-#include "matroska/KaxInfoData.h"
 
 using namespace libmatroska;
 using namespace std;

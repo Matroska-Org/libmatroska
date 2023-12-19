@@ -13,7 +13,6 @@
 #include "matroska/KaxCluster.h"
 #include "matroska/KaxTracks.h"
 #include "matroska/KaxCues.h"
-#include "matroska/KaxInfoData.h"
 #include "matroska/KaxBlockData.h"
 #include "matroska/KaxCuesData.h"
 
@@ -67,9 +66,9 @@ DEFINE_END_SEMANTIC(KaxInfo)
 DEFINE_MKX_MASTER(KaxInfo, 0x1549A966, 4, KaxSegment, "Info")
 DEFINE_MKX_BINARY (KaxSegmentUID, 0x73A4, 2, KaxInfo, "SegmentUID")
 DEFINE_MKX_UNISTRING(KaxSegmentFilename, 0x7384, 2, KaxInfo, "SegmentFilename")
-DEFINE_MKX_BINARY(KaxPrevUID, 0x3CB923, 3, KaxInfo, "PrevUID")
+DEFINE_MKX_BINARY (KaxPrevUID, 0x3CB923, 3, KaxInfo, "PrevUID")
 DEFINE_MKX_UNISTRING(KaxPrevFilename, 0x3C83AB, 3, KaxInfo, "PrevFilename")
-DEFINE_MKX_BINARY(KaxNextUID, 0x3EB923, 3, KaxInfo, "NextUID")
+DEFINE_MKX_BINARY (KaxNextUID, 0x3EB923, 3, KaxInfo, "NextUID")
 DEFINE_MKX_UNISTRING(KaxNextFilename, 0x3E83BB, 3, KaxInfo, "NextFilename")
 DEFINE_MKX_BINARY (KaxSegmentFamily, 0x4444, 2, KaxInfo, "SegmentFamily")
 

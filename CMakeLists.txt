@@ -40,7 +40,6 @@ set(libmatroska_PUBLIC_HEADERS
   matroska/KaxCuesData.h
   matroska/KaxCues.h
   matroska/KaxDefines.h
-  matroska/KaxInfoData.h
   matroska/KaxSeekHead.h
   matroska/KaxSegment.h
   matroska/KaxSemantic.h

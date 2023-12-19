@@ -9,6 +9,7 @@
 
 #include <iostream>
 #include <cassert>
+#include <cinttypes>
 
 #include <ebml/EbmlHead.h>
 #include <ebml/EbmlSubHead.h>
@@ -241,7 +242,7 @@ int main(int argc, char **argv)
 #if !defined(__CYGWIN__) && !defined(__APPLE__) && !defined(__BEOS__) && !defined(__NetBSD__)
               wprintf(L"Muxing App : %ls\n", UTFstring(*pApp).c_str());
 #else
-              printf("Muxing App : %s\n", UTFstring(*pApp).c_str());
+              printf("Muxing App : %ls\n", UTFstring(*pApp).c_str());
 #endif
             } else if (EbmlId(*ElementLevel2) == EBML_ID(KaxWritingApp)) {
               KaxWritingApp *pApp = static_cast<KaxWritingApp*>(ElementLevel2);
@@ -249,7 +250,7 @@ int main(int argc, char **argv)
 #if !defined(__CYGWIN__) && !defined(__APPLE__) && !defined(__BEOS__) && !defined(__NetBSD__)
               wprintf(L"Writing App : %ls (����)\n", UTFstring(*pApp).c_str());
 #else
-              printf("Writing App : %s (����)\n", UTFstring(*pApp).c_str());
+              printf("Writing App : %ls (����)\n", UTFstring(*pApp).c_str());
 #endif
             }
 
@@ -351,7 +352,7 @@ int main(int argc, char **argv)
                   DataBlock.ReadData(aStream.I_O(), SCOPE_ALL_DATA);
 #endif // NO_DISPLAY_DATA
                   DataBlock.SetParent(*SegmentCluster);
-                  printf("   Track # %d / %d frame%s / Timecode %I64d\n",DataBlock.TrackNum(), DataBlock.NumberFrames(), (DataBlock.NumberFrames() > 1)?"s":"", DataBlock.GlobalTimecode());
+                  printf("   Track # %d / %d frame%s / Timecode %" PRId64 "\n",DataBlock.TrackNum(), DataBlock.NumberFrames(), (DataBlock.NumberFrames() > 1)?"s":"", DataBlock.GlobalTimecode());
 #ifndef NO_DISPLAY_DATA
                   for (unsigned int i=0; i< DataBlock.NumberFrames(); i++) {
                     printf("   [%s]\n",DataBlock.GetBuffer(i).Buffer()); // STRING ONLY POSSIBLE WITH THIS PARTICULAR EXAMPLE (the binary data is a string)
@@ -367,11 +368,11 @@ int main(int argc, char **argv)
                 } else if (EbmlId(*ElementLevel3) == EBML_ID(KaxReferenceBlock)) {
                   KaxReferenceBlock & RefTime = *static_cast<KaxReferenceBlock*>(ElementLevel3);
                   RefTime.ReadData(aStream.I_O());
-                  printf("  Reference frame at scaled (%d) timecode %ld\n", std::int32_t(RefTime), std::int32_t(std::int64_t(RefTime) * TimecodeScale));
+                  printf("  Reference frame at scaled (%d) timecode %" PRId32 "\n", std::int32_t(RefTime), std::int32_t(std::int64_t(RefTime) * TimecodeScale));
                 } else if (EbmlId(*ElementLevel3) == EBML_ID(KaxBlockDuration)) {
                   KaxBlockDuration & BlockDuration = *static_cast<KaxBlockDuration*>(ElementLevel3);
                   BlockDuration.ReadData(aStream.I_O());
-                  printf("  Block Duration %d scaled ticks : %ld ns\n", std::uint32_t(BlockDuration), std::uint32_t(BlockDuration) * TimecodeScale);
+                  printf("  Block Duration %" PRIu32 " scaled ticks : %" PRIu64 " ns\n", std::uint32_t(BlockDuration), std::uint32_t(BlockDuration) * TimecodeScale);
                 }
                 if (UpperElementLevel > 0) {
                   UpperElementLevel--;
@@ -452,7 +453,7 @@ int main(int argc, char **argv)
               for (Index1 = 0; Index1<CuePoint.ListSize() ;Index1++) {
                 if (EbmlId(*CuePoint[Index1]) == EBML_ID(KaxCueTime)) {
                   KaxCueTime & CueTime = *static_cast<KaxCueTime *>(CuePoint[Index1]);
-                  printf("  Time %ld\n", std::uint64_t(CueTime) * TimecodeScale);
+                  printf("  Time %" PRIu64 "\n", std::uint64_t(CueTime) * TimecodeScale);
                 } else if (EbmlId(*(CuePoint[Index1])) == EBML_ID(KaxCueTrackPositions)) {
                   KaxCueTrackPositions & CuePos = *static_cast<KaxCueTrackPositions *>(CuePoint[Index1]);
                   printf("  Positions\n");
@@ -464,7 +465,7 @@ int main(int argc, char **argv)
                       printf("   Track %d\n", std::uint16_t(CueTrack));
                     } else if (EbmlId(*(CuePos[Index2])) == EBML_ID(KaxCueClusterPosition)) {
                       KaxCueClusterPosition & CuePoss = *static_cast<KaxCueClusterPosition *>(CuePos[Index2]);
-                      printf("   Cluster position %d\n", std::uint64_t(CuePoss));
+                      printf("   Cluster position %" PRIu64 "\n", std::uint64_t(CuePoss));
                     } else if (EbmlId(*(CuePos[Index2])) == EBML_ID(KaxCueReference)) {
                       KaxCueReference & CueRefs = *static_cast<KaxCueReference *>(CuePos[Index2]);
                       printf("   Reference\n");
@@ -476,7 +477,7 @@ int main(int argc, char **argv)
                           printf("    Time %d\n", std::uint32_t(CueTime));
                         } else if (EbmlId(*(CueRefs[Index3])) == EBML_ID(KaxCueRefCluster)) {
                           KaxCueRefCluster & CueClust = *static_cast<KaxCueRefCluster *>(CueRefs[Index3]);
-                          printf("    Cluster position %d\n", std::uint64_t(CueClust));
+                          printf("    Cluster position %" PRId64 "\n", std::uint64_t(CueClust));
                         } else {
                           printf("    - found %s\n", EBML_NAME(CueRefs[Index3]));
                         }
@@ -513,7 +514,7 @@ int main(int argc, char **argv)
               for (Index1 = 0; Index1<SeekPoint.ListSize() ;Index1++) {
                 if (EbmlId(*(SeekPoint[Index1])) == EBML_ID(KaxSeekID)) {
                   KaxSeekID * SeekID = static_cast<KaxSeekID *>(SeekPoint[Index1]);
-                  printf("    Seek ID ", SeekID->GetBuffer());
+                  printf("    Seek ID ");
                   for (unsigned int i=0; i<SeekID->GetSize(); i++) {
                     printf("%02X", SeekID->GetBuffer()[i]);
                   }
@@ -564,7 +565,7 @@ int main(int argc, char **argv)
 #if !defined(__CYGWIN__) && !defined(__APPLE__) && !defined(__BEOS__) && !defined(__NetBSD__)
                           wprintf(L"       Display \"%s\"\n", UTFstring(*static_cast<EbmlUnicodeString *>(aDisplay[Index4])).c_str() );
 #else
-                          printf("       Display \"%s\"\n", UTFstring(*static_cast<EbmlUnicodeString *>(aDisplay[Index4])).c_str() );
+                          printf("       Display \"%ls\"\n", UTFstring(*static_cast<EbmlUnicodeString *>(aDisplay[Index4])).c_str() );
 #endif
                         } else if (EbmlId(*(aDisplay[Index4])) == EBML_ID(KaxChapterLanguage)) {
                           printf("       For language \"%s\"\n", std::string(*static_cast<EbmlString *>(aDisplay[Index4])).c_str() );

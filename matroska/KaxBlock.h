@@ -198,7 +198,7 @@ class MATROSKA_DLL_API KaxInternalBlock : public EbmlBinary {
     /*!
       \note override this function to generate the Data/Size on the fly, unlike the usual binary elements
     */
-    filepos_t UpdateSize(bool bSaveDefault = false, bool bForceRender = false) override;
+    filepos_t UpdateSize(ShouldWrite writeFilter = WriteSkipDefault, bool bForceRender = false) override;
     filepos_t ReadData(IOCallback & input, ScopeMode ReadFully = SCOPE_ALL_DATA) override;
 
     /*!
@@ -264,7 +264,7 @@ class MATROSKA_DLL_API KaxInternalBlock : public EbmlBinary {
     bool                      bIsKeyframe{true};
     bool                      bIsDiscardable{false};
 
-    filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault = false) override;
+    filepos_t RenderData(IOCallback & output, bool bForceRender, ShouldWrite writeFilter = WriteSkipDefault) override;
 };
 
 class MATROSKA_DLL_API KaxBlock : public KaxInternalBlock {
@@ -334,11 +334,11 @@ DECLARE_MKX_BINARY_CONS(KaxBlockVirtual)
     /*!
       \note override this function to generate the Data/Size on the fly, unlike the usual binary elements
     */
-    filepos_t UpdateSize(bool bSaveDefault = false, bool bForceRender = false) override;
+    filepos_t UpdateSize(ShouldWrite writeFilter = WriteSkipDefault, bool bForceRender = false) override;
 
     void SetParent(const KaxCluster & aParentCluster) {ParentCluster = &aParentCluster;}
 
-    filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault) override;
+    filepos_t RenderData(IOCallback & output, bool bForceRender, ShouldWrite writeFilter) override;
 
     filepos_t ReadData(IOCallback & input, ScopeMode ReadFully = SCOPE_ALL_DATA) override;
 

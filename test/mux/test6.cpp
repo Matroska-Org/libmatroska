@@ -34,7 +34,7 @@ const unsigned int BIN_FRAME_SIZE = 1500;
 const unsigned int TXT_FRAME_SIZE = 200;
 const std::uint64_t  TIMECODE_SCALE = 1000000;
 
-const bool bWriteDefaultValues = false;
+const EbmlElement::ShouldWrite bWriteDefaultValues = EbmlElement::WriteSkipDefault;
 
 /*!
     The first file is a "binary" file with data scaling from 0x00 to 0xFF repeatedly
@@ -330,7 +330,7 @@ int main(int argc, char **argv)
     MetaSeek.IndexThis(*pMyTracks2, FileSegment);
 
     // \todo put it just before the Cue Entries
-    filepos_t MetaSeekSize = Dummy.ReplaceWith(MetaSeek, out_file, bWriteDefaultValues);
+    filepos_t MetaSeekSize = Dummy.ReplaceWith(MetaSeek, out_file, true, bWriteDefaultValues);
 
 #ifdef VOID_TEST
     MyInfos.VoidMe(out_file);

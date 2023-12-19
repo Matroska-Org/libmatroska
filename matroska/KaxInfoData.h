@@ -25,23 +25,15 @@ using namespace libebml;
 namespace libmatroska {
 
 DECLARE_MKX_CONTEXT(KaxPrevUID)
-class MATROSKA_DLL_API KaxPrevUID : public KaxSegmentUID {
+DECLARE_MKX_BINARY (KaxPrevUID)
   public:
-    KaxPrevUID() = default;
-    KaxPrevUID(const KaxPrevUID & ElementToClone) = default;
     bool ValidateSize() const override { return IsFiniteSize() && (GetSize() == 16);}
-
-        EBML_CONCRETE_CLASS(KaxPrevUID)
 };
 
 DECLARE_MKX_CONTEXT(KaxNextUID)
-class MATROSKA_DLL_API KaxNextUID : public KaxSegmentUID {
+DECLARE_MKX_BINARY (KaxNextUID)
   public:
-    KaxNextUID() = default;
-    KaxNextUID(const KaxNextUID & ElementToClone) = default;
     bool ValidateSize() const override { return IsFiniteSize() && (GetSize() == 16);}
-
-        EBML_CONCRETE_CLASS(KaxNextUID)
 };
 
 } // namespace libmatroska

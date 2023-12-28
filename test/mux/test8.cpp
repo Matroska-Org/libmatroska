@@ -238,19 +238,11 @@ int main(int argc, char **argv)
             } else if (EbmlId(*ElementLevel2) == EBML_ID(KaxMuxingApp)) {
               KaxMuxingApp *pApp = static_cast<KaxMuxingApp*>(ElementLevel2);
               pApp->ReadData(aStream.I_O());
-#if !defined(__CYGWIN__) && !defined(__APPLE__) && !defined(__BEOS__) && !defined(__NetBSD__)
-              wprintf(L"Muxing App : %ls\n", UTFstring(*pApp).c_str());
-#else
-              printf("Muxing App : %ls\n", UTFstring(*pApp).c_str());
-#endif
+              printf("Muxing App : %s\n", UTFstring(*pApp).GetUTF8().c_str());
             } else if (EbmlId(*ElementLevel2) == EBML_ID(KaxWritingApp)) {
               KaxWritingApp *pApp = static_cast<KaxWritingApp*>(ElementLevel2);
               pApp->ReadData(aStream.I_O());
-#if !defined(__CYGWIN__) && !defined(__APPLE__) && !defined(__BEOS__) && !defined(__NetBSD__)
-              wprintf(L"Writing App : %ls (����)\n", UTFstring(*pApp).c_str());
-#else
-              printf("Writing App : %ls (����)\n", UTFstring(*pApp).c_str());
-#endif
+              printf("Writing App : %s (����)\n", UTFstring(*pApp).GetUTF8().c_str());
             }
 
             if (UpperElementLevel > 0) {
@@ -561,11 +553,7 @@ int main(int argc, char **argv)
                       unsigned int Index4;
                       for (Index4 = 0; Index4<aDisplay.ListSize() ;Index4++) {
                         if (EbmlId(*(aDisplay[Index4])) == EBML_ID(KaxChapterString)) {
-#if !defined(__CYGWIN__) && !defined(__APPLE__) && !defined(__BEOS__) && !defined(__NetBSD__)
-                          wprintf(L"       Display \"%s\"\n", UTFstring(*static_cast<EbmlUnicodeString *>(aDisplay[Index4])).c_str() );
-#else
-                          printf("       Display \"%ls\"\n", UTFstring(*static_cast<EbmlUnicodeString *>(aDisplay[Index4])).c_str() );
-#endif
+                          printf("       Display \"%s\"\n", UTFstring(*static_cast<EbmlUnicodeString *>(aDisplay[Index4])).GetUTF8().c_str() );
                         } else if (EbmlId(*(aDisplay[Index4])) == EBML_ID(KaxChapterLanguage)) {
                           printf("       For language \"%s\"\n", std::string(*static_cast<EbmlString *>(aDisplay[Index4])).c_str() );
                         } else if (EbmlId(*(aDisplay[Index4])) == EBML_ID(KaxChapterCountry)) {

@@ -73,7 +73,7 @@ int main(void)
   KaxFileName * pFileName1 = static_cast<KaxFileName *>(pAttachment1->FindFirstElt(EBML_INFO(KaxFileName), true));
   if (pFileName1 == NULL)
     return -1;
-  *static_cast<EbmlUnicodeString *>(pFileName1) = L"file1.txt";
+  *static_cast<EbmlUnicodeString *>(pFileName1) = UTFstring{L"file1.txt"};
   KaxFileData * pFileData1 = static_cast<KaxFileData *>(pAttachment1->FindFirstElt(EBML_INFO(KaxFileData), true));
   if (pFileData1 == NULL)
     return -1;
@@ -88,7 +88,7 @@ int main(void)
   KaxFileName * pFileName2 = static_cast<KaxFileName *>(pAttachment2->FindFirstElt(EBML_INFO(KaxFileName), true));
   if (pFileName2 == NULL)
     return -1;
-  *static_cast<EbmlUnicodeString *>(pFileName2) = L"file2.txt";
+  *static_cast<EbmlUnicodeString *>(pFileName2) = UTFstring{L"file2.txt"};
   // Add a void element (data is discarded)
   EbmlVoid * pVoid = static_cast<EbmlVoid *>(pAttachment2->FindFirstElt(EBML_INFO(EbmlVoid), true));
   if (pVoid == NULL)
@@ -178,7 +178,7 @@ int main(void)
             if (EbmlId(*ElementLevel3) == EBML_ID(KaxFileName)) {
               KaxFileName & tmp = *static_cast<KaxFileName*>(ElementLevel3);
               tmp.ReadData(aStream.I_O());
-              printf("File Name = %ls\n", UTFstring(tmp).c_str());
+              printf("File Name = %s\n", UTFstring(tmp).GetUTF8().c_str());
             } else {
               ElementLevel3->SkipData(aStream, KaxAttached_Context);
             }

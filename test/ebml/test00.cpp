@@ -127,7 +127,7 @@ int main(void)
     }
     printf("\n");
 
-    ElementLevel0->SkipData(aStream, EbmlHead_Context);
+    ElementLevel0->SkipData(aStream, Context_EbmlHead);
     if (ElementLevel0 != NULL)
       delete ElementLevel0;
   }

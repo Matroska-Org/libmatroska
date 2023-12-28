@@ -2,10 +2,12 @@ cmake_minimum_required(VERSION 3.1.2)
 
 project(matroska VERSION 2.0.0)
 
+include(CMakeDependentOption)
+
 option(DISABLE_PKGCONFIG "Disable PkgConfig module generation" OFF)
 option(DISABLE_CMAKE_CONFIG "Disable CMake package config module generation" OFF)
-option(BUILD_SHARED_LIBS "Build libmatroska as a shared library" OFF)
-option(BUILD_EXAMPLES "Build example code" OFF)
+cmake_dependent_option(BUILD_SHARED_LIBS "Build libebml as a shared library (except Windows)" OFF "NOT WIN32" OFF)
+option(BUILD_TESTING "Build tests" OFF)
 
 find_package(EBML 2.0.0 REQUIRED)
 

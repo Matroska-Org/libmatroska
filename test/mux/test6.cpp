@@ -84,8 +84,8 @@ int main(int argc, char **argv)
     KaxDuration & SegDuration = GetChild<KaxDuration>(MyInfos);
     *(static_cast<EbmlFloat *>(&SegDuration)) = 0.0;
 
-    *((EbmlUnicodeString *)&GetChild<KaxMuxingApp>(MyInfos))  = L"libmatroska 0.5.0";
-    *((EbmlUnicodeString *)&GetChild<KaxWritingApp>(MyInfos)) = L"����";
+    *((EbmlUnicodeString *)&GetChild<KaxMuxingApp>(MyInfos))  = UTFstring{L"libmatroska 0.5.0"};
+    *((EbmlUnicodeString *)&GetChild<KaxWritingApp>(MyInfos)) = UTFstring{L"����"};
     GetChild<KaxWritingApp>(MyInfos).SetDefaultSize(25);
 
     filepos_t InfoSize = MyInfos.Render(out_file);
@@ -289,14 +289,14 @@ int main(int argc, char **argv)
 
     KaxChapterDisplay & aDisplay = GetChild<KaxChapterDisplay>(aAtom);
     KaxChapterString & aChapString = GetChild<KaxChapterString>(aDisplay);
-    *static_cast<EbmlUnicodeString *>(&aChapString) = L"Le film r�duit � un chapitre";
+    *static_cast<EbmlUnicodeString *>(&aChapString) = UTFstring{L"Le film r�duit � un chapitre"};
 
     KaxChapterLanguage & aChapLang = GetChild<KaxChapterLanguage>(aDisplay);
     *static_cast<EbmlString *>(&aChapLang) = "fra";
 
     KaxChapterDisplay & aDisplay2 = GetNextChild<KaxChapterDisplay>(aAtom, aDisplay);
     KaxChapterString & aChapString2 = GetChild<KaxChapterString>(aDisplay2);
-    *static_cast<EbmlUnicodeString *>(&aChapString2) = L"The movie in one chapter";
+    *static_cast<EbmlUnicodeString *>(&aChapString2) = UTFstring{L"The movie in one chapter"};
 
     KaxChapterLanguage & aChapLang2 = GetChild<KaxChapterLanguage>(aDisplay2);
     *static_cast<EbmlString *>(&aChapLang2) = "eng";
@@ -318,10 +318,10 @@ int main(int argc, char **argv)
     *static_cast<EbmlUInteger *>(&ChapterUID) = 0x67890;
 
         KaxTagName & aTagName = GetChild<KaxTagName>(TagSimple);
-        *static_cast<EbmlUnicodeString *>(&aTagName) = L"NAME";
+        *static_cast<EbmlUnicodeString *>(&aTagName) = UTFstring{L"NAME"};
 
         KaxTagString & aTagtring = GetChild<KaxTagString>(TagSimple);
-        *static_cast<EbmlUnicodeString *>(&aTagtring) = L"Test�123";
+        *static_cast<EbmlUnicodeString *>(&aTagtring) = UTFstring{L"Test�123"};
 
     filepos_t TagsSize = AllTags.Render(out_file, bWriteDefaultValues);
     MetaSeek.IndexThis(AllTags, FileSegment);

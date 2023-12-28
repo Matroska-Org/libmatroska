@@ -64,25 +64,25 @@ int main() {
 
     KaxTagSimple &stag_l1 = GetChild<KaxTagSimple>(tag);
     *(static_cast<EbmlUnicodeString *>(&GetChild<KaxTagName>(stag_l1))) =
-      L"SIMPLE_TAG_NAME_LEVEL1_1";
+      UTFstring{L"SIMPLE_TAG_NAME_LEVEL1_1"};
     *(static_cast<EbmlUnicodeString *>(&GetChild<KaxTagString>(stag_l1))) =
-      L"SIMPLE_TAG_STRING_LEVEL1_1";
+      UTFstring{L"SIMPLE_TAG_STRING_LEVEL1_1"};
     KaxTagSimple &stag_l1_2 = GetNextChild<KaxTagSimple>(tag, stag_l1);
     *(static_cast<EbmlUnicodeString *>(&GetChild<KaxTagName>(stag_l1_2))) =
-      L"SIMPLE_TAG_NAME_LEVEL1_2";
+      UTFstring{L"SIMPLE_TAG_NAME_LEVEL1_2"};
     KaxTagBinary &tbin = GetChild<KaxTagBinary>(stag_l1_2);
     tbin.CopyBuffer((binary *)"SIMPLE_TAG_BINARY_LEVEL1_2",
                     strlen("SIMPLE_TAG_BINARY_LEVEL1_2"));
     KaxTagSimple &stag_l2 = GetChild<KaxTagSimple>(stag_l1);
     *(static_cast<EbmlUnicodeString *>(&GetChild<KaxTagName>(stag_l2))) =
-      L"SIMPLE_TAG_NAME_LEVEL2";
+      UTFstring{L"SIMPLE_TAG_NAME_LEVEL2"};
     *(static_cast<EbmlUnicodeString *>(&GetChild<KaxTagString>(stag_l2))) =
-      L"SIMPLE_TAG_STRING_LEVEL2";
+      UTFstring{L"SIMPLE_TAG_STRING_LEVEL2"};
     KaxTagSimple &stag_l3 = GetChild<KaxTagSimple>(stag_l2);
     *(static_cast<EbmlUnicodeString *>(&GetChild<KaxTagName>(stag_l3))) =
-      L"SIMPLE_TAG_NAME_LEVEL3";
+      UTFstring{L"SIMPLE_TAG_NAME_LEVEL3"};
     *(static_cast<EbmlUnicodeString *>(&GetChild<KaxTagString>(stag_l3))) =
-      L"SIMPLE_TAG_STRING_LEVEL3";
+      UTFstring{L"SIMPLE_TAG_STRING_LEVEL3"};
 
     tags.Render(out);
 

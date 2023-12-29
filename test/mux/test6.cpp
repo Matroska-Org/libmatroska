@@ -52,13 +52,13 @@ int main(int argc, char **argv)
     EbmlHead FileHead;
 
     EDocType & MyDocType = GetChild<EDocType>(FileHead);
-    *static_cast<EbmlString *>(&MyDocType) = "matroska";
+    MyDocType.SetValue("matroska");
 
     EDocTypeVersion & MyDocTypeVer = GetChild<EDocTypeVersion>(FileHead);
-    *(static_cast<EbmlUInteger *>(&MyDocTypeVer)) = 2;
+    MyDocTypeVer.SetValue(2);
 
     EDocTypeReadVersion & MyDocTypeReadVer = GetChild<EDocTypeReadVersion>(FileHead);
-    *(static_cast<EbmlUInteger *>(&MyDocTypeReadVer)) = 1;
+    MyDocTypeReadVer.SetValue(1);
 
     FileHead.Render(out_file, bWriteDefaultValues);
 
@@ -79,13 +79,13 @@ int main(int argc, char **argv)
     // fill the mandatory Info section
     KaxInfo & MyInfos = GetChild<KaxInfo>(FileSegment);
     KaxTimecodeScale & TimeScale = GetChild<KaxTimecodeScale>(MyInfos);
-    *(static_cast<EbmlUInteger *>(&TimeScale)) = TIMECODE_SCALE;
+    TimeScale.SetValue(TIMECODE_SCALE);
 
     KaxDuration & SegDuration = GetChild<KaxDuration>(MyInfos);
-    *(static_cast<EbmlFloat *>(&SegDuration)) = 0.0;
+    SegDuration.SetValue(0.0);
 
-    *((EbmlUnicodeString *)&GetChild<KaxMuxingApp>(MyInfos))  = UTFstring{L"libmatroska 0.5.0"};
-    *((EbmlUnicodeString *)&GetChild<KaxWritingApp>(MyInfos)) = UTFstring{L"����"};
+    GetChild<KaxMuxingApp>(MyInfos).SetValue(UTFstring{L"libmatroska 0.5.0"});
+    GetChild<KaxWritingApp>(MyInfos).SetValue(UTFstring{L"����"});
     GetChild<KaxWritingApp>(MyInfos).SetDefaultSize(25);
 
     filepos_t InfoSize = MyInfos.Render(out_file);
@@ -96,34 +96,34 @@ int main(int argc, char **argv)
     MyTrack1.SetGlobalTimecodeScale(TIMECODE_SCALE);
 
     KaxTrackNumber & MyTrack1Number = GetChild<KaxTrackNumber>(MyTrack1);
-    *(static_cast<EbmlUInteger *>(&MyTrack1Number)) = 1;
+    MyTrack1Number.SetValue(1);
 
     KaxTrackUID & MyTrack1UID = GetChild<KaxTrackUID>(MyTrack1);
-    *(static_cast<EbmlUInteger *>(&MyTrack1UID)) = 7;
+    MyTrack1UID.SetValue(7);
 
-    *(static_cast<EbmlUInteger *>(&GetChild<KaxTrackType>(MyTrack1))) = track_audio;
+    GetChild<KaxTrackType>(MyTrack1).SetValue(track_audio);
 
     KaxCodecID & MyTrack1CodecID = GetChild<KaxCodecID>(MyTrack1);
-    *static_cast<EbmlString *>(&MyTrack1CodecID) = "Dummy Audio Codec";
+    MyTrack1CodecID.SetValue("Dummy Audio Codec");
 
     MyTrack1.EnableLacing(true);
 
     // Test the new ContentEncoding elements
     KaxContentEncodings &cencodings = GetChild<KaxContentEncodings>(MyTrack1);
     KaxContentEncoding &cencoding = GetChild<KaxContentEncoding>(cencodings);
-    *(static_cast<EbmlUInteger *>(&GetChild<KaxContentEncodingOrder>(cencoding))) = 10;
-    *(static_cast<EbmlUInteger *>(&GetChild<KaxContentEncodingScope>(cencoding))) = 11;
-    *(static_cast<EbmlUInteger *>(&GetChild<KaxContentEncodingType>(cencoding))) = 12;
+    GetChild<KaxContentEncodingOrder>(cencoding).SetValue(10);
+    GetChild<KaxContentEncodingScope>(cencoding).SetValue(11);
+    GetChild<KaxContentEncodingType>(cencoding).SetValue(12);
 
     KaxContentCompression &ccompression = GetChild<KaxContentCompression>(cencoding);
-    *(static_cast<EbmlUInteger *>(&GetChild<KaxContentCompAlgo>(ccompression))) = 13;
+    GetChild<KaxContentCompAlgo>(ccompression).SetValue(13);
     GetChild<KaxContentCompSettings>(ccompression).CopyBuffer((const binary *)"hello1", 6);
 
     KaxContentEncryption &cencryption = GetChild<KaxContentEncryption>(cencoding);
-    *(static_cast<EbmlUInteger *>(&GetChild<KaxContentEncAlgo>(cencryption))) = 14;
+    GetChild<KaxContentEncAlgo>(cencryption).SetValue(14);
     GetChild<KaxContentEncKeyID>(cencryption).CopyBuffer((const binary *)"hello2", 6);
-    *(static_cast<EbmlUInteger *>(&GetChild<KaxContentSigAlgo>(cencryption))) = 15;
-    *(static_cast<EbmlUInteger *>(&GetChild<KaxContentSigHashAlgo>(cencryption))) = 16;
+    GetChild<KaxContentSigAlgo>(cencryption).SetValue(15);
+    GetChild<KaxContentSigHashAlgo>(cencryption).SetValue(16);
     GetChild<KaxContentSigKeyID>(cencryption).CopyBuffer((const binary *)"hello3", 6);
     GetChild<KaxContentSignature>(cencryption).CopyBuffer((const binary *)"hello4", 6);
 
@@ -131,7 +131,7 @@ int main(int argc, char **argv)
     KaxTrackAudio & MyTrack1Audio = GetChild<KaxTrackAudio>(MyTrack1);
 
     KaxAudioSamplingFreq & MyTrack1Freq = GetChild<KaxAudioSamplingFreq>(MyTrack1Audio);
-    *(static_cast<EbmlFloat *>(&MyTrack1Freq)) = 44100.0;
+    MyTrack1Freq.SetValue(44100.0);
     MyTrack1Freq.ValidateSize();
 
     KaxAudioPosition & MyTrack1Pos = GetChild<KaxAudioPosition>(MyTrack1Audio);
@@ -144,22 +144,22 @@ int main(int argc, char **argv)
     MyTrack1Pos.SetBuffer(_Pos, 5);
 
     KaxAudioChannels & MyTrack1Channels = GetChild<KaxAudioChannels>(MyTrack1Audio);
-    *(static_cast<EbmlUInteger *>(&MyTrack1Channels)) = 2;
+    MyTrack1Channels.SetValue(2);
 
     // fill track 2 params
     KaxTrackEntry & MyTrack2 = GetNextChild<KaxTrackEntry>(MyTracks, MyTrack1);
     MyTrack2.SetGlobalTimecodeScale(TIMECODE_SCALE);
 
     KaxTrackNumber & MyTrack2Number = GetChild<KaxTrackNumber>(MyTrack2);
-    *(static_cast<EbmlUInteger *>(&MyTrack2Number)) = 200;
+    MyTrack2Number.SetValue(200);
 
     KaxTrackUID & MyTrack2UID = GetChild<KaxTrackUID>(MyTrack2);
-    *(static_cast<EbmlUInteger *>(&MyTrack2UID)) = 13;
+    MyTrack2UID.SetValue(13);
 
-    *(static_cast<EbmlUInteger *>(&GetChild<KaxTrackType>(MyTrack2))) = track_video;
+    GetChild<KaxTrackType>(MyTrack2).SetValue(track_video);
 
     KaxCodecID & MyTrack2CodecID = GetChild<KaxCodecID>(MyTrack2);
-    *static_cast<EbmlString *>(&MyTrack2CodecID) = "Dummy Video Codec";
+    MyTrack2CodecID.SetValue("Dummy Video Codec)");
 
     MyTrack2.EnableLacing(false);
 
@@ -167,10 +167,10 @@ int main(int argc, char **argv)
     KaxTrackVideo & MyTrack2Video = GetChild<KaxTrackVideo>(MyTrack2);
 
     KaxVideoPixelHeight & MyTrack2PHeight = GetChild<KaxVideoPixelHeight>(MyTrack2Video);
-    *(static_cast<EbmlUInteger *>(&MyTrack2PHeight)) = 200;
+    MyTrack2PHeight.SetValue(200);
 
     KaxVideoPixelWidth & MyTrack2PWidth = GetChild<KaxVideoPixelWidth>(MyTrack2Video);
-    *(static_cast<EbmlUInteger *>(&MyTrack2PWidth)) = 320;
+    MyTrack2PWidth.SetValue(320);
 
     std::uint64_t TrackSize = MyTracks.Render(out_file, bWriteDefaultValues);
 
@@ -279,27 +279,27 @@ int main(int argc, char **argv)
     KaxEditionEntry & aEdition = GetChild<KaxEditionEntry>(Chapters);
     KaxChapterAtom & aAtom = GetChild<KaxChapterAtom>(aEdition);
     KaxChapterUID & aUID = GetChild<KaxChapterUID>(aAtom);
-    *static_cast<EbmlUInteger *>(&aUID) = 0x67890;
+    aUID.SetValue(0x67890);
 
     KaxChapterTimeStart & aChapStart = GetChild<KaxChapterTimeStart>(aAtom);
-    *static_cast<EbmlUInteger *>(&aChapStart) = 0;
+    aChapStart.SetValue(0);
 
     KaxChapterTimeEnd & aChapEnd = GetChild<KaxChapterTimeEnd>(aAtom);
-    *static_cast<EbmlUInteger *>(&aChapEnd) = 300 * TIMECODE_SCALE;
+    aChapEnd.SetValue(300 * TIMECODE_SCALE);
 
     KaxChapterDisplay & aDisplay = GetChild<KaxChapterDisplay>(aAtom);
     KaxChapterString & aChapString = GetChild<KaxChapterString>(aDisplay);
-    *static_cast<EbmlUnicodeString *>(&aChapString) = UTFstring{L"Le film r�duit � un chapitre"};
+    aChapString.SetValue(UTFstring{L"Le film r�duit � un chapitre"});
 
     KaxChapterLanguage & aChapLang = GetChild<KaxChapterLanguage>(aDisplay);
-    *static_cast<EbmlString *>(&aChapLang) = "fra";
+    aChapLang.SetValue("fra");
 
     KaxChapterDisplay & aDisplay2 = GetNextChild<KaxChapterDisplay>(aAtom, aDisplay);
     KaxChapterString & aChapString2 = GetChild<KaxChapterString>(aDisplay2);
-    *static_cast<EbmlUnicodeString *>(&aChapString2) = UTFstring{L"The movie in one chapter"};
+    aChapString2.SetValue(UTFstring{L"The movie in one chapter"});
 
     KaxChapterLanguage & aChapLang2 = GetChild<KaxChapterLanguage>(aDisplay2);
-    *static_cast<EbmlString *>(&aChapLang2) = "eng";
+    aChapLang2.SetValue("eng");
 
     filepos_t ChapterSize = Chapters.Render(out_file, bWriteDefaultValues);
     MetaSeek.IndexThis(Chapters, FileSegment);
@@ -312,16 +312,16 @@ int main(int argc, char **argv)
     KaxTagSimple & TagSimple = GetChild<KaxTagSimple>(aTag);
 
     KaxTagTrackUID & TrackUID = GetChild<KaxTagTrackUID>(Targets);
-    *static_cast<EbmlUInteger *>(&TrackUID) = 0x12345;
+    TrackUID.SetValue(0x12345);
 
     KaxTagChapterUID & ChapterUID = GetChild<KaxTagChapterUID>(Targets);
-    *static_cast<EbmlUInteger *>(&ChapterUID) = 0x67890;
+    ChapterUID.SetValue(0x67890);
 
         KaxTagName & aTagName = GetChild<KaxTagName>(TagSimple);
-        *static_cast<EbmlUnicodeString *>(&aTagName) = UTFstring{L"NAME"};
+        aTagName.SetValue(UTFstring{L"NAME"});
 
         KaxTagString & aTagtring = GetChild<KaxTagString>(TagSimple);
-        *static_cast<EbmlUnicodeString *>(&aTagtring) = UTFstring{L"Test�123"};
+        aTagtring.SetValue(UTFstring{L"Test�123"});
 
     filepos_t TagsSize = AllTags.Render(out_file, bWriteDefaultValues);
     MetaSeek.IndexThis(AllTags, FileSegment);

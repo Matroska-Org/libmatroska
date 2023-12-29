@@ -38,18 +38,18 @@ int main() {
     StdIOCallback out("test.mkv", MODE_CREATE);
 
     EDocType &doc_type = GetChild<EDocType>(head);
-    *static_cast<EbmlString *>(&doc_type) = "matroska";
+    doc_type.SetValue("matroska");
     EDocTypeVersion &doc_type_ver = GetChild<EDocTypeVersion>(head);
-    *(static_cast<EbmlUInteger *>(&doc_type_ver)) = 1;
+    doc_type_ver.SetValue(1);
     EDocTypeReadVersion &doc_type_read_ver =
       GetChild<EDocTypeReadVersion>(head);
-    *(static_cast<EbmlUInteger *>(&doc_type_read_ver)) = 1;
+    doc_type_read_ver.SetValue(1);
 
     head.Render(out);
 
     KaxInfo &info = GetChild<KaxInfo>(segment);
     KaxTimecodeScale &time_scale = GetChild<KaxTimecodeScale>(info);
-    *(static_cast<EbmlUInteger *>(&time_scale)) = 1000000;
+    time_scale.SetValue(1000000);
 
     segment.WriteHead(out, 5);
 
@@ -59,30 +59,29 @@ int main() {
     KaxTag &tag = GetChild<KaxTag>(tags);
 
     KaxTagTargets &targets = GetChild<KaxTagTargets>(tag);
-    *(static_cast<EbmlUInteger *>(&GetChild<KaxTagTrackUID>(targets))) =
-      1234;
+    GetChild<KaxTagTrackUID>(targets).SetValue(1234);
 
     KaxTagSimple &stag_l1 = GetChild<KaxTagSimple>(tag);
-    *(static_cast<EbmlUnicodeString *>(&GetChild<KaxTagName>(stag_l1))) =
-      UTFstring{L"SIMPLE_TAG_NAME_LEVEL1_1"};
-    *(static_cast<EbmlUnicodeString *>(&GetChild<KaxTagString>(stag_l1))) =
-      UTFstring{L"SIMPLE_TAG_STRING_LEVEL1_1"};
+    GetChild<KaxTagName>(stag_l1).SetValue(
+      UTFstring{L"SIMPLE_TAG_NAME_LEVEL1_1"});
+    GetChild<KaxTagString>(stag_l1).SetValue(
+      UTFstring{L"SIMPLE_TAG_STRING_LEVEL1_1"});
     KaxTagSimple &stag_l1_2 = GetNextChild<KaxTagSimple>(tag, stag_l1);
-    *(static_cast<EbmlUnicodeString *>(&GetChild<KaxTagName>(stag_l1_2))) =
-      UTFstring{L"SIMPLE_TAG_NAME_LEVEL1_2"};
+    GetChild<KaxTagName>(stag_l1_2).SetValue(
+      UTFstring{L"SIMPLE_TAG_NAME_LEVEL1_2"});
     KaxTagBinary &tbin = GetChild<KaxTagBinary>(stag_l1_2);
     tbin.CopyBuffer((binary *)"SIMPLE_TAG_BINARY_LEVEL1_2",
                     strlen("SIMPLE_TAG_BINARY_LEVEL1_2"));
     KaxTagSimple &stag_l2 = GetChild<KaxTagSimple>(stag_l1);
-    *(static_cast<EbmlUnicodeString *>(&GetChild<KaxTagName>(stag_l2))) =
-      UTFstring{L"SIMPLE_TAG_NAME_LEVEL2"};
-    *(static_cast<EbmlUnicodeString *>(&GetChild<KaxTagString>(stag_l2))) =
-      UTFstring{L"SIMPLE_TAG_STRING_LEVEL2"};
+    GetChild<KaxTagName>(stag_l2).SetValue(
+      UTFstring{L"SIMPLE_TAG_NAME_LEVEL2"});
+    GetChild<KaxTagString>(stag_l2).SetValue(
+      UTFstring{L"SIMPLE_TAG_STRING_LEVEL2"});
     KaxTagSimple &stag_l3 = GetChild<KaxTagSimple>(stag_l2);
-    *(static_cast<EbmlUnicodeString *>(&GetChild<KaxTagName>(stag_l3))) =
-      UTFstring{L"SIMPLE_TAG_NAME_LEVEL3"};
-    *(static_cast<EbmlUnicodeString *>(&GetChild<KaxTagString>(stag_l3))) =
-      UTFstring{L"SIMPLE_TAG_STRING_LEVEL3"};
+    GetChild<KaxTagName>(stag_l3).SetValue(
+      UTFstring{L"SIMPLE_TAG_NAME_LEVEL3"});
+    GetChild<KaxTagString>(stag_l3).SetValue(
+      UTFstring{L"SIMPLE_TAG_STRING_LEVEL3"});
 
     tags.Render(out);
 

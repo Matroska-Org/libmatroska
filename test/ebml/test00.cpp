@@ -46,13 +46,13 @@ int main(void)
 
   printf("Write EBML + Matroska elements\n");
   EDocType & MyDocType = GetChild<EDocType>(TestHead);
-  *static_cast<EbmlString *>(&MyDocType) = "matroska";
+  MyDocType.SetValue("matroska");
 
   EDocTypeVersion & MyDocTypeVer = GetChild<EDocTypeVersion>(TestHead);
-  *(static_cast<EbmlUInteger *>(&MyDocTypeVer)) = 1;
+  MyDocTypeVer.SetValue(1);
 
   EDocTypeReadVersion & MyDocTypeReadVer = GetChild<EDocTypeReadVersion>(TestHead);
-  *(static_cast<EbmlUInteger *>(&MyDocTypeReadVer)) = 1;
+  MyDocTypeReadVer.SetValue(1);
 
   TestHead.Render(Ebml_file);
 
@@ -73,7 +73,7 @@ int main(void)
   KaxFileName * pFileName1 = static_cast<KaxFileName *>(pAttachment1->FindFirstElt(EBML_INFO(KaxFileName), true));
   if (pFileName1 == NULL)
     return -1;
-  *static_cast<EbmlUnicodeString *>(pFileName1) = UTFstring{L"file1.txt"};
+  pFileName1->SetValue(UTFstring{L"file1.txt"});
   KaxFileData * pFileData1 = static_cast<KaxFileData *>(pAttachment1->FindFirstElt(EBML_INFO(KaxFileData), true));
   if (pFileData1 == NULL)
     return -1;
@@ -88,7 +88,7 @@ int main(void)
   KaxFileName * pFileName2 = static_cast<KaxFileName *>(pAttachment2->FindFirstElt(EBML_INFO(KaxFileName), true));
   if (pFileName2 == NULL)
     return -1;
-  *static_cast<EbmlUnicodeString *>(pFileName2) = UTFstring{L"file2.txt"};
+  pFileName2->SetValue(UTFstring{L"file2.txt"});
   // Add a void element (data is discarded)
   EbmlVoid * pVoid = static_cast<EbmlVoid *>(pAttachment2->FindFirstElt(EBML_INFO(EbmlVoid), true));
   if (pVoid == NULL)

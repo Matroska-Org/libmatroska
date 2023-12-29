@@ -906,7 +906,7 @@ void KaxBlockGroup::SetBlockDuration(std::uint64_t TimeLength)
   assert(ParentTrack);
   const std::int64_t scale = ParentTrack->GlobalTimecodeScale();
   const auto myDuration = static_cast<KaxBlockDuration *>(FindFirstElt(EBML_INFO(KaxBlockDuration), true));
-  *(static_cast<EbmlUInteger *>(myDuration)) = TimeLength / static_cast<std::uint64_t>(scale);
+  myDuration->SetValue(TimeLength / static_cast<std::uint64_t>(scale));
 }
 
 bool KaxBlockGroup::GetBlockDuration(std::uint64_t &TheTimecode) const

@@ -67,7 +67,7 @@ int main(int argc, char **argv)
     }
     printf("\n");
 
-    ElementLevel0->SkipData(aStream, Context_EbmlHead);
+    ElementLevel0->SkipData(aStream, EBML_CLASS_SEMCONTEXT(EbmlHead));
     if (ElementLevel0 != NULL)
       delete ElementLevel0;
   }

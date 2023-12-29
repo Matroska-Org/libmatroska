@@ -20,7 +20,7 @@ KaxTrackEntry::KaxTrackEntry()
 void KaxTrackEntry::EnableLacing(bool bEnable)
 {
   auto & myLacing = GetChild<KaxTrackFlagLacing>(*this);
-  *(static_cast<EbmlUInteger *>(&myLacing)) = bEnable ? 1 : 0;
+  myLacing.SetValue(bEnable ? 1 : 0);
 }
 
 } // namespace libmatroska

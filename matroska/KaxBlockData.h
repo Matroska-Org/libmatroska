@@ -34,7 +34,7 @@ DECLARE_MKX_SINTEGER_CONS(KaxReferenceBlock)
     void SetReferencedBlock(const KaxBlockBlob * aRefdBlock);
     void SetReferencedBlock(const KaxBlockGroup & aRefdBlock);
     void SetParentBlock(const KaxBlockGroup & aParentBlock) {ParentBlock = &aParentBlock;}
-    void SetReferencedTimecode(std::int64_t refTimecode) {*static_cast<EbmlSInteger*>(this) = refTimecode; bTimecodeSet = true;};
+    void SetReferencedTimecode(std::int64_t refTimecode) { SetValue(refTimecode); bTimecodeSet = true;};
 
   protected:
     const KaxBlockBlob * RefdBlock{nullptr};

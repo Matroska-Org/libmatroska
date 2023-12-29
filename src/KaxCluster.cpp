@@ -118,7 +118,7 @@ filepos_t KaxCluster::Render(IOCallback & output, KaxCues & CueToUpdate, ShouldW
 
   // update the Timecode of the Cluster before writing
   auto Timecode = static_cast<KaxClusterTimecode *>(this->FindElt(EBML_INFO(KaxClusterTimecode)));
-  *static_cast<EbmlUInteger *>(Timecode) = GlobalTimecode() / GlobalTimecodeScale();
+  Timecode->SetValue(GlobalTimecode() / GlobalTimecodeScale());
 
   if (Blobs.empty()) {
     // old-school direct KaxBlockGroup
@@ -138,7 +138,7 @@ filepos_t KaxCluster::Render(IOCallback & output, KaxCues & CueToUpdate, ShouldW
             auto SilentTracks = static_cast<KaxClusterSilentTracks *>(this->FindFirstElt(EBML_INFO(KaxClusterSilentTracks)));
             assert(SilentTracks); // the flag bSilentTracksUsed should be set when creating the Cluster
             auto trackelt = static_cast<KaxClusterSilentTrackNumber *>(SilentTracks->AddNewElt(EBML_INFO(KaxClusterSilentTrackNumber)));
-            *static_cast<EbmlUInteger *>(trackelt) = tracknum;
+            trackelt->SetValue(tracknum);
           }
         }
       }
@@ -176,7 +176,7 @@ filepos_t KaxCluster::Render(IOCallback & output, KaxCues & CueToUpdate, ShouldW
             auto SilentTracks = static_cast<KaxClusterSilentTracks *>(this->FindFirstElt(EBML_INFO(KaxClusterSilentTracks)));
             assert(SilentTracks); // the flag bSilentTracksUsed should be set when creating the Cluster
             auto trackelt = static_cast<KaxClusterSilentTrackNumber *>(SilentTracks->AddNewElt(EBML_INFO(KaxClusterSilentTrackNumber)));
-            *static_cast<EbmlUInteger *>(trackelt) = tracknum;
+            trackelt->SetValue(tracknum);
           }
         }
       }

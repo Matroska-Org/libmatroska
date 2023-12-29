@@ -266,12 +266,16 @@ class MATROSKA_DLL_API KaxInternalBlock : public libebml::EbmlBinary {
 };
 
 class MATROSKA_DLL_API KaxBlock : public KaxInternalBlock {
+  private:
+    static const libebml::EbmlCallbacks ClassInfos;
   public:
     KaxBlock() :KaxInternalBlock(KaxBlock::ClassInfos, false) {}
         EBML_CONCRETE_CLASS(KaxBlock)
 };
 
 class MATROSKA_DLL_API KaxSimpleBlock : public KaxInternalBlock {
+  private:
+    static const libebml::EbmlCallbacks ClassInfos;
   public:
     KaxSimpleBlock() :KaxInternalBlock(KaxSimpleBlock::ClassInfos, true) {}
 

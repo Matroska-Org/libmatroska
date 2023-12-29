@@ -52,22 +52,6 @@ extern const EbmlSemanticContext MATROSKA_DLL_API Context_KaxCodecDownloadURL;
 extern const EbmlSemanticContext MATROSKA_DLL_API Context_KaxCodecDecodeAll;
 extern const EbmlSemanticContext MATROSKA_DLL_API Context_KaxTrackOverlay;
 
-#define Context_KaxMatroska              KaxMatroska_Context
-#define Context_KaxSegment               KaxSegment_Context
-#define Context_KaxTrackEntry            KaxTrackEntry_Context
-#define Context_KaxTracks                KaxTracks_Context
-#define Context_KaxCluster               KaxCluster_Context
-#define Context_KaxBlockGroup            KaxBlockGroup_Context
-#define Context_KaxInfo                  KaxInfo_Context
-#define Context_KaxAttached              KaxAttached_Context
-#define Context_KaxAttachments           KaxAttachments_Context
-#define Context_KaxChapters              KaxChapters_Context
-#define Context_KaxCues                  KaxCues_Context
-#define Context_KaxTags                  KaxTags_Context
-#define Context_KaxSeekHead              KaxSeekHead_Context
-#define Context_KaxTag                   KaxTag_Context
-#define Context_KaxTagCommercial         KaxTagCommercial_Context
-
 extern MATROSKA_DLL_API const EbmlSemanticContext & GetKaxGlobal_Context();
 
 } // namespace libmatroska

@@ -69,7 +69,6 @@ extern const EbmlSemanticContext MATROSKA_DLL_API KaxTrackOverlay_Context;
 #define Context_KaxTagCommercial         KaxTagCommercial_Context
 
 extern MATROSKA_DLL_API const EbmlSemanticContext & GetKaxGlobal_Context();
-//extern MATROSKA_DLL_API const EbmlSemanticContext & GetKaxTagsGlobal_Context();
 
 } // namespace libmatroska
 

@@ -46,13 +46,13 @@ int main(void)
 
   printf("Write EBML + Matroska elements\n");
   EDocType & MyDocType = GetChild<EDocType>(TestHead);
-  *static_cast<EbmlString *>(&MyDocType) = "matroska";
+  static_cast<EbmlString &>(MyDocType) = "matroska";
 
   EDocTypeVersion & MyDocTypeVer = GetChild<EDocTypeVersion>(TestHead);
-  *(static_cast<EbmlUInteger *>(&MyDocTypeVer)) = 1;
+  static_cast<EbmlUInteger &>(MyDocTypeVer) = 1;
 
   EDocTypeReadVersion & MyDocTypeReadVer = GetChild<EDocTypeReadVersion>(TestHead);
-  *(static_cast<EbmlUInteger *>(&MyDocTypeReadVer)) = 1;
+  static_cast<EbmlUInteger &>(MyDocTypeReadVer) = 1;
 
   TestHead.Render(Ebml_file);
 

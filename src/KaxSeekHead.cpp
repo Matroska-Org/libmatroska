@@ -26,7 +26,7 @@ KaxSeek * KaxSeekHead::IndexThis(const EbmlElement & aElt, const KaxSegment & Pa
 
   // add the informations to this element
   auto & aNewPos = GetChild<KaxSeekPosition>(aNewPoint);
-  *static_cast<EbmlUInteger *>(&aNewPos) = ParentSegment.GetRelativePosition(aElt);
+  static_cast<EbmlUInteger &>(aNewPos) = ParentSegment.GetRelativePosition(aElt);
 
   auto & aNewID = GetChild<KaxSeekID>(aNewPoint);
   binary ID[4];

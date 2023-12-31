@@ -17,7 +17,7 @@ jobs:
           { "name": "Static",  "option": "OFF"}
         ]
     env:
-      CMAKE_OPTIONS: -DCMAKE_CXX_EXTENSIONS=OFF
+      CMAKE_OPTIONS: -DDEV_MODE=ON
       CMAKE_MATROSKA_OPTIONS: -DBUILD_EXAMPLES=ON
     steps:
       - uses: lukka/get-cmake@latest

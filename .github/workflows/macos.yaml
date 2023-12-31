@@ -14,17 +14,17 @@ jobs:
       matrix:
         arch:   [x86_64, arm64]
     env:
-      CMAKE_OPTIONS: -DCMAKE_CXX_EXTENSIONS=OFF
+      CMAKE_OPTIONS: -DDEV_MODE=ON
       CMAKE_MATROSKA_OPTIONS: -DBUILD_EXAMPLES=ON
     steps:
       - uses: lukka/get-cmake@latest
 
       - name: Get pushed code
         uses: actions/checkout@v3
-      
+
       - name: Checkout libebml
         uses: actions/checkout@v3
-        with: 
+        with:
           repository: Matroska-Org/libebml
           path: libebml
           # minimum version we support ref: 'release-1.4.3'
@@ -38,7 +38,7 @@ jobs:
       - name: Install libebml
         run: cmake --install libebml/_build --prefix ${GITHUB_WORKSPACE}/_built
 
-      - name: Configure CMake 
+      - name: Configure CMake
         run: cmake -S . -B _build ${{ env.CMAKE_OPTIONS }} ${{ env.CMAKE_MATROSKA_OPTIONS }} -DCMAKE_OSX_ARCHITECTURES="${{ matrix.arch }}" -DEBML_DIR="${GITHUB_WORKSPACE}/_built/lib/cmake/EBML"
 
       - name: Build with CMake

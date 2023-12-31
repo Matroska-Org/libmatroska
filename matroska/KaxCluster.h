@@ -26,22 +26,22 @@ DECLARE_MKX_MASTER_CONS(KaxCluster)
     /*!
       \brief Addition of a frame without references
 
-      \param timecode the timecode is expressed in nanoseconds, relative to the beggining of the Segment
+      \param timestamp the timestamp is expressed in nanoseconds, relative to the beggining of the Segment
     */
-    bool AddFrame(const KaxTrackEntry & track, std::uint64_t timecode, DataBuffer & buffer, KaxBlockGroup * & MyNewBlock, LacingType lacing = LACING_AUTO);
+    bool AddFrame(const KaxTrackEntry & track, std::uint64_t timestamp, DataBuffer & buffer, KaxBlockGroup * & MyNewBlock, LacingType lacing = LACING_AUTO);
     /*!
       \brief Addition of a frame with a backward reference (P frame)
-      \param timecode the timecode is expressed in nanoseconds, relative to the beggining of the Segment
+      \param timestamp the timestamp is expressed in nanoseconds, relative to the beggining of the Segment
 
     */
-    bool AddFrame(const KaxTrackEntry & track, std::uint64_t timecode, DataBuffer & buffer, KaxBlockGroup * & MyNewBlock, const KaxBlockGroup & PastBlock, LacingType lacing = LACING_AUTO);
+    bool AddFrame(const KaxTrackEntry & track, std::uint64_t timestamp, DataBuffer & buffer, KaxBlockGroup * & MyNewBlock, const KaxBlockGroup & PastBlock, LacingType lacing = LACING_AUTO);
 
     /*!
       \brief Addition of a frame with a backward+forward reference (B frame)
-      \param timecode the timecode is expressed in nanoseconds, relative to the beggining of the Segment
+      \param timestamp the timestamp is expressed in nanoseconds, relative to the beggining of the Segment
 
     */
-    bool AddFrame(const KaxTrackEntry & track, std::uint64_t timecode, DataBuffer & buffer, KaxBlockGroup * & MyNewBlock, const KaxBlockGroup & PastBlock, const KaxBlockGroup & ForwBlock, LacingType lacing = LACING_AUTO);
+    bool AddFrame(const KaxTrackEntry & track, std::uint64_t timestamp, DataBuffer & buffer, KaxBlockGroup * & MyNewBlock, const KaxBlockGroup & PastBlock, const KaxBlockGroup & ForwBlock, LacingType lacing = LACING_AUTO);
 
     /*!
       \brief Render the data to the stream and retrieve the position of BlockGroups for later cue entries
@@ -124,7 +124,7 @@ DECLARE_MKX_MASTER_CONS(KaxCluster)
     /*!
       \note method used internally
     */
-    bool AddFrameInternal(const KaxTrackEntry & track, std::uint64_t timecode, DataBuffer & buffer, KaxBlockGroup * & MyNewBlock, const KaxBlockGroup * PastBlock, const KaxBlockGroup * ForwBlock, LacingType lacing);
+    bool AddFrameInternal(const KaxTrackEntry & track, std::uint64_t timestamp, DataBuffer & buffer, KaxBlockGroup * & MyNewBlock, const KaxBlockGroup * PastBlock, const KaxBlockGroup * ForwBlock, LacingType lacing);
 };
 
 } // namespace libmatroska

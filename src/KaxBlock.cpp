@@ -153,12 +153,12 @@ static std::int64_t ReadSignedVINT(const binary * InBuffer, std::uint32_t & Buff
   \todo hardcoded limit of the number of frames in a lace should be a parameter
   \return true if more frames can be added to this Block
 */
-bool KaxInternalBlock::AddFrame(const KaxTrackEntry & track, std::uint64_t timecode, DataBuffer & buffer, LacingType lacing, bool invisible)
+bool KaxInternalBlock::AddFrame(const KaxTrackEntry & track, std::uint64_t timestamp, DataBuffer & buffer, LacingType lacing, bool invisible)
 {
   SetValueIsSet();
   if (myBuffers.empty()) {
     // first frame
-    Timecode = timecode;
+    Timecode = timestamp;
     TrackNumber = static_cast<std::uint64_t>(track.TrackNumber());
     mInvisible = invisible;
     mLacing = lacing;
@@ -759,16 +759,16 @@ filepos_t KaxInternalBlock::ReadData(IOCallback & input, ScopeMode ReadFully)
   return Result;
 }
 
-bool KaxBlockGroup::AddFrame(const KaxTrackEntry & track, std::uint64_t timecode, DataBuffer & buffer, LacingType lacing)
+bool KaxBlockGroup::AddFrame(const KaxTrackEntry & track, std::uint64_t timestamp, DataBuffer & buffer, LacingType lacing)
 {
   auto & theBlock = GetChild<KaxBlock>(*this);
   assert(ParentCluster);
   theBlock.SetParent(*ParentCluster);
   ParentTrack = &track;
-  return theBlock.AddFrame(track, timecode, buffer, lacing);
+  return theBlock.AddFrame(track, timestamp, buffer, lacing);
 }
 
-bool KaxBlockGroup::AddFrame(const KaxTrackEntry & track, std::uint64_t timecode, DataBuffer & buffer, const KaxBlockGroup & PastBlock, LacingType lacing)
+bool KaxBlockGroup::AddFrame(const KaxTrackEntry & track, std::uint64_t timestamp, DataBuffer & buffer, const KaxBlockGroup & PastBlock, LacingType lacing)
 {
   //  assert(past_timecode < 0);
 
@@ -776,7 +776,7 @@ bool KaxBlockGroup::AddFrame(const KaxTrackEntry & track, std::uint64_t timecode
   assert(ParentCluster);
   theBlock.SetParent(*ParentCluster);
   ParentTrack = &track;
-  const bool bRes = theBlock.AddFrame(track, timecode, buffer, lacing);
+  const bool bRes = theBlock.AddFrame(track, timestamp, buffer, lacing);
 
   auto & thePastRef = GetChild<KaxReferenceBlock>(*this);
   thePastRef.SetReferencedBlock(PastBlock);
@@ -785,7 +785,7 @@ bool KaxBlockGroup::AddFrame(const KaxTrackEntry & track, std::uint64_t timecode
   return bRes;
 }
 
-bool KaxBlockGroup::AddFrame(const KaxTrackEntry & track, std::uint64_t timecode, DataBuffer & buffer, const KaxBlockGroup & PastBlock, const KaxBlockGroup & ForwBlock, LacingType lacing)
+bool KaxBlockGroup::AddFrame(const KaxTrackEntry & track, std::uint64_t timestamp, DataBuffer & buffer, const KaxBlockGroup & PastBlock, const KaxBlockGroup & ForwBlock, LacingType lacing)
 {
   //  assert(past_timecode < 0);
 
@@ -795,7 +795,7 @@ bool KaxBlockGroup::AddFrame(const KaxTrackEntry & track, std::uint64_t timecode
   assert(ParentCluster);
   theBlock.SetParent(*ParentCluster);
   ParentTrack = &track;
-  bool const bRes = theBlock.AddFrame(track, timecode, buffer, lacing);
+  bool const bRes = theBlock.AddFrame(track, timestamp, buffer, lacing);
 
   auto & thePastRef = GetChild<KaxReferenceBlock>(*this);
   thePastRef.SetReferencedBlock(PastBlock);
@@ -808,13 +808,13 @@ bool KaxBlockGroup::AddFrame(const KaxTrackEntry & track, std::uint64_t timecode
   return bRes;
 }
 
-bool KaxBlockGroup::AddFrame(const KaxTrackEntry & track, std::uint64_t timecode, DataBuffer & buffer, const KaxBlockBlob * PastBlock, const KaxBlockBlob * ForwBlock, LacingType lacing)
+bool KaxBlockGroup::AddFrame(const KaxTrackEntry & track, std::uint64_t timestamp, DataBuffer & buffer, const KaxBlockBlob * PastBlock, const KaxBlockBlob * ForwBlock, LacingType lacing)
 {
   auto & theBlock = GetChild<KaxBlock>(*this);
   assert(ParentCluster);
   theBlock.SetParent(*ParentCluster);
   ParentTrack = &track;
-  const bool bRes = theBlock.AddFrame(track, timecode, buffer, lacing);
+  const bool bRes = theBlock.AddFrame(track, timestamp, buffer, lacing);
 
   if (PastBlock) {
     auto & thePastRef = GetChild<KaxReferenceBlock>(*this);
@@ -996,7 +996,7 @@ KaxBlockBlob::operator KaxSimpleBlock &() const
   return *Block.simpleblock;
 }
 
-bool KaxBlockBlob::AddFrameAuto(const KaxTrackEntry & track, std::uint64_t timecode, DataBuffer & buffer, LacingType lacing, const KaxBlockBlob * PastBlock, const KaxBlockBlob * ForwBlock)
+bool KaxBlockBlob::AddFrameAuto(const KaxTrackEntry & track, std::uint64_t timestamp, DataBuffer & buffer, LacingType lacing, const KaxBlockBlob * PastBlock, const KaxBlockBlob * ForwBlock)
 {
   bool bResult = false;
   if ((SimpleBlockMode == BLOCK_BLOB_ALWAYS_SIMPLE) || (SimpleBlockMode == BLOCK_BLOB_SIMPLE_AUTO && !PastBlock && !ForwBlock)) {
@@ -1006,14 +1006,14 @@ bool KaxBlockBlob::AddFrameAuto(const KaxTrackEntry & track, std::uint64_t timec
       Block.simpleblock->SetParent(*ParentCluster);
     }
 
-    bResult = Block.simpleblock->AddFrame(track, timecode, buffer, lacing);
+    bResult = Block.simpleblock->AddFrame(track, timestamp, buffer, lacing);
     if (!PastBlock && !ForwBlock) {
       Block.simpleblock->SetKeyframe(true);
       Block.simpleblock->SetDiscardable(false);
     } else {
       Block.simpleblock->SetKeyframe(false);
-      if ((!ForwBlock || static_cast<KaxInternalBlock &>(*ForwBlock).GlobalTimecode() <= timecode) &&
-          (!PastBlock || static_cast<KaxInternalBlock &>(*PastBlock).GlobalTimecode() <= timecode))
+      if ((!ForwBlock || static_cast<KaxInternalBlock &>(*ForwBlock).GlobalTimecode() <= timestamp) &&
+          (!PastBlock || static_cast<KaxInternalBlock &>(*PastBlock).GlobalTimecode() <= timestamp))
         Block.simpleblock->SetDiscardable(false);
       else
         Block.simpleblock->SetDiscardable(true);
@@ -1021,7 +1021,7 @@ bool KaxBlockBlob::AddFrameAuto(const KaxTrackEntry & track, std::uint64_t timec
   }
   else
     if (ReplaceSimpleByGroup())
-      bResult = Block.group->AddFrame(track, timecode, buffer, PastBlock, ForwBlock, lacing);
+      bResult = Block.group->AddFrame(track, timestamp, buffer, PastBlock, ForwBlock, lacing);
 
   return bResult;
 }

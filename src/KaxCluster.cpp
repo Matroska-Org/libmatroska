@@ -42,16 +42,16 @@ bool KaxCluster::AddBlockBlob(KaxBlockBlob * NewBlob)
   return true;
 }
 
-bool KaxCluster::AddFrameInternal(const KaxTrackEntry & track, std::uint64_t timecode, DataBuffer & buffer, KaxBlockGroup * & MyNewBlock, const KaxBlockGroup * PastBlock, const KaxBlockGroup * ForwBlock, LacingType lacing)
+bool KaxCluster::AddFrameInternal(const KaxTrackEntry & track, std::uint64_t timestamp, DataBuffer & buffer, KaxBlockGroup * & MyNewBlock, const KaxBlockGroup * PastBlock, const KaxBlockGroup * ForwBlock, LacingType lacing)
 {
   if (!bFirstFrameInside) {
     bFirstFrameInside = true;
-    MinTimecode = MaxTimecode = timecode;
+    MinTimecode = MaxTimecode = timestamp;
   } else {
-    if (timecode < MinTimecode)
-      MinTimecode = timecode;
-    if (timecode > MaxTimecode)
-      MaxTimecode = timecode;
+    if (timestamp < MinTimecode)
+      MinTimecode = timestamp;
+    if (timestamp > MaxTimecode)
+      MaxTimecode = timestamp;
   }
 
   MyNewBlock = nullptr;
@@ -68,7 +68,7 @@ bool KaxCluster::AddFrameInternal(const KaxTrackEntry & track, std::uint64_t tim
 
   if (PastBlock) {
     if (ForwBlock) {
-      if (currentNewBlock->AddFrame(track, timecode, buffer, *PastBlock, *ForwBlock, lacing)) {
+      if (currentNewBlock->AddFrame(track, timestamp, buffer, *PastBlock, *ForwBlock, lacing)) {
         // more data are allowed in this Block
         return true;
       }
@@ -76,7 +76,7 @@ bool KaxCluster::AddFrameInternal(const KaxTrackEntry & track, std::uint64_t tim
       currentNewBlock = nullptr;
       return false;
     }
-    if (currentNewBlock->AddFrame(track, timecode, buffer, *PastBlock, lacing)) {
+    if (currentNewBlock->AddFrame(track, timestamp, buffer, *PastBlock, lacing)) {
         // more data are allowed in this Block
         return true;
       }
@@ -84,7 +84,7 @@ bool KaxCluster::AddFrameInternal(const KaxTrackEntry & track, std::uint64_t tim
     return false;
   }
 
-  if (currentNewBlock->AddFrame(track, timecode, buffer, lacing)) {
+  if (currentNewBlock->AddFrame(track, timestamp, buffer, lacing)) {
     // more data are allowed in this Block
     return true;
   }
@@ -93,22 +93,22 @@ bool KaxCluster::AddFrameInternal(const KaxTrackEntry & track, std::uint64_t tim
   return false;
 }
 
-bool KaxCluster::AddFrame(const KaxTrackEntry & track, std::uint64_t timecode, DataBuffer & buffer, KaxBlockGroup * & MyNewBlock, LacingType lacing)
+bool KaxCluster::AddFrame(const KaxTrackEntry & track, std::uint64_t timestamp, DataBuffer & buffer, KaxBlockGroup * & MyNewBlock, LacingType lacing)
 {
   assert(Blobs.empty()); // mutually exclusive for the moment
-  return AddFrameInternal(track, timecode, buffer, MyNewBlock, nullptr, nullptr, lacing);
+  return AddFrameInternal(track, timestamp, buffer, MyNewBlock, nullptr, nullptr, lacing);
 }
 
-bool KaxCluster::AddFrame(const KaxTrackEntry & track, std::uint64_t timecode, DataBuffer & buffer, KaxBlockGroup * & MyNewBlock, const KaxBlockGroup & PastBlock, LacingType lacing)
+bool KaxCluster::AddFrame(const KaxTrackEntry & track, std::uint64_t timestamp, DataBuffer & buffer, KaxBlockGroup * & MyNewBlock, const KaxBlockGroup & PastBlock, LacingType lacing)
 {
   assert(Blobs.empty()); // mutually exclusive for the moment
-  return AddFrameInternal(track, timecode, buffer, MyNewBlock, &PastBlock, nullptr, lacing);
+  return AddFrameInternal(track, timestamp, buffer, MyNewBlock, &PastBlock, nullptr, lacing);
 }
 
-bool KaxCluster::AddFrame(const KaxTrackEntry & track, std::uint64_t timecode, DataBuffer & buffer, KaxBlockGroup * & MyNewBlock, const KaxBlockGroup & PastBlock, const KaxBlockGroup & ForwBlock, LacingType lacing)
+bool KaxCluster::AddFrame(const KaxTrackEntry & track, std::uint64_t timestamp, DataBuffer & buffer, KaxBlockGroup * & MyNewBlock, const KaxBlockGroup & PastBlock, const KaxBlockGroup & ForwBlock, LacingType lacing)
 {
   assert(Blobs.empty()); // mutually exclusive for the moment
-  return AddFrameInternal(track, timecode, buffer, MyNewBlock, &PastBlock, &ForwBlock, lacing);
+  return AddFrameInternal(track, timestamp, buffer, MyNewBlock, &PastBlock, &ForwBlock, lacing);
 }
 
 /*!

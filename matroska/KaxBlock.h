@@ -120,17 +120,17 @@ DECLARE_MKX_MASTER(KaxBlockGroup)
     /*!
       \brief Addition of a frame without references
     */
-    bool AddFrame(const KaxTrackEntry & track, std::uint64_t timecode, DataBuffer & buffer, LacingType lacing = LACING_AUTO);
+    bool AddFrame(const KaxTrackEntry & track, std::uint64_t timestamp, DataBuffer & buffer, LacingType lacing = LACING_AUTO);
     /*!
       \brief Addition of a frame with a backward reference (P frame)
     */
-    bool AddFrame(const KaxTrackEntry & track, std::uint64_t timecode, DataBuffer & buffer, const KaxBlockGroup & PastBlock, LacingType lacing = LACING_AUTO);
+    bool AddFrame(const KaxTrackEntry & track, std::uint64_t timestamp, DataBuffer & buffer, const KaxBlockGroup & PastBlock, LacingType lacing = LACING_AUTO);
 
     /*!
       \brief Addition of a frame with a backward+forward reference (B frame)
     */
-    bool AddFrame(const KaxTrackEntry & track, std::uint64_t timecode, DataBuffer & buffer, const KaxBlockGroup & PastBlock, const KaxBlockGroup & ForwBlock, LacingType lacing = LACING_AUTO);
-    bool AddFrame(const KaxTrackEntry & track, std::uint64_t timecode, DataBuffer & buffer, const KaxBlockBlob * PastBlock, const KaxBlockBlob * ForwBlock, LacingType lacing = LACING_AUTO);
+    bool AddFrame(const KaxTrackEntry & track, std::uint64_t timestamp, DataBuffer & buffer, const KaxBlockGroup & PastBlock, const KaxBlockGroup & ForwBlock, LacingType lacing = LACING_AUTO);
+    bool AddFrame(const KaxTrackEntry & track, std::uint64_t timestamp, DataBuffer & buffer, const KaxBlockBlob * PastBlock, const KaxBlockBlob * ForwBlock, LacingType lacing = LACING_AUTO);
 
     void SetParent(KaxCluster & aParentCluster);
 
@@ -208,7 +208,7 @@ class MATROSKA_DLL_API KaxInternalBlock : public libebml::EbmlBinary {
     unsigned int NumberFrames() const { return SizeList.size();}
     DataBuffer & GetBuffer(unsigned int iIndex) {return *myBuffers[iIndex];}
 
-    bool AddFrame(const KaxTrackEntry & track, std::uint64_t timecode, DataBuffer & buffer, LacingType lacing = LACING_AUTO, bool invisible = false);
+    bool AddFrame(const KaxTrackEntry & track, std::uint64_t timestamp, DataBuffer & buffer, LacingType lacing = LACING_AUTO, bool invisible = false);
 
     /*!
       \brief release all the frames of all Blocks
@@ -310,7 +310,7 @@ public:
   void SetBlockDuration(std::uint64_t TimeLength);
 
   void SetParent(KaxCluster & aParentCluster);
-  bool AddFrameAuto(const KaxTrackEntry & track, std::uint64_t timecode, DataBuffer & buffer, LacingType lacing = LACING_AUTO, const KaxBlockBlob * PastBlock = nullptr, const KaxBlockBlob * ForwBlock = nullptr);
+  bool AddFrameAuto(const KaxTrackEntry & track, std::uint64_t timestamp, DataBuffer & buffer, LacingType lacing = LACING_AUTO, const KaxBlockBlob * PastBlock = nullptr, const KaxBlockBlob * ForwBlock = nullptr);
 
   bool IsSimpleBlock() const {return bUseSimpleBlock;}
 

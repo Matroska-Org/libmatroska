@@ -142,7 +142,7 @@ DECLARE_MKX_MASTER(KaxBlockGroup)
       \brief Set the duration of the contained frame(s) (for the total number of frames)
     */
     void SetBlockDuration(std::uint64_t TimeLength);
-    bool GetBlockDuration(std::uint64_t &TheTimecode) const;
+    bool GetBlockDuration(std::uint64_t &TheTimestamp) const;
 
     /*!
       \return the global timestamp of this Block (not just the delta to the Cluster)

@@ -86,9 +86,9 @@ void KaxCues::PositionSet(const KaxBlockGroup & BlockRef)
 /*!
   \warning Assume that the list has been sorted (Sort())
 */
-const KaxCuePoint * KaxCues::GetTimecodePoint(std::uint64_t aTimecode) const
+const KaxCuePoint * KaxCues::GetTimecodePoint(std::uint64_t aTimestamp) const
 {
-  const std::uint64_t TimecodeToLocate = aTimecode / GlobalTimecodeScale();
+  const std::uint64_t TimecodeToLocate = aTimestamp / GlobalTimecodeScale();
   const KaxCuePoint * aPointPrev = nullptr;
   std::uint64_t aPrevTime = 0;
   std::uint64_t aNextTime = 0xFFFFFFFFFFFFLL;
@@ -114,9 +114,9 @@ const KaxCuePoint * KaxCues::GetTimecodePoint(std::uint64_t aTimecode) const
   return aPointPrev;
 }
 
-std::uint64_t KaxCues::GetTimecodePosition(std::uint64_t aTimecode) const
+std::uint64_t KaxCues::GetTimecodePosition(std::uint64_t aTimestamp) const
 {
-  const auto aPoint = GetTimecodePoint(aTimecode);
+  const auto aPoint = GetTimecodePoint(aTimestamp);
   if (!aPoint)
     return 0;
 

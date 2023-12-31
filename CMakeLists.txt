@@ -26,6 +26,9 @@ feature_info_on_off(DISABLE_CMAKE_CONFIG "won't generate CMake config file" "wil
 option(BUILD_EXAMPLES "Build example code" OFF)
 feature_info_on_off(BUILD_EXAMPLES "will build example code" "will build without example code")
 
+option(DEV_MODE "Developer mode with extra compilation checks" OFF)
+feature_info_on_off(DEV_MODE "added developer mode extra compilation checks" "default build mode")
+
 find_package(EBML 1.4.3 REQUIRED)
 set_package_properties(EBML PROPERTIES DESCRIPTION "libebml")
 
@@ -33,6 +36,29 @@ include(GNUInstallDirs)
 
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+include(CheckCXXCompilerFlag)
+include(CMakeParseArguments)
+function(add_cxx_flag_if_supported)
+  foreach(flagname ${ARGN})
+    string(REPLACE "-" "_" TEST_RESULT ${flagname})
+    check_cxx_compiler_flag(${flagname} HAVE_FLAG_${TEST_RESULT})
+    # message(STATUS "supported ${flagname}: ${HAVE_FLAG_${TEST_RESULT}}")
+
+    if (HAVE_FLAG_${TEST_RESULT})
+      add_compile_options(${flagname})
+    endif()
+  endforeach()
+endfunction()
+
+if(DEV_MODE)
+  message(STATUS "Using developer mode for ${CMAKE_CXX_COMPILER_ID}")
+  set(CMAKE_CXX_EXTENSIONS OFF)
+  add_cxx_flag_if_supported(-Wno-error=unused-command-line-argument
+                            -Wall -Wextra -Wpedantic -Wfatal-errors -fstack-protector-strong
+                            -Wno-self-assign
+                            -Wcast-align)
+endif()
 
 set(libmatroska_SOURCES
   src/FileKax.cpp

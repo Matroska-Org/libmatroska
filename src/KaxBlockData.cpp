@@ -26,12 +26,12 @@ const KaxBlockBlob & KaxReferenceBlock::RefBlock() const
 KaxReferenceBlock::KaxReferenceBlock()
   :EbmlSInteger(KaxReferenceBlock::ClassInfos)
 {
-  bTimecodeSet = false;
+  bTimestampSet = false;
 }
 
 KaxReferenceBlock::KaxReferenceBlock(const KaxReferenceBlock & ElementToClone)
   :EbmlSInteger(ElementToClone)
-  ,bTimecodeSet(ElementToClone.bTimecodeSet)
+  ,bTimestampSet(ElementToClone.bTimestampSet)
 {
 }
 
@@ -49,7 +49,7 @@ void KaxReferenceBlock::FreeBlob()
 
 filepos_t KaxReferenceBlock::UpdateSize(ShouldWrite writeFilter, bool bForceRender)
 {
-  if (!bTimecodeSet) {
+  if (!bTimestampSet) {
     assert(RefdBlock);
     assert(ParentBlock);
 

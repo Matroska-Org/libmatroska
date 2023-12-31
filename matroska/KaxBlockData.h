@@ -32,12 +32,12 @@ DECLARE_MKX_SINTEGER_CONS(KaxReferenceBlock)
     void SetReferencedBlock(const KaxBlockBlob * aRefdBlock);
     void SetReferencedBlock(const KaxBlockGroup & aRefdBlock);
     void SetParentBlock(const KaxBlockGroup & aParentBlock) {ParentBlock = &aParentBlock;}
-    void SetReferencedTimecode(std::int64_t refTimecode) { SetValue(refTimecode); bTimecodeSet = true;};
+    void SetReferencedTimecode(std::int64_t refTimecode) { SetValue(refTimecode); bTimestampSet = true;};
 
   protected:
     const KaxBlockBlob * RefdBlock{nullptr};
     const KaxBlockGroup * ParentBlock{nullptr};
-    bool bTimecodeSet{false};
+    bool bTimestampSet{false};
         bool bOurBlob{false};
         void FreeBlob();
 };

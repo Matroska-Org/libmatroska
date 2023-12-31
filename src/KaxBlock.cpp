@@ -297,8 +297,8 @@ filepos_t KaxBlockVirtual::UpdateSize(ShouldWrite, bool /* bForceRender */)
   }
 
   assert(ParentCluster);
-  const std::int16_t ActualTimecode = ParentCluster->GetBlockLocalTimecode(Timestamp);
-  endian::to_big16(ActualTimecode, cursor);
+  const std::int16_t ActualTimestamp = ParentCluster->GetBlockLocalTimecode(Timestamp);
+  endian::to_big16(ActualTimestamp, cursor);
   cursor += 2;
 
   *cursor++ = 0; // flags
@@ -340,8 +340,8 @@ filepos_t KaxInternalBlock::RenderData(IOCallback & output, bool /* bForceRender
   }
 
   assert(ParentCluster);
-  const std::int16_t ActualTimecode = ParentCluster->GetBlockLocalTimecode(Timestamp);
-  endian::to_big16(ActualTimecode, cursor);
+  const std::int16_t ActualTimestamp = ParentCluster->GetBlockLocalTimecode(Timestamp);
+  endian::to_big16(ActualTimestamp, cursor);
   cursor += 2;
 
   *cursor = 0; // flags

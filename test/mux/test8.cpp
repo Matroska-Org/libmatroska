@@ -267,7 +267,7 @@ int main(int argc, char **argv)
           printf("\n- Segment Clusters found\n");
           SegmentCluster = static_cast<KaxCluster *>(ElementLevel1);
 //          SegmentCluster->ClearElement();
-          std::uint32_t ClusterTimecode;
+          std::uint32_t ClusterTimestamp;
           EbmlCrc32 *pChecksum = NULL;
           std::uint64_t CrcPositionStart = 0;
 
@@ -298,8 +298,8 @@ int main(int argc, char **argv)
               printf("Cluster timestamp found\n");
               KaxClusterTimecode & ClusterTime = *static_cast<KaxClusterTimecode*>(ElementLevel2);
               ClusterTime.ReadData(aStream.I_O());
-              ClusterTimecode = std::uint32_t(ClusterTime);
-              SegmentCluster->InitTimecode(ClusterTimecode, TimestampScale);
+              ClusterTimestamp = std::uint32_t(ClusterTime);
+              SegmentCluster->InitTimecode(ClusterTimestamp, TimestampScale);
             } else  if (EbmlId(*ElementLevel2) == EBML_ID(KaxBlockGroup)) {
               printf("Block Group found\n");
 #ifdef TEST_BLOCKGROUP_READ

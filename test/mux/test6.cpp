@@ -30,8 +30,6 @@ using namespace std;
 
 unsigned int BIN_FILE_SIZE = 15000;
 unsigned int TXT_FILE_SIZE = 3000;
-const unsigned int BIN_FRAME_SIZE = 1500;
-const unsigned int TXT_FRAME_SIZE = 200;
 const std::uint64_t  TIMECODE_SCALE = 1000000;
 
 const EbmlElement::ShouldWrite bWriteDefaultValues = EbmlElement::WriteSkipDefault;

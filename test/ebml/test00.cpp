@@ -23,6 +23,7 @@
 #include <cstdio>
 #include <string>
 
+using namespace libebml;
 using namespace libmatroska;
 
 const char RW_FILENAME[] = "test.kax";

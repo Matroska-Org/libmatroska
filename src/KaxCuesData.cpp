@@ -16,6 +16,8 @@
 #include "matroska/KaxDefines.h"
 #include "matroska/KaxSemantic.h"
 
+using namespace libebml;
+
 namespace libmatroska {
 
 /*!

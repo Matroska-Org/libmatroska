@@ -15,6 +15,8 @@
 //#include "Frame.h"
 //#include "Version.h"
 
+using namespace libebml;
+
 namespace libmatroska {
 
 //typedef Track *TrackID;

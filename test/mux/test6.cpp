@@ -25,6 +25,7 @@
 
 #include <iostream>
 
+using namespace libebml;
 using namespace libmatroska;
 using namespace std;
 

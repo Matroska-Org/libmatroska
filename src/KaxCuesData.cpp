@@ -159,12 +159,12 @@ bool KaxCuePoint::IsSmallerThan(const EbmlElement * Cmp) const
   return false;
 }
 
-bool KaxCuePoint::Timecode(std::uint64_t & aTimecode, std::uint64_t GlobalTimestampScale) const
+bool KaxCuePoint::Timecode(std::uint64_t & aTimestamp, std::uint64_t GlobalTimestampScale) const
 {
   const auto aTime = static_cast<const KaxCueTime *>(FindFirstElt(EBML_INFO(KaxCueTime)));
   if (!aTime)
     return false;
-  aTimecode = static_cast<std::uint64_t>(*aTime) * GlobalTimestampScale;
+  aTimestamp = static_cast<std::uint64_t>(*aTime) * GlobalTimestampScale;
   return true;
 }
 

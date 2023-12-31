@@ -31,7 +31,7 @@ DECLARE_MKX_MASTER(KaxCuePoint)
     bool IsSmallerThan(const EbmlElement *Cmp) const override;
 
     const KaxCueTrackPositions * GetSeekPosition() const;
-    bool Timecode(std::uint64_t & aTimecode, std::uint64_t GlobalTimestampScale) const;
+    bool Timecode(std::uint64_t & aTimestamp, std::uint64_t GlobalTimestampScale) const;
 };
 
 DECLARE_MKX_MASTER(KaxCueTrackPositions)

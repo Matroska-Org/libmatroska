@@ -40,7 +40,7 @@ const EbmlElement::ShouldWrite bWriteDefaultValues = EbmlElement::WriteSkipDefau
     The first file is a "binary" file with data scaling from 0x00 to 0xFF repeatedly
     The second file is a "text" file with data scaling from 'z' to 'a'
 */
-int main(int argc, char **argv)
+int main(int /*argc*/, char **/*argv*/)
 {
     cout << "Creating \"muxed.mkv\"" << endl;
 

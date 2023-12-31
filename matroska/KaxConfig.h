@@ -9,10 +9,6 @@
 #ifndef LIBMATROSKA_CONFIG_H
 #define LIBMATROSKA_CONFIG_H
 
-#define LIBMATROSKA_NAMESPACE       libmatroska
-#define START_LIBMATROSKA_NAMESPACE namespace LIBMATROSKA_NAMESPACE {
-#define END_LIBMATROSKA_NAMESPACE   }
-
 #include "matroska_export.h"
 
 #if defined(MATROSKA_VERSION) && MATROSKA_VERSION < 2

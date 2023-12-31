@@ -31,7 +31,7 @@ using namespace std;
 
 unsigned int BIN_FILE_SIZE = 15000;
 unsigned int TXT_FILE_SIZE = 3000;
-const std::uint64_t  TIMECODE_SCALE = 1000000;
+const std::uint64_t  TIMESTAMP_SCALE = 1000000;
 
 const EbmlElement::ShouldWrite bWriteDefaultValues = EbmlElement::WriteSkipDefault;
 
@@ -78,7 +78,7 @@ int main(int /*argc*/, char **/*argv*/)
     // fill the mandatory Info section
     KaxInfo & MyInfos = GetChild<KaxInfo>(FileSegment);
     KaxTimecodeScale & TimeScale = GetChild<KaxTimecodeScale>(MyInfos);
-    TimeScale.SetValue(TIMECODE_SCALE);
+    TimeScale.SetValue(TIMESTAMP_SCALE);
 
     KaxDuration & SegDuration = GetChild<KaxDuration>(MyInfos);
     SegDuration.SetValue(0.0);
@@ -92,7 +92,7 @@ int main(int /*argc*/, char **/*argv*/)
 
     // fill track 1 params
     KaxTrackEntry & MyTrack1 = GetChild<KaxTrackEntry>(MyTracks);
-    MyTrack1.SetGlobalTimecodeScale(TIMECODE_SCALE);
+    MyTrack1.SetGlobalTimecodeScale(TIMESTAMP_SCALE);
 
     KaxTrackNumber & MyTrack1Number = GetChild<KaxTrackNumber>(MyTrack1);
     MyTrack1Number.SetValue(1);
@@ -147,7 +147,7 @@ int main(int /*argc*/, char **/*argv*/)
 
     // fill track 2 params
     KaxTrackEntry & MyTrack2 = GetNextChild<KaxTrackEntry>(MyTracks, MyTrack1);
-    MyTrack2.SetGlobalTimecodeScale(TIMECODE_SCALE);
+    MyTrack2.SetGlobalTimecodeScale(TIMESTAMP_SCALE);
 
     KaxTrackNumber & MyTrack2Number = GetChild<KaxTrackNumber>(MyTrack2);
     MyTrack2Number.SetValue(200);
@@ -182,34 +182,34 @@ int main(int /*argc*/, char **/*argv*/)
     // "manual" filling of a cluster"
     /// \todo whenever a BlockGroup is created, we should memorize it's position
     KaxCues AllCues;
-    AllCues.SetGlobalTimecodeScale(TIMECODE_SCALE);
+    AllCues.SetGlobalTimecodeScale(TIMESTAMP_SCALE);
 
     KaxCluster Clust1;
     Clust1.SetParent(FileSegment); // mandatory to store references in this Cluster
-    Clust1.SetPreviousTimecode(0, TIMECODE_SCALE); // the first timestamp here
+    Clust1.SetPreviousTimecode(0, TIMESTAMP_SCALE); // the first timestamp here
     Clust1.EnableChecksum();
 
     // automatic filling of a Cluster
     // simple frame
     KaxBlockGroup *MyNewBlock, *MyLastBlockTrk1 = NULL, *MyLastBlockTrk2 = NULL, *MyNewBlock2;
     DataBuffer *data7 = new DataBuffer((binary *)"tototototo", countof("tototototo"));
-    Clust1.AddFrame(MyTrack1, 250 * TIMECODE_SCALE, *data7, MyNewBlock, LACING_EBML);
+    Clust1.AddFrame(MyTrack1, 250 * TIMESTAMP_SCALE, *data7, MyNewBlock, LACING_EBML);
     if (MyNewBlock != NULL)
       MyLastBlockTrk1 = MyNewBlock;
     DataBuffer *data0 = new DataBuffer((binary *)"TOTOTOTO", countof("TOTOTOTO"));
-    Clust1.AddFrame(MyTrack1, 260 * TIMECODE_SCALE, *data0, MyNewBlock); // to test EBML lacing
+    Clust1.AddFrame(MyTrack1, 260 * TIMESTAMP_SCALE, *data0, MyNewBlock); // to test EBML lacing
     if (MyNewBlock != NULL)
       MyLastBlockTrk1 = MyNewBlock;
     DataBuffer *data6 = new DataBuffer((binary *)"tototototo", countof("tototototo"));
-    Clust1.AddFrame(MyTrack1, 270 * TIMECODE_SCALE, *data6, MyNewBlock); // to test lacing
+    Clust1.AddFrame(MyTrack1, 270 * TIMESTAMP_SCALE, *data6, MyNewBlock); // to test lacing
     if (MyNewBlock != NULL) {
       MyLastBlockTrk1 = MyNewBlock;
     } else {
-      MyLastBlockTrk1->SetBlockDuration(50 * TIMECODE_SCALE);
+      MyLastBlockTrk1->SetBlockDuration(50 * TIMESTAMP_SCALE);
     }
 
     DataBuffer *data5 = new DataBuffer((binary *)"tototototo", countof("tototototo"));
-    Clust1.AddFrame(MyTrack2, 23 * TIMECODE_SCALE, *data5, MyNewBlock); // to test with another track
+    Clust1.AddFrame(MyTrack2, 23 * TIMESTAMP_SCALE, *data5, MyNewBlock); // to test with another track
 
     // add the "real" block to the cue entries
         KaxBlockBlob *Blob1 = new KaxBlockBlob(BLOCK_BLOB_NO_SIMPLE);
@@ -218,7 +218,7 @@ int main(int /*argc*/, char **/*argv*/)
 
     // frame for Track 2
     DataBuffer *data8 = new DataBuffer((binary *)"tttyyy", countof("tttyyy"));
-    Clust1.AddFrame(MyTrack2, 107 * TIMECODE_SCALE, *data8, MyNewBlock, *MyLastBlockTrk2);
+    Clust1.AddFrame(MyTrack2, 107 * TIMESTAMP_SCALE, *data8, MyNewBlock, *MyLastBlockTrk2);
 
         KaxBlockBlob *Blob2 = new KaxBlockBlob(BLOCK_BLOB_NO_SIMPLE);
         Blob2->SetBlockGroup(*MyNewBlock);
@@ -226,13 +226,13 @@ int main(int /*argc*/, char **/*argv*/)
 
     // frame with a past reference
     DataBuffer *data4 = new DataBuffer((binary *)"tttyyy", countof("tttyyy"));
-    Clust1.AddFrame(MyTrack1, 300 * TIMECODE_SCALE, *data4, MyNewBlock, *MyLastBlockTrk1);
+    Clust1.AddFrame(MyTrack1, 300 * TIMESTAMP_SCALE, *data4, MyNewBlock, *MyLastBlockTrk1);
 
     // frame with a past & future reference
     if (MyNewBlock != NULL) {
       DataBuffer *data3 = new DataBuffer((binary *)"tttyyy", countof("tttyyy"));
-      if (Clust1.AddFrame(MyTrack1, 280 * TIMECODE_SCALE, *data3, MyNewBlock2, *MyLastBlockTrk1, *MyNewBlock)) {
-        MyNewBlock2->SetBlockDuration(20 * TIMECODE_SCALE);
+      if (Clust1.AddFrame(MyTrack1, 280 * TIMESTAMP_SCALE, *data3, MyNewBlock2, *MyLastBlockTrk1, *MyNewBlock)) {
+        MyNewBlock2->SetBlockDuration(20 * TIMESTAMP_SCALE);
         MyLastBlockTrk1 = MyNewBlock2;
       } else {
         printf("Error adding a frame !!!");
@@ -255,11 +255,11 @@ int main(int /*argc*/, char **/*argv*/)
 
     KaxCluster Clust2;
     Clust2.SetParent(FileSegment); // mandatory to store references in this Cluster
-    Clust2.SetPreviousTimecode(300 * TIMECODE_SCALE, TIMECODE_SCALE); // the first timestamp here
+    Clust2.SetPreviousTimecode(300 * TIMESTAMP_SCALE, TIMESTAMP_SCALE); // the first timestamp here
     Clust2.EnableChecksum();
 
     DataBuffer *data2 = new DataBuffer((binary *)"tttyyy", countof("tttyyy"));
-    Clust2.AddFrame(MyTrack1, 350 * TIMECODE_SCALE, *data2, MyNewBlock, *MyLastBlockTrk1);
+    Clust2.AddFrame(MyTrack1, 350 * TIMESTAMP_SCALE, *data2, MyNewBlock, *MyLastBlockTrk1);
 
         KaxBlockBlob *Blob4 = new KaxBlockBlob(BLOCK_BLOB_NO_SIMPLE);
         Blob4->SetBlockGroup(*MyNewBlock);
@@ -284,7 +284,7 @@ int main(int /*argc*/, char **/*argv*/)
     aChapStart.SetValue(0);
 
     KaxChapterTimeEnd & aChapEnd = GetChild<KaxChapterTimeEnd>(aAtom);
-    aChapEnd.SetValue(300 * TIMECODE_SCALE);
+    aChapEnd.SetValue(300 * TIMESTAMP_SCALE);
 
     KaxChapterDisplay & aDisplay = GetChild<KaxChapterDisplay>(aAtom);
     KaxChapterString & aChapString = GetChild<KaxChapterString>(aDisplay);

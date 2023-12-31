@@ -39,8 +39,8 @@ DECLARE_MKX_MASTER(KaxCues)
       return EbmlMaster::Render(output, writeFilter);
     }
 
-    std::uint64_t GetTimecodePosition(std::uint64_t aTimecode) const;
-    const KaxCuePoint * GetTimecodePoint(std::uint64_t aTimecode) const;
+    std::uint64_t GetTimecodePosition(std::uint64_t aTimestamp) const;
+    const KaxCuePoint * GetTimecodePoint(std::uint64_t aTimestamp) const;
 
     void SetGlobalTimecodeScale(std::uint64_t aGlobalTimestampScale) {
       mGlobalTimecodeScale = aGlobalTimestampScale;

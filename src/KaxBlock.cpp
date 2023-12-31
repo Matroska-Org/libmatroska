@@ -56,7 +56,7 @@ KaxInternalBlock::KaxInternalBlock(const KaxInternalBlock & ElementToClone)
   :EbmlBinary(ElementToClone)
   ,Timestamp(ElementToClone.Timestamp)
   ,LocalTimestamp(ElementToClone.LocalTimestamp)
-  ,bLocalTimecodeUsed(ElementToClone.bLocalTimecodeUsed)
+  ,bLocalTimestampUsed(ElementToClone.bLocalTimestampUsed)
   ,TrackNumber(ElementToClone.TrackNumber)
   ,ParentCluster(ElementToClone.ParentCluster) ///< \todo not exactly
 {
@@ -474,7 +474,7 @@ std::uint64_t KaxInternalBlock::ReadInternalHead(IOCallback & input)
   assert(ParentCluster);
   std::int16_t stamp = endian::from_big16(cursor);
   Timestamp = ParentCluster->GetBlockGlobalTimecode(stamp);
-  bLocalTimecodeUsed = false;
+  bLocalTimestampUsed = false;
   cursor += 2;
 
   return Result;
@@ -518,7 +518,7 @@ filepos_t KaxInternalBlock::ReadData(IOCallback & input, ScopeMode ReadFully)
       }
 
       LocalTimestamp = static_cast<std::int16_t>(Mem.GetUInt16BE());
-      bLocalTimecodeUsed = true;
+      bLocalTimestampUsed = true;
 
       const std::uint8_t Flags = Mem.GetUInt8();
       if (EbmlId(*this) == EBML_ID(KaxSimpleBlock)) {
@@ -643,7 +643,7 @@ filepos_t KaxInternalBlock::ReadData(IOCallback & input, ScopeMode ReadFully)
       }
 
       LocalTimestamp = endian::from_big16(cursor);
-      bLocalTimecodeUsed = true;
+      bLocalTimestampUsed = true;
       cursor += 2;
 
       if (EbmlId(*this) == EBML_ID(KaxSimpleBlock)) {
@@ -750,7 +750,7 @@ filepos_t KaxInternalBlock::ReadData(IOCallback & input, ScopeMode ReadFully)
     Timestamp          = 0;
     LocalTimestamp      = 0;
     TrackNumber        = 0;
-    bLocalTimecodeUsed = false;
+    bLocalTimestampUsed = false;
     FirstFrameLocation = 0;
 
     return 0;
@@ -935,9 +935,9 @@ void KaxSimpleBlock::SetParent(KaxCluster & aParentCluster) {
 void KaxInternalBlock::SetParent(KaxCluster & aParentCluster)
 {
   ParentCluster = &aParentCluster;
-  if (bLocalTimecodeUsed) {
+  if (bLocalTimestampUsed) {
     Timestamp = aParentCluster.GetBlockGlobalTimecode(LocalTimestamp);
-    bLocalTimecodeUsed = false;
+    bLocalTimestampUsed = false;
   }
 }
 

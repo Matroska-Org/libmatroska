@@ -251,7 +251,7 @@ class MATROSKA_DLL_API KaxInternalBlock : public libebml::EbmlBinary {
     std::vector<std::int32_t> SizeList;
     std::uint64_t             Timestamp; // temporary timestamp of the first frame, non scaled
     std::int16_t              LocalTimestamp;
-    bool                      bLocalTimecodeUsed{false};
+    bool                      bLocalTimestampUsed{false};
     std::uint16_t               TrackNumber;
     LacingType                mLacing{LACING_AUTO};
     bool                      mInvisible{false};

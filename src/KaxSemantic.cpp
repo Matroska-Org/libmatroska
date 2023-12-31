@@ -16,8 +16,6 @@
 #include "matroska/KaxBlockData.h"
 #include "matroska/KaxCuesData.h"
 
-using namespace libebml;
-
 namespace libmatroska {
 
 DEFINE_START_SEMANTIC(KaxSegment)
@@ -735,227 +733,227 @@ DEFINE_MKX_UINTEGER_DEF(KaxTagDefaultBogus, 0x44B4, 2, KaxTagSimple, "TagDefault
 DEFINE_MKX_UNISTRING(KaxTagString, 0x4487, 2, KaxTagSimple, "TagString")
 DEFINE_MKX_BINARY (KaxTagBinary, 0x4485, 2, KaxTagSimple, "TagBinary")
 
-filepos_t KaxClusterSilentTracks::RenderData(IOCallback & /* output */, bool /* bForceRender */, ShouldWrite) {
+libebml::filepos_t KaxClusterSilentTracks::RenderData(libebml::IOCallback & /* output */, bool /* bForceRender */, ShouldWrite) {
   assert(false); // no you are not allowed to use this element !
   return 0;
 }
 
-filepos_t KaxClusterSilentTrackNumber::RenderData(IOCallback & /* output */, bool /* bForceRender */, ShouldWrite) {
+libebml::filepos_t KaxClusterSilentTrackNumber::RenderData(libebml::IOCallback & /* output */, bool /* bForceRender */, ShouldWrite) {
   assert(false); // no you are not allowed to use this element !
   return 0;
 }
 
-filepos_t KaxBlockVirtual::RenderData(IOCallback & /* output */, bool /* bForceRender */, ShouldWrite) {
+libebml::filepos_t KaxBlockVirtual::RenderData(libebml::IOCallback & /* output */, bool /* bForceRender */, ShouldWrite) {
   assert(false); // no you are not allowed to use this element !
   return 0;
 }
 
-filepos_t KaxReferenceVirtual::RenderData(IOCallback & /* output */, bool /* bForceRender */, ShouldWrite) {
+libebml::filepos_t KaxReferenceVirtual::RenderData(libebml::IOCallback & /* output */, bool /* bForceRender */, ShouldWrite) {
   assert(false); // no you are not allowed to use this element !
   return 0;
 }
 
-filepos_t KaxSlices::RenderData(IOCallback & /* output */, bool /* bForceRender */, ShouldWrite) {
+libebml::filepos_t KaxSlices::RenderData(libebml::IOCallback & /* output */, bool /* bForceRender */, ShouldWrite) {
   assert(false); // no you are not allowed to use this element !
   return 0;
 }
 
-filepos_t KaxTimeSlice::RenderData(IOCallback & /* output */, bool /* bForceRender */, ShouldWrite) {
+libebml::filepos_t KaxTimeSlice::RenderData(libebml::IOCallback & /* output */, bool /* bForceRender */, ShouldWrite) {
   assert(false); // no you are not allowed to use this element !
   return 0;
 }
 
-filepos_t KaxSliceLaceNumber::RenderData(IOCallback & /* output */, bool /* bForceRender */, ShouldWrite) {
+libebml::filepos_t KaxSliceLaceNumber::RenderData(libebml::IOCallback & /* output */, bool /* bForceRender */, ShouldWrite) {
   assert(false); // no you are not allowed to use this element !
   return 0;
 }
 
-filepos_t KaxSliceFrameNumber::RenderData(IOCallback & /* output */, bool /* bForceRender */, ShouldWrite) {
+libebml::filepos_t KaxSliceFrameNumber::RenderData(libebml::IOCallback & /* output */, bool /* bForceRender */, ShouldWrite) {
   assert(false); // no you are not allowed to use this element !
   return 0;
 }
 
-filepos_t KaxSliceBlockAddID::RenderData(IOCallback & /* output */, bool /* bForceRender */, ShouldWrite) {
+libebml::filepos_t KaxSliceBlockAddID::RenderData(libebml::IOCallback & /* output */, bool /* bForceRender */, ShouldWrite) {
   assert(false); // no you are not allowed to use this element !
   return 0;
 }
 
-filepos_t KaxSliceDelay::RenderData(IOCallback & /* output */, bool /* bForceRender */, ShouldWrite) {
+libebml::filepos_t KaxSliceDelay::RenderData(libebml::IOCallback & /* output */, bool /* bForceRender */, ShouldWrite) {
   assert(false); // no you are not allowed to use this element !
   return 0;
 }
 
-filepos_t KaxSliceDuration::RenderData(IOCallback & /* output */, bool /* bForceRender */, ShouldWrite) {
+libebml::filepos_t KaxSliceDuration::RenderData(libebml::IOCallback & /* output */, bool /* bForceRender */, ShouldWrite) {
   assert(false); // no you are not allowed to use this element !
   return 0;
 }
 
-filepos_t KaxReferenceFrame::RenderData(IOCallback & /* output */, bool /* bForceRender */, ShouldWrite) {
+libebml::filepos_t KaxReferenceFrame::RenderData(libebml::IOCallback & /* output */, bool /* bForceRender */, ShouldWrite) {
   assert(false); // no you are not allowed to use this element !
   return 0;
 }
 
-filepos_t KaxReferenceOffset::RenderData(IOCallback & /* output */, bool /* bForceRender */, ShouldWrite) {
+libebml::filepos_t KaxReferenceOffset::RenderData(libebml::IOCallback & /* output */, bool /* bForceRender */, ShouldWrite) {
   assert(false); // no you are not allowed to use this element !
   return 0;
 }
 
-filepos_t KaxReferenceTimeCode::RenderData(IOCallback & /* output */, bool /* bForceRender */, ShouldWrite) {
+libebml::filepos_t KaxReferenceTimeCode::RenderData(libebml::IOCallback & /* output */, bool /* bForceRender */, ShouldWrite) {
   assert(false); // no you are not allowed to use this element !
   return 0;
 }
 
-filepos_t KaxEncryptedBlock::RenderData(IOCallback & /* output */, bool /* bForceRender */, ShouldWrite) {
+libebml::filepos_t KaxEncryptedBlock::RenderData(libebml::IOCallback & /* output */, bool /* bForceRender */, ShouldWrite) {
   assert(false); // no you are not allowed to use this element !
   return 0;
 }
 
-filepos_t KaxTrackMinCache::RenderData(IOCallback & /* output */, bool /* bForceRender */, ShouldWrite) {
+libebml::filepos_t KaxTrackMinCache::RenderData(libebml::IOCallback & /* output */, bool /* bForceRender */, ShouldWrite) {
   assert(false); // no you are not allowed to use this element !
   return 0;
 }
 
-filepos_t KaxTrackMaxCache::RenderData(IOCallback & /* output */, bool /* bForceRender */, ShouldWrite) {
+libebml::filepos_t KaxTrackMaxCache::RenderData(libebml::IOCallback & /* output */, bool /* bForceRender */, ShouldWrite) {
   assert(false); // no you are not allowed to use this element !
   return 0;
 }
 
-filepos_t KaxTrackTimecodeScale::RenderData(IOCallback & /* output */, bool /* bForceRender */, ShouldWrite) {
+libebml::filepos_t KaxTrackTimecodeScale::RenderData(libebml::IOCallback & /* output */, bool /* bForceRender */, ShouldWrite) {
   assert(false); // no you are not allowed to use this element !
   return 0;
 }
 
-filepos_t KaxTrackOffset::RenderData(IOCallback & /* output */, bool /* bForceRender */, ShouldWrite) {
+libebml::filepos_t KaxTrackOffset::RenderData(libebml::IOCallback & /* output */, bool /* bForceRender */, ShouldWrite) {
   assert(false); // no you are not allowed to use this element !
   return 0;
 }
 
-filepos_t KaxTrackAttachmentLink::RenderData(IOCallback & /* output */, bool /* bForceRender */, ShouldWrite) {
+libebml::filepos_t KaxTrackAttachmentLink::RenderData(libebml::IOCallback & /* output */, bool /* bForceRender */, ShouldWrite) {
   assert(false); // no you are not allowed to use this element !
   return 0;
 }
 
-filepos_t KaxCodecSettings::RenderData(IOCallback & /* output */, bool /* bForceRender */, ShouldWrite) {
+libebml::filepos_t KaxCodecSettings::RenderData(libebml::IOCallback & /* output */, bool /* bForceRender */, ShouldWrite) {
   assert(false); // no you are not allowed to use this element !
   return 0;
 }
 
-filepos_t KaxCodecInfoURL::RenderData(IOCallback & /* output */, bool /* bForceRender */, ShouldWrite) {
+libebml::filepos_t KaxCodecInfoURL::RenderData(libebml::IOCallback & /* output */, bool /* bForceRender */, ShouldWrite) {
   assert(false); // no you are not allowed to use this element !
   return 0;
 }
 
-filepos_t KaxCodecDownloadURL::RenderData(IOCallback & /* output */, bool /* bForceRender */, ShouldWrite) {
+libebml::filepos_t KaxCodecDownloadURL::RenderData(libebml::IOCallback & /* output */, bool /* bForceRender */, ShouldWrite) {
   assert(false); // no you are not allowed to use this element !
   return 0;
 }
 
-filepos_t KaxCodecDecodeAll::RenderData(IOCallback & /* output */, bool /* bForceRender */, ShouldWrite) {
+libebml::filepos_t KaxCodecDecodeAll::RenderData(libebml::IOCallback & /* output */, bool /* bForceRender */, ShouldWrite) {
   assert(false); // no you are not allowed to use this element !
   return 0;
 }
 
-filepos_t KaxOldStereoMode::RenderData(IOCallback & /* output */, bool /* bForceRender */, ShouldWrite) {
+libebml::filepos_t KaxOldStereoMode::RenderData(libebml::IOCallback & /* output */, bool /* bForceRender */, ShouldWrite) {
   assert(false); // no you are not allowed to use this element !
   return 0;
 }
 
-filepos_t KaxVideoAspectRatio::RenderData(IOCallback & /* output */, bool /* bForceRender */, ShouldWrite) {
+libebml::filepos_t KaxVideoAspectRatio::RenderData(libebml::IOCallback & /* output */, bool /* bForceRender */, ShouldWrite) {
   assert(false); // no you are not allowed to use this element !
   return 0;
 }
 
-filepos_t KaxVideoGamma::RenderData(IOCallback & /* output */, bool /* bForceRender */, ShouldWrite) {
+libebml::filepos_t KaxVideoGamma::RenderData(libebml::IOCallback & /* output */, bool /* bForceRender */, ShouldWrite) {
   assert(false); // no you are not allowed to use this element !
   return 0;
 }
 
-filepos_t KaxVideoFrameRate::RenderData(IOCallback & /* output */, bool /* bForceRender */, ShouldWrite) {
+libebml::filepos_t KaxVideoFrameRate::RenderData(libebml::IOCallback & /* output */, bool /* bForceRender */, ShouldWrite) {
   assert(false); // no you are not allowed to use this element !
   return 0;
 }
 
-filepos_t KaxAudioPosition::RenderData(IOCallback & /* output */, bool /* bForceRender */, ShouldWrite) {
+libebml::filepos_t KaxAudioPosition::RenderData(libebml::IOCallback & /* output */, bool /* bForceRender */, ShouldWrite) {
   assert(false); // no you are not allowed to use this element !
   return 0;
 }
 
-filepos_t KaxTrickTrackUID::RenderData(IOCallback & /* output */, bool /* bForceRender */, ShouldWrite) {
+libebml::filepos_t KaxTrickTrackUID::RenderData(libebml::IOCallback & /* output */, bool /* bForceRender */, ShouldWrite) {
   assert(false); // no you are not allowed to use this element !
   return 0;
 }
 
-filepos_t KaxTrickTrackSegmentUID::RenderData(IOCallback & /* output */, bool /* bForceRender */, ShouldWrite) {
+libebml::filepos_t KaxTrickTrackSegmentUID::RenderData(libebml::IOCallback & /* output */, bool /* bForceRender */, ShouldWrite) {
   assert(false); // no you are not allowed to use this element !
   return 0;
 }
 
-filepos_t KaxTrickTrackFlag::RenderData(IOCallback & /* output */, bool /* bForceRender */, ShouldWrite) {
+libebml::filepos_t KaxTrickTrackFlag::RenderData(libebml::IOCallback & /* output */, bool /* bForceRender */, ShouldWrite) {
   assert(false); // no you are not allowed to use this element !
   return 0;
 }
 
-filepos_t KaxTrickMasterTrackUID::RenderData(IOCallback & /* output */, bool /* bForceRender */, ShouldWrite) {
+libebml::filepos_t KaxTrickMasterTrackUID::RenderData(libebml::IOCallback & /* output */, bool /* bForceRender */, ShouldWrite) {
   assert(false); // no you are not allowed to use this element !
   return 0;
 }
 
-filepos_t KaxTrickMasterTrackSegmentUID::RenderData(IOCallback & /* output */, bool /* bForceRender */, ShouldWrite) {
+libebml::filepos_t KaxTrickMasterTrackSegmentUID::RenderData(libebml::IOCallback & /* output */, bool /* bForceRender */, ShouldWrite) {
   assert(false); // no you are not allowed to use this element !
   return 0;
 }
 
-filepos_t KaxContentSignature::RenderData(IOCallback & /* output */, bool /* bForceRender */, ShouldWrite) {
+libebml::filepos_t KaxContentSignature::RenderData(libebml::IOCallback & /* output */, bool /* bForceRender */, ShouldWrite) {
   assert(false); // no you are not allowed to use this element !
   return 0;
 }
 
-filepos_t KaxContentSigKeyID::RenderData(IOCallback & /* output */, bool /* bForceRender */, ShouldWrite) {
+libebml::filepos_t KaxContentSigKeyID::RenderData(libebml::IOCallback & /* output */, bool /* bForceRender */, ShouldWrite) {
   assert(false); // no you are not allowed to use this element !
   return 0;
 }
 
-filepos_t KaxContentSigAlgo::RenderData(IOCallback & /* output */, bool /* bForceRender */, ShouldWrite) {
+libebml::filepos_t KaxContentSigAlgo::RenderData(libebml::IOCallback & /* output */, bool /* bForceRender */, ShouldWrite) {
   assert(false); // no you are not allowed to use this element !
   return 0;
 }
 
-filepos_t KaxContentSigHashAlgo::RenderData(IOCallback & /* output */, bool /* bForceRender */, ShouldWrite) {
+libebml::filepos_t KaxContentSigHashAlgo::RenderData(libebml::IOCallback & /* output */, bool /* bForceRender */, ShouldWrite) {
   assert(false); // no you are not allowed to use this element !
   return 0;
 }
 
-filepos_t KaxCueRefCluster::RenderData(IOCallback & /* output */, bool /* bForceRender */, ShouldWrite) {
+libebml::filepos_t KaxCueRefCluster::RenderData(libebml::IOCallback & /* output */, bool /* bForceRender */, ShouldWrite) {
   assert(false); // no you are not allowed to use this element !
   return 0;
 }
 
-filepos_t KaxCueRefNumber::RenderData(IOCallback & /* output */, bool /* bForceRender */, ShouldWrite) {
+libebml::filepos_t KaxCueRefNumber::RenderData(libebml::IOCallback & /* output */, bool /* bForceRender */, ShouldWrite) {
   assert(false); // no you are not allowed to use this element !
   return 0;
 }
 
-filepos_t KaxCueRefCodecState::RenderData(IOCallback & /* output */, bool /* bForceRender */, ShouldWrite) {
+libebml::filepos_t KaxCueRefCodecState::RenderData(libebml::IOCallback & /* output */, bool /* bForceRender */, ShouldWrite) {
   assert(false); // no you are not allowed to use this element !
   return 0;
 }
 
-filepos_t KaxFileReferral::RenderData(IOCallback & /* output */, bool /* bForceRender */, ShouldWrite) {
+libebml::filepos_t KaxFileReferral::RenderData(libebml::IOCallback & /* output */, bool /* bForceRender */, ShouldWrite) {
   assert(false); // no you are not allowed to use this element !
   return 0;
 }
 
-filepos_t KaxFileUsedStartTime::RenderData(IOCallback & /* output */, bool /* bForceRender */, ShouldWrite) {
+libebml::filepos_t KaxFileUsedStartTime::RenderData(libebml::IOCallback & /* output */, bool /* bForceRender */, ShouldWrite) {
   assert(false); // no you are not allowed to use this element !
   return 0;
 }
 
-filepos_t KaxFileUsedEndTime::RenderData(IOCallback & /* output */, bool /* bForceRender */, ShouldWrite) {
+libebml::filepos_t KaxFileUsedEndTime::RenderData(libebml::IOCallback & /* output */, bool /* bForceRender */, ShouldWrite) {
   assert(false); // no you are not allowed to use this element !
   return 0;
 }
 
-filepos_t KaxTagDefaultBogus::RenderData(IOCallback & /* output */, bool /* bForceRender */, ShouldWrite) {
+libebml::filepos_t KaxTagDefaultBogus::RenderData(libebml::IOCallback & /* output */, bool /* bForceRender */, ShouldWrite) {
   assert(false); // no you are not allowed to use this element !
   return 0;
 }

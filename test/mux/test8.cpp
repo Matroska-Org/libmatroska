@@ -229,7 +229,7 @@ int main(int argc, char **argv)
             if (EbmlId(*ElementLevel2) == EBML_ID(KaxTimecodeScale)) {
               KaxTimecodeScale *TimeScale = static_cast<KaxTimecodeScale*>(ElementLevel2);
               TimeScale->ReadData(aStream.I_O());
-              printf("Timecode Scale %d\n", std::uint32_t(*TimeScale));
+              printf("Timestamp Scale %d\n", std::uint32_t(*TimeScale));
               TimestampScale = std::uint64_t(*TimeScale);
             } else if (EbmlId(*ElementLevel2) == EBML_ID(KaxDuration)) {
               printf("Segment duration\n");

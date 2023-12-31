@@ -55,7 +55,7 @@ KaxInternalBlock::~KaxInternalBlock()
 KaxInternalBlock::KaxInternalBlock(const KaxInternalBlock & ElementToClone)
   :EbmlBinary(ElementToClone)
   ,Timestamp(ElementToClone.Timestamp)
-  ,LocalTimecode(ElementToClone.LocalTimecode)
+  ,LocalTimestamp(ElementToClone.LocalTimestamp)
   ,bLocalTimecodeUsed(ElementToClone.bLocalTimecodeUsed)
   ,TrackNumber(ElementToClone.TrackNumber)
   ,ParentCluster(ElementToClone.ParentCluster) ///< \todo not exactly
@@ -517,7 +517,7 @@ filepos_t KaxInternalBlock::ReadData(IOCallback & input, ScopeMode ReadFully)
         TrackNumber &= 0x7F;
       }
 
-      LocalTimecode = static_cast<std::int16_t>(Mem.GetUInt16BE());
+      LocalTimestamp = static_cast<std::int16_t>(Mem.GetUInt16BE());
       bLocalTimecodeUsed = true;
 
       const std::uint8_t Flags = Mem.GetUInt8();
@@ -642,7 +642,7 @@ filepos_t KaxInternalBlock::ReadData(IOCallback & input, ScopeMode ReadFully)
         TrackNumber &= 0x7F;
       }
 
-      LocalTimecode = endian::from_big16(cursor);
+      LocalTimestamp = endian::from_big16(cursor);
       bLocalTimecodeUsed = true;
       cursor += 2;
 
@@ -748,7 +748,7 @@ filepos_t KaxInternalBlock::ReadData(IOCallback & input, ScopeMode ReadFully)
     myBuffers.clear();
     SizeList.clear();
     Timestamp          = 0;
-    LocalTimecode      = 0;
+    LocalTimestamp      = 0;
     TrackNumber        = 0;
     bLocalTimecodeUsed = false;
     FirstFrameLocation = 0;
@@ -936,7 +936,7 @@ void KaxInternalBlock::SetParent(KaxCluster & aParentCluster)
 {
   ParentCluster = &aParentCluster;
   if (bLocalTimecodeUsed) {
-    Timestamp = aParentCluster.GetBlockGlobalTimecode(LocalTimecode);
+    Timestamp = aParentCluster.GetBlockGlobalTimecode(LocalTimestamp);
     bLocalTimecodeUsed = false;
   }
 }

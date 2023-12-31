@@ -127,18 +127,18 @@ bool KaxCuePoint::IsSmallerThan(const EbmlElement * Cmp) const
   auto theCmp = static_cast<const KaxCuePoint *>(Cmp);
 
   // compare timestamp
-  auto TimeCodeA = static_cast<const KaxCueTime *>(FindElt(EBML_INFO(KaxCueTime)));
-  if (!TimeCodeA)
+  auto TimestampA = static_cast<const KaxCueTime *>(FindElt(EBML_INFO(KaxCueTime)));
+  if (!TimestampA)
     return false;
 
-  auto TimeCodeB = static_cast<const KaxCueTime *>(theCmp->FindElt(EBML_INFO(KaxCueTime)));
-  if (!TimeCodeB)
+  auto TimestampB = static_cast<const KaxCueTime *>(theCmp->FindElt(EBML_INFO(KaxCueTime)));
+  if (!TimestampB)
     return false;
 
-  if (TimeCodeA->IsSmallerThan(TimeCodeB))
+  if (TimestampA->IsSmallerThan(TimestampB))
     return true;
 
-  if (TimeCodeB->IsSmallerThan(TimeCodeA))
+  if (TimestampB->IsSmallerThan(TimestampA))
     return false;
 
   // compare tracks (timestamp are equal)

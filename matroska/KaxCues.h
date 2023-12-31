@@ -43,18 +43,18 @@ DECLARE_MKX_MASTER(KaxCues)
     const KaxCuePoint * GetTimecodePoint(std::uint64_t aTimestamp) const;
 
     void SetGlobalTimecodeScale(std::uint64_t aGlobalTimestampScale) {
-      mGlobalTimecodeScale = aGlobalTimestampScale;
+      mGlobalTimestampScale = aGlobalTimestampScale;
       bGlobalTimecodeScaleIsSet = true;
     }
     std::uint64_t GlobalTimecodeScale() const {
       assert(bGlobalTimecodeScaleIsSet);
-      return mGlobalTimecodeScale;
+      return mGlobalTimestampScale;
     }
 
   protected:
     std::vector<const KaxBlockBlob *> myTempReferences;
     bool   bGlobalTimecodeScaleIsSet;
-    std::uint64_t mGlobalTimecodeScale;
+    std::uint64_t mGlobalTimestampScale;
 };
 
 } // namespace libmatroska

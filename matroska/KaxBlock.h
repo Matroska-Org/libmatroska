@@ -145,7 +145,7 @@ DECLARE_MKX_MASTER(KaxBlockGroup)
     bool GetBlockDuration(std::uint64_t &TheTimecode) const;
 
     /*!
-      \return the global timecode of this Block (not just the delta to the Cluster)
+      \return the global timestamp of this Block (not just the delta to the Cluster)
     */
     std::uint64_t GlobalTimecode() const;
     std::uint64_t GlobalTimecodeScale() const {

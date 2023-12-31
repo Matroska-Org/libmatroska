@@ -24,7 +24,7 @@ DECLARE_MKX_SINTEGER_CONS(KaxReferenceBlock)
   public:
         ~KaxReferenceBlock() override;
     /*!
-      \brief override this method to compute the timecode value
+      \brief override this method to compute the timestamp value
     */
     libebml::filepos_t UpdateSize(ShouldWrite writeFilter = WriteSkipDefault, bool bForceRender = false) override;
 

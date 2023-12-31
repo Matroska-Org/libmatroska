@@ -30,8 +30,8 @@ DECLARE_MKX_MASTER(KaxTrackEntry)
       return(!myLacing || (static_cast<std::uint8_t>(*myLacing) != 0));
     }
 
-    void SetGlobalTimecodeScale(std::uint64_t aGlobalTimecodeScale) {
-      mGlobalTimecodeScale = aGlobalTimecodeScale;
+    void SetGlobalTimecodeScale(std::uint64_t aGlobalTimestampScale) {
+      mGlobalTimecodeScale = aGlobalTimestampScale;
       bGlobalTimecodeScaleIsSet = true;
     }
     std::uint64_t GlobalTimecodeScale() const {

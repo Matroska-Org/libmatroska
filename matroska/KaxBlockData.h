@@ -15,8 +15,6 @@
 #include "matroska/KaxDefines.h"
 #include "matroska/KaxBlock.h"
 
-using namespace libebml;
-
 namespace libmatroska {
 
 /*!
@@ -28,7 +26,7 @@ DECLARE_MKX_SINTEGER_CONS(KaxReferenceBlock)
     /*!
       \brief override this method to compute the timecode value
     */
-    filepos_t UpdateSize(ShouldWrite writeFilter = WriteSkipDefault, bool bForceRender = false) override;
+    libebml::filepos_t UpdateSize(ShouldWrite writeFilter = WriteSkipDefault, bool bForceRender = false) override;
 
     const KaxBlockBlob & RefBlock() const;
     void SetReferencedBlock(const KaxBlockBlob * aRefdBlock);

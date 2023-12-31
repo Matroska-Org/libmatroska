@@ -18,8 +18,6 @@
 #include "matroska/KaxTracks.h"
 #include "matroska/KaxDefines.h"
 
-using namespace libebml;
-
 namespace libmatroska {
 
 class KaxCluster;
@@ -29,14 +27,14 @@ class KaxBlockBlob;
 
 class MATROSKA_DLL_API DataBuffer {
   protected:
-    binary  *myBuffer{nullptr};
+    libebml::binary  *myBuffer{nullptr};
     std::uint32_t mySize;
     bool     bValidValue{true};
     bool     (*myFreeBuffer)(const DataBuffer & aBuffer); // method to free the internal buffer
     bool     bInternalBuffer;
 
   public:
-    DataBuffer(binary * aBuffer, std::uint32_t aSize, bool (*aFreeBuffer)(const DataBuffer & aBuffer) = nullptr, bool _bInternalBuffer = false)
+    DataBuffer(libebml::binary * aBuffer, std::uint32_t aSize, bool (*aFreeBuffer)(const DataBuffer & aBuffer) = nullptr, bool _bInternalBuffer = false)
       :mySize(aSize)
       ,myFreeBuffer(aFreeBuffer)
       ,bInternalBuffer(_bInternalBuffer)
@@ -44,7 +42,7 @@ class MATROSKA_DLL_API DataBuffer {
       if (bInternalBuffer)
       {
         try {
-          myBuffer = new binary[mySize];
+          myBuffer = new libebml::binary[mySize];
           memcpy(myBuffer, aBuffer, mySize);
         } catch (const std::bad_alloc &) {
           bValidValue = false;
@@ -55,9 +53,9 @@ class MATROSKA_DLL_API DataBuffer {
     }
 
     virtual ~DataBuffer() = default;
-    virtual binary * Buffer() {assert(bValidValue); return myBuffer;}
+    virtual libebml::binary * Buffer() {assert(bValidValue); return myBuffer;}
     virtual std::uint32_t & Size() {return mySize;};
-    virtual const binary * Buffer() const {assert(bValidValue); return myBuffer;}
+    virtual const libebml::binary * Buffer() const {assert(bValidValue); return myBuffer;}
     virtual std::uint32_t Size()   const {return mySize;};
     bool    FreeBuffer(const DataBuffer & aBuffer) {
       bool bResult = true;
@@ -78,7 +76,7 @@ class MATROSKA_DLL_API DataBuffer {
 
 class MATROSKA_DLL_API SimpleDataBuffer : public DataBuffer {
   public:
-    SimpleDataBuffer(binary * aBuffer, std::uint32_t aSize, std::uint32_t aOffset, bool (*aFreeBuffer)(const DataBuffer & aBuffer) = myFreeBuffer)
+    SimpleDataBuffer(libebml::binary * aBuffer, std::uint32_t aSize, std::uint32_t aOffset, bool (*aFreeBuffer)(const DataBuffer & aBuffer) = myFreeBuffer)
       :DataBuffer(aBuffer + aOffset, aSize, aFreeBuffer)
       ,Offset(aOffset)
       ,BaseBuffer(aBuffer)
@@ -89,7 +87,7 @@ class MATROSKA_DLL_API SimpleDataBuffer : public DataBuffer {
 
   protected:
     std::uint32_t Offset;
-    binary * BaseBuffer;
+    libebml::binary * BaseBuffer;
 
     static bool myFreeBuffer(const DataBuffer & aBuffer)
     {
@@ -107,8 +105,8 @@ class MATROSKA_DLL_API SimpleDataBuffer : public DataBuffer {
 * /
 class MATROSKA_DLL_API NotSoSimpleDataBuffer : public SimpleDataBuffer {
   public:
-    NotSoSimpleDataBuffer(binary * aBuffer, std::uint32_t aSize, std::uint32_t aOffset)
-      :SimpleDataBuffer(new binary[aSize - aOffset], aSize, 0)
+    NotSoSimpleDataBuffer(libebml::binary * aBuffer, std::uint32_t aSize, std::uint32_t aOffset)
+      :SimpleDataBuffer(new libebml::binary[aSize - aOffset], aSize, 0)
     {
       memcpy(BaseBuffer, aBuffer + aOffset, aSize - aOffset);
     }
@@ -179,10 +177,10 @@ DECLARE_MKX_MASTER(KaxBlockGroup)
     const KaxTrackEntry * ParentTrack{nullptr};
 };
 
-class MATROSKA_DLL_API KaxInternalBlock : public EbmlBinary {
+class MATROSKA_DLL_API KaxInternalBlock : public libebml::EbmlBinary {
   public:
-    KaxInternalBlock(const EbmlCallbacks & classInfo, bool bSimple)
-      :EbmlBinary(classInfo),
+    KaxInternalBlock(const libebml::EbmlCallbacks & classInfo, bool bSimple)
+      :libebml::EbmlBinary(classInfo),
       bIsSimple(bSimple)
     {}
     KaxInternalBlock(const KaxInternalBlock & ElementToClone);
@@ -198,14 +196,14 @@ class MATROSKA_DLL_API KaxInternalBlock : public EbmlBinary {
     /*!
       \note override this function to generate the Data/Size on the fly, unlike the usual binary elements
     */
-    filepos_t UpdateSize(ShouldWrite writeFilter = WriteSkipDefault, bool bForceRender = false) override;
-    filepos_t ReadData(IOCallback & input, ScopeMode ReadFully = SCOPE_ALL_DATA) override;
+    libebml::filepos_t UpdateSize(ShouldWrite writeFilter = WriteSkipDefault, bool bForceRender = false) override;
+    libebml::filepos_t ReadData(libebml::IOCallback & input, libebml::ScopeMode ReadFully = libebml::SCOPE_ALL_DATA) override;
 
     /*!
       \brief Only read the head of the Block (not internal data)
       \note convenient when you are parsing the file quickly
     */
-    std::uint64_t ReadInternalHead(IOCallback & input);
+    std::uint64_t ReadInternalHead(libebml::IOCallback & input);
 
     unsigned int NumberFrames() const { return SizeList.size();}
     DataBuffer & GetBuffer(unsigned int iIndex) {return *myBuffers[iIndex];}
@@ -264,7 +262,7 @@ class MATROSKA_DLL_API KaxInternalBlock : public EbmlBinary {
     bool                      bIsKeyframe{true};
     bool                      bIsDiscardable{false};
 
-    filepos_t RenderData(IOCallback & output, bool bForceRender, ShouldWrite writeFilter = WriteSkipDefault) override;
+    libebml::filepos_t RenderData(libebml::IOCallback & output, bool bForceRender, ShouldWrite writeFilter = WriteSkipDefault) override;
 };
 
 class MATROSKA_DLL_API KaxBlock : public KaxInternalBlock {
@@ -334,18 +332,18 @@ DECLARE_MKX_BINARY_CONS(KaxBlockVirtual)
     /*!
       \note override this function to generate the Data/Size on the fly, unlike the usual binary elements
     */
-    filepos_t UpdateSize(ShouldWrite writeFilter = WriteSkipDefault, bool bForceRender = false) override;
+    libebml::filepos_t UpdateSize(ShouldWrite writeFilter = WriteSkipDefault, bool bForceRender = false) override;
 
     void SetParent(const KaxCluster & aParentCluster) {ParentCluster = &aParentCluster;}
 
-    filepos_t RenderData(IOCallback & output, bool bForceRender, ShouldWrite writeFilter) override;
+    libebml::filepos_t RenderData(libebml::IOCallback & output, bool bForceRender, ShouldWrite writeFilter) override;
 
-    filepos_t ReadData(IOCallback & input, ScopeMode ReadFully = SCOPE_ALL_DATA) override;
+    libebml::filepos_t ReadData(libebml::IOCallback & input, libebml::ScopeMode ReadFully = libebml::SCOPE_ALL_DATA) override;
 
   protected:
     std::uint64_t Timecode; // temporary timecode of the first frame if there are more than one
     std::uint16_t TrackNumber;
-    binary DataBlock[5];
+    libebml::binary DataBlock[5];
 
     const KaxCluster * ParentCluster{nullptr};
 };

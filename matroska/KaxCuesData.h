@@ -13,8 +13,6 @@
 #include <ebml/EbmlMaster.h>
 #include "matroska/KaxDefines.h"
 
-using namespace libebml;
-
 namespace libmatroska {
 
 class KaxBlockGroup;

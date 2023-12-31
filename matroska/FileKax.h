@@ -18,8 +18,6 @@
 //#include "Cluster.h"
 //#include "CodecHeader.h"
 
-using namespace libebml;
-
 namespace libmatroska {
 
 //class Track;
@@ -33,9 +31,9 @@ namespace libmatroska {
 */
 class MATROSKA_DLL_API FileMatroska {
     public:
-    FileMatroska(IOCallback & output);
+    FileMatroska(libebml::IOCallback & output);
     ~FileMatroska() = default;
-    IOCallback & myFile;
+    libebml::IOCallback & myFile;
 
 };
 

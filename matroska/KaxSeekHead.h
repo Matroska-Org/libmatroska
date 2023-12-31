@@ -14,8 +14,6 @@
 #include <ebml/EbmlUInteger.h>
 #include "matroska/KaxDefines.h"
 
-using namespace libebml;
-
 namespace libmatroska {
 
 class KaxSegment;
@@ -23,7 +21,7 @@ class KaxSegment;
 DECLARE_MKX_MASTER(KaxSeek)
   public:
     std::int64_t Location() const;
-    bool IsEbmlId(const EbmlId & aId) const;
+    bool IsEbmlId(const libebml::EbmlId & aId) const;
     bool IsEbmlId(const KaxSeek & aPoint) const;
 };
 
@@ -35,7 +33,7 @@ DECLARE_MKX_MASTER(KaxSeekHead)
     */
     KaxSeek * IndexThis(const EbmlElement & aElt, const KaxSegment & ParentSegment);
 
-    KaxSeek * FindFirstOf(const EbmlCallbacks & Callbacks) const;
+    KaxSeek * FindFirstOf(const libebml::EbmlCallbacks & Callbacks) const;
     KaxSeek * FindNextOf(const KaxSeek &aPrev) const;
 };
 

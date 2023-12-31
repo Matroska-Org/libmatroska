@@ -17,8 +17,6 @@
 #include "matroska/KaxCues.h"
 #include "matroska/KaxDefines.h"
 
-using namespace libebml;
-
 namespace libmatroska {
 
 class KaxSegment;
@@ -48,7 +46,7 @@ DECLARE_MKX_MASTER_CONS(KaxCluster)
     /*!
       \brief Render the data to the stream and retrieve the position of BlockGroups for later cue entries
     */
-    filepos_t Render(IOCallback & output, KaxCues & CueToUpdate, ShouldWrite writeFilter = WriteSkipDefault);
+    libebml::filepos_t Render(libebml::IOCallback & output, KaxCues & CueToUpdate, ShouldWrite writeFilter = WriteSkipDefault);
 
     /*!
       \return the global timecode of this Cluster

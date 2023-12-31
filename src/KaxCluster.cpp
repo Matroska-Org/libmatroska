@@ -118,7 +118,7 @@ filepos_t KaxCluster::Render(IOCallback & output, KaxCues & CueToUpdate, ShouldW
 {
   filepos_t Result = 0;
 
-  // update the Timecode of the Cluster before writing
+  // update the timestamp of the Cluster before writing
   auto Timecode = static_cast<KaxClusterTimecode *>(this->FindElt(EBML_INFO(KaxClusterTimecode)));
   Timecode->SetValue(GlobalTimecode() / GlobalTimecodeScale());
 
@@ -197,7 +197,7 @@ filepos_t KaxCluster::Render(IOCallback & output, KaxCues & CueToUpdate, ShouldW
 }
 
 /*!
-  \todo automatically choose valid timecode for the Cluster based on the previous cluster timecode (must be incremental)
+  \todo automatically choose valid timestamp for the Cluster based on the previous cluster timestamp (must be incremental)
 */
 std::uint64_t KaxCluster::GlobalTimecode() const
 {
@@ -212,7 +212,7 @@ std::uint64_t KaxCluster::GlobalTimecode() const
 
 /*!
   \brief retrieve the relative
-  \todo !!! We need a way to know the TimecodeScale
+  \todo !!! We need a way to know the TimestampScale
 */
 std::int16_t KaxCluster::GetBlockLocalTimecode(std::uint64_t aGlobalTimecode) const
 {

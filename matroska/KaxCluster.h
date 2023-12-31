@@ -49,7 +49,7 @@ DECLARE_MKX_MASTER_CONS(KaxCluster)
     libebml::filepos_t Render(libebml::IOCallback & output, KaxCues & CueToUpdate, ShouldWrite writeFilter = WriteSkipDefault);
 
     /*!
-      \return the global timecode of this Cluster
+      \return the global timestamp of this Cluster
     */
     std::uint64_t GlobalTimecode() const;
 

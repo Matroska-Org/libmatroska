@@ -32,7 +32,7 @@ DECLARE_MKX_MASTER(KaxCues)
     void PositionSet(const KaxBlockBlob & BlockReference);
 
     /*!
-      \brief override to sort by timecode/track
+      \brief override to sort by timestamp/track
     */
     libebml::filepos_t Render(libebml::IOCallback & output, ShouldWrite writeFilter = WriteSkipDefault) {
       Sort();

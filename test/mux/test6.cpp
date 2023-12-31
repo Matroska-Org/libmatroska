@@ -186,7 +186,7 @@ int main(int /*argc*/, char **/*argv*/)
 
     KaxCluster Clust1;
     Clust1.SetParent(FileSegment); // mandatory to store references in this Cluster
-    Clust1.SetPreviousTimecode(0, TIMECODE_SCALE); // the first timecode here
+    Clust1.SetPreviousTimecode(0, TIMECODE_SCALE); // the first timestamp here
     Clust1.EnableChecksum();
 
     // automatic filling of a Cluster
@@ -255,7 +255,7 @@ int main(int /*argc*/, char **/*argv*/)
 
     KaxCluster Clust2;
     Clust2.SetParent(FileSegment); // mandatory to store references in this Cluster
-    Clust2.SetPreviousTimecode(300 * TIMECODE_SCALE, TIMECODE_SCALE); // the first timecode here
+    Clust2.SetPreviousTimecode(300 * TIMECODE_SCALE, TIMECODE_SCALE); // the first timestamp here
     Clust2.EnableChecksum();
 
     DataBuffer *data2 = new DataBuffer((binary *)"tttyyy", countof("tttyyy"));

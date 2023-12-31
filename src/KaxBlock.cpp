@@ -308,7 +308,7 @@ filepos_t KaxBlockVirtual::UpdateSize(ShouldWrite, bool /* bForceRender */)
 
 /*!
   \todo more optimisation is possible (render the Block head and don't copy the buffer in memory, care should be taken with the allocation of Data)
-  \todo the actual timecode to write should be retrieved from the Cluster from here
+  \todo the actual timestamp to write should be retrieved from the Cluster from here
 */
 filepos_t KaxInternalBlock::RenderData(IOCallback & output, bool /* bForceRender */, ShouldWrite)
 {
@@ -832,7 +832,7 @@ bool KaxBlockGroup::AddFrame(const KaxTrackEntry & track, std::uint64_t timestam
 }
 
 /*!
-  \todo we may cache the reference to the timecode block
+  \todo we may cache the reference to the timestamp block
 */
 std::uint64_t KaxBlockGroup::GlobalTimecode() const
 {

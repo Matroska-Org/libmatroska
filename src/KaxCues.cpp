@@ -88,7 +88,7 @@ void KaxCues::PositionSet(const KaxBlockGroup & BlockRef)
 */
 const KaxCuePoint * KaxCues::GetTimecodePoint(std::uint64_t aTimestamp) const
 {
-  const std::uint64_t TimecodeToLocate = aTimestamp / GlobalTimecodeScale();
+  const std::uint64_t TimestampToLocate = aTimestamp / GlobalTimecodeScale();
   const KaxCuePoint * aPointPrev = nullptr;
   std::uint64_t aPrevTime = 0;
   std::uint64_t aNextTime = 0xFFFFFFFFFFFFLL;
@@ -100,11 +100,11 @@ const KaxCuePoint * KaxCues::GetTimecodePoint(std::uint64_t aTimestamp) const
       auto aTime = static_cast<const KaxCueTime *>(tmp->FindFirstElt(EBML_INFO(KaxCueTime)));
       if (aTime) {
         auto _Time = static_cast<std::uint64_t>(*aTime);
-        if (_Time > aPrevTime && _Time < TimecodeToLocate) {
+        if (_Time > aPrevTime && _Time < TimestampToLocate) {
           aPrevTime = _Time;
           aPointPrev = tmp;
         }
-        if (_Time < aNextTime && _Time > TimecodeToLocate) {
+        if (_Time < aNextTime && _Time > TimestampToLocate) {
           aNextTime= _Time;
         }
       }

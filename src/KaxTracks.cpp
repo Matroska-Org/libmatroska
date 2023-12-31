@@ -11,6 +11,8 @@
 #include "matroska/KaxContexts.h"
 #include "matroska/KaxDefines.h"
 
+using namespace libebml;
+
 namespace libmatroska {
 
 KaxTrackEntry::KaxTrackEntry()

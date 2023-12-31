@@ -19,6 +19,8 @@
 #include "matroska/KaxCluster.h"
 #include "matroska/KaxDefines.h"
 
+using namespace libebml;
+
 namespace libmatroska {
 
 DataBuffer * DataBuffer::Clone()

@@ -16,6 +16,8 @@
 #include "matroska/KaxBlockData.h"
 #include "matroska/KaxCuesData.h"
 
+using namespace libebml;
+
 namespace libmatroska {
 
 DEFINE_START_SEMANTIC(KaxSegment)

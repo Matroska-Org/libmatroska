@@ -11,6 +11,8 @@
 #include "matroska/KaxSegment.h"
 #include "matroska/KaxDefines.h"
 
+using namespace libebml;
+
 // sub elements
 namespace libmatroska {
 

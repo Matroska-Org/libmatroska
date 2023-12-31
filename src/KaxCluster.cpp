@@ -204,8 +204,8 @@ std::uint64_t KaxCluster::GlobalTimecode() const
   assert(bPreviousTimecodeIsSet);
   std::uint64_t result = MinTimecode;
 
-  if (result < PreviousTimecode)
-    result = PreviousTimecode + 1;
+  if (result < PreviousTimestamp)
+    result = PreviousTimestamp + 1;
 
   return result;
 }
@@ -226,7 +226,7 @@ std::uint64_t KaxCluster::GetBlockGlobalTimecode(std::int16_t LocalTimecode)
   if (!bFirstFrameInside) {
     auto Timecode = static_cast<KaxClusterTimecode *>(this->FindElt(EBML_INFO(KaxClusterTimecode)));
     assert (bFirstFrameInside); // use the InitTimecode() hack for now
-    MinTimecode = MaxTimecode = PreviousTimecode = static_cast<std::uint64_t>(*static_cast<EbmlUInteger *>(Timecode));
+    MinTimecode = MaxTimecode = PreviousTimestamp = static_cast<std::uint64_t>(*static_cast<EbmlUInteger *>(Timecode));
     bFirstFrameInside = true;
     bPreviousTimecodeIsSet = true;
   }

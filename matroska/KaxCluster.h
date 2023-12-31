@@ -69,7 +69,7 @@ DECLARE_MKX_MASTER_CONS(KaxCluster)
     void SetParent(const KaxSegment & aParentSegment) {ParentSegment = &aParentSegment;}
 
     void SetPreviousTimecode(std::uint64_t aPreviousTimestamp, std::int64_t aTimestampScale) {
-      bPreviousTimecodeIsSet = true;
+      bPreviousTimestampIsSet = true;
       PreviousTimestamp = aPreviousTimestamp;
       SetGlobalTimecodeScale(aTimestampScale);
     }
@@ -81,7 +81,7 @@ DECLARE_MKX_MASTER_CONS(KaxCluster)
     void InitTimecode(std::uint64_t aTimestamp, std::int64_t aTimestampScale) {
       SetGlobalTimecodeScale(aTimestampScale);
       MinTimecode = MaxTimecode = PreviousTimestamp = aTimestamp * TimestampScale;
-      bFirstFrameInside = bPreviousTimecodeIsSet = true;
+      bFirstFrameInside = bPreviousTimestampIsSet = true;
     }
 
     std::int16_t GetBlockLocalTimecode(std::uint64_t GlobalTimecode) const;
@@ -117,7 +117,7 @@ DECLARE_MKX_MASTER_CONS(KaxCluster)
     std::int64_t  TimestampScale;
 
     bool   bFirstFrameInside{false}; // used to speed research
-    bool   bPreviousTimecodeIsSet{false};
+    bool   bPreviousTimestampIsSet{false};
     bool   bTimecodeScaleIsSet{false};
     bool   bSilentTracksUsed{false};
 

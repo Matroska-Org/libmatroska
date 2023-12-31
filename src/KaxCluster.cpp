@@ -46,12 +46,12 @@ bool KaxCluster::AddFrameInternal(const KaxTrackEntry & track, std::uint64_t tim
 {
   if (!bFirstFrameInside) {
     bFirstFrameInside = true;
-    MinTimecode = MaxTimecode = timestamp;
+    MinTimecode = MaxTimestamp = timestamp;
   } else {
     if (timestamp < MinTimecode)
       MinTimecode = timestamp;
-    if (timestamp > MaxTimecode)
-      MaxTimecode = timestamp;
+    if (timestamp > MaxTimestamp)
+      MaxTimestamp = timestamp;
   }
 
   MyNewBlock = nullptr;
@@ -226,7 +226,7 @@ std::uint64_t KaxCluster::GetBlockGlobalTimecode(std::int16_t LocalTimecode)
   if (!bFirstFrameInside) {
     auto Timecode = static_cast<KaxClusterTimecode *>(this->FindElt(EBML_INFO(KaxClusterTimecode)));
     assert (bFirstFrameInside); // use the InitTimecode() hack for now
-    MinTimecode = MaxTimecode = PreviousTimestamp = static_cast<std::uint64_t>(*static_cast<EbmlUInteger *>(Timecode));
+    MinTimecode = MaxTimestamp = PreviousTimestamp = static_cast<std::uint64_t>(*static_cast<EbmlUInteger *>(Timecode));
     bFirstFrameInside = true;
     bPreviousTimestampIsSet = true;
   }

@@ -7,16 +7,6 @@
     \author Moritz Bunkus     <mosu @ users.sf.net>
 */
 
-#include <time.h>
-
-#include <typeinfo>
-
-#include <ebml/EbmlHead.h>
-#include <ebml/EbmlSubHead.h>
-#include <ebml/EbmlVersion.h>
-#include <ebml/EbmlVoid.h>
-#include <ebml/StdIOCallback.h>
-
 #include <matroska/FileKax.h>
 #include <matroska/KaxBlock.h>
 #include <matroska/KaxCluster.h>
@@ -25,6 +15,16 @@
 #include <matroska/KaxSegment.h>
 #include <matroska/KaxTracks.h>
 #include <matroska/KaxVersion.h>
+
+#include <ebml/EbmlHead.h>
+#include <ebml/EbmlSubHead.h>
+#include <ebml/EbmlVersion.h>
+#include <ebml/EbmlVoid.h>
+#include <ebml/StdIOCallback.h>
+
+#include <time.h>
+
+#include <typeinfo>
 
 using namespace std;
 using namespace libebml;

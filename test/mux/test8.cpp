@@ -7,25 +7,26 @@
     \author Steve Lhomme     <robux4 @ users.sf.net>
 */
 
-#include <iostream>
-#include <cassert>
-#include <cinttypes>
-
-#include <ebml/EbmlHead.h>
-#include <ebml/EbmlSubHead.h>
-#include <ebml/EbmlStream.h>
-#include <ebml/EbmlContexts.h>
-#include <ebml/EbmlVoid.h>
-#include <ebml/EbmlCrc32.h>
-#include "matroska/FileKax.h"
 #include "matroska/KaxSegment.h"
+#include "matroska/FileKax.h"
 #include "matroska/KaxContexts.h"
 #include "matroska/KaxTracks.h"
 #include "matroska/KaxCluster.h"
 #include "matroska/KaxBlockData.h"
 #include "matroska/KaxSeekHead.h"
 #include "matroska/KaxCuesData.h"
+
 #include <ebml/StdIOCallback.h>
+#include <ebml/EbmlHead.h>
+#include <ebml/EbmlSubHead.h>
+#include <ebml/EbmlStream.h>
+#include <ebml/EbmlContexts.h>
+#include <ebml/EbmlVoid.h>
+#include <ebml/EbmlCrc32.h>
+
+#include <iostream>
+#include <cassert>
+#include <cinttypes>
 
 using namespace libmatroska;
 using namespace std;

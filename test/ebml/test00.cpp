@@ -7,22 +7,21 @@
     Test the writing a basic EBML file
 */
 
-#include <stdio.h>
-#include <string>
+#include "matroska/KaxSegment.h"
+#include "matroska/KaxContexts.h"
+#include "matroska/KaxSemantic.h"
+#include "matroska/KaxVersion.h"
 
 #include <ebml/StdIOCallback.h>
-
 #include <ebml/EbmlHead.h>
 #include <ebml/EbmlSubHead.h>
 #include <ebml/EbmlStream.h>
 #include <ebml/EbmlVoid.h>
 #include <ebml/EbmlContexts.h>
-#include "matroska/KaxSegment.h"
-#include "matroska/KaxContexts.h"
-#include "matroska/KaxSemantic.h"
-
 #include <ebml/EbmlVersion.h>
-#include "matroska/KaxVersion.h"
+
+#include <cstdio>
+#include <string>
 
 using namespace libmatroska;
 

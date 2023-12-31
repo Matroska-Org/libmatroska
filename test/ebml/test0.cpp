@@ -9,8 +9,6 @@
     \see http://www-106.ibm.com/developerworks/unicode/library/u-encode.html
 */
 
-#include <stdio.h>
-
 #include <ebml/StdIOCallback.h>
 
 #include <ebml/EbmlUInteger.h>
@@ -22,6 +20,8 @@
 #include <ebml/EbmlFloat.h>
 #include <ebml/EbmlStream.h>
 #include <ebml/StdIOCallback.h>
+
+#include <cstdio>
 
 using namespace libebml;
 

@@ -24,11 +24,11 @@ namespace libmatroska {
   \todo handle codec state checking
   \todo remove duplicate references (reference to 2 frames that each reference the same frame)
 */
-void KaxCuePoint::PositionSet(const KaxBlockGroup & BlockReference, std::uint64_t GlobalTimecodeScale)
+void KaxCuePoint::PositionSet(const KaxBlockGroup & BlockReference, std::uint64_t GlobalTimestampScale)
 {
   // fill me
   auto & NewTime = GetChild<KaxCueTime>(*this);
-  NewTime.SetValue(BlockReference.GlobalTimecode() / GlobalTimecodeScale);
+  NewTime.SetValue(BlockReference.GlobalTimecode() / GlobalTimestampScale);
 
   auto & NewPositions = AddNewChild<KaxCueTrackPositions>(*this);
   auto & TheTrack = GetChild<KaxCueTrack>(NewPositions);
@@ -41,7 +41,7 @@ void KaxCuePoint::PositionSet(const KaxBlockGroup & BlockReference, std::uint64_
   if (BlockReference.ReferenceCount() != 0) {
     for (unsigned int i=0; i<BlockReference.ReferenceCount(); i++) {
       auto & NewRefs = AddNewChild<KaxCueReference>(NewPositions);
-      NewRefs.AddReference(BlockReference.Reference(i).RefBlock(), GlobalTimecodeScale);
+      NewRefs.AddReference(BlockReference.Reference(i).RefBlock(), GlobalTimestampScale);
     }
   }
 
@@ -54,7 +54,7 @@ void KaxCuePoint::PositionSet(const KaxBlockGroup & BlockReference, std::uint64_
   SetValueIsSet();
 }
 
-void KaxCuePoint::PositionSet(const KaxBlockBlob & BlobReference, std::uint64_t GlobalTimecodeScale)
+void KaxCuePoint::PositionSet(const KaxBlockBlob & BlobReference, std::uint64_t GlobalTimestampScale)
 {
   auto &BlockReference = static_cast<KaxInternalBlock&>(BlobReference);
   const KaxBlockGroup *BlockGroupPointer = nullptr;
@@ -63,19 +63,19 @@ void KaxCuePoint::PositionSet(const KaxBlockBlob & BlobReference, std::uint64_t 
     auto &BlockGroup = static_cast<KaxBlockGroup&>(BlobReference);
     BlockGroupPointer = &BlockGroup;
   }
-  PositionSet(BlockReference, BlockGroupPointer, GlobalTimecodeScale);
+  PositionSet(BlockReference, BlockGroupPointer, GlobalTimestampScale);
 }
 
-void KaxCuePoint::PositionSet(const KaxSimpleBlock & BlockReference, std::uint64_t GlobalTimecodeScale)
+void KaxCuePoint::PositionSet(const KaxSimpleBlock & BlockReference, std::uint64_t GlobalTimestampScale)
 {
-  PositionSet(BlockReference, nullptr, GlobalTimecodeScale);
+  PositionSet(BlockReference, nullptr, GlobalTimestampScale);
 }
 
-void KaxCuePoint::PositionSet(const KaxInternalBlock & BlockReference, const KaxBlockGroup *BlockGroup, std::uint64_t GlobalTimecodeScale)
+void KaxCuePoint::PositionSet(const KaxInternalBlock & BlockReference, const KaxBlockGroup *BlockGroup, std::uint64_t GlobalTimestampScale)
 {
   // fill me
   auto & NewTime = GetChild<KaxCueTime>(*this);
-  NewTime.SetValue(BlockReference.GlobalTimecode() / GlobalTimecodeScale);
+  NewTime.SetValue(BlockReference.GlobalTimecode() / GlobalTimestampScale);
 
   auto & NewPositions = AddNewChild<KaxCueTrackPositions>(*this);
   auto & TheTrack = GetChild<KaxCueTrack>(NewPositions);
@@ -90,7 +90,7 @@ void KaxCuePoint::PositionSet(const KaxInternalBlock & BlockReference, const Kax
     unsigned int i;
     for (i=0; i<BlockReference.ReferenceCount(); i++) {
       KaxCueReference & NewRefs = AddNewChild<KaxCueReference>(NewPositions);
-      NewRefs.AddReference(BlockReference.Reference(i).RefBlock(), GlobalTimecodeScale);
+      NewRefs.AddReference(BlockReference.Reference(i).RefBlock(), GlobalTimestampScale);
     }
   }
 #endif // MATROSKA_VERSION
@@ -109,11 +109,11 @@ void KaxCuePoint::PositionSet(const KaxInternalBlock & BlockReference, const Kax
 /*!
   \todo handle codec state checking
 */
-void KaxCueReference::AddReference(const KaxBlockBlob & BlockReference, std::uint64_t GlobalTimecodeScale)
+void KaxCueReference::AddReference(const KaxBlockBlob & BlockReference, std::uint64_t GlobalTimestampScale)
 {
   auto& theBlock = static_cast<KaxInternalBlock&>(BlockReference);
   auto& NewTime = GetChild<KaxCueRefTime>(*this);
-  NewTime.SetValue(theBlock.GlobalTimecode() / GlobalTimecodeScale);
+  NewTime.SetValue(theBlock.GlobalTimecode() / GlobalTimestampScale);
 
   auto & TheClustPos = GetChild<KaxCueRefCluster>(*this);
   TheClustPos.SetValue(theBlock.ClusterPosition());
@@ -159,12 +159,12 @@ bool KaxCuePoint::IsSmallerThan(const EbmlElement * Cmp) const
   return false;
 }
 
-bool KaxCuePoint::Timecode(std::uint64_t & aTimecode, std::uint64_t GlobalTimecodeScale) const
+bool KaxCuePoint::Timecode(std::uint64_t & aTimecode, std::uint64_t GlobalTimestampScale) const
 {
   const auto aTime = static_cast<const KaxCueTime *>(FindFirstElt(EBML_INFO(KaxCueTime)));
   if (!aTime)
     return false;
-  aTimecode = static_cast<std::uint64_t>(*aTime) * GlobalTimecodeScale;
+  aTimecode = static_cast<std::uint64_t>(*aTime) * GlobalTimestampScale;
   return true;
 }
 

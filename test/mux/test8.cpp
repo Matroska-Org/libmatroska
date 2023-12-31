@@ -295,7 +295,7 @@ int main(int argc, char **argv)
               UpperElementLevel = 0;
             }
             if (EbmlId(*ElementLevel2) == EBML_ID(KaxClusterTimecode)) {
-              printf("Cluster timecode found\n");
+              printf("Cluster timestamp found\n");
               KaxClusterTimecode & ClusterTime = *static_cast<KaxClusterTimecode*>(ElementLevel2);
               ClusterTime.ReadData(aStream.I_O());
               ClusterTimecode = std::uint32_t(ClusterTime);
@@ -312,7 +312,7 @@ int main(int argc, char **argv)
               if (DataBlock != NULL) {
 //                DataBlock->ReadData(aStream.I_O());
                 DataBlock->SetParent(*SegmentCluster);
-                printf("   Track # %d / %d frame%s / Timecode %I64d\n",DataBlock->TrackNum(), DataBlock->NumberFrames(), (DataBlock->NumberFrames() > 1)?"s":"", DataBlock->GlobalTimecode());
+                printf("   Track # %d / %d frame%s / Timestamp %I64d\n",DataBlock->TrackNum(), DataBlock->NumberFrames(), (DataBlock->NumberFrames() > 1)?"s":"", DataBlock->GlobalTimecode());
               } else {
                 printf("   A BlockGroup without a Block !!!");
               }
@@ -322,7 +322,7 @@ int main(int argc, char **argv)
               }
               KaxReferenceBlock * RefTime = static_cast<KaxReferenceBlock *>(aBlockGroup.FindElt(EBML_INFO(KaxReferenceBlock)));
               if (RefTime != NULL) {
-                printf("  Reference frame at scaled (%d) timecode %ld\n", std::int32_t(*RefTime), std::int32_t(std::int64_t(*RefTime) * TimestampScale));
+                printf("  Reference frame at scaled (%d) timestamp %ld\n", std::int32_t(*RefTime), std::int32_t(std::int64_t(*RefTime) * TimestampScale));
               }
 #else // TEST_BLOCKGROUP_READ
               // read the data we care about in matroska
@@ -344,7 +344,7 @@ int main(int argc, char **argv)
                   DataBlock.ReadData(aStream.I_O(), SCOPE_ALL_DATA);
 #endif // NO_DISPLAY_DATA
                   DataBlock.SetParent(*SegmentCluster);
-                  printf("   Track # %d / %d frame%s / Timecode %" PRId64 "\n",DataBlock.TrackNum(), DataBlock.NumberFrames(), (DataBlock.NumberFrames() > 1)?"s":"", DataBlock.GlobalTimecode());
+                  printf("   Track # %d / %d frame%s / Timestamp %" PRId64 "\n",DataBlock.TrackNum(), DataBlock.NumberFrames(), (DataBlock.NumberFrames() > 1)?"s":"", DataBlock.GlobalTimecode());
 #ifndef NO_DISPLAY_DATA
                   for (unsigned int i=0; i< DataBlock.NumberFrames(); i++) {
                     printf("   [%s]\n",DataBlock.GetBuffer(i).Buffer()); // STRING ONLY POSSIBLE WITH THIS PARTICULAR EXAMPLE (the binary data is a string)
@@ -360,7 +360,7 @@ int main(int argc, char **argv)
                 } else if (EbmlId(*ElementLevel3) == EBML_ID(KaxReferenceBlock)) {
                   KaxReferenceBlock & RefTime = *static_cast<KaxReferenceBlock*>(ElementLevel3);
                   RefTime.ReadData(aStream.I_O());
-                  printf("  Reference frame at scaled (%d) timecode %" PRId32 "\n", std::int32_t(RefTime), std::int32_t(std::int64_t(RefTime) * TimestampScale));
+                  printf("  Reference frame at scaled (%d) timestamp %" PRId32 "\n", std::int32_t(RefTime), std::int32_t(std::int64_t(RefTime) * TimestampScale));
                 } else if (EbmlId(*ElementLevel3) == EBML_ID(KaxBlockDuration)) {
                   KaxBlockDuration & BlockDuration = *static_cast<KaxBlockDuration*>(ElementLevel3);
                   BlockDuration.ReadData(aStream.I_O());

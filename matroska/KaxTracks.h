@@ -14,13 +14,11 @@
 #include "matroska/KaxDefines.h"
 #include "matroska/KaxSemantic.h"
 
-using namespace libebml;
-
 namespace libmatroska {
 
 DECLARE_MKX_MASTER(KaxTrackEntry)
   public:
-    EbmlUInteger & TrackNumber() const { return *(static_cast<EbmlUInteger *>(FindElt(EBML_INFO(KaxTrackNumber)))); }
+    libebml::EbmlUInteger & TrackNumber() const { return *(static_cast<libebml::EbmlUInteger *>(FindElt(EBML_INFO(KaxTrackNumber)))); }
 
     void EnableLacing(bool bEnable = true);
 

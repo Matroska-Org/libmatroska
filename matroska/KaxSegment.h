@@ -12,8 +12,6 @@
 #include <ebml/EbmlMaster.h>
 #include "matroska/KaxDefines.h"
 
-using namespace libebml;
-
 namespace libmatroska {
 
 DECLARE_MKX_MASTER_CONS(KaxSegment)

@@ -216,9 +216,9 @@ std::uint64_t KaxCluster::GlobalTimecode() const
 */
 std::int16_t KaxCluster::GetBlockLocalTimecode(std::uint64_t aGlobalTimestamp) const
 {
-  const std::int64_t TimecodeDelay = (static_cast<std::int64_t>(aGlobalTimestamp) - static_cast<std::int64_t>(GlobalTimecode())) / static_cast<std::int64_t>(GlobalTimecodeScale());
-  assert(TimecodeDelay >= std::int16_t(0x8000) && TimecodeDelay <= std::int16_t(0x7FFF));
-  return static_cast<std::int16_t>(TimecodeDelay);
+  const std::int64_t TimestampDelay = (static_cast<std::int64_t>(aGlobalTimestamp) - static_cast<std::int64_t>(GlobalTimecode())) / static_cast<std::int64_t>(GlobalTimecodeScale());
+  assert(TimestampDelay >= std::int16_t(0x8000) && TimestampDelay <= std::int16_t(0x7FFF));
+  return static_cast<std::int16_t>(TimestampDelay);
 }
 
 std::uint64_t KaxCluster::GetBlockGlobalTimecode(std::int16_t LocalTimestamp)

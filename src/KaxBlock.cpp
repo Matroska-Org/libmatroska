@@ -770,8 +770,6 @@ bool KaxBlockGroup::AddFrame(const KaxTrackEntry & track, std::uint64_t timestam
 
 bool KaxBlockGroup::AddFrame(const KaxTrackEntry & track, std::uint64_t timestamp, DataBuffer & buffer, const KaxBlockGroup & PastBlock, LacingType lacing)
 {
-  //  assert(past_timecode < 0);
-
   auto & theBlock = GetChild<KaxBlock>(*this);
   assert(ParentCluster);
   theBlock.SetParent(*ParentCluster);
@@ -787,10 +785,6 @@ bool KaxBlockGroup::AddFrame(const KaxTrackEntry & track, std::uint64_t timestam
 
 bool KaxBlockGroup::AddFrame(const KaxTrackEntry & track, std::uint64_t timestamp, DataBuffer & buffer, const KaxBlockGroup & PastBlock, const KaxBlockGroup & ForwBlock, LacingType lacing)
 {
-  //  assert(past_timecode < 0);
-
-  //  assert(forw_timecode > 0);
-
   auto & theBlock = GetChild<KaxBlock>(*this);
   assert(ParentCluster);
   theBlock.SetParent(*ParentCluster);

@@ -201,7 +201,7 @@ filepos_t KaxCluster::Render(IOCallback & output, KaxCues & CueToUpdate, ShouldW
 */
 std::uint64_t KaxCluster::GlobalTimecode() const
 {
-  assert(bPreviousTimecodeIsSet);
+  assert(bPreviousTimestampIsSet);
   std::uint64_t result = MinTimecode;
 
   if (result < PreviousTimestamp)
@@ -228,7 +228,7 @@ std::uint64_t KaxCluster::GetBlockGlobalTimecode(std::int16_t LocalTimecode)
     assert (bFirstFrameInside); // use the InitTimecode() hack for now
     MinTimecode = MaxTimecode = PreviousTimestamp = static_cast<std::uint64_t>(*static_cast<EbmlUInteger *>(Timecode));
     bFirstFrameInside = true;
-    bPreviousTimecodeIsSet = true;
+    bPreviousTimestampIsSet = true;
   }
   return static_cast<std::int64_t>(LocalTimecode * GlobalTimecodeScale()) + GlobalTimecode();
 }

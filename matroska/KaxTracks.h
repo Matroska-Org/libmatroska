@@ -31,17 +31,17 @@ DECLARE_MKX_MASTER(KaxTrackEntry)
     }
 
     void SetGlobalTimecodeScale(std::uint64_t aGlobalTimestampScale) {
-      mGlobalTimecodeScale = aGlobalTimestampScale;
+      mGlobalTimestampScale = aGlobalTimestampScale;
       bGlobalTimecodeScaleIsSet = true;
     }
     std::uint64_t GlobalTimecodeScale() const {
       assert(bGlobalTimecodeScaleIsSet);
-      return mGlobalTimecodeScale;
+      return mGlobalTimestampScale;
     }
 
   protected:
     bool   bGlobalTimecodeScaleIsSet{false};
-    std::uint64_t mGlobalTimecodeScale;
+    std::uint64_t mGlobalTimestampScale;
 };
 
 } // namespace libmatroska

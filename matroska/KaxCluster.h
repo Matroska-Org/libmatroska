@@ -68,18 +68,18 @@ DECLARE_MKX_MASTER_CONS(KaxCluster)
 
     void SetParent(const KaxSegment & aParentSegment) {ParentSegment = &aParentSegment;}
 
-    void SetPreviousTimecode(std::uint64_t aPreviousTimecode, std::int64_t aTimecodeScale) {
+    void SetPreviousTimecode(std::uint64_t aPreviousTimecode, std::int64_t aTimestampScale) {
       bPreviousTimecodeIsSet = true;
       PreviousTimecode = aPreviousTimecode;
-      SetGlobalTimecodeScale(aTimecodeScale);
+      SetGlobalTimecodeScale(aTimestampScale);
     }
 
     /*!
       \note dirty hack to get the mandatory data back after reading
       \todo there should be a better way to get mandatory data
     */
-    void InitTimecode(std::uint64_t aTimecode, std::int64_t aTimecodeScale) {
-      SetGlobalTimecodeScale(aTimecodeScale);
+    void InitTimecode(std::uint64_t aTimecode, std::int64_t aTimestampScale) {
+      SetGlobalTimecodeScale(aTimestampScale);
       MinTimecode = MaxTimecode = PreviousTimecode = aTimecode * TimestampScale;
       bFirstFrameInside = bPreviousTimecodeIsSet = true;
     }

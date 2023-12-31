@@ -11,19 +11,19 @@
 #include <windows.h>      // for min/max
 #endif // _MSC_VER
 
-#include <iostream>
-
-#include <ebml/StdIOCallback.h>
-
-#include <ebml/EbmlHead.h>
-#include <ebml/EbmlSubHead.h>
-#include <ebml/EbmlVoid.h>
 #include "matroska/FileKax.h"
 #include "matroska/KaxSegment.h"
 #include "matroska/KaxTracks.h"
 #include "matroska/KaxCluster.h"
 #include "matroska/KaxSeekHead.h"
 #include "matroska/KaxCues.h"
+
+#include <ebml/StdIOCallback.h>
+#include <ebml/EbmlHead.h>
+#include <ebml/EbmlSubHead.h>
+#include <ebml/EbmlVoid.h>
+
+#include <iostream>
 
 using namespace libmatroska;
 using namespace std;

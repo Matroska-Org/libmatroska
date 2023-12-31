@@ -90,10 +90,10 @@ DECLARE_MKX_MASTER_CONS(KaxCluster)
 
     void SetGlobalTimecodeScale(std::uint64_t aGlobalTimestampScale) {
       TimestampScale = aGlobalTimestampScale;
-      bTimecodeScaleIsSet = true;
+      bTimestampScaleIsSet = true;
     }
     std::uint64_t GlobalTimecodeScale() const {
-      assert(bTimecodeScaleIsSet);
+      assert(bTimestampScaleIsSet);
       return TimestampScale;
     }
 
@@ -118,7 +118,7 @@ DECLARE_MKX_MASTER_CONS(KaxCluster)
 
     bool   bFirstFrameInside{false}; // used to speed research
     bool   bPreviousTimestampIsSet{false};
-    bool   bTimecodeScaleIsSet{false};
+    bool   bTimestampScaleIsSet{false};
     bool   bSilentTracksUsed{false};
 
     /*!

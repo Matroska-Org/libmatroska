@@ -267,7 +267,6 @@ int main(int argc, char **argv)
 //          SegmentCluster->ClearElement();
           std::uint32_t ClusterTimecode;
           EbmlCrc32 *pChecksum = NULL;
-          std::uint32_t SizeInCrc;
           std::uint64_t CrcPositionStart = 0;
 
 #ifdef MEMORY_READ // read the Cluster in memory and then extract elements from memory
@@ -383,7 +382,6 @@ int main(int argc, char **argv)
               pChecksum = static_cast<EbmlCrc32*>(ElementLevel2);
               pChecksum->ReadData(aStream.I_O());
               SegmentCluster->ForceChecksum( pChecksum->GetCrc32() ); // not use later
-              SizeInCrc = 0;
               CrcPositionStart = aStream.I_O().getFilePointer();
             }
 

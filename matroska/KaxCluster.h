@@ -78,9 +78,9 @@ DECLARE_MKX_MASTER_CONS(KaxCluster)
       \note dirty hack to get the mandatory data back after reading
       \todo there should be a better way to get mandatory data
     */
-    void InitTimecode(std::uint64_t aTimecode, std::int64_t aTimestampScale) {
+    void InitTimecode(std::uint64_t aTimestamp, std::int64_t aTimestampScale) {
       SetGlobalTimecodeScale(aTimestampScale);
-      MinTimecode = MaxTimecode = PreviousTimecode = aTimecode * TimestampScale;
+      MinTimecode = MaxTimecode = PreviousTimecode = aTimestamp * TimestampScale;
       bFirstFrameInside = bPreviousTimecodeIsSet = true;
     }
 

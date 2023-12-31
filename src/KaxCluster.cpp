@@ -214,9 +214,9 @@ std::uint64_t KaxCluster::GlobalTimecode() const
   \brief retrieve the relative
   \todo !!! We need a way to know the TimestampScale
 */
-std::int16_t KaxCluster::GetBlockLocalTimecode(std::uint64_t aGlobalTimecode) const
+std::int16_t KaxCluster::GetBlockLocalTimecode(std::uint64_t aGlobalTimestamp) const
 {
-  const std::int64_t TimecodeDelay = (static_cast<std::int64_t>(aGlobalTimecode) - static_cast<std::int64_t>(GlobalTimecode())) / static_cast<std::int64_t>(GlobalTimecodeScale());
+  const std::int64_t TimecodeDelay = (static_cast<std::int64_t>(aGlobalTimestamp) - static_cast<std::int64_t>(GlobalTimecode())) / static_cast<std::int64_t>(GlobalTimecodeScale());
   assert(TimecodeDelay >= std::int16_t(0x8000) && TimecodeDelay <= std::int16_t(0x7FFF));
   return static_cast<std::int16_t>(TimecodeDelay);
 }

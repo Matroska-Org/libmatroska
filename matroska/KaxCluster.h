@@ -80,7 +80,7 @@ DECLARE_MKX_MASTER_CONS(KaxCluster)
     */
     void InitTimecode(std::uint64_t aTimestamp, std::int64_t aTimestampScale) {
       SetGlobalTimecodeScale(aTimestampScale);
-      MinTimecode = MaxTimestamp = PreviousTimestamp = aTimestamp * TimestampScale;
+      MinTimestamp = MaxTimestamp = PreviousTimestamp = aTimestamp * TimestampScale;
       bFirstFrameInside = bPreviousTimestampIsSet = true;
     }
 
@@ -113,7 +113,7 @@ DECLARE_MKX_MASTER_CONS(KaxCluster)
     KaxBlockGroup    * currentNewBlock{nullptr};
     const KaxSegment * ParentSegment{nullptr};
 
-    std::uint64_t MinTimecode, MaxTimestamp, PreviousTimestamp;
+    std::uint64_t MinTimestamp, MaxTimestamp, PreviousTimestamp;
     std::int64_t  TimestampScale;
 
     bool   bFirstFrameInside{false}; // used to speed research

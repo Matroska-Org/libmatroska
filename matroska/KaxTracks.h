@@ -32,15 +32,15 @@ DECLARE_MKX_MASTER(KaxTrackEntry)
 
     void SetGlobalTimecodeScale(std::uint64_t aGlobalTimestampScale) {
       mGlobalTimestampScale = aGlobalTimestampScale;
-      bGlobalTimecodeScaleIsSet = true;
+      bGlobalTimestampScaleIsSet = true;
     }
     std::uint64_t GlobalTimecodeScale() const {
-      assert(bGlobalTimecodeScaleIsSet);
+      assert(bGlobalTimestampScaleIsSet);
       return mGlobalTimestampScale;
     }
 
   protected:
-    bool   bGlobalTimecodeScaleIsSet{false};
+    bool   bGlobalTimestampScaleIsSet{false};
     std::uint64_t mGlobalTimestampScale;
 };
 

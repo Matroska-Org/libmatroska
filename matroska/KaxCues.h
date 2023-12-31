@@ -44,16 +44,16 @@ DECLARE_MKX_MASTER(KaxCues)
 
     void SetGlobalTimecodeScale(std::uint64_t aGlobalTimestampScale) {
       mGlobalTimestampScale = aGlobalTimestampScale;
-      bGlobalTimecodeScaleIsSet = true;
+      bGlobalTimestampScaleIsSet = true;
     }
     std::uint64_t GlobalTimecodeScale() const {
-      assert(bGlobalTimecodeScaleIsSet);
+      assert(bGlobalTimestampScaleIsSet);
       return mGlobalTimestampScale;
     }
 
   protected:
     std::vector<const KaxBlockBlob *> myTempReferences;
-    bool   bGlobalTimecodeScaleIsSet;
+    bool   bGlobalTimestampScaleIsSet;
     std::uint64_t mGlobalTimestampScale;
 };
 

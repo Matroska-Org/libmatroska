@@ -119,8 +119,8 @@ filepos_t KaxCluster::Render(IOCallback & output, KaxCues & CueToUpdate, ShouldW
   filepos_t Result = 0;
 
   // update the timestamp of the Cluster before writing
-  auto Timecode = static_cast<KaxClusterTimecode *>(this->FindElt(EBML_INFO(KaxClusterTimecode)));
-  Timecode->SetValue(GlobalTimecode() / GlobalTimecodeScale());
+  auto ClusterTimestamp = static_cast<KaxClusterTimecode *>(this->FindElt(EBML_INFO(KaxClusterTimecode)));
+  ClusterTimestamp->SetValue(GlobalTimecode() / GlobalTimecodeScale());
 
   if (Blobs.empty()) {
     // old-school direct KaxBlockGroup
@@ -224,9 +224,9 @@ std::int16_t KaxCluster::GetBlockLocalTimecode(std::uint64_t aGlobalTimecode) co
 std::uint64_t KaxCluster::GetBlockGlobalTimecode(std::int16_t LocalTimecode)
 {
   if (!bFirstFrameInside) {
-    auto Timecode = static_cast<KaxClusterTimecode *>(this->FindElt(EBML_INFO(KaxClusterTimecode)));
+    auto ClusterTimestamp = static_cast<KaxClusterTimecode *>(this->FindElt(EBML_INFO(KaxClusterTimecode)));
     assert (bFirstFrameInside); // use the InitTimecode() hack for now
-    MinTimestamp = MaxTimestamp = PreviousTimestamp = static_cast<std::uint64_t>(*static_cast<EbmlUInteger *>(Timecode));
+    MinTimestamp = MaxTimestamp = PreviousTimestamp = static_cast<std::uint64_t>(*static_cast<EbmlUInteger *>(ClusterTimestamp));
     bFirstFrameInside = true;
     bPreviousTimestampIsSet = true;
   }

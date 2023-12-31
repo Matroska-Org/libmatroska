@@ -191,7 +191,7 @@ class MATROSKA_DLL_API KaxInternalBlock : public libebml::EbmlBinary {
     /*!
       \todo !!!! This method needs to be changes !
     */
-    std::uint64_t GlobalTimecode() const {return Timecode;}
+    std::uint64_t GlobalTimecode() const {return Timestamp;}
 
     /*!
       \note override this function to generate the Data/Size on the fly, unlike the usual binary elements
@@ -249,7 +249,7 @@ class MATROSKA_DLL_API KaxInternalBlock : public libebml::EbmlBinary {
   protected:
     std::vector<DataBuffer *> myBuffers;
     std::vector<std::int32_t> SizeList;
-    std::uint64_t             Timecode; // temporary timecode of the first frame, non scaled
+    std::uint64_t             Timestamp; // temporary timestamp of the first frame, non scaled
     std::int16_t              LocalTimecode;
     bool                      bLocalTimecodeUsed{false};
     std::uint16_t               TrackNumber;
@@ -341,7 +341,7 @@ DECLARE_MKX_BINARY_CONS(KaxBlockVirtual)
     libebml::filepos_t ReadData(libebml::IOCallback & input, libebml::ScopeMode ReadFully = libebml::SCOPE_ALL_DATA) override;
 
   protected:
-    std::uint64_t Timecode; // temporary timecode of the first frame if there are more than one
+    std::uint64_t Timestamp; // temporary timestamp of the first frame if there are more than one
     std::uint16_t TrackNumber;
     libebml::binary DataBlock[5];
 

@@ -74,7 +74,7 @@ DECLARE_MKX_UINTEGER(KaxChapterTranslateCodec)
 DECLARE_MKX_UINTEGER(KaxChapterTranslateEditionUID)
 };
 
-DECLARE_MKX_UINTEGER(KaxTimecodeScale)
+DECLARE_MKX_UINTEGER_DEF(KaxTimecodeScale)
 };
 
 DECLARE_MKX_FLOAT(KaxDuration)
@@ -120,13 +120,13 @@ DECLARE_MKX_MASTER(KaxBlockMore)
 DECLARE_MKX_BINARY(KaxBlockAdditional)
 };
 
-DECLARE_MKX_UINTEGER(KaxBlockAddID)
+DECLARE_MKX_UINTEGER_DEF(KaxBlockAddID)
 };
 
 DECLARE_MKX_UINTEGER(KaxBlockDuration)
 };
 
-DECLARE_MKX_UINTEGER(KaxReferencePriority)
+DECLARE_MKX_UINTEGER_DEF(KaxReferencePriority)
 };
 
 DECLARE_MKX_SINTEGER(KaxReferenceVirtual)
@@ -155,22 +155,22 @@ public:
   libebml::filepos_t RenderData(libebml::IOCallback & output, bool bForceRender, ShouldWrite writeFilter) override;
 };
 
-DECLARE_MKX_UINTEGER(KaxSliceFrameNumber)
+DECLARE_MKX_UINTEGER_DEF(KaxSliceFrameNumber)
 public:
   libebml::filepos_t RenderData(libebml::IOCallback & output, bool bForceRender, ShouldWrite writeFilter) override;
 };
 
-DECLARE_MKX_UINTEGER(KaxSliceBlockAddID)
+DECLARE_MKX_UINTEGER_DEF(KaxSliceBlockAddID)
 public:
   libebml::filepos_t RenderData(libebml::IOCallback & output, bool bForceRender, ShouldWrite writeFilter) override;
 };
 
-DECLARE_MKX_UINTEGER(KaxSliceDelay)
+DECLARE_MKX_UINTEGER_DEF(KaxSliceDelay)
 public:
   libebml::filepos_t RenderData(libebml::IOCallback & output, bool bForceRender, ShouldWrite writeFilter) override;
 };
 
-DECLARE_MKX_UINTEGER(KaxSliceDuration)
+DECLARE_MKX_UINTEGER_DEF(KaxSliceDuration)
 public:
   libebml::filepos_t RenderData(libebml::IOCallback & output, bool bForceRender, ShouldWrite writeFilter) override;
 };
@@ -207,13 +207,13 @@ DECLARE_MKX_UINTEGER(KaxTrackUID)
 DECLARE_MKX_UINTEGER(KaxTrackType)
 };
 
-DECLARE_MKX_UINTEGER(KaxTrackFlagEnabled)
+DECLARE_MKX_UINTEGER_DEF(KaxTrackFlagEnabled)
 };
 
-DECLARE_MKX_UINTEGER(KaxTrackFlagDefault)
+DECLARE_MKX_UINTEGER_DEF(KaxTrackFlagDefault)
 };
 
-DECLARE_MKX_UINTEGER(KaxTrackFlagForced)
+DECLARE_MKX_UINTEGER_DEF(KaxTrackFlagForced)
 };
 
 DECLARE_MKX_UINTEGER(KaxFlagHearingImpaired)
@@ -231,10 +231,10 @@ DECLARE_MKX_UINTEGER(KaxFlagOriginal)
 DECLARE_MKX_UINTEGER(KaxFlagCommentary)
 };
 
-DECLARE_MKX_UINTEGER(KaxTrackFlagLacing)
+DECLARE_MKX_UINTEGER_DEF(KaxTrackFlagLacing)
 };
 
-DECLARE_MKX_UINTEGER(KaxTrackMinCache)
+DECLARE_MKX_UINTEGER_DEF(KaxTrackMinCache)
 public:
   libebml::filepos_t RenderData(libebml::IOCallback & output, bool bForceRender, ShouldWrite writeFilter) override;
 };
@@ -250,17 +250,17 @@ DECLARE_MKX_UINTEGER(KaxTrackDefaultDuration)
 DECLARE_MKX_UINTEGER(KaxTrackDefaultDecodedFieldDuration)
 };
 
-DECLARE_MKX_FLOAT(KaxTrackTimecodeScale)
+DECLARE_MKX_FLOAT_DEF(KaxTrackTimecodeScale)
 public:
   libebml::filepos_t RenderData(libebml::IOCallback & output, bool bForceRender, ShouldWrite writeFilter) override;
 };
 
-DECLARE_MKX_SINTEGER(KaxTrackOffset)
+DECLARE_MKX_SINTEGER_DEF(KaxTrackOffset)
 public:
   libebml::filepos_t RenderData(libebml::IOCallback & output, bool bForceRender, ShouldWrite writeFilter) override;
 };
 
-DECLARE_MKX_UINTEGER(KaxMaxBlockAdditionID)
+DECLARE_MKX_UINTEGER_DEF(KaxMaxBlockAdditionID)
 };
 
 DECLARE_MKX_MASTER(KaxBlockAdditionMapping)
@@ -272,7 +272,7 @@ DECLARE_MKX_UINTEGER(KaxBlockAddIDValue)
 DECLARE_MKX_STRING(KaxBlockAddIDName)
 };
 
-DECLARE_MKX_UINTEGER(KaxBlockAddIDType)
+DECLARE_MKX_UINTEGER_DEF(KaxBlockAddIDType)
 };
 
 DECLARE_MKX_BINARY(KaxBlockAddIDExtraData)
@@ -281,7 +281,7 @@ DECLARE_MKX_BINARY(KaxBlockAddIDExtraData)
 DECLARE_MKX_UNISTRING(KaxTrackName)
 };
 
-DECLARE_MKX_STRING(KaxTrackLanguage)
+DECLARE_MKX_STRING_DEF(KaxTrackLanguage)
 };
 
 DECLARE_MKX_STRING(KaxLanguageIETF)
@@ -316,7 +316,7 @@ public:
   libebml::filepos_t RenderData(libebml::IOCallback & output, bool bForceRender, ShouldWrite writeFilter) override;
 };
 
-DECLARE_MKX_UINTEGER(KaxCodecDecodeAll)
+DECLARE_MKX_UINTEGER_DEF(KaxCodecDecodeAll)
 public:
   libebml::filepos_t RenderData(libebml::IOCallback & output, bool bForceRender, ShouldWrite writeFilter) override;
 };
@@ -324,10 +324,10 @@ public:
 DECLARE_MKX_UINTEGER(KaxTrackOverlay)
 };
 
-DECLARE_MKX_UINTEGER(KaxCodecDelay)
+DECLARE_MKX_UINTEGER_DEF(KaxCodecDelay)
 };
 
-DECLARE_MKX_UINTEGER(KaxSeekPreRoll)
+DECLARE_MKX_UINTEGER_DEF(KaxSeekPreRoll)
 };
 
 DECLARE_MKX_MASTER(KaxTrackTranslate)
@@ -345,16 +345,16 @@ DECLARE_MKX_UINTEGER(KaxTrackTranslateEditionUID)
 DECLARE_MKX_MASTER(KaxTrackVideo)
 };
 
-DECLARE_MKX_UINTEGER(KaxVideoFlagInterlaced)
+DECLARE_MKX_UINTEGER_DEF(KaxVideoFlagInterlaced)
 };
 
-DECLARE_MKX_UINTEGER(KaxVideoFieldOrder)
+DECLARE_MKX_UINTEGER_DEF(KaxVideoFieldOrder)
 };
 
-DECLARE_MKX_UINTEGER(KaxVideoStereoMode)
+DECLARE_MKX_UINTEGER_DEF(KaxVideoStereoMode)
 };
 
-DECLARE_MKX_UINTEGER(KaxVideoAlphaMode)
+DECLARE_MKX_UINTEGER_DEF(KaxVideoAlphaMode)
 };
 
 DECLARE_MKX_UINTEGER(KaxOldStereoMode)
@@ -368,16 +368,16 @@ DECLARE_MKX_UINTEGER(KaxVideoPixelWidth)
 DECLARE_MKX_UINTEGER(KaxVideoPixelHeight)
 };
 
-DECLARE_MKX_UINTEGER(KaxVideoPixelCropBottom)
+DECLARE_MKX_UINTEGER_DEF(KaxVideoPixelCropBottom)
 };
 
-DECLARE_MKX_UINTEGER(KaxVideoPixelCropTop)
+DECLARE_MKX_UINTEGER_DEF(KaxVideoPixelCropTop)
 };
 
-DECLARE_MKX_UINTEGER(KaxVideoPixelCropLeft)
+DECLARE_MKX_UINTEGER_DEF(KaxVideoPixelCropLeft)
 };
 
-DECLARE_MKX_UINTEGER(KaxVideoPixelCropRight)
+DECLARE_MKX_UINTEGER_DEF(KaxVideoPixelCropRight)
 };
 
 DECLARE_MKX_UINTEGER(KaxVideoDisplayWidth)
@@ -386,10 +386,10 @@ DECLARE_MKX_UINTEGER(KaxVideoDisplayWidth)
 DECLARE_MKX_UINTEGER(KaxVideoDisplayHeight)
 };
 
-DECLARE_MKX_UINTEGER(KaxVideoDisplayUnit)
+DECLARE_MKX_UINTEGER_DEF(KaxVideoDisplayUnit)
 };
 
-DECLARE_MKX_UINTEGER(KaxVideoAspectRatio)
+DECLARE_MKX_UINTEGER_DEF(KaxVideoAspectRatio)
 public:
   libebml::filepos_t RenderData(libebml::IOCallback & output, bool bForceRender, ShouldWrite writeFilter) override;
 };
@@ -412,10 +412,10 @@ public:
 DECLARE_MKX_MASTER(KaxVideoColour)
 };
 
-DECLARE_MKX_UINTEGER(KaxVideoColourMatrix)
+DECLARE_MKX_UINTEGER_DEF(KaxVideoColourMatrix)
 };
 
-DECLARE_MKX_UINTEGER(KaxVideoBitsPerChannel)
+DECLARE_MKX_UINTEGER_DEF(KaxVideoBitsPerChannel)
 };
 
 DECLARE_MKX_UINTEGER(KaxVideoChromaSubsampHorz)
@@ -430,19 +430,19 @@ DECLARE_MKX_UINTEGER(KaxVideoCbSubsampHorz)
 DECLARE_MKX_UINTEGER(KaxVideoCbSubsampVert)
 };
 
-DECLARE_MKX_UINTEGER(KaxVideoChromaSitHorz)
+DECLARE_MKX_UINTEGER_DEF(KaxVideoChromaSitHorz)
 };
 
-DECLARE_MKX_UINTEGER(KaxVideoChromaSitVert)
+DECLARE_MKX_UINTEGER_DEF(KaxVideoChromaSitVert)
 };
 
-DECLARE_MKX_UINTEGER(KaxVideoColourRange)
+DECLARE_MKX_UINTEGER_DEF(KaxVideoColourRange)
 };
 
-DECLARE_MKX_UINTEGER(KaxVideoColourTransferCharacter)
+DECLARE_MKX_UINTEGER_DEF(KaxVideoColourTransferCharacter)
 };
 
-DECLARE_MKX_UINTEGER(KaxVideoColourPrimaries)
+DECLARE_MKX_UINTEGER_DEF(KaxVideoColourPrimaries)
 };
 
 DECLARE_MKX_UINTEGER(KaxVideoColourMaxCLL)
@@ -487,31 +487,31 @@ DECLARE_MKX_FLOAT(KaxVideoLuminanceMin)
 DECLARE_MKX_MASTER(KaxVideoProjection)
 };
 
-DECLARE_MKX_UINTEGER(KaxVideoProjectionType)
+DECLARE_MKX_UINTEGER_DEF(KaxVideoProjectionType)
 };
 
 DECLARE_MKX_BINARY(KaxVideoProjectionPrivate)
 };
 
-DECLARE_MKX_FLOAT(KaxVideoProjectionPoseYaw)
+DECLARE_MKX_FLOAT_DEF(KaxVideoProjectionPoseYaw)
 };
 
-DECLARE_MKX_FLOAT(KaxVideoProjectionPosePitch)
+DECLARE_MKX_FLOAT_DEF(KaxVideoProjectionPosePitch)
 };
 
-DECLARE_MKX_FLOAT(KaxVideoProjectionPoseRoll)
+DECLARE_MKX_FLOAT_DEF(KaxVideoProjectionPoseRoll)
 };
 
 DECLARE_MKX_MASTER(KaxTrackAudio)
 };
 
-DECLARE_MKX_FLOAT(KaxAudioSamplingFreq)
+DECLARE_MKX_FLOAT_DEF(KaxAudioSamplingFreq)
 };
 
 DECLARE_MKX_FLOAT(KaxAudioOutputSamplingFreq)
 };
 
-DECLARE_MKX_UINTEGER(KaxAudioChannels)
+DECLARE_MKX_UINTEGER_DEF(KaxAudioChannels)
 };
 
 DECLARE_MKX_BINARY(KaxAudioPosition)
@@ -522,7 +522,7 @@ public:
 DECLARE_MKX_UINTEGER(KaxAudioBitDepth)
 };
 
-DECLARE_MKX_UINTEGER(KaxEmphasis)
+DECLARE_MKX_UINTEGER_DEF(KaxEmphasis)
 };
 
 DECLARE_MKX_MASTER(KaxTrackOperation)
@@ -557,7 +557,7 @@ public:
   bool ValidateSize() const override {return IsFiniteSize() && GetSize() == 16;}
 };
 
-DECLARE_MKX_UINTEGER(KaxTrickTrackFlag)
+DECLARE_MKX_UINTEGER_DEF(KaxTrickTrackFlag)
 public:
   libebml::filepos_t RenderData(libebml::IOCallback & output, bool bForceRender, ShouldWrite writeFilter) override;
 };
@@ -579,19 +579,19 @@ DECLARE_MKX_MASTER(KaxContentEncodings)
 DECLARE_MKX_MASTER(KaxContentEncoding)
 };
 
-DECLARE_MKX_UINTEGER(KaxContentEncodingOrder)
+DECLARE_MKX_UINTEGER_DEF(KaxContentEncodingOrder)
 };
 
-DECLARE_MKX_UINTEGER(KaxContentEncodingScope)
+DECLARE_MKX_UINTEGER_DEF(KaxContentEncodingScope)
 };
 
-DECLARE_MKX_UINTEGER(KaxContentEncodingType)
+DECLARE_MKX_UINTEGER_DEF(KaxContentEncodingType)
 };
 
 DECLARE_MKX_MASTER(KaxContentCompression)
 };
 
-DECLARE_MKX_UINTEGER(KaxContentCompAlgo)
+DECLARE_MKX_UINTEGER_DEF(KaxContentCompAlgo)
 };
 
 DECLARE_MKX_BINARY(KaxContentCompSettings)
@@ -600,7 +600,7 @@ DECLARE_MKX_BINARY(KaxContentCompSettings)
 DECLARE_MKX_MASTER(KaxContentEncryption)
 };
 
-DECLARE_MKX_UINTEGER(KaxContentEncAlgo)
+DECLARE_MKX_UINTEGER_DEF(KaxContentEncAlgo)
 };
 
 DECLARE_MKX_BINARY(KaxContentEncKeyID)
@@ -622,12 +622,12 @@ public:
   libebml::filepos_t RenderData(libebml::IOCallback & output, bool bForceRender, ShouldWrite writeFilter) override;
 };
 
-DECLARE_MKX_UINTEGER(KaxContentSigAlgo)
+DECLARE_MKX_UINTEGER_DEF(KaxContentSigAlgo)
 public:
   libebml::filepos_t RenderData(libebml::IOCallback & output, bool bForceRender, ShouldWrite writeFilter) override;
 };
 
-DECLARE_MKX_UINTEGER(KaxContentSigHashAlgo)
+DECLARE_MKX_UINTEGER_DEF(KaxContentSigHashAlgo)
 public:
   libebml::filepos_t RenderData(libebml::IOCallback & output, bool bForceRender, ShouldWrite writeFilter) override;
 };
@@ -650,7 +650,7 @@ DECLARE_MKX_UINTEGER(KaxCueDuration)
 DECLARE_MKX_UINTEGER(KaxCueBlockNumber)
 };
 
-DECLARE_MKX_UINTEGER(KaxCueCodecState)
+DECLARE_MKX_UINTEGER_DEF(KaxCueCodecState)
 };
 
 DECLARE_MKX_UINTEGER(KaxCueRefTime)
@@ -661,12 +661,12 @@ public:
   libebml::filepos_t RenderData(libebml::IOCallback & output, bool bForceRender, ShouldWrite writeFilter) override;
 };
 
-DECLARE_MKX_UINTEGER(KaxCueRefNumber)
+DECLARE_MKX_UINTEGER_DEF(KaxCueRefNumber)
 public:
   libebml::filepos_t RenderData(libebml::IOCallback & output, bool bForceRender, ShouldWrite writeFilter) override;
 };
 
-DECLARE_MKX_UINTEGER(KaxCueRefCodecState)
+DECLARE_MKX_UINTEGER_DEF(KaxCueRefCodecState)
 public:
   libebml::filepos_t RenderData(libebml::IOCallback & output, bool bForceRender, ShouldWrite writeFilter) override;
 };
@@ -716,13 +716,13 @@ DECLARE_MKX_MASTER(KaxEditionEntry)
 DECLARE_MKX_UINTEGER(KaxEditionUID)
 };
 
-DECLARE_MKX_UINTEGER(KaxEditionFlagHidden)
+DECLARE_MKX_UINTEGER_DEF(KaxEditionFlagHidden)
 };
 
-DECLARE_MKX_UINTEGER(KaxEditionFlagDefault)
+DECLARE_MKX_UINTEGER_DEF(KaxEditionFlagDefault)
 };
 
-DECLARE_MKX_UINTEGER(KaxEditionFlagOrdered)
+DECLARE_MKX_UINTEGER_DEF(KaxEditionFlagOrdered)
 };
 
 DECLARE_MKX_MASTER(KaxEditionDisplay)
@@ -749,10 +749,10 @@ DECLARE_MKX_UINTEGER(KaxChapterTimeStart)
 DECLARE_MKX_UINTEGER(KaxChapterTimeEnd)
 };
 
-DECLARE_MKX_UINTEGER(KaxChapterFlagHidden)
+DECLARE_MKX_UINTEGER_DEF(KaxChapterFlagHidden)
 };
 
-DECLARE_MKX_UINTEGER(KaxChapterFlagEnabled)
+DECLARE_MKX_UINTEGER_DEF(KaxChapterFlagEnabled)
 };
 
 DECLARE_MKX_BINARY(KaxChapterSegmentUID)
@@ -781,7 +781,7 @@ DECLARE_MKX_MASTER(KaxChapterDisplay)
 DECLARE_MKX_UNISTRING(KaxChapterString)
 };
 
-DECLARE_MKX_STRING(KaxChapterLanguage)
+DECLARE_MKX_STRING_DEF(KaxChapterLanguage)
 };
 
 DECLARE_MKX_STRING(KaxChapLanguageIETF)
@@ -793,7 +793,7 @@ DECLARE_MKX_STRING(KaxChapterCountry)
 DECLARE_MKX_MASTER(KaxChapterProcess)
 };
 
-DECLARE_MKX_UINTEGER(KaxChapterProcessCodecID)
+DECLARE_MKX_UINTEGER_DEF(KaxChapterProcessCodecID)
 };
 
 DECLARE_MKX_BINARY(KaxChapterProcessPrivate)
@@ -817,22 +817,22 @@ DECLARE_MKX_MASTER(KaxTag)
 DECLARE_MKX_MASTER(KaxTagTargets)
 };
 
-DECLARE_MKX_UINTEGER(KaxTagTargetTypeValue)
+DECLARE_MKX_UINTEGER_DEF(KaxTagTargetTypeValue)
 };
 
 DECLARE_MKX_STRING(KaxTagTargetType)
 };
 
-DECLARE_MKX_UINTEGER(KaxTagTrackUID)
+DECLARE_MKX_UINTEGER_DEF(KaxTagTrackUID)
 };
 
-DECLARE_MKX_UINTEGER(KaxTagEditionUID)
+DECLARE_MKX_UINTEGER_DEF(KaxTagEditionUID)
 };
 
-DECLARE_MKX_UINTEGER(KaxTagChapterUID)
+DECLARE_MKX_UINTEGER_DEF(KaxTagChapterUID)
 };
 
-DECLARE_MKX_UINTEGER(KaxTagAttachmentUID)
+DECLARE_MKX_UINTEGER_DEF(KaxTagAttachmentUID)
 };
 
 DECLARE_MKX_MASTER(KaxTagSimple)
@@ -841,16 +841,16 @@ DECLARE_MKX_MASTER(KaxTagSimple)
 DECLARE_MKX_UNISTRING(KaxTagName)
 };
 
-DECLARE_MKX_STRING(KaxTagLangue)
+DECLARE_MKX_STRING_DEF(KaxTagLangue)
 };
 
 DECLARE_MKX_STRING(KaxTagLanguageIETF)
 };
 
-DECLARE_MKX_UINTEGER(KaxTagDefault)
+DECLARE_MKX_UINTEGER_DEF(KaxTagDefault)
 };
 
-DECLARE_MKX_UINTEGER(KaxTagDefaultBogus)
+DECLARE_MKX_UINTEGER_DEF(KaxTagDefaultBogus)
 public:
   libebml::filepos_t RenderData(libebml::IOCallback & output, bool bForceRender, ShouldWrite writeFilter) override;
 };

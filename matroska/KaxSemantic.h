@@ -22,7 +22,7 @@
 #include "matroska/KaxDefines.h"
 
 namespace libmatroska {
-DECLARE_MKX_BINARY (KaxSeekID)
+DECLARE_MKX_BINARY(KaxSeekID)
 public:
   bool ValidateSize() const override {return IsFiniteSize() && GetSize() == 4;}
 };
@@ -33,7 +33,7 @@ DECLARE_MKX_UINTEGER(KaxSeekPosition)
 DECLARE_MKX_MASTER(KaxInfo)
 };
 
-DECLARE_MKX_BINARY (KaxSegmentUID)
+DECLARE_MKX_BINARY(KaxSegmentUID)
 public:
   bool ValidateSize() const override {return IsFiniteSize() && GetSize() == 16;}
 };
@@ -41,7 +41,7 @@ public:
 DECLARE_MKX_UNISTRING(KaxSegmentFilename)
 };
 
-DECLARE_MKX_BINARY (KaxPrevUID)
+DECLARE_MKX_BINARY(KaxPrevUID)
 public:
   bool ValidateSize() const override {return IsFiniteSize() && GetSize() == 16;}
 };
@@ -49,7 +49,7 @@ public:
 DECLARE_MKX_UNISTRING(KaxPrevFilename)
 };
 
-DECLARE_MKX_BINARY (KaxNextUID)
+DECLARE_MKX_BINARY(KaxNextUID)
 public:
   bool ValidateSize() const override {return IsFiniteSize() && GetSize() == 16;}
 };
@@ -57,7 +57,7 @@ public:
 DECLARE_MKX_UNISTRING(KaxNextFilename)
 };
 
-DECLARE_MKX_BINARY (KaxSegmentFamily)
+DECLARE_MKX_BINARY(KaxSegmentFamily)
 public:
   bool ValidateSize() const override {return IsFiniteSize() && GetSize() == 16;}
 };
@@ -65,7 +65,7 @@ public:
 DECLARE_MKX_MASTER(KaxChapterTranslate)
 };
 
-DECLARE_MKX_BINARY (KaxChapterTranslateID)
+DECLARE_MKX_BINARY(KaxChapterTranslateID)
 };
 
 DECLARE_MKX_UINTEGER(KaxChapterTranslateCodec)
@@ -80,7 +80,7 @@ DECLARE_MKX_UINTEGER(KaxTimecodeScale)
 DECLARE_MKX_FLOAT(KaxDuration)
 };
 
-DECLARE_MKX_DATE    (KaxDateUTC)
+DECLARE_MKX_DATE(KaxDateUTC)
 };
 
 DECLARE_MKX_UNISTRING(KaxTitle)
@@ -117,7 +117,7 @@ DECLARE_MKX_MASTER(KaxBlockAdditions)
 DECLARE_MKX_MASTER(KaxBlockMore)
 };
 
-DECLARE_MKX_BINARY (KaxBlockAdditional)
+DECLARE_MKX_BINARY(KaxBlockAdditional)
 };
 
 DECLARE_MKX_UINTEGER(KaxBlockAddID)
@@ -134,7 +134,7 @@ public:
   libebml::filepos_t RenderData(libebml::IOCallback & output, bool bForceRender, ShouldWrite writeFilter) override;
 };
 
-DECLARE_MKX_BINARY (KaxCodecState)
+DECLARE_MKX_BINARY(KaxCodecState)
 };
 
 DECLARE_MKX_SINTEGER(KaxDiscardPadding)
@@ -190,7 +190,7 @@ public:
   libebml::filepos_t RenderData(libebml::IOCallback & output, bool bForceRender, ShouldWrite writeFilter) override;
 };
 
-DECLARE_MKX_BINARY (KaxEncryptedBlock)
+DECLARE_MKX_BINARY(KaxEncryptedBlock)
 public:
   libebml::filepos_t RenderData(libebml::IOCallback & output, bool bForceRender, ShouldWrite writeFilter) override;
 };
@@ -275,7 +275,7 @@ DECLARE_MKX_STRING(KaxBlockAddIDName)
 DECLARE_MKX_UINTEGER(KaxBlockAddIDType)
 };
 
-DECLARE_MKX_BINARY (KaxBlockAddIDExtraData)
+DECLARE_MKX_BINARY(KaxBlockAddIDExtraData)
 };
 
 DECLARE_MKX_UNISTRING(KaxTrackName)
@@ -290,7 +290,7 @@ DECLARE_MKX_STRING(KaxLanguageIETF)
 DECLARE_MKX_STRING(KaxCodecID)
 };
 
-DECLARE_MKX_BINARY (KaxCodecPrivate)
+DECLARE_MKX_BINARY(KaxCodecPrivate)
 };
 
 DECLARE_MKX_UNISTRING(KaxCodecName)
@@ -333,7 +333,7 @@ DECLARE_MKX_UINTEGER(KaxSeekPreRoll)
 DECLARE_MKX_MASTER(KaxTrackTranslate)
 };
 
-DECLARE_MKX_BINARY (KaxTrackTranslateTrackID)
+DECLARE_MKX_BINARY(KaxTrackTranslateTrackID)
 };
 
 DECLARE_MKX_UINTEGER(KaxTrackTranslateCodec)
@@ -394,7 +394,7 @@ public:
   libebml::filepos_t RenderData(libebml::IOCallback & output, bool bForceRender, ShouldWrite writeFilter) override;
 };
 
-DECLARE_MKX_BINARY (KaxVideoColourSpace)
+DECLARE_MKX_BINARY(KaxVideoColourSpace)
 public:
   bool ValidateSize() const override {return IsFiniteSize() && GetSize() == 4;}
 };
@@ -490,7 +490,7 @@ DECLARE_MKX_MASTER(KaxVideoProjection)
 DECLARE_MKX_UINTEGER(KaxVideoProjectionType)
 };
 
-DECLARE_MKX_BINARY (KaxVideoProjectionPrivate)
+DECLARE_MKX_BINARY(KaxVideoProjectionPrivate)
 };
 
 DECLARE_MKX_FLOAT(KaxVideoProjectionPoseYaw)
@@ -514,7 +514,7 @@ DECLARE_MKX_FLOAT(KaxAudioOutputSamplingFreq)
 DECLARE_MKX_UINTEGER(KaxAudioChannels)
 };
 
-DECLARE_MKX_BINARY (KaxAudioPosition)
+DECLARE_MKX_BINARY(KaxAudioPosition)
 public:
   libebml::filepos_t RenderData(libebml::IOCallback & output, bool bForceRender, ShouldWrite writeFilter) override;
 };
@@ -551,7 +551,7 @@ public:
   libebml::filepos_t RenderData(libebml::IOCallback & output, bool bForceRender, ShouldWrite writeFilter) override;
 };
 
-DECLARE_MKX_BINARY (KaxTrickTrackSegmentUID)
+DECLARE_MKX_BINARY(KaxTrickTrackSegmentUID)
 public:
   libebml::filepos_t RenderData(libebml::IOCallback & output, bool bForceRender, ShouldWrite writeFilter) override;
   bool ValidateSize() const override {return IsFiniteSize() && GetSize() == 16;}
@@ -567,7 +567,7 @@ public:
   libebml::filepos_t RenderData(libebml::IOCallback & output, bool bForceRender, ShouldWrite writeFilter) override;
 };
 
-DECLARE_MKX_BINARY (KaxTrickMasterTrackSegmentUID)
+DECLARE_MKX_BINARY(KaxTrickMasterTrackSegmentUID)
 public:
   libebml::filepos_t RenderData(libebml::IOCallback & output, bool bForceRender, ShouldWrite writeFilter) override;
   bool ValidateSize() const override {return IsFiniteSize() && GetSize() == 16;}
@@ -594,7 +594,7 @@ DECLARE_MKX_MASTER(KaxContentCompression)
 DECLARE_MKX_UINTEGER(KaxContentCompAlgo)
 };
 
-DECLARE_MKX_BINARY (KaxContentCompSettings)
+DECLARE_MKX_BINARY(KaxContentCompSettings)
 };
 
 DECLARE_MKX_MASTER(KaxContentEncryption)
@@ -603,7 +603,7 @@ DECLARE_MKX_MASTER(KaxContentEncryption)
 DECLARE_MKX_UINTEGER(KaxContentEncAlgo)
 };
 
-DECLARE_MKX_BINARY (KaxContentEncKeyID)
+DECLARE_MKX_BINARY(KaxContentEncKeyID)
 };
 
 DECLARE_MKX_MASTER(KaxContentEncAESSettings)
@@ -612,12 +612,12 @@ DECLARE_MKX_MASTER(KaxContentEncAESSettings)
 DECLARE_MKX_UINTEGER(KaxAESSettingsCipherMode)
 };
 
-DECLARE_MKX_BINARY (KaxContentSignature)
+DECLARE_MKX_BINARY(KaxContentSignature)
 public:
   libebml::filepos_t RenderData(libebml::IOCallback & output, bool bForceRender, ShouldWrite writeFilter) override;
 };
 
-DECLARE_MKX_BINARY (KaxContentSigKeyID)
+DECLARE_MKX_BINARY(KaxContentSigKeyID)
 public:
   libebml::filepos_t RenderData(libebml::IOCallback & output, bool bForceRender, ShouldWrite writeFilter) override;
 };
@@ -686,13 +686,13 @@ DECLARE_MKX_UNISTRING(KaxFileName)
 DECLARE_MKX_STRING(KaxMimeType)
 };
 
-DECLARE_MKX_BINARY (KaxFileData)
+DECLARE_MKX_BINARY(KaxFileData)
 };
 
 DECLARE_MKX_UINTEGER(KaxFileUID)
 };
 
-DECLARE_MKX_BINARY (KaxFileReferral)
+DECLARE_MKX_BINARY(KaxFileReferral)
 public:
   libebml::filepos_t RenderData(libebml::IOCallback & output, bool bForceRender, ShouldWrite writeFilter) override;
 };
@@ -755,7 +755,7 @@ DECLARE_MKX_UINTEGER(KaxChapterFlagHidden)
 DECLARE_MKX_UINTEGER(KaxChapterFlagEnabled)
 };
 
-DECLARE_MKX_BINARY (KaxChapterSegmentUID)
+DECLARE_MKX_BINARY(KaxChapterSegmentUID)
 public:
   bool ValidateSize() const override {return IsFiniteSize() && GetSize() == 16;}
 };
@@ -796,7 +796,7 @@ DECLARE_MKX_MASTER(KaxChapterProcess)
 DECLARE_MKX_UINTEGER(KaxChapterProcessCodecID)
 };
 
-DECLARE_MKX_BINARY (KaxChapterProcessPrivate)
+DECLARE_MKX_BINARY(KaxChapterProcessPrivate)
 };
 
 DECLARE_MKX_MASTER(KaxChapterProcessCommand)
@@ -805,7 +805,7 @@ DECLARE_MKX_MASTER(KaxChapterProcessCommand)
 DECLARE_MKX_UINTEGER(KaxChapterProcessTime)
 };
 
-DECLARE_MKX_BINARY (KaxChapterProcessData)
+DECLARE_MKX_BINARY(KaxChapterProcessData)
 };
 
 DECLARE_MKX_MASTER(KaxTags)
@@ -858,7 +858,7 @@ public:
 DECLARE_MKX_UNISTRING(KaxTagString)
 };
 
-DECLARE_MKX_BINARY (KaxTagBinary)
+DECLARE_MKX_BINARY(KaxTagBinary)
 };
 
 /**
@@ -1178,7 +1178,7 @@ typedef enum {
  *Indicate what type of content the ChapterAtom contains and might be skipped. It can be used to automatically skip content based on the type.
 If a `ChapterAtom` is inside a `ChapterAtom` that has a `ChapterSkipType` set, it **MUST NOT** have a `ChapterSkipType` or have a `ChapterSkipType` with the same value as it's parent `ChapterAtom`.
 If the `ChapterAtom` doesn't contain a `ChapterTimeEnd`, the value of the `ChapterSkipType` is only valid until the next `ChapterAtom` with a `ChapterSkipType` value or the end of the file.
-
+    
  */
 typedef enum {
   MATROSKA_CHAPTERSKIPTYPE_NO_SKIPPING      = 0, // Content which should not be skipped.

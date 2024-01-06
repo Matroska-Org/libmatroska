@@ -114,7 +114,7 @@ const KaxCuePoint * KaxCues::GetTimecodePoint(std::uint64_t aTimestamp) const
   return aPointPrev;
 }
 
-std::uint64_t KaxCues::GetTimecodePosition(std::uint64_t aTimestamp) const
+std::uint64_t KaxCues::GetTimestampPosition(std::uint64_t aTimestamp) const
 {
   const auto aPoint = GetTimecodePoint(aTimestamp);
   if (!aPoint)

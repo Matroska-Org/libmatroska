@@ -152,12 +152,12 @@ int main(int argc, char **argv)
                   case track_audio:
                     printf("Audio");
                     TrackAudio = static_cast<KaxTrackEntry *>(ElementLevel2);
-                    TrackAudio->SetGlobalTimecodeScale(TimestampScale);
+                    TrackAudio->SetGlobalTimestampScale(TimestampScale);
                     break;
                   case track_video:
                     printf("Video");
                     TrackVideo = static_cast<KaxTrackEntry *>(ElementLevel2);
-                    TrackVideo->SetGlobalTimecodeScale(TimestampScale);
+                    TrackVideo->SetGlobalTimestampScale(TimestampScale);
                     break;
                   default:
                     printf("unknown");
@@ -424,7 +424,7 @@ int main(int argc, char **argv)
         else if (EbmlId(*ElementLevel1) == EBML_ID(KaxCues)) {
           printf("\n- Cue entries found\n");
           CuesEntry = static_cast<KaxCues *>(ElementLevel1);
-          CuesEntry->SetGlobalTimecodeScale(TimestampScale);
+          CuesEntry->SetGlobalTimestampScale(TimestampScale);
           // read everything in memory
           CuesEntry->Read(aStream, EBML_CLASS_CONTEXT(KaxCues), UpperElementLevel, ElementLevel2, bAllowDummy); // build the entries in memory
           if (CuesEntry->CheckMandatory()) {

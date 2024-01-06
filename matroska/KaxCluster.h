@@ -71,7 +71,7 @@ DECLARE_MKX_MASTER_CONS(KaxCluster)
     void SetPreviousTimecode(std::uint64_t aPreviousTimestamp, std::int64_t aTimestampScale) {
       bPreviousTimestampIsSet = true;
       PreviousTimestamp = aPreviousTimestamp;
-      SetGlobalTimecodeScale(aTimestampScale);
+      SetGlobalTimestampScale(aTimestampScale);
     }
 
     /*!
@@ -79,7 +79,7 @@ DECLARE_MKX_MASTER_CONS(KaxCluster)
       \todo there should be a better way to get mandatory data
     */
     void InitTimecode(std::uint64_t aTimestamp, std::int64_t aTimestampScale) {
-      SetGlobalTimecodeScale(aTimestampScale);
+      SetGlobalTimestampScale(aTimestampScale);
       MinTimestamp = MaxTimestamp = PreviousTimestamp = aTimestamp * TimestampScale;
       bFirstFrameInside = bPreviousTimestampIsSet = true;
     }
@@ -88,7 +88,7 @@ DECLARE_MKX_MASTER_CONS(KaxCluster)
 
     std::uint64_t GetBlockGlobalTimecode(std::int16_t LocalTimestamp);
 
-    void SetGlobalTimecodeScale(std::uint64_t aGlobalTimestampScale) {
+    void SetGlobalTimestampScale(std::uint64_t aGlobalTimestampScale) {
       TimestampScale = aGlobalTimestampScale;
       bTimestampScaleIsSet = true;
     }

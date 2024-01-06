@@ -54,7 +54,7 @@ filepos_t KaxReferenceBlock::UpdateSize(ShouldWrite writeFilter, bool bForceRend
     assert(ParentBlock);
 
     auto &block = static_cast<KaxInternalBlock&>(*RefdBlock);
-    SetValue(static_cast<std::int64_t>(block.GlobalTimecode()) - static_cast<std::int64_t>(ParentBlock->GlobalTimecode()) / static_cast<std::int64_t>(ParentBlock->GlobalTimecodeScale()));
+    SetValue(static_cast<std::int64_t>(block.GlobalTimecode()) - static_cast<std::int64_t>(ParentBlock->GlobalTimecode()) / static_cast<std::int64_t>(ParentBlock->GlobalTimestampScale()));
   }
   return EbmlSInteger::UpdateSize(writeFilter, bForceRender);
 }

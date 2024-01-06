@@ -900,7 +900,7 @@ void KaxInternalBlock::ReleaseFrames()
 void KaxBlockGroup::SetBlockDuration(std::uint64_t TimeLength)
 {
   assert(ParentTrack);
-  const std::int64_t scale = ParentTrack->GlobalTimecodeScale();
+  const std::int64_t scale = ParentTrack->GlobalTimestampScale();
   const auto myDuration = static_cast<KaxBlockDuration *>(FindFirstElt(EBML_INFO(KaxBlockDuration), true));
   myDuration->SetValue(TimeLength / static_cast<std::uint64_t>(scale));
 }
@@ -913,7 +913,7 @@ bool KaxBlockGroup::GetBlockDuration(std::uint64_t &TheTimestamp) const
   }
 
   assert(ParentTrack);
-  TheTimestamp = static_cast<std::uint64_t>(*myDuration) * ParentTrack->GlobalTimecodeScale();
+  TheTimestamp = static_cast<std::uint64_t>(*myDuration) * ParentTrack->GlobalTimestampScale();
   return true;
 }
 

@@ -92,7 +92,7 @@ DECLARE_MKX_MASTER_CONS(KaxCluster)
       TimestampScale = aGlobalTimestampScale;
       bTimestampScaleIsSet = true;
     }
-    std::uint64_t GlobalTimecodeScale() const {
+    std::uint64_t GlobalTimestampScale() const {
       assert(bTimestampScaleIsSet);
       return TimestampScale;
     }

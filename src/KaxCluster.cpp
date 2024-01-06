@@ -120,7 +120,7 @@ filepos_t KaxCluster::Render(IOCallback & output, KaxCues & CueToUpdate, ShouldW
 
   // update the timestamp of the Cluster before writing
   auto ClusterTimestamp = static_cast<KaxClusterTimecode *>(this->FindElt(EBML_INFO(KaxClusterTimecode)));
-  ClusterTimestamp->SetValue(GlobalTimecode() / GlobalTimecodeScale());
+  ClusterTimestamp->SetValue(GlobalTimecode() / GlobalTimestampScale());
 
   if (Blobs.empty()) {
     // old-school direct KaxBlockGroup
@@ -216,7 +216,7 @@ std::uint64_t KaxCluster::GlobalTimecode() const
 */
 std::int16_t KaxCluster::GetBlockLocalTimecode(std::uint64_t aGlobalTimestamp) const
 {
-  const std::int64_t TimestampDelay = (static_cast<std::int64_t>(aGlobalTimestamp) - static_cast<std::int64_t>(GlobalTimecode())) / static_cast<std::int64_t>(GlobalTimecodeScale());
+  const std::int64_t TimestampDelay = (static_cast<std::int64_t>(aGlobalTimestamp) - static_cast<std::int64_t>(GlobalTimecode())) / static_cast<std::int64_t>(GlobalTimestampScale());
   assert(TimestampDelay >= std::int16_t(0x8000) && TimestampDelay <= std::int16_t(0x7FFF));
   return static_cast<std::int16_t>(TimestampDelay);
 }
@@ -230,7 +230,7 @@ std::uint64_t KaxCluster::GetBlockGlobalTimecode(std::int16_t LocalTimestamp)
     bFirstFrameInside = true;
     bPreviousTimestampIsSet = true;
   }
-  return static_cast<std::int64_t>(LocalTimestamp * GlobalTimecodeScale()) + GlobalTimecode();
+  return static_cast<std::int64_t>(LocalTimestamp * GlobalTimestampScale()) + GlobalTimecode();
 }
 
 KaxBlockGroup & KaxCluster::GetNewBlock()

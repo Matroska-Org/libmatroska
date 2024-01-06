@@ -148,9 +148,9 @@ DECLARE_MKX_MASTER(KaxBlockGroup)
       \return the global timestamp of this Block (not just the delta to the Cluster)
     */
     std::uint64_t GlobalTimecode() const;
-    std::uint64_t GlobalTimecodeScale() const {
+    std::uint64_t GlobalTimestampScale() const {
       assert(ParentTrack);
-      return ParentTrack->GlobalTimecodeScale();
+      return ParentTrack->GlobalTimestampScale();
     }
 
     std::uint16_t TrackNumber() const;

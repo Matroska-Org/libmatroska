@@ -61,7 +61,7 @@ void KaxCues::PositionSet(const KaxBlockBlob & BlockReference)
   if (it != pr.end()) {
     // found, now add the element to the entry list
     auto & NewPoint = AddNewChild<KaxCuePoint>(*this);
-    NewPoint.PositionSet(BlockReference, GlobalTimecodeScale());
+    NewPoint.PositionSet(BlockReference, GlobalTimestampScale());
     myTempReferences.erase(it);
   }
 }
@@ -78,7 +78,7 @@ void KaxCues::PositionSet(const KaxBlockGroup & BlockRef)
   if(it != myTempReferences.end()) {
     // found, now add the element to the entry list
     auto & NewPoint = AddNewChild<KaxCuePoint>(*this);
-    NewPoint.PositionSet(**it, GlobalTimecodeScale());
+    NewPoint.PositionSet(**it, GlobalTimestampScale());
     myTempReferences.erase(it);
   }
 }
@@ -88,7 +88,7 @@ void KaxCues::PositionSet(const KaxBlockGroup & BlockRef)
 */
 const KaxCuePoint * KaxCues::GetTimecodePoint(std::uint64_t aTimestamp) const
 {
-  const std::uint64_t TimestampToLocate = aTimestamp / GlobalTimecodeScale();
+  const std::uint64_t TimestampToLocate = aTimestamp / GlobalTimestampScale();
   const KaxCuePoint * aPointPrev = nullptr;
   std::uint64_t aPrevTime = 0;
   std::uint64_t aNextTime = 0xFFFFFFFFFFFFLL;

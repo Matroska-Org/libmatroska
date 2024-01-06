@@ -40,7 +40,7 @@ DECLARE_MKX_MASTER(KaxCues)
     }
 
     std::uint64_t GetTimestampPosition(std::uint64_t aTimestamp) const;
-    const KaxCuePoint * GetTimecodePoint(std::uint64_t aTimestamp) const;
+    const KaxCuePoint * GetTimestampPoint(std::uint64_t aTimestamp) const;
 
     void SetGlobalTimestampScale(std::uint64_t aGlobalTimestampScale) {
       mGlobalTimestampScale = aGlobalTimestampScale;

@@ -27,9 +27,9 @@
 #define DEFINE_MKX_FLOAT(a,b,c,d,e)          DEFINE_xxx_FLOAT(a,b,c,d,e,GetKaxGlobal_Context)
 #define DEFINE_MKX_DATE(a,b,c,d,e)           DEFINE_xxx_DATE(a,b,c,d,e,GetKaxGlobal_Context)
 #define DEFINE_MKX_BINARY_CONS(a,b,c,d,e)    DEFINE_xxx_CLASS_CONS(a,b,c,d,e,GetKaxGlobal_Context) \
-    const EbmlCallbacks a::ClassInfos(a::Create, Id_##a, false, e, Context_##a);
+    const libebml::EbmlCallbacks a::ClassInfos(a::Create, Id_##a, false, e, Context_##a);
 #define DEFINE_MKX_SINTEGER_CONS(a,b,c,d,e)  DEFINE_xxx_CLASS_CONS(a,b,c,d,e,GetKaxGlobal_Context) \
-    const EbmlCallbacksDefault<std::int64_t> a::ClassInfos(a::Create, Id_##a, e, Context_##a);
+    const libebml::EbmlCallbacksDefault<std::int64_t> a::ClassInfos(a::Create, Id_##a, e, Context_##a);
 
 #define DECLARE_MKX_MASTER(x)   \
     DECLARE_xxx_MASTER(x, MATROSKA_DLL_API) \

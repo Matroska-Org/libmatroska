@@ -86,7 +86,7 @@ DECLARE_MKX_MASTER_CONS(KaxCluster)
 
     std::int16_t GetBlockLocalTimecode(std::uint64_t GlobalTimestamp) const;
 
-    std::uint64_t GetBlockGlobalTimecode(std::int16_t LocalTimestamp);
+    std::uint64_t GetBlockGlobalTimestamp(std::int16_t LocalTimestamp);
 
     void SetGlobalTimestampScale(std::uint64_t aGlobalTimestampScale) {
       TimestampScale = aGlobalTimestampScale;

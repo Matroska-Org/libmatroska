@@ -473,7 +473,7 @@ std::uint64_t KaxInternalBlock::ReadInternalHead(IOCallback & input)
 
   assert(ParentCluster);
   std::int16_t stamp = endian::from_big16(cursor);
-  Timestamp = ParentCluster->GetBlockGlobalTimecode(stamp);
+  Timestamp = ParentCluster->GetBlockGlobalTimestamp(stamp);
   bLocalTimestampUsed = false;
   cursor += 2;
 
@@ -936,7 +936,7 @@ void KaxInternalBlock::SetParent(KaxCluster & aParentCluster)
 {
   ParentCluster = &aParentCluster;
   if (bLocalTimestampUsed) {
-    Timestamp = aParentCluster.GetBlockGlobalTimecode(LocalTimestamp);
+    Timestamp = aParentCluster.GetBlockGlobalTimestamp(LocalTimestamp);
     bLocalTimestampUsed = false;
   }
 }

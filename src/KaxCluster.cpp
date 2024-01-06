@@ -221,7 +221,7 @@ std::int16_t KaxCluster::GetBlockLocalTimecode(std::uint64_t aGlobalTimestamp) c
   return static_cast<std::int16_t>(TimestampDelay);
 }
 
-std::uint64_t KaxCluster::GetBlockGlobalTimecode(std::int16_t LocalTimestamp)
+std::uint64_t KaxCluster::GetBlockGlobalTimestamp(std::int16_t LocalTimestamp)
 {
   if (!bFirstFrameInside) {
     auto ClusterTimestamp = static_cast<KaxClusterTimecode *>(this->FindElt(EBML_INFO(KaxClusterTimecode)));

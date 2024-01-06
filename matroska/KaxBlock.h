@@ -270,7 +270,7 @@ class MATROSKA_DLL_API KaxBlock : public KaxInternalBlock {
     static const libebml::EbmlCallbacks ClassInfos;
   public:
     KaxBlock() :KaxInternalBlock(KaxBlock::ClassInfos, false) {}
-        EBML_CONCRETE_CLASS(KaxBlock)
+    MATROSKA_CLASS_BODY(KaxBlock)
 };
 
 class MATROSKA_DLL_API KaxSimpleBlock : public KaxInternalBlock {
@@ -287,7 +287,7 @@ class MATROSKA_DLL_API KaxSimpleBlock : public KaxInternalBlock {
 
     void SetParent(KaxCluster & aParentCluster);
 
-        EBML_CONCRETE_CLASS(KaxSimpleBlock)
+    MATROSKA_CLASS_BODY(KaxSimpleBlock)
 };
 
 /// Placeholder class for either a BlockGroup or a SimpleBlock

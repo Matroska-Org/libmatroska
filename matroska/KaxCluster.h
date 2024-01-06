@@ -68,7 +68,7 @@ DECLARE_MKX_MASTER_CONS(KaxCluster)
 
     void SetParent(const KaxSegment & aParentSegment) {ParentSegment = &aParentSegment;}
 
-    void SetPreviousTimecode(std::uint64_t aPreviousTimestamp, std::int64_t aTimestampScale) {
+    void SetPreviousTimestamp(std::uint64_t aPreviousTimestamp, std::int64_t aTimestampScale) {
       bPreviousTimestampIsSet = true;
       PreviousTimestamp = aPreviousTimestamp;
       SetGlobalTimestampScale(aTimestampScale);

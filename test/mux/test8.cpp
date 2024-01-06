@@ -152,12 +152,12 @@ int main(int argc, char **argv)
                   case track_audio:
                     printf("Audio");
                     TrackAudio = static_cast<KaxTrackEntry *>(ElementLevel2);
-                    TrackAudio->SetGlobalTimecodeScale(TimestampScale);
+                    TrackAudio->SetGlobalTimestampScale(TimestampScale);
                     break;
                   case track_video:
                     printf("Video");
                     TrackVideo = static_cast<KaxTrackEntry *>(ElementLevel2);
-                    TrackVideo->SetGlobalTimecodeScale(TimestampScale);
+                    TrackVideo->SetGlobalTimestampScale(TimestampScale);
                     break;
                   default:
                     printf("unknown");
@@ -299,7 +299,7 @@ int main(int argc, char **argv)
               KaxClusterTimecode & ClusterTime = *static_cast<KaxClusterTimecode*>(ElementLevel2);
               ClusterTime.ReadData(aStream.I_O());
               ClusterTimestamp = std::uint32_t(ClusterTime);
-              SegmentCluster->InitTimecode(ClusterTimestamp, TimestampScale);
+              SegmentCluster->InitTimestamp(ClusterTimestamp, TimestampScale);
             } else  if (EbmlId(*ElementLevel2) == EBML_ID(KaxBlockGroup)) {
               printf("Block Group found\n");
 #ifdef TEST_BLOCKGROUP_READ
@@ -312,7 +312,7 @@ int main(int argc, char **argv)
               if (DataBlock != NULL) {
 //                DataBlock->ReadData(aStream.I_O());
                 DataBlock->SetParent(*SegmentCluster);
-                printf("   Track # %d / %d frame%s / Timestamp %I64d\n",DataBlock->TrackNum(), DataBlock->NumberFrames(), (DataBlock->NumberFrames() > 1)?"s":"", DataBlock->GlobalTimecode());
+                printf("   Track # %d / %d frame%s / Timestamp %I64d\n",DataBlock->TrackNum(), DataBlock->NumberFrames(), (DataBlock->NumberFrames() > 1)?"s":"", DataBlock->GlobalTimestamp());
               } else {
                 printf("   A BlockGroup without a Block !!!");
               }
@@ -344,7 +344,7 @@ int main(int argc, char **argv)
                   DataBlock.ReadData(aStream.I_O(), SCOPE_ALL_DATA);
 #endif // NO_DISPLAY_DATA
                   DataBlock.SetParent(*SegmentCluster);
-                  printf("   Track # %d / %d frame%s / Timestamp %" PRId64 "\n",DataBlock.TrackNum(), DataBlock.NumberFrames(), (DataBlock.NumberFrames() > 1)?"s":"", DataBlock.GlobalTimecode());
+                  printf("   Track # %d / %d frame%s / Timestamp %" PRId64 "\n",DataBlock.TrackNum(), DataBlock.NumberFrames(), (DataBlock.NumberFrames() > 1)?"s":"", DataBlock.GlobalTimestamp());
 #ifndef NO_DISPLAY_DATA
                   for (unsigned int i=0; i< DataBlock.NumberFrames(); i++) {
                     printf("   [%s]\n",DataBlock.GetBuffer(i).Buffer()); // STRING ONLY POSSIBLE WITH THIS PARTICULAR EXAMPLE (the binary data is a string)
@@ -424,7 +424,7 @@ int main(int argc, char **argv)
         else if (EbmlId(*ElementLevel1) == EBML_ID(KaxCues)) {
           printf("\n- Cue entries found\n");
           CuesEntry = static_cast<KaxCues *>(ElementLevel1);
-          CuesEntry->SetGlobalTimecodeScale(TimestampScale);
+          CuesEntry->SetGlobalTimestampScale(TimestampScale);
           // read everything in memory
           CuesEntry->Read(aStream, EBML_CLASS_CONTEXT(KaxCues), UpperElementLevel, ElementLevel2, bAllowDummy); // build the entries in memory
           if (CuesEntry->CheckMandatory()) {

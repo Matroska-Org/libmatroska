@@ -51,7 +51,7 @@ DECLARE_MKX_MASTER_CONS(KaxCluster)
     /*!
       \return the global timestamp of this Cluster
     */
-    std::uint64_t GlobalTimecode() const;
+    std::uint64_t GlobalTimestamp() const;
 
     KaxBlockGroup & GetNewBlock();
 
@@ -68,31 +68,31 @@ DECLARE_MKX_MASTER_CONS(KaxCluster)
 
     void SetParent(const KaxSegment & aParentSegment) {ParentSegment = &aParentSegment;}
 
-    void SetPreviousTimecode(std::uint64_t aPreviousTimestamp, std::int64_t aTimestampScale) {
+    void SetPreviousTimestamp(std::uint64_t aPreviousTimestamp, std::int64_t aTimestampScale) {
       bPreviousTimestampIsSet = true;
       PreviousTimestamp = aPreviousTimestamp;
-      SetGlobalTimecodeScale(aTimestampScale);
+      SetGlobalTimestampScale(aTimestampScale);
     }
 
     /*!
       \note dirty hack to get the mandatory data back after reading
       \todo there should be a better way to get mandatory data
     */
-    void InitTimecode(std::uint64_t aTimestamp, std::int64_t aTimestampScale) {
-      SetGlobalTimecodeScale(aTimestampScale);
+    void InitTimestamp(std::uint64_t aTimestamp, std::int64_t aTimestampScale) {
+      SetGlobalTimestampScale(aTimestampScale);
       MinTimestamp = MaxTimestamp = PreviousTimestamp = aTimestamp * TimestampScale;
       bFirstFrameInside = bPreviousTimestampIsSet = true;
     }
 
-    std::int16_t GetBlockLocalTimecode(std::uint64_t GlobalTimecode) const;
+    std::int16_t GetBlockLocalTimestamp(std::uint64_t GlobalTimestamp) const;
 
-    std::uint64_t GetBlockGlobalTimecode(std::int16_t LocalTimestamp);
+    std::uint64_t GetBlockGlobalTimestamp(std::int16_t LocalTimestamp);
 
-    void SetGlobalTimecodeScale(std::uint64_t aGlobalTimestampScale) {
+    void SetGlobalTimestampScale(std::uint64_t aGlobalTimestampScale) {
       TimestampScale = aGlobalTimestampScale;
       bTimestampScaleIsSet = true;
     }
-    std::uint64_t GlobalTimecodeScale() const {
+    std::uint64_t GlobalTimestampScale() const {
       assert(bTimestampScaleIsSet);
       return TimestampScale;
     }

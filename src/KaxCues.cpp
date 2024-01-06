@@ -61,7 +61,7 @@ void KaxCues::PositionSet(const KaxBlockBlob & BlockReference)
   if (it != pr.end()) {
     // found, now add the element to the entry list
     auto & NewPoint = AddNewChild<KaxCuePoint>(*this);
-    NewPoint.PositionSet(BlockReference, GlobalTimecodeScale());
+    NewPoint.PositionSet(BlockReference, GlobalTimestampScale());
     myTempReferences.erase(it);
   }
 }
@@ -72,13 +72,13 @@ void KaxCues::PositionSet(const KaxBlockGroup & BlockRef)
   auto it = std::find_if(myTempReferences.begin(), myTempReferences.end(),
     [&](const KaxBlockBlob *myTempReference)
       { auto& refTmp = static_cast<KaxInternalBlock &>(*myTempReference);
-        return refTmp.GlobalTimecode() == BlockRef.GlobalTimecode()
+        return refTmp.GlobalTimestamp() == BlockRef.GlobalTimestamp()
             && refTmp.TrackNum() == BlockRef.TrackNumber(); });
 
   if(it != myTempReferences.end()) {
     // found, now add the element to the entry list
     auto & NewPoint = AddNewChild<KaxCuePoint>(*this);
-    NewPoint.PositionSet(**it, GlobalTimecodeScale());
+    NewPoint.PositionSet(**it, GlobalTimestampScale());
     myTempReferences.erase(it);
   }
 }
@@ -86,9 +86,9 @@ void KaxCues::PositionSet(const KaxBlockGroup & BlockRef)
 /*!
   \warning Assume that the list has been sorted (Sort())
 */
-const KaxCuePoint * KaxCues::GetTimecodePoint(std::uint64_t aTimestamp) const
+const KaxCuePoint * KaxCues::GetTimestampPoint(std::uint64_t aTimestamp) const
 {
-  const std::uint64_t TimestampToLocate = aTimestamp / GlobalTimecodeScale();
+  const std::uint64_t TimestampToLocate = aTimestamp / GlobalTimestampScale();
   const KaxCuePoint * aPointPrev = nullptr;
   std::uint64_t aPrevTime = 0;
   std::uint64_t aNextTime = 0xFFFFFFFFFFFFLL;
@@ -114,9 +114,9 @@ const KaxCuePoint * KaxCues::GetTimecodePoint(std::uint64_t aTimestamp) const
   return aPointPrev;
 }
 
-std::uint64_t KaxCues::GetTimecodePosition(std::uint64_t aTimestamp) const
+std::uint64_t KaxCues::GetTimestampPosition(std::uint64_t aTimestamp) const
 {
-  const auto aPoint = GetTimecodePoint(aTimestamp);
+  const auto aPoint = GetTimestampPoint(aTimestamp);
   if (!aPoint)
     return 0;
 

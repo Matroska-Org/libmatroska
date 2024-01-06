@@ -92,7 +92,7 @@ int main(int /*argc*/, char **/*argv*/)
 
     // fill track 1 params
     KaxTrackEntry & MyTrack1 = GetChild<KaxTrackEntry>(MyTracks);
-    MyTrack1.SetGlobalTimecodeScale(TIMESTAMP_SCALE);
+    MyTrack1.SetGlobalTimestampScale(TIMESTAMP_SCALE);
 
     KaxTrackNumber & MyTrack1Number = GetChild<KaxTrackNumber>(MyTrack1);
     MyTrack1Number.SetValue(1);
@@ -147,7 +147,7 @@ int main(int /*argc*/, char **/*argv*/)
 
     // fill track 2 params
     KaxTrackEntry & MyTrack2 = GetNextChild<KaxTrackEntry>(MyTracks, MyTrack1);
-    MyTrack2.SetGlobalTimecodeScale(TIMESTAMP_SCALE);
+    MyTrack2.SetGlobalTimestampScale(TIMESTAMP_SCALE);
 
     KaxTrackNumber & MyTrack2Number = GetChild<KaxTrackNumber>(MyTrack2);
     MyTrack2Number.SetValue(200);
@@ -182,11 +182,11 @@ int main(int /*argc*/, char **/*argv*/)
     // "manual" filling of a cluster"
     /// \todo whenever a BlockGroup is created, we should memorize it's position
     KaxCues AllCues;
-    AllCues.SetGlobalTimecodeScale(TIMESTAMP_SCALE);
+    AllCues.SetGlobalTimestampScale(TIMESTAMP_SCALE);
 
     KaxCluster Clust1;
     Clust1.SetParent(FileSegment); // mandatory to store references in this Cluster
-    Clust1.SetPreviousTimecode(0, TIMESTAMP_SCALE); // the first timestamp here
+    Clust1.SetPreviousTimestamp(0, TIMESTAMP_SCALE); // the first timestamp here
     Clust1.EnableChecksum();
 
     // automatic filling of a Cluster
@@ -255,7 +255,7 @@ int main(int /*argc*/, char **/*argv*/)
 
     KaxCluster Clust2;
     Clust2.SetParent(FileSegment); // mandatory to store references in this Cluster
-    Clust2.SetPreviousTimecode(300 * TIMESTAMP_SCALE, TIMESTAMP_SCALE); // the first timestamp here
+    Clust2.SetPreviousTimestamp(300 * TIMESTAMP_SCALE, TIMESTAMP_SCALE); // the first timestamp here
     Clust2.EnableChecksum();
 
     DataBuffer *data2 = new DataBuffer((binary *)"tttyyy", countof("tttyyy"));

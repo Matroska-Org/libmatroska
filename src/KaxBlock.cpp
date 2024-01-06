@@ -297,7 +297,7 @@ filepos_t KaxBlockVirtual::UpdateSize(ShouldWrite, bool /* bForceRender */)
   }
 
   assert(ParentCluster);
-  const std::int16_t ActualTimestamp = ParentCluster->GetBlockLocalTimecode(Timestamp);
+  const std::int16_t ActualTimestamp = ParentCluster->GetBlockLocalTimestamp(Timestamp);
   endian::to_big16(ActualTimestamp, cursor);
   cursor += 2;
 
@@ -340,7 +340,7 @@ filepos_t KaxInternalBlock::RenderData(IOCallback & output, bool /* bForceRender
   }
 
   assert(ParentCluster);
-  const std::int16_t ActualTimestamp = ParentCluster->GetBlockLocalTimecode(Timestamp);
+  const std::int16_t ActualTimestamp = ParentCluster->GetBlockLocalTimestamp(Timestamp);
   endian::to_big16(ActualTimestamp, cursor);
   cursor += 2;
 
@@ -473,7 +473,7 @@ std::uint64_t KaxInternalBlock::ReadInternalHead(IOCallback & input)
 
   assert(ParentCluster);
   std::int16_t stamp = endian::from_big16(cursor);
-  Timestamp = ParentCluster->GetBlockGlobalTimecode(stamp);
+  Timestamp = ParentCluster->GetBlockGlobalTimestamp(stamp);
   bLocalTimestampUsed = false;
   cursor += 2;
 
@@ -828,11 +828,11 @@ bool KaxBlockGroup::AddFrame(const KaxTrackEntry & track, std::uint64_t timestam
 /*!
   \todo we may cache the reference to the timestamp block
 */
-std::uint64_t KaxBlockGroup::GlobalTimecode() const
+std::uint64_t KaxBlockGroup::GlobalTimestamp() const
 {
   assert(ParentCluster); // impossible otherwise
   auto MyBlock = static_cast<KaxBlock *>(this->FindElt(EBML_INFO(KaxBlock)));
-  return MyBlock->GlobalTimecode();
+  return MyBlock->GlobalTimestamp();
 }
 
 std::uint16_t KaxBlockGroup::TrackNumber() const
@@ -900,7 +900,7 @@ void KaxInternalBlock::ReleaseFrames()
 void KaxBlockGroup::SetBlockDuration(std::uint64_t TimeLength)
 {
   assert(ParentTrack);
-  const std::int64_t scale = ParentTrack->GlobalTimecodeScale();
+  const std::int64_t scale = ParentTrack->GlobalTimestampScale();
   const auto myDuration = static_cast<KaxBlockDuration *>(FindFirstElt(EBML_INFO(KaxBlockDuration), true));
   myDuration->SetValue(TimeLength / static_cast<std::uint64_t>(scale));
 }
@@ -913,7 +913,7 @@ bool KaxBlockGroup::GetBlockDuration(std::uint64_t &TheTimestamp) const
   }
 
   assert(ParentTrack);
-  TheTimestamp = static_cast<std::uint64_t>(*myDuration) * ParentTrack->GlobalTimecodeScale();
+  TheTimestamp = static_cast<std::uint64_t>(*myDuration) * ParentTrack->GlobalTimestampScale();
   return true;
 }
 
@@ -936,7 +936,7 @@ void KaxInternalBlock::SetParent(KaxCluster & aParentCluster)
 {
   ParentCluster = &aParentCluster;
   if (bLocalTimestampUsed) {
-    Timestamp = aParentCluster.GetBlockGlobalTimecode(LocalTimestamp);
+    Timestamp = aParentCluster.GetBlockGlobalTimestamp(LocalTimestamp);
     bLocalTimestampUsed = false;
   }
 }
@@ -1006,8 +1006,8 @@ bool KaxBlockBlob::AddFrameAuto(const KaxTrackEntry & track, std::uint64_t times
       Block.simpleblock->SetDiscardable(false);
     } else {
       Block.simpleblock->SetKeyframe(false);
-      if ((!ForwBlock || static_cast<KaxInternalBlock &>(*ForwBlock).GlobalTimecode() <= timestamp) &&
-          (!PastBlock || static_cast<KaxInternalBlock &>(*PastBlock).GlobalTimecode() <= timestamp))
+      if ((!ForwBlock || static_cast<KaxInternalBlock &>(*ForwBlock).GlobalTimestamp() <= timestamp) &&
+          (!PastBlock || static_cast<KaxInternalBlock &>(*PastBlock).GlobalTimestamp() <= timestamp))
         Block.simpleblock->SetDiscardable(false);
       else
         Block.simpleblock->SetDiscardable(true);

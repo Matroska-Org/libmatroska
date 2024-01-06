@@ -28,7 +28,7 @@ void KaxCuePoint::PositionSet(const KaxBlockGroup & BlockReference, std::uint64_
 {
   // fill me
   auto & NewTime = GetChild<KaxCueTime>(*this);
-  NewTime.SetValue(BlockReference.GlobalTimecode() / GlobalTimestampScale);
+  NewTime.SetValue(BlockReference.GlobalTimestamp() / GlobalTimestampScale);
 
   auto & NewPositions = AddNewChild<KaxCueTrackPositions>(*this);
   auto & TheTrack = GetChild<KaxCueTrack>(NewPositions);
@@ -75,7 +75,7 @@ void KaxCuePoint::PositionSet(const KaxInternalBlock & BlockReference, const Kax
 {
   // fill me
   auto & NewTime = GetChild<KaxCueTime>(*this);
-  NewTime.SetValue(BlockReference.GlobalTimecode() / GlobalTimestampScale);
+  NewTime.SetValue(BlockReference.GlobalTimestamp() / GlobalTimestampScale);
 
   auto & NewPositions = AddNewChild<KaxCueTrackPositions>(*this);
   auto & TheTrack = GetChild<KaxCueTrack>(NewPositions);
@@ -113,7 +113,7 @@ void KaxCueReference::AddReference(const KaxBlockBlob & BlockReference, std::uin
 {
   auto& theBlock = static_cast<KaxInternalBlock&>(BlockReference);
   auto& NewTime = GetChild<KaxCueRefTime>(*this);
-  NewTime.SetValue(theBlock.GlobalTimecode() / GlobalTimestampScale);
+  NewTime.SetValue(theBlock.GlobalTimestamp() / GlobalTimestampScale);
 
   auto & TheClustPos = GetChild<KaxCueRefCluster>(*this);
   TheClustPos.SetValue(theBlock.ClusterPosition());
@@ -159,7 +159,7 @@ bool KaxCuePoint::IsSmallerThan(const EbmlElement * Cmp) const
   return false;
 }
 
-bool KaxCuePoint::Timecode(std::uint64_t & aTimestamp, std::uint64_t GlobalTimestampScale) const
+bool KaxCuePoint::Timestamp(std::uint64_t & aTimestamp, std::uint64_t GlobalTimestampScale) const
 {
   const auto aTime = static_cast<const KaxCueTime *>(FindFirstElt(EBML_INFO(KaxCueTime)));
   if (!aTime)

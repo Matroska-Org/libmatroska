@@ -120,7 +120,7 @@ filepos_t KaxCluster::Render(IOCallback & output, KaxCues & CueToUpdate, ShouldW
 
   // update the timestamp of the Cluster before writing
   auto ClusterTimestamp = static_cast<KaxClusterTimecode *>(this->FindElt(EBML_INFO(KaxClusterTimecode)));
-  ClusterTimestamp->SetValue(GlobalTimecode() / GlobalTimecodeScale());
+  ClusterTimestamp->SetValue(GlobalTimestamp() / GlobalTimestampScale());
 
   if (Blobs.empty()) {
     // old-school direct KaxBlockGroup
@@ -199,7 +199,7 @@ filepos_t KaxCluster::Render(IOCallback & output, KaxCues & CueToUpdate, ShouldW
 /*!
   \todo automatically choose valid timestamp for the Cluster based on the previous cluster timestamp (must be incremental)
 */
-std::uint64_t KaxCluster::GlobalTimecode() const
+std::uint64_t KaxCluster::GlobalTimestamp() const
 {
   assert(bPreviousTimestampIsSet);
   std::uint64_t result = MinTimestamp;
@@ -214,23 +214,23 @@ std::uint64_t KaxCluster::GlobalTimecode() const
   \brief retrieve the relative
   \todo !!! We need a way to know the TimestampScale
 */
-std::int16_t KaxCluster::GetBlockLocalTimecode(std::uint64_t aGlobalTimestamp) const
+std::int16_t KaxCluster::GetBlockLocalTimestamp(std::uint64_t aGlobalTimestamp) const
 {
-  const std::int64_t TimestampDelay = (static_cast<std::int64_t>(aGlobalTimestamp) - static_cast<std::int64_t>(GlobalTimecode())) / static_cast<std::int64_t>(GlobalTimecodeScale());
+  const std::int64_t TimestampDelay = (static_cast<std::int64_t>(aGlobalTimestamp) - static_cast<std::int64_t>(GlobalTimestamp())) / static_cast<std::int64_t>(GlobalTimestampScale());
   assert(TimestampDelay >= std::int16_t(0x8000) && TimestampDelay <= std::int16_t(0x7FFF));
   return static_cast<std::int16_t>(TimestampDelay);
 }
 
-std::uint64_t KaxCluster::GetBlockGlobalTimecode(std::int16_t LocalTimestamp)
+std::uint64_t KaxCluster::GetBlockGlobalTimestamp(std::int16_t LocalTimestamp)
 {
   if (!bFirstFrameInside) {
     auto ClusterTimestamp = static_cast<KaxClusterTimecode *>(this->FindElt(EBML_INFO(KaxClusterTimecode)));
-    assert (bFirstFrameInside); // use the InitTimecode() hack for now
+    assert (bFirstFrameInside); // use the InitTimestamp() hack for now
     MinTimestamp = MaxTimestamp = PreviousTimestamp = static_cast<std::uint64_t>(*static_cast<EbmlUInteger *>(ClusterTimestamp));
     bFirstFrameInside = true;
     bPreviousTimestampIsSet = true;
   }
-  return static_cast<std::int64_t>(LocalTimestamp * GlobalTimecodeScale()) + GlobalTimecode();
+  return static_cast<std::int64_t>(LocalTimestamp * GlobalTimestampScale()) + GlobalTimestamp();
 }
 
 KaxBlockGroup & KaxCluster::GetNewBlock()

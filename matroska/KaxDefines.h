@@ -16,12 +16,14 @@ namespace libmatroska {
 class MATROSKA_DLL_API MatroskaProfile : public libebml::EbmlDocVersion
 {
 public:
-    constexpr MatroskaProfile(bool webm, num_version min, num_version max = ANY_VERSION)
+    constexpr MatroskaProfile(bool webm, bool divx, num_version min, num_version max = ANY_VERSION)
         :EbmlDocVersion(min, max)
         ,InWebM(webm)
+        ,InDivX(divx)
     {}
 
     const bool InWebM;
+    const bool InDivX;
 };
 
 }

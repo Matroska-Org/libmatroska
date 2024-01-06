@@ -72,7 +72,7 @@ void KaxCues::PositionSet(const KaxBlockGroup & BlockRef)
   auto it = std::find_if(myTempReferences.begin(), myTempReferences.end(),
     [&](const KaxBlockBlob *myTempReference)
       { auto& refTmp = static_cast<KaxInternalBlock &>(*myTempReference);
-        return refTmp.GlobalTimecode() == BlockRef.GlobalTimecode()
+        return refTmp.GlobalTimestamp() == BlockRef.GlobalTimestamp()
             && refTmp.TrackNum() == BlockRef.TrackNumber(); });
 
   if(it != myTempReferences.end()) {

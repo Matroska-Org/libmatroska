@@ -147,7 +147,7 @@ DECLARE_MKX_MASTER(KaxBlockGroup)
     /*!
       \return the global timestamp of this Block (not just the delta to the Cluster)
     */
-    std::uint64_t GlobalTimecode() const;
+    std::uint64_t GlobalTimestamp() const;
     std::uint64_t GlobalTimestampScale() const {
       assert(ParentTrack);
       return ParentTrack->GlobalTimestampScale();
@@ -191,7 +191,7 @@ class MATROSKA_DLL_API KaxInternalBlock : public libebml::EbmlBinary {
     /*!
       \todo !!!! This method needs to be changes !
     */
-    std::uint64_t GlobalTimecode() const {return Timestamp;}
+    std::uint64_t GlobalTimestamp() const {return Timestamp;}
 
     /*!
       \note override this function to generate the Data/Size on the fly, unlike the usual binary elements

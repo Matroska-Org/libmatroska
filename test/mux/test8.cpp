@@ -312,7 +312,7 @@ int main(int argc, char **argv)
               if (DataBlock != NULL) {
 //                DataBlock->ReadData(aStream.I_O());
                 DataBlock->SetParent(*SegmentCluster);
-                printf("   Track # %d / %d frame%s / Timestamp %I64d\n",DataBlock->TrackNum(), DataBlock->NumberFrames(), (DataBlock->NumberFrames() > 1)?"s":"", DataBlock->GlobalTimecode());
+                printf("   Track # %d / %d frame%s / Timestamp %I64d\n",DataBlock->TrackNum(), DataBlock->NumberFrames(), (DataBlock->NumberFrames() > 1)?"s":"", DataBlock->GlobalTimestamp());
               } else {
                 printf("   A BlockGroup without a Block !!!");
               }
@@ -344,7 +344,7 @@ int main(int argc, char **argv)
                   DataBlock.ReadData(aStream.I_O(), SCOPE_ALL_DATA);
 #endif // NO_DISPLAY_DATA
                   DataBlock.SetParent(*SegmentCluster);
-                  printf("   Track # %d / %d frame%s / Timestamp %" PRId64 "\n",DataBlock.TrackNum(), DataBlock.NumberFrames(), (DataBlock.NumberFrames() > 1)?"s":"", DataBlock.GlobalTimecode());
+                  printf("   Track # %d / %d frame%s / Timestamp %" PRId64 "\n",DataBlock.TrackNum(), DataBlock.NumberFrames(), (DataBlock.NumberFrames() > 1)?"s":"", DataBlock.GlobalTimestamp());
 #ifndef NO_DISPLAY_DATA
                   for (unsigned int i=0; i< DataBlock.NumberFrames(); i++) {
                     printf("   [%s]\n",DataBlock.GetBuffer(i).Buffer()); // STRING ONLY POSSIBLE WITH THIS PARTICULAR EXAMPLE (the binary data is a string)

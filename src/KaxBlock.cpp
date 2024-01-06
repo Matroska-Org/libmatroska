@@ -828,11 +828,11 @@ bool KaxBlockGroup::AddFrame(const KaxTrackEntry & track, std::uint64_t timestam
 /*!
   \todo we may cache the reference to the timestamp block
 */
-std::uint64_t KaxBlockGroup::GlobalTimecode() const
+std::uint64_t KaxBlockGroup::GlobalTimestamp() const
 {
   assert(ParentCluster); // impossible otherwise
   auto MyBlock = static_cast<KaxBlock *>(this->FindElt(EBML_INFO(KaxBlock)));
-  return MyBlock->GlobalTimecode();
+  return MyBlock->GlobalTimestamp();
 }
 
 std::uint16_t KaxBlockGroup::TrackNumber() const
@@ -1006,8 +1006,8 @@ bool KaxBlockBlob::AddFrameAuto(const KaxTrackEntry & track, std::uint64_t times
       Block.simpleblock->SetDiscardable(false);
     } else {
       Block.simpleblock->SetKeyframe(false);
-      if ((!ForwBlock || static_cast<KaxInternalBlock &>(*ForwBlock).GlobalTimecode() <= timestamp) &&
-          (!PastBlock || static_cast<KaxInternalBlock &>(*PastBlock).GlobalTimecode() <= timestamp))
+      if ((!ForwBlock || static_cast<KaxInternalBlock &>(*ForwBlock).GlobalTimestamp() <= timestamp) &&
+          (!PastBlock || static_cast<KaxInternalBlock &>(*PastBlock).GlobalTimestamp() <= timestamp))
         Block.simpleblock->SetDiscardable(false);
       else
         Block.simpleblock->SetDiscardable(true);

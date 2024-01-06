@@ -51,7 +51,7 @@ DECLARE_MKX_MASTER_CONS(KaxCluster)
     /*!
       \return the global timestamp of this Cluster
     */
-    std::uint64_t GlobalTimecode() const;
+    std::uint64_t GlobalTimestamp() const;
 
     KaxBlockGroup & GetNewBlock();
 
@@ -84,7 +84,7 @@ DECLARE_MKX_MASTER_CONS(KaxCluster)
       bFirstFrameInside = bPreviousTimestampIsSet = true;
     }
 
-    std::int16_t GetBlockLocalTimecode(std::uint64_t GlobalTimecode) const;
+    std::int16_t GetBlockLocalTimecode(std::uint64_t GlobalTimestamp) const;
 
     std::uint64_t GetBlockGlobalTimecode(std::int16_t LocalTimestamp);
 

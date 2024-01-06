@@ -11,6 +11,18 @@
 #include <ebml/EbmlVersion.h>
 #include <ebml/EbmlElement.h>
 
+namespace libmatroska {
+
+class MATROSKA_DLL_API MatroskaProfile : public libebml::EbmlDocVersion
+{
+public:
+    constexpr MatroskaProfile(version_type min, version_type max = ANY_VERSION)
+        :EbmlDocVersion(min, max)
+    {}
+};
+
+}
+
 #define DEFINE_MKX_CONTEXT(a)                DEFINE_xxx_CONTEXT(a,GetKaxGlobal_Context)
 
 #define DEFINE_MKX_MASTER_CONS(a,b,c,d,i,e,versions)  DEFINE_xxx_MASTER_CONS(a,b,c,d,i,e,versions,GetKaxGlobal_Context)

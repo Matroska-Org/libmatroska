@@ -299,7 +299,7 @@ int main(int argc, char **argv)
               KaxClusterTimecode & ClusterTime = *static_cast<KaxClusterTimecode*>(ElementLevel2);
               ClusterTime.ReadData(aStream.I_O());
               ClusterTimestamp = std::uint32_t(ClusterTime);
-              SegmentCluster->InitTimecode(ClusterTimestamp, TimestampScale);
+              SegmentCluster->InitTimestamp(ClusterTimestamp, TimestampScale);
             } else  if (EbmlId(*ElementLevel2) == EBML_ID(KaxBlockGroup)) {
               printf("Block Group found\n");
 #ifdef TEST_BLOCKGROUP_READ

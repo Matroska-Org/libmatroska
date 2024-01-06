@@ -225,7 +225,7 @@ std::uint64_t KaxCluster::GetBlockGlobalTimestamp(std::int16_t LocalTimestamp)
 {
   if (!bFirstFrameInside) {
     auto ClusterTimestamp = static_cast<KaxClusterTimecode *>(this->FindElt(EBML_INFO(KaxClusterTimecode)));
-    assert (bFirstFrameInside); // use the InitTimecode() hack for now
+    assert (bFirstFrameInside); // use the InitTimestamp() hack for now
     MinTimestamp = MaxTimestamp = PreviousTimestamp = static_cast<std::uint64_t>(*static_cast<EbmlUInteger *>(ClusterTimestamp));
     bFirstFrameInside = true;
     bPreviousTimestampIsSet = true;

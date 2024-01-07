@@ -22,7 +22,6 @@ KaxCluster::KaxCluster()
 
 KaxCluster::KaxCluster(const KaxCluster & ElementToClone)
   :EbmlMaster(ElementToClone)
-  ,bSilentTracksUsed(ElementToClone.bSilentTracksUsed)
 {
   // update the parent of each children
   for (const auto& child : *this) {
@@ -125,27 +124,6 @@ filepos_t KaxCluster::Render(IOCallback & output, KaxCues & CueToUpdate, ShouldW
   if (Blobs.empty()) {
     // old-school direct KaxBlockGroup
 
-    // SilentTracks handling
-    // check the parent cluster for existing tracks and see if they are contained in this cluster or not
-    if (bSilentTracksUsed) {
-      auto MyTracks = static_cast<KaxTracks *>(ParentSegment->FindElt(EBML_INFO(KaxTracks)));
-      for (const auto& Trk : *MyTracks) {
-        if (EbmlId(*Trk) == EBML_ID(KaxTrackEntry)) {
-          auto entry = static_cast<KaxTrackEntry *>(Trk);
-          auto tracknum = static_cast<std::uint32_t>(entry->TrackNumber());
-          auto track = std::find_if(GetElementList().begin(), GetElementList().end(), [=](EbmlElement *element)
-              { return EbmlId(*element) == EBML_ID(KaxBlockGroup) && static_cast<KaxBlockGroup *>(element)->TrackNumber() == tracknum;  });
-          // the track wasn't found in this cluster
-          if (track == GetElementList().end()) {
-            auto SilentTracks = static_cast<KaxClusterSilentTracks *>(this->FindFirstElt(EBML_INFO(KaxClusterSilentTracks)));
-            assert(SilentTracks); // the flag bSilentTracksUsed should be set when creating the Cluster
-            auto trackelt = static_cast<KaxClusterSilentTrackNumber *>(SilentTracks->AddNewElt(EBML_INFO(KaxClusterSilentTrackNumber)));
-            trackelt->SetValue(tracknum);
-          }
-        }
-      }
-    }
-
     Result = EbmlMaster::Render(output, writeFilter);
     // For all Blocks add their position on the CueEntry
 
@@ -161,27 +139,6 @@ filepos_t KaxCluster::Render(IOCallback & output, KaxCues & CueToUpdate, ShouldW
         PushElement( static_cast<KaxSimpleBlock&>(*blob));
       else
         PushElement( static_cast<KaxBlockGroup&>(*blob));
-    }
-
-    // SilentTracks handling
-    // check the parent cluster for existing tracks and see if they are contained in this cluster or not
-    if (bSilentTracksUsed) {
-      auto MyTracks = static_cast<KaxTracks *>(ParentSegment->FindElt(EBML_INFO(KaxTracks)));
-      for (const auto& Trk : *MyTracks) {
-        if (EbmlId(*Trk) == EBML_ID(KaxTrackEntry)) {
-          auto entry = static_cast<KaxTrackEntry *>(Trk);
-          auto tracknum = static_cast<std::uint32_t>(entry->TrackNumber());
-          auto it = std::find_if(Blobs.begin(), Blobs.end(), [tracknum](auto b){ return static_cast<KaxInternalBlock&>(*b).TrackNum() == tracknum; });
-
-          // the track wasn't found in this cluster
-          if (it == Blobs.end()) {
-            auto SilentTracks = static_cast<KaxClusterSilentTracks *>(this->FindFirstElt(EBML_INFO(KaxClusterSilentTracks)));
-            assert(SilentTracks); // the flag bSilentTracksUsed should be set when creating the Cluster
-            auto trackelt = static_cast<KaxClusterSilentTrackNumber *>(SilentTracks->AddNewElt(EBML_INFO(KaxClusterSilentTrackNumber)));
-            trackelt->SetValue(tracknum);
-          }
-        }
-      }
     }
 
     Result = EbmlMaster::Render(output, writeFilter);

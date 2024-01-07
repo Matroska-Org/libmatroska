@@ -119,7 +119,7 @@ filepos_t KaxCluster::Render(IOCallback & output, KaxCues & CueToUpdate, ShouldW
   filepos_t Result = 0;
 
   // update the timestamp of the Cluster before writing
-  auto ClusterTimestamp = static_cast<KaxClusterTimecode *>(this->FindElt(EBML_INFO(KaxClusterTimecode)));
+  auto ClusterTimestamp = static_cast<KaxClusterTimestamp *>(this->FindElt(EBML_INFO(KaxClusterTimestamp)));
   ClusterTimestamp->SetValue(GlobalTimestamp() / GlobalTimestampScale());
 
   if (Blobs.empty()) {
@@ -224,7 +224,7 @@ std::int16_t KaxCluster::GetBlockLocalTimestamp(std::uint64_t aGlobalTimestamp) 
 std::uint64_t KaxCluster::GetBlockGlobalTimestamp(std::int16_t LocalTimestamp)
 {
   if (!bFirstFrameInside) {
-    auto ClusterTimestamp = static_cast<KaxClusterTimecode *>(this->FindElt(EBML_INFO(KaxClusterTimecode)));
+    auto ClusterTimestamp = static_cast<KaxClusterTimestamp *>(this->FindElt(EBML_INFO(KaxClusterTimestamp)));
     assert (bFirstFrameInside); // use the InitTimestamp() hack for now
     MinTimestamp = MaxTimestamp = PreviousTimestamp = static_cast<std::uint64_t>(*static_cast<EbmlUInteger *>(ClusterTimestamp));
     bFirstFrameInside = true;

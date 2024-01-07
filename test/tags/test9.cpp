@@ -48,7 +48,7 @@ int main() {
     head.Render(out);
 
     KaxInfo &info = GetChild<KaxInfo>(segment);
-    KaxTimecodeScale &time_scale = GetChild<KaxTimecodeScale>(info);
+    KaxTimestampScale &time_scale = GetChild<KaxTimestampScale>(info);
     time_scale.SetValue(1000000);
 
     segment.WriteHead(out, 5);

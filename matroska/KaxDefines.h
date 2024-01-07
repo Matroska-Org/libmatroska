@@ -50,7 +50,12 @@ public:
     const libebml::EbmlCallbacksDefault<std::int64_t> a::ClassInfos(a::Create, Id_##a, e, Context_##a, versions);
 
 #define MATROSKA_CLASS_BODY(x) \
-    EBML_CONCRETE_CLASS(x)
+    EBML_CONCRETE_CLASS(x) \
+    bool CanWrite(ShouldWrite & writeFilter) const override {                          \
+      if (ElementSpec().GetVersions().minver == libebml::EbmlDocVersion::ANY_VERSION); \
+        return false;                                                                  \
+      return EbmlElement::CanWrite(writeFilter);                                       \
+    }
 
 #define DECLARE_MKX_MASTER(x)   \
     DECLARE_xxx_MASTER(x, MATROSKA_DLL_API) \

@@ -340,8 +340,6 @@ DECLARE_MKX_BINARY_CONS(KaxBlockVirtual)
 
     void SetParent(const KaxCluster & aParentCluster) {ParentCluster = &aParentCluster;}
 
-    libebml::filepos_t RenderData(libebml::IOCallback & output, bool bForceRender, ShouldWrite writeFilter) override;
-
     libebml::filepos_t ReadData(libebml::IOCallback & input, libebml::ScopeMode ReadFully = libebml::SCOPE_ALL_DATA) override;
 
   protected:

@@ -77,7 +77,7 @@ int main(int /*argc*/, char **/*argv*/)
 
     // fill the mandatory Info section
     KaxInfo & MyInfos = GetChild<KaxInfo>(FileSegment);
-    KaxTimecodeScale & TimeScale = GetChild<KaxTimecodeScale>(MyInfos);
+    KaxTimestampScale & TimeScale = GetChild<KaxTimestampScale>(MyInfos);
     TimeScale.SetValue(TIMESTAMP_SCALE);
 
     KaxDuration & SegDuration = GetChild<KaxDuration>(MyInfos);

@@ -74,7 +74,7 @@ DECLARE_MKX_UINTEGER(KaxChapterTranslateCodec)
 DECLARE_MKX_UINTEGER(KaxChapterTranslateEditionUID)
 };
 
-DECLARE_MKX_UINTEGER_DEF(KaxTimecodeScale)
+DECLARE_MKX_UINTEGER_DEF(KaxTimestampScale)
 };
 
 DECLARE_MKX_FLOAT(KaxDuration)
@@ -92,7 +92,7 @@ DECLARE_MKX_UNISTRING(KaxMuxingApp)
 DECLARE_MKX_UNISTRING(KaxWritingApp)
 };
 
-DECLARE_MKX_UINTEGER(KaxClusterTimecode)
+DECLARE_MKX_UINTEGER(KaxClusterTimestamp)
 };
 
 DECLARE_MKX_MASTER(KaxClusterSilentTracks)
@@ -185,7 +185,7 @@ public:
   libebml::filepos_t RenderData(libebml::IOCallback & output, bool bForceRender, ShouldWrite writeFilter) override;
 };
 
-DECLARE_MKX_UINTEGER(KaxReferenceTimeCode)
+DECLARE_MKX_UINTEGER(KaxReferenceTimestamp)
 public:
   libebml::filepos_t RenderData(libebml::IOCallback & output, bool bForceRender, ShouldWrite writeFilter) override;
 };
@@ -250,7 +250,7 @@ DECLARE_MKX_UINTEGER(KaxTrackDefaultDuration)
 DECLARE_MKX_UINTEGER(KaxTrackDefaultDecodedFieldDuration)
 };
 
-DECLARE_MKX_FLOAT_DEF(KaxTrackTimecodeScale)
+DECLARE_MKX_FLOAT_DEF(KaxTrackTimestampScale)
 public:
   libebml::filepos_t RenderData(libebml::IOCallback & output, bool bForceRender, ShouldWrite writeFilter) override;
 };

@@ -226,8 +226,8 @@ int main(int argc, char **argv)
             if (UpperElementLevel < 0) {
               UpperElementLevel = 0;
             }
-            if (EbmlId(*ElementLevel2) == EBML_ID(KaxTimecodeScale)) {
-              KaxTimecodeScale *TimeScale = static_cast<KaxTimecodeScale*>(ElementLevel2);
+            if (EbmlId(*ElementLevel2) == EBML_ID(KaxTimestampScale)) {
+              KaxTimestampScale *TimeScale = static_cast<KaxTimestampScale*>(ElementLevel2);
               TimeScale->ReadData(aStream.I_O());
               printf("Timestamp Scale %d\n", std::uint32_t(*TimeScale));
               TimestampScale = std::uint64_t(*TimeScale);
@@ -294,9 +294,9 @@ int main(int argc, char **argv)
             if (UpperElementLevel < 0) {
               UpperElementLevel = 0;
             }
-            if (EbmlId(*ElementLevel2) == EBML_ID(KaxClusterTimecode)) {
+            if (EbmlId(*ElementLevel2) == EBML_ID(KaxClusterTimestamp)) {
               printf("Cluster timestamp found\n");
-              KaxClusterTimecode & ClusterTime = *static_cast<KaxClusterTimecode*>(ElementLevel2);
+              KaxClusterTimestamp & ClusterTime = *static_cast<KaxClusterTimestamp*>(ElementLevel2);
               ClusterTime.ReadData(aStream.I_O());
               ClusterTimestamp = std::uint32_t(ClusterTime);
               SegmentCluster->InitTimestamp(ClusterTimestamp, TimestampScale);

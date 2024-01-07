@@ -11,28 +11,51 @@
 #include <ebml/EbmlVersion.h>
 #include <ebml/EbmlElement.h>
 
+namespace libmatroska {
+
+class MATROSKA_DLL_API MatroskaProfile : public libebml::EbmlDocVersion
+{
+public:
+    constexpr MatroskaProfile(bool webm, bool divx, num_version min, num_version max = ANY_VERSION)
+        :EbmlDocVersion(min, max)
+        ,InWebM(webm)
+        ,InDivX(divx)
+    {}
+
+    const bool InWebM;
+    const bool InDivX;
+};
+
+}
+
 #define DEFINE_MKX_CONTEXT(a)                DEFINE_xxx_CONTEXT(a,GetKaxGlobal_Context)
-#define DEFINE_MKX_MASTER_CONS(a,b,c,d,i,e)  DEFINE_xxx_MASTER_CONS(a,b,c,d,i,e,GetKaxGlobal_Context)
-#define DEFINE_MKX_MASTER(a,b,c,d,i,e)       DEFINE_xxx_MASTER(a,b,c,d,i,e,GetKaxGlobal_Context)
-#define DEFINE_MKX_MASTER_ORPHAN(a,b,c,i,d)  DEFINE_xxx_MASTER_ORPHAN(a,b,c,i,d,GetKaxGlobal_Context)
-#define DEFINE_MKX_UINTEGER_DEF(a,b,c,d,e,v) DEFINE_xxx_UINTEGER_DEF(a,b,c,d,e,GetKaxGlobal_Context,v)
-#define DEFINE_MKX_SINTEGER_DEF(a,b,c,d,e,v) DEFINE_xxx_SINTEGER_DEF(a,b,c,d,e,GetKaxGlobal_Context,v)
-#define DEFINE_MKX_UINTEGER(a,b,c,d,e)       DEFINE_xxx_UINTEGER(a,b,c,d,e,GetKaxGlobal_Context)
-#define DEFINE_MKX_SINTEGER(a,b,c,d,e)       DEFINE_xxx_SINTEGER(a,b,c,d,e,GetKaxGlobal_Context)
-#define DEFINE_MKX_STRING_DEF(a,b,c,d,e,v)   DEFINE_xxx_STRING_DEF(a,b,c,d,e,GetKaxGlobal_Context,v)
-#define DEFINE_MKX_STRING(a,b,c,d,e)         DEFINE_xxx_STRING(a,b,c,d,e,GetKaxGlobal_Context)
-#define DEFINE_MKX_UNISTRING(a,b,c,d,e)      DEFINE_xxx_UNISTRING(a,b,c,d,e,GetKaxGlobal_Context)
-#define DEFINE_MKX_BINARY(a,b,c,d,e)         DEFINE_xxx_BINARY(a,b,c,d,e,GetKaxGlobal_Context)
-#define DEFINE_MKX_FLOAT_DEF(a,b,c,d,e,v)    DEFINE_xxx_FLOAT_DEF(a,b,c,d,e,GetKaxGlobal_Context,v)
-#define DEFINE_MKX_FLOAT(a,b,c,d,e)          DEFINE_xxx_FLOAT(a,b,c,d,e,GetKaxGlobal_Context)
-#define DEFINE_MKX_DATE(a,b,c,d,e)           DEFINE_xxx_DATE(a,b,c,d,e,GetKaxGlobal_Context)
-#define DEFINE_MKX_BINARY_CONS(a,b,c,d,e)    DEFINE_xxx_CLASS_CONS(a,b,c,d,e,GetKaxGlobal_Context) \
-    const libebml::EbmlCallbacks a::ClassInfos(a::Create, Id_##a, false, e, Context_##a);
-#define DEFINE_MKX_SINTEGER_CONS(a,b,c,d,e)  DEFINE_xxx_CLASS_CONS(a,b,c,d,e,GetKaxGlobal_Context) \
-    const libebml::EbmlCallbacksDefault<std::int64_t> a::ClassInfos(a::Create, Id_##a, e, Context_##a);
+
+#define DEFINE_MKX_MASTER_CONS(a,b,c,d,i,e,versions)  DEFINE_xxx_MASTER_CONS(a,b,c,d,i,e,versions,GetKaxGlobal_Context)
+#define DEFINE_MKX_MASTER(a,b,c,d,i,e,versions)       DEFINE_xxx_MASTER(a,b,c,d,i,e,versions,GetKaxGlobal_Context)
+#define DEFINE_MKX_MASTER_ORPHAN(a,b,c,i,d,versions)  DEFINE_xxx_MASTER_ORPHAN(a,b,c,i,d,versions,GetKaxGlobal_Context)
+#define DEFINE_MKX_UINTEGER_DEF(a,b,c,d,e,versions,v) DEFINE_xxx_UINTEGER_DEF(a,b,c,d,e,versions,GetKaxGlobal_Context,v)
+#define DEFINE_MKX_SINTEGER_DEF(a,b,c,d,e,versions,v) DEFINE_xxx_SINTEGER_DEF(a,b,c,d,e,versions,GetKaxGlobal_Context,v)
+#define DEFINE_MKX_UINTEGER(a,b,c,d,e,versions)       DEFINE_xxx_UINTEGER(a,b,c,d,e,versions,GetKaxGlobal_Context)
+#define DEFINE_MKX_SINTEGER(a,b,c,d,e,versions)       DEFINE_xxx_SINTEGER(a,b,c,d,e,versions,GetKaxGlobal_Context)
+#define DEFINE_MKX_STRING_DEF(a,b,c,d,e,versions,v)   DEFINE_xxx_STRING_DEF(a,b,c,d,e,versions,GetKaxGlobal_Context,v)
+#define DEFINE_MKX_STRING(a,b,c,d,e,versions)         DEFINE_xxx_STRING(a,b,c,d,e,versions,GetKaxGlobal_Context)
+#define DEFINE_MKX_UNISTRING(a,b,c,d,e,versions)      DEFINE_xxx_UNISTRING(a,b,c,d,e,versions,GetKaxGlobal_Context)
+#define DEFINE_MKX_BINARY(a,b,c,d,e,versions)         DEFINE_xxx_BINARY(a,b,c,d,e,versions,GetKaxGlobal_Context)
+#define DEFINE_MKX_FLOAT_DEF(a,b,c,d,e,versions,v)    DEFINE_xxx_FLOAT_DEF(a,b,c,d,e,versions,GetKaxGlobal_Context,v)
+#define DEFINE_MKX_FLOAT(a,b,c,d,e,versions)          DEFINE_xxx_FLOAT(a,b,c,d,e,versions,GetKaxGlobal_Context)
+#define DEFINE_MKX_DATE(a,b,c,d,e,versions)           DEFINE_xxx_DATE(a,b,c,d,e,versions,GetKaxGlobal_Context)
+#define DEFINE_MKX_BINARY_CONS(a,b,c,d,e,versions)    DEFINE_xxx_CLASS_CONS(a,b,c,d,e,GetKaxGlobal_Context) \
+    const libebml::EbmlCallbacks a::ClassInfos(a::Create, Id_##a, false, e, Context_##a, versions);
+#define DEFINE_MKX_SINTEGER_CONS(a,b,c,d,e,versions)  DEFINE_xxx_CLASS_CONS(a,b,c,d,e,GetKaxGlobal_Context) \
+    const libebml::EbmlCallbacksDefault<std::int64_t> a::ClassInfos(a::Create, Id_##a, e, Context_##a, versions);
 
 #define MATROSKA_CLASS_BODY(x) \
-    EBML_CONCRETE_CLASS(x)
+    EBML_CONCRETE_CLASS(x) \
+    bool CanWrite(ShouldWrite & writeFilter) const override {                          \
+      if (ElementSpec().GetVersions().minver == libebml::EbmlDocVersion::ANY_VERSION); \
+        return false;                                                                  \
+      return EbmlElement::CanWrite(writeFilter);                                       \
+    }
 
 #define DECLARE_MKX_MASTER(x)   \
     DECLARE_xxx_MASTER(x, MATROSKA_DLL_API) \

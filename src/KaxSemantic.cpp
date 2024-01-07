@@ -82,7 +82,7 @@ DEFINE_MKX_MASTER(KaxChapterTranslate, 0x6924, 2, KaxInfo, false, "ChapterTransl
 DEFINE_MKX_BINARY (KaxChapterTranslateID, 0x69A5, 2, KaxChapterTranslate, "ChapterTranslateID")
 DEFINE_MKX_UINTEGER(KaxChapterTranslateCodec, 0x69BF, 2, KaxChapterTranslate, "ChapterTranslateCodec")
 DEFINE_MKX_UINTEGER(KaxChapterTranslateEditionUID, 0x69FC, 2, KaxChapterTranslate, "ChapterTranslateEditionUID")
-DEFINE_MKX_UINTEGER_DEF(KaxTimestampScale, 0x2AD7B1, 3, KaxInfo, "TimecodeScale", 1000000)
+DEFINE_MKX_UINTEGER_DEF(KaxTimestampScale, 0x2AD7B1, 3, KaxInfo, "TimestampScale", 1000000)
 DEFINE_MKX_FLOAT(KaxDuration, 0x4489, 2, KaxInfo, "Duration")
 DEFINE_MKX_DATE    (KaxDateUTC, 0x4461, 2, KaxInfo, "DateUTC")
 DEFINE_MKX_UNISTRING(KaxTitle, 0x7BA9, 2, KaxInfo, "Title")
@@ -100,7 +100,7 @@ DEFINE_SEMANTIC_ITEM(false, false, KaxEncryptedBlock) // not supported
 DEFINE_END_SEMANTIC(KaxCluster)
 
 DEFINE_MKX_MASTER_CONS(KaxCluster, 0x1F43B675, 4, KaxSegment, true, "Cluster")
-DEFINE_MKX_UINTEGER(KaxClusterTimestamp, 0xE7, 1, KaxCluster, "ClusterTimecode")
+DEFINE_MKX_UINTEGER(KaxClusterTimestamp, 0xE7, 1, KaxCluster, "ClusterTimestamp")
 
 DEFINE_START_SEMANTIC(KaxClusterSilentTracks)
 DEFINE_SEMANTIC_ITEM(false, false, KaxClusterSilentTrackNumber) // not supported
@@ -179,7 +179,7 @@ DEFINE_END_SEMANTIC(KaxReferenceFrame)
 
 DEFINE_MKX_MASTER(KaxReferenceFrame, 0xC8, 1, KaxBlockGroup, false, "ReferenceFrame")
 DEFINE_MKX_UINTEGER(KaxReferenceOffset, 0xC9, 1, KaxReferenceFrame, "ReferenceOffset")
-DEFINE_MKX_UINTEGER(KaxReferenceTimestamp, 0xCA, 1, KaxReferenceFrame, "ReferenceTimeCode")
+DEFINE_MKX_UINTEGER(KaxReferenceTimestamp, 0xCA, 1, KaxReferenceFrame, "ReferenceTimestamp")
 DEFINE_MKX_BINARY (KaxEncryptedBlock, 0xAF, 1, KaxCluster, "EncryptedBlock")
 
 DEFINE_START_SEMANTIC(KaxTracks)
@@ -252,7 +252,7 @@ DEFINE_MKX_UINTEGER_DEF(KaxTrackMinCache, 0x6DE7, 2, KaxTrackEntry, "TrackMinCac
 DEFINE_MKX_UINTEGER(KaxTrackMaxCache, 0x6DF8, 2, KaxTrackEntry, "TrackMaxCache")
 DEFINE_MKX_UINTEGER(KaxTrackDefaultDuration, 0x23E383, 3, KaxTrackEntry, "TrackDefaultDuration")
 DEFINE_MKX_UINTEGER(KaxTrackDefaultDecodedFieldDuration, 0x234E7A, 3, KaxTrackEntry, "TrackDefaultDecodedFieldDuration")
-DEFINE_MKX_FLOAT_DEF(KaxTrackTimestampScale, 0x23314F, 3, KaxTrackEntry, "TrackTimecodeScale", 1)
+DEFINE_MKX_FLOAT_DEF(KaxTrackTimestampScale, 0x23314F, 3, KaxTrackEntry, "TrackTimestampScale", 1)
 DEFINE_MKX_SINTEGER_DEF(KaxTrackOffset, 0x537F, 2, KaxTrackEntry, "TrackOffset", 0)
 DEFINE_MKX_UINTEGER_DEF(KaxMaxBlockAdditionID, 0x55EE, 2, KaxTrackEntry, "MaxBlockAdditionID", 0)
 

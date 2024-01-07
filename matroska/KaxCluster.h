@@ -97,12 +97,6 @@ DECLARE_MKX_MASTER_CONS(KaxCluster)
       return TimestampScale;
     }
 
-    bool SetSilentTrackUsed()
-    {
-      bSilentTracksUsed = true;
-      return FindFirstElt(EBML_INFO(KaxClusterSilentTracks), true) != nullptr;
-    }
-
     bool AddBlockBlob(KaxBlockBlob * NewBlob);
 
     const KaxSegment *GetParentSegment() const { return ParentSegment; }
@@ -119,7 +113,6 @@ DECLARE_MKX_MASTER_CONS(KaxCluster)
     bool   bFirstFrameInside{false}; // used to speed research
     bool   bPreviousTimestampIsSet{false};
     bool   bTimestampScaleIsSet{false};
-    bool   bSilentTracksUsed{false};
 
     /*!
       \note method used internally

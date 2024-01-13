@@ -185,7 +185,10 @@ class MATROSKA_DLL_API KaxInternalBlock : public libebml::EbmlBinary {
     {}
     KaxInternalBlock(const KaxInternalBlock & ElementToClone);
     ~KaxInternalBlock() override;
-    bool ValidateSize() const override;
+    bool SizeIsValid(std::uint64_t size) const override
+    {
+      return size >= 4; /// for the moment
+    }
 
     std::uint16_t TrackNum() const {return TrackNumber;}
     /*!

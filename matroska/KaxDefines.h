@@ -54,6 +54,12 @@
     x(const x & ElementToClone); \
     MATROSKA_CLASS_BODY(x)
 
+#define DECLARE_MKX_BINARY_LENGTH(x,len)   \
+    DECLARE_xxx_BINARY(x, MATROSKA_DLL_API) \
+    x(const x & ElementToClone) :libebml::EbmlBinary(ElementToClone) {} \
+    bool ValidateSize() const override {return GetSize() == len;} \
+    MATROSKA_CLASS_BODY(x)
+
 #define DECLARE_MKX_UNISTRING(x) \
     DECLARE_xxx_UNISTRING(x, MATROSKA_DLL_API) \
     x(const x & ElementToClone) :libebml::EbmlUnicodeString(ElementToClone) {} \

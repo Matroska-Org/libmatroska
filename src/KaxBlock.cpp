@@ -42,11 +42,6 @@ SimpleDataBuffer::SimpleDataBuffer(const SimpleDataBuffer & ToClone)
   bValidValue = ToClone.bValidValue;
 }
 
-bool KaxInternalBlock::ValidateSize() const
-{
-  return (GetSize() >= 4); /// for the moment
-}
-
 KaxInternalBlock::~KaxInternalBlock()
 {
   ReleaseFrames();

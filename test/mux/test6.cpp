@@ -20,7 +20,6 @@
 
 #include <ebml/StdIOCallback.h>
 #include <ebml/EbmlHead.h>
-#include <ebml/EbmlSubHead.h>
 #include <ebml/EbmlVoid.h>
 
 #include <iostream>

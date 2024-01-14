@@ -17,7 +17,6 @@
 #include <matroska/KaxVersion.h>
 
 #include <ebml/EbmlHead.h>
-#include <ebml/EbmlSubHead.h>
 #include <ebml/EbmlVersion.h>
 #include <ebml/EbmlVoid.h>
 #include <ebml/StdIOCallback.h>

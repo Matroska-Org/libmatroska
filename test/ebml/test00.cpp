@@ -14,7 +14,6 @@
 
 #include <ebml/StdIOCallback.h>
 #include <ebml/EbmlHead.h>
-#include <ebml/EbmlSubHead.h>
 #include <ebml/EbmlStream.h>
 #include <ebml/EbmlVoid.h>
 #include <ebml/EbmlContexts.h>

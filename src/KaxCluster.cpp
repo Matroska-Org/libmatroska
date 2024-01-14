@@ -17,7 +17,7 @@ using namespace libebml;
 namespace libmatroska {
 
 KaxCluster::KaxCluster()
-  :EbmlMaster(KaxCluster::ClassInfos, EBML_CLASS_SEMCONTEXT(KaxCluster))
+  :EbmlMaster(KaxCluster::ClassInfos)
 {}
 
 KaxCluster::KaxCluster(const KaxCluster & ElementToClone)

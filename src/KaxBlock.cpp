@@ -68,7 +68,7 @@ KaxInternalBlock::KaxInternalBlock(const KaxInternalBlock & ElementToClone)
 } */
 
 KaxBlockGroup::KaxBlockGroup()
-  :EbmlMaster(KaxBlockGroup::ClassInfos, EBML_CLASS_SEMCONTEXT(KaxBlockGroup))
+  :EbmlMaster(KaxBlockGroup::ClassInfos)
 {}
 
 static constexpr std::int64_t SignedVINT_Shift1 = (1 << ((7*1) - 1)) - 1;

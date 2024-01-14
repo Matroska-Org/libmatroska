@@ -239,7 +239,7 @@ DEFINE_SEMANTIC_ITEM(false, true, KaxTrickMasterTrackSegmentUID)
 DEFINE_SEMANTIC_ITEM(false, true, KaxContentEncodings)
 DEFINE_END_SEMANTIC(KaxTrackEntry)
 
-DEFINE_MKX_MASTER_CONS(KaxTrackEntry, 0xAE, 1, KaxTracks, false, "TrackEntry", VERSION_ALL_MATROSKA)
+DEFINE_MKX_MASTER(KaxTrackEntry, 0xAE, 1, KaxTracks, false, "TrackEntry", VERSION_ALL_MATROSKA)
 DEFINE_MKX_UINTEGER(KaxTrackNumber, 0xD7, 1, KaxTrackEntry, "TrackNumber", VERSION_ALL_MATROSKA)
 DEFINE_MKX_UINTEGER(KaxTrackUID, 0x73C5, 2, KaxTrackEntry, "TrackUID", VERSION_ALL_MATROSKA)
 DEFINE_MKX_UINTEGER(KaxTrackType, 0x83, 1, KaxTrackEntry, "TrackType", VERSION_ALL_MATROSKA)

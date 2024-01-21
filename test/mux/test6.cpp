@@ -7,10 +7,6 @@
     \author Steve Lhomme     <robux4 @ users.sf.net>
 */
 
-#ifdef _MSC_VER
-#include <windows.h>      // for min/max
-#endif // _MSC_VER
-
 #include "matroska/FileKax.h"
 #include "matroska/KaxSegment.h"
 #include "matroska/KaxTracks.h"

@@ -249,6 +249,11 @@ class MATROSKA_DLL_API KaxInternalBlock : public libebml::EbmlBinary {
      */
     std::int16_t GetRelativeTimestamp() const { return LocalTimestamp; }
 
+    /*!
+     * \return the lacing type read or used for writing
+     */
+    LacingType GetCurrentLacing() const { return mLacing; }
+
   protected:
     std::vector<DataBuffer *> myBuffers;
     std::vector<std::int32_t> SizeList;

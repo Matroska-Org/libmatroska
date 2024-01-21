@@ -350,9 +350,10 @@ filepos_t KaxInternalBlock::RenderData(IOCallback & output, bool /* bForceRender
     *cursor = 0x08;
 
   if (bIsSimple) {
-    if (bIsKeyframe)
+    auto *s = reinterpret_cast<const KaxSimpleBlock*>(this);
+    if (s->IsKeyframe())
       *cursor |= 0x80;
-    if (bIsDiscardable)
+    if (s->IsDiscardable())
       *cursor |= 0x01;
   }
 
@@ -517,8 +518,9 @@ filepos_t KaxInternalBlock::ReadData(IOCallback & input, ScopeMode ReadFully)
 
       const std::uint8_t Flags = Mem.GetUInt8();
       if (EbmlId(*this) == EBML_ID(KaxSimpleBlock)) {
-        bIsKeyframe = (Flags & 0x80) != 0;
-        bIsDiscardable = (Flags & 0x01) != 0;
+        auto *s = reinterpret_cast<KaxSimpleBlock*>(this);
+        s->SetKeyframe( (Flags & 0x80) != 0 );
+        s->SetDiscardable( (Flags & 0x01) != 0 );
       }
       mInvisible = (Flags & 0x08) >> 3;
       mLacing = static_cast<LacingType>((Flags & 0x06) >> 1);
@@ -642,8 +644,9 @@ filepos_t KaxInternalBlock::ReadData(IOCallback & input, ScopeMode ReadFully)
       cursor += 2;
 
       if (EbmlId(*this) == EBML_ID(KaxSimpleBlock)) {
-        bIsKeyframe = (*cursor & 0x80) != 0;
-        bIsDiscardable = (*cursor & 0x01) != 0;
+        auto *s = reinterpret_cast<KaxSimpleBlock*>(this);
+        s->SetKeyframe( (*cursor & 0x80) != 0 );
+        s->SetDiscardable( (*cursor & 0x01) != 0 );
       }
       mInvisible = (*cursor & 0x08) >> 3;
       mLacing = static_cast<LacingType>((*cursor++ & 0x06) >> 1);

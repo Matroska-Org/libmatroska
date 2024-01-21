@@ -349,7 +349,7 @@ filepos_t KaxInternalBlock::RenderData(IOCallback & output, bool /* bForceRender
   if (mInvisible)
     *cursor = 0x08;
 
-  if (bIsSimple) {
+  if (EbmlId(*this) == EBML_ID(KaxSimpleBlock)) {
     auto *s = reinterpret_cast<const KaxSimpleBlock*>(this);
     if (s->IsKeyframe())
       *cursor |= 0x80;

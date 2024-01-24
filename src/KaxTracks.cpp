@@ -15,10 +15,6 @@ using namespace libebml;
 
 namespace libmatroska {
 
-KaxTrackEntry::KaxTrackEntry()
-  :EbmlMaster(KaxTrackEntry::ClassInfos, EBML_CLASS_SEMCONTEXT(KaxTrackEntry))
-{}
-
 void KaxTrackEntry::EnableLacing(bool bEnable)
 {
   auto & myLacing = GetChild<KaxTrackFlagLacing>(*this);

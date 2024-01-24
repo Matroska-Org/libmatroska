@@ -179,9 +179,8 @@ DECLARE_MKX_MASTER(KaxBlockGroup)
 
 class MATROSKA_DLL_API KaxInternalBlock : public libebml::EbmlBinary {
   public:
-    KaxInternalBlock(const libebml::EbmlCallbacks & classInfo, bool bSimple)
-      :libebml::EbmlBinary(classInfo),
-      bIsSimple(bSimple)
+    KaxInternalBlock(const libebml::EbmlCallbacks & classInfo)
+      :libebml::EbmlBinary(classInfo)
     {}
     KaxInternalBlock(const KaxInternalBlock & ElementToClone);
     ~KaxInternalBlock() override;
@@ -266,9 +265,6 @@ class MATROSKA_DLL_API KaxInternalBlock : public libebml::EbmlBinary {
     std::uint64_t             FirstFrameLocation;
 
     KaxCluster               *ParentCluster{nullptr};
-    bool                      bIsSimple;
-    bool                      bIsKeyframe{true};
-    bool                      bIsDiscardable{false};
 
     libebml::filepos_t RenderData(libebml::IOCallback & output, bool bForceRender, ShouldWrite writeFilter = WriteSkipDefault) override;
 };
@@ -277,15 +273,17 @@ class MATROSKA_DLL_API KaxBlock : public KaxInternalBlock {
   private:
     static const libebml::EbmlCallbacks ClassInfos;
   public:
-    KaxBlock() :KaxInternalBlock(KaxBlock::ClassInfos, false) {}
+    KaxBlock() :KaxInternalBlock(KaxBlock::ClassInfos) {}
     MATROSKA_CLASS_BODY(KaxBlock)
 };
 
 class MATROSKA_DLL_API KaxSimpleBlock : public KaxInternalBlock {
   private:
     static const libebml::EbmlCallbacks ClassInfos;
+    bool                      bIsKeyframe{true};
+    bool                      bIsDiscardable{false};
   public:
-    KaxSimpleBlock() :KaxInternalBlock(KaxSimpleBlock::ClassInfos, true) {}
+    KaxSimpleBlock() :KaxInternalBlock(KaxSimpleBlock::ClassInfos) {}
 
     void SetKeyframe(bool b_keyframe) { bIsKeyframe = b_keyframe; }
     void SetDiscardable(bool b_discard) { bIsDiscardable = b_discard; }

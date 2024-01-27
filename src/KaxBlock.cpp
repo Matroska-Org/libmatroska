@@ -349,7 +349,7 @@ filepos_t KaxInternalBlock::RenderData(IOCallback & output, bool /* bForceRender
   if (mInvisible)
     *cursor = 0x08;
 
-  if (EbmlId(*this) == EBML_ID(KaxSimpleBlock)) {
+  if ((const EbmlId&)(*this) == EBML_ID(KaxSimpleBlock)) {
     auto *s = reinterpret_cast<const KaxSimpleBlock*>(this);
     if (s->IsKeyframe())
       *cursor |= 0x80;
@@ -517,7 +517,7 @@ filepos_t KaxInternalBlock::ReadData(IOCallback & input, ScopeMode ReadFully)
       bLocalTimestampUsed = true;
 
       const std::uint8_t Flags = Mem.GetUInt8();
-      if (EbmlId(*this) == EBML_ID(KaxSimpleBlock)) {
+      if ((const EbmlId&)(*this) == EBML_ID(KaxSimpleBlock)) {
         auto *s = reinterpret_cast<KaxSimpleBlock*>(this);
         s->SetKeyframe( (Flags & 0x80) != 0 );
         s->SetDiscardable( (Flags & 0x01) != 0 );
@@ -643,7 +643,7 @@ filepos_t KaxInternalBlock::ReadData(IOCallback & input, ScopeMode ReadFully)
       bLocalTimestampUsed = true;
       cursor += 2;
 
-      if (EbmlId(*this) == EBML_ID(KaxSimpleBlock)) {
+      if ((const EbmlId&)(*this) == EBML_ID(KaxSimpleBlock)) {
         auto *s = reinterpret_cast<KaxSimpleBlock*>(this);
         s->SetKeyframe( (*cursor & 0x80) != 0 );
         s->SetDiscardable( (*cursor & 0x01) != 0 );

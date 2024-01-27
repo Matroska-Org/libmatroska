@@ -283,7 +283,7 @@ DEFINE_MKX_UNISTRING(KaxCodecSettings, 0x3A9697, 3, KaxTrackEntry, "CodecSetting
 DEFINE_MKX_STRING(KaxCodecInfoURL, 0x3B4040, 3, KaxTrackEntry, "CodecInfoURL", VERSION_DEPRECATED)
 DEFINE_MKX_STRING(KaxCodecDownloadURL, 0x26B240, 3, KaxTrackEntry, "CodecDownloadURL", VERSION_DEPRECATED)
 DEFINE_MKX_UINTEGER_DEF(KaxCodecDecodeAll, 0xAA, 1, KaxTrackEntry, "CodecDecodeAll", VERSION_DEPRECATED, 1)
-DEFINE_MKX_UINTEGER(KaxTrackOverlay, 0x6FAB, 2, KaxTrackEntry, "TrackOverlay", MatroskaProfile(false, false, 0))
+DEFINE_MKX_UINTEGER(KaxTrackOverlay, 0x6FAB, 2, KaxTrackEntry, "TrackOverlay", VERSION_DEPRECATED)
 DEFINE_MKX_UINTEGER_DEF(KaxCodecDelay, 0x56AA, 2, KaxTrackEntry, "CodecDelay", MatroskaProfile(true, false, 4), 0)
 DEFINE_MKX_UINTEGER_DEF(KaxSeekPreRoll, 0x56BB, 2, KaxTrackEntry, "SeekPreRoll", MatroskaProfile(true, false, 4), 0)
 
@@ -853,6 +853,11 @@ libebml::filepos_t KaxCodecDownloadURL::RenderData(libebml::IOCallback & /* outp
 }
 
 libebml::filepos_t KaxCodecDecodeAll::RenderData(libebml::IOCallback & /* output */, bool /* bForceRender */, ShouldWrite /* writeFilter */) {
+  assert(false); // no you are not allowed to use this element !
+  return 0;
+}
+
+libebml::filepos_t KaxTrackOverlay::RenderData(libebml::IOCallback & /* output */, bool /* bForceRender */, ShouldWrite /* writeFilter */) {
   assert(false); // no you are not allowed to use this element !
   return 0;
 }

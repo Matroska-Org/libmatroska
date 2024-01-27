@@ -312,6 +312,8 @@ public:
 };
 
 DECLARE_MKX_UINTEGER(KaxTrackOverlay)
+public:
+  libebml::filepos_t RenderData(libebml::IOCallback & output, bool bForceRender, ShouldWrite writeFilter) override;
 };
 
 DECLARE_MKX_UINTEGER_DEF(KaxCodecDelay)
@@ -970,7 +972,7 @@ typedef enum {
 
 /**
  *The Matrix Coefficients of the video used to derive luma and chroma values from red, green, and blue color primaries.
-For clarity, the value and meanings for MatrixCoefficients are adopted from Table 4 of ISO/IEC 23001-8:2016 or ITU-T H.273.
+For clarity, the value and meanings for MatrixCoefficients are adopted from Table 4 of ITU-H.273.
  */
 typedef enum {
   MATROSKA_VIDEO_MATRIXCOEFFICIENTS_IDENTITY         = 0,
@@ -1020,7 +1022,7 @@ typedef enum {
 
 /**
  *The transfer characteristics of the video. For clarity,
-the value and meanings for TransferCharacteristics are adopted from Table 3 of ISO/IEC 23091-4 or ITU-T H.273.
+the value and meanings for TransferCharacteristics are adopted from Table 3 of ITU-H.273.
  */
 typedef enum {
   MATROSKA_TRANSFER_RESERVED         = 0,
@@ -1046,7 +1048,7 @@ typedef enum {
 
 /**
  *The colour primaries of the video. For clarity,
-the value and meanings for Primaries are adopted from Table 2 of ISO/IEC 23091-4 or ITU-T H.273.
+the value and meanings for Primaries are adopted from Table 2 of ITU-H.273.
  */
 typedef enum {
   MATROSKA_VIDEO_PRIMARIES_RESERVED         = 0,
@@ -1109,7 +1111,7 @@ Values (big-endian) can be OR'ed.
  */
 typedef enum {
   MATROSKA_CONTENTENCODINGSCOPE_BLOCK            = 1, // All frame contents, excluding lacing data.
-  MATROSKA_CONTENTENCODINGSCOPE_PRIVATE          = 2, // The track's private data.
+  MATROSKA_CONTENTENCODINGSCOPE_PRIVATE          = 2, // The track's `CodecPrivate` data.
   MATROSKA_CONTENTENCODINGSCOPE_NEXT             = 4, // The next ContentEncoding (next `ContentEncodingOrder`. Either the data inside `ContentCompression` and/or `ContentEncryption`).
 } MatroskaContentEncodingScope;
 
@@ -1192,7 +1194,7 @@ typedef enum {
   MATROSKA_TARGET_TYPE_ALBUM            = 50, // The most common grouping level of music and video (equals to an episode for TV series).
   MATROSKA_TARGET_TYPE_PART             = 40, // When an album or episode has different logical parts.
   MATROSKA_TARGET_TYPE_TRACK            = 30, // The common parts of an album or movie.
-  MATROSKA_TARGET_TYPE_SUBTRACK         = 20, // Corresponds to parts of a track for audio (like a movement).
+  MATROSKA_TARGET_TYPE_SUBTRACK         = 20, // Corresponds to parts of a track for audio like a movement, or a scene in a movie.
   MATROSKA_TARGET_TYPE_SHOT             = 10, // The lowest hierarchy found in music or movies.
 } MatroskaTargetTypeValue;
 

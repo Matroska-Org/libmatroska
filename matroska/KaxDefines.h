@@ -45,7 +45,7 @@ public:
 #define DEFINE_MKX_FLOAT(a,b,d,e,versions)          DEFINE_xxx_FLOAT(a,b,d,e,versions,GetKaxGlobal_Context)
 #define DEFINE_MKX_DATE(a,b,d,e,versions)           DEFINE_xxx_DATE(a,b,d,e,versions,GetKaxGlobal_Context)
 #define DEFINE_MKX_BINARY_CONS(a,b,d,e,versions)    DEFINE_xxx_CLASS_CONS(a,b,d,e,GetKaxGlobal_Context) \
-    const libebml::EbmlCallbacks a::ClassInfos(a::Create, Id_##a, false, e, Context_##a, versions);
+    constexpr const libebml::EbmlCallbacks a::ClassInfos(a::Create, Id_##a, false, false, e, Context_##a, versions);
 #define DEFINE_MKX_SINTEGER_CONS(a,b,d,e,versions)  DEFINE_xxx_CLASS_CONS(a,b,d,e,GetKaxGlobal_Context) \
     const libebml::EbmlCallbacksDefault<std::int64_t> a::ClassInfos(a::Create, Id_##a, e, Context_##a, versions);
 

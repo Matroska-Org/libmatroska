@@ -11,7 +11,7 @@ a C++ library to parse and create Matroska files
 ## Building and installing the library
 
 libmatroska is based on `cmake`. It requires a C++ compiler compatible
-with the C++14 standard as well as
+with the C++17 standard as well as
 [libebml](https://github.com/Matroska-Org/libebml). This means that
 the normal build process consists of the usual steps:
 

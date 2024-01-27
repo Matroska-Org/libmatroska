@@ -30,23 +30,23 @@ public:
 
 #define DEFINE_MKX_CONTEXT(a)                DEFINE_xxx_CONTEXT(a,GetKaxGlobal_Context)
 
-#define DEFINE_MKX_MASTER_CONS(a,b,c,d,i,e,versions)  DEFINE_xxx_MASTER_CONS(a,b,c,d,i,e,versions,GetKaxGlobal_Context)
-#define DEFINE_MKX_MASTER(a,b,c,d,i,e,versions)       DEFINE_xxx_MASTER(a,b,c,d,i,e,versions,GetKaxGlobal_Context)
-#define DEFINE_MKX_MASTER_ORPHAN(a,b,c,i,d,versions)  DEFINE_xxx_MASTER_ORPHAN(a,b,c,i,d,versions,GetKaxGlobal_Context)
-#define DEFINE_MKX_UINTEGER_DEF(a,b,c,d,e,versions,v) DEFINE_xxx_UINTEGER_DEF(a,b,c,d,e,versions,GetKaxGlobal_Context,v)
-#define DEFINE_MKX_SINTEGER_DEF(a,b,c,d,e,versions,v) DEFINE_xxx_SINTEGER_DEF(a,b,c,d,e,versions,GetKaxGlobal_Context,v)
-#define DEFINE_MKX_UINTEGER(a,b,c,d,e,versions)       DEFINE_xxx_UINTEGER(a,b,c,d,e,versions,GetKaxGlobal_Context)
-#define DEFINE_MKX_SINTEGER(a,b,c,d,e,versions)       DEFINE_xxx_SINTEGER(a,b,c,d,e,versions,GetKaxGlobal_Context)
-#define DEFINE_MKX_STRING_DEF(a,b,c,d,e,versions,v)   DEFINE_xxx_STRING_DEF(a,b,c,d,e,versions,GetKaxGlobal_Context,v)
-#define DEFINE_MKX_STRING(a,b,c,d,e,versions)         DEFINE_xxx_STRING(a,b,c,d,e,versions,GetKaxGlobal_Context)
-#define DEFINE_MKX_UNISTRING(a,b,c,d,e,versions)      DEFINE_xxx_UNISTRING(a,b,c,d,e,versions,GetKaxGlobal_Context)
-#define DEFINE_MKX_BINARY(a,b,c,d,e,versions)         DEFINE_xxx_BINARY(a,b,c,d,e,versions,GetKaxGlobal_Context)
-#define DEFINE_MKX_FLOAT_DEF(a,b,c,d,e,versions,v)    DEFINE_xxx_FLOAT_DEF(a,b,c,d,e,versions,GetKaxGlobal_Context,v)
-#define DEFINE_MKX_FLOAT(a,b,c,d,e,versions)          DEFINE_xxx_FLOAT(a,b,c,d,e,versions,GetKaxGlobal_Context)
-#define DEFINE_MKX_DATE(a,b,c,d,e,versions)           DEFINE_xxx_DATE(a,b,c,d,e,versions,GetKaxGlobal_Context)
-#define DEFINE_MKX_BINARY_CONS(a,b,c,d,e,versions)    DEFINE_xxx_CLASS_CONS(a,b,c,d,e,GetKaxGlobal_Context) \
+#define DEFINE_MKX_MASTER_CONS(a,b,d,i,e,versions)  DEFINE_xxx_MASTER_CONS(a,b,d,i,e,versions,GetKaxGlobal_Context)
+#define DEFINE_MKX_MASTER(a,b,d,i,e,versions)       DEFINE_xxx_MASTER(a,b,d,i,e,versions,GetKaxGlobal_Context)
+#define DEFINE_MKX_MASTER_ORPHAN(a,b,i,d,versions)  DEFINE_xxx_MASTER_ORPHAN(a,b,i,d,versions,GetKaxGlobal_Context)
+#define DEFINE_MKX_UINTEGER_DEF(a,b,d,e,versions,v) DEFINE_xxx_UINTEGER_DEF(a,b,d,e,versions,GetKaxGlobal_Context,v)
+#define DEFINE_MKX_SINTEGER_DEF(a,b,d,e,versions,v) DEFINE_xxx_SINTEGER_DEF(a,b,d,e,versions,GetKaxGlobal_Context,v)
+#define DEFINE_MKX_UINTEGER(a,b,d,e,versions)       DEFINE_xxx_UINTEGER(a,b,d,e,versions,GetKaxGlobal_Context)
+#define DEFINE_MKX_SINTEGER(a,b,d,e,versions)       DEFINE_xxx_SINTEGER(a,b,d,e,versions,GetKaxGlobal_Context)
+#define DEFINE_MKX_STRING_DEF(a,b,d,e,versions,v)   DEFINE_xxx_STRING_DEF(a,b,d,e,versions,GetKaxGlobal_Context,v)
+#define DEFINE_MKX_STRING(a,b,d,e,versions)         DEFINE_xxx_STRING(a,b,d,e,versions,GetKaxGlobal_Context)
+#define DEFINE_MKX_UNISTRING(a,b,d,e,versions)      DEFINE_xxx_UNISTRING(a,b,d,e,versions,GetKaxGlobal_Context)
+#define DEFINE_MKX_BINARY(a,b,d,e,versions)         DEFINE_xxx_BINARY(a,b,d,e,versions,GetKaxGlobal_Context)
+#define DEFINE_MKX_FLOAT_DEF(a,b,d,e,versions,v)    DEFINE_xxx_FLOAT_DEF(a,b,d,e,versions,GetKaxGlobal_Context,v)
+#define DEFINE_MKX_FLOAT(a,b,d,e,versions)          DEFINE_xxx_FLOAT(a,b,d,e,versions,GetKaxGlobal_Context)
+#define DEFINE_MKX_DATE(a,b,d,e,versions)           DEFINE_xxx_DATE(a,b,d,e,versions,GetKaxGlobal_Context)
+#define DEFINE_MKX_BINARY_CONS(a,b,d,e,versions)    DEFINE_xxx_CLASS_CONS(a,b,d,e,GetKaxGlobal_Context) \
     const libebml::EbmlCallbacks a::ClassInfos(a::Create, Id_##a, false, e, Context_##a, versions);
-#define DEFINE_MKX_SINTEGER_CONS(a,b,c,d,e,versions)  DEFINE_xxx_CLASS_CONS(a,b,c,d,e,GetKaxGlobal_Context) \
+#define DEFINE_MKX_SINTEGER_CONS(a,b,d,e,versions)  DEFINE_xxx_CLASS_CONS(a,b,d,e,GetKaxGlobal_Context) \
     const libebml::EbmlCallbacksDefault<std::int64_t> a::ClassInfos(a::Create, Id_##a, e, Context_##a, versions);
 
 #define MATROSKA_CLASS_BODY(x) \

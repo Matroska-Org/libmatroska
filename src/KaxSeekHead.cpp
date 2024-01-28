@@ -45,7 +45,7 @@ KaxSeek * KaxSeekHead::FindFirstOf(const EbmlCallbacks & Callbacks) const
       { return (EbmlId(*Elt) == EBML_ID(KaxSeekID)); });
     if (it != aElt->end()) {
       const auto aId = static_cast<KaxSeekID*>(*it);
-      const auto aEbmlId = EbmlId(aId->GetBuffer(), aId->GetSize());
+      const auto aEbmlId = EbmlId(EbmlId::FromBuffer(aId->GetBuffer(), aId->GetSize()));
       if (aEbmlId == EBML_INFO_ID(Callbacks)) {
         return aElt;
       }
@@ -84,7 +84,7 @@ bool KaxSeek::IsEbmlId(const EbmlId & aId) const
   auto _Id = static_cast<KaxSeekID*>(FindFirstElt(EBML_INFO(KaxSeekID)));
   if (!_Id)
     return false;
-  const auto aEbmlId = EbmlId(_Id->GetBuffer(), _Id->GetSize());
+  const auto aEbmlId = EbmlId(EbmlId::FromBuffer(_Id->GetBuffer(), _Id->GetSize()));
   return (aId == aEbmlId);
 }
 
@@ -96,8 +96,8 @@ bool KaxSeek::IsEbmlId(const KaxSeek & aPoint) const
   auto _IdB = static_cast<KaxSeekID*>(aPoint.FindFirstElt(EBML_INFO(KaxSeekID)));
   if (!_IdB)
     return false;
-  const auto aEbmlIdA = EbmlId(_IdA->GetBuffer(), _IdA->GetSize());
-  const auto aEbmlIdB = EbmlId(_IdB->GetBuffer(), _IdB->GetSize());
+  const auto aEbmlIdA = EbmlId(EbmlId::FromBuffer(_IdA->GetBuffer(), _IdA->GetSize()));
+  const auto aEbmlIdB = EbmlId(EbmlId::FromBuffer(_IdB->GetBuffer(), _IdB->GetSize()));
   return aEbmlIdA == aEbmlIdB;
 }
 

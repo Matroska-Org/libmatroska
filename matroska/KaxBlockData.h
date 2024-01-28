@@ -26,7 +26,7 @@ DECLARE_MKX_SINTEGER_CONS(KaxReferenceBlock)
     /*!
       \brief override this method to compute the timestamp value
     */
-    libebml::filepos_t UpdateSize(ShouldWrite writeFilter = WriteSkipDefault, bool bForceRender = false) override;
+    libebml::filepos_t UpdateSize(const ShouldWrite & writeFilter = WriteSkipDefault, bool bForceRender = false) override;
 
     const KaxBlockBlob & RefBlock() const;
     void SetReferencedBlock(const KaxBlockBlob * aRefdBlock);

@@ -87,12 +87,12 @@ DECLARE_MKX_UINTEGER(KaxClusterTimestamp)
 
 DECLARE_MKX_MASTER(KaxClusterSilentTracks)
 public:
-  libebml::filepos_t RenderData(libebml::IOCallback & output, bool bForceRender, ShouldWrite writeFilter) override;
+  libebml::filepos_t RenderData(libebml::IOCallback & output, bool bForceRender, const ShouldWrite & writeFilter) override;
 };
 
 DECLARE_MKX_UINTEGER(KaxClusterSilentTrackNumber)
 public:
-  libebml::filepos_t RenderData(libebml::IOCallback & output, bool bForceRender, ShouldWrite writeFilter) override;
+  libebml::filepos_t RenderData(libebml::IOCallback & output, bool bForceRender, const ShouldWrite & writeFilter) override;
 };
 
 DECLARE_MKX_UINTEGER(KaxClusterPosition)
@@ -121,7 +121,7 @@ DECLARE_MKX_UINTEGER_DEF(KaxReferencePriority)
 
 DECLARE_MKX_SINTEGER(KaxReferenceVirtual)
 public:
-  libebml::filepos_t RenderData(libebml::IOCallback & output, bool bForceRender, ShouldWrite writeFilter) override;
+  libebml::filepos_t RenderData(libebml::IOCallback & output, bool bForceRender, const ShouldWrite & writeFilter) override;
 };
 
 DECLARE_MKX_BINARY(KaxCodecState)
@@ -132,57 +132,57 @@ DECLARE_MKX_SINTEGER(KaxDiscardPadding)
 
 DECLARE_MKX_MASTER(KaxSlices)
 public:
-  libebml::filepos_t RenderData(libebml::IOCallback & output, bool bForceRender, ShouldWrite writeFilter) override;
+  libebml::filepos_t RenderData(libebml::IOCallback & output, bool bForceRender, const ShouldWrite & writeFilter) override;
 };
 
 DECLARE_MKX_MASTER(KaxTimeSlice)
 public:
-  libebml::filepos_t RenderData(libebml::IOCallback & output, bool bForceRender, ShouldWrite writeFilter) override;
+  libebml::filepos_t RenderData(libebml::IOCallback & output, bool bForceRender, const ShouldWrite & writeFilter) override;
 };
 
 DECLARE_MKX_UINTEGER(KaxSliceLaceNumber)
 public:
-  libebml::filepos_t RenderData(libebml::IOCallback & output, bool bForceRender, ShouldWrite writeFilter) override;
+  libebml::filepos_t RenderData(libebml::IOCallback & output, bool bForceRender, const ShouldWrite & writeFilter) override;
 };
 
 DECLARE_MKX_UINTEGER_DEF(KaxSliceFrameNumber)
 public:
-  libebml::filepos_t RenderData(libebml::IOCallback & output, bool bForceRender, ShouldWrite writeFilter) override;
+  libebml::filepos_t RenderData(libebml::IOCallback & output, bool bForceRender, const ShouldWrite & writeFilter) override;
 };
 
 DECLARE_MKX_UINTEGER_DEF(KaxSliceBlockAddID)
 public:
-  libebml::filepos_t RenderData(libebml::IOCallback & output, bool bForceRender, ShouldWrite writeFilter) override;
+  libebml::filepos_t RenderData(libebml::IOCallback & output, bool bForceRender, const ShouldWrite & writeFilter) override;
 };
 
 DECLARE_MKX_UINTEGER_DEF(KaxSliceDelay)
 public:
-  libebml::filepos_t RenderData(libebml::IOCallback & output, bool bForceRender, ShouldWrite writeFilter) override;
+  libebml::filepos_t RenderData(libebml::IOCallback & output, bool bForceRender, const ShouldWrite & writeFilter) override;
 };
 
 DECLARE_MKX_UINTEGER_DEF(KaxSliceDuration)
 public:
-  libebml::filepos_t RenderData(libebml::IOCallback & output, bool bForceRender, ShouldWrite writeFilter) override;
+  libebml::filepos_t RenderData(libebml::IOCallback & output, bool bForceRender, const ShouldWrite & writeFilter) override;
 };
 
 DECLARE_MKX_MASTER(KaxReferenceFrame)
 public:
-  libebml::filepos_t RenderData(libebml::IOCallback & output, bool bForceRender, ShouldWrite writeFilter) override;
+  libebml::filepos_t RenderData(libebml::IOCallback & output, bool bForceRender, const ShouldWrite & writeFilter) override;
 };
 
 DECLARE_MKX_UINTEGER(KaxReferenceOffset)
 public:
-  libebml::filepos_t RenderData(libebml::IOCallback & output, bool bForceRender, ShouldWrite writeFilter) override;
+  libebml::filepos_t RenderData(libebml::IOCallback & output, bool bForceRender, const ShouldWrite & writeFilter) override;
 };
 
 DECLARE_MKX_UINTEGER(KaxReferenceTimestamp)
 public:
-  libebml::filepos_t RenderData(libebml::IOCallback & output, bool bForceRender, ShouldWrite writeFilter) override;
+  libebml::filepos_t RenderData(libebml::IOCallback & output, bool bForceRender, const ShouldWrite & writeFilter) override;
 };
 
 DECLARE_MKX_BINARY(KaxEncryptedBlock)
 public:
-  libebml::filepos_t RenderData(libebml::IOCallback & output, bool bForceRender, ShouldWrite writeFilter) override;
+  libebml::filepos_t RenderData(libebml::IOCallback & output, bool bForceRender, const ShouldWrite & writeFilter) override;
 };
 
 DECLARE_MKX_MASTER(KaxTracks)
@@ -226,12 +226,12 @@ DECLARE_MKX_UINTEGER_DEF(KaxTrackFlagLacing)
 
 DECLARE_MKX_UINTEGER_DEF(KaxTrackMinCache)
 public:
-  libebml::filepos_t RenderData(libebml::IOCallback & output, bool bForceRender, ShouldWrite writeFilter) override;
+  libebml::filepos_t RenderData(libebml::IOCallback & output, bool bForceRender, const ShouldWrite & writeFilter) override;
 };
 
 DECLARE_MKX_UINTEGER(KaxTrackMaxCache)
 public:
-  libebml::filepos_t RenderData(libebml::IOCallback & output, bool bForceRender, ShouldWrite writeFilter) override;
+  libebml::filepos_t RenderData(libebml::IOCallback & output, bool bForceRender, const ShouldWrite & writeFilter) override;
 };
 
 DECLARE_MKX_UINTEGER(KaxTrackDefaultDuration)
@@ -242,12 +242,12 @@ DECLARE_MKX_UINTEGER(KaxTrackDefaultDecodedFieldDuration)
 
 DECLARE_MKX_FLOAT_DEF(KaxTrackTimestampScale)
 public:
-  libebml::filepos_t RenderData(libebml::IOCallback & output, bool bForceRender, ShouldWrite writeFilter) override;
+  libebml::filepos_t RenderData(libebml::IOCallback & output, bool bForceRender, const ShouldWrite & writeFilter) override;
 };
 
 DECLARE_MKX_SINTEGER_DEF(KaxTrackOffset)
 public:
-  libebml::filepos_t RenderData(libebml::IOCallback & output, bool bForceRender, ShouldWrite writeFilter) override;
+  libebml::filepos_t RenderData(libebml::IOCallback & output, bool bForceRender, const ShouldWrite & writeFilter) override;
 };
 
 DECLARE_MKX_UINTEGER_DEF(KaxMaxBlockAdditionID)
@@ -288,32 +288,32 @@ DECLARE_MKX_UNISTRING(KaxCodecName)
 
 DECLARE_MKX_UINTEGER(KaxTrackAttachmentLink)
 public:
-  libebml::filepos_t RenderData(libebml::IOCallback & output, bool bForceRender, ShouldWrite writeFilter) override;
+  libebml::filepos_t RenderData(libebml::IOCallback & output, bool bForceRender, const ShouldWrite & writeFilter) override;
 };
 
 DECLARE_MKX_UNISTRING(KaxCodecSettings)
 public:
-  libebml::filepos_t RenderData(libebml::IOCallback & output, bool bForceRender, ShouldWrite writeFilter) override;
+  libebml::filepos_t RenderData(libebml::IOCallback & output, bool bForceRender, const ShouldWrite & writeFilter) override;
 };
 
 DECLARE_MKX_STRING(KaxCodecInfoURL)
 public:
-  libebml::filepos_t RenderData(libebml::IOCallback & output, bool bForceRender, ShouldWrite writeFilter) override;
+  libebml::filepos_t RenderData(libebml::IOCallback & output, bool bForceRender, const ShouldWrite & writeFilter) override;
 };
 
 DECLARE_MKX_STRING(KaxCodecDownloadURL)
 public:
-  libebml::filepos_t RenderData(libebml::IOCallback & output, bool bForceRender, ShouldWrite writeFilter) override;
+  libebml::filepos_t RenderData(libebml::IOCallback & output, bool bForceRender, const ShouldWrite & writeFilter) override;
 };
 
 DECLARE_MKX_UINTEGER_DEF(KaxCodecDecodeAll)
 public:
-  libebml::filepos_t RenderData(libebml::IOCallback & output, bool bForceRender, ShouldWrite writeFilter) override;
+  libebml::filepos_t RenderData(libebml::IOCallback & output, bool bForceRender, const ShouldWrite & writeFilter) override;
 };
 
 DECLARE_MKX_UINTEGER(KaxTrackOverlay)
 public:
-  libebml::filepos_t RenderData(libebml::IOCallback & output, bool bForceRender, ShouldWrite writeFilter) override;
+  libebml::filepos_t RenderData(libebml::IOCallback & output, bool bForceRender, const ShouldWrite & writeFilter) override;
 };
 
 DECLARE_MKX_UINTEGER_DEF(KaxCodecDelay)
@@ -351,7 +351,7 @@ DECLARE_MKX_UINTEGER_DEF(KaxVideoAlphaMode)
 
 DECLARE_MKX_UINTEGER(KaxOldStereoMode)
 public:
-  libebml::filepos_t RenderData(libebml::IOCallback & output, bool bForceRender, ShouldWrite writeFilter) override;
+  libebml::filepos_t RenderData(libebml::IOCallback & output, bool bForceRender, const ShouldWrite & writeFilter) override;
 };
 
 DECLARE_MKX_UINTEGER(KaxVideoPixelWidth)
@@ -383,7 +383,7 @@ DECLARE_MKX_UINTEGER_DEF(KaxVideoDisplayUnit)
 
 DECLARE_MKX_UINTEGER_DEF(KaxVideoAspectRatio)
 public:
-  libebml::filepos_t RenderData(libebml::IOCallback & output, bool bForceRender, ShouldWrite writeFilter) override;
+  libebml::filepos_t RenderData(libebml::IOCallback & output, bool bForceRender, const ShouldWrite & writeFilter) override;
 };
 
 DECLARE_MKX_BINARY_LENGTH(KaxVideoColourSpace, 4)
@@ -391,12 +391,12 @@ DECLARE_MKX_BINARY_LENGTH(KaxVideoColourSpace, 4)
 
 DECLARE_MKX_FLOAT(KaxVideoGamma)
 public:
-  libebml::filepos_t RenderData(libebml::IOCallback & output, bool bForceRender, ShouldWrite writeFilter) override;
+  libebml::filepos_t RenderData(libebml::IOCallback & output, bool bForceRender, const ShouldWrite & writeFilter) override;
 };
 
 DECLARE_MKX_FLOAT(KaxVideoFrameRate)
 public:
-  libebml::filepos_t RenderData(libebml::IOCallback & output, bool bForceRender, ShouldWrite writeFilter) override;
+  libebml::filepos_t RenderData(libebml::IOCallback & output, bool bForceRender, const ShouldWrite & writeFilter) override;
 };
 
 DECLARE_MKX_MASTER(KaxVideoColour)
@@ -506,7 +506,7 @@ DECLARE_MKX_UINTEGER_DEF(KaxAudioChannels)
 
 DECLARE_MKX_BINARY(KaxAudioPosition)
 public:
-  libebml::filepos_t RenderData(libebml::IOCallback & output, bool bForceRender, ShouldWrite writeFilter) override;
+  libebml::filepos_t RenderData(libebml::IOCallback & output, bool bForceRender, const ShouldWrite & writeFilter) override;
 };
 
 DECLARE_MKX_UINTEGER(KaxAudioBitDepth)
@@ -538,27 +538,27 @@ DECLARE_MKX_UINTEGER(KaxTrackJoinUID)
 
 DECLARE_MKX_UINTEGER(KaxTrickTrackUID)
 public:
-  libebml::filepos_t RenderData(libebml::IOCallback & output, bool bForceRender, ShouldWrite writeFilter) override;
+  libebml::filepos_t RenderData(libebml::IOCallback & output, bool bForceRender, const ShouldWrite & writeFilter) override;
 };
 
 DECLARE_MKX_BINARY_LENGTH(KaxTrickTrackSegmentUID, 16)
 public:
-  libebml::filepos_t RenderData(libebml::IOCallback & output, bool bForceRender, ShouldWrite writeFilter) override;
+  libebml::filepos_t RenderData(libebml::IOCallback & output, bool bForceRender, const ShouldWrite & writeFilter) override;
 };
 
 DECLARE_MKX_UINTEGER_DEF(KaxTrickTrackFlag)
 public:
-  libebml::filepos_t RenderData(libebml::IOCallback & output, bool bForceRender, ShouldWrite writeFilter) override;
+  libebml::filepos_t RenderData(libebml::IOCallback & output, bool bForceRender, const ShouldWrite & writeFilter) override;
 };
 
 DECLARE_MKX_UINTEGER(KaxTrickMasterTrackUID)
 public:
-  libebml::filepos_t RenderData(libebml::IOCallback & output, bool bForceRender, ShouldWrite writeFilter) override;
+  libebml::filepos_t RenderData(libebml::IOCallback & output, bool bForceRender, const ShouldWrite & writeFilter) override;
 };
 
 DECLARE_MKX_BINARY_LENGTH(KaxTrickMasterTrackSegmentUID, 16)
 public:
-  libebml::filepos_t RenderData(libebml::IOCallback & output, bool bForceRender, ShouldWrite writeFilter) override;
+  libebml::filepos_t RenderData(libebml::IOCallback & output, bool bForceRender, const ShouldWrite & writeFilter) override;
 };
 
 DECLARE_MKX_MASTER(KaxContentEncodings)
@@ -602,22 +602,22 @@ DECLARE_MKX_UINTEGER(KaxAESSettingsCipherMode)
 
 DECLARE_MKX_BINARY(KaxContentSignature)
 public:
-  libebml::filepos_t RenderData(libebml::IOCallback & output, bool bForceRender, ShouldWrite writeFilter) override;
+  libebml::filepos_t RenderData(libebml::IOCallback & output, bool bForceRender, const ShouldWrite & writeFilter) override;
 };
 
 DECLARE_MKX_BINARY(KaxContentSigKeyID)
 public:
-  libebml::filepos_t RenderData(libebml::IOCallback & output, bool bForceRender, ShouldWrite writeFilter) override;
+  libebml::filepos_t RenderData(libebml::IOCallback & output, bool bForceRender, const ShouldWrite & writeFilter) override;
 };
 
 DECLARE_MKX_UINTEGER_DEF(KaxContentSigAlgo)
 public:
-  libebml::filepos_t RenderData(libebml::IOCallback & output, bool bForceRender, ShouldWrite writeFilter) override;
+  libebml::filepos_t RenderData(libebml::IOCallback & output, bool bForceRender, const ShouldWrite & writeFilter) override;
 };
 
 DECLARE_MKX_UINTEGER_DEF(KaxContentSigHashAlgo)
 public:
-  libebml::filepos_t RenderData(libebml::IOCallback & output, bool bForceRender, ShouldWrite writeFilter) override;
+  libebml::filepos_t RenderData(libebml::IOCallback & output, bool bForceRender, const ShouldWrite & writeFilter) override;
 };
 
 DECLARE_MKX_UINTEGER(KaxCueTime)
@@ -646,17 +646,17 @@ DECLARE_MKX_UINTEGER(KaxCueRefTime)
 
 DECLARE_MKX_UINTEGER(KaxCueRefCluster)
 public:
-  libebml::filepos_t RenderData(libebml::IOCallback & output, bool bForceRender, ShouldWrite writeFilter) override;
+  libebml::filepos_t RenderData(libebml::IOCallback & output, bool bForceRender, const ShouldWrite & writeFilter) override;
 };
 
 DECLARE_MKX_UINTEGER_DEF(KaxCueRefNumber)
 public:
-  libebml::filepos_t RenderData(libebml::IOCallback & output, bool bForceRender, ShouldWrite writeFilter) override;
+  libebml::filepos_t RenderData(libebml::IOCallback & output, bool bForceRender, const ShouldWrite & writeFilter) override;
 };
 
 DECLARE_MKX_UINTEGER_DEF(KaxCueRefCodecState)
 public:
-  libebml::filepos_t RenderData(libebml::IOCallback & output, bool bForceRender, ShouldWrite writeFilter) override;
+  libebml::filepos_t RenderData(libebml::IOCallback & output, bool bForceRender, const ShouldWrite & writeFilter) override;
 };
 
 DECLARE_MKX_MASTER(KaxAttachments)
@@ -682,17 +682,17 @@ DECLARE_MKX_UINTEGER(KaxFileUID)
 
 DECLARE_MKX_BINARY(KaxFileReferral)
 public:
-  libebml::filepos_t RenderData(libebml::IOCallback & output, bool bForceRender, ShouldWrite writeFilter) override;
+  libebml::filepos_t RenderData(libebml::IOCallback & output, bool bForceRender, const ShouldWrite & writeFilter) override;
 };
 
 DECLARE_MKX_UINTEGER(KaxFileUsedStartTime)
 public:
-  libebml::filepos_t RenderData(libebml::IOCallback & output, bool bForceRender, ShouldWrite writeFilter) override;
+  libebml::filepos_t RenderData(libebml::IOCallback & output, bool bForceRender, const ShouldWrite & writeFilter) override;
 };
 
 DECLARE_MKX_UINTEGER(KaxFileUsedEndTime)
 public:
-  libebml::filepos_t RenderData(libebml::IOCallback & output, bool bForceRender, ShouldWrite writeFilter) override;
+  libebml::filepos_t RenderData(libebml::IOCallback & output, bool bForceRender, const ShouldWrite & writeFilter) override;
 };
 
 DECLARE_MKX_MASTER(KaxChapters)
@@ -838,7 +838,7 @@ DECLARE_MKX_UINTEGER_DEF(KaxTagDefault)
 
 DECLARE_MKX_UINTEGER_DEF(KaxTagDefaultBogus)
 public:
-  libebml::filepos_t RenderData(libebml::IOCallback & output, bool bForceRender, ShouldWrite writeFilter) override;
+  libebml::filepos_t RenderData(libebml::IOCallback & output, bool bForceRender, const ShouldWrite & writeFilter) override;
 };
 
 DECLARE_MKX_UNISTRING(KaxTagString)

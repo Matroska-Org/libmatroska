@@ -198,7 +198,7 @@ class MATROSKA_DLL_API KaxInternalBlock : public libebml::EbmlBinary {
     /*!
       \note override this function to generate the Data/Size on the fly, unlike the usual binary elements
     */
-    libebml::filepos_t UpdateSize(ShouldWrite writeFilter = WriteSkipDefault, bool bForceRender = false) override;
+    libebml::filepos_t UpdateSize(const ShouldWrite & writeFilter = WriteSkipDefault, bool bForceRender = false) override;
     libebml::filepos_t ReadData(libebml::IOCallback & input, libebml::ScopeMode ReadFully = libebml::SCOPE_ALL_DATA) override;
 
     /*!
@@ -266,7 +266,7 @@ class MATROSKA_DLL_API KaxInternalBlock : public libebml::EbmlBinary {
 
     KaxCluster               *ParentCluster{nullptr};
 
-    libebml::filepos_t RenderData(libebml::IOCallback & output, bool bForceRender, ShouldWrite writeFilter = WriteSkipDefault) override;
+    libebml::filepos_t RenderData(libebml::IOCallback & output, bool bForceRender, const ShouldWrite & writeFilter = WriteSkipDefault) override;
 };
 
 class MATROSKA_DLL_API KaxBlock : public KaxInternalBlock {
@@ -342,11 +342,11 @@ DECLARE_MKX_BINARY_CONS(KaxBlockVirtual)
     /*!
       \note override this function to generate the Data/Size on the fly, unlike the usual binary elements
     */
-    libebml::filepos_t UpdateSize(ShouldWrite writeFilter = WriteSkipDefault, bool bForceRender = false) override;
+    libebml::filepos_t UpdateSize(const ShouldWrite & writeFilter = WriteSkipDefault, bool bForceRender = false) override;
 
     void SetParent(const KaxCluster & aParentCluster) {ParentCluster = &aParentCluster;}
 
-    libebml::filepos_t RenderData(libebml::IOCallback & output, bool bForceRender, ShouldWrite writeFilter) override;
+    libebml::filepos_t RenderData(libebml::IOCallback & output, bool bForceRender, const ShouldWrite & writeFilter) override;
 
     libebml::filepos_t ReadData(libebml::IOCallback & input, libebml::ScopeMode ReadFully = libebml::SCOPE_ALL_DATA) override;
 

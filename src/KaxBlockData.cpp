@@ -47,7 +47,7 @@ void KaxReferenceBlock::FreeBlob()
   RefdBlock = nullptr;
 }
 
-filepos_t KaxReferenceBlock::UpdateSize(ShouldWrite writeFilter, bool bForceRender)
+filepos_t KaxReferenceBlock::UpdateSize(const ShouldWrite & writeFilter, bool bForceRender)
 {
   if (!bTimestampSet) {
     assert(RefdBlock);

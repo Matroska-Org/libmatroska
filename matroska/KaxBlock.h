@@ -83,6 +83,8 @@ class MATROSKA_DLL_API SimpleDataBuffer : public DataBuffer {
     {}
     ~SimpleDataBuffer() override = default;
 
+    SimpleDataBuffer& operator=(const SimpleDataBuffer &) = delete;
+
     DataBuffer * Clone() override {return new SimpleDataBuffer(*this);}
 
   protected:
@@ -179,10 +181,9 @@ DECLARE_MKX_MASTER(KaxBlockGroup)
 
 class MATROSKA_DLL_API KaxInternalBlock : public libebml::EbmlBinary {
   public:
-    KaxInternalBlock(const libebml::EbmlCallbacks & classInfo)
-      :libebml::EbmlBinary(classInfo)
-    {}
+    using EbmlBinary::EbmlBinary;
     KaxInternalBlock(const KaxInternalBlock & ElementToClone);
+    KaxInternalBlock& operator=(const KaxInternalBlock &) = delete;
     ~KaxInternalBlock() override;
     bool SizeIsValid(std::uint64_t size) const override
     {
@@ -310,6 +311,9 @@ public:
     else
       delete Block.group;
   }
+
+  KaxBlockBlob(const KaxBlockBlob&) = delete;
+  KaxBlockBlob& operator=(const KaxBlockBlob&) = delete;
 
   operator KaxBlockGroup &() const;
   operator KaxSimpleBlock &() const;

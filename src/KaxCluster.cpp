@@ -113,7 +113,7 @@ bool KaxCluster::AddFrame(const KaxTrackEntry & track, std::uint64_t timestamp, 
 /*!
   \todo only put the Blocks written in the cue entries
 */
-filepos_t KaxCluster::Render(IOCallback & output, KaxCues & CueToUpdate, ShouldWrite writeFilter)
+filepos_t KaxCluster::Render(IOCallback & output, KaxCues & CueToUpdate, const ShouldWrite& writeFilter)
 {
   filepos_t Result = 0;
 

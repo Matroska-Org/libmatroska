@@ -46,7 +46,7 @@ DECLARE_MKX_MASTER_CONS(KaxCluster)
     /*!
       \brief Render the data to the stream and retrieve the position of BlockGroups for later cue entries
     */
-    libebml::filepos_t Render(libebml::IOCallback & output, KaxCues & CueToUpdate, ShouldWrite writeFilter = WriteSkipDefault);
+    libebml::filepos_t Render(libebml::IOCallback & output, KaxCues & CueToUpdate, const ShouldWrite& writeFilter = WriteSkipDefault);
 
     /*!
       \return the global timestamp of this Cluster

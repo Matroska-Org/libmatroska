@@ -34,7 +34,7 @@ DECLARE_MKX_MASTER(KaxCues)
     /*!
       \brief override to sort by timestamp/track
     */
-    libebml::filepos_t Render(libebml::IOCallback & output, ShouldWrite writeFilter = WriteSkipDefault) {
+    libebml::filepos_t Render(libebml::IOCallback & output, const ShouldWrite& writeFilter = WriteSkipDefault) {
       Sort();
       return EbmlMaster::Render(output, writeFilter);
     }

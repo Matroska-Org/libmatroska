@@ -35,6 +35,8 @@ KaxCluster::KaxCluster(const KaxCluster & ElementToClone)
   }
 }
 
+KaxCluster::~KaxCluster() = default;
+
 bool KaxCluster::AddBlockBlob(KaxBlockBlob * NewBlob)
 {
   Blobs.push_back(NewBlob);

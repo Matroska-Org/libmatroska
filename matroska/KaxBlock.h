@@ -337,8 +337,6 @@ protected:
 
 DECLARE_MKX_BINARY_CONS(KaxBlockVirtual)
   public:
-    ~KaxBlockVirtual() override;
-
     /*!
       \note override this function to generate the Data/Size on the fly, unlike the usual binary elements
     */

@@ -59,7 +59,9 @@ public:
 
 #define DECLARE_MKX_MASTER_CONS(x)   \
     DECLARE_xxx_MASTER(x, MATROSKA_DLL_API) \
+    ~x() override; \
     x(const x & ElementToClone); \
+    x& operator=(const x &) = delete; \
     MATROSKA_CLASS_BODY(x)
 
 #define DECLARE_MKX_BINARY(x)   \
@@ -69,7 +71,9 @@ public:
 
 #define DECLARE_MKX_BINARY_CONS(x)   \
     DECLARE_xxx_BINARY(x, MATROSKA_DLL_API) \
+    ~x() override; \
     x(const x & ElementToClone); \
+    x& operator=(const x &) = delete; \
     MATROSKA_CLASS_BODY(x)
 
 #define DECLARE_MKX_BINARY_LENGTH(x,len)   \
@@ -104,7 +108,9 @@ public:
 
 #define DECLARE_MKX_SINTEGER_CONS(x) \
     DECLARE_xxx_SINTEGER(x, MATROSKA_DLL_API) \
+    ~x() override; \
     x(const x & ElementToClone); \
+    x& operator=(const x &) = delete; \
     MATROSKA_CLASS_BODY(x)
 
 #define DECLARE_MKX_SINTEGER(x) \

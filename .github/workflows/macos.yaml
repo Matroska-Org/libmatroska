@@ -8,7 +8,7 @@ on:
 jobs:
   build_libmatroska:
     name: libmatroska ${{ matrix.arch }}
-    runs-on: macos-latest
+    runs-on: macos-14
     strategy:
       fail-fast: false
       matrix:

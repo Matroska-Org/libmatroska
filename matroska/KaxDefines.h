@@ -55,6 +55,7 @@ public:
 #define DECLARE_MKX_MASTER(x)   \
     DECLARE_xxx_MASTER(x, MATROSKA_DLL_API) \
     using EbmlMaster::EbmlMaster; \
+    using EbmlMaster::operator const libebml::EbmlId &; \
     MATROSKA_CLASS_BODY(x)
 
 #define DECLARE_MKX_MASTER_CONS(x)   \

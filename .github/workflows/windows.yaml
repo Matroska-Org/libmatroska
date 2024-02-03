@@ -25,10 +25,10 @@ jobs:
       - uses: lukka/get-cmake@latest
 
       - name: Get pushed code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Checkout libebml
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           repository: Matroska-Org/libebml
           path: libebml

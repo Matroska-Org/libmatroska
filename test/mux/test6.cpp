@@ -218,7 +218,7 @@ int main(int /*argc*/, char **/*argv*/)
         KaxBlockBlob *Blob2 = new KaxBlockBlob(BLOCK_BLOB_NO_SIMPLE);
         Blob2->SetBlockGroup(*MyNewBlock);
     AllCues.AddBlockBlob(*Blob2);
-
+#if 0 // bogus ownership
     // frame with a past reference
     DataBuffer *data4 = new DataBuffer((binary *)"tttyyy", countof("tttyyy"));
     Clust1.AddFrame(MyTrack1, 300 * TIMESTAMP_SCALE, *data4, MyNewBlock, *MyLastBlockTrk1);
@@ -238,7 +238,7 @@ int main(int /*argc*/, char **/*argv*/)
         Blob3->SetBlockGroup(*MyLastBlockTrk1);
     AllCues.AddBlockBlob(*Blob3);
     //AllCues.UpdateSize();
-
+#endif
     // simulate the writing of the stream :
     // - write an empty element with enough size for the cue entry
     // - write the cluster(s)
@@ -254,7 +254,11 @@ int main(int /*argc*/, char **/*argv*/)
     Clust2.EnableChecksum();
 
     DataBuffer *data2 = new DataBuffer((binary *)"tttyyy", countof("tttyyy"));
+#if 0 // bogus ownership
     Clust2.AddFrame(MyTrack1, 350 * TIMESTAMP_SCALE, *data2, MyNewBlock, *MyLastBlockTrk1);
+#else
+    Clust2.AddFrame(MyTrack1, 350 * TIMESTAMP_SCALE, *data2, MyNewBlock);
+#endif
 
         KaxBlockBlob *Blob4 = new KaxBlockBlob(BLOCK_BLOB_NO_SIMPLE);
         Blob4->SetBlockGroup(*MyNewBlock);
@@ -344,10 +348,12 @@ int main(int /*argc*/, char **/*argv*/)
 
     out_file.close();
 
+#if 0 // bogus ownership
         delete Blob1;
         delete Blob2;
         delete Blob3;
         delete Blob4;
+#endif
     }
     catch (exception & Ex)
     {

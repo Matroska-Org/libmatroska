@@ -116,10 +116,10 @@ int main(int /*argc*/, char **/*argv*/)
     KaxContentEncryption &cencryption = GetChild<KaxContentEncryption>(cencoding);
     GetChild<KaxContentEncAlgo>(cencryption).SetValue(14);
     GetChild<KaxContentEncKeyID>(cencryption).CopyBuffer((const binary *)"hello2", 6);
-    GetChild<KaxContentSigAlgo>(cencryption).SetValue(15);
-    GetChild<KaxContentSigHashAlgo>(cencryption).SetValue(16);
-    GetChild<KaxContentSigKeyID>(cencryption).CopyBuffer((const binary *)"hello3", 6);
-    GetChild<KaxContentSignature>(cencryption).CopyBuffer((const binary *)"hello4", 6);
+    // GetChild<KaxContentSigAlgo>(cencryption).SetValue(15);
+    // GetChild<KaxContentSigHashAlgo>(cencryption).SetValue(16);
+    // GetChild<KaxContentSigKeyID>(cencryption).CopyBuffer((const binary *)"hello3", 6);
+    // GetChild<KaxContentSignature>(cencryption).CopyBuffer((const binary *)"hello4", 6);
 
     // audio specific params
     KaxTrackAudio & MyTrack1Audio = GetChild<KaxTrackAudio>(MyTrack1);
@@ -128,14 +128,14 @@ int main(int /*argc*/, char **/*argv*/)
     MyTrack1Freq.SetValue(44100.0);
     MyTrack1Freq.ValidateSize();
 
-    KaxAudioPosition & MyTrack1Pos = GetChild<KaxAudioPosition>(MyTrack1Audio);
-    binary *_Pos = new binary[5];
-    _Pos[0] = '0';
-    _Pos[1] = '1';
-    _Pos[2] = '2';
-    _Pos[3] = '3';
-    _Pos[4] = '\0';
-    MyTrack1Pos.SetBuffer(_Pos, 5);
+    // KaxAudioPosition & MyTrack1Pos = GetChild<KaxAudioPosition>(MyTrack1Audio);
+    // binary *_Pos = new binary[5];
+    // _Pos[0] = '0';
+    // _Pos[1] = '1';
+    // _Pos[2] = '2';
+    // _Pos[3] = '3';
+    // _Pos[4] = '\0';
+    // MyTrack1Pos.SetBuffer(_Pos, 5);
 
     KaxAudioChannels & MyTrack1Channels = GetChild<KaxAudioChannels>(MyTrack1Audio);
     MyTrack1Channels.SetValue(2);

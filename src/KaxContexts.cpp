@@ -25,7 +25,7 @@ DEFINE_END_SEMANTIC(KaxMatroska)
 DEFINE_MKX_CONTEXT(KaxMatroska)
 
 // for the moment
-const EbmlSemanticContext & GetKaxGlobal_Context()
+const EbmlSemanticContextMaster & GetKaxGlobal_Context()
 {
   return GetEbmlGlobal_Context();
 }

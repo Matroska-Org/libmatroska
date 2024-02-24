@@ -13,9 +13,9 @@
 
 namespace libmatroska {
 
-extern const libebml::EbmlSemanticContext MATROSKA_DLL_API Context_KaxMatroska;
+extern const libebml::EbmlSemanticContextMaster MATROSKA_DLL_API Context_KaxMatroska;
 
-extern MATROSKA_DLL_API const libebml::EbmlSemanticContext & GetKaxGlobal_Context();
+extern MATROSKA_DLL_API const libebml::EbmlSemanticContextMaster & GetKaxGlobal_Context();
 
 } // namespace libmatroska
 

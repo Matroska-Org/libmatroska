@@ -126,7 +126,7 @@ int main(void)
     }
     printf("\n");
 
-    ElementLevel0->SkipData(aStream, EBML_CLASS_SEMCONTEXT(EbmlHead));
+    ElementLevel0->SkipData(aStream, EBML_CLASS_CONTEXT(EbmlHead));
     if (ElementLevel0 != NULL)
       delete ElementLevel0;
   }
@@ -144,23 +144,23 @@ int main(void)
 
     int bUpperElement = 0;
 
-    ElementLevel1 = aStream.FindNextElement(EBML_CLASS_SEMCONTEXT(KaxSegment), bUpperElement, 0xFFFFFFFFL, true);
+    ElementLevel1 = aStream.FindNextElement(EBML_CLASS_CONTEXT(KaxSegment), bUpperElement, 0xFFFFFFFFL, true);
 
     while (ElementLevel1 != NULL) {
       /// \todo switch the type of the element to check if it's one we want to handle, like attachements
       if (EbmlId(*ElementLevel1) == EBML_ID(KaxAttachments)) {
         printf("Attachments detected\n");
 
-        ElementLevel2 = aStream.FindNextElement(EBML_CLASS_SEMCONTEXT(KaxAttachments), bUpperElement, 0xFFFFFFFFL, true);
+        ElementLevel2 = aStream.FindNextElement(EBML_CLASS_CONTEXT(KaxAttachments), bUpperElement, 0xFFFFFFFFL, true);
         while (ElementLevel2 != NULL) {
           /// \todo switch the type of the element to check if it's one we want to handle, like attachements
           if (EbmlId(*ElementLevel2) == EBML_ID(KaxAttached)) {
             printf("Attached file detected\n");
           }
 #ifdef SKIP_ATTACHED
-          ElementLevel2 = ElementLevel2->SkipData(aStream, EBML_CLASS_SEMCONTEXT(KaxAttached));
+          ElementLevel2 = ElementLevel2->SkipData(aStream, EBML_CLASS_CONTEXT(KaxAttached));
           if (ElementLevel2 == NULL) {
-            ElementLevel2 = aStream.FindNextID(EBML_CLASS_SEMCONTEXT(KaxAttachments), bUpperElement, 0xFFFFFFFFL, true);
+            ElementLevel2 = aStream.FindNextID(EBML_CLASS_CONTEXT(KaxAttachments), bUpperElement, 0xFFFFFFFFL, true);
 
             if (bUpperElement) {
               printf("Upper level1 element found\n");
@@ -171,7 +171,7 @@ int main(void)
           }
 #else // SKIP_ATTACHED
           // Display the filename (if it exists)
-          ElementLevel3 = aStream.FindNextElement(EBML_CLASS_SEMCONTEXT(KaxAttached), bUpperElement, 0xFFFFFFFFL, false);
+          ElementLevel3 = aStream.FindNextElement(EBML_CLASS_CONTEXT(KaxAttached), bUpperElement, 0xFFFFFFFFL, false);
           while (ElementLevel3 != NULL) {
             /// \todo switch the type of the element to check if it's one we want to handle, like attachements
             if (EbmlId(*ElementLevel3) == EBML_ID(KaxFileName)) {
@@ -179,10 +179,10 @@ int main(void)
               tmp.ReadData(aStream.I_O());
               printf("File Name = %s\n", UTFstring(tmp).GetUTF8().c_str());
             } else {
-              ElementLevel3->SkipData(aStream, EBML_CLASS_SEMCONTEXT(KaxAttached));
+              ElementLevel3->SkipData(aStream, EBML_CLASS_CONTEXT(KaxAttached));
             }
             delete ElementLevel3;
-            ElementLevel3 = aStream.FindNextElement(EBML_CLASS_SEMCONTEXT(KaxAttached), bUpperElement, 0xFFFFFFFFL, false);
+            ElementLevel3 = aStream.FindNextElement(EBML_CLASS_CONTEXT(KaxAttached), bUpperElement, 0xFFFFFFFFL, false);
             if (bUpperElement)
               break;
           }
@@ -191,25 +191,25 @@ int main(void)
             delete ElementLevel2;
             ElementLevel2 = ElementLevel3;
           } else {
-            ElementLevel2->SkipData(aStream, EBML_CLASS_SEMCONTEXT(KaxAttached));
+            ElementLevel2->SkipData(aStream, EBML_CLASS_CONTEXT(KaxAttached));
             delete ElementLevel2;
 
-            ElementLevel2 = aStream.FindNextElement(EBML_CLASS_SEMCONTEXT(KaxAttachments), bUpperElement, 0xFFFFFFFFL, true);
+            ElementLevel2 = aStream.FindNextElement(EBML_CLASS_CONTEXT(KaxAttachments), bUpperElement, 0xFFFFFFFFL, true);
           }
 #endif // SKIP_ATTACHED
         }
       }
-      ElementLevel1->SkipData(aStream, EBML_CLASS_SEMCONTEXT(KaxAttachments));
+      ElementLevel1->SkipData(aStream, EBML_CLASS_CONTEXT(KaxAttachments));
       delete ElementLevel1;
 
-      ElementLevel1 = aStream.FindNextElement(EBML_CLASS_SEMCONTEXT(KaxSegment), bUpperElement, 0xFFFFFFFFL, true);
+      ElementLevel1 = aStream.FindNextElement(EBML_CLASS_CONTEXT(KaxSegment), bUpperElement, 0xFFFFFFFFL, true);
     }
 
-    ElementLevel0->SkipData(aStream, EBML_CLASS_SEMCONTEXT(KaxSegment));
+    ElementLevel0->SkipData(aStream, EBML_CLASS_CONTEXT(KaxSegment));
     if (ElementLevel0 != NULL)
       delete ElementLevel0;
 
-    ElementLevel0 = aStream.FindNextElement(EBML_CLASS_SEMCONTEXT(KaxSegment), bUpperElement, 0xFFFFFFFFL, true);
+    ElementLevel0 = aStream.FindNextElement(EBML_CLASS_CONTEXT(KaxSegment), bUpperElement, 0xFFFFFFFFL, true);
   }
 
   Ebml_Wfile.close();

@@ -59,7 +59,7 @@ int main(int /*argc*/, char **/*argv*/)
     KaxSegment FileSegment;
 
     // size is unknown and will always be, we can render it right away
-    std::uint64_t SegmentSize = FileSegment.WriteHead(out_file, 5, bWriteDefaultValues);
+    FileSegment.WriteHead(out_file, 5, bWriteDefaultValues);
 
     KaxTracks & MyTracks = GetChild<KaxTracks>(FileSegment);
 
@@ -335,8 +335,7 @@ int main(int /*argc*/, char **/*argv*/)
 #endif // VOID_TEST
 
     // let's assume we know the size of the Segment element
-    // the size of the FileSegment is also computed because mandatory elements we don't write ourself exist
-    if (FileSegment.ForceSize(SegmentSize - FileSegment.HeadSize() + MetaSeekSize
+    if (FileSegment.ForceSize(MetaSeekSize
                             + TrackSize + ClusterSize + CueSize + InfoSize + TagsSize + ChapterSize)) {
       FileSegment.OverwriteHead(out_file);
     }

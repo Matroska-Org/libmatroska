@@ -39,7 +39,7 @@ KaxSegment::KaxSegment(const KaxSegment & ElementToClone)
 
 std::uint64_t KaxSegment::GetRelativePosition(std::uint64_t aGlobalPosition) const
 {
-  return aGlobalPosition - GetElementPosition() - HeadSize();
+  return aGlobalPosition - GetDataStart();
 }
 
 std::uint64_t KaxSegment::GetRelativePosition(const EbmlElement & Elt) const
@@ -49,7 +49,7 @@ std::uint64_t KaxSegment::GetRelativePosition(const EbmlElement & Elt) const
 
 std::uint64_t KaxSegment::GetGlobalPosition(std::uint64_t aRelativePosition) const
 {
-  return aRelativePosition + GetElementPosition() + HeadSize();
+  return aRelativePosition + GetDataStart();
 }
 
 } // namespace libmatroska

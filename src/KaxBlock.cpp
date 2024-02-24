@@ -11,6 +11,7 @@
 
 //#include <streams.h>
 
+#include <ebml/EbmlEndian.h>
 #include <ebml/MemReadIOCallback.h>
 #include <ebml/SafeReadIOCallback.h>
 #include "matroska/KaxBlock.h"

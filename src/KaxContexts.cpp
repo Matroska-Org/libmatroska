@@ -24,13 +24,6 @@ DEFINE_END_SEMANTIC(KaxMatroska)
 
 DEFINE_MKX_CONTEXT(KaxMatroska)
 
-DEFINE_SEMANTIC_CONTEXT(KaxSegment)
-DEFINE_SEMANTIC_CONTEXT(KaxAttached)
-DEFINE_SEMANTIC_CONTEXT(KaxAttachments)
-DEFINE_SEMANTIC_CONTEXT(KaxBlockGroup)
-DEFINE_SEMANTIC_CONTEXT(KaxCluster)
-DEFINE_SEMANTIC_CONTEXT(KaxTrackEntry)
-
 // for the moment
 const EbmlSemanticContext & GetKaxGlobal_Context()
 {

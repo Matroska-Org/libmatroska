@@ -23,6 +23,7 @@
 
 namespace libmatroska {
 DECLARE_MKX_BINARY_LENGTH(KaxSeekID, 4)
+  static inline bool SizeIsValid(std::uint64_t Size) {return Size == 4;}
 };
 
 DECLARE_MKX_UINTEGER(KaxSeekPosition)
@@ -32,24 +33,28 @@ DECLARE_MKX_MASTER(KaxInfo)
 };
 
 DECLARE_MKX_BINARY_LENGTH(KaxSegmentUID, 16)
+  static inline bool SizeIsValid(std::uint64_t Size) {return Size == 16;}
 };
 
 DECLARE_MKX_UNISTRING(KaxSegmentFilename)
 };
 
 DECLARE_MKX_BINARY_LENGTH(KaxPrevUID, 16)
+  static inline bool SizeIsValid(std::uint64_t Size) {return Size == 16;}
 };
 
 DECLARE_MKX_UNISTRING(KaxPrevFilename)
 };
 
 DECLARE_MKX_BINARY_LENGTH(KaxNextUID, 16)
+  static inline bool SizeIsValid(std::uint64_t Size) {return Size == 16;}
 };
 
 DECLARE_MKX_UNISTRING(KaxNextFilename)
 };
 
 DECLARE_MKX_BINARY_LENGTH(KaxSegmentFamily, 16)
+  static inline bool SizeIsValid(std::uint64_t Size) {return Size == 16;}
 };
 
 DECLARE_MKX_MASTER(KaxChapterTranslate)
@@ -387,6 +392,7 @@ public:
 };
 
 DECLARE_MKX_BINARY_LENGTH(KaxVideoColourSpace, 4)
+  static inline bool SizeIsValid(std::uint64_t Size) {return Size == 4;}
 };
 
 DECLARE_MKX_FLOAT(KaxVideoGamma)
@@ -544,6 +550,7 @@ public:
 DECLARE_MKX_BINARY_LENGTH(KaxTrickTrackSegmentUID, 16)
 public:
   libebml::filepos_t RenderData(libebml::IOCallback & output, bool bForceRender, const ShouldWrite & writeFilter) override;
+  static inline bool SizeIsValid(std::uint64_t Size) {return Size == 16;}
 };
 
 DECLARE_MKX_UINTEGER_DEF(KaxTrickTrackFlag)
@@ -559,6 +566,7 @@ public:
 DECLARE_MKX_BINARY_LENGTH(KaxTrickMasterTrackSegmentUID, 16)
 public:
   libebml::filepos_t RenderData(libebml::IOCallback & output, bool bForceRender, const ShouldWrite & writeFilter) override;
+  static inline bool SizeIsValid(std::uint64_t Size) {return Size == 16;}
 };
 
 DECLARE_MKX_MASTER(KaxContentEncodings)
@@ -744,6 +752,7 @@ DECLARE_MKX_UINTEGER_DEF(KaxChapterFlagEnabled)
 };
 
 DECLARE_MKX_BINARY_LENGTH(KaxChapterSegmentUID, 16)
+  static inline bool SizeIsValid(std::uint64_t Size) {return Size == 16;}
 };
 
 DECLARE_MKX_UINTEGER(KaxChapterSkipType)

@@ -188,6 +188,10 @@ class MATROSKA_DLL_API KaxInternalBlock : public libebml::EbmlBinary {
     {
       return size >= 4; /// for the moment
     }
+    static inline bool SizeIsValid(std::uint64_t size)
+    {
+      return size >= 4; /// for the moment
+    }
 
     std::uint16_t TrackNum() const {return TrackNumber;}
     /*!

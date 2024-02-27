@@ -10,7 +10,7 @@
 
 //#include <vector>
 
-#include "matroska/KaxTypes.h"
+#include "matroska/KaxConfig.h"
 #include <ebml/IOCallback.h>
 //#include "MainHeader.h"
 //#include "TrackType.h"

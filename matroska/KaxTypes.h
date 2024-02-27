@@ -25,43 +25,6 @@ typedef enum track_type {
     track_control     = 0x20  ///< Control-codes for menus and other stuff
 } track_type;
 
-/*!
-    \enum matroska_error_t
-    \brief a callback that the library use to inform of errors happening
-    \note this should be used by the libmatroska internals
-*/
-typedef enum {
-  error_null_pointer  ///< NULL pointer where something else is expected
-} matroska_error_t;
-
-typedef void *matroska_stream;
-
-/*!
-    \var void* matroska_id
-    \brief UID used to access an Matroska file instance
-*/
-typedef void* matroska_id;
-/*!
-    \var void* matroska_track
-    \brief UID used to access a track
-*/
-typedef void* matroska_track;
-/*!
-    \var char* c_string
-    \brief C-String, ie a buffer with characters terminated by \0
-*/
-typedef char* c_string;
-/*!
-    \var unsigned int matroska_file_mode
-    \brief A bit buffer, each bit representing a value for the file opening
-    \todo replace the unsigned int by a sized type (8 or 16 bits)
-*/
-typedef char * matroska_file_mode;
-/*!
-    \var void (*matroska_error_callback)(matroska_error_t error_code, char* error_message)
-    \brief a callback that the library use to inform of errors happening
-*/
-typedef void (*matroska_error_callback)(matroska_error_t error_code, char* error_message);
 
 namespace libmatroska {
 

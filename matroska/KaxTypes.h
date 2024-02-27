@@ -8,7 +8,6 @@
 #define LIBMATROSKA_TYPES_H
 
 #include "matroska/KaxConfig.h"
-#include <ebml/EbmlTypes.h>
 
 /*!
     \enum track_type

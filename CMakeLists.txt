@@ -41,7 +41,6 @@ if(DEV_MODE)
 endif()
 
 set(libmatroska_SOURCES
-  src/FileKax.cpp
   src/KaxAttached.cpp
   src/KaxAttachments.cpp
   src/KaxBlock.cpp
@@ -57,7 +56,6 @@ set(libmatroska_SOURCES
   src/KaxVersion.cpp)
 
 set(libmatroska_PUBLIC_HEADERS
-  matroska/FileKax.h
   matroska/KaxBlockData.h
   matroska/KaxBlock.h
   matroska/KaxCluster.h

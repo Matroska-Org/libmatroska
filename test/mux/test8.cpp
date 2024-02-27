@@ -8,7 +8,6 @@
 */
 
 #include "matroska/KaxSegment.h"
-#include "matroska/FileKax.h"
 #include "matroska/KaxContexts.h"
 #include "matroska/KaxTracks.h"
 #include "matroska/KaxCluster.h"
@@ -43,8 +42,6 @@ int main(int argc, char **argv)
     try {
   StdIOCallback Cluster_file((argc>=2 ? argv[1] : "muxed.mkv"), MODE_READ);
 
-  // create the Matroska file
-///  FileKax MuxedFile(Cluster_file);
 //  bool bAllowDummy = false; // don't read elements we don't know
   bool bAllowDummy = true; // even read elements we don't know (needed for CRC checking)
 
@@ -56,7 +53,6 @@ int main(int argc, char **argv)
   EbmlElement * ElementLevel3 = nullptr;
   EbmlElement * ElementLevel4 = nullptr;
 
-///  MuxedFile.ReadHead();
   // find the EBML head in the file
   ElementLevel0 = aStream.FindNextID(EBML_INFO(EbmlHead), 0xFFFFFFFFL);
   if (ElementLevel0 != NULL)
@@ -91,8 +87,6 @@ int main(int argc, char **argv)
   {
     if (EbmlId(*ElementLevel0) == EBML_ID(KaxSegment)) {
       Segment = static_cast<KaxSegment*>(ElementLevel0);
-//      MuxedFile.ReadTracks();
-//      MuxedFile.ReadCodec();
       // scan the file for a Tracks element (all previous Level1 elements are discarded)
       ElementLevel1 = aStream.FindNextElement(EBML_CONTEXT(ElementLevel0), UpperElementLevel, 0, bAllowDummy);
 

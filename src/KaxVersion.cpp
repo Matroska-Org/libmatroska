@@ -12,9 +12,4 @@ namespace libmatroska {
 
 const std::string KaxCodeVersion = "2.0.0";
 
-// Up to version 1.4.4 this library exported a build date string. As
-// this made the build non-reproducible, replace it by a placeholder to
-// remain binary compatible.
-const std::string KaxCodeDate = "Unknown";
-
 } // namespace libmatroska

@@ -41,10 +41,8 @@ KaxSeek * KaxSeekHead::FindFirstOf(const EbmlCallbacks & Callbacks) const
   // parse all the Entries and find the first to match the type
   auto aElt = FindChild<KaxSeek>(*this);
   while (aElt) {
-    auto it = std::find_if(aElt->begin(), aElt->end(), [&](auto Elt)
-      { return (EbmlId(*Elt) == EBML_ID(KaxSeekID)); });
-    if (it != aElt->end()) {
-      const auto aId = static_cast<KaxSeekID*>(*it);
+    const auto aId = FindChild<KaxSeekID>(*aElt);
+    if (aId != nullptr) {
       const auto aEbmlId = EbmlId(EbmlId::FromBuffer(aId->GetBuffer(), aId->GetSize()));
       if (aEbmlId == EBML_INFO_ID(Callbacks)) {
         return aElt;

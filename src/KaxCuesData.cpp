@@ -184,7 +184,7 @@ const KaxCueTrackPositions * KaxCuePoint::GetSeekPosition() const
       result = aPoss;
     }
 
-    aPoss = static_cast<const KaxCueTrackPositions *>(FindNextElt(*aPoss));
+    aPoss = FindNextChild<const KaxCueTrackPositions>(*this, *aPoss);
   }
   return result;
 }

@@ -858,7 +858,7 @@ unsigned int KaxBlockGroup::ReferenceCount() const
   auto MyBlockAdds = FindChild<KaxReferenceBlock>(*this);
   if (MyBlockAdds) {
     Result++;
-    while ((MyBlockAdds = static_cast<KaxReferenceBlock *>(FindNextElt(*MyBlockAdds)))) {
+    while ((MyBlockAdds = FindNextChild<KaxReferenceBlock>(*this, *MyBlockAdds))) {
       Result++;
     }
   }
@@ -871,7 +871,7 @@ const KaxReferenceBlock & KaxBlockGroup::Reference(unsigned int Index) const
   assert(MyBlockAdds); // call of a non existing reference
 
   while (Index != 0) {
-    MyBlockAdds = static_cast<KaxReferenceBlock *>(FindNextElt(*MyBlockAdds));
+    MyBlockAdds = FindNextChild<KaxReferenceBlock>(*this, *MyBlockAdds);
     assert(MyBlockAdds);
     Index--;
   }

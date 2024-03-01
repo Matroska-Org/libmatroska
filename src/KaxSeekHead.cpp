@@ -50,7 +50,7 @@ KaxSeek * KaxSeekHead::FindFirstOf(const EbmlCallbacks & Callbacks) const
         return aElt;
       }
     }
-    aElt = static_cast<KaxSeek *>(FindNextElt(*aElt));
+    aElt = FindNextChild<KaxSeek>(*this,*aElt);
   }
 
   return nullptr;

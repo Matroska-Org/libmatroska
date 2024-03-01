@@ -39,7 +39,7 @@ KaxSeek * KaxSeekHead::IndexThis(const EbmlElement & aElt, const KaxSegment & Pa
 KaxSeek * KaxSeekHead::FindFirstOf(const EbmlCallbacks & Callbacks) const
 {
   // parse all the Entries and find the first to match the type
-  auto aElt = static_cast<KaxSeek *>(FindFirstElt(EBML_INFO(KaxSeek)));
+  auto aElt = FindChild<KaxSeek>(*this);
   while (aElt) {
     auto it = std::find_if(aElt->begin(), aElt->end(), [&](auto Elt)
       { return (EbmlId(*Elt) == EBML_ID(KaxSeekID)); });
@@ -73,7 +73,7 @@ KaxSeek * KaxSeekHead::FindNextOf(const KaxSeek &aPrev) const
 
 std::int64_t KaxSeek::Location() const
 {
-  auto aPos = static_cast<KaxSeekPosition*>(FindFirstElt(EBML_INFO(KaxSeekPosition)));
+  auto aPos = FindChild<KaxSeekPosition>(*this);
   if (!aPos)
     return 0;
   return static_cast<std::uint64_t>(*aPos);
@@ -81,7 +81,7 @@ std::int64_t KaxSeek::Location() const
 
 bool KaxSeek::IsEbmlId(const EbmlId & aId) const
 {
-  auto _Id = static_cast<KaxSeekID*>(FindFirstElt(EBML_INFO(KaxSeekID)));
+  auto _Id = FindChild<KaxSeekID>(*this);
   if (!_Id)
     return false;
   const auto aEbmlId = EbmlId(EbmlId::FromBuffer(_Id->GetBuffer(), _Id->GetSize()));
@@ -90,10 +90,10 @@ bool KaxSeek::IsEbmlId(const EbmlId & aId) const
 
 bool KaxSeek::IsEbmlId(const KaxSeek & aPoint) const
 {
-  auto _IdA = static_cast<KaxSeekID*>(FindFirstElt(EBML_INFO(KaxSeekID)));
+  auto _IdA = FindChild<KaxSeekID>(*this);
   if (!_IdA)
     return false;
-  auto _IdB = static_cast<KaxSeekID*>(aPoint.FindFirstElt(EBML_INFO(KaxSeekID)));
+  auto _IdB = FindChild<KaxSeekID>(aPoint);
   if (!_IdB)
     return false;
   const auto aEbmlIdA = EbmlId(EbmlId::FromBuffer(_IdA->GetBuffer(), _IdA->GetSize()));

@@ -301,7 +301,7 @@ int main(int argc, char **argv)
               // Extract the valuable data from the Block
 
               aBlockGroup.Read(aStream, EBML_CLASS_CONTEXT(KaxBlockGroup), UpperElementLevel, ElementLevel3, bAllowDummy);
-              KaxBlock * DataBlock = static_cast<KaxBlock *>(aBlockGroup.FindElt(EBML_INFO(KaxBlock)));
+              KaxBlock * DataBlock = FindChild<KaxBlock>(aBlockGroup);
               if (DataBlock != NULL) {
 //                DataBlock->ReadData(aStream.I_O());
                 DataBlock->SetParent(*SegmentCluster);
@@ -309,11 +309,11 @@ int main(int argc, char **argv)
               } else {
                 printf("   A BlockGroup without a Block !!!");
               }
-              KaxBlockDuration * BlockDuration = static_cast<KaxBlockDuration *>(aBlockGroup.FindElt(EBML_INFO(KaxBlockDuration)));
+              KaxBlockDuration * BlockDuration = FindChild<KaxBlockDuration>(aBlockGroup);
               if (BlockDuration != NULL) {
                 printf("  Block Duration %d scaled ticks : %ld ns\n", std::uint32_t(*BlockDuration), std::uint32_t(*BlockDuration) * TimestampScale);
               }
-              KaxReferenceBlock * RefTime = static_cast<KaxReferenceBlock *>(aBlockGroup.FindElt(EBML_INFO(KaxReferenceBlock)));
+              KaxReferenceBlock * RefTime = FindChild<KaxReferenceBlock>(aBlockGroup);
               if (RefTime != NULL) {
                 printf("  Reference frame at scaled (%d) timestamp %ld\n", std::int32_t(*RefTime), std::int32_t(std::int64_t(*RefTime) * TimestampScale));
               }

@@ -45,7 +45,7 @@ void KaxCuePoint::PositionSet(const KaxBlockGroup & BlockReference, std::uint64_
     }
   }
 
-  auto CodecState = static_cast<KaxCodecState *>(BlockReference.FindFirstElt(EBML_INFO(KaxCodecState)));
+  auto CodecState = FindChild<KaxCodecState>(BlockReference);
   if (CodecState) {
     auto &CueCodecState = AddNewChild<KaxCueCodecState>(NewPositions);
     CueCodecState.SetValue(BlockReference.GetParentCluster()->GetParentSegment()->GetRelativePosition(CodecState->GetElementPosition()));
@@ -96,7 +96,7 @@ void KaxCuePoint::PositionSet(const KaxInternalBlock & BlockReference, const Kax
 #endif // MATROSKA_VERSION
 
   if (BlockGroup) {
-    const auto CodecState = static_cast<const KaxCodecState *>(BlockGroup->FindFirstElt(EBML_INFO(KaxCodecState)));
+    const auto CodecState = FindChild<const KaxCodecState>(*BlockGroup);
     if (CodecState) {
       auto &CueCodecState = AddNewChild<KaxCueCodecState>(NewPositions);
       CueCodecState.SetValue(BlockGroup->GetParentCluster()->GetParentSegment()->GetRelativePosition(CodecState->GetElementPosition()));
@@ -127,11 +127,11 @@ bool KaxCuePoint::IsSmallerThan(const EbmlElement * Cmp) const
   auto theCmp = static_cast<const KaxCuePoint *>(Cmp);
 
   // compare timestamp
-  auto TimestampA = static_cast<const KaxCueTime *>(FindElt(EBML_INFO(KaxCueTime)));
+  auto TimestampA = FindChild<const KaxCueTime>(*this);
   if (!TimestampA)
     return false;
 
-  auto TimestampB = static_cast<const KaxCueTime *>(theCmp->FindElt(EBML_INFO(KaxCueTime)));
+  auto TimestampB = FindChild<const KaxCueTime>(*theCmp);
   if (!TimestampB)
     return false;
 
@@ -142,11 +142,11 @@ bool KaxCuePoint::IsSmallerThan(const EbmlElement * Cmp) const
     return false;
 
   // compare tracks (timestamp are equal)
-  const auto TrackA = static_cast<const KaxCueTrack *>(FindElt(EBML_INFO(KaxCueTrack)));
+  const auto TrackA = FindChild<const KaxCueTrack>(*this);
   if (!TrackA)
     return false;
 
-  const auto TrackB = static_cast<const KaxCueTrack *>(theCmp->FindElt(EBML_INFO(KaxCueTrack)));
+  const auto TrackB = FindChild<const KaxCueTrack>(*theCmp);
   if (!TrackB)
     return false;
 
@@ -161,7 +161,7 @@ bool KaxCuePoint::IsSmallerThan(const EbmlElement * Cmp) const
 
 bool KaxCuePoint::Timestamp(std::uint64_t & aTimestamp, std::uint64_t GlobalTimestampScale) const
 {
-  const auto aTime = static_cast<const KaxCueTime *>(FindFirstElt(EBML_INFO(KaxCueTime)));
+  const auto aTime = FindChild<const KaxCueTime>(*this);
   if (!aTime)
     return false;
   aTimestamp = static_cast<std::uint64_t>(*aTime) * GlobalTimestampScale;
@@ -176,9 +176,9 @@ const KaxCueTrackPositions * KaxCuePoint::GetSeekPosition() const
   const KaxCueTrackPositions * result = nullptr;
   std::uint64_t aPosition = 0xFFFFFFFFFFFFFFFLL;
   // find the position of the "earlier" Cluster
-  auto aPoss = static_cast<const KaxCueTrackPositions *>(FindFirstElt(EBML_INFO(KaxCueTrackPositions)));
+  auto aPoss = FindChild<const KaxCueTrackPositions>(*this);
   while (aPoss) {
-    auto aPos = static_cast<const KaxCueClusterPosition *>(aPoss->FindFirstElt(EBML_INFO(KaxCueClusterPosition)));
+    auto aPos = FindChild<const KaxCueClusterPosition>(*aPoss);
     if (aPos && static_cast<std::uint64_t>(*aPos) < aPosition) {
       aPosition = static_cast<std::uint64_t>(*aPos);
       result = aPoss;
@@ -191,7 +191,7 @@ const KaxCueTrackPositions * KaxCuePoint::GetSeekPosition() const
 
 std::uint64_t KaxCueTrackPositions::ClusterPosition() const
 {
-  const auto aPos = static_cast<const KaxCueClusterPosition *>(FindFirstElt(EBML_INFO(KaxCueClusterPosition)));
+  const auto aPos = FindChild<const KaxCueClusterPosition>(*this);
   if (!aPos)
     return 0;
 
@@ -200,7 +200,7 @@ std::uint64_t KaxCueTrackPositions::ClusterPosition() const
 
 std::uint16_t KaxCueTrackPositions::TrackNumber() const
 {
-  const auto aTrack = static_cast<const KaxCueTrack *>(FindFirstElt(EBML_INFO(KaxCueTrack)));
+  const auto aTrack = FindChild<const KaxCueTrack>(*this);
   if (!aTrack)
     return 0;
 

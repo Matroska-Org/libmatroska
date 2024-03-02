@@ -59,21 +59,21 @@ int main(void)
   // size is unknown and will always be, we can render it right away
   FirstSegment.Render(Ebml_file);
 
-  KaxAttachments * pAllAttachments = &GetChild<KaxAttachments>(FirstSegment);
+  KaxAttachments * pAllAttachments = static_cast<KaxAttachments *>(FirstSegment.FindFirstElt(EBML_INFO(KaxAttachments), true));
   if (pAllAttachments == NULL)
     return -1;
   pAllAttachments->SetSizeInfinite();
   // size is unknown and will always be, we can render it right away
   pAllAttachments->Render(Ebml_file);
 
-  KaxAttached * pAttachment1 = &GetChild<KaxAttached>(*pAllAttachments);
+  KaxAttached * pAttachment1 = static_cast<KaxAttached *>(pAllAttachments->FindFirstElt(EBML_INFO(KaxAttached), true));
   if (pAttachment1 == NULL)
     return -1;
-  KaxFileName * pFileName1 = &GetChild<KaxFileName>(*pAttachment1);
+  KaxFileName * pFileName1 = static_cast<KaxFileName *>(pAttachment1->FindFirstElt(EBML_INFO(KaxFileName), true));
   if (pFileName1 == NULL)
     return -1;
   pFileName1->SetValue(UTFstring{L"file1.txt"});
-  KaxFileData * pFileData1 = &GetChild<KaxFileData>(*pAttachment1);
+  KaxFileData * pFileData1 = static_cast<KaxFileData *>(pAttachment1->FindFirstElt(EBML_INFO(KaxFileData), true));
   if (pFileData1 == NULL)
     return -1;
   char Buffer1[] = "Ah ah ah !";
@@ -81,15 +81,15 @@ int main(void)
   // should produce an error if the size is not infinite and the data has been rendered
   pAttachment1->Render(Ebml_file);
 
-  KaxAttached * pAttachment2 = &AddNewChild<KaxAttached>(*pAllAttachments);
+  KaxAttached * pAttachment2 = static_cast<KaxAttached *>(pAllAttachments->AddNewElt(EBML_INFO(KaxAttached)));
   if (pAttachment2 == NULL)
     return -1;
-  KaxFileName * pFileName2 = &GetChild<KaxFileName>(*pAttachment2);
+  KaxFileName * pFileName2 = static_cast<KaxFileName *>(pAttachment2->FindFirstElt(EBML_INFO(KaxFileName), true));
   if (pFileName2 == NULL)
     return -1;
   pFileName2->SetValue(UTFstring{L"file2.txt"});
   // Add a void element (data is discarded)
-  EbmlVoid * pVoid = &GetChild<EbmlVoid>(*pAttachment2);
+  EbmlVoid * pVoid = static_cast<EbmlVoid *>(pAttachment2->FindFirstElt(EBML_INFO(EbmlVoid), true));
   if (pVoid == NULL)
     return -1;
   static_cast<EbmlBinary *>(pVoid)->SetBuffer((const binary*) Buffer1, countof(Buffer1));

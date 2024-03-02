@@ -900,8 +900,7 @@ void KaxBlockGroup::SetBlockDuration(std::uint64_t TimeLength)
 {
   assert(ParentTrack);
   const std::int64_t scale = ParentTrack->GlobalTimestampScale();
-  const auto myDuration = FindChild<KaxBlockDuration>(*this);
-  myDuration->SetValue(TimeLength / static_cast<std::uint64_t>(scale));
+  GetChild<KaxBlockDuration>(*this).SetValue(TimeLength / static_cast<std::uint64_t>(scale));
 }
 
 bool KaxBlockGroup::GetBlockDuration(std::uint64_t &TheTimestamp) const

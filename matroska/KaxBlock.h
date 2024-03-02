@@ -269,22 +269,15 @@ class MATROSKA_DLL_API KaxInternalBlock : public libebml::EbmlBinary {
     libebml::filepos_t RenderData(libebml::IOCallback & output, bool bForceRender, const ShouldWrite & writeFilter = WriteSkipDefault) override;
 };
 
-class MATROSKA_DLL_API KaxBlock : public KaxInternalBlock {
-  private:
-    static const libebml::EbmlCallbacks ClassInfos;
-  public:
-    KaxBlock() :KaxInternalBlock(KaxBlock::ClassInfos) {}
+DECLARE_xxx_BASE(KaxBlock, MATROSKA_DLL_API, KaxInternalBlock)
     MATROSKA_CLASS_BODY(KaxBlock)
 };
 
-class MATROSKA_DLL_API KaxSimpleBlock : public KaxInternalBlock {
+DECLARE_xxx_BASE(KaxSimpleBlock, MATROSKA_DLL_API, KaxInternalBlock)
   private:
-    static const libebml::EbmlCallbacks ClassInfos;
     bool                      bIsKeyframe{true};
     bool                      bIsDiscardable{false};
   public:
-    KaxSimpleBlock() :KaxInternalBlock(KaxSimpleBlock::ClassInfos) {}
-
     void SetKeyframe(bool b_keyframe) { bIsKeyframe = b_keyframe; }
     void SetDiscardable(bool b_discard) { bIsDiscardable = b_discard; }
 

@@ -63,6 +63,10 @@ KaxInternalBlock::KaxInternalBlock(const KaxInternalBlock & ElementToClone)
 }
 
 
+KaxBlock::KaxBlock() :KaxInternalBlock(KaxBlock::ClassInfos) {}
+KaxSimpleBlock::KaxSimpleBlock() :KaxInternalBlock(KaxSimpleBlock::ClassInfos) {}
+
+
 /* KaxBlockGroup::~KaxBlockGroup()
 {
   //NOTE("KaxBlockGroup::~KaxBlockGroup");

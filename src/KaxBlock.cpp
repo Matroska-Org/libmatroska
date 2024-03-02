@@ -830,13 +830,13 @@ bool KaxBlockGroup::AddFrame(const KaxTrackEntry & track, std::uint64_t timestam
 std::uint64_t KaxBlockGroup::GlobalTimestamp() const
 {
   assert(ParentCluster); // impossible otherwise
-  auto MyBlock = static_cast<KaxBlock *>(this->FindElt(EBML_INFO(KaxBlock)));
+  auto MyBlock = FindChild<KaxBlock>(*this);
   return MyBlock->GlobalTimestamp();
 }
 
 std::uint16_t KaxBlockGroup::TrackNumber() const
 {
-  auto MyBlock = static_cast<KaxBlock *>(this->FindElt(EBML_INFO(KaxBlock)));
+  auto MyBlock = FindChild<KaxBlock>(*this);
   return MyBlock->TrackNum();
 }
 
@@ -855,10 +855,10 @@ std::uint64_t KaxInternalBlock::ClusterPosition() const
 unsigned int KaxBlockGroup::ReferenceCount() const
 {
   unsigned int Result = 0;
-  auto MyBlockAdds = static_cast<KaxReferenceBlock *>(FindFirstElt(EBML_INFO(KaxReferenceBlock)));
+  auto MyBlockAdds = FindChild<KaxReferenceBlock>(*this);
   if (MyBlockAdds) {
     Result++;
-    while ((MyBlockAdds = static_cast<KaxReferenceBlock *>(FindNextElt(*MyBlockAdds)))) {
+    while ((MyBlockAdds = FindNextChild<KaxReferenceBlock>(*this, *MyBlockAdds))) {
       Result++;
     }
   }
@@ -867,11 +867,11 @@ unsigned int KaxBlockGroup::ReferenceCount() const
 
 const KaxReferenceBlock & KaxBlockGroup::Reference(unsigned int Index) const
 {
-  auto MyBlockAdds = static_cast<KaxReferenceBlock *>(FindFirstElt(EBML_INFO(KaxReferenceBlock)));
+  auto MyBlockAdds = FindChild<KaxReferenceBlock>(*this);
   assert(MyBlockAdds); // call of a non existing reference
 
   while (Index != 0) {
-    MyBlockAdds = static_cast<KaxReferenceBlock *>(FindNextElt(*MyBlockAdds));
+    MyBlockAdds = FindNextChild<KaxReferenceBlock>(*this, *MyBlockAdds);
     assert(MyBlockAdds);
     Index--;
   }
@@ -880,7 +880,7 @@ const KaxReferenceBlock & KaxBlockGroup::Reference(unsigned int Index) const
 
 void KaxBlockGroup::ReleaseFrames()
 {
-  auto MyBlock = static_cast<KaxBlock *>(this->FindElt(EBML_INFO(KaxBlock)));
+  auto MyBlock = FindChild<KaxBlock>(*this);
   MyBlock->ReleaseFrames();
 }
 
@@ -900,13 +900,13 @@ void KaxBlockGroup::SetBlockDuration(std::uint64_t TimeLength)
 {
   assert(ParentTrack);
   const std::int64_t scale = ParentTrack->GlobalTimestampScale();
-  const auto myDuration = static_cast<KaxBlockDuration *>(FindFirstElt(EBML_INFO(KaxBlockDuration), true));
+  const auto myDuration = FindChild<KaxBlockDuration>(*this);
   myDuration->SetValue(TimeLength / static_cast<std::uint64_t>(scale));
 }
 
 bool KaxBlockGroup::GetBlockDuration(std::uint64_t &TheTimestamp) const
 {
-  const auto myDuration = static_cast<KaxBlockDuration *>(FindElt(EBML_INFO(KaxBlockDuration)));
+  const auto myDuration = FindChild<KaxBlockDuration>(*this);
   if (!myDuration) {
     return false;
   }

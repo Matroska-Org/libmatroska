@@ -97,7 +97,7 @@ const KaxCuePoint * KaxCues::GetTimestampPoint(std::uint64_t aTimestamp) const
     if (EbmlId(*e) == EBML_ID(KaxCuePoint)) {
       auto tmp = static_cast<const KaxCuePoint *>(e);
       // check the tile
-      auto aTime = FindChild<const KaxCueTime>(*tmp);
+      auto aTime = static_cast<const KaxCueTime *>(tmp->FindFirstElt(EBML_INFO(KaxCueTime)));
       if (aTime) {
         auto _Time = static_cast<std::uint64_t>(*aTime);
         if (_Time > aPrevTime && _Time < TimestampToLocate) {

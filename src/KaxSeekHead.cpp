@@ -39,16 +39,18 @@ KaxSeek * KaxSeekHead::IndexThis(const EbmlElement & aElt, const KaxSegment & Pa
 KaxSeek * KaxSeekHead::FindFirstOf(const EbmlCallbacks & Callbacks) const
 {
   // parse all the Entries and find the first to match the type
-  auto aElt = FindChild<KaxSeek>(*this);
+  auto aElt = static_cast<KaxSeek *>(FindFirstElt(EBML_INFO(KaxSeek)));
   while (aElt) {
-    const auto aId = FindChild<KaxSeekID>(*aElt);
-    if (aId != nullptr) {
+    auto it = std::find_if(aElt->begin(), aElt->end(), [&](auto Elt)
+      { return (EbmlId(*Elt) == EBML_ID(KaxSeekID)); });
+    if (it != aElt->end()) {
+      const auto aId = static_cast<KaxSeekID*>(*it);
       const auto aEbmlId = EbmlId(EbmlId::FromBuffer(aId->GetBuffer(), aId->GetSize()));
       if (aEbmlId == EBML_INFO_ID(Callbacks)) {
         return aElt;
       }
     }
-    aElt = FindNextChild<KaxSeek>(*this,*aElt);
+    aElt = static_cast<KaxSeek *>(FindNextElt(*aElt));
   }
 
   return nullptr;
@@ -71,7 +73,7 @@ KaxSeek * KaxSeekHead::FindNextOf(const KaxSeek &aPrev) const
 
 std::int64_t KaxSeek::Location() const
 {
-  auto aPos = FindChild<KaxSeekPosition>(*this);
+  auto aPos = static_cast<KaxSeekPosition*>(FindFirstElt(EBML_INFO(KaxSeekPosition)));
   if (!aPos)
     return 0;
   return static_cast<std::uint64_t>(*aPos);
@@ -79,7 +81,7 @@ std::int64_t KaxSeek::Location() const
 
 bool KaxSeek::IsEbmlId(const EbmlId & aId) const
 {
-  auto _Id = FindChild<KaxSeekID>(*this);
+  auto _Id = static_cast<KaxSeekID*>(FindFirstElt(EBML_INFO(KaxSeekID)));
   if (!_Id)
     return false;
   const auto aEbmlId = EbmlId(EbmlId::FromBuffer(_Id->GetBuffer(), _Id->GetSize()));
@@ -88,10 +90,10 @@ bool KaxSeek::IsEbmlId(const EbmlId & aId) const
 
 bool KaxSeek::IsEbmlId(const KaxSeek & aPoint) const
 {
-  auto _IdA = FindChild<KaxSeekID>(*this);
+  auto _IdA = static_cast<KaxSeekID*>(FindFirstElt(EBML_INFO(KaxSeekID)));
   if (!_IdA)
     return false;
-  auto _IdB = FindChild<KaxSeekID>(aPoint);
+  auto _IdB = static_cast<KaxSeekID*>(aPoint.FindFirstElt(EBML_INFO(KaxSeekID)));
   if (!_IdB)
     return false;
   const auto aEbmlIdA = EbmlId(EbmlId::FromBuffer(_IdA->GetBuffer(), _IdA->GetSize()));

@@ -7,7 +7,6 @@
     \author Moritz Bunkus     <mosu @ users.sf.net>
 */
 
-#include <matroska/FileKax.h>
 #include <matroska/KaxBlock.h>
 #include <matroska/KaxCluster.h>
 #include <matroska/KaxCues.h>

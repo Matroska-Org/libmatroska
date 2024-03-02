@@ -7,7 +7,6 @@
     \author Steve Lhomme     <robux4 @ users.sf.net>
 */
 
-#include "matroska/FileKax.h"
 #include "matroska/KaxSegment.h"
 #include "matroska/KaxTracks.h"
 #include "matroska/KaxCluster.h"

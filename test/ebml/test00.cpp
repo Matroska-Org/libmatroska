@@ -37,7 +37,7 @@ const char RW_FILENAME[] = "test.kax";
 */
 int main(void)
 {
-  printf("Test00 :\nEBML %s %s / Matroska %s %s\n", EbmlCodeVersion.c_str(), EbmlCodeDate.c_str(), KaxCodeVersion.c_str(), KaxCodeDate.c_str());
+  printf("Test00 :\nEBML %s / Matroska %s\n", EbmlCodeVersion.c_str(), KaxCodeVersion.c_str());
   StdIOCallback Ebml_file(RW_FILENAME, ::MODE_CREATE);
 
   ///// Writing test

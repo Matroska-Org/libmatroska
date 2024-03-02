@@ -18,7 +18,6 @@ namespace libmatroska {
 #define LIBMATROSKA_VERSION 0x020000
 
 extern const MATROSKA_DLL_API std::string KaxCodeVersion;
-extern const MATROSKA_DLL_API std::string KaxCodeDate;
 
 /*!
   \todo Improve the CRC/ECC system (backward and forward possible ?) to fit streaming/live writing/simple reading

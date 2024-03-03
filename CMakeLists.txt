@@ -100,6 +100,10 @@ if(NOT BUILD_SHARED_LIBS)
 endif()
 
 if(BUILD_EXAMPLES)
+  add_executable(mkvtree test/mkvtree/mkvtree.cpp)
+  target_link_libraries(mkvtree matroska)
+  target_include_directories(mkvtree PRIVATE $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}>)
+
   add_executable(test00 test/ebml/test00.cpp)
   target_link_libraries(test00 matroska)
   target_include_directories(test00 PRIVATE $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}>)

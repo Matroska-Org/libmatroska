@@ -37,7 +37,8 @@ if(DEV_MODE)
   add_cxx_flag_if_supported(-Wno-error=unused-command-line-argument
                             -Wall -Wextra -Wpedantic -Wfatal-errors -fstack-protector-strong
                             -Wno-self-assign
-                            -Wcast-align)
+                            -Wcast-align
+                            -W4)
 endif()
 
 set(libmatroska_SOURCES

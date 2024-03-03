@@ -24,6 +24,12 @@
 
 using namespace libebml;
 
+#ifdef _WIN32
+# if !WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+#define localtime(x)  nullptr
+# endif // UWP, Xbox, etc
+#endif // win32
+
 static int ShowPos = 0;
 
 #if 0 // TODO allowing find top level elements using an EbmlSemanticContextMaster

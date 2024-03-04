@@ -22,7 +22,7 @@ DEFINE_SEMANTIC_ITEM(true, true, EbmlHead)
 DEFINE_SEMANTIC_ITEM(false, false, KaxSegment)
 DEFINE_END_SEMANTIC(KaxMatroska)
 
-DEFINE_MKX_CONTEXT(KaxMatroska)
+MATROSKA_DLL_API DEFINE_MKX_CONTEXT(KaxMatroska)
 
 // for the moment
 const EbmlSemanticContextMaster & GetKaxGlobal_Context()

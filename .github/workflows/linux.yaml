@@ -6,14 +6,19 @@ on:
     # branches: [ master ]
 
 jobs:
-  build_libmatroska:
-    name: libmatroska
-    runs-on: ubuntu-latest
+  Linux-GCC:
+    runs-on: ubuntu-20.04
+    strategy:
+      matrix:
+        cxx: ['7', '13']
     env:
-      CMAKE_OPTIONS: -DDEV_MODE=ON
+      CMAKE_OPTIONS: -DDEV_MODE=ON -DBUILD_TESTING=ON -G Ninja
       CMAKE_MATROSKA_OPTIONS: -DBUILD_EXAMPLES=ON
     steps:
       - uses: lukka/get-cmake@latest
+      - uses: egor-tensin/setup-gcc@v1
+        with:
+          version: ${{matrix.cxx}}
 
       - name: Get pushed code
         uses: actions/checkout@v4
@@ -34,7 +39,100 @@ jobs:
       - name: Install libebml
         run: cmake --install libebml/_build --prefix ${GITHUB_WORKSPACE}/_built
 
-      - name: Configure CMake
+      - name: Configure
+        run: cmake -S . -B _build  ${{ env.CMAKE_OPTIONS }} ${{ env.CMAKE_MATROSKA_OPTIONS }} -DEBML_DIR="${GITHUB_WORKSPACE}/_built/lib/cmake/EBML"
+
+      - name: Build
+        run: cmake --build _build --parallel
+
+      - name: Test installation
+        run: cmake --install _build --prefix ${GITHUB_WORKSPACE}/_built
+
+  Linux-Clang:
+    runs-on: ubuntu-20.04
+    strategy:
+      matrix:
+        cxx: ['7', '18']
+    env:
+      CMAKE_OPTIONS: -DDEV_MODE=ON -DBUILD_TESTING=ON -G Ninja -DCMAKE_CXX_FLAGS="-stdlib=libc++"
+      CMAKE_MATROSKA_OPTIONS: -DBUILD_EXAMPLES=ON
+    steps:
+      - uses: lukka/get-cmake@latest
+      - uses: egor-tensin/setup-clang@v1
+        with:
+          version: ${{matrix.cxx}}
+
+      - name: Install libc++
+        run: |
+          sudo apt install -y libc++abi-${{matrix.cxx}}-dev libc++-${{matrix.cxx}}-dev
+
+      - name: Get pushed code
+        uses: actions/checkout@v4
+
+      - name: Checkout libebml
+        uses: actions/checkout@v4
+        with:
+          repository: Matroska-Org/libebml
+          path: libebml
+          # minimum version we support ref: 'release-1.4.3'
+
+      - name: Configure libebml
+        run: cmake -S libebml -B libebml/_build ${{ env.CMAKE_OPTIONS }}
+
+      - name: Build libebml
+        run: cmake --build libebml/_build --parallel
+
+      - name: Install libebml
+        run: cmake --install libebml/_build --prefix ${GITHUB_WORKSPACE}/_built
+
+      - name: Configure
+        run: cmake -S . -B _build  ${{ env.CMAKE_OPTIONS }} ${{ env.CMAKE_MATROSKA_OPTIONS }} -DEBML_DIR="${GITHUB_WORKSPACE}/_built/lib/cmake/EBML"
+
+      - name: Build
+        run: cmake --build _build --parallel
+
+      - name: Test installation
+        run: cmake --install _build --prefix ${GITHUB_WORKSPACE}/_built
+
+  Alpine:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        platform: ['armhf']
+    env:
+      CMAKE_OPTIONS: -DDEV_MODE=ON -DBUILD_TESTING=ON
+      CMAKE_MATROSKA_OPTIONS: -DBUILD_EXAMPLES=ON
+    defaults:
+      run:
+        shell: alpine.sh {0}
+    steps:
+      - name: Get pushed code
+        uses: actions/checkout@v4
+
+      - uses: jirutka/setup-alpine@v1
+        with:
+          branch: edge
+          arch: ${{matrix.platform}}
+          packages: >
+            build-base cmake
+
+      - name: Checkout libebml
+        uses: actions/checkout@v4
+        with:
+          repository: Matroska-Org/libebml
+          path: libebml
+          # minimum version we support ref: 'release-1.4.3'
+
+      - name: Configure libebml
+        run: cmake -S libebml -B libebml/_build ${{ env.CMAKE_OPTIONS }}
+
+      - name: Build libebml
+        run: cmake --build libebml/_build --parallel
+
+      - name: Install libebml
+        run: cmake --install libebml/_build --prefix ${GITHUB_WORKSPACE}/_built
+
+      - name: Configure
         run: cmake -S . -B _build  ${{ env.CMAKE_OPTIONS }} ${{ env.CMAKE_MATROSKA_OPTIONS }} -DEBML_DIR="${GITHUB_WORKSPACE}/_built/lib/cmake/EBML"
 
       - name: Build

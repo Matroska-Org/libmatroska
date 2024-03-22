@@ -22,7 +22,8 @@
 #include "matroska/KaxDefines.h"
 
 namespace libmatroska {
-DECLARE_MKX_BINARY_LENGTH(KaxSeekID, 4)
+DECLARE_MKX_BINARY(KaxSeekID)
+  static inline bool SizeIsValid(std::uint64_t Size) {return Size == 4;}
 };
 
 DECLARE_MKX_UINTEGER(KaxSeekPosition)
@@ -31,25 +32,29 @@ DECLARE_MKX_UINTEGER(KaxSeekPosition)
 DECLARE_MKX_MASTER(KaxInfo)
 };
 
-DECLARE_MKX_BINARY_LENGTH(KaxSegmentUID, 16)
+DECLARE_MKX_BINARY(KaxSegmentUID)
+  static inline bool SizeIsValid(std::uint64_t Size) {return Size == 16;}
 };
 
 DECLARE_MKX_UNISTRING(KaxSegmentFilename)
 };
 
-DECLARE_MKX_BINARY_LENGTH(KaxPrevUID, 16)
+DECLARE_MKX_BINARY(KaxPrevUID)
+  static inline bool SizeIsValid(std::uint64_t Size) {return Size == 16;}
 };
 
 DECLARE_MKX_UNISTRING(KaxPrevFilename)
 };
 
-DECLARE_MKX_BINARY_LENGTH(KaxNextUID, 16)
+DECLARE_MKX_BINARY(KaxNextUID)
+  static inline bool SizeIsValid(std::uint64_t Size) {return Size == 16;}
 };
 
 DECLARE_MKX_UNISTRING(KaxNextFilename)
 };
 
-DECLARE_MKX_BINARY_LENGTH(KaxSegmentFamily, 16)
+DECLARE_MKX_BINARY(KaxSegmentFamily)
+  static inline bool SizeIsValid(std::uint64_t Size) {return Size == 16;}
 };
 
 DECLARE_MKX_MASTER(KaxChapterTranslate)
@@ -386,7 +391,8 @@ public:
   libebml::filepos_t RenderData(libebml::IOCallback & output, bool bForceRender, const ShouldWrite & writeFilter) override;
 };
 
-DECLARE_MKX_BINARY_LENGTH(KaxVideoColourSpace, 4)
+DECLARE_MKX_BINARY(KaxVideoColourSpace)
+  static inline bool SizeIsValid(std::uint64_t Size) {return Size == 4;}
 };
 
 DECLARE_MKX_FLOAT(KaxVideoGamma)
@@ -541,9 +547,10 @@ public:
   libebml::filepos_t RenderData(libebml::IOCallback & output, bool bForceRender, const ShouldWrite & writeFilter) override;
 };
 
-DECLARE_MKX_BINARY_LENGTH(KaxTrickTrackSegmentUID, 16)
+DECLARE_MKX_BINARY(KaxTrickTrackSegmentUID)
 public:
   libebml::filepos_t RenderData(libebml::IOCallback & output, bool bForceRender, const ShouldWrite & writeFilter) override;
+  static inline bool SizeIsValid(std::uint64_t Size) {return Size == 16;}
 };
 
 DECLARE_MKX_UINTEGER_DEF(KaxTrickTrackFlag)
@@ -556,9 +563,10 @@ public:
   libebml::filepos_t RenderData(libebml::IOCallback & output, bool bForceRender, const ShouldWrite & writeFilter) override;
 };
 
-DECLARE_MKX_BINARY_LENGTH(KaxTrickMasterTrackSegmentUID, 16)
+DECLARE_MKX_BINARY(KaxTrickMasterTrackSegmentUID)
 public:
   libebml::filepos_t RenderData(libebml::IOCallback & output, bool bForceRender, const ShouldWrite & writeFilter) override;
+  static inline bool SizeIsValid(std::uint64_t Size) {return Size == 16;}
 };
 
 DECLARE_MKX_MASTER(KaxContentEncodings)
@@ -743,7 +751,8 @@ DECLARE_MKX_UINTEGER_DEF(KaxChapterFlagHidden)
 DECLARE_MKX_UINTEGER_DEF(KaxChapterFlagEnabled)
 };
 
-DECLARE_MKX_BINARY_LENGTH(KaxChapterSegmentUID, 16)
+DECLARE_MKX_BINARY(KaxChapterSegmentUID)
+  static inline bool SizeIsValid(std::uint64_t Size) {return Size == 16;}
 };
 
 DECLARE_MKX_UINTEGER(KaxChapterSkipType)
@@ -1164,7 +1173,7 @@ typedef enum {
  *Indicate what type of content the ChapterAtom contains and might be skipped. It can be used to automatically skip content based on the type.
 If a `ChapterAtom` is inside a `ChapterAtom` that has a `ChapterSkipType` set, it **MUST NOT** have a `ChapterSkipType` or have a `ChapterSkipType` with the same value as it's parent `ChapterAtom`.
 If the `ChapterAtom` doesn't contain a `ChapterTimeEnd`, the value of the `ChapterSkipType` is only valid until the next `ChapterAtom` with a `ChapterSkipType` value or the end of the file.
-    
+
  */
 typedef enum {
   MATROSKA_CHAPTERSKIPTYPE_NO_SKIPPING      = 0, // Content which should not be skipped.

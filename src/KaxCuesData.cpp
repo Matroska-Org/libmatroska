@@ -72,7 +72,7 @@ void KaxCuePoint::PositionSet(const KaxBlockGroup & BlockReference, uint64 Globa
   auto CodecState = static_cast<KaxCodecState *>(BlockReference.FindFirstElt(EBML_INFO(KaxCodecState)));
   if (CodecState != nullptr) {
     auto &CueCodecState = AddNewChild<KaxCueCodecState>(NewPositions);
-    *static_cast<EbmlUInteger*>(&CueCodecState) = BlockReference.GetParentCluster()->GetParentSegment()->GetRelativePosition(CodecState->GetElementPosition());
+    *static_cast<EbmlUInteger*>(&CueCodecState) = BlockReference.GetParentCluster2()->GetParentSegment()->GetRelativePosition(CodecState->GetElementPosition());
   }
 
   SetValueIsSet();
@@ -123,7 +123,7 @@ void KaxCuePoint::PositionSet(const KaxInternalBlock & BlockReference, const Kax
     const auto CodecState = static_cast<const KaxCodecState *>(BlockGroup->FindFirstElt(EBML_INFO(KaxCodecState)));
     if (CodecState != nullptr) {
       auto &CueCodecState = AddNewChild<KaxCueCodecState>(NewPositions);
-      *static_cast<EbmlUInteger*>(&CueCodecState) = BlockGroup->GetParentCluster()->GetParentSegment()->GetRelativePosition(CodecState->GetElementPosition());
+      *static_cast<EbmlUInteger*>(&CueCodecState) = BlockGroup->GetParentCluster2()->GetParentSegment()->GetRelativePosition(CodecState->GetElementPosition());
     }
   }
 

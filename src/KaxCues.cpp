@@ -5,6 +5,7 @@
   \file
   \author Steve Lhomme     <robux4 @ users.sf.net>
 */
+#include <algorithm>
 #include <cassert>
 
 #include "matroska/KaxCues.h"

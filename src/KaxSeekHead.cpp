@@ -5,6 +5,8 @@
   \file
   \author Steve Lhomme     <robux4 @ users.sf.net>
 */
+#include <algorithm>
+
 #include "matroska/KaxSeekHead.h"
 #include "matroska/KaxContexts.h"
 #include "matroska/KaxSegment.h"

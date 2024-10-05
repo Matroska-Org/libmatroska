@@ -1106,19 +1106,19 @@ typedef enum {
  */
 typedef enum {
   MATROSKA_CONTENTENCALGO_NOT_ENCRYPTED    = 0, // The data are not encrypted.
-  MATROSKA_CONTENTENCALGO_DES              = 1, // Data Encryption Standard (DES) (FIPS.46-3).
-  MATROSKA_CONTENTENCALGO_3DES             = 2, // Triple Data Encryption Algorithm (SP.800-67).
+  MATROSKA_CONTENTENCALGO_DES              = 1, // Data Encryption Standard (DES) (FIPS46-3).
+  MATROSKA_CONTENTENCALGO_3DES             = 2, // Triple Data Encryption Algorithm (SP800-67).
   MATROSKA_CONTENTENCALGO_TWOFISH          = 3, // Twofish Encryption Algorithm (Twofish).
   MATROSKA_CONTENTENCALGO_BLOWFISH         = 4, // Blowfish Encryption Algorithm (Blowfish).
-  MATROSKA_CONTENTENCALGO_AES              = 5, // Advanced Encryption Standard (AES) (FIPS.197).
+  MATROSKA_CONTENTENCALGO_AES              = 5, // Advanced Encryption Standard (AES) (FIPS197).
 } MatroskaContentEncodingAlgo;
 
 /**
  *The AES cipher mode used in the encryption.
  */
 typedef enum {
-  MATROSKA_AESSETTINGSCIPHERMODE_AES_CTR          = 1, // Counter (SP.800-38A).
-  MATROSKA_AESSETTINGSCIPHERMODE_AES_CBC          = 2, // Cipher Block Chaining (SP.800-38A).
+  MATROSKA_AESSETTINGSCIPHERMODE_AES_CTR          = 1, // Counter (SP800-38A)
+  MATROSKA_AESSETTINGSCIPHERMODE_AES_CBC          = 2, // Cipher Block Chaining (SP800-38A)
 } MatroskaAESSettingsCipherMode;
 
 /**

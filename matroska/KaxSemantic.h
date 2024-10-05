@@ -939,8 +939,8 @@ typedef enum {
   MATROSKA_VIDEO_FIELDORDER_TOPFIELDFIRST    = 1, // Top field displayed first. Top field stored first.
   MATROSKA_VIDEO_FIELDORDER_UNDETERMINED     = 2, // Unknown field order.
   MATROSKA_VIDEO_FIELDORDER_BOTTOMFIELDFIRST = 6, // Bottom field displayed first. Bottom field stored first.
-  MATROSKA_VIDEO_FIELDORDER_BOTTOMFIELDSWAPPED = 9, // Top field displayed first. Fields are interleaved in storage with the top line of the top field stored first.
-  MATROSKA_VIDEO_FIELDORDER_TOPFIELDSWAPPED  = 14, // Bottom field displayed first. Fields are interleaved in storage with the top line of the top field stored first.
+  MATROSKA_VIDEO_FIELDORDER_TOPFIELDSWAPPED  = 9, // Top field displayed first. Fields are interleaved in storage with the top line of the top field stored first.
+  MATROSKA_VIDEO_FIELDORDER_BOTTOMFIELDSWAPPED = 14, // Bottom field displayed first. Fields are interleaved in storage with the top line of the top field stored first.
 } MatroskaVideoFieldOrder;
 
 /**

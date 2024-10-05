@@ -890,8 +890,8 @@ typedef enum {
   MATROSKA_VIDEO_FIELDORDER_TOPFIELDFIRST    = 1, // Top field displayed first. Top field stored first.
   MATROSKA_VIDEO_FIELDORDER_UNDETERMINED     = 2, // Unknown field order.
   MATROSKA_VIDEO_FIELDORDER_BOTTOMFIELDFIRST = 6, // Bottom field displayed first. Bottom field stored first.
-  MATROSKA_VIDEO_FIELDORDER_BOTTOMFIELDSWAPPED = 9, // Top field displayed first. Fields are interleaved in storage with the top line of the top field stored first.
-  MATROSKA_VIDEO_FIELDORDER_TOPFIELDSWAPPED  = 14, // Bottom field displayed first. Fields are interleaved in storage with the top line of the top field stored first.
+  MATROSKA_VIDEO_FIELDORDER_TOPFIELDSWAPPED  = 9, // Top field displayed first. Fields are interleaved in storage with the top line of the top field stored first.
+  MATROSKA_VIDEO_FIELDORDER_BOTTOMFIELDSWAPPED = 14, // Bottom field displayed first. Fields are interleaved in storage with the top line of the top field stored first.
 } MatroskaVideoFieldOrder;
 
 /**
@@ -1148,7 +1148,7 @@ typedef enum {
  *Indicate what type of content the ChapterAtom contains and might be skipped. It can be used to automatically skip content based on the type.
 If a `ChapterAtom` is inside a `ChapterAtom` that has a `ChapterSkipType` set, it **MUST NOT** have a `ChapterSkipType` or have a `ChapterSkipType` with the same value as it's parent `ChapterAtom`.
 If the `ChapterAtom` doesn't contain a `ChapterTimeEnd`, the value of the `ChapterSkipType` is only valid until the next `ChapterAtom` with a `ChapterSkipType` value or the end of the file.
-    
+
  */
 typedef enum {
   MATROSKA_CHAPTERSKIPTYPE_NO_SKIPPING      = 0, // Content which should not be skipped.

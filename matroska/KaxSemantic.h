@@ -874,22 +874,6 @@ typedef enum {
 } MatroskaTrackEncodingCompAlgo;
 
 /**
- *This `ChapterTranslate` applies to this chapter codec of the given chapter edition(s); see (#chapprocesscodecid-element).
- */
-typedef enum {
-  MATROSKA_CHAPTERTRANSLATECODEC_MATROSKA_SCRIPT  = 0, // Chapter commands using the Matroska Script codec.
-  MATROSKA_CHAPTERTRANSLATECODEC_DVD_MENU         = 1, // Chapter commands using the DVD-like codec.
-} MatroskaChapterTranslateCodec;
-
-/**
- *This `TrackTranslate` applies to this chapter codec of the given chapter edition(s); see (#chapprocesscodecid-element).
- */
-typedef enum {
-  MATROSKA_TRACKTRANSLATECODEC_MATROSKA_SCRIPT  = 0, // Chapter commands using the Matroska Script codec.
-  MATROSKA_TRACKTRANSLATECODEC_DVD_MENU         = 1, // Chapter commands using the DVD-like codec.
-} MatroskaTrackTranslateCodec;
-
-/**
  *Specify whether the video frames in this track are interlaced.
  */
 typedef enum {

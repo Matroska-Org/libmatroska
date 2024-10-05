@@ -244,7 +244,7 @@ DEFINE_SEMANTIC_ITEM(false, true, KaxCodecSettings) // not supported
 DEFINE_SEMANTIC_ITEM(false, false, KaxCodecInfoURL) // not supported
 DEFINE_SEMANTIC_ITEM(false, false, KaxCodecDownloadURL) // not supported
 DEFINE_SEMANTIC_ITEM(true, true, KaxCodecDecodeAll) // not supported
-DEFINE_SEMANTIC_ITEM(false, false, KaxTrackOverlay)
+DEFINE_SEMANTIC_ITEM(false, false, KaxTrackOverlay) // not supported
 DEFINE_SEMANTIC_ITEM(true, true, KaxCodecDelay)
 DEFINE_SEMANTIC_ITEM(true, true, KaxSeekPreRoll)
 DEFINE_SEMANTIC_ITEM(false, false, KaxTrackTranslate)
@@ -873,6 +873,11 @@ filepos_t KaxCodecDownloadURL::RenderData(IOCallback & /* output */, bool /* bFo
 }
 
 filepos_t KaxCodecDecodeAll::RenderData(IOCallback & /* output */, bool /* bForceRender */, bool /* bSaveDefault */) {
+  assert(false); // no you are not allowed to use this element !
+  return 0;
+}
+
+filepos_t KaxTrackOverlay::RenderData(IOCallback & /* output */, bool /* bForceRender */, bool /* bSaveDefault */) {
   assert(false); // no you are not allowed to use this element !
   return 0;
 }

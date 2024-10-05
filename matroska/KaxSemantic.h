@@ -1210,6 +1210,14 @@ typedef enum {
 } MatroskaChapterSkipType;
 
 /**
+ *Contains the type of the codec used for processing.
+ */
+typedef enum {
+  MATROSKA_CHAPPROCESSCODECID_MATROSKA_SCRIPT  = 0, // Chapter commands using the Matroska Script codec.
+  MATROSKA_CHAPPROCESSCODECID_DVD_MENU         = 1, // Chapter commands using the DVD-like codec.
+} MatroskaChapProcessCodecID;
+
+/**
  *Defines when the process command **SHOULD** be handled
  */
 typedef enum {

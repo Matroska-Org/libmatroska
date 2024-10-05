@@ -341,6 +341,8 @@ public:
 };
 
 DECLARE_MKX_UINTEGER(KaxTrackOverlay)
+public:
+  filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault) override;
 };
 
 DECLARE_MKX_UINTEGER(KaxCodecDelay)

@@ -41,3 +41,7 @@ following additional `cmake` options are supported:
 ## Code of conduct
 
 Please note that this project is released with a [Contributor Code of Conduct](CODE_OF_CONDUCT.md). By participating in this project you agree to abide by its terms.
+
+# Packaging status
+
+[![Packaging status](https://repology.org/badge/vertical-allrepos/libmatroska.svg?columns=3&header=libmatroska&exclude_unsupported=1)](https://repology.org/project/libmatroska/versions)

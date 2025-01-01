@@ -14,11 +14,9 @@ jobs:
       matrix:
         arch:   [x86_64, arm64]
     env:
-      CMAKE_OPTIONS: -DDEV_MODE=ON -G Ninja
+      CMAKE_OPTIONS: -DDEV_MODE=ON
       CMAKE_MATROSKA_OPTIONS: -DBUILD_EXAMPLES=ON
     steps:
-      - uses: lukka/get-cmake@latest
-
       - name: Get pushed code
         uses: actions/checkout@v4
 

@@ -10,8 +10,6 @@ jobs:
     name: libmatroska for macOS
     runs-on: macos-latest
     steps:
-      - uses: lukka/get-cmake@latest
-
       - name: Get pushed code
         uses: actions/checkout@v3
       

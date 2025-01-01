@@ -41,14 +41,14 @@ public:
 #define DEFINE_MKX_STRING_DEF(a,b,d,e,versions,v)   DEFINE_xxx_STRING_DEF(a,b,d,e,versions,GetKaxGlobal_Context,v)
 #define DEFINE_MKX_STRING(a,b,d,e,versions)         DEFINE_xxx_STRING(a,b,d,e,versions,GetKaxGlobal_Context)
 #define DEFINE_MKX_UNISTRING(a,b,d,e,versions)      DEFINE_xxx_UNISTRING(a,b,d,e,versions,GetKaxGlobal_Context)
-#define DEFINE_MKX_BINARY(a,b,d,e,versions)         DEFINE_xxx_BINARY(a,b,d,e,versions,GetKaxGlobal_Context)
+#define DEFINE_MKX_BINARY(a,b,d,e,valid,versions)   DEFINE_xxx_BINARY(a,b,d,e,valid,versions,GetKaxGlobal_Context)
 #define DEFINE_MKX_FLOAT_DEF(a,b,d,e,versions,v)    DEFINE_xxx_FLOAT_DEF(a,b,d,e,versions,GetKaxGlobal_Context,v)
 #define DEFINE_MKX_FLOAT(a,b,d,e,versions)          DEFINE_xxx_FLOAT(a,b,d,e,versions,GetKaxGlobal_Context)
 #define DEFINE_MKX_DATE(a,b,d,e,versions)           DEFINE_xxx_DATE(a,b,d,e,versions,GetKaxGlobal_Context)
-#define DEFINE_MKX_BINARY_CONS(a,b,d,e,versions)    DEFINE_xxx_CLASS_CONS(a,b,d,e,GetKaxGlobal_Context) \
-    constexpr const libebml::EbmlCallbacks a::ClassInfos(a::Create, Id_##a, false, false, e, Context_##a, versions);
+#define DEFINE_MKX_BINARY_CONS(a,b,d,e,valid,versions)    DEFINE_xxx_CLASS_CONS(a,b,d,e,GetKaxGlobal_Context) \
+    constexpr const libebml::EbmlCallbacks a::ClassInfos(a::Create, Id_##a, false, false, e, Context_##a, versions, valid);
 #define DEFINE_MKX_SINTEGER_CONS(a,b,d,e,versions)  DEFINE_xxx_CLASS_CONS(a,b,d,e,GetKaxGlobal_Context) \
-    const libebml::EbmlCallbacksDefault<std::int64_t> a::ClassInfos(a::Create, Id_##a, e, Context_##a, versions);
+    const libebml::EbmlCallbacksDefault<std::int64_t> a::ClassInfos(a::Create, Id_##a, e, Context_##a, versions, libebml::EbmlSInteger::SizeIsValid);
 
 #define MATROSKA_CLASS_BODY(x) \
     EBML_CONCRETE_CLASS(x)

@@ -21,8 +21,6 @@ jobs:
       CMAKE_OPTIONS: -DDEV_MODE=ON -DCMAKE_SYSTEM_NAME="WindowsStore" -DCMAKE_SYSTEM_VERSION="10.0" -DCMAKE_CXX_FLAGS_INIT="-DWINVER=0x0A00 -DWINAPI_FAMILY=WINAPI_FAMILY_PC_APP"
       CMAKE_MATROSKA_OPTIONS: -DBUILD_EXAMPLES=ON
     steps:
-      - uses: lukka/get-cmake@latest
-
       - name: Get pushed code
         uses: actions/checkout@v4
 

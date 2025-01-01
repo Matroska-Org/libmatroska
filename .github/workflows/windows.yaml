@@ -22,8 +22,6 @@ jobs:
       CMAKE_OPTIONS: -DDEV_MODE=ON -DCMAKE_CXX_FLAGS_INIT="-DWINVER=0x0501"
       CMAKE_MATROSKA_OPTIONS: -DBUILD_EXAMPLES=ON
     steps:
-      - uses: lukka/get-cmake@latest
-
       - name: Get pushed code
         uses: actions/checkout@v4
 

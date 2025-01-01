@@ -10,7 +10,6 @@ jobs:
     name: libmatroska for Linux
     runs-on: ubuntu-latest
     steps:
-      - uses: lukka/get-cmake@latest
 
       - name: Get pushed code
         uses: actions/checkout@v3

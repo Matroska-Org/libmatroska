@@ -14,8 +14,6 @@ jobs:
       matrix:
         config: [Debug, Release]
     steps:
-      - uses: lukka/get-cmake@latest
-
       - name: Get pushed code
         uses: actions/checkout@v3
       

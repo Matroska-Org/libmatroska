@@ -1123,9 +1123,9 @@ typedef enum {
  *A bit field that describes which elements have been modified in this way. Values (big-endian) can be OR'ed.
  */
 typedef enum {
-  MATROSKA_CONTENTENCODINGSCOPE_BLOCK            = 1, // All frame contents, excluding lacing data.
-  MATROSKA_CONTENTENCODINGSCOPE_PRIVATE          = 2, // The track's CodecPrivate data.
-  MATROSKA_CONTENTENCODINGSCOPE_NEXT             = 4, // The next ContentEncoding (next ContentEncodingOrder; the data inside ContentCompression and/or ContentEncryption).
+  MATROSKA_CONTENTENCODINGSCOPE_BLOCK            = 0x1, // All frame contents, excluding lacing data.
+  MATROSKA_CONTENTENCODINGSCOPE_PRIVATE          = 0x2, // The track's CodecPrivate data.
+  MATROSKA_CONTENTENCODINGSCOPE_NEXT             = 0x4, // The next ContentEncoding (next ContentEncodingOrder; the data inside ContentCompression and/or ContentEncryption).
 } MatroskaContentEncodingScope;
 
 /**

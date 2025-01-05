@@ -6,18 +6,53 @@ on:
     # branches: [ master ]
 
 jobs:
-  Linux-GCC:
-    runs-on: ubuntu-20.04
+  Latest:
+    runs-on: ubuntu-24.04
     strategy:
       matrix:
-        cxx: ['7', '13']
+        cxx: ['g++-14', 'clang++-18']
+    env:
+      CMAKE_OPTIONS: -DDEV_MODE=ON -DBUILD_TESTING=ON
+      CMAKE_MATROSKA_OPTIONS: -DBUILD_EXAMPLES=ON
+      CXX: ${{matrix.cxx}}
+    steps:
+      - name: Get pushed code
+        uses: actions/checkout@v4
+
+      - name: Checkout libebml
+        uses: actions/checkout@v4
+        with:
+          repository: Matroska-Org/libebml
+          path: libebml
+          # minimum version we support ref: 'release-1.4.3'
+
+      - name: Configure libebml
+        run: cmake -S libebml -B libebml/_build ${{ env.CMAKE_OPTIONS }}
+
+      - name: Build libebml
+        run: cmake --build libebml/_build --parallel
+
+      - name: Install libebml
+        run: cmake --install libebml/_build --prefix ${GITHUB_WORKSPACE}/_built
+
+      - name: Configure
+        run: cmake -S . -B _build  ${{ env.CMAKE_OPTIONS }} ${{ env.CMAKE_MATROSKA_OPTIONS }} -DEBML_DIR="${GITHUB_WORKSPACE}/_built/lib/cmake/EBML"
+
+      - name: Build
+        run: cmake --build _build --parallel
+
+      - name: Test installation
+        run: cmake --install _build --prefix ${GITHUB_WORKSPACE}/_built
+
+  GCC-7:
+    runs-on: ubuntu-20.04
     env:
       CMAKE_OPTIONS: -DDEV_MODE=ON -DBUILD_TESTING=ON
       CMAKE_MATROSKA_OPTIONS: -DBUILD_EXAMPLES=ON
     steps:
       - uses: egor-tensin/setup-gcc@v1
         with:
-          version: ${{matrix.cxx}}
+          version: 7
 
       - name: Get pushed code
         uses: actions/checkout@v4
@@ -47,22 +82,15 @@ jobs:
       - name: Test installation
         run: cmake --install _build --prefix ${GITHUB_WORKSPACE}/_built
 
-  Linux-Clang:
+  Clang-7:
     runs-on: ubuntu-20.04
-    strategy:
-      matrix:
-        cxx: ['7', '18']
     env:
-      CMAKE_OPTIONS: -DDEV_MODE=ON -DBUILD_TESTING=ON -DCMAKE_CXX_FLAGS="-stdlib=libc++"
+      CMAKE_OPTIONS: -DDEV_MODE=ON -DBUILD_TESTING=ON
       CMAKE_MATROSKA_OPTIONS: -DBUILD_EXAMPLES=ON
     steps:
       - uses: egor-tensin/setup-clang@v1
         with:
-          version: ${{matrix.cxx}}
-
-      - name: Install libc++
-        run: |
-          sudo apt install -y libc++abi-${{matrix.cxx}}-dev libc++-${{matrix.cxx}}-dev
+          version: 7
 
       - name: Get pushed code
         uses: actions/checkout@v4

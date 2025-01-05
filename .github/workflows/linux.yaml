@@ -16,6 +16,9 @@ jobs:
       CMAKE_MATROSKA_OPTIONS: -DBUILD_EXAMPLES=ON
       CXX: ${{matrix.cxx}}
     steps:
+      - name: list compilers
+        run: dpkg --list | grep compiler
+
       - name: Get pushed code
         uses: actions/checkout@v4
 
@@ -54,6 +57,9 @@ jobs:
         with:
           version: 7
 
+      - name: list compilers
+        run: dpkg --list | grep compiler
+
       - name: Get pushed code
         uses: actions/checkout@v4
 
@@ -91,6 +97,9 @@ jobs:
       - uses: egor-tensin/setup-clang@v1
         with:
           version: 7
+
+      - name: list compilers
+        run: dpkg --list | grep compiler
 
       - name: Get pushed code
         uses: actions/checkout@v4

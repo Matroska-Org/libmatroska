@@ -36,7 +36,6 @@ if(DEV_MODE)
   set(CMAKE_CXX_EXTENSIONS OFF)
   add_cxx_flag_if_supported(-Wno-error=unused-command-line-argument
                             -Wall -Wextra -Wpedantic -Wfatal-errors -fstack-protector-strong
-                            -Wno-self-assign
                             -Wcast-align
                             -W4)
 endif()

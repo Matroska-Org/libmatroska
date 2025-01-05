@@ -1216,13 +1216,13 @@ typedef enum {
  *A number to indicate the logical level of the target.
  */
 typedef enum {
-  MATROSKA_TARGET_TYPE_COLLECTION       = 70, // The highest hierarchical level that tags can describe.
-  MATROSKA_TARGET_TYPE_EDITION          = 60, // A list of lower levels grouped together.
-  MATROSKA_TARGET_TYPE_ALBUM            = 50, // The most common grouping level of music and video (equals to an episode for TV series).
-  MATROSKA_TARGET_TYPE_PART             = 40, // When an album or episode has different logical parts.
-  MATROSKA_TARGET_TYPE_TRACK            = 30, // The common parts of an album or movie.
-  MATROSKA_TARGET_TYPE_SUBTRACK         = 20, // Corresponds to parts of a track for audio (like a movement).
   MATROSKA_TARGET_TYPE_SHOT             = 10, // The lowest hierarchy found in music or movies.
+  MATROSKA_TARGET_TYPE_SUBTRACK         = 20, // Corresponds to parts of a track for audio, such as a movement or scene in a movie.
+  MATROSKA_TARGET_TYPE_TRACK            = 30, // The common parts of an album or movie.
+  MATROSKA_TARGET_TYPE_PART             = 40, // When an album or episode has different logical parts.
+  MATROSKA_TARGET_TYPE_ALBUM            = 50, // The most common grouping level of music and video (e.g., an episode for TV series).
+  MATROSKA_TARGET_TYPE_EDITION          = 60, // A list of lower levels grouped together.
+  MATROSKA_TARGET_TYPE_COLLECTION       = 70, // The highest hierarchical level that tags can describe.
 } MatroskaTargetTypeValue;
 
 

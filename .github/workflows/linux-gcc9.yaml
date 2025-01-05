@@ -1,4 +1,4 @@
-name: "Linux gcc10 Build"
+name: "Linux gcc9 Build"
 on:
   push:
     branches: [ v1.x ]
@@ -7,15 +7,15 @@ on:
 
 jobs:
   build_libmatroska:
-    name: libmatroska for Linux gcc10
-    runs-on: ubuntu-latest
+    name: libmatroska for Linux gcc9
+    runs-on: ubuntu-20.04
     steps:
       - name: Get pushed code
         uses: actions/checkout@v3
-      
+
       - name: Checkout libebml
         uses: actions/checkout@v3
-        with: 
+        with:
           repository: Matroska-Org/libebml
           path: libebml
           ref: v1.x
@@ -23,8 +23,8 @@ jobs:
       - name: Configure libebml
         run: cmake -S libebml -B libebml/_build
         env:
-          CC:  gcc-10
-          CXX: g++-10
+          CC:  gcc-9
+          CXX: g++-9
 
       - name: Build libebml
         run: cmake --build libebml/_build --parallel
@@ -35,8 +35,8 @@ jobs:
       - name: Configure CMake
         run: cmake -S . -B _build -DEBML_DIR="${GITHUB_WORKSPACE}/_built/lib/cmake/EBML"
         env:
-          CC:  gcc-10
-          CXX: g++-10
+          CC:  gcc-9
+          CXX: g++-9
 
       - name: Build with CMake
         run: cmake --build _build --parallel

@@ -1149,6 +1149,7 @@ typedef enum {
   MATROSKA_CHAPTERSKIPTYPE_NEXT_PREVIEW     = 4, // Preview of the next episode of the content, usually found around the end. It may contain spoilers the user wants to avoid.
   MATROSKA_CHAPTERSKIPTYPE_PREVIEW          = 5, // Preview of the current episode of the content, usually found around the beginning. It may contain spoilers the user want to avoid.
   MATROSKA_CHAPTERSKIPTYPE_ADVERTISEMENT    = 6, // Advertisement within the content.
+  MATROSKA_CHAPTERSKIPTYPE_INTERMISSION     = 7, // A pause of content between main parts of the content.
 } MatroskaChapterSkipType;
 
 /**

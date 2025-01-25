@@ -848,18 +848,17 @@ DECLARE_MKX_BINARY(KaxTagBinary)
 };
 
 /**
- *The `TrackType` defines the type of each frame found in the Track.
-The value **SHOULD** be stored on 1 octet.
+ *The TrackType defines the type of each frame found in the Track. The value **SHOULD** be stored on 1 octet.
  */
 typedef enum {
   MATROSKA_TRACK_TYPE_VIDEO            = 0x1, // An image.
   MATROSKA_TRACK_TYPE_AUDIO            = 0x2, // Audio samples.
-  MATROSKA_TRACK_TYPE_COMPLEX          = 0x3, // A mix of different other TrackType. The codec needs to define how the `Matroska Player` should interpret such data.
+  MATROSKA_TRACK_TYPE_COMPLEX          = 0x3, // A mix of different other TrackType. The codec needs to define how the Matroska Player should interpret such data.
   MATROSKA_TRACK_TYPE_LOGO             = 0x10, // An image to be rendered over the video track(s).
   MATROSKA_TRACK_TYPE_SUBTITLE         = 0x11, // Subtitle or closed caption data to be rendered over the video track(s).
   MATROSKA_TRACK_TYPE_BUTTONS          = 0x12, // Interactive button(s) to be rendered over the video track(s).
-  MATROSKA_TRACK_TYPE_CONTROL          = 0x20, // Metadata used to control the player of the `Matroska Player`.
-  MATROSKA_TRACK_TYPE_METADATA         = 0x21, // Timed metadata that can be passed on to the `Matroska Player`.
+  MATROSKA_TRACK_TYPE_CONTROL          = 0x20, // Metadata used to control the player of the Matroska Player.
+  MATROSKA_TRACK_TYPE_METADATA         = 0x21, // Timed metadata that can be passed on to the Matroska Player.
 } MatroskaTrackType;
 
 /**
@@ -868,29 +867,13 @@ typedef enum {
 typedef enum {
   MATROSKA_TRACK_ENCODING_COMP_NONE             = -1,
   MATROSKA_TRACK_ENCODING_COMP_ZLIB             = 0, // zlib compression (RFC1950).
-  MATROSKA_TRACK_ENCODING_COMP_BZLIB            = 1, // bzip2 compression (BZIP2), **SHOULD NOT** be used.
-  MATROSKA_TRACK_ENCODING_COMP_LZO1X            = 2, // Lempel-Ziv-Oberhumer compression (LZO), **SHOULD NOT** be used.
-  MATROSKA_TRACK_ENCODING_COMP_HEADERSTRIP      = 3, // Octets in `ContentCompSettings` ((#contentcompsettings-element)) have been stripped from each frame.
+  MATROSKA_TRACK_ENCODING_COMP_BZLIB            = 1, // bzip2 compression (BZIP2) **SHOULD NOT** be used.
+  MATROSKA_TRACK_ENCODING_COMP_LZO1X            = 2, // Lempel-Ziv-Oberhumer compression (LZO) **SHOULD NOT** be used.
+  MATROSKA_TRACK_ENCODING_COMP_HEADERSTRIP      = 3, // Octets in ContentCompSettings ((#contentcompsettings-element)) have been stripped from each frame.
 } MatroskaTrackEncodingCompAlgo;
 
 /**
- *This `ChapterTranslate` applies to this chapter codec of the given chapter edition(s); see (#chapprocesscodecid-element).
- */
-typedef enum {
-  MATROSKA_CHAPTERTRANSLATECODEC_MATROSKA_SCRIPT  = 0, // Chapter commands using the Matroska Script codec.
-  MATROSKA_CHAPTERTRANSLATECODEC_DVD_MENU         = 1, // Chapter commands using the DVD-like codec.
-} MatroskaChapterTranslateCodec;
-
-/**
- *This `TrackTranslate` applies to this chapter codec of the given chapter edition(s); see (#chapprocesscodecid-element).
- */
-typedef enum {
-  MATROSKA_TRACKTRANSLATECODEC_MATROSKA_SCRIPT  = 0, // Chapter commands using the Matroska Script codec.
-  MATROSKA_TRACKTRANSLATECODEC_DVD_MENU         = 1, // Chapter commands using the DVD-like codec.
-} MatroskaTrackTranslateCodec;
-
-/**
- *Specify whether the video frames in this track are interlaced.
+ *Specifies whether the video frames in this track are interlaced.
  */
 typedef enum {
   MATROSKA_VIDEO_FLAGINTERLACED_UNDETERMINED     = 0, // Unknown status.
@@ -899,19 +882,19 @@ typedef enum {
 } MatroskaVideoFlagInterlaced;
 
 /**
- *Specify the field ordering of video frames in this track.
+ *Specifies the field ordering of video frames in this track.
  */
 typedef enum {
   MATROSKA_VIDEO_FIELDORDER_PROGRESSIVE      = 0, // Interlaced frames.
   MATROSKA_VIDEO_FIELDORDER_TOPFIELDFIRST    = 1, // Top field displayed first. Top field stored first.
   MATROSKA_VIDEO_FIELDORDER_UNDETERMINED     = 2, // Unknown field order.
   MATROSKA_VIDEO_FIELDORDER_BOTTOMFIELDFIRST = 6, // Bottom field displayed first. Bottom field stored first.
-  MATROSKA_VIDEO_FIELDORDER_BOTTOMFIELDSWAPPED = 9, // Top field displayed first. Fields are interleaved in storage with the top line of the top field stored first.
-  MATROSKA_VIDEO_FIELDORDER_TOPFIELDSWAPPED  = 14, // Bottom field displayed first. Fields are interleaved in storage with the top line of the top field stored first.
+  MATROSKA_VIDEO_FIELDORDER_TOPFIELDSWAPPED  = 9, // Top field displayed first. Fields are interleaved in storage with the top line of the top field stored first.
+  MATROSKA_VIDEO_FIELDORDER_BOTTOMFIELDSWAPPED = 14, // Bottom field displayed first. Fields are interleaved in storage with the top line of the top field stored first.
 } MatroskaVideoFieldOrder;
 
 /**
- *Stereo-3D video mode. There are some more details in (#multi-planar-and-3d-videos).
+ *Stereo-3D video mode. See (#multi-planar-and-3d-videos) for more details.
  */
 typedef enum {
   MATROSKA_VIDEO_STEREO_MONO             = 0,
@@ -932,12 +915,11 @@ typedef enum {
 } MatroskaVideoStereoMode;
 
 /**
- *Indicate whether the BlockAdditional Element with BlockAddID of "1" contains Alpha data, as defined by to the Codec Mapping for the `CodecID`.
-Undefined values **SHOULD NOT** be used as the behavior of known implementations is different (considered either as 0 or 1).
+ *Indicates whether the BlockAdditional element with BlockAddID of "1"     contains Alpha data as defined by the Codec Mapping for the CodecID.  Undefined values (i.e., values other than 0 or 1) **SHOULD NOT** be used, as the  behavior of known implementations is different.
  */
 typedef enum {
-  MATROSKA_VIDEO_ALPHAMODE_NONE             = 0, // The BlockAdditional Element with BlockAddID of "1" does not exist or **SHOULD NOT** be considered as containing such data.
-  MATROSKA_VIDEO_ALPHAMODE_PRESENT          = 1, // The BlockAdditional Element with BlockAddID of "1" contains alpha channel data.
+  MATROSKA_VIDEO_ALPHAMODE_NONE             = 0, // The BlockAdditional element with BlockAddID of "1" does not exist or **SHOULD NOT** be considered as containing such data.
+  MATROSKA_VIDEO_ALPHAMODE_PRESENT          = 1, // The BlockAdditional element with BlockAddID of "1" contains alpha channel data.
 } MatroskaVideoAlphaMode;
 
 /**
@@ -951,7 +933,7 @@ typedef enum {
 } MatroskaVideoOldStereoMode;
 
 /**
- *How DisplayWidth & DisplayHeight are interpreted.
+ *How DisplayWidth and DisplayHeight are interpreted.
  */
 typedef enum {
   MATROSKA_DISPLAY_UNIT_PIXELS           = 0,
@@ -962,7 +944,7 @@ typedef enum {
 } MatroskaVideoDisplayUnit;
 
 /**
- *Specify the possible modifications to the aspect ratio.
+ *Specifies the possible modifications to the aspect ratio.
  */
 typedef enum {
   MATROSKA_VIDEO_ASPECTRATIOTYPE_FREE_RESIZING    = 0,
@@ -971,8 +953,7 @@ typedef enum {
 } MatroskaVideoAspectRatioType;
 
 /**
- *The Matrix Coefficients of the video used to derive luma and chroma values from red, green, and blue color primaries.
-For clarity, the value and meanings for MatrixCoefficients are adopted from Table 4 of ITU-H.273.
+ *The Matrix Coefficients of the video used to derive luma and chroma values from red, green, and blue color primaries. For clarity, the value and meanings for MatrixCoefficients are adopted from Table 4 of ITU-H.273.
  */
 typedef enum {
   MATROSKA_VIDEO_MATRIXCOEFFICIENTS_IDENTITY         = 0,
@@ -1021,8 +1002,7 @@ typedef enum {
 } MatroskaVideoRange;
 
 /**
- *The transfer characteristics of the video. For clarity,
-the value and meanings for TransferCharacteristics are adopted from Table 3 of ITU-H.273.
+ *The transfer characteristics of the video. For clarity, the value and meanings for TransferCharacteristics are adopted from Table 3 of ITU-H.273.
  */
 typedef enum {
   MATROSKA_TRANSFER_RESERVED         = 0,
@@ -1047,8 +1027,7 @@ typedef enum {
 } MatroskaVideoTransferCharacteristics;
 
 /**
- *The colour primaries of the video. For clarity,
-the value and meanings for Primaries are adopted from Table 2 of ITU-H.273.
+ *The color primaries of the video. For clarity, the value and meanings for Primaries are adopted from Table 2 of ITU-H.273.
  */
 typedef enum {
   MATROSKA_VIDEO_PRIMARIES_RESERVED         = 0,
@@ -1106,17 +1085,16 @@ typedef enum {
 } MatroskaTrackPlaneType;
 
 /**
- *A bit field that describes which Elements have been modified in this way.
-Values (big-endian) can be OR'ed.
+ *A bit field that describes which elements have been modified in this way. Values (big-endian) can be OR'ed.
  */
 typedef enum {
-  MATROSKA_CONTENTENCODINGSCOPE_BLOCK            = 1, // All frame contents, excluding lacing data.
-  MATROSKA_CONTENTENCODINGSCOPE_PRIVATE          = 2, // The track's `CodecPrivate` data.
-  MATROSKA_CONTENTENCODINGSCOPE_NEXT             = 4, // The next ContentEncoding (next `ContentEncodingOrder`. Either the data inside `ContentCompression` and/or `ContentEncryption`).
+  MATROSKA_CONTENTENCODINGSCOPE_BLOCK            = 0x1, // All frame contents, excluding lacing data.
+  MATROSKA_CONTENTENCODINGSCOPE_PRIVATE          = 0x2, // The track's CodecPrivate data.
+  MATROSKA_CONTENTENCODINGSCOPE_NEXT             = 0x4, // The next ContentEncoding (next ContentEncodingOrder; the data inside ContentCompression and/or ContentEncryption).
 } MatroskaContentEncodingScope;
 
 /**
- *A value describing what kind of transformation is applied.
+ *A value describing the kind of transformation that is applied.
  */
 typedef enum {
   MATROSKA_CONTENTENCODINGTYPE_COMPRESSION      = 0,
@@ -1128,19 +1106,19 @@ typedef enum {
  */
 typedef enum {
   MATROSKA_CONTENTENCALGO_NOT_ENCRYPTED    = 0, // The data are not encrypted.
-  MATROSKA_CONTENTENCALGO_DES              = 1, // Data Encryption Standard (DES) (FIPS.46-3).
-  MATROSKA_CONTENTENCALGO_3DES             = 2, // Triple Data Encryption Algorithm (SP.800-67).
+  MATROSKA_CONTENTENCALGO_DES              = 1, // Data Encryption Standard (DES) (FIPS46-3).
+  MATROSKA_CONTENTENCALGO_3DES             = 2, // Triple Data Encryption Algorithm (SP800-67).
   MATROSKA_CONTENTENCALGO_TWOFISH          = 3, // Twofish Encryption Algorithm (Twofish).
   MATROSKA_CONTENTENCALGO_BLOWFISH         = 4, // Blowfish Encryption Algorithm (Blowfish).
-  MATROSKA_CONTENTENCALGO_AES              = 5, // Advanced Encryption Standard (AES) (FIPS.197).
+  MATROSKA_CONTENTENCALGO_AES              = 5, // Advanced Encryption Standard (AES) (FIPS197).
 } MatroskaContentEncodingAlgo;
 
 /**
  *The AES cipher mode used in the encryption.
  */
 typedef enum {
-  MATROSKA_AESSETTINGSCIPHERMODE_AES_CTR          = 1, // Counter (SP.800-38A).
-  MATROSKA_AESSETTINGSCIPHERMODE_AES_CBC          = 2, // Cipher Block Chaining (SP.800-38A).
+  MATROSKA_AESSETTINGSCIPHERMODE_AES_CTR          = 1, // Counter (SP800-38A)
+  MATROSKA_AESSETTINGSCIPHERMODE_AES_CBC          = 2, // Cipher Block Chaining (SP800-38A)
 } MatroskaAESSettingsCipherMode;
 
 /**
@@ -1161,10 +1139,7 @@ typedef enum {
 } MatroskaContentSigHashAlgo;
 
 /**
- *Indicate what type of content the ChapterAtom contains and might be skipped. It can be used to automatically skip content based on the type.
-If a `ChapterAtom` is inside a `ChapterAtom` that has a `ChapterSkipType` set, it **MUST NOT** have a `ChapterSkipType` or have a `ChapterSkipType` with the same value as it's parent `ChapterAtom`.
-If the `ChapterAtom` doesn't contain a `ChapterTimeEnd`, the value of the `ChapterSkipType` is only valid until the next `ChapterAtom` with a `ChapterSkipType` value or the end of the file.
-    
+ *Indicates what type of content the ChapterAtom contains and might be skipped.     It can be used to automatically skip content based on the type.     If a ChapterAtom is inside a ChapterAtom that has a ChapterSkipType set, it     **MUST NOT** have a ChapterSkipType or have a ChapterSkipType with the same value as it's parent ChapterAtom. If the ChapterAtom doesn't contain a ChapterTimeEnd, the value of the ChapterSkipType is only valid until the next ChapterAtom with a ChapterSkipType value or the end of the file.     
  */
 typedef enum {
   MATROSKA_CHAPTERSKIPTYPE_NO_SKIPPING      = 0, // Content which should not be skipped.
@@ -1174,10 +1149,19 @@ typedef enum {
   MATROSKA_CHAPTERSKIPTYPE_NEXT_PREVIEW     = 4, // Preview of the next episode of the content, usually found around the end. It may contain spoilers the user wants to avoid.
   MATROSKA_CHAPTERSKIPTYPE_PREVIEW          = 5, // Preview of the current episode of the content, usually found around the beginning. It may contain spoilers the user want to avoid.
   MATROSKA_CHAPTERSKIPTYPE_ADVERTISEMENT    = 6, // Advertisement within the content.
+  MATROSKA_CHAPTERSKIPTYPE_INTERMISSION     = 7, // A pause of content between main parts of the content.
 } MatroskaChapterSkipType;
 
 /**
- *Defines when the process command **SHOULD** be handled
+ *Contains the type of the codec used for processing.
+ */
+typedef enum {
+  MATROSKA_CHAPPROCESSCODECID_MATROSKA_SCRIPT  = 0, // Chapter commands using the Matroska Script codec.
+  MATROSKA_CHAPPROCESSCODECID_DVD_MENU         = 1, // Chapter commands using the DVD-like codec.
+} MatroskaChapProcessCodecID;
+
+/**
+ *Defines when the process command **SHOULD** be handled.
  */
 typedef enum {
   MATROSKA_CHAPPROCESSTIME_DURING           = 0,
@@ -1189,13 +1173,13 @@ typedef enum {
  *A number to indicate the logical level of the target.
  */
 typedef enum {
-  MATROSKA_TARGET_TYPE_COLLECTION       = 70, // The highest hierarchical level that tags can describe.
-  MATROSKA_TARGET_TYPE_EDITION          = 60, // A list of lower levels grouped together.
-  MATROSKA_TARGET_TYPE_ALBUM            = 50, // The most common grouping level of music and video (equals to an episode for TV series).
-  MATROSKA_TARGET_TYPE_PART             = 40, // When an album or episode has different logical parts.
-  MATROSKA_TARGET_TYPE_TRACK            = 30, // The common parts of an album or movie.
-  MATROSKA_TARGET_TYPE_SUBTRACK         = 20, // Corresponds to parts of a track for audio like a movement, or a scene in a movie.
   MATROSKA_TARGET_TYPE_SHOT             = 10, // The lowest hierarchy found in music or movies.
+  MATROSKA_TARGET_TYPE_SUBTRACK         = 20, // Corresponds to parts of a track for audio, such as a movement or scene in a movie.
+  MATROSKA_TARGET_TYPE_TRACK            = 30, // The common parts of an album or movie.
+  MATROSKA_TARGET_TYPE_PART             = 40, // When an album or episode has different logical parts.
+  MATROSKA_TARGET_TYPE_ALBUM            = 50, // The most common grouping level of music and video (e.g., an episode for TV series).
+  MATROSKA_TARGET_TYPE_EDITION          = 60, // A list of lower levels grouped together.
+  MATROSKA_TARGET_TYPE_COLLECTION       = 70, // The highest hierarchical level that tags can describe.
 } MatroskaTargetTypeValue;
 
 

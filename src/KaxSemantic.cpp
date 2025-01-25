@@ -46,8 +46,8 @@ static constexpr const MatroskaProfile VERSION_WEBM_SINCE_V4 = {true, false, 4};
 static constexpr const MatroskaProfile VERSION_MATROSKA_UP_TO_V2 = {false, false, 0, 2};
 // available since version 1, 2 and 3 of Matroska but not WebM or DivX
 static constexpr const MatroskaProfile VERSION_MATROSKA_UP_TO_V3 = {false, false, 0, 3};
-// available since version 1, 2, 3 and 4 of Matroska and WebM but not DivX
-static constexpr const MatroskaProfile VERSION_WEBM_UP_TO_V4 = {true, false, 0, 4};
+// available since version 1, 2, 3 and 4 of Matroska but not WebM or DivX
+static constexpr const MatroskaProfile VERSION_MATROSKA_UP_TO_V4 = {false, false, 0, 4};
 
 DEFINE_START_SEMANTIC(KaxSegment)
 DEFINE_SEMANTIC_ITEM(false, false, KaxSeekHead)
@@ -139,7 +139,7 @@ DEFINE_END_SEMANTIC(KaxClusterSilentTracks)
 
 DEFINE_MKX_MASTER(KaxClusterSilentTracks, 0x5854, KaxCluster, false, "ClusterSilentTracks", VERSION_DEPRECATED)
 DEFINE_MKX_UINTEGER(KaxClusterSilentTrackNumber, 0x58D7, KaxClusterSilentTracks, "ClusterSilentTrackNumber", VERSION_DEPRECATED)
-DEFINE_MKX_UINTEGER(KaxClusterPosition, 0xA7, KaxCluster, "ClusterPosition", VERSION_WEBM_UP_TO_V4)
+DEFINE_MKX_UINTEGER(KaxClusterPosition, 0xA7, KaxCluster, "ClusterPosition", VERSION_MATROSKA_UP_TO_V4)
 DEFINE_MKX_UINTEGER(KaxClusterPrevSize, 0xAB, KaxCluster, "ClusterPrevSize", VERSION_ALL_MATROSKA)
 DEFINE_MKX_BINARY_CONS(KaxSimpleBlock, 0xA3, KaxCluster, "SimpleBlock", VERSION_SINCE_V2)
 

@@ -909,22 +909,6 @@ typedef enum {
 } MatroskaTrackEncodingCompAlgo;
 
 /**
- *This `ChapterTranslate` applies to this chapter codec of the given chapter edition(s); see (#chapprocesscodecid-element).
- */
-typedef enum {
-  MATROSKA_CHAPTERTRANSLATECODEC_MATROSKA_SCRIPT  = 0, // Chapter commands using the Matroska Script codec.
-  MATROSKA_CHAPTERTRANSLATECODEC_DVD_MENU         = 1, // Chapter commands using the DVD-like codec.
-} MatroskaChapterTranslateCodec;
-
-/**
- *This `TrackTranslate` applies to this chapter codec of the given chapter edition(s); see (#chapprocesscodecid-element).
- */
-typedef enum {
-  MATROSKA_TRACKTRANSLATECODEC_MATROSKA_SCRIPT  = 0, // Chapter commands using the Matroska Script codec.
-  MATROSKA_TRACKTRANSLATECODEC_DVD_MENU         = 1, // Chapter commands using the DVD-like codec.
-} MatroskaTrackTranslateCodec;
-
-/**
  *Specify whether the video frames in this track are interlaced.
  */
 typedef enum {
@@ -1210,6 +1194,14 @@ typedef enum {
   MATROSKA_CHAPTERSKIPTYPE_PREVIEW          = 5, // Preview of the current episode of the content, usually found around the beginning. It may contain spoilers the user want to avoid.
   MATROSKA_CHAPTERSKIPTYPE_ADVERTISEMENT    = 6, // Advertisement within the content.
 } MatroskaChapterSkipType;
+
+/**
+ *Contains the type of the codec used for processing.
+ */
+typedef enum {
+  MATROSKA_CHAPPROCESSCODECID_MATROSKA_SCRIPT  = 0, // Chapter commands using the Matroska Script codec.
+  MATROSKA_CHAPPROCESSCODECID_DVD_MENU         = 1, // Chapter commands using the DVD-like codec.
+} MatroskaChapProcessCodecID;
 
 /**
  *Defines when the process command **SHOULD** be handled

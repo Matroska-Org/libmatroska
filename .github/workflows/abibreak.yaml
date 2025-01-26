@@ -82,7 +82,7 @@ jobs:
 
       - name: Check ABI differences
         run: |
-          abidiff --no-added-syms --verbose \
+          abidiff --no-added-syms \
                      --headers-dir1 ${GITHUB_WORKSPACE}/dir-new/include/matroska \
                      --headers-dir2 ${GITHUB_WORKSPACE}/dir-old/include/matroska  \
                      ${GITHUB_WORKSPACE}/dir-new/lib/libmatroska.so \

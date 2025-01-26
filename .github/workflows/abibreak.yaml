@@ -9,38 +9,24 @@ jobs:
     name: abidiff
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout libebml
+      - name: Checkout libebml 1.x
         uses: actions/checkout@v3
         with:
           repository: Matroska-Org/libebml
           path: libebml
           ref: v1.x
 
-      - name: Configure libebml
+      - name: Configure libebml 1.x
         run: cmake -S libebml -B libebml/_build -DBUILD_SHARED_LIBS=ON
 
-      - name: Build libebml
+      - name: Build libebml 1.x
         run: cmake --build libebml/_build --parallel
 
-      - name: Install libebml
+      - name: Install libebml 1.x
         run: cmake --install libebml/_build --prefix ${GITHUB_WORKSPACE}/_built
 
-      - name: Get pushed code
-        uses: actions/checkout@v3
-        with:
-          path: libmatroska-new
-          ref: master
 
-      - name: Configure CMake
-        run: cmake -S libmatroska-new -B _build -DBUILD_SHARED_LIBS=ON -DEBML_DIR="${GITHUB_WORKSPACE}/_built/lib/cmake/EBML" -DCMAKE_BUILD_TYPE=RelWithDebInfo
-
-      - name: Build
-        run: cmake --build _build --parallel
-
-      - name: Install
-        run: cmake --install _build --prefix ${GITHUB_WORKSPACE}/dir1
-
-      - name: Get v1.x code
+      - name: Get libmatroska 1.x
         uses: actions/checkout@v3
         with:
           path: libmatroska-1
@@ -53,7 +39,41 @@ jobs:
         run: cmake --build _build_1 --parallel
 
       - name: Install v1.x
-        run: cmake --install _build_1 --prefix ${GITHUB_WORKSPACE}/dir2
+        run: cmake --install _build_1 --prefix ${GITHUB_WORKSPACE}/dir-old
+
+
+      - name: Checkout libebml 2.x
+        uses: actions/checkout@v3
+        with:
+          repository: Matroska-Org/libebml
+          path: libebml-new
+          ref: master
+
+      - name: Configure libebml 2.x
+        run: cmake -S libebml-new -B libebml-new/_build -DBUILD_SHARED_LIBS=ON
+
+      - name: Build libebml 2.x
+        run: cmake --build libebml-new/_build --parallel
+
+      - name: Install libebml 2.x
+        run: cmake --install libebml-new/_build --prefix ${GITHUB_WORKSPACE}/_built-new
+
+
+      - name: Get libmatroska 2.x
+        uses: actions/checkout@v3
+        with:
+          path: libmatroska-new
+          ref: master
+
+      - name: Configure CMake
+        run: cmake -S libmatroska-new -B _build -DBUILD_SHARED_LIBS=ON -DEBML_DIR="${GITHUB_WORKSPACE}/_built-new/lib/cmake/EBML" -DCMAKE_BUILD_TYPE=RelWithDebInfo
+
+      - name: Build
+        run: cmake --build _build --parallel
+
+      - name: Install
+        run: cmake --install _build --prefix ${GITHUB_WORKSPACE}/dir-new
+
 
       - name: Get abidiff
         run: |
@@ -63,7 +83,7 @@ jobs:
       - name: Check ABI differences
         run: |
           abidiff --no-added-syms --verbose \
-                     --headers-dir1 ${GITHUB_WORKSPACE}/dir1/include/matroska \
-                     --headers-dir2 ${GITHUB_WORKSPACE}/dir2/include/matroska  \
-                     ${GITHUB_WORKSPACE}/dir1/lib/libmatroska.so \
-                     ${GITHUB_WORKSPACE}/dir2/lib/libmatroska.so
+                     --headers-dir-new ${GITHUB_WORKSPACE}/dir-new/include/matroska \
+                     --headers-dir-old ${GITHUB_WORKSPACE}/dir-old/include/matroska  \
+                     ${GITHUB_WORKSPACE}/dir-new/lib/libmatroska.so \
+                     ${GITHUB_WORKSPACE}/dir-old/lib/libmatroska.so

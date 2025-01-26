@@ -9,11 +9,9 @@ jobs:
     name: abidiff
     runs-on: ubuntu-latest
     steps:
-      - uses: lukka/get-cmake@latest
-
       - name: Checkout libebml
         uses: actions/checkout@v3
-        with: 
+        with:
           repository: Matroska-Org/libebml
           path: libebml
           ref: v1.x
@@ -29,10 +27,11 @@ jobs:
 
       - name: Get pushed code
         uses: actions/checkout@v3
-        with: 
+        with:
           path: libmatroska-new
-      
-      - name: Configure CMake 
+          ref: master
+
+      - name: Configure CMake
         run: cmake -S libmatroska-new -B _build -DBUILD_SHARED_LIBS=ON -DEBML_DIR="${GITHUB_WORKSPACE}/_built/lib/cmake/EBML" -DCMAKE_BUILD_TYPE=RelWithDebInfo
 
       - name: Build
@@ -43,10 +42,10 @@ jobs:
 
       - name: Get v1.x code
         uses: actions/checkout@v3
-        with: 
+        with:
           path: libmatroska-1
           ref: v1.x
-      
+
       - name: Configure v1.x
         run: cmake -S libmatroska-1 -B _build_1 -DBUILD_SHARED_LIBS=ON -DEBML_DIR="${GITHUB_WORKSPACE}/_built/lib/cmake/EBML" -DCMAKE_BUILD_TYPE=RelWithDebInfo
 

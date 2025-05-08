@@ -48,10 +48,10 @@ jobs:
         run: cmake --install _build --prefix ${GITHUB_WORKSPACE}/_built
 
   Oldest:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     strategy:
       matrix:
-        cxx: ['g++-7', 'clang++-7']
+        cxx: ['g++-9', 'clang++-13']
     env:
       CMAKE_OPTIONS: -DDEV_MODE=ON -DBUILD_TESTING=ON
       CMAKE_MATROSKA_OPTIONS: -DBUILD_EXAMPLES=ON

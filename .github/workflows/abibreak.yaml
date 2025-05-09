@@ -68,6 +68,8 @@ jobs:
                   --no-added-syms \
                   --drop-private-types \
                   --non-reachable-types \
+                     --headers-dir1 ${GITHUB_WORKSPACE}/dir-old/include/matroska \
+                     --headers-dir2 ${GITHUB_WORKSPACE}/dir-new/include/matroska \
                      ${GITHUB_WORKSPACE}/_build_origin/libmatroska.so \
                      ${GITHUB_WORKSPACE}/_build_pr/libmatroska.so || echo "Warning!"
       - name: Check ABI differences
@@ -76,5 +78,7 @@ jobs:
                   --drop-private-types \
                   --non-reachable-types \
                   --no-change-categorization \
+                     --headers-dir1 ${GITHUB_WORKSPACE}/dir-old/include/matroska \
+                     --headers-dir2 ${GITHUB_WORKSPACE}/dir-new/include/matroska \
                      ${GITHUB_WORKSPACE}/_build_origin/libmatroska.so \
                      ${GITHUB_WORKSPACE}/_build_pr/libmatroska.so

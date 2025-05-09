@@ -66,7 +66,6 @@ jobs:
         run: |
           abidiff --no-harmful \
                   --no-added-syms \
-                  --drop-private-types \
                   --non-reachable-types \
                      --headers-dir1 ${GITHUB_WORKSPACE}/dir-old/include/matroska \
                      --headers-dir2 ${GITHUB_WORKSPACE}/dir-new/include/matroska \
@@ -75,7 +74,6 @@ jobs:
       - name: Check ABI differences
         run: |
           abidiff --no-added-syms \
-                  --drop-private-types \
                   --non-reachable-types \
                   --no-change-categorization \
                      --headers-dir1 ${GITHUB_WORKSPACE}/dir-old/include/matroska \

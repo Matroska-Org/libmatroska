@@ -17,7 +17,7 @@ jobs:
           ref: v1.x
 
       - name: Configure libebml 1.x
-        run: cmake -S libebml -B libebml/_build -DBUILD_SHARED_LIBS=OFF -G Ninja
+        run: cmake -S libebml -B libebml/_build -DBUILD_SHARED_LIBS=ON -G Ninja
 
       - name: Build libebml 1.x
         run: cmake --build libebml/_build --parallel
@@ -33,7 +33,7 @@ jobs:
           ref: v1.x
 
       - name: Configure v1.x
-        run: cmake -S libmatroska-1 -B _build_origin -DBUILD_SHARED_LIBS=OFF -DEBML_DIR="${GITHUB_WORKSPACE}/_built/lib/cmake/EBML" -DCMAKE_BUILD_TYPE=Debug -G Ninja
+        run: cmake -S libmatroska-1 -B _build_origin -DBUILD_SHARED_LIBS=ON -DEBML_DIR="${GITHUB_WORKSPACE}/_built/lib/cmake/EBML" -DCMAKE_BUILD_TYPE=Debug -G Ninja
 
       - name: Build v1.x
         run: cmake --build _build_origin --parallel
@@ -48,7 +48,7 @@ jobs:
           path: libmatroska-new
 
       - name: Configure CMake
-        run: cmake -S libmatroska-new -B _build_pr -DBUILD_SHARED_LIBS=OFF -DEBML_DIR="${GITHUB_WORKSPACE}/_built/lib/cmake/EBML" -DCMAKE_BUILD_TYPE=Debug -G Ninja
+        run: cmake -S libmatroska-new -B _build_pr -DBUILD_SHARED_LIBS=ON -DEBML_DIR="${GITHUB_WORKSPACE}/_built/lib/cmake/EBML" -DCMAKE_BUILD_TYPE=Debug -G Ninja
 
       - name: Build
         run: cmake --build _build_pr --parallel
@@ -72,5 +72,5 @@ jobs:
                      --headers-dir1 ${GITHUB_WORKSPACE}/_built/include \
                      --headers-dir2 ${GITHUB_WORKSPACE}/dir-new/include/matroska \
                      --headers-dir2 ${GITHUB_WORKSPACE}/_built/include \
-                     ${GITHUB_WORKSPACE}/_build_origin/libmatroska.a \
-                     ${GITHUB_WORKSPACE}/_build_pr/libmatroska.a
+                     ${GITHUB_WORKSPACE}/_build_origin/libmatroska.so \
+                     ${GITHUB_WORKSPACE}/_build_pr/libmatroska.so

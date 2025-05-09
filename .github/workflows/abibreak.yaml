@@ -62,18 +62,19 @@ jobs:
           sudo apt update
           sudo apt install abigail-tools
 
-      - name: Check ABI differences
+      - name: Check ABI non-harmful differences
         run: |
-          # no harmful first
           abidiff --no-harmful \
                   --no-added-syms \
                   --drop-private-types \
                   --non-reachable-types \
-                  --no-change-categorization \
                      ${GITHUB_WORKSPACE}/_build_origin/libmatroska.so \
                      ${GITHUB_WORKSPACE}/_build_pr/libmatroska.so
+      - name: Check ABI differences
+        run: |
           abidiff --no-added-syms \
                   --drop-private-types \
+                  --non-reachable-types \
                   --no-change-categorization \
                      ${GITHUB_WORKSPACE}/_build_origin/libmatroska.so \
                      ${GITHUB_WORKSPACE}/_build_pr/libmatroska.so

@@ -46,7 +46,7 @@
 
 namespace libmatroska {
 
-const KaxCluster *KaxBlockGroup::GetParentCluster() const { return ParentCluster; }
+const KaxCluster *KaxBlockGroup::GetParentCluster2() const { return ParentCluster; }
 
 
 DataBuffer * DataBuffer::Clone()

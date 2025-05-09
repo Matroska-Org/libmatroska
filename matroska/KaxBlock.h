@@ -197,7 +197,7 @@ DECLARE_MKX_MASTER(KaxBlockGroup)
 
     operator KaxInternalBlock &();
 
-    const KaxCluster *GetParentCluster() const;
+    const KaxCluster *GetParentCluster2() const;
 
   protected:
     KaxCluster * ParentCluster{nullptr};

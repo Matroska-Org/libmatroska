@@ -13,16 +13,16 @@ jobs:
 
       - name: Get pushed code
         uses: actions/checkout@v3
-      
+
       - name: Checkout libebml
         uses: actions/checkout@v3
-        with: 
+        with:
           repository: Matroska-Org/libebml
           path: libebml
           ref: v1.x
 
       - name: Configure libebml
-        run: cmake -S libebml -B libebml/_build
+        run: cmake -S libebml -B libebml/_build -G Ninja
 
       - name: Build libebml
         run: cmake --build libebml/_build --parallel
@@ -30,8 +30,8 @@ jobs:
       - name: Install libebml
         run: cmake --install libebml/_build --prefix ${GITHUB_WORKSPACE}/_built
 
-      - name: Configure CMake 
-        run: cmake -S . -B _build -DEBML_DIR="${GITHUB_WORKSPACE}/_built/lib/cmake/EBML"
+      - name: Configure CMake
+        run: cmake -S . -B _build -DEBML_DIR="${GITHUB_WORKSPACE}/_built/lib/cmake/EBML" -G Ninja
 
       - name: Build with CMake
         run: cmake --build _build --parallel

@@ -8,8 +8,11 @@ on:
 jobs:
   build_libmatroska:
     name: libmatroska for Linux gcc9
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     steps:
+      - name: list compilers
+        run: dpkg --list | grep compiler
+
       - name: Get pushed code
         uses: actions/checkout@v3
 

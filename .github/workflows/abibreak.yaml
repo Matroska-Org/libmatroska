@@ -69,7 +69,7 @@ jobs:
                   --drop-private-types \
                   --non-reachable-types \
                      ${GITHUB_WORKSPACE}/_build_origin/libmatroska.so \
-                     ${GITHUB_WORKSPACE}/_build_pr/libmatroska.so
+                     ${GITHUB_WORKSPACE}/_build_pr/libmatroska.so || echo "Warning!"
       - name: Check ABI differences
         run: |
           abidiff --no-added-syms \

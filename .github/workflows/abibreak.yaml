@@ -67,5 +67,5 @@ jobs:
           abidiff --no-added-syms \
                      --headers-dir1 ${GITHUB_WORKSPACE}/dir-old/include/matroska \
                      --headers-dir2 ${GITHUB_WORKSPACE}/dir-new/include/matroska \
-                     ${GITHUB_WORKSPACE}/dir-old/lib/libmatroska.so \
-                     ${GITHUB_WORKSPACE}/dir-new/lib/libmatroska.so
+                     ${GITHUB_WORKSPACE}/_build_origin/libmatroska.so \
+                     ${GITHUB_WORKSPACE}/_build_pr/libmatroska.so

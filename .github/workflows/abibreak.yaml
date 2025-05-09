@@ -65,7 +65,6 @@ jobs:
       - name: Check ABI differences
         run: |
           abidiff --no-added-syms \
-                     --no-change-categorization \
                      --headers-dir1 ${GITHUB_WORKSPACE}/dir-old/include/matroska \
                      --headers-dir1 ${GITHUB_WORKSPACE}/_built/include \
                      --headers-dir2 ${GITHUB_WORKSPACE}/dir-new/include/matroska \

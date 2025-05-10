@@ -60,11 +60,6 @@ jobs:
       - name: list compilers
         run: dpkg --list | grep compiler
 
-      - name: install ${{matrix.cxx}}
-        run: |
-          sudo add-apt-repository --yes --update ppa:ubuntu-toolchain-r/test
-          sudo DEBIAN_FRONTEND=noninteractive apt-get install -yq --no-install-recommends ${{matrix.cxx}}
-
       - name: Get pushed code
         uses: actions/checkout@v4
 

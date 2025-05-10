@@ -150,7 +150,7 @@ int main(void)
     printf("ID : ");
     for (unsigned int i=0; i<EbmlId(*ElementLevel0).Length; i++)
     {
-      printf("[%02X]", EbmlId(*ElementLevel0).Value[i]);
+      printf("[%02X]", (EbmlId(*ElementLevel0).Value >> ((3-i) * 8)) & 0xFF);
     }
     printf("\n");
 
@@ -166,7 +166,7 @@ int main(void)
     printf("ID : ");
     for (unsigned int i=0; i<EbmlId(*ElementLevel0).Length; i++)
     {
-      printf("[%02X]", EbmlId(*ElementLevel0).Value[i]);
+      printf("[%02X]", (EbmlId(*ElementLevel0).Value >> ((3-i) * 8)) & 0xFF);
     }
     printf("\n");
 

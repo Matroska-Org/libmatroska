@@ -14,7 +14,7 @@ jobs:
         cxx: ['g++-14', 'clang++-18']
     env:
       CMAKE_OPTIONS: -DBUILD_TESTING=ON -G Ninja
-      CMAKE_MATROSKA_OPTIONS: -DBUILD_EXAMPLES=OFF
+      CMAKE_MATROSKA_OPTIONS: -DBUILD_EXAMPLES=ON
       CXX: ${{matrix.cxx}}
     steps:
       - name: list compilers
@@ -51,6 +51,8 @@ jobs:
   Current:
     name: libmatroska for Linux
     runs-on: ubuntu-latest
+    env:
+      CMAKE_MATROSKA_OPTIONS: -DBUILD_EXAMPLES=ON
     steps:
 
       - name: Get pushed code
@@ -73,7 +75,7 @@ jobs:
         run: cmake --install libebml/_build --prefix ${GITHUB_WORKSPACE}/_built
 
       - name: Configure CMake
-        run: cmake -S . -B _build -DEBML_DIR="${GITHUB_WORKSPACE}/_built/lib/cmake/EBML" -G Ninja
+        run: cmake -S . -B _build ${{ env.CMAKE_MATROSKA_OPTIONS }} -DEBML_DIR="${GITHUB_WORKSPACE}/_built/lib/cmake/EBML" -G Ninja
 
       - name: Build with CMake
         run: cmake --build _build --parallel
@@ -86,7 +88,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       CMAKE_OPTIONS: -DDEV_MODE=ON -DBUILD_TESTING=ON -DCMAKE_SYSTEM_PROCESSOR=s390x -DCMAKE_CROSSCOMPILING_EMULATOR="qemu-s390x;-L;/usr/s390x-linux-gnu/" -G Ninja
-      CMAKE_MATROSKA_OPTIONS: -DBUILD_EXAMPLES=OFF
+      CMAKE_MATROSKA_OPTIONS: -DBUILD_EXAMPLES=ON
       CXX: s390x-linux-gnu-g++
     steps:
       - name: install toolchain

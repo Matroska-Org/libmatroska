@@ -6,7 +6,48 @@ on:
     # branches: [ master ]
 
 jobs:
-  build_libmatroska:
+  Latest:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        cxx: ['g++-14', 'clang++-18']
+    env:
+      CMAKE_OPTIONS: -DBUILD_TESTING=ON -G Ninja
+      CMAKE_MATROSKA_OPTIONS: -DBUILD_EXAMPLES=OFF
+      CXX: ${{matrix.cxx}}
+    steps:
+      - name: list compilers
+        run: dpkg --list | grep compiler
+
+      - name: Get pushed code
+        uses: actions/checkout@v4
+
+      - name: Checkout libebml
+        uses: actions/checkout@v4
+        with:
+          repository: Matroska-Org/libebml
+          path: libebml
+          ref: v1.x
+
+      - name: Configure libebml
+        run: cmake -S libebml -B libebml/_build ${{ env.CMAKE_OPTIONS }}
+
+      - name: Build libebml
+        run: cmake --build libebml/_build --parallel
+
+      - name: Install libebml
+        run: cmake --install libebml/_build --prefix ${GITHUB_WORKSPACE}/_built
+
+      - name: Configure
+        run: cmake -S . -B _build  ${{ env.CMAKE_OPTIONS }} ${{ env.CMAKE_MATROSKA_OPTIONS }} -DEBML_DIR="${GITHUB_WORKSPACE}/_built/lib/cmake/EBML"
+
+      - name: Build
+        run: cmake --build _build --parallel
+
+      - name: Test installation
+        run: cmake --install _build --prefix ${GITHUB_WORKSPACE}/_built
+
+  Current:
     name: libmatroska for Linux
     runs-on: ubuntu-latest
     steps:

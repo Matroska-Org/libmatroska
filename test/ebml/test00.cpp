@@ -144,7 +144,7 @@ int main(void)
   // read the data until a possible element is found (valid ID + size combination)
   printf("Read EBML elements & skip data\n");
   // find the EBML head in the file
-  ElementLevel0 = aStream.FindNextID(EbmlHead::ClassInfos, 0xFFFFFFFFL, false);
+  ElementLevel0 = aStream.FindNextID(EbmlHead::ClassInfos, 0xFFFFFFFFL);
   if (ElementLevel0 != NULL)
   {
     printf("ID : ");
@@ -160,7 +160,7 @@ int main(void)
   }
 
   // example to read attachements in the file
-  ElementLevel0 = aStream.FindNextID(KaxSegment::ClassInfos, 0xFFFFFFFFL, false);
+  ElementLevel0 = aStream.FindNextID(KaxSegment::ClassInfos, 0xFFFFFFFFL);
   while (ElementLevel0 != NULL)
   {
     printf("ID : ");
@@ -172,14 +172,14 @@ int main(void)
 
     int bUpperElement = 0;
 
-    ElementLevel1 = aStream.FindNextID(KaxSegment_Context, bUpperElement, 0xFFFFFFFFL, true);
+    ElementLevel1 = aStream.FindNextElement(KaxSegment_Context, bUpperElement, 0xFFFFFFFFL, true);
 
     while (ElementLevel1 != NULL) {
       /// \todo switch the type of the element to check if it's one we want to handle, like attachements
       if (EbmlId(*ElementLevel1) == KaxAttachments::ClassInfos.GlobalId) {
         printf("Attachments detected\n");
 
-        ElementLevel2 = aStream.FindNextID(KaxAttachments_Context, bUpperElement, 0xFFFFFFFFL, true);
+        ElementLevel2 = aStream.FindNextElement(KaxAttachments_Context, bUpperElement, 0xFFFFFFFFL, true);
         while (ElementLevel2 != NULL) {
           /// \todo switch the type of the element to check if it's one we want to handle, like attachements
           if (EbmlId(*ElementLevel2) == KaxAttached::ClassInfos.GlobalId) {
@@ -188,7 +188,7 @@ int main(void)
 #ifdef SKIP_ATTACHED
           ElementLevel2 = ElementLevel2->SkipData(aStream, KaxAttached_Context);
           if (ElementLevel2 == NULL) {
-            ElementLevel2 = aStream.FindNextID(KaxAttachments_Context, bUpperElement, 0xFFFFFFFFL, true);
+            ElementLevel2 = aStream.FindNextElement(KaxAttachments_Context, bUpperElement, 0xFFFFFFFFL);
 
             if (bUpperElement) {
               printf("Upper level1 element found\n");
@@ -199,7 +199,7 @@ int main(void)
           }
 #else // SKIP_ATTACHED
           // Display the filename (if it exists)
-          ElementLevel3 = aStream.FindNextID(KaxAttached_Context, bUpperElement, 0xFFFFFFFFL, false);
+          ElementLevel3 = aStream.FindNextElement(KaxAttached_Context, bUpperElement, 0xFFFFFFFFL, false);
           while (ElementLevel3 != NULL) {
             /// \todo switch the type of the element to check if it's one we want to handle, like attachements
             if (EbmlId(*ElementLevel3) == KaxFileName::ClassInfos.GlobalId) {
@@ -210,7 +210,7 @@ int main(void)
               ElementLevel3->SkipData(aStream, KaxAttached_Context);
             }
             delete ElementLevel3;
-            ElementLevel3 = aStream.FindNextID(KaxAttached_Context, bUpperElement, 0xFFFFFFFFL, false);
+            ElementLevel3 = aStream.FindNextElement(KaxAttached_Context, bUpperElement, 0xFFFFFFFFL, false);
             if (bUpperElement)
               break;
           }
@@ -222,7 +222,7 @@ int main(void)
             ElementLevel2->SkipData(aStream, KaxAttached_Context);
             delete ElementLevel2;
 
-            ElementLevel2 = aStream.FindNextID(KaxAttachments_Context, bUpperElement, 0xFFFFFFFFL, true);
+            ElementLevel2 = aStream.FindNextElement(KaxAttachments_Context, bUpperElement, 0xFFFFFFFFL, true);
           }
 #endif // SKIP_ATTACHED
         }
@@ -230,14 +230,14 @@ int main(void)
       ElementLevel1->SkipData(aStream, KaxAttachments_Context);
       delete ElementLevel1;
 
-      ElementLevel1 = aStream.FindNextID(KaxSegment_Context, bUpperElement, 0xFFFFFFFFL, true);
+      ElementLevel1 = aStream.FindNextElement(KaxSegment_Context, bUpperElement, 0xFFFFFFFFL, true);
     }
 
     ElementLevel0->SkipData(aStream, KaxSegment_Context);
     if (ElementLevel0 != NULL)
       delete ElementLevel0;
 
-    ElementLevel0 = aStream.FindNextID(KaxSegment_Context, bUpperElement, 0xFFFFFFFFL, true);
+    ElementLevel0 = aStream.FindNextElement(KaxSegment_Context, bUpperElement, 0xFFFFFFFFL, true);
   }
 
   Ebml_Wfile.close();

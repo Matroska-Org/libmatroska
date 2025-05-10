@@ -86,7 +86,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       CMAKE_OPTIONS: -DDEV_MODE=ON -DBUILD_TESTING=ON -DCMAKE_SYSTEM_PROCESSOR=s390x -DCMAKE_CROSSCOMPILING_EMULATOR="qemu-s390x;-L;/usr/s390x-linux-gnu/" -G Ninja
-      CMAKE_MATROSKA_OPTIONS: -DBUILD_EXAMPLES=ON
+      CMAKE_MATROSKA_OPTIONS: -DBUILD_EXAMPLES=OFF
       CXX: s390x-linux-gnu-g++
     steps:
       - name: install toolchain

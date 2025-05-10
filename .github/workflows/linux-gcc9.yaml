@@ -9,6 +9,10 @@ jobs:
   build_libmatroska:
     name: libmatroska for Linux gcc9
     runs-on: ubuntu-22.04
+    env:
+      CMAKE_MATROSKA_OPTIONS: -DBUILD_EXAMPLES=ON
+      CC:  gcc-9
+      CXX: g++-9
     steps:
       - name: list compilers
         run: dpkg --list | grep compiler
@@ -25,9 +29,6 @@ jobs:
 
       - name: Configure libebml
         run: cmake -S libebml -B libebml/_build
-        env:
-          CC:  gcc-9
-          CXX: g++-9
 
       - name: Build libebml
         run: cmake --build libebml/_build --parallel
@@ -36,10 +37,7 @@ jobs:
         run: cmake --install libebml/_build --prefix ${GITHUB_WORKSPACE}/_built
 
       - name: Configure CMake
-        run: cmake -S . -B _build -DEBML_DIR="${GITHUB_WORKSPACE}/_built/lib/cmake/EBML"
-        env:
-          CC:  gcc-9
-          CXX: g++-9
+        run: cmake -S . -B _build ${{ env.CMAKE_MATROSKA_OPTIONS }} -DEBML_DIR="${GITHUB_WORKSPACE}/_built/lib/cmake/EBML"
 
       - name: Build with CMake
         run: cmake --build _build --parallel

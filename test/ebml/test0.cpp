@@ -36,7 +36,8 @@
     \see http://www-106.ibm.com/developerworks/unicode/library/u-encode.html
 */
 
-#include <stdio.h>
+#include <cstdio>
+#include <cstdint>
 
 #include <ebml/StdIOCallback.h>
 
@@ -267,7 +268,7 @@ int main(void)
           printf(" : %d", int32(*(EbmlSInteger*)EvaledElementLevel0));
           break;
         case EBML_BINARY:
-          printf(" : binary data, size = %ld", (*(EbmlBinary*)EvaledElementLevel0).GetSize());
+          printf(" : binary data, size = %zu", (*(EbmlBinary*)EvaledElementLevel0).GetSize());
           printf(" [%02X]", binary(*(EbmlBinary*)EvaledElementLevel0));
           break;
         case EBML_STRING:

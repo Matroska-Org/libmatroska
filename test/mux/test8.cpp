@@ -34,6 +34,7 @@
 
 #include <iostream>
 #include <cassert>
+#include <cinttypes>
 
 #include <ebml/EbmlHead.h>
 #include <ebml/EbmlSubHead.h>
@@ -344,17 +345,17 @@ int main(int argc, char **argv)
               if (DataBlock != NULL) {
 //                DataBlock->ReadData(aStream.I_O());
                 DataBlock->SetParent(*SegmentCluster);
-                printf("   Track # %d / %d frame%s / Timecode %I64d\n",DataBlock->TrackNum(), DataBlock->NumberFrames(), (DataBlock->NumberFrames() > 1)?"s":"", DataBlock->GlobalTimecode());
+                printf("   Track # %d / %d frame%s / Timecode %" PRIu64 "\n",DataBlock->TrackNum(), DataBlock->NumberFrames(), (DataBlock->NumberFrames() > 1)?"s":"", DataBlock->GlobalTimecode());
               } else {
                 printf("   A BlockGroup without a Block !!!");
               }
               KaxBlockDuration * BlockDuration = static_cast<KaxBlockDuration *>(aBlockGroup.FindElt(KaxBlockDuration::ClassInfos));
               if (BlockDuration != NULL) {
-                printf("  Block Duration %d scaled ticks : %ld ns\n", uint32(*BlockDuration), uint32(*BlockDuration) * TimecodeScale);
+                printf("  Block Duration %d scaled ticks : %" PRIu32 " ns\n", uint32(*BlockDuration), uint32(*BlockDuration) * TimecodeScale);
               }
               KaxReferenceBlock * RefTime = static_cast<KaxReferenceBlock *>(aBlockGroup.FindElt(KaxReferenceBlock::ClassInfos));
               if (RefTime != NULL) {
-                printf("  Reference frame at scaled (%d) timecode %ld\n", int32(*RefTime), int32(int64(*RefTime) * TimecodeScale));
+                printf("  Reference frame at scaled (%" PRId32 ") timecode " PRId32 "\n", int32(*RefTime), int32(int64(*RefTime) * TimecodeScale));
               }
 #else // TEST_BLOCKGROUP_READ
               // read the data we care about in matroska
@@ -376,7 +377,7 @@ int main(int argc, char **argv)
                   DataBlock.ReadData(aStream.I_O(), SCOPE_ALL_DATA);
 #endif // NO_DISPLAY_DATA
                   DataBlock.SetParent(*SegmentCluster);
-                  printf("   Track # %d / %d frame%s / Timecode %I64d\n",DataBlock.TrackNum(), DataBlock.NumberFrames(), (DataBlock.NumberFrames() > 1)?"s":"", DataBlock.GlobalTimecode());
+                  printf("   Track # %d / %d frame%s / Timecode %" PRIu64 "\n",DataBlock.TrackNum(), DataBlock.NumberFrames(), (DataBlock.NumberFrames() > 1)?"s":"", DataBlock.GlobalTimecode());
 #ifndef NO_DISPLAY_DATA
                   for (unsigned int i=0; i< DataBlock.NumberFrames(); i++) {
                     printf("   [%s]\n",DataBlock.GetBuffer(i).Buffer()); // STRING ONLY POSSIBLE WITH THIS PARTICULAR EXAMPLE (the binary data is a string)
@@ -392,11 +393,11 @@ int main(int argc, char **argv)
                 } else if (EbmlId(*ElementLevel3) == KaxReferenceBlock::ClassInfos.GlobalId) {
                   KaxReferenceBlock & RefTime = *static_cast<KaxReferenceBlock*>(ElementLevel3);
                   RefTime.ReadData(aStream.I_O());
-                  printf("  Reference frame at scaled (%d) timecode %ld\n", int32(RefTime), int32(int64(RefTime) * TimecodeScale));
+                  printf("  Reference frame at scaled (%d) timecode %" PRId32 "\n", int32(RefTime), int32(int64(RefTime) * TimecodeScale));
                 } else if (EbmlId(*ElementLevel3) == KaxBlockDuration::ClassInfos.GlobalId) {
                   KaxBlockDuration & BlockDuration = *static_cast<KaxBlockDuration*>(ElementLevel3);
                   BlockDuration.ReadData(aStream.I_O());
-                  printf("  Block Duration %d scaled ticks : %ld ns\n", uint32(BlockDuration), uint32(BlockDuration) * TimecodeScale);
+                  printf("  Block Duration %" PRIu32 " scaled ticks : %" PRIu64 " ns\n", uint32(BlockDuration), uint32(BlockDuration) * TimecodeScale);
                 }
                 if (UpperElementLevel > 0) {
                   UpperElementLevel--;
@@ -477,7 +478,7 @@ int main(int argc, char **argv)
               for (Index1 = 0; Index1<CuePoint.ListSize() ;Index1++) {
                 if (CuePoint[Index1]->Generic().GlobalId == KaxCueTime::ClassInfos.GlobalId) {
                   KaxCueTime & CueTime = *static_cast<KaxCueTime *>(CuePoint[Index1]);
-                  printf("  Time %ld\n", uint64(CueTime) * TimecodeScale);
+                  printf("  Time %" PRIu64 "\n", uint64(CueTime) * TimecodeScale);
                 } else if (CuePoint[Index1]->Generic().GlobalId == KaxCueTrackPositions::ClassInfos.GlobalId) {
                   KaxCueTrackPositions & CuePos = *static_cast<KaxCueTrackPositions *>(CuePoint[Index1]);
                   printf("  Positions\n");
@@ -489,7 +490,7 @@ int main(int argc, char **argv)
                       printf("   Track %d\n", uint16(CueTrack));
                     } else if (CuePos[Index2]->Generic().GlobalId == KaxCueClusterPosition::ClassInfos.GlobalId) {
                       KaxCueClusterPosition & CuePoss = *static_cast<KaxCueClusterPosition *>(CuePos[Index2]);
-                      printf("   Cluster position %d\n", uint64(CuePoss));
+                      printf("   Cluster position %" PRIu64 "\n", uint64(CuePoss));
                     } else if (CuePos[Index2]->Generic().GlobalId == KaxCueReference::ClassInfos.GlobalId) {
                       KaxCueReference & CueRefs = *static_cast<KaxCueReference *>(CuePos[Index2]);
                       printf("   Reference\n");
@@ -501,7 +502,7 @@ int main(int argc, char **argv)
                           printf("    Time %d\n", uint32(CueTime));
                         } else if (CueRefs[Index3]->Generic().GlobalId == KaxCueRefCluster::ClassInfos.GlobalId) {
                           KaxCueRefCluster & CueClust = *static_cast<KaxCueRefCluster *>(CueRefs[Index3]);
-                          printf("    Cluster position %d\n", uint64(CueClust));
+                          printf("    Cluster position %" PRIu64 "\n", uint64(CueClust));
                         } else {
                           printf("    - found %s\n", CueRefs[Index3]->Generic().DebugName);
                         }
@@ -538,7 +539,7 @@ int main(int argc, char **argv)
               for (Index1 = 0; Index1<SeekPoint.ListSize() ;Index1++) {
                 if (SeekPoint[Index1]->Generic().GlobalId == KaxSeekID::ClassInfos.GlobalId) {
                   KaxSeekID * SeekID = static_cast<KaxSeekID *>(SeekPoint[Index1]);
-                  printf("    Seek ID ", SeekID->GetBuffer());
+                  printf("    Seek ID ");
                   for (unsigned int i=0; i<SeekID->GetSize(); i++) {
                     printf("%02X", SeekID->GetBuffer()[i]);
                   }

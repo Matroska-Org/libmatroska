@@ -44,6 +44,8 @@
 #include "matroska/KaxCluster.h"
 #include "matroska/KaxDefines.h"
 
+#include <memory>
+
 namespace libmatroska {
 
 DataBuffer * DataBuffer::Clone()
@@ -582,7 +584,6 @@ filepos_t KaxInternalBlock::ReadData(IOCallback & input, ScopeMode ReadFully)
       if (Result != 5)
         throw SafeReadIOCallback::EndOfStreamX(0);
       binary *cursor = _TempHead;
-      binary *_tmpBuf;
       uint8 BlockHeadSize = 4;
 
       // update internal values
@@ -656,8 +657,10 @@ filepos_t KaxInternalBlock::ReadData(IOCallback & input, ScopeMode ReadFully)
             SizeList[Index] = LastBufferSize;
             break;
           case LACING_EBML:
+          {
             SizeRead = LastBufferSize;
-            cursor = _tmpBuf = new binary[FrameNum*4]; /// \warning assume the mean size will be coded in less than 4 bytes
+            auto _tmpBuf = std::make_unique<binary[]>(FrameNum*4); /// \warning assume the mean size will be coded in less than 4 bytes
+            cursor = _tmpBuf.get();
             Result += input.read(cursor, FrameNum*4);
             FrameSize = ReadCodedSizeValue(cursor, SizeRead, SizeUnknown);
             if (FrameSize > TotalLacedSize)
@@ -677,11 +680,11 @@ filepos_t KaxInternalBlock::ReadData(IOCallback & input, ScopeMode ReadFully)
               LastBufferSize -= FrameSize + SizeRead;
             }
 
-            FirstFrameLocation += cursor - _tmpBuf;
+            FirstFrameLocation += cursor - _tmpBuf.get();
 
             SizeList[Index] = LastBufferSize;
-            delete [] _tmpBuf;
             break;
+          }
           case LACING_FIXED:
             for (Index=0; Index<=FrameNum; Index++) {
               // get the size of the frame

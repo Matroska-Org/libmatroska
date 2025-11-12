@@ -7,12 +7,12 @@ on:
 
 jobs:
   build_libmatroska:
-    name: libmatroska for Linux gcc9
+    name: libmatroska for Linux gcc10
     runs-on: ubuntu-22.04
     env:
       CMAKE_MATROSKA_OPTIONS: -DBUILD_EXAMPLES=ON
-      CC:  gcc-9
-      CXX: g++-9
+      CC:  gcc-10
+      CXX: g++-10
     steps:
       - name: list compilers
         run: dpkg --list | grep compiler

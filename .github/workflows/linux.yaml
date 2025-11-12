@@ -108,7 +108,7 @@ jobs:
           branch: edge
           arch: ${{matrix.platform}}
           packages: >
-            build-base cmake
+            build-base cmake git
 
       - name: Checkout libebml
         uses: actions/checkout@v4

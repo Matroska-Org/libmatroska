@@ -51,7 +51,7 @@ jobs:
     runs-on: ubuntu-22.04
     strategy:
       matrix:
-        cxx: ['g++-9', 'clang++-13']
+        cxx: ['g++-10', 'clang++-13']
     env:
       CMAKE_OPTIONS: -DDEV_MODE=ON -DBUILD_TESTING=ON
       CMAKE_MATROSKA_OPTIONS: -DBUILD_EXAMPLES=ON

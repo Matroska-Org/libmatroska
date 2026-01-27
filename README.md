@@ -3,7 +3,7 @@
 [![macOS](https://github.com/Matroska-Org/libmatroska/actions/workflows/macos.yaml/badge.svg)](https://github.com/Matroska-Org/libmatroska/actions/workflows/macos.yaml)
 
 # libmatroska
-a C++ library to parse and create Matroska files
+A C++ library to parse and create Matroska files.
 
 # Building and installing
 
@@ -19,7 +19,7 @@ the normal build process consists of the usual steps:
 3. Compilation: `make`
 4. Installation (run this as root): `make install`
 
-## Customizing what's build with options
+## Customizing what's built with options
 
 By default only a static library is built.
 

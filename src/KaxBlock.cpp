@@ -600,7 +600,11 @@ filepos_t KaxInternalBlock::ReadData(IOCallback & input, ScopeMode ReadFully)
             for (Index=1; Index<FrameNum; Index++) {
               // get the size of the frame
               SizeRead = LastBufferSize;
-              FrameSize += ReadSignedVINT(BufferStart + Mem.GetPosition(), SizeRead);
+              auto FrameSizeDiff = ReadSignedVINT(BufferStart + Mem.GetPosition(), SizeRead);
+              if (FrameSizeDiff < 0 && FrameSize <= -FrameSizeDiff)
+                // invalid negative or 0 frame size
+                throw SafeReadIOCallback::EndOfStreamX(SizeRead);
+              FrameSize += FrameSizeDiff;
               if (!FrameSize || (static_cast<std::uint32_t>(FrameSize + SizeRead) > LastBufferSize))
                 throw SafeReadIOCallback::EndOfStreamX(SizeRead);
               SizeList[Index] = FrameSize;
@@ -750,7 +754,11 @@ filepos_t KaxInternalBlock::ReadData(IOCallback & input, ScopeMode ReadFully)
               if (SizeRead > 1 && input.read(&length_buf[1], SizeRead - 1) != SizeRead - 1)
                 throw SafeReadIOCallback::EndOfStreamX(0);
 
-              FrameSize += ReadSignedVINT(length_buf, SizeRead);
+              auto FrameSizeDiff = ReadSignedVINT(length_buf, SizeRead);
+              if (FrameSizeDiff < 0 && FrameSize <= -FrameSizeDiff)
+                // invalid negative or 0 frame size
+                throw SafeReadIOCallback::EndOfStreamX(0);
+              FrameSize += FrameSizeDiff;
               if (FrameSize > TotalLacedSize)
                 throw SafeReadIOCallback::EndOfStreamX(0);
 

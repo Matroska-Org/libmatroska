@@ -450,37 +450,6 @@ filepos_t KaxInternalBlock::RenderData(IOCallback & output, bool /* bForceRender
   return GetSize();
 }
 
-std::uint64_t KaxInternalBlock::ReadInternalHead(IOCallback & input)
-{
-  binary Buffer[5], *cursor = Buffer;
-  std::uint64_t Result = input.read(cursor, 4);
-  if (Result != 4)
-    return Result;
-
-  // update internal values
-  TrackNumber = *cursor++;
-  if ((TrackNumber & 0x80) == 0) {
-    // there is extra data
-    if ((TrackNumber & 0x40) == 0) {
-      // We don't support track numbers that large !
-      return Result;
-    }
-    Result += input.read(&Buffer[4], 1);
-    TrackNumber = (TrackNumber & 0x3F) << 8;
-    TrackNumber += *cursor++;
-  } else {
-    TrackNumber &= 0x7F;
-  }
-
-  assert(ParentCluster);
-  std::int16_t stamp = endian::from_big16(cursor);
-  Timestamp = ParentCluster->GetBlockGlobalTimestamp(stamp);
-  bLocalTimestampUsed = false;
-  cursor += 2;
-
-  return Result;
-}
-
 /*!
   \todo better zero copy handling
 */

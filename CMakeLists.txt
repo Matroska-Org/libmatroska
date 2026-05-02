@@ -54,6 +54,7 @@ endfunction()
 if(DEV_MODE)
   message(STATUS "Using developer mode for ${CMAKE_CXX_COMPILER_ID}")
   set(CMAKE_CXX_EXTENSIONS OFF)
+  add_definitions("-D_LIBCPP_REMOVE_TRANSITIVE_INCLUDES")
   add_cxx_flag_if_supported(-Wno-error=unused-command-line-argument
                             -Wall -Wextra -Wpedantic -Wfatal-errors -fstack-protector-strong
                             -Wcast-align

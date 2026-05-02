@@ -23,10 +23,10 @@ jobs:
       CMAKE_MATROSKA_OPTIONS: -DBUILD_EXAMPLES=ON
     steps:
       - name: Get pushed code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Checkout libebml
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           repository: Matroska-Org/libebml
           path: libebml

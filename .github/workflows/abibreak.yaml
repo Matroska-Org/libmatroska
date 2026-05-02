@@ -9,8 +9,9 @@ jobs:
     name: abidiff
     runs-on: ubuntu-latest
     env:
-      CMAKE_OPTIONS: -DBUILD_TESTING=ON -G Ninja
+      CMAKE_OPTIONS: -DBUILD_TESTING=ON -DCMAKE_BUILD_TYPE:STRING=Debug -G Ninja
       CMAKE_MATROSKA_OPTIONS: -DBUILD_EXAMPLES=ON -DEBML_DIR="${GITHUB_WORKSPACE}/_built/lib/cmake/EBML"
+      CMAKE_ENV: cmake -E env CXXFLAGS="-Og"
     steps:
       - name: Checkout libebml 1.x
         uses: actions/checkout@v6
@@ -20,7 +21,7 @@ jobs:
           ref: v1.x
 
       - name: Configure libebml 1.x
-        run: cmake -S libebml -B libebml/_build ${{ env.CMAKE_OPTIONS }}
+        run: ${{ env.CMAKE_ENV }} cmake -S libebml -B libebml/_build ${{ env.CMAKE_OPTIONS }}
 
       - name: Build libebml 1.x
         run: cmake --build libebml/_build --parallel
@@ -36,7 +37,7 @@ jobs:
           ref: v1.x
 
       - name: Configure v1.x
-        run: cmake -S libmatroska-1 -B _build_origin ${{ env.CMAKE_OPTIONS }} ${{ env.CMAKE_MATROSKA_OPTIONS }} -DCMAKE_INSTALL_PREFIX:STRING=${GITHUB_WORKSPACE}/dir-old
+        run: ${{ env.CMAKE_ENV }} cmake -S libmatroska-1 -B _build_origin ${{ env.CMAKE_OPTIONS }} ${{ env.CMAKE_MATROSKA_OPTIONS }} -DCMAKE_INSTALL_PREFIX:STRING=${GITHUB_WORKSPACE}/dir-old
 
       - name: Build v1.x
         run: cmake --build _build_origin --parallel
@@ -49,7 +50,7 @@ jobs:
         uses: actions/checkout@v6
 
       - name: Configure
-        run: cmake -S . -B _build_pr  ${{ env.CMAKE_OPTIONS }} ${{ env.CMAKE_MATROSKA_OPTIONS }} -DCMAKE_INSTALL_PREFIX:STRING=${GITHUB_WORKSPACE}/dir-new
+        run: ${{ env.CMAKE_ENV }} cmake -S . -B _build_pr  ${{ env.CMAKE_OPTIONS }} ${{ env.CMAKE_MATROSKA_OPTIONS }} -DCMAKE_INSTALL_PREFIX:STRING=${GITHUB_WORKSPACE}/dir-new
 
       - name: Build
         run: cmake --build _build_pr --parallel

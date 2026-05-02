@@ -9,7 +9,7 @@ jobs:
     name: abidiff
     runs-on: ubuntu-latest
     env:
-      CMAKE_OPTIONS: -DBUILD_TESTING=ON -DCMAKE_BUILD_TYPE:STRING=Debug -G Ninja
+      CMAKE_OPTIONS: -DBUILD_TESTING=ON -DBUILD_SHARED_LIBS=ON -DCMAKE_BUILD_TYPE:STRING=Debug -G Ninja
       CMAKE_MATROSKA_OPTIONS: -DEBML_DIR="${GITHUB_WORKSPACE}/_built/lib/cmake/EBML"
       CMAKE_ENV: cmake -E env CXXFLAGS="-Og"
     steps:

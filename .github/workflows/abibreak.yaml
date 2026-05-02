@@ -71,6 +71,12 @@ jobs:
           abidiff --no-harmful \
                   --no-added-syms \
                   --non-reachable-types \
+                  --added-binaries-dir1 ${GITHUB_WORKSPACE}/_built/lib \
+                  --added-binaries-dir2 ${GITHUB_WORKSPACE}/_built/lib \
+                  --headers-dir1 ${GITHUB_WORKSPACE}/_built/include \
+                  --headers-dir2 ${GITHUB_WORKSPACE}/_built/include \
+                  --follow-dependencies \
+                  --fail-no-debug-info \
                      --headers-dir1 ${GITHUB_WORKSPACE}/dir-old/include/matroska \
                      --headers-dir2 ${GITHUB_WORKSPACE}/dir-new/include/matroska \
                      ${GITHUB_WORKSPACE}/_build_origin/libmatroska.so \
@@ -80,6 +86,12 @@ jobs:
           abidiff --no-added-syms \
                   --non-reachable-types \
                   --no-change-categorization \
+                  --added-binaries-dir1 ${GITHUB_WORKSPACE}/_built/lib \
+                  --added-binaries-dir2 ${GITHUB_WORKSPACE}/_built/lib \
+                  --headers-dir1 ${GITHUB_WORKSPACE}/_built/include \
+                  --headers-dir2 ${GITHUB_WORKSPACE}/_built/include \
+                  --follow-dependencies \
+                  --fail-no-debug-info \
                      --headers-dir1 ${GITHUB_WORKSPACE}/dir-old/include/matroska \
                      --headers-dir2 ${GITHUB_WORKSPACE}/dir-new/include/matroska \
                      ${GITHUB_WORKSPACE}/_build_origin/libmatroska.so \

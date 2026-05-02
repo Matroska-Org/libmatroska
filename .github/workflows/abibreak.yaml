@@ -8,16 +8,19 @@ jobs:
   test_abidiff:
     name: abidiff
     runs-on: ubuntu-latest
+    env:
+      CMAKE_OPTIONS: -DBUILD_TESTING=ON -G Ninja
+      CMAKE_MATROSKA_OPTIONS: -DBUILD_EXAMPLES=ON -DEBML_DIR="${GITHUB_WORKSPACE}/_built/lib/cmake/EBML"
     steps:
       - name: Checkout libebml 1.x
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           repository: Matroska-Org/libebml
           path: libebml
           ref: v1.x
 
       - name: Configure libebml 1.x
-        run: cmake -S libebml -B libebml/_build -DBUILD_SHARED_LIBS=ON -G Ninja
+        run: cmake -S libebml -B libebml/_build ${{ env.CMAKE_OPTIONS }}
 
       - name: Build libebml 1.x
         run: cmake --build libebml/_build --parallel
@@ -26,14 +29,14 @@ jobs:
         run: cmake --install libebml/_build --prefix ${GITHUB_WORKSPACE}/_built
 
 
-      - name: Get libmatroska 1.x
-        uses: actions/checkout@v4
+      - name: Get v1.x code
+        uses: actions/checkout@v6
         with:
           path: libmatroska-1
           ref: v1.x
 
       - name: Configure v1.x
-        run: cmake -S libmatroska-1 -B _build_origin -DBUILD_SHARED_LIBS=ON -DEBML_DIR="${GITHUB_WORKSPACE}/_built/lib/cmake/EBML" -DCMAKE_BUILD_TYPE=Debug -G Ninja
+        run: cmake -S libmatroska-1 -B _build_origin ${{ env.CMAKE_OPTIONS }} ${{ env.CMAKE_MATROSKA_OPTIONS }} -DCMAKE_INSTALL_PREFIX:STRING=${GITHUB_WORKSPACE}/dir-old
 
       - name: Build v1.x
         run: cmake --build _build_origin --parallel
@@ -42,13 +45,11 @@ jobs:
         run: cmake --install _build_origin --prefix ${GITHUB_WORKSPACE}/dir-old
 
 
-      - name: Get libmatroska 1.x from Pull Request
-        uses: actions/checkout@v4
-        with:
-          path: libmatroska-new
+      - name: Get pushed code
+        uses: actions/checkout@v6
 
-      - name: Configure CMake
-        run: cmake -S libmatroska-new -B _build_pr -DBUILD_SHARED_LIBS=ON -DEBML_DIR="${GITHUB_WORKSPACE}/_built/lib/cmake/EBML" -DCMAKE_BUILD_TYPE=Debug -G Ninja
+      - name: Configure
+        run: cmake -S . -B _build_pr  ${{ env.CMAKE_OPTIONS }} ${{ env.CMAKE_MATROSKA_OPTIONS }} -DCMAKE_INSTALL_PREFIX:STRING=${GITHUB_WORKSPACE}/dir-new
 
       - name: Build
         run: cmake --build _build_pr --parallel

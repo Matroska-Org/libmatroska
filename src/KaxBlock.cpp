@@ -684,6 +684,9 @@ filepos_t KaxInternalBlock::ReadData(IOCallback & input, ScopeMode ReadFully)
             break;
           case LACING_EBML:
           {
+            if (FrameNum == 0)
+              Index = 0;
+            else {
             binary length_buf[8];
             if (input.read(length_buf, 1) != 1)
               throw SafeReadIOCallback::EndOfStreamX(0);
@@ -723,6 +726,7 @@ filepos_t KaxInternalBlock::ReadData(IOCallback & input, ScopeMode ReadFully)
               FirstFrameLocation += SizeRead;
               SizeList[Index] = FrameSize;
               LastBufferSize -= FrameSize + SizeRead;
+            }
             }
 
             SizeList[Index] = LastBufferSize;

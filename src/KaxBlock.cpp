@@ -496,9 +496,9 @@ filepos_t KaxInternalBlock::ReadData(IOCallback & input, ScopeMode ReadFully)
       } else {
         // read the number of frames in the lace
         uint32 LastBufferSize = GetSize() - BlockHeadSize - 1; // 1 for number of frame
-        const uint8 FrameNum = Mem.GetUInt8(); // number of frames in the lace - 1
+        const unsigned FrameNum = Mem.GetUInt8(); // number of frames in the lace - 1
         // read the list of frame sizes
-        uint8 Index;
+        unsigned Index;
         int32 FrameSize;
         uint32 SizeRead;
         uint64 SizeUnknown;
@@ -625,9 +625,9 @@ filepos_t KaxInternalBlock::ReadData(IOCallback & input, ScopeMode ReadFully)
         // read the number of frames in the lace
         const uint32 TotalLacedSize = GetSize() - BlockHeadSize - 1; // 1 for number of frame
         uint32 LastBufferSize = TotalLacedSize;
-        const uint8 FrameNum = _TempHead[0]; // number of frames in the lace - 1
+        const unsigned FrameNum = _TempHead[0]; // number of frames in the lace - 1
         // read the list of frame sizes
-        uint8 Index;
+        unsigned Index;
         uint32 FrameSize;
         uint32 SizeRead;
         uint64 SizeUnknown;

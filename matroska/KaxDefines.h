@@ -62,6 +62,7 @@
 class MATROSKA_DLL_API x : public EbmlMaster { \
     public: x(EBML_EXTRA_PARAM); \
     x(const x & ElementToClone) :EbmlMaster(ElementToClone) {} \
+    bool SetSizeInfinite(bool finite = true) override { return !finite; } \
     EBML_CONCRETE_CLASS(x)
 
 #define DECLARE_MKX_MASTER_CONS(x)     DECLARE_MKX_CONTEXT(x) \
@@ -150,6 +151,7 @@ class MATROSKA_DLL_API x : public EbmlMaster { \
 class MATROSKA_DLL_API x : public EbmlMaster { \
     public: x(); \
     x(const x & ElementToClone) :EbmlMaster(ElementToClone) {} \
+    bool SetSizeInfinite(bool finite = true) override { return !finite; } \
     EBML_CONCRETE_CLASS(x)
 
 #define DECLARE_MKX_MASTER_CONS(x)     DECLARE_MKX_CONTEXT(x) \

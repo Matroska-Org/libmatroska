@@ -705,6 +705,7 @@ filepos_t KaxInternalBlock::ReadData(IOCallback & input, ScopeMode ReadFully)
   } catch (SafeReadIOCallback::EndOfStreamX &) {
     SetValueIsSet(false);
 
+    ReleaseFrames();
     myBuffers.clear();
     SizeList.clear();
     Timecode           = 0;

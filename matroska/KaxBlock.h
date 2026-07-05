@@ -201,12 +201,6 @@ class MATROSKA_DLL_API KaxInternalBlock : public libebml::EbmlBinary {
     libebml::filepos_t UpdateSize(const ShouldWrite & writeFilter = WriteSkipDefault, bool bForceRender = false) override;
     libebml::filepos_t ReadData(libebml::IOCallback & input, libebml::ScopeMode ReadFully = libebml::SCOPE_ALL_DATA) override;
 
-    /*!
-      \brief Only read the head of the Block (not internal data)
-      \note convenient when you are parsing the file quickly
-    */
-    std::uint64_t ReadInternalHead(libebml::IOCallback & input);
-
     unsigned int NumberFrames() const { return SizeList.size();}
     DataBuffer & GetBuffer(unsigned int iIndex) {return *myBuffers[iIndex];}
 

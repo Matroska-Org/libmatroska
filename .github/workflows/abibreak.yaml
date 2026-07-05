@@ -1,0 +1,98 @@
+name: "ABI Breakage"
+on:
+  push:
+    branches: [ v1.x ]
+  pull_request:
+
+jobs:
+  test_abidiff:
+    name: abidiff
+    runs-on: ubuntu-latest
+    env:
+      CMAKE_OPTIONS: -DBUILD_TESTING=ON -DBUILD_SHARED_LIBS=ON -DCMAKE_BUILD_TYPE:STRING=Debug -G Ninja
+      CMAKE_MATROSKA_OPTIONS: -DEBML_DIR="${GITHUB_WORKSPACE}/_built/lib/cmake/EBML"
+      CMAKE_ENV: cmake -E env CXXFLAGS="-Og"
+    steps:
+      - name: Checkout libebml 1.x
+        uses: actions/checkout@v6
+        with:
+          repository: Matroska-Org/libebml
+          path: libebml
+          ref: v1.x
+
+      - name: Configure libebml 1.x
+        run: ${{ env.CMAKE_ENV }} cmake -S libebml -B libebml/_build ${{ env.CMAKE_OPTIONS }}
+
+      - name: Build libebml 1.x
+        run: cmake --build libebml/_build --parallel
+
+      - name: Install libebml 1.x
+        run: cmake --install libebml/_build --prefix ${GITHUB_WORKSPACE}/_built
+
+
+      - name: Get v1.x code
+        uses: actions/checkout@v6
+        with:
+          path: libmatroska-1
+          ref: v1.x
+
+      - name: Configure v1.x
+        run: ${{ env.CMAKE_ENV }} cmake -S libmatroska-1 -B _build_origin ${{ env.CMAKE_OPTIONS }} ${{ env.CMAKE_MATROSKA_OPTIONS }} -DCMAKE_INSTALL_PREFIX:STRING=${GITHUB_WORKSPACE}/dir-old
+
+      - name: Build v1.x
+        run: cmake --build _build_origin --parallel
+
+      - name: Install v1.x
+        run: cmake --install _build_origin --prefix ${GITHUB_WORKSPACE}/dir-old
+
+
+      - name: Get pushed code
+        uses: actions/checkout@v6
+        with:
+          path: libmatroska-new
+
+      - name: Configure
+        run: ${{ env.CMAKE_ENV }} cmake -S libmatroska-new -B _build_pr  ${{ env.CMAKE_OPTIONS }} ${{ env.CMAKE_MATROSKA_OPTIONS }} -DCMAKE_INSTALL_PREFIX:STRING=${GITHUB_WORKSPACE}/dir-new
+
+      - name: Build
+        run: cmake --build _build_pr --parallel
+
+      - name: Install
+        run: cmake --install _build_pr --prefix ${GITHUB_WORKSPACE}/dir-new
+
+
+      - name: Get abidiff
+        run: |
+          sudo apt update
+          sudo apt install abigail-tools
+
+      - name: Check ABI non-harmful differences
+        run: |
+          abidiff --no-harmful \
+                  --no-added-syms \
+                  --non-reachable-types \
+                  --added-binaries-dir1 ${GITHUB_WORKSPACE}/_built/lib \
+                  --added-binaries-dir2 ${GITHUB_WORKSPACE}/_built/lib \
+                  --headers-dir1 ${GITHUB_WORKSPACE}/_built/include \
+                  --headers-dir2 ${GITHUB_WORKSPACE}/_built/include \
+                  --follow-dependencies \
+                  --fail-no-debug-info \
+                     --headers-dir1 ${GITHUB_WORKSPACE}/dir-old/include/matroska \
+                     --headers-dir2 ${GITHUB_WORKSPACE}/dir-new/include/matroska \
+                     ${GITHUB_WORKSPACE}/_build_origin/libmatroska.so \
+                     ${GITHUB_WORKSPACE}/_build_pr/libmatroska.so || echo "Warning!"
+      - name: Check ABI differences
+        run: |
+          abidiff --no-added-syms \
+                  --non-reachable-types \
+                  --no-change-categorization \
+                  --added-binaries-dir1 ${GITHUB_WORKSPACE}/_built/lib \
+                  --added-binaries-dir2 ${GITHUB_WORKSPACE}/_built/lib \
+                  --headers-dir1 ${GITHUB_WORKSPACE}/_built/include \
+                  --headers-dir2 ${GITHUB_WORKSPACE}/_built/include \
+                  --follow-dependencies \
+                  --fail-no-debug-info \
+                     --headers-dir1 ${GITHUB_WORKSPACE}/dir-old/include/matroska \
+                     --headers-dir2 ${GITHUB_WORKSPACE}/dir-new/include/matroska \
+                     ${GITHUB_WORKSPACE}/_build_origin/libmatroska.so \
+                     ${GITHUB_WORKSPACE}/_build_pr/libmatroska.so

@@ -46,6 +46,9 @@
 
 namespace libmatroska {
 
+const KaxCluster *KaxBlockGroup::GetParentCluster2() const { return ParentCluster; }
+
+
 DataBuffer * DataBuffer::Clone()
 {
   auto ClonedData = static_cast<binary *>(malloc(mySize * sizeof(binary)));

@@ -36,6 +36,7 @@ KaxSegment::KaxSegment(const KaxSegment & ElementToClone)
       static_cast<KaxCluster *>(child)->SetParent(*this);
 }
 
+KaxSegment::~KaxSegment() = default;
 
 std::uint64_t KaxSegment::GetRelativePosition(std::uint64_t aGlobalPosition) const
 {

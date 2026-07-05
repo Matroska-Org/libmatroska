@@ -22,6 +22,9 @@ DECLARE_MKX_MASTER(KaxCues)
   public:
     ~KaxCues() override;
 
+    KaxCues(const KaxCues&) = default;
+    KaxCues& operator=(const KaxCues&) = delete;
+
     //bool AddBlockGroup(const KaxBlockGroup & BlockReference); // deprecated
     bool AddBlockBlob(const KaxBlockBlob & BlockReference);
 

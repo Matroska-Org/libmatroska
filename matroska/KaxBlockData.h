@@ -22,7 +22,6 @@ namespace libmatroska {
 */
 DECLARE_MKX_SINTEGER_CONS(KaxReferenceBlock)
   public:
-        ~KaxReferenceBlock() override;
     /*!
       \brief override this method to compute the timestamp value
     */

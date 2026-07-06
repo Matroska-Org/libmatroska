@@ -1,3 +1,23 @@
+# Version 1.7.2 2026-07-xx
+
+* Do not allow infinite sizes on all Master elements except Segment+Cluster
+  (as per RFC 9559).
+* Only allow `KaxSeekId` of 4 bytes length (as per RFC 9559).
+* KaxBlock: release read buffers on `EndOfStream` error.
+* Catch some allocation failures internally.
+* Deprecate `KaxTrackMinCache`/`KaxTrackMaxCache` elements (as per RFC 9559).
+* Deprecate `KaxTrackOverlay` element (as per RFC 9559).
+* Fix `MATROSKA_VIDEO_FIELDORDER_TOPFIELDSWAPPED`/
+  `MATROSKA_VIDEO_FIELDORDER_BOTTOMFIELDSWAPPED` values.
+* Add missing `MatroskaChapProcessCodecID` enum.
+* [API break] remove `MatroskaChapterTranslateCodec`/`MatroskaTrackTranslateCodec`.
+* KaxSemantic: update enum comments to match RFC 9559.
+* Add `MATROSKA_CHAPTERSKIPTYPE_INTERMISSION` to `MatroskaChapterSkipType`.
+* Fix some includes that are not implicit in modern compilers.
+* Show a summary of build configuration when configuring CMake.
+* Add a DEV_MODE CMake option to check more compiler errors (default off).
+* Add a BUILD_EXAMPLES CMake option (default off).
+
 # Version 1.7.1 2022-10-08
 
 * Fix ABI compatibility: unfortunately release 1.7.0 broke ABI

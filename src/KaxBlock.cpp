@@ -729,25 +729,7 @@ filepos_t KaxInternalBlock::ReadData(IOCallback & input, ScopeMode ReadFully)
             if (FrameNum == 0)
               Index = 0;
             else {
-            binary length_buf[8];
-            if (input.read(length_buf, 1) != 1)
-              throw SafeReadIOCallback::EndOfStreamX(0);
-
-            // get the length of the EBML coded value
-            SizeRead = EBMLCodecLength(length_buf[0]);
-            // read remaining needed bytes
-            if (SizeRead > 1 && input.read(&length_buf[1], SizeRead - 1) != SizeRead - 1)
-              throw SafeReadIOCallback::EndOfStreamX(0);
-
-            FrameSize = ReadCodedSizeValue(length_buf, SizeRead, SizeUnknown);
-            if (FrameSize > TotalLacedSize)
-              throw SafeReadIOCallback::EndOfStreamX(0);
-
-            FirstFrameLocation += SizeRead;
-            SizeList[0] = FrameSize;
-            LastBufferSize -= FrameSize + SizeRead;
-
-            for (Index=1; Index<FrameNum; Index++) {
+              binary length_buf[8];
               if (input.read(length_buf, 1) != 1)
                 throw SafeReadIOCallback::EndOfStreamX(0);
 
@@ -757,18 +739,36 @@ filepos_t KaxInternalBlock::ReadData(IOCallback & input, ScopeMode ReadFully)
               if (SizeRead > 1 && input.read(&length_buf[1], SizeRead - 1) != SizeRead - 1)
                 throw SafeReadIOCallback::EndOfStreamX(0);
 
-              auto FrameSizeDiff = ReadSignedVINT(length_buf, SizeRead);
-              if (FrameSizeDiff < 0 && FrameSize <= -FrameSizeDiff)
-                // invalid negative or 0 frame size
-                throw SafeReadIOCallback::EndOfStreamX(0);
-              FrameSize += FrameSizeDiff;
+              FrameSize = ReadCodedSizeValue(length_buf, SizeRead, SizeUnknown);
               if (FrameSize > TotalLacedSize)
                 throw SafeReadIOCallback::EndOfStreamX(0);
 
               FirstFrameLocation += SizeRead;
-              SizeList[Index] = FrameSize;
+              SizeList[0] = FrameSize;
               LastBufferSize -= FrameSize + SizeRead;
-            }
+
+              for (Index=1; Index<FrameNum; Index++) {
+                if (input.read(length_buf, 1) != 1)
+                  throw SafeReadIOCallback::EndOfStreamX(0);
+
+                // get the length of the EBML coded value
+                SizeRead = EBMLCodecLength(length_buf[0]);
+                // read remaining needed bytes
+                if (SizeRead > 1 && input.read(&length_buf[1], SizeRead - 1) != SizeRead - 1)
+                  throw SafeReadIOCallback::EndOfStreamX(0);
+
+                auto FrameSizeDiff = ReadSignedVINT(length_buf, SizeRead);
+                if (FrameSizeDiff < 0 && FrameSize <= -FrameSizeDiff)
+                  // invalid negative or 0 frame size
+                  throw SafeReadIOCallback::EndOfStreamX(0);
+                FrameSize += FrameSizeDiff;
+                if (FrameSize > TotalLacedSize)
+                  throw SafeReadIOCallback::EndOfStreamX(0);
+
+                FirstFrameLocation += SizeRead;
+                SizeList[Index] = FrameSize;
+                LastBufferSize -= FrameSize + SizeRead;
+              }
             }
 
             SizeList[Index] = LastBufferSize;

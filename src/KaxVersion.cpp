@@ -37,7 +37,7 @@
 
 namespace libmatroska {
 
-const std::string KaxCodeVersion = "1.7.1";
+const std::string KaxCodeVersion = "1.7.2";
 
 // Up to version 1.4.4 this library exported a build date string. As
 // this made the build non-reproducible, replace it by a placeholder to

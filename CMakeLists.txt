@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.5)
 
-project(matroska VERSION 1.7.1)
+project(matroska VERSION 1.7.2)
 
 include(CMakeDependentOption)
 

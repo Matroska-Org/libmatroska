@@ -1,4 +1,4 @@
-# Version 1.7.2 2026-07-xx
+# Version 1.7.2 2026-07-19
 
 * Do not allow infinite sizes on all Master elements except Segment+Cluster
   (as per RFC 9559).

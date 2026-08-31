@@ -32,7 +32,7 @@ jobs:
           ref: v1.x
 
       - name: Configure libebml
-        run: cmake -S libebml -B libebml/_build -G "Ninja Multi-Config"
+        run: cmake -S libebml -B libebml/_build ${{ matrix.lib.option }} -G "Ninja Multi-Config"
 
       - name: Build libebml
         run: cmake --build libebml/_build --config ${{ matrix.config }} --parallel

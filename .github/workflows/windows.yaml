@@ -7,12 +7,17 @@ on:
 
 jobs:
   build_libmatroska:
-    name: libmatroska ${{ matrix.arch.name }} ${{ matrix.config }}
+    name: ${{ matrix.config }} libmatroska ${{ matrix.arch.name }} (${{ matrix.lib.name }})
     runs-on: windows-latest
     strategy:
       fail-fast: false
       matrix:
         config: [Debug, Release]
+        lib: [
+          { "name": "static", "option": "-DBUILD_SHARED_LIBS=OFF"},
+          { "name": "shared", "option": "-DBUILD_SHARED_LIBS=ON"},
+          { "name": "auto",   "option": ""},
+        ]
         arch: [
           { "name": "x64",   "option": "x64"},
           { "name": "x86",   "option": "win32"},
@@ -42,7 +47,7 @@ jobs:
         run: cmake --install libebml/_build --config ${{ matrix.config }} --prefix ${GITHUB_WORKSPACE}/_built
 
       - name: Configure library
-        run: cmake -S . -B _build ${{ env.CMAKE_OPTIONS }} ${{ env.CMAKE_MATROSKA_OPTIONS }} -A ${{ matrix.arch.option }} -DEBML_DIR="${GITHUB_WORKSPACE}/_built/lib/cmake/EBML"
+        run: cmake -S . -B _build ${{ env.CMAKE_OPTIONS }} ${{ env.CMAKE_MATROSKA_OPTIONS }} -A ${{ matrix.arch.option }} ${{ matrix.lib.option }} -DEBML_DIR="${GITHUB_WORKSPACE}/_built/lib/cmake/EBML"
 
       - name: Build
         run: cmake --build _build --config ${{ matrix.config }} --parallel

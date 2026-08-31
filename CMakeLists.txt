@@ -2,8 +2,6 @@ cmake_minimum_required(VERSION 3.5)
 
 project(matroska VERSION 1.7.2)
 
-include(CMakeDependentOption)
-
 include( FeatureSummary )
 function(feature_info_on_off)
   set(option_name ${ARGV0})
@@ -14,7 +12,7 @@ function(feature_info_on_off)
   endif()
 endfunction(feature_info_on_off)
 
-cmake_dependent_option(BUILD_SHARED_LIBS "Build libmatroska as a shared library (except Windows)" OFF "NOT WIN32" OFF)
+option(BUILD_SHARED_LIBS "Build libmatroska as a shared library (except Windows)" OFF)
 feature_info_on_off(BUILD_SHARED_LIBS "will build as a dynamic library" "will build as a static library")
 
 option(DISABLE_PKGCONFIG "Disable PkgConfig module generation" OFF)

@@ -7,7 +7,7 @@ on:
 
 jobs:
   build_libmatroska:
-    name: ${{ matrix.config }} libmatroska for Windows
+    name: ${{ matrix.config }} libmatroska (${{ matrix.lib.name }}) for Windows
     runs-on: windows-latest
     env:
       CMAKE_MATROSKA_OPTIONS: -DBUILD_EXAMPLES=ON
@@ -15,6 +15,11 @@ jobs:
       fail-fast: false
       matrix:
         config: [Debug, Release]
+        lib: [
+          { "name": "static", "option": "-DBUILD_SHARED_LIBS=OFF"},
+          { "name": "shared", "option": "-DBUILD_SHARED_LIBS=ON"},
+          { "name": "auto",   "option": ""},
+        ]
     steps:
       - name: Get pushed code
         uses: actions/checkout@v7
@@ -36,7 +41,7 @@ jobs:
         run: cmake --install libebml/_build --config ${{ matrix.config }} --prefix ${GITHUB_WORKSPACE}/_built
 
       - name: Configure CMake
-        run: cmake -S . -B _build ${{ env.CMAKE_MATROSKA_OPTIONS }} -DEBML_DIR="${GITHUB_WORKSPACE}/_built/lib/cmake/EBML" -G "Ninja Multi-Config"
+        run: cmake -S . -B _build ${{ env.CMAKE_MATROSKA_OPTIONS }} ${{ matrix.lib.option }} -DEBML_DIR="${GITHUB_WORKSPACE}/_built/lib/cmake/EBML" -G "Ninja Multi-Config"
 
       - name: Build with CMake
         run: cmake --build _build --config ${{ matrix.config }} --parallel

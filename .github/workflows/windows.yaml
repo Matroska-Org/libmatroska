@@ -38,7 +38,7 @@ jobs:
           # minimum version we support ref: 'release-1.4.3'
 
       - name: Configure libebml
-        run: cmake -S libebml -B libebml/_build ${{ env.CMAKE_OPTIONS }} -A ${{ matrix.arch.option }}
+        run: cmake -S libebml -B libebml/_build ${{ env.CMAKE_OPTIONS }} ${{ matrix.lib.option }} -A ${{ matrix.arch.option }}
 
       - name: Build libebml
         run: cmake --build libebml/_build --config ${{ matrix.config }} --parallel

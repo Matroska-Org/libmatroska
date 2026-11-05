@@ -486,7 +486,7 @@ std::uint64_t KaxInternalBlock::ReadInternalHead(IOCallback & input)
     // there is extra data
     if ((TrackNumber & 0x40) == 0) {
       // We don't support track numbers that large !
-      return Result;
+      throw SafeReadIOCallback::EndOfStreamX(0);
     }
     Result += input.read(&Buffer[4], 1);
     TrackNumber = (TrackNumber & 0x3F) << 8;
